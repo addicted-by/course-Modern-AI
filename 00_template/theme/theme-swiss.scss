@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Quarto Reveal.js Standalone Theme: Swiss Editorial Minimal (Variant A)
+   International Typographic Style: rational, crisp, high-precision
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+@import "presets/preset-swiss-minimal";
+
+/*-- scss:rules --*/
+@import "_typography";
+@import "_layout";
+@import "_components";
+@import "_reveal-overrides";
+@import "_animations";
+

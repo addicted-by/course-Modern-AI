@@ -1,0 +1,44 @@
+[
+  {
+    "project": 6,
+    "file": "p06-sonicdiffusion.png",
+    "alt": "SonicDiffusion examples showing images generated and edited from sounds.",
+    "caption": "SonicDiffusion: sounds guide image generation and editing.",
+    "source_url": "https://cyberiada.github.io/SonicDiffusion/"
+  },
+  {
+    "project": 7,
+    "file": "p07-omnieraser-before.png",
+    "alt": "A gecko on a reflective green surface, with the object selected for removal.",
+    "caption": "OmniEraser input: the selected object and its reflection.",
+    "source_url": "https://pris-cv.github.io/Omnieraser/"
+  },
+  {
+    "project": 7,
+    "file": "p07-omnieraser-after.png",
+    "alt": "The green surface after the gecko and its reflection have been removed.",
+    "caption": "OmniEraser result: the object and its reflection are removed.",
+    "source_url": "https://pris-cv.github.io/Omnieraser/"
+  },
+  {
+    "project": 8,
+    "file": "p08-whisper.png",
+    "alt": "Whisper audio recognition architecture linking a spectrogram to decoded text.",
+    "caption": "Whisper converts an audio spectrogram into text tokens; a starting point for lyrics transcription.",
+    "source_url": "https://github.com/openai/whisper"
+  },
+  {
+    "project": 9,
+    "file": "p09-lapa.png",
+    "alt": "LaPa faces with landmark annotations and colored semantic masks, including hair.",
+    "caption": "LaPa annotations separate hair, face and other regions for selective enhancement.",
+    "source_url": "https://github.com/jd-opensource/lapa-dataset"
+  },
+  {
+    "project": 10,
+    "file": "p10-p3m.png",
+    "alt": "P3M portrait photographs paired with detailed foreground alpha mattes.",
+    "caption": "P3M portraits and alpha mattes: accurate subject boundaries for background blur.",
+    "source_url": "https://github.com/JizhiziLi/P3M"
+  }
+]

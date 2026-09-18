@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Variant C: Academic Neo-Grotesk / Monograph Elegance
+   High-prestige monograph: Newsreader serif, Alabaster cream, Ochre & Indigo Navy
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+
+// Typography Web Fonts
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+// Reveal.js SASS Variable Defaults (Academic Theme)
+$body-bg: #fbfbf9 !default;
+$body-color: #27272a !default;
+$theme-color: #b45309 !default;
+$heading-color: #18181b !default;
+$font-family-sans-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace !default;
+$presentation-heading-font: 'Newsreader', 'Georgia', Cambria, serif !default;
+$presentation-font-size-root: 28px !default;
+$presentation-line-height: 1.65 !default;
+$link-color: #b45309 !default;
+$link-color-hover: #92400e !default;
+$selection-bg: rgba(180, 83, 9, 0.18) !default;
+$selection-color: #18181b !default;
+
+/*-- scss:rules --*/
+
+:root {
+  /* Preset Name Metadata */
+  --lecture-preset: 'academic';
+  --lecture-preset-name: 'Academic Monograph Elegance';
+
+  /* Surface & Canvas Tokens (Warm Alabaster Linen / Parchment) */
+  --lecture-bg: #fbfbf9;
+  --lecture-bg-subtle: #ece5d8;
+  --lecture-surface: #fdfbf7;
+  --lecture-surface-alt: #ece5d8;
+  --lecture-surface-glass: rgba(253, 251, 247, 0.92);
+  --lecture-surface-dark: #1e1b4b;
+  --lecture-surface-glass-dark: rgba(30, 27, 75, 0.85);
+  --lecture-surface-glass-darker: rgba(15, 23, 42, 0.94);
+
+  /* Typography & Text Colors */
+  --lecture-fg: #18181b;
+  --lecture-fg-soft: #3f3f46;
+  --lecture-muted: #71717a;
+  --lecture-muted-light: #a1a1aa;
+  --lecture-fg-inverted: #fbfbf9;
+  --lecture-fg-inverted-soft: #e4e4e7;
+
+  /* Font Families */
+  --lecture-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --lecture-font-heading: 'Newsreader', 'Georgia', Cambria, serif;
+  --lecture-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Borders & Dividers */
+  --lecture-border: #e4e4e7;
+  --lecture-border-light: #f4f4f0;
+  --lecture-border-dark: #d4d4d8;
+  --lecture-border-glass: rgba(228, 228, 231, 0.85);
+  --lecture-border-glass-dark: rgba(255, 255, 255, 0.10);
+
+  /* Header Logos Configuration */
+  --lecture-logo-height: 24px;
+  --lecture-logo-gap: 14px;
+  --lecture-logo-top: 26px;
+  --lecture-logo-right: 36px;
+  --lecture-logo-opacity: 0.85;
+
+  /* Primary Brand Accents & Gradients */
+  --lecture-accent: #b45309;
+  --lecture-accent-hover: #92400e;
+  --lecture-accent-soft: #fffbeb;
+  --lecture-accent-border: #fde68a;
+  --lecture-accent-gradient: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+  --lecture-accent-gradient-subtle: linear-gradient(135deg, rgba(180, 83, 9, 0.08) 0%, rgba(217, 119, 6, 0.08) 100%);
+  --lecture-dark-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+  --lecture-glow-gradient: radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.15) 0%, transparent 70%);
+  --lecture-gold-gradient: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+  --lecture-pop-emerald: #047857;
+  --lecture-pop-violet: #6d28d9;
+  --lecture-pop-orange: #c2410c;
+  --lecture-pop-terracotta: #c2410c;
+  --lecture-pop-lime: #65a30d;
+  --lecture-pop-yellow: #d97706;
+  --lecture-pop-blue: #0369a1;
+  --lecture-pop-gold: #b45309;
+  --lecture-code-bg: #18181b;
+
+  /* Semantic Alerts */
+  --lecture-success: #047857;
+  --lecture-success-soft: #ecfdf5;
+  --lecture-success-border: #a7f3d0;
+  --lecture-success-gradient: linear-gradient(135deg, #047857 0%, #059669 100%);
+
+  --lecture-warning: #c2410c;
+  --lecture-warning-soft: #fff7ed;
+  --lecture-warning-border: #fed7aa;
+  --lecture-warning-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+
+  --lecture-danger: #b91c1c;
+  --lecture-danger-soft: #fef2f2;
+  --lecture-danger-border: #fecaca;
+  --lecture-danger-gradient: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+
+  --lecture-info: #0369a1;
+  --lecture-info-soft: #f0f9ff;
+  --lecture-info-border: #bae6fd;
+  --lecture-info-gradient: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+
+  /* Modality Taxonomy Colors */
+  --color-text: #b45309;
+  --color-text-bg: #fffbeb;
+  --color-text-border: #fde68a;
+
+  --color-image: #6d28d9;
+  --color-image-bg: #f5f3ff;
+  --color-image-border: #ddd6fe;
+
+  --color-audio: #0f766e;
+  --color-audio-bg: #f0fdfa;
+  --color-audio-border: #99f6e4;
+
+  --color-video: #be123c;
+  --color-video-bg: #fff1f2;
+  --color-video-border: #fecdd3;
+
+  --color-action: #b45309;
+  --color-action-bg: #fffbeb;
+  --color-action-border: #fde68a;
+
+  --color-unified: #047857;
+  --color-unified-bg: #ecfdf5;
+  --color-unified-border: #a7f3d0;
+
+  /* Geometry & Radii */
+  --lecture-radius-xs: 4px;
+  --lecture-radius-sm: 6px;
+  --lecture-radius-md: 8px;
+  --lecture-radius-lg: 14px;
+  --lecture-radius-xl: 22px;
+  --lecture-radius-pill: 9999px;
+
+  /* Monograph Shadows */
+  --lecture-shadow-xs: 0 1px 2px rgba(24, 24, 27, 0.03);
+  --lecture-shadow-sm: 0 2px 4px rgba(24, 24, 27, 0.04), 0 1px 2px rgba(24, 24, 27, 0.02);
+  --lecture-shadow-md: 0 4px 8px rgba(24, 24, 27, 0.04), 0 10px 18px -3px rgba(24, 24, 27, 0.04);
+  --lecture-shadow-lg: 0 14px 24px -6px rgba(24, 24, 27, 0.08), 0 6px 10px -4px rgba(24, 24, 27, 0.03);
+  --lecture-shadow-glow: 0 0 30px -5px rgba(180, 83, 9, 0.22);
+  --lecture-shadow-glow-purple: 0 0 30px -5px rgba(109, 40, 217, 0.22);
+  --lecture-shadow-glow-gold: 0 0 30px -5px rgba(180, 83, 9, 0.22);
+}

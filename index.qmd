@@ -1,0 +1,22 @@
+---
+title: "Modern AI"
+subtitle: "Architectural Foundations, Mathematical Rigor & End-to-End Systems"
+author: "Aleksey Ryabykin"
+---
+
+## Overview
+
+Welcome to **Modern AI: Architectural Foundations, Mathematical Rigor & End-to-End Systems** (2026–2027).
+
+This course covers modern AI architectures, mathematical fundamentals, training and optimization techniques, experiment infrastructure, and capstone applied projects.
+
+## Lectures
+
+| # | Lecture | Format | Slides |
+|---|---------|--------|--------|
+| 01 | Course Structure & Roadmap | Reveal.js | [Open slides](01_intro/course_structure.qmd) |
+
+::: {.callout-note}
+### Slide Navigation
+The lecture slides are presented using Reveal.js. Use arrow keys (`←`, `→` or `Space`) to navigate slides, `F` for fullscreen, and `O` for slide overview mode.
+:::

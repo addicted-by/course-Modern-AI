@@ -1,0 +1,33 @@
+# Quarto build output and caches
+/.quarto/
+/_site/
+01_intro/.quarto/
+01_intro/course_structure_files/
+01_intro/course_structure.html
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor and IDE caches
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+
+# Python / Node
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+.npm
+
+**/*.quarto_ipynb

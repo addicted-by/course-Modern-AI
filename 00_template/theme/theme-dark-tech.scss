@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Quarto Reveal.js Standalone Theme: Precision Dark Tech (Variant B)
+   Linear/Vercel dark UI: obsidian canvas, glowing cyan, smoked glass
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+@import "presets/preset-dark-tech";
+
+/*-- scss:rules --*/
+@import "_typography";
+@import "_layout";
+@import "_components";
+@import "_reveal-overrides";
+@import "_animations";
+

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convert a music excerpt into visual conditioning and generate an image that matches its mood or content.">
+  <title>Music-to-Image · Modern AI project 06</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-1">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">06</span>
+      <div>
+        <p class="eyebrow">Audio → Image</p>
+        <h1>Music-to-Image</h1>
+        <p class="summary">Convert a music excerpt into visual conditioning and generate an image that matches its mood or content.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p06-sonicdiffusion.png" aria-label="Open full-size illustration: SonicDiffusion examples showing images generated and edited from sounds."><img src="../assets/projects/p06-sonicdiffusion.png" alt="SonicDiffusion examples showing images generated and edited from sounds." decoding="async"></a><figcaption>SonicDiffusion: sounds guide image generation and editing. <a href="https://cyberiada.github.io/SonicDiffusion/" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Train an audio-conditioning adapter that connects a frozen audio encoder to a frozen diffusion model.</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>CLAP audio encoder → trainable MLP → eight conditioning tokens for Stable Diffusion 1.5.</p>
+        <p class="context">SonicDiffusion motivates audio-conditioned diffusion; MUImage supplies paired media. The course uses a smaller MLP adapter architecture. Ordinary CLIP cannot directly score audio, so semantic alignment also needs a listener evaluation.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>MUImage music–image pairs, using the music as input; group related source songs and images before splitting.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out source groups and an external final test; use matched seeds and an empty-text diffusion baseline.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>CLIP-I ↑</dt><dd>Similarity between generated and paired reference images; not direct audio–image alignment.</dd>
+<dt>LPIPS diversity ↑</dt><dd>Variation across different seeds for the same music excerpt.</dd>
+<dt>Human preference ↑</dt><dd>Blind listener preference for how well an image matches the music.</dd>
+<dt>FID ↓</dt><dd>Optional image-distribution comparison on a sufficiently large test set.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>An audio-conditioning adapter and inference demo.</li>
+<li>A gallery pairing music excerpts with generated images.</li>
+<li>A matched comparison against the empty-text baseline.</li>
+<li>A listener study and analysis of audio–visual consistency.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p06_music_image/README.md">Project README ↗</a>
+          <a href="../../projects/p06_music_image/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2405.00878" target="_blank" rel="noopener noreferrer">SonicDiffusion ↗</a></li>
+<li><a href="https://arxiv.org/abs/2311.11255" target="_blank" rel="noopener noreferrer">M²UGen ↗</a></li>
+<li><a href="https://huggingface.co/datasets/M2UGen/MUImage" target="_blank" rel="noopener noreferrer">MUImage dataset ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p05_json_lora.html">← Previous: 05</a>
+      <a href="../course_structure.html#/capstone-projects-1">Back to catalog</a>
+      <a href="p07_object_removal.html">Next: 07 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 06 of 10</footer>
+</body>
+</html>

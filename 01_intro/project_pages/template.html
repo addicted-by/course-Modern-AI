@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="$summary">
+  <title>$title · Modern AI project $number</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/$catalog">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">$number</span>
+      <div>
+        <p class="eyebrow">$modality</p>
+        <h1>$title</h1>
+        <p class="summary">$summary</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      $figures
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>$task</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>$model</p>
+        <p class="context">$context</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>$training_data</p>
+        <h3>Evaluation</h3>
+        <p>$evaluation_data</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics">$metrics</dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables">$deliverables</ul>
+        <div class="project-resources">
+          <a href="../../projects/$id/README.md">Project README ↗</a>
+          <a href="../../projects/$id/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul>$papers</ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      $previous
+      <a href="../course_structure.html#/$catalog">Back to catalog</a>
+      $next
+    </nav>
+  </main>
+  <footer>Modern AI · Project $number of 10</footer>
+</body>
+</html>

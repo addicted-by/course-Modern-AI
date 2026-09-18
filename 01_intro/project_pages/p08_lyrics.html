@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Adapt speech recognition to recover lyrics from singing recordings.">
+  <title>Automatic Lyrics Transcription · Modern AI project 08</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-2">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">08</span>
+      <div>
+        <p class="eyebrow">Audio → Text</p>
+        <h1>Automatic Lyrics Transcription</h1>
+        <p class="summary">Adapt speech recognition to recover lyrics from singing recordings.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p08-whisper.png" aria-label="Open full-size illustration: Whisper audio recognition architecture linking a spectrogram to decoded text."><img src="../assets/projects/p08-whisper.png" alt="Whisper audio recognition architecture linking a spectrogram to decoded text." decoding="async"></a><figcaption>Whisper converts an audio spectrogram into text tokens; a starting point for lyrics transcription. <a href="https://github.com/openai/whisper" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Fine-tune Whisper on aligned singing excerpts and compare transcription accuracy with the pretrained model.</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>Whisper large-v3-turbo with LoRA on q/v projections; full fine-tuning of a smaller Whisper is an optional experiment.</p>
+        <p class="context">Whisper is the speech-recognition foundation; WhisperMSS is a reference for adapting pretrained models to Mandarin singing. General speech benchmark scores should not be treated as expected lyrics-transcription performance.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>M4Singer Mandarin singing clips with verified Chinese text, language labels and song IDs; each aligned excerpt is at most 30 seconds.</p>
+        <h3>Evaluation</h3>
+        <p>Song-disjoint validation and test sets, keeping all versions of a composition in one split; add formatting labels only when available.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>CER ↓</dt><dd>Character error rate, the main metric for the Mandarin course dataset.</dd>
+<dt>WER ↓</dt><dd>Word error rate under an explicitly documented tokenization rule.</dd>
+<dt>Formatting F1 ↑</dt><dd>Punctuation, line and section boundaries when corresponding reference labels exist.</dd>
+<dt>Runtime ↓</dt><dd>Transcription time and memory under fixed hardware and decoding settings.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A saved Whisper adapter and transcription pipeline.</li>
+<li>Audio/text examples comparing the baseline and adapted model.</li>
+<li>A song-disjoint CER/WER report.</li>
+<li>An analysis of accompaniment, pronunciation and phrase boundaries.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p08_lyrics/README.md">Project README ↗</a>
+          <a href="../../projects/p08_lyrics/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2212.04356" target="_blank" rel="noopener noreferrer">Robust Speech Recognition via Large-Scale Weak Supervision ↗</a></li>
+<li><a href="https://www.isca-archive.org/interspeech_2025/liang25c_interspeech.html" target="_blank" rel="noopener noreferrer">WhisperMSS ↗</a></li>
+<li><a href="https://github.com/M4Singer/M4Singer" target="_blank" rel="noopener noreferrer">M4Singer dataset ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p07_object_removal.html">← Previous: 07</a>
+      <a href="../course_structure.html#/capstone-projects-2">Back to catalog</a>
+      <a href="p09_hair.html">Next: 09 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 08 of 10</footer>
+</body>
+</html>

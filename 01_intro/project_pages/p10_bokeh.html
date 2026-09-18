@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Keep a portrait subject sharp while softly blurring the background.">
+  <title>Portrait Bokeh · Modern AI project 10</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-2">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">10</span>
+      <div>
+        <p class="eyebrow">Segmentation · Image editing</p>
+        <h1>Portrait Bokeh</h1>
+        <p class="summary">Keep a portrait subject sharp while softly blurring the background.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p10-p3m.png" aria-label="Open full-size illustration: P3M portrait photographs paired with detailed foreground alpha mattes."><img src="../assets/projects/p10-p3m.png" alt="P3M portrait photographs paired with detailed foreground alpha mattes." decoding="async"></a><figcaption>P3M portraits and alpha mattes: accurate subject boundaries for background blur. <a href="https://github.com/JizhiziLi/P3M" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Predict foreground opacity and composite the portrait with a blurred copy: output = mask × image + (1 − mask) × blur(image).</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>SAM 1 ViT-B with a fine-tuned mask decoder and frozen encoders, followed by Gaussian background blur.</p>
+        <p class="context">Portrait matting motivates careful treatment of soft boundaries. This course baseline approximates bokeh with a SAM 1 opacity mask and Gaussian blur; depth-aware optics and SAM 2 adaptation are optional extensions.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>P3M-10k portrait images and alpha annotations; group related people, source images and sessions before splitting.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out portraits with alpha masks; assess opacity and binary segmentation separately, then inspect the final composites.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>Opacity MAE ↓</dt><dd>Error in continuous foreground opacity against the reference alpha.</dd>
+<dt>IoU / Dice ↑</dt><dd>Foreground agreement after thresholding the masks.</dd>
+<dt>Boundary F1 ↑</dt><dd>Contour quality around hair, shoulders and fine details.</dd>
+<dt>Visual review</dt><dd>Inspect halos, background leakage and blur around subject edges.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A saved portrait-mask decoder and adjustable blur demo.</li>
+<li>Original, opacity mask and bokeh result examples.</li>
+<li>A baseline-versus-tuned segmentation and opacity report.</li>
+<li>An analysis of fine hair, multiple subjects and edge artifacts.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p10_bokeh/README.md">Project README ↗</a>
+          <a href="../../projects/p10_bokeh/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2408.00714" target="_blank" rel="noopener noreferrer">SAM 2: Segment Anything in Images and Videos ↗</a></li>
+<li><a href="https://arxiv.org/abs/2104.14222" target="_blank" rel="noopener noreferrer">Privacy-Preserving Portrait Matting ↗</a></li>
+<li><a href="https://github.com/JizhiziLi/P3M" target="_blank" rel="noopener noreferrer">P3M-10k dataset ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p09_hair.html">← Previous: 09</a>
+      <a href="../course_structure.html#/capstone-projects-2">Back to catalog</a>
+      <span></span>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 10 of 10</footer>
+</body>
+</html>

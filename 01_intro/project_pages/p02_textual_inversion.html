@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Represent a personal visual concept with a new token that can be reused in text prompts.">
+  <title>Textual Inversion · Modern AI project 02</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-1">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">02</span>
+      <div>
+        <p class="eyebrow">Image generation</p>
+        <h1>Textual Inversion</h1>
+        <p class="summary">Represent a personal visual concept with a new token that can be reused in text prompts.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p02-textual-inversion.jpg" aria-label="Open full-size illustration: Textual Inversion reference objects and generated variations using learned concept tokens."><img src="../assets/projects/p02-textual-inversion.jpg" alt="Textual Inversion reference objects and generated variations using learned concept tokens." decoding="async"></a><figcaption>Textual Inversion learns a new concept token from a few images, then composes it with different prompts. <a href="https://textual-inversion.github.io/" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Learn one embedding for a new concept token, then combine it with unfamiliar scenes and descriptions.</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>Stable Diffusion 1.5 with one trainable CLIP token embedding; the diffusion model and other embeddings stay frozen.</p>
+        <p class="context">Textual inversion stores personalization in an embedding rather than a diffusion-model adapter. SDXL or FLUX experiments require a separate implementation beyond the course&#x27;s SD 1.5 trainer.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>5–10 photographs of one subject; reserve separate validation and test images before training.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out photographs and matched baseline/personalized generations using identical prompts, seeds and sampling settings.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>DINO-I ↑</dt><dd>Similarity of the generated subject to reference photos.</dd>
+<dt>CLIP-I ↑</dt><dd>Visual consistency with the learned concept.</dd>
+<dt>CLIP-T ↑</dt><dd>Prompt alignment, measured using the ordinary text description.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A learned embedding that reloads into the base model.</li>
+<li>A prompt gallery showing the concept in different contexts.</li>
+<li>A baseline comparison and a discussion of identity versus flexibility.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p02_textual_inversion/README.md">Project README ↗</a>
+          <a href="../../projects/p02_textual_inversion/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2208.01618" target="_blank" rel="noopener noreferrer">An Image is Worth One Word: Textual Inversion ↗</a></li>
+<li><a href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5" target="_blank" rel="noopener noreferrer">Stable Diffusion 1.5 model card ↗</a></li>
+<li><a href="https://arxiv.org/abs/2307.01952" target="_blank" rel="noopener noreferrer">SDXL ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p01_dreambooth.html">← Previous: 01</a>
+      <a href="../course_structure.html#/capstone-projects-1">Back to catalog</a>
+      <a href="p03_weapon_detection.html">Next: 03 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 02 of 10</footer>
+</body>
+</html>

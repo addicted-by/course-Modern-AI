@@ -1,0 +1,288 @@
+[
+  {
+    "id": "p01_dreambooth",
+    "number": 1,
+    "title": "DreamBooth",
+    "modality": "Image generation",
+    "summary": "Teach a diffusion model to place your own subject in new scenes while preserving its identity.",
+    "task": "Personalize a text-to-image model from 5–10 photographs, then generate the subject in unseen settings and styles.",
+    "model": "Stable Diffusion 1.5 with LoRA in U-Net attention; frozen VAE and text encoder. Optional prior preservation.",
+    "training_data": "5–10 photographs of one subject, with varied views and backgrounds; keep related photo sessions in the same split.",
+    "evaluation_data": "Held-out subject photos and a fixed prompt suite; compare the base model and adapter with identical seeds.",
+    "metrics": [
+      {"name": "DINO-I ↑", "meaning": "Subject similarity to held-out reference photos."},
+      {"name": "CLIP-I ↑", "meaning": "Visual similarity to the reference subject."},
+      {"name": "CLIP-T ↑", "meaning": "Agreement between the generated image and its prompt."}
+    ],
+    "deliverables": [
+      "A reusable LoRA adapter and its training configuration.",
+      "A gallery of the same subject in several new scenes.",
+      "A baseline-versus-adapter comparison with fixed prompts and seeds.",
+      "An error analysis covering identity drift and overfitting."
+    ],
+    "papers": [
+      {"title": "DreamBooth", "url": "https://arxiv.org/abs/2208.12242"},
+      {"title": "SDXL", "url": "https://arxiv.org/abs/2307.01952"},
+      {"title": "FLUX.2 reference", "url": "https://bfl.ai/blog/flux-2"}
+    ],
+    "context": "DreamBooth learns a subject from a small image collection. The course implements a lightweight SD 1.5 LoRA variant; SDXL and FLUX are separate extension targets requiring their own training setup."
+  },
+  {
+    "id": "p02_textual_inversion",
+    "number": 2,
+    "title": "Textual Inversion",
+    "modality": "Image generation",
+    "summary": "Represent a personal visual concept with a new token that can be reused in text prompts.",
+    "task": "Learn one embedding for a new concept token, then combine it with unfamiliar scenes and descriptions.",
+    "model": "Stable Diffusion 1.5 with one trainable CLIP token embedding; the diffusion model and other embeddings stay frozen.",
+    "training_data": "5–10 photographs of one subject; reserve separate validation and test images before training.",
+    "evaluation_data": "Held-out photographs and matched baseline/personalized generations using identical prompts, seeds and sampling settings.",
+    "metrics": [
+      {"name": "DINO-I ↑", "meaning": "Similarity of the generated subject to reference photos."},
+      {"name": "CLIP-I ↑", "meaning": "Visual consistency with the learned concept."},
+      {"name": "CLIP-T ↑", "meaning": "Prompt alignment, measured using the ordinary text description."}
+    ],
+    "deliverables": [
+      "A learned embedding that reloads into the base model.",
+      "A prompt gallery showing the concept in different contexts.",
+      "A baseline comparison and a discussion of identity versus flexibility."
+    ],
+    "papers": [
+      {"title": "An Image is Worth One Word: Textual Inversion", "url": "https://arxiv.org/abs/2208.01618"},
+      {"title": "Stable Diffusion 1.5 model card", "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5"},
+      {"title": "SDXL", "url": "https://arxiv.org/abs/2307.01952"}
+    ],
+    "context": "Textual inversion stores personalization in an embedding rather than a diffusion-model adapter. SDXL or FLUX experiments require a separate implementation beyond the course's SD 1.5 trainer."
+  },
+  {
+    "id": "p03_weapon_detection",
+    "number": 3,
+    "title": "Weapon Detection & Blur",
+    "modality": "Computer vision · Video",
+    "summary": "Detect firearms in images or film clips and blur the detected regions automatically.",
+    "task": "Adapt a pretrained detector to one firearm class, choose a confidence threshold and apply blur to its predicted boxes.",
+    "model": "COCO-pretrained YOLOv10S with a trainable detection head; the course trains both detection branches.",
+    "training_data": "Firearm-related action recognition and object detection data, converted to YOLO boxes; include negative frames without weapons.",
+    "evaluation_data": "Held-out videos or scenes, with all related frames kept together; use separate clips to demonstrate blur.",
+    "metrics": [
+      {"name": "mAP@50:95 ↑", "meaning": "Detection quality across several box-overlap thresholds."},
+      {"name": "Miss rate ↓", "meaning": "Fraction of annotated firearms the detector misses."},
+      {"name": "False positive rate ↓", "meaning": "Fraction of weapon-free frames with at least one detection."},
+      {"name": "Latency ↓", "meaning": "Processing time measured on the chosen hardware and pipeline."}
+    ],
+    "deliverables": [
+      "A trained detector with a validation-selected threshold.",
+      "An image or video demo with detected objects blurred.",
+      "A test report covering misses, false alarms and processing speed.",
+      "Examples of difficult scenes, small objects and occlusion."
+    ],
+    "papers": [
+      {"title": "YOLOv10: Real-Time End-to-End Object Detection", "url": "https://arxiv.org/abs/2405.14458"},
+      {"title": "Firearm-related action recognition and object detection dataset", "url": "https://www.sciencedirect.com/science/article/pii/S2352340924000040"}
+    ],
+    "context": "YOLOv10 is the reference real-time detection family. Its COCO benchmark scores describe general object detection; firearm accuracy and film-domain transfer must be measured separately."
+  },
+  {
+    "id": "p04_sql_lora",
+    "number": 4,
+    "title": "Text-to-SQL with LoRA",
+    "modality": "Language · Code",
+    "summary": "Turn natural-language questions and a database schema into SQL queries that return the right answer.",
+    "task": "Fine-tune a small code model, execute its SQL in an isolated SQLite evaluation database and compare results with reference queries.",
+    "model": "Qwen2.5-Coder-1.5B-Instruct with LoRA on attention q/v projections.",
+    "training_data": "b-mc2/sql-create-context: question, schema and reference SQL triples, split by schema before training.",
+    "evaluation_data": "Held-out schemas plus separate populated SQLite fixtures. Empty tables cannot establish execution accuracy.",
+    "metrics": [
+      {"name": "Execution accuracy ↑", "meaning": "Generated and reference queries return the same result on populated fixtures."},
+      {"name": "Valid SQL ↑", "meaning": "Fraction of queries that execute within the evaluator's limits."},
+      {"name": "Exact match ↑", "meaning": "Textual agreement with reference SQL; not a proof of semantic equivalence."},
+      {"name": "Execution coverage ↑", "meaning": "Fraction of examples with usable fixtures and valid reference queries."}
+    ],
+    "deliverables": [
+      "A LoRA adapter and repeatable inference script.",
+      "A small SQLite database with held-out questions and populated fixtures.",
+      "A baseline-versus-LoRA execution report.",
+      "An analysis of joins, aggregation, sorting and invalid queries."
+    ],
+    "papers": [
+      {"title": "LoRA: Low-Rank Adaptation of Large Language Models", "url": "https://arxiv.org/abs/2106.09685"},
+      {"title": "Qwen2.5-Coder Technical Report", "url": "https://arxiv.org/abs/2409.12186"},
+      {"title": "SQL Create Context dataset", "url": "https://huggingface.co/datasets/b-mc2/sql-create-context"}
+    ],
+    "context": "LoRA changes a small set of trainable parameters while retaining a pretrained code model. The key experiment is executable SQL on unseen schemas; general language-model benchmark rankings do not measure this task."
+  },
+  {
+    "id": "p05_json_lora",
+    "number": 5,
+    "title": "Structured JSON with LoRA",
+    "modality": "Language · Structured output",
+    "summary": "Adapt a language model to produce valid JSON that obeys a supplied schema.",
+    "task": "Train on validated prompt/schema/answer examples and test whether freely generated outputs satisfy unseen schemas.",
+    "model": "Qwen2.5-Coder-1.5B-Instruct with LoRA; free generation makes the effect of training measurable.",
+    "training_data": "Curated prompt, JSON Schema and valid answer triples. Group related schemas before creating train and validation splits.",
+    "evaluation_data": "Held-out schema families and a documented JSONSchemaBench subset. JSONSchemaBench provides schemas, not ready-made supervised answers.",
+    "metrics": [
+      {"name": "Schema adherence ↑", "meaning": "Fraction of all outputs that pass the supplied JSON Schema."},
+      {"name": "Valid JSON ↑", "meaning": "Strictly parseable JSON without Markdown wrappers or invalid values."},
+      {"name": "Exact match ↑", "meaning": "Canonical JSON equality where a reference answer exists."},
+      {"name": "Capability retention", "meaning": "Optional before/after comparison on a fixed general-task evaluation set."}
+    ],
+    "deliverables": [
+      "A reloadable LoRA adapter and validated training data.",
+      "An evaluator for syntax, schema adherence and reference answers.",
+      "A comparison with the base model on unseen schemas.",
+      "An error gallery for nested objects, arrays and required fields."
+    ],
+    "papers": [
+      {"title": "LoRA: Low-Rank Adaptation of Large Language Models", "url": "https://arxiv.org/abs/2106.09685"},
+      {"title": "JSONSchemaBench", "url": "https://arxiv.org/abs/2501.10868"},
+      {"title": "JSONSchemaBench dataset", "url": "https://huggingface.co/datasets/epfl-dlab/JSONSchemaBench"}
+    ],
+    "context": "Schema adherence and task correctness are separate: a valid object can still contain the wrong answer. Constrained decoding is an optional comparison; the course baseline evaluates the learned model's unconstrained outputs."
+  },
+  {
+    "id": "p06_music_image",
+    "number": 6,
+    "title": "Music-to-Image",
+    "modality": "Audio → Image",
+    "summary": "Convert a music excerpt into visual conditioning and generate an image that matches its mood or content.",
+    "task": "Train an audio-conditioning adapter that connects a frozen audio encoder to a frozen diffusion model.",
+    "model": "CLAP audio encoder → trainable MLP → eight conditioning tokens for Stable Diffusion 1.5.",
+    "training_data": "MUImage music–image pairs, using the music as input; group related source songs and images before splitting.",
+    "evaluation_data": "Held-out source groups and an external final test; use matched seeds and an empty-text diffusion baseline.",
+    "metrics": [
+      {"name": "CLIP-I ↑", "meaning": "Similarity between generated and paired reference images; not direct audio–image alignment."},
+      {"name": "LPIPS diversity ↑", "meaning": "Variation across different seeds for the same music excerpt."},
+      {"name": "Human preference ↑", "meaning": "Blind listener preference for how well an image matches the music."},
+      {"name": "FID ↓", "meaning": "Optional image-distribution comparison on a sufficiently large test set."}
+    ],
+    "deliverables": [
+      "An audio-conditioning adapter and inference demo.",
+      "A gallery pairing music excerpts with generated images.",
+      "A matched comparison against the empty-text baseline.",
+      "A listener study and analysis of audio–visual consistency."
+    ],
+    "papers": [
+      {"title": "SonicDiffusion", "url": "https://arxiv.org/abs/2405.00878"},
+      {"title": "M²UGen", "url": "https://arxiv.org/abs/2311.11255"},
+      {"title": "MUImage dataset", "url": "https://huggingface.co/datasets/M2UGen/MUImage"}
+    ],
+    "context": "SonicDiffusion motivates audio-conditioned diffusion; MUImage supplies paired media. The course uses a smaller MLP adapter architecture. Ordinary CLIP cannot directly score audio, so semantic alignment also needs a listener evaluation."
+  },
+  {
+    "id": "p07_object_removal",
+    "number": 7,
+    "title": "Object Removal",
+    "modality": "Image editing",
+    "summary": "Remove a selected object and reconstruct a plausible background inside its mask.",
+    "task": "Adapt an inpainting model using aligned images with and without an object, then preserve the original pixels outside the removal mask.",
+    "model": "Stable Diffusion inpainting with LoRA in U-Net attention; frozen VAE and text encoder.",
+    "training_data": "Licensed input/mask/clean-target triples, separated by scene. Clearly labelled synthetic pairs can support initial experiments.",
+    "evaluation_data": "Held-out scenes and RemovalBench as a separate test benchmark; include the object's shadow or reflection in the mask when needed.",
+    "metrics": [
+      {"name": "Masked MAE ↓", "meaning": "Pixel error inside the edited region against the clean target."},
+      {"name": "Masked PSNR ↑", "meaning": "Reconstruction quality inside the removal mask."},
+      {"name": "Outside-mask MAE ↓", "meaning": "Preservation of untouched pixels; compositing makes this zero by construction."},
+      {"name": "Visual review", "meaning": "Check object remnants, seams, invented objects, shadows and reflections."}
+    ],
+    "deliverables": [
+      "A saved inpainting model and mask-based editing demo.",
+      "Before/after examples with visible removal masks.",
+      "A baseline comparison on held-out paired scenes.",
+      "An error analysis of difficult backgrounds and object effects."
+    ],
+    "papers": [
+      {"title": "High-Resolution Image Synthesis with Latent Diffusion Models", "url": "https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html"},
+      {"title": "OmniEraser", "url": "https://arxiv.org/abs/2501.07397"},
+      {"title": "RemovalBench reference repository", "url": "https://github.com/PRIS-CV/Omnieraser"}
+    ],
+    "context": "Latent diffusion provides the inpainting foundation; OmniEraser studies removal together with object effects. The local course evaluator measures masked reconstruction and does not reproduce RemovalBench's official semantic scoring."
+  },
+  {
+    "id": "p08_lyrics",
+    "number": 8,
+    "title": "Automatic Lyrics Transcription",
+    "modality": "Audio → Text",
+    "summary": "Adapt speech recognition to recover lyrics from singing recordings.",
+    "task": "Fine-tune Whisper on aligned singing excerpts and compare transcription accuracy with the pretrained model.",
+    "model": "Whisper large-v3-turbo with LoRA on q/v projections; full fine-tuning of a smaller Whisper is an optional experiment.",
+    "training_data": "M4Singer Mandarin singing clips with verified Chinese text, language labels and song IDs; each aligned excerpt is at most 30 seconds.",
+    "evaluation_data": "Song-disjoint validation and test sets, keeping all versions of a composition in one split; add formatting labels only when available.",
+    "metrics": [
+      {"name": "CER ↓", "meaning": "Character error rate, the main metric for the Mandarin course dataset."},
+      {"name": "WER ↓", "meaning": "Word error rate under an explicitly documented tokenization rule."},
+      {"name": "Formatting F1 ↑", "meaning": "Punctuation, line and section boundaries when corresponding reference labels exist."},
+      {"name": "Runtime ↓", "meaning": "Transcription time and memory under fixed hardware and decoding settings."}
+    ],
+    "deliverables": [
+      "A saved Whisper adapter and transcription pipeline.",
+      "Audio/text examples comparing the baseline and adapted model.",
+      "A song-disjoint CER/WER report.",
+      "An analysis of accompaniment, pronunciation and phrase boundaries."
+    ],
+    "papers": [
+      {"title": "Robust Speech Recognition via Large-Scale Weak Supervision", "url": "https://arxiv.org/abs/2212.04356"},
+      {"title": "WhisperMSS", "url": "https://www.isca-archive.org/interspeech_2025/liang25c_interspeech.html"},
+      {"title": "M4Singer dataset", "url": "https://github.com/M4Singer/M4Singer"}
+    ],
+    "context": "Whisper is the speech-recognition foundation; WhisperMSS is a reference for adapting pretrained models to Mandarin singing. General speech benchmark scores should not be treated as expected lyrics-transcription performance."
+  },
+  {
+    "id": "p09_hair",
+    "number": 9,
+    "title": "Hair Segmentation & Sharpening",
+    "modality": "Segmentation · Image editing",
+    "summary": "Predict a hair mask and increase sharpness only within the selected region.",
+    "task": "Adapt a segmentation decoder to hair, then apply masked unsharp enhancement: image + α × (image − blurred image).",
+    "model": "SAM 1 ViT-B with a trainable mask decoder; frozen image and prompt encoders, using a full-image box.",
+    "training_data": "LaPa portraits and semantic hair labels; use verified identity groups where available and document the split protocol.",
+    "evaluation_data": "Held-out portrait images and masks, with separate inspection of fine hair boundaries and the final sharpened output.",
+    "metrics": [
+      {"name": "IoU ↑", "meaning": "Overlap between the predicted and reference hair regions."},
+      {"name": "Dice / F1 ↑", "meaning": "Balance of missed hair pixels and false positives."},
+      {"name": "Boundary F1 ↑", "meaning": "Accuracy near hair contours under a stated pixel tolerance."},
+      {"name": "Precision / Recall ↑", "meaning": "Leakage into the background versus missing parts of the hair."}
+    ],
+    "deliverables": [
+      "A trained hair-mask decoder and inference pipeline.",
+      "Portrait, predicted mask and selectively sharpened result examples.",
+      "A segmentation report and boundary error analysis.",
+      "A comparison of enhancement strengths and visible artifacts."
+    ],
+    "papers": [
+      {"title": "SAM 2: Segment Anything in Images and Videos", "url": "https://arxiv.org/abs/2408.00714"},
+      {"title": "A New Dataset and Boundary-Attention Semantic Segmentation for Face Parsing", "url": "https://ojs.aaai.org/index.php/AAAI/article/view/6832"},
+      {"title": "LaPa dataset", "url": "https://github.com/jd-opensource/lapa-dataset"}
+    ],
+    "context": "SAM supplies pretrained segmentation features, but hair semantics must be learned for this task. The executable course baseline uses SAM 1; SAM 2/2.1 is a separate extension requiring implementation and measurement."
+  },
+  {
+    "id": "p10_bokeh",
+    "number": 10,
+    "title": "Portrait Bokeh",
+    "modality": "Segmentation · Image editing",
+    "summary": "Keep a portrait subject sharp while softly blurring the background.",
+    "task": "Predict foreground opacity and composite the portrait with a blurred copy: output = mask × image + (1 − mask) × blur(image).",
+    "model": "SAM 1 ViT-B with a fine-tuned mask decoder and frozen encoders, followed by Gaussian background blur.",
+    "training_data": "P3M-10k portrait images and alpha annotations; group related people, source images and sessions before splitting.",
+    "evaluation_data": "Held-out portraits with alpha masks; assess opacity and binary segmentation separately, then inspect the final composites.",
+    "metrics": [
+      {"name": "Opacity MAE ↓", "meaning": "Error in continuous foreground opacity against the reference alpha."},
+      {"name": "IoU / Dice ↑", "meaning": "Foreground agreement after thresholding the masks."},
+      {"name": "Boundary F1 ↑", "meaning": "Contour quality around hair, shoulders and fine details."},
+      {"name": "Visual review", "meaning": "Inspect halos, background leakage and blur around subject edges."}
+    ],
+    "deliverables": [
+      "A saved portrait-mask decoder and adjustable blur demo.",
+      "Original, opacity mask and bokeh result examples.",
+      "A baseline-versus-tuned segmentation and opacity report.",
+      "An analysis of fine hair, multiple subjects and edge artifacts."
+    ],
+    "papers": [
+      {"title": "SAM 2: Segment Anything in Images and Videos", "url": "https://arxiv.org/abs/2408.00714"},
+      {"title": "Privacy-Preserving Portrait Matting", "url": "https://arxiv.org/abs/2104.14222"},
+      {"title": "P3M-10k dataset", "url": "https://github.com/JizhiziLi/P3M"}
+    ],
+    "context": "Portrait matting motivates careful treatment of soft boundaries. This course baseline approximates bokeh with a SAM 1 opacity mask and Gaussian blur; depth-aware optics and SAM 2 adaptation are optional extensions."
+  }
+]

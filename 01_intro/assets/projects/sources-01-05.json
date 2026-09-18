@@ -1,0 +1,37 @@
+[
+  {
+    "project": 1,
+    "file": "p01-dreambooth.jpg",
+    "alt": "DreamBooth input photographs of a corgi and personalized generations in new scenes.",
+    "caption": "Subject personalization in the original DreamBooth paper: a few reference images preserve the subject across new prompts.",
+    "source_url": "https://dreambooth.github.io/"
+  },
+  {
+    "project": 2,
+    "file": "p02-textual-inversion.jpg",
+    "alt": "Textual Inversion reference objects and generated variations using learned concept tokens.",
+    "caption": "Textual Inversion learns a new concept token from a few images, then composes it with different prompts.",
+    "source_url": "https://textual-inversion.github.io/"
+  },
+  {
+    "project": 3,
+    "file": "p03-yolov10.png",
+    "alt": "YOLOv10 dual assignment training diagram with one-to-many and one-to-one detection heads.",
+    "caption": "The YOLOv10 detector uses dual assignments during training and a one-to-one head for inference. This is the base method, not a weapon-detection result.",
+    "source_url": "https://arxiv.org/html/2405.14458v1#S3.F2"
+  },
+  {
+    "project": 4,
+    "file": "p04-lora.svg",
+    "alt": "LoRA adds trainable low-rank matrices A and B in parallel with frozen pretrained weights.",
+    "caption": "LoRA keeps pretrained weights fixed and learns a low-rank update. In this project, adapters specialize Qwen2.5 for SQL generation.",
+    "source_url": "https://arxiv.org/abs/2106.09685"
+  },
+  {
+    "project": 5,
+    "file": "p05-jsonschemabench.jpg",
+    "alt": "JSONSchemaBench compares structured generation frameworks on efficiency, JSON Schema coverage, and task quality.",
+    "caption": "JSONSchemaBench illustrates three evaluation dimensions for structured generation: speed, schema coverage, and quality. These published results are a reference, not project measurements.",
+    "source_url": "https://github.com/guidance-ai/jsonschemabench"
+  }
+]

@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Variant F: Warm Editorial Sandstone & Terracotta
+   Bookish monograph: warm alabaster canvas, stone charcoal text, rich terracotta accent
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+
+// Typography Web Fonts
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+// Reveal.js SASS Variable Defaults (Warm Editorial Theme)
+$body-bg: #faf7f2 !default;
+$body-color: #292524 !default;
+$theme-color: #c2410c !default;
+$heading-color: #1c1917 !default;
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace !default;
+$presentation-heading-font: 'Newsreader', 'Plus Jakarta Sans', -apple-system, serif !default;
+$presentation-font-size-root: 28px !default;
+$presentation-line-height: 1.62 !default;
+$link-color: #c2410c !default;
+$link-color-hover: #9a3412 !default;
+$selection-bg: rgba(194, 65, 12, 0.18) !default;
+$selection-color: #1c1917 !default;
+
+/*-- scss:rules --*/
+
+:root {
+  /* Preset Name Metadata */
+  --lecture-preset: 'warm-editorial';
+  --lecture-preset-name: 'Warm Editorial Sandstone';
+
+  /* Surface & Canvas Tokens (Warm Sandstone / Alabaster) */
+  --lecture-bg: #faf7f2;
+  --lecture-bg-subtle: #f2ede4;
+  --lecture-surface: #fdfcf9;
+  --lecture-surface-alt: #f2ede4;
+  --lecture-surface-glass: rgba(253, 252, 249, 0.92);
+  --lecture-surface-dark: #1c1917;
+  --lecture-surface-glass-dark: rgba(28, 25, 23, 0.88);
+  --lecture-surface-glass-darker: rgba(18, 16, 15, 0.94);
+
+  /* Typography & Text Colors */
+  --lecture-fg: #1c1917;
+  --lecture-fg-soft: #44403c;
+  --lecture-muted: #78716c;
+  --lecture-muted-light: #a8a29e;
+  --lecture-fg-inverted: #faf7f2;
+  --lecture-fg-inverted-soft: #e7e5e4;
+
+  /* Font Families */
+  --lecture-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --lecture-font-heading: 'Newsreader', 'Plus Jakarta Sans', -apple-system, serif;
+  --lecture-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Borders & Dividers */
+  --lecture-border: #e7e5e4;
+  --lecture-border-light: #f5f5f4;
+  --lecture-border-dark: #d6d3d1;
+  --lecture-border-glass: rgba(231, 229, 228, 0.85);
+  --lecture-border-glass-dark: rgba(255, 255, 255, 0.10);
+
+  /* Header Logos Configuration */
+  --lecture-logo-height: 24px;
+  --lecture-logo-gap: 14px;
+  --lecture-logo-top: 26px;
+  --lecture-logo-right: 36px;
+  --lecture-logo-opacity: 0.85;
+
+  /* Primary Brand Accents & Gradients */
+  --lecture-accent: #c2410c;
+  --lecture-accent-hover: #9a3412;
+  --lecture-accent-soft: #fff7ed;
+  --lecture-accent-border: #fed7aa;
+  --lecture-accent-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 50%, #d97706 100%);
+  --lecture-accent-gradient-subtle: linear-gradient(135deg, rgba(194, 65, 12, 0.08) 0%, rgba(217, 119, 6, 0.08) 100%);
+  --lecture-dark-gradient: linear-gradient(135deg, #1c1917 0%, #292524 50%, #1e1b4b 100%);
+  --lecture-glow-gradient: radial-gradient(circle at 50% 50%, rgba(194, 65, 12, 0.15) 0%, transparent 70%);
+  --lecture-gold-gradient: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+  --lecture-pop-emerald: #047857;
+  --lecture-pop-violet: #6d28d9;
+  --lecture-pop-orange: #ea580c;
+  --lecture-pop-terracotta: #c2410c;
+  --lecture-pop-lime: #65a30d;
+  --lecture-pop-yellow: #d97706;
+  --lecture-pop-blue: #0369a1;
+  --lecture-pop-gold: #b45309;
+  --lecture-code-bg: #1c1917;
+
+  /* Semantic Alerts */
+  --lecture-success: #047857;
+  --lecture-success-soft: #ecfdf5;
+  --lecture-success-border: #a7f3d0;
+  --lecture-success-gradient: linear-gradient(135deg, #047857 0%, #059669 100%);
+
+  --lecture-warning: #c2410c;
+  --lecture-warning-soft: #fff7ed;
+  --lecture-warning-border: #fed7aa;
+  --lecture-warning-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+
+  --lecture-danger: #b91c1c;
+  --lecture-danger-soft: #fef2f2;
+  --lecture-danger-border: #fecaca;
+  --lecture-danger-gradient: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+
+  --lecture-info: #0369a1;
+  --lecture-info-soft: #f0f9ff;
+  --lecture-info-border: #bae6fd;
+  --lecture-info-gradient: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+
+  /* Modality Taxonomy Colors */
+  --color-text: #c2410c;
+  --color-text-bg: #fff7ed;
+  --color-text-border: #fed7aa;
+
+  --color-image: #6d28d9;
+  --color-image-bg: #f5f3ff;
+  --color-image-border: #ddd6fe;
+
+  --color-audio: #0f766e;
+  --color-audio-bg: #f0fdfa;
+  --color-audio-border: #99f6e4;
+
+  --color-video: #be123c;
+  --color-video-bg: #fff1f2;
+  --color-video-border: #fecdd3;
+
+  --color-action: #b45309;
+  --color-action-bg: #fffbeb;
+  --color-action-border: #fde68a;
+
+  --color-unified: #047857;
+  --color-unified-bg: #ecfdf5;
+  --color-unified-border: #a7f3d0;
+
+  /* Geometry & Radii */
+  --lecture-radius-xs: 4px;
+  --lecture-radius-sm: 6px;
+  --lecture-radius-md: 8px;
+  --lecture-radius-lg: 14px;
+  --lecture-radius-xl: 22px;
+  --lecture-radius-pill: 9999px;
+
+  /* Warm Editorial Shadows */
+  --lecture-shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.03);
+  --lecture-shadow-sm: 0 2px 4px rgba(28, 25, 23, 0.04), 0 1px 2px rgba(28, 25, 23, 0.02);
+  --lecture-shadow-md: 0 4px 8px rgba(28, 25, 23, 0.04), 0 10px 18px -3px rgba(28, 25, 23, 0.04);
+  --lecture-shadow-lg: 0 14px 24px -6px rgba(28, 25, 23, 0.08), 0 6px 10px -4px rgba(28, 25, 23, 0.03);
+  --lecture-shadow-glow: 0 0 30px -5px rgba(194, 65, 12, 0.22);
+  --lecture-shadow-glow-purple: 0 0 30px -5px rgba(109, 40, 217, 0.22);
+  --lecture-shadow-glow-gold: 0 0 30px -5px rgba(180, 83, 9, 0.22);
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Adapt a language model to produce valid JSON that obeys a supplied schema.">
+  <title>Structured JSON with LoRA · Modern AI project 05</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-1">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">05</span>
+      <div>
+        <p class="eyebrow">Language · Structured output</p>
+        <h1>Structured JSON with LoRA</h1>
+        <p class="summary">Adapt a language model to produce valid JSON that obeys a supplied schema.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p05-jsonschemabench.jpg" aria-label="Open full-size illustration: JSONSchemaBench compares structured generation frameworks on efficiency, JSON Schema coverage, and task quality."><img src="../assets/projects/p05-jsonschemabench.jpg" alt="JSONSchemaBench compares structured generation frameworks on efficiency, JSON Schema coverage, and task quality." decoding="async"></a><figcaption>JSONSchemaBench illustrates three evaluation dimensions for structured generation: speed, schema coverage, and quality. These published results are a reference, not project measurements. <a href="https://github.com/guidance-ai/jsonschemabench" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Train on validated prompt/schema/answer examples and test whether freely generated outputs satisfy unseen schemas.</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>Qwen2.5-Coder-1.5B-Instruct with LoRA; free generation makes the effect of training measurable.</p>
+        <p class="context">Schema adherence and task correctness are separate: a valid object can still contain the wrong answer. Constrained decoding is an optional comparison; the course baseline evaluates the learned model&#x27;s unconstrained outputs.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>Curated prompt, JSON Schema and valid answer triples. Group related schemas before creating train and validation splits.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out schema families and a documented JSONSchemaBench subset. JSONSchemaBench provides schemas, not ready-made supervised answers.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>Schema adherence ↑</dt><dd>Fraction of all outputs that pass the supplied JSON Schema.</dd>
+<dt>Valid JSON ↑</dt><dd>Strictly parseable JSON without Markdown wrappers or invalid values.</dd>
+<dt>Exact match ↑</dt><dd>Canonical JSON equality where a reference answer exists.</dd>
+<dt>Capability retention</dt><dd>Optional before/after comparison on a fixed general-task evaluation set.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A reloadable LoRA adapter and validated training data.</li>
+<li>An evaluator for syntax, schema adherence and reference answers.</li>
+<li>A comparison with the base model on unseen schemas.</li>
+<li>An error gallery for nested objects, arrays and required fields.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p05_json_lora/README.md">Project README ↗</a>
+          <a href="../../projects/p05_json_lora/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener noreferrer">LoRA: Low-Rank Adaptation of Large Language Models ↗</a></li>
+<li><a href="https://arxiv.org/abs/2501.10868" target="_blank" rel="noopener noreferrer">JSONSchemaBench ↗</a></li>
+<li><a href="https://huggingface.co/datasets/epfl-dlab/JSONSchemaBench" target="_blank" rel="noopener noreferrer">JSONSchemaBench dataset ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p04_sql_lora.html">← Previous: 04</a>
+      <a href="../course_structure.html#/capstone-projects-1">Back to catalog</a>
+      <a href="p06_music_image.html">Next: 06 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 05 of 10</footer>
+</body>
+</html>

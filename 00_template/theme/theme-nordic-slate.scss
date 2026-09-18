@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Quarto Reveal.js Standalone Theme: Nordic Slate & Sage Minimal (Variant E)
+   Understated cold graphite canvas, zinc typography, sage/slate accents
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+@import "presets/preset-nordic-slate";
+
+/*-- scss:rules --*/
+@import "_typography";
+@import "_layout";
+@import "_components";
+@import "_reveal-overrides";
+@import "_animations";

@@ -1,0 +1,31 @@
+format:
+  revealjs:
+    theme:
+      - default
+      - theme/theme.scss
+
+    width: 1600
+    height: 900
+    margin: 0.05
+
+    slide-number: c/t
+    progress: true
+
+    controls: true
+    navigation-mode: linear
+    slide-level: 2
+
+    transition: none
+    background-transition: none
+
+    center: false
+    html-math-method: katex
+    include-after-body: theme/header-logos.html
+
+execute:
+  eval: false
+  echo: true
+  warning: false
+  message: false
+
+bibliography: references.bib

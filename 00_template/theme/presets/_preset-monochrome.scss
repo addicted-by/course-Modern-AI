@@ -1,0 +1,650 @@
+﻿/* ==========================================================================
+   Variant D: Elegant Monochrome & Kinetic Accents
+   Swiss poster art: stark B&W, heavy 2px frames, Acid Lime / Yellow pops
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+
+// Typography Web Fonts
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap");
+
+// Reveal.js SASS Variable Defaults (Monochrome Theme)
+$body-bg: #ffffff !default;
+$body-color: #27272a !default;
+$theme-color: #1A1A1A !default;
+$heading-color: #1A1A1A !default;
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', Consolas, monospace !default;
+$presentation-heading-font: 'Space Grotesk', 'Inter', -apple-system, sans-serif !default;
+$presentation-font-size-root: 28px !default;
+$presentation-line-height: 1.55 !default;
+$link-color: #1A1A1A !default;
+$link-color-hover: #3f3f46 !default;
+$selection-bg: #bef264 !default;
+$selection-color: #1A1A1A !default;
+
+/*-- scss:rules --*/
+
+:root {
+  /* Preset Name Metadata */
+  --lecture-preset: 'monochrome';
+  --lecture-preset-name: 'Kinetic Monochrome';
+
+  /* Surface & Canvas Tokens (Stark B&W Architectural) */
+  --lecture-bg: #ffffff;
+  --lecture-bg-subtle: #f4f4f5;
+  --lecture-surface: #ffffff;
+  --lecture-surface-alt: #f4f4f5;
+  --lecture-surface-glass: rgba(255, 255, 255, 0.92);
+  --lecture-surface-dark: #0a0a0a;
+  --lecture-surface-glass-dark: rgba(10, 10, 10, 0.90);
+  --lecture-surface-glass-darker: rgba(0, 0, 0, 0.96);
+
+  --lecture-watermark-num-color: #bef264;
+  /* Typography & Text Colors */
+  --lecture-fg: #1A1A1A;
+  --lecture-fg-soft: #27272a;
+  --lecture-muted: #52525b;
+  --lecture-muted-light: #a1a1aa;
+  --lecture-fg-inverted: #ffffff;
+  --lecture-fg-inverted-soft: #d4d4d8;
+
+  /* Font Families */
+  --lecture-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --lecture-font-heading: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+  --lecture-font-mono: 'JetBrains Mono', Consolas, monospace;
+
+  /* Borders & Dividers (Bold Architectural 2px Lines) */
+  --lecture-border: #1A1A1A;
+  --lecture-border-light: #e4e4e7;
+  --lecture-border-dark: #1A1A1A;
+  --lecture-border-glass: #1A1A1A;
+  --lecture-border-glass-dark: rgba(255, 255, 255, 0.20);
+
+  /* Header Logos Configuration */
+  --lecture-logo-height: 36px;
+  --lecture-logo-gap: 14px;
+  --lecture-logo-top: 26px;
+  --lecture-logo-right: 36px;
+  --lecture-logo-opacity: 0.85;
+
+  /* Primary Brand Accents & Kinetic Pops */
+  --lecture-accent: #1A1A1A;
+  --lecture-accent-hover: #27272a;
+  --lecture-accent-soft: #f4f4f5;
+  --lecture-accent-border: #1A1A1A;
+  --lecture-accent-gradient: linear-gradient(135deg, #1A1A1A 0%, #27272a 100%);
+  --lecture-accent-gradient-subtle: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.08) 100%);
+  --lecture-dark-gradient: linear-gradient(135deg, #0a0a0a 0%, #171717 100%);
+  --lecture-glow-gradient: radial-gradient(circle at 50% 50%, rgba(190, 242, 100, 0.25) 0%, transparent 70%);
+  --lecture-gold-gradient: linear-gradient(135deg, #facc15 0%, #eab308 50%, #ca8a04 100%);
+  --lecture-pop-lime: #bef264;
+  --lecture-pop-yellow: #facc15;
+  --lecture-pop-blue: #2563eb;
+  --lecture-pop-orange: #f97316;
+  --lecture-pop-emerald: #16a34a;
+  --lecture-pop-violet: #a855f7;
+  --lecture-pop-terracotta: #ea580c;
+  --lecture-pop-gold: #ca8a04;
+  --lecture-code-bg: #0a0a0a;
+
+  /* Semantic Alerts */
+  --lecture-success: #16a34a;
+  --lecture-success-soft: #f0fdf4;
+  --lecture-success-border: #1A1A1A;
+  --lecture-success-gradient: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+
+  --lecture-warning: #ca8a04;
+  --lecture-warning-soft: #fefce8;
+  --lecture-warning-border: #1A1A1A;
+  --lecture-warning-gradient: linear-gradient(135deg, #ca8a04 0%, #eab308 100%);
+
+  --lecture-danger: #dc2626;
+  --lecture-danger-soft: #fef2f2;
+  --lecture-danger-border: #1A1A1A;
+  --lecture-danger-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+
+  --lecture-info: #0284c7;
+  --lecture-info-soft: #f0f9ff;
+  --lecture-info-border: #1A1A1A;
+  --lecture-info-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+
+  /* Modality Taxonomy Colors */
+  --color-text: #1A1A1A;
+  --color-text-bg: #bef264;
+  --color-text-border: #1A1A1A;
+
+  --color-image: #1A1A1A;
+  --color-image-bg: #e4e4e7;
+  --color-image-border: #1A1A1A;
+
+  --color-audio: #1A1A1A;
+  --color-audio-bg: #facc15;
+  --color-audio-border: #1A1A1A;
+
+  --color-video: #1A1A1A;
+  --color-video-bg: #fecdd3;
+  --color-video-border: #1A1A1A;
+
+  --color-action: #1A1A1A;
+  --color-action-bg: #fed7aa;
+  --color-action-border: #1A1A1A;
+
+  --color-unified: #1A1A1A;
+  --color-unified-bg: #bef264;
+  --color-unified-border: #1A1A1A;
+
+  /* Geometry & Radii */
+  --lecture-radius-xs: 2px;
+  --lecture-radius-sm: 4px;
+  --lecture-radius-md: 6px;
+  --lecture-radius-lg: 8px;
+  --lecture-radius-xl: 12px;
+  --lecture-radius-pill: 9999px;
+
+  /* Architectural Offset Hard Shadows */
+  --lecture-shadow-xs: 1px 1px 0px #1A1A1A;
+  --lecture-shadow-sm: 2px 2px 0px #1A1A1A;
+  --lecture-shadow-md: 4px 4px 0px #1A1A1A;
+  --lecture-shadow-lg: 6px 6px 0px #1A1A1A;
+  --lecture-shadow-glow: 4px 4px 0px #bef264;
+  --lecture-shadow-glow-purple: 4px 4px 0px #c084fc;
+  --lecture-shadow-glow-gold: 4px 4px 0px #facc15;
+}
+
+/* ==========================================================================
+   Kinetic Monochrome Section Slide Design System (Dual-Format Architecture)
+   - Format 1 (Dark Format): Stark black canvas, crisp white/silver typography,
+     kinetic acid lime (#bef264) pops, illuminated geometric frames.
+   - Format 2 (Light Format): Stark white canvas, deep black constructivist typography,
+     solid 2px black architectural frames, acid lime accents, offset hard shadows.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   FORMAT 1: DARK SECTION SLIDES (Light fonts with Black Background)
+   Triggers: .has-dark-background, [data-background-color*="#0"], .dark-slide, .section-dark, .dark-format
+   -------------------------------------------------------------------------- */
+
+.reveal .has-dark-background .section-slide,
+.reveal .has-dark-background .section-header-slide,
+.reveal section[data-background-color*="#0"] .section-slide,
+.reveal section[data-background-color*="#1"] .section-slide,
+.reveal section[data-background-color="black"] .section-slide,
+.reveal .dark-slide .section-slide,
+.reveal .section-slide.section-dark,
+.reveal .section-slide.dark-format {
+  border-left-color: var(--lecture-pop-lime, #bef264) !important;
+  color: #f8fafc;
+
+  /* Section Number / Badge / Tracker */
+  .section-number,
+  .section-tracker,
+  .section-badge {
+    background: var(--lecture-pop-lime, #bef264) !important;
+    color: #1A1A1A !important;
+    font-family: var(--lecture-font-mono, 'JetBrains Mono', monospace) !important;
+    font-size: 0.78em !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    padding: 0.32em 0.9em !important;
+    border-radius: 2px !important;
+    border: 1px solid var(--lecture-pop-lime, #bef264) !important;
+    box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.35) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5em !important;
+    margin-bottom: 0.9rem !important;
+
+    &::before {
+      content: '\25a0' !important;
+      color: #1A1A1A !important;
+      font-size: 0.75em !important;
+      display: inline-block !important;
+      width: auto !important;
+      height: auto !important;
+      background: none !important;
+      margin-right: 0.2em !important;
+    }
+  }
+
+  /* Section Title */
+  .section-title {
+    font-family: var(--lecture-font-heading, 'Space Grotesk', sans-serif) !important;
+    color: #ffffff !important;
+    font-size: 2.85em !important;
+    font-weight: 800 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.04em !important;
+    margin-bottom: 0.4em !important;
+
+    .gradient-text,
+    span.gradient-text {
+      background: linear-gradient(135deg, #ffffff 20%, var(--lecture-pop-lime, #bef264) 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      display: inline-block;
+    }
+  }
+
+  /* Section Description & Subtitle */
+  .section-desc,
+  .section-subtitle {
+    color: #d4d4d8 !important;
+    font-size: 1.2em !important;
+    line-height: 1.55 !important;
+    font-weight: 400 !important;
+    max-width: 82% !important;
+  }
+
+  .section-abstract {
+    font-style: italic !important;
+    border-left: 3px solid var(--lecture-pop-lime, #bef264) !important;
+    padding-left: 1.25rem !important;
+    color: #e4e4e7 !important;
+    font-size: 1.25em !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Watermark & Large Numerals */
+  .section-watermark-num,
+  .watermark-num,
+  .section-bg-numeral {
+    color: transparent !important;
+    -webkit-text-stroke: 2.5px rgba(255, 255, 255, 0.14) !important;
+    opacity: 0.85 !important;
+    font-family: var(--lecture-font-heading, 'Space Grotesk', sans-serif) !important;
+    font-size: 16rem !important;
+    font-weight: 900 !important;
+  }
+
+  .section-numeral-large,
+  .pure-numeral {
+    font-family: var(--lecture-font-heading, 'Space Grotesk', sans-serif) !important;
+    font-size: 6rem !important;
+    font-weight: 900 !important;
+    color: var(--lecture-pop-lime, #bef264) !important;
+    letter-spacing: -0.06em !important;
+    line-height: 1 !important;
+    margin-bottom: 0.5rem !important;
+    text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.25) !important;
+  }
+
+  /* Accent Line */
+  .section-accent-line {
+    background: var(--lecture-pop-lime, #bef264) !important;
+    box-shadow: 0 0 14px rgba(190, 242, 100, 0.45) !important;
+    width: 56px !important;
+    height: 4px !important;
+    border-radius: 2px !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Split Agenda Archetype */
+  &.section-split,
+  &.section-agenda {
+    .section-main {
+      border-left: 6px solid var(--lecture-pop-lime, #bef264) !important;
+      padding-left: 2rem !important;
+      box-shadow: -4px 0 16px rgba(190, 242, 100, 0.2) !important;
+    }
+
+    .section-agenda-card,
+    .agenda-card {
+      background: #0d0d10 !important;
+      border: 2px solid rgba(255, 255, 255, 0.22) !important;
+      border-radius: 4px !important;
+      box-shadow: 6px 6px 0px var(--lecture-pop-lime, #bef264) !important;
+      padding: 1.75rem 2rem !important;
+
+      .agenda-header {
+        font-family: var(--lecture-font-mono, monospace) !important;
+        font-size: 0.88em !important;
+        font-weight: 800 !important;
+        color: var(--lecture-pop-lime, #bef264) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        padding-bottom: 0.75rem !important;
+        margin-bottom: 1.1rem !important;
+      }
+
+      .agenda-item,
+      li {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        border-radius: 2px !important;
+        padding: 0.55rem 0.85rem !important;
+        color: #f4f4f5 !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+        .agenda-num {
+          background: var(--lecture-pop-lime, #bef264) !important;
+          color: #1A1A1A !important;
+          font-family: var(--lecture-font-mono, monospace) !important;
+          font-weight: 800 !important;
+          font-size: 0.78em !important;
+          border-radius: 2px !important;
+          width: 26px !important;
+          height: 26px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          flex-shrink: 0 !important;
+        }
+
+        .agenda-tag,
+        .agenda-text {
+          color: #ffffff !important;
+          font-weight: 600 !important;
+          font-size: 0.95em !important;
+        }
+
+        &:hover {
+          background: rgba(190, 242, 100, 0.15) !important;
+          border-color: var(--lecture-pop-lime, #bef264) !important;
+          transform: translateX(6px) !important;
+        }
+      }
+    }
+  }
+
+  /* Hairline Agenda Archetype */
+  &.section-hairline-agenda {
+
+    .section-agenda-hairline,
+    .agenda-hairline-list {
+
+      .agenda-hairline-item,
+      li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        padding-bottom: 0.75rem !important;
+        color: #f4f4f5 !important;
+
+        .agenda-index {
+          background: var(--lecture-pop-lime, #bef264) !important;
+          color: #1A1A1A !important;
+          font-family: var(--lecture-font-mono, monospace) !important;
+          font-weight: 800 !important;
+          font-size: 0.8em !important;
+          padding: 0.15em 0.5em !important;
+          border-radius: 2px !important;
+        }
+
+        .agenda-text {
+          color: #ffffff !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+  }
+
+  /* Centered Modern Frame Archetype */
+  &.section-centered-modern {
+    .section-centered-frame {
+      border-top: 2px solid rgba(255, 255, 255, 0.25) !important;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.25) !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      padding: 3rem 2.5rem !important;
+    }
+  }
+
+  /* Centered Banner Archetype */
+  &.section-banner,
+  &.section-centered {
+    .section-banner-card {
+      background: #0d0d10 !important;
+      border: 2px solid rgba(255, 255, 255, 0.25) !important;
+      border-radius: 4px !important;
+      box-shadow: 8px 8px 0px var(--lecture-pop-lime, #bef264) !important;
+      padding: 2.75rem 3.5rem !important;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FORMAT 2: LIGHT SECTION SLIDES (Dark fonts with White/Light Background)
+   Triggers: Default in Monochrome, .has-light-background, section:not(.has-dark-background), .light-slide, .section-light, .light-format
+   -------------------------------------------------------------------------- */
+
+.reveal section:not(.has-dark-background) .section-slide,
+.reveal section:not(.has-dark-background) .section-header-slide,
+.reveal .has-light-background .section-slide,
+.reveal .has-light-background .section-header-slide,
+.reveal section[data-background-color="#ffffff"] .section-slide,
+.reveal section[data-background-color="#fafafa"] .section-slide,
+.reveal section[data-background-color="#f4f4f5"] .section-slide,
+.reveal .light-slide .section-slide,
+.reveal .section-slide.section-light,
+.reveal .section-slide.light-format {
+  border-left-color: #1A1A1A !important;
+  color: #1A1A1A;
+
+  /* Section Number / Badge / Tracker */
+  .section-number,
+  .section-tracker,
+  .section-badge {
+    background: #1A1A1A !important;
+    color: #ffffff !important;
+    font-family: var(--lecture-font-mono, 'JetBrains Mono', monospace) !important;
+    font-size: 0.78em !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    padding: 0.32em 0.9em !important;
+    border-radius: 2px !important;
+    border: 1.5px solid #1A1A1A !important;
+    box-shadow: 2px 2px 0px var(--lecture-pop-lime, #bef264) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5em !important;
+    margin-bottom: 0.9rem !important;
+
+    &::before {
+      content: '\25a0' !important;
+      color: var(--lecture-pop-lime, #bef264) !important;
+      font-size: 0.75em !important;
+      display: inline-block !important;
+      width: auto !important;
+      height: auto !important;
+      background: none !important;
+      margin-right: 0.2em !important;
+    }
+  }
+
+  /* Section Title */
+  .section-title {
+    font-family: var(--lecture-font-heading, 'Space Grotesk', sans-serif) !important;
+    color: #1A1A1A !important;
+    font-size: 2.85em !important;
+    font-weight: 800 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.04em !important;
+    margin-bottom: 0.4em !important;
+
+    .gradient-text,
+    span.gradient-text {
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: initial !important;
+      color: #1A1A1A !important;
+      border-bottom: 4px solid var(--lecture-pop-lime, #bef264) !important;
+      display: inline-block;
+    }
+  }
+
+  /* Section Description & Subtitle */
+  .section-desc,
+  .section-subtitle {
+    color: #27272a !important;
+    font-size: 1.2em !important;
+    line-height: 1.55 !important;
+    font-weight: 500 !important;
+    max-width: 82% !important;
+  }
+
+  .section-abstract {
+    font-style: italic !important;
+    border-left: 3px solid #1A1A1A !important;
+    padding-left: 1.25rem !important;
+    color: #3f3f46 !important;
+    font-size: 1.25em !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Watermark & Large Numerals */
+  .section-watermark-num,
+  .watermark-num,
+  .section-bg-numeral {
+    color: transparent !important;
+    -webkit-text-stroke: 2.5px rgba(0, 0, 0, 0.12) !important;
+    opacity: 0.85 !important;
+    font-family: var(--lecture-font-heading, 'Space Grotesk', sans-serif) !important;
+    font-size: 16rem !important;
+    font-weight: 900 !important;
+  }
+
+  .section-numeral-large,
+  .pure-numeral {
+    font-family: var(--lecture-font-heading, 'Space Grotesk', sans-serif) !important;
+    font-size: 6rem !important;
+    font-weight: 900 !important;
+    color: #1A1A1A !important;
+    letter-spacing: -0.06em !important;
+    line-height: 1 !important;
+    margin-bottom: 0.5rem !important;
+    text-shadow: 4px 4px 0px var(--lecture-pop-lime, #bef264) !important;
+  }
+
+  /* Accent Line */
+  .section-accent-line {
+    background: #1A1A1A !important;
+    box-shadow: 2px 2px 0px var(--lecture-pop-lime, #bef264) !important;
+    width: 56px !important;
+    height: 4px !important;
+    border-radius: 2px !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Split Agenda Archetype */
+  &.section-split,
+  &.section-agenda {
+    .section-main {
+      border-left: 6px solid #1A1A1A !important;
+      padding-left: 2rem !important;
+    }
+
+    .section-agenda-card,
+    .agenda-card {
+      background: #ffffff !important;
+      border: 2px solid #1A1A1A !important;
+      border-radius: 4px !important;
+      box-shadow: 6px 6px 0px #1A1A1A !important;
+      padding: 1.75rem 2rem !important;
+
+      .agenda-header {
+        font-family: var(--lecture-font-mono, monospace) !important;
+        font-size: 0.88em !important;
+        font-weight: 800 !important;
+        color: #1A1A1A !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        border-bottom: 2px solid #1A1A1A !important;
+        padding-bottom: 0.75rem !important;
+        margin-bottom: 1.1rem !important;
+      }
+
+      .agenda-item,
+      li {
+        background: #f4f4f5 !important;
+        border: 1.5px solid #1A1A1A !important;
+        border-radius: 2px !important;
+        padding: 0.55rem 0.85rem !important;
+        color: #1A1A1A !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+        .agenda-num {
+          background: #1A1A1A !important;
+          color: #ffffff !important;
+          font-family: var(--lecture-font-mono, monospace) !important;
+          font-weight: 800 !important;
+          font-size: 0.78em !important;
+          border-radius: 2px !important;
+          width: 26px !important;
+          height: 26px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          flex-shrink: 0 !important;
+        }
+
+        .agenda-tag,
+        .agenda-text {
+          color: #1A1A1A !important;
+          font-weight: 700 !important;
+          font-size: 0.95em !important;
+        }
+
+        &:hover {
+          background: var(--lecture-pop-lime, #bef264) !important;
+          color: #1A1A1A !important;
+          transform: translateX(6px) !important;
+          box-shadow: 2px 2px 0px #1A1A1A !important;
+        }
+      }
+    }
+  }
+
+  /* Hairline Agenda Archetype */
+  &.section-hairline-agenda {
+
+    .section-agenda-hairline,
+    .agenda-hairline-list {
+
+      .agenda-hairline-item,
+      li {
+        border-bottom: 2px solid #1A1A1A !important;
+        padding-bottom: 0.75rem !important;
+        color: #1A1A1A !important;
+
+        .agenda-index {
+          background: #1A1A1A !important;
+          color: #ffffff !important;
+          font-family: var(--lecture-font-mono, monospace) !important;
+          font-weight: 800 !important;
+          font-size: 0.8em !important;
+          padding: 0.15em 0.5em !important;
+          border-radius: 2px !important;
+        }
+
+        .agenda-text {
+          color: #1A1A1A !important;
+          font-weight: 700 !important;
+        }
+      }
+    }
+  }
+
+  /* Centered Modern Frame Archetype */
+  &.section-centered-modern {
+    .section-centered-frame {
+      border-top: 2px solid #1A1A1A !important;
+      border-bottom: 2px solid #1A1A1A !important;
+      background: #fafafa !important;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+      padding: 3rem 2.5rem !important;
+    }
+  }
+
+  /* Centered Banner Archetype */
+  &.section-banner,
+  &.section-centered {
+    .section-banner-card {
+      background: #ffffff !important;
+      border: 2px solid #1A1A1A !important;
+      border-radius: 4px !important;
+      box-shadow: 8px 8px 0px #1A1A1A !important;
+      padding: 2.75rem 3.5rem !important;
+    }
+  }
+}

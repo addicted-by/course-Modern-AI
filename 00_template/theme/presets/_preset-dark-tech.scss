@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Variant B: Precision Dark Tech / Cybernetic Studio
+   Linear/Vercel dark UI: obsidian canvas, glowing cyan, smoked glass
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+
+// Typography Web Fonts
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+// Reveal.js SASS Variable Defaults (Dark Tech Theme)
+$body-bg: #090a0f !default;
+$body-color: #cbd5e1 !default;
+$theme-color: #38bdf8 !default;
+$heading-color: #ffffff !default;
+$font-family-sans-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace !default;
+$presentation-heading-font: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !default;
+$presentation-font-size-root: 28px !default;
+$presentation-line-height: 1.60 !default;
+$link-color: #38bdf8 !default;
+$link-color-hover: #0ea5e9 !default;
+$selection-bg: rgba(56, 189, 248, 0.30) !default;
+$selection-color: #ffffff !default;
+
+/*-- scss:rules --*/
+
+:root {
+  /* Preset Name Metadata */
+  --lecture-preset: 'dark-tech';
+  --lecture-preset-name: 'Precision Dark Tech';
+
+  /* Surface & Canvas Tokens (Obsidian / Smoked Glass) */
+  --lecture-bg: #090a0f;
+  --lecture-bg-subtle: #0d111a;
+  --lecture-surface: #111622;
+  --lecture-surface-alt: #0d111a;
+  --lecture-surface-glass: rgba(17, 22, 34, 0.75);
+  --lecture-surface-dark: #05070c;
+  --lecture-surface-glass-dark: rgba(9, 10, 15, 0.85);
+  --lecture-surface-glass-darker: rgba(5, 7, 12, 0.94);
+
+  /* Typography & Text Colors */
+  --lecture-fg: #ffffff;
+  --lecture-fg-soft: #cbd5e1;
+  --lecture-muted: #94a3b8;
+  --lecture-muted-light: #475569;
+  --lecture-fg-inverted: #090a0f;
+  --lecture-fg-inverted-soft: #1e293b;
+
+  /* Font Families */
+  --lecture-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --lecture-font-heading: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --lecture-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Borders & Dividers */
+  --lecture-border: rgba(255, 255, 255, 0.10);
+  --lecture-border-light: rgba(255, 255, 255, 0.06);
+  --lecture-border-dark: rgba(255, 255, 255, 0.18);
+  --lecture-border-glass: rgba(56, 189, 248, 0.20);
+  --lecture-border-glass-dark: rgba(255, 255, 255, 0.08);
+
+  /* Header Logos Configuration */
+  --lecture-logo-height: 24px;
+  --lecture-logo-gap: 14px;
+  --lecture-logo-top: 26px;
+  --lecture-logo-right: 36px;
+  --lecture-logo-opacity: 0.85;
+
+  /* Primary Brand Accents & Gradients */
+  --lecture-accent: #38bdf8;
+  --lecture-accent-hover: #0ea5e9;
+  --lecture-accent-soft: rgba(56, 189, 248, 0.12);
+  --lecture-accent-border: rgba(56, 189, 248, 0.35);
+  --lecture-accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  --lecture-accent-gradient-subtle: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(192, 132, 252, 0.12) 100%);
+  --lecture-dark-gradient: linear-gradient(135deg, #05070c 0%, #090a0f 50%, #111622 100%);
+  --lecture-glow-gradient: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.22) 0%, transparent 70%);
+  --lecture-gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  --lecture-pop-emerald: #10b981;
+  --lecture-pop-violet: #a855f7;
+  --lecture-pop-orange: #fb923c;
+  --lecture-pop-terracotta: #ea580c;
+  --lecture-pop-lime: #a3e635;
+  --lecture-pop-yellow: #fde047;
+  --lecture-pop-blue: #38bdf8;
+  --lecture-pop-gold: #f59e0b;
+  --lecture-code-bg: #05070c;
+
+  /* Semantic Alerts */
+  --lecture-success: #10b981;
+  --lecture-success-soft: rgba(16, 185, 129, 0.12);
+  --lecture-success-border: rgba(16, 185, 129, 0.35);
+  --lecture-success-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+
+  --lecture-warning: #f59e0b;
+  --lecture-warning-soft: rgba(245, 158, 11, 0.12);
+  --lecture-warning-border: rgba(245, 158, 11, 0.35);
+  --lecture-warning-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+
+  --lecture-danger: #f43f5e;
+  --lecture-danger-soft: rgba(244, 63, 94, 0.12);
+  --lecture-danger-border: rgba(244, 63, 94, 0.35);
+  --lecture-danger-gradient: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
+
+  --lecture-info: #38bdf8;
+  --lecture-info-soft: rgba(56, 189, 248, 0.12);
+  --lecture-info-border: rgba(56, 189, 248, 0.35);
+  --lecture-info-gradient: linear-gradient(135deg, #38bdf8 0%, #60a5fa 100%);
+
+  /* Modality Taxonomy Colors */
+  --color-text: #38bdf8;
+  --color-text-bg: rgba(56, 189, 248, 0.12);
+  --color-text-border: rgba(56, 189, 248, 0.35);
+
+  --color-image: #c084fc;
+  --color-image-bg: rgba(192, 132, 252, 0.12);
+  --color-image-border: rgba(192, 132, 252, 0.35);
+
+  --color-audio: #2dd4bf;
+  --color-audio-bg: rgba(45, 212, 191, 0.12);
+  --color-audio-border: rgba(45, 212, 191, 0.35);
+
+  --color-video: #fb7185;
+  --color-video-bg: rgba(251, 113, 133, 0.12);
+  --color-video-border: rgba(251, 113, 133, 0.35);
+
+  --color-action: #fbbf24;
+  --color-action-bg: rgba(251, 191, 36, 0.12);
+  --color-action-border: rgba(251, 191, 36, 0.35);
+
+  --color-unified: #34d399;
+  --color-unified-bg: rgba(52, 211, 153, 0.12);
+  --color-unified-border: rgba(52, 211, 153, 0.35);
+
+  /* Geometry & Radii */
+  --lecture-radius-xs: 6px;
+  --lecture-radius-sm: 10px;
+  --lecture-radius-md: 14px;
+  --lecture-radius-lg: 20px;
+  --lecture-radius-xl: 28px;
+  --lecture-radius-pill: 9999px;
+
+  /* Frosted Glass Shadows & Cybernetic Glows */
+  --lecture-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --lecture-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --lecture-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --lecture-shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  --lecture-shadow-glow: 0 0 30px -5px rgba(56, 189, 248, 0.35);
+  --lecture-shadow-glow-purple: 0 0 30px -5px rgba(168, 85, 247, 0.35);
+  --lecture-shadow-glow-gold: 0 0 30px -5px rgba(245, 158, 11, 0.35);
+}

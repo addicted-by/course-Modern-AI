@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Turn natural-language questions and a database schema into SQL queries that return the right answer.">
+  <title>Text-to-SQL with LoRA · Modern AI project 04</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-1">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">04</span>
+      <div>
+        <p class="eyebrow">Language · Code</p>
+        <h1>Text-to-SQL with LoRA</h1>
+        <p class="summary">Turn natural-language questions and a database schema into SQL queries that return the right answer.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p04-lora.svg" aria-label="Open full-size illustration: LoRA adds trainable low-rank matrices A and B in parallel with frozen pretrained weights."><img src="../assets/projects/p04-lora.svg" alt="LoRA adds trainable low-rank matrices A and B in parallel with frozen pretrained weights." decoding="async"></a><figcaption>LoRA keeps pretrained weights fixed and learns a low-rank update. In this project, adapters specialize Qwen2.5 for SQL generation. <a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Fine-tune a small code model, execute its SQL in an isolated SQLite evaluation database and compare results with reference queries.</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>Qwen2.5-Coder-1.5B-Instruct with LoRA on attention q/v projections.</p>
+        <p class="context">LoRA changes a small set of trainable parameters while retaining a pretrained code model. The key experiment is executable SQL on unseen schemas; general language-model benchmark rankings do not measure this task.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>b-mc2/sql-create-context: question, schema and reference SQL triples, split by schema before training.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out schemas plus separate populated SQLite fixtures. Empty tables cannot establish execution accuracy.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>Execution accuracy ↑</dt><dd>Generated and reference queries return the same result on populated fixtures.</dd>
+<dt>Valid SQL ↑</dt><dd>Fraction of queries that execute within the evaluator&#x27;s limits.</dd>
+<dt>Exact match ↑</dt><dd>Textual agreement with reference SQL; not a proof of semantic equivalence.</dd>
+<dt>Execution coverage ↑</dt><dd>Fraction of examples with usable fixtures and valid reference queries.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A LoRA adapter and repeatable inference script.</li>
+<li>A small SQLite database with held-out questions and populated fixtures.</li>
+<li>A baseline-versus-LoRA execution report.</li>
+<li>An analysis of joins, aggregation, sorting and invalid queries.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p04_sql_lora/README.md">Project README ↗</a>
+          <a href="../../projects/p04_sql_lora/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener noreferrer">LoRA: Low-Rank Adaptation of Large Language Models ↗</a></li>
+<li><a href="https://arxiv.org/abs/2409.12186" target="_blank" rel="noopener noreferrer">Qwen2.5-Coder Technical Report ↗</a></li>
+<li><a href="https://huggingface.co/datasets/b-mc2/sql-create-context" target="_blank" rel="noopener noreferrer">SQL Create Context dataset ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p03_weapon_detection.html">← Previous: 03</a>
+      <a href="../course_structure.html#/capstone-projects-1">Back to catalog</a>
+      <a href="p05_json_lora.html">Next: 05 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 04 of 10</footer>
+</body>
+</html>

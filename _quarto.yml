@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - 01_intro/course_structure.qmd
+  resources:
+    - "01_intro/assets/**"
+    - "01_intro/project_pages/**"
+    - "01_intro/vendor/**"
+
+website:
+  title: "Modern AI"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: 01_intro/course_structure.qmd
+        text: "01. Course Structure"
+
+format:
+  html:
+    theme: cosmo
+    toc: true

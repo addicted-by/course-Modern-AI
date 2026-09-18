@@ -1,0 +1,18 @@
+/* ==========================================================================
+   Quarto Reveal.js Master Theme Entry Point
+   Active Preset: preset-monochrome
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+@import "presets/preset-monochrome";
+// @import "presets/preset-swiss-minimal";
+// @import "presets/preset-dark-tech";
+// @import "presets/preset-academic";
+
+/*-- scss:rules --*/
+@import "_typography";
+@import "_layout";
+@import "_components";
+@import "_reveal-overrides";
+@import "_animations";
+@import "_scaler";

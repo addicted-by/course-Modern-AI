@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Quarto Reveal.js Standalone Theme: Kinetic Monochrome (Variant D)
+   Swiss poster art: stark B&W, heavy 2px frames, Acid Lime / Yellow pops
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+@import "presets/preset-monochrome";
+
+/*-- scss:rules --*/
+@import "_typography";
+@import "_layout";
+@import "_components";
+@import "_reveal-overrides";
+@import "_animations";
+

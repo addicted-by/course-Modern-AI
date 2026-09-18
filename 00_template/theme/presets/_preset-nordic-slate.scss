@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Variant E: Nordic Slate & Sage Minimal
+   Understated cold graphite canvas, zinc typography, sage/slate accents
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+
+// Typography Web Fonts
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+// Reveal.js SASS Variable Defaults (Nordic Slate Theme)
+$body-bg: #f4f4f6 !default;
+$body-color: #27272a !default;
+$theme-color: #059669 !default;
+$heading-color: #18181b !default;
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace !default;
+$presentation-heading-font: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !default;
+$presentation-font-size-root: 28px !default;
+$presentation-line-height: 1.60 !default;
+$link-color: #059669 !default;
+$link-color-hover: #047857 !default;
+$selection-bg: rgba(5, 150, 105, 0.18) !default;
+$selection-color: #18181b !default;
+
+/*-- scss:rules --*/
+
+:root {
+  /* Preset Name Metadata */
+  --lecture-preset: 'nordic-slate';
+  --lecture-preset-name: 'Nordic Slate & Sage Minimal';
+
+  /* Surface & Canvas Tokens (Cold Graphite / Zinc) */
+  --lecture-bg: #f4f4f6;
+  --lecture-bg-subtle: #e4e4e7;
+  --lecture-surface: #ffffff;
+  --lecture-surface-alt: #f4f4f6;
+  --lecture-surface-glass: rgba(255, 255, 255, 0.88);
+  --lecture-surface-dark: #18181b;
+  --lecture-surface-glass-dark: rgba(24, 24, 27, 0.85);
+  --lecture-surface-glass-darker: rgba(15, 15, 18, 0.94);
+
+  /* Typography & Text Colors */
+  --lecture-fg: #18181b;
+  --lecture-fg-soft: #3f3f46;
+  --lecture-muted: #52525b;
+  --lecture-muted-light: #71717a;
+  --lecture-fg-inverted: #f4f4f6;
+  --lecture-fg-inverted-soft: #e4e4e7;
+
+  /* Font Families */
+  --lecture-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --lecture-font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --lecture-font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Borders & Dividers */
+  --lecture-border: #e4e4e7;
+  --lecture-border-light: #f4f4f5;
+  --lecture-border-dark: #d4d4d8;
+  --lecture-border-glass: rgba(228, 228, 231, 0.85);
+  --lecture-border-glass-dark: rgba(255, 255, 255, 0.12);
+
+  /* Header Logos Configuration */
+  --lecture-logo-height: 24px;
+  --lecture-logo-gap: 14px;
+  --lecture-logo-top: 26px;
+  --lecture-logo-right: 36px;
+  --lecture-logo-opacity: 0.85;
+
+  /* Primary Brand Accents & Gradients */
+  --lecture-accent: #059669;
+  --lecture-accent-hover: #047857;
+  --lecture-accent-soft: #ecfdf5;
+  --lecture-accent-border: #a7f3d0;
+  --lecture-accent-gradient: linear-gradient(135deg, #059669 0%, #0d9488 50%, #475569 100%);
+  --lecture-accent-gradient-subtle: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(71, 85, 105, 0.08) 100%);
+  --lecture-dark-gradient: linear-gradient(135deg, #18181b 0%, #27272a 50%, #0f172a 100%);
+  --lecture-glow-gradient: radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.15) 0%, transparent 70%);
+  --lecture-gold-gradient: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  --lecture-pop-emerald: #059669;
+  --lecture-pop-violet: #7c3aed;
+  --lecture-pop-orange: #ea580c;
+  --lecture-pop-terracotta: #c2410c;
+  --lecture-pop-lime: #65a30d;
+  --lecture-pop-yellow: #d97706;
+  --lecture-pop-blue: #0284c7;
+  --lecture-pop-gold: #b45309;
+  --lecture-code-bg: #18181b;
+
+  /* Semantic Alerts */
+  --lecture-success: #059669;
+  --lecture-success-soft: #ecfdf5;
+  --lecture-success-border: #a7f3d0;
+  --lecture-success-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%);
+
+  --lecture-warning: #d97706;
+  --lecture-warning-soft: #fffbeb;
+  --lecture-warning-border: #fde68a;
+  --lecture-warning-gradient: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+
+  --lecture-danger: #dc2626;
+  --lecture-danger-soft: #fef2f2;
+  --lecture-danger-border: #fecaca;
+  --lecture-danger-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+
+  --lecture-info: #0284c7;
+  --lecture-info-soft: #f0f9ff;
+  --lecture-info-border: #bae6fd;
+  --lecture-info-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+
+  /* Modality Taxonomy Colors */
+  --color-text: #059669;
+  --color-text-bg: #ecfdf5;
+  --color-text-border: #a7f3d0;
+
+  --color-image: #7c3aed;
+  --color-image-bg: #f5f3ff;
+  --color-image-border: #ddd6fe;
+
+  --color-audio: #0d9488;
+  --color-audio-bg: #f0fdfa;
+  --color-audio-border: #99f6e4;
+
+  --color-video: #e11d48;
+  --color-video-bg: #fff1f2;
+  --color-video-border: #fecdd3;
+
+  --color-action: #d97706;
+  --color-action-bg: #fffbeb;
+  --color-action-border: #fde68a;
+
+  --color-unified: #059669;
+  --color-unified-bg: #ecfdf5;
+  --color-unified-border: #a7f3d0;
+
+  /* Geometry & Radii */
+  --lecture-radius-xs: 4px;
+  --lecture-radius-sm: 6px;
+  --lecture-radius-md: 10px;
+  --lecture-radius-lg: 16px;
+  --lecture-radius-xl: 24px;
+  --lecture-radius-pill: 9999px;
+
+  /* Restrained Nordic Shadows */
+  --lecture-shadow-xs: 0 1px 2px rgba(24, 24, 27, 0.04);
+  --lecture-shadow-sm: 0 1px 3px rgba(24, 24, 27, 0.04), 0 6px 12px -2px rgba(24, 24, 27, 0.03);
+  --lecture-shadow-md: 0 4px 6px -1px rgba(24, 24, 27, 0.05), 0 12px 24px -4px rgba(24, 24, 27, 0.04);
+  --lecture-shadow-lg: 0 20px 30px -10px rgba(24, 24, 27, 0.10), 0 8px 12px -6px rgba(24, 24, 27, 0.05);
+  --lecture-shadow-glow: 0 0 30px -5px rgba(5, 150, 105, 0.25);
+  --lecture-shadow-glow-purple: 0 0 30px -5px rgba(124, 58, 237, 0.25);
+  --lecture-shadow-glow-gold: 0 0 30px -5px rgba(217, 119, 6, 0.25);
+}

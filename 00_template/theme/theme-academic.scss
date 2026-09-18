@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Quarto Reveal.js Standalone Theme: Academic Monograph Elegance (Variant C)
+   High-prestige monograph: Newsreader serif, Alabaster cream, Oxford Emerald
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+@import "presets/preset-academic";
+
+/*-- scss:rules --*/
+@import "_typography";
+@import "_layout";
+@import "_components";
+@import "_reveal-overrides";
+@import "_animations";
+

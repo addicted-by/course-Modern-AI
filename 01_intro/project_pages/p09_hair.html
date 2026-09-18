@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Predict a hair mask and increase sharpness only within the selected region.">
+  <title>Hair Segmentation &amp; Sharpening · Modern AI project 09</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-2">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">09</span>
+      <div>
+        <p class="eyebrow">Segmentation · Image editing</p>
+        <h1>Hair Segmentation &amp; Sharpening</h1>
+        <p class="summary">Predict a hair mask and increase sharpness only within the selected region.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p09-lapa.png" aria-label="Open full-size illustration: LaPa faces with landmark annotations and colored semantic masks, including hair."><img src="../assets/projects/p09-lapa.png" alt="LaPa faces with landmark annotations and colored semantic masks, including hair." decoding="async"></a><figcaption>LaPa annotations separate hair, face and other regions for selective enhancement. <a href="https://github.com/jd-opensource/lapa-dataset" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Adapt a segmentation decoder to hair, then apply masked unsharp enhancement: image + α × (image − blurred image).</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>SAM 1 ViT-B with a trainable mask decoder; frozen image and prompt encoders, using a full-image box.</p>
+        <p class="context">SAM supplies pretrained segmentation features, but hair semantics must be learned for this task. The executable course baseline uses SAM 1; SAM 2/2.1 is a separate extension requiring implementation and measurement.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>LaPa portraits and semantic hair labels; use verified identity groups where available and document the split protocol.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out portrait images and masks, with separate inspection of fine hair boundaries and the final sharpened output.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>IoU ↑</dt><dd>Overlap between the predicted and reference hair regions.</dd>
+<dt>Dice / F1 ↑</dt><dd>Balance of missed hair pixels and false positives.</dd>
+<dt>Boundary F1 ↑</dt><dd>Accuracy near hair contours under a stated pixel tolerance.</dd>
+<dt>Precision / Recall ↑</dt><dd>Leakage into the background versus missing parts of the hair.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A trained hair-mask decoder and inference pipeline.</li>
+<li>Portrait, predicted mask and selectively sharpened result examples.</li>
+<li>A segmentation report and boundary error analysis.</li>
+<li>A comparison of enhancement strengths and visible artifacts.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p09_hair/README.md">Project README ↗</a>
+          <a href="../../projects/p09_hair/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2408.00714" target="_blank" rel="noopener noreferrer">SAM 2: Segment Anything in Images and Videos ↗</a></li>
+<li><a href="https://ojs.aaai.org/index.php/AAAI/article/view/6832" target="_blank" rel="noopener noreferrer">A New Dataset and Boundary-Attention Semantic Segmentation for Face Parsing ↗</a></li>
+<li><a href="https://github.com/jd-opensource/lapa-dataset" target="_blank" rel="noopener noreferrer">LaPa dataset ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p08_lyrics.html">← Previous: 08</a>
+      <a href="../course_structure.html#/capstone-projects-2">Back to catalog</a>
+      <a href="p10_bokeh.html">Next: 10 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 09 of 10</footer>
+</body>
+</html>

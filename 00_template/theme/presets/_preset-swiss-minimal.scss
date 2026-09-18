@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Variant A: Swiss Editorial Minimal (The Modernist Gold Standard)
+   International Typographic Style: rational, crisp, high-precision
+   ========================================================================== */
+
+/*-- scss:defaults --*/
+
+// Typography Web Fonts
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+// Reveal.js SASS Variable Defaults
+$body-bg: #f8fafc !default;
+$body-color: #334155 !default;
+$theme-color: #ea580c !default;
+$heading-color: #0f172a !default;
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace !default;
+$presentation-heading-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !default;
+$presentation-font-size-root: 28px !default;
+$presentation-line-height: 1.60 !default;
+$link-color: #ea580c !default;
+$link-color-hover: #c2410c !default;
+$selection-bg: rgba(234, 88, 12, 0.20) !default;
+$selection-color: #0f172a !default;
+
+/*-- scss:rules --*/
+
+:root {
+  /* Preset Name Metadata */
+  --lecture-preset: 'swiss-minimal';
+  --lecture-preset-name: 'Swiss Editorial Minimal';
+
+  /* Surface & Canvas Tokens */
+  --lecture-bg: #f8fafc;
+  --lecture-bg-subtle: #f1f5f9;
+  --lecture-surface: #ffffff;
+  --lecture-surface-alt: #f1f5f9;
+  --lecture-surface-glass: rgba(255, 255, 255, 0.85);
+  --lecture-surface-dark: #0f172a;
+  --lecture-surface-glass-dark: rgba(15, 23, 42, 0.85);
+  --lecture-surface-glass-darker: rgba(11, 15, 25, 0.94);
+
+  /* Typography & Text Colors */
+  --lecture-fg: #0f172a;
+  --lecture-fg-soft: #334155;
+  --lecture-muted: #64748b;
+  --lecture-muted-light: #94a3b8;
+  --lecture-fg-inverted: #f8fafc;
+  --lecture-fg-inverted-soft: #cbd5e1;
+
+  /* Font Families */
+  --lecture-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --lecture-font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --lecture-font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Borders & Dividers */
+  --lecture-border: #e2e8f0;
+  --lecture-border-light: #f1f5f9;
+  --lecture-border-dark: #cbd5e1;
+  --lecture-border-glass: rgba(226, 232, 240, 0.85);
+  --lecture-border-glass-dark: rgba(255, 255, 255, 0.12);
+
+  /* Header Logos Configuration */
+  --lecture-logo-height: 24px;
+  --lecture-logo-gap: 14px;
+  --lecture-logo-top: 26px;
+  --lecture-logo-right: 36px;
+  --lecture-logo-opacity: 0.85;
+
+  /* Primary Brand Accents & Gradients */
+  --lecture-accent: #ea580c;
+  --lecture-accent-hover: #c2410c;
+  --lecture-accent-soft: #fff7ed;
+  --lecture-accent-border: #fed7aa;
+  --lecture-accent-gradient: linear-gradient(135deg, #ff3b00 0%, #ea580c 50%, #f97316 100%);
+  --lecture-accent-gradient-subtle: linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(255, 59, 0, 0.08) 100%);
+  --lecture-dark-gradient: linear-gradient(135deg, #0b0f19 0%, #0f172a 50%, #1e1b4b 100%);
+  --lecture-glow-gradient: radial-gradient(circle at 50% 50%, rgba(234, 88, 12, 0.15) 0%, transparent 70%);
+  --lecture-gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+  --lecture-pop-orange: #ea580c;
+  --lecture-pop-emerald: #10b981;
+  --lecture-pop-violet: #a855f7;
+  --lecture-pop-terracotta: #c2410c;
+  --lecture-pop-lime: #bef264;
+  --lecture-pop-yellow: #facc15;
+  --lecture-pop-blue: #2563eb;
+  --lecture-pop-gold: #d97706;
+  --lecture-code-bg: #0b0f19;
+
+  /* Semantic Alerts */
+  --lecture-success: #059669;
+  --lecture-success-soft: #ecfdf5;
+  --lecture-success-border: #a7f3d0;
+  --lecture-success-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%);
+
+  --lecture-warning: #d97706;
+  --lecture-warning-soft: #fffbeb;
+  --lecture-warning-border: #fde68a;
+  --lecture-warning-gradient: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+
+  --lecture-danger: #dc2626;
+  --lecture-danger-soft: #fef2f2;
+  --lecture-danger-border: #fecaca;
+  --lecture-danger-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+
+  --lecture-info: #0284c7;
+  --lecture-info-soft: #f0f9ff;
+  --lecture-info-border: #bae6fd;
+  --lecture-info-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+
+  /* Modality Taxonomy Colors */
+  --color-text: #ea580c;
+  --color-text-bg: #fff7ed;
+  --color-text-border: #fed7aa;
+
+  --color-image: #7c3aed;
+  --color-image-bg: #f5f3ff;
+  --color-image-border: #ddd6fe;
+
+  --color-audio: #0d9488;
+  --color-audio-bg: #f0fdfa;
+  --color-audio-border: #99f6e4;
+
+  --color-video: #e11d48;
+  --color-video-bg: #fff1f2;
+  --color-video-border: #fecdd3;
+
+  --color-action: #d97706;
+  --color-action-bg: #fffbeb;
+  --color-action-border: #fde68a;
+
+  --color-unified: #059669;
+  --color-unified-bg: #ecfdf5;
+  --color-unified-border: #a7f3d0;
+
+  /* Geometry & Radii */
+  --lecture-radius-xs: 6px;
+  --lecture-radius-sm: 8px;
+  --lecture-radius-md: 12px;
+  --lecture-radius-lg: 18px;
+  --lecture-radius-xl: 28px;
+  --lecture-radius-pill: 9999px;
+
+  /* Multi-layered Glassmorphic Shadows */
+  --lecture-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --lecture-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 6px 12px -2px rgba(15, 23, 42, 0.03);
+  --lecture-shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 12px 24px -4px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --lecture-shadow-lg: 0 20px 30px -10px rgba(15, 23, 42, 0.12), 0 8px 12px -6px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --lecture-shadow-glow: 0 0 30px -5px rgba(234, 88, 12, 0.28);
+  --lecture-shadow-glow-purple: 0 0 30px -5px rgba(124, 58, 237, 0.28);
+  --lecture-shadow-glow-gold: 0 0 30px -5px rgba(245, 158, 11, 0.28);
+}

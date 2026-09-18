@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Detect firearms in images or film clips and blur the detected regions automatically.">
+  <title>Weapon Detection &amp; Blur · Modern AI project 03</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-1">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">03</span>
+      <div>
+        <p class="eyebrow">Computer vision · Video</p>
+        <h1>Weapon Detection &amp; Blur</h1>
+        <p class="summary">Detect firearms in images or film clips and blur the detected regions automatically.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p03-yolov10.png" aria-label="Open full-size illustration: YOLOv10 dual assignment training diagram with one-to-many and one-to-one detection heads."><img src="../assets/projects/p03-yolov10.png" alt="YOLOv10 dual assignment training diagram with one-to-many and one-to-one detection heads." decoding="async"></a><figcaption>The YOLOv10 detector uses dual assignments during training and a one-to-one head for inference. This is the base method, not a weapon-detection result. <a href="https://arxiv.org/html/2405.14458v1#S3.F2" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Adapt a pretrained detector to one firearm class, choose a confidence threshold and apply blur to its predicted boxes.</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>COCO-pretrained YOLOv10S with a trainable detection head; the course trains both detection branches.</p>
+        <p class="context">YOLOv10 is the reference real-time detection family. Its COCO benchmark scores describe general object detection; firearm accuracy and film-domain transfer must be measured separately.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>Firearm-related action recognition and object detection data, converted to YOLO boxes; include negative frames without weapons.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out videos or scenes, with all related frames kept together; use separate clips to demonstrate blur.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>mAP@50:95 ↑</dt><dd>Detection quality across several box-overlap thresholds.</dd>
+<dt>Miss rate ↓</dt><dd>Fraction of annotated firearms the detector misses.</dd>
+<dt>False positive rate ↓</dt><dd>Fraction of weapon-free frames with at least one detection.</dd>
+<dt>Latency ↓</dt><dd>Processing time measured on the chosen hardware and pipeline.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A trained detector with a validation-selected threshold.</li>
+<li>An image or video demo with detected objects blurred.</li>
+<li>A test report covering misses, false alarms and processing speed.</li>
+<li>Examples of difficult scenes, small objects and occlusion.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p03_weapon_detection/README.md">Project README ↗</a>
+          <a href="../../projects/p03_weapon_detection/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://arxiv.org/abs/2405.14458" target="_blank" rel="noopener noreferrer">YOLOv10: Real-Time End-to-End Object Detection ↗</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S2352340924000040" target="_blank" rel="noopener noreferrer">Firearm-related action recognition and object detection dataset ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p02_textual_inversion.html">← Previous: 02</a>
+      <a href="../course_structure.html#/capstone-projects-1">Back to catalog</a>
+      <a href="p04_sql_lora.html">Next: 04 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 03 of 10</footer>
+</body>
+</html>

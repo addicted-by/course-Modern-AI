@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Remove a selected object and reconstruct a plausible background inside its mask.">
+  <title>Object Removal · Modern AI project 07</title>
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to project</a>
+  <header class="site-header">
+    <a href="../course_structure.html#/capstone-projects-2">← Back to project catalog</a>
+    <span>Modern AI / Course projects</span>
+  </header>
+  <main id="project">
+    <div class="project-heading">
+      <span class="project-number" aria-hidden="true">07</span>
+      <div>
+        <p class="eyebrow">Image editing</p>
+        <h1>Object Removal</h1>
+        <p class="summary">Remove a selected object and reconstruct a plausible background inside its mask.</p>
+      </div>
+    </div>
+    <section class="gallery" aria-label="Research illustrations">
+      <figure><a class="figure-link" href="../assets/projects/p07-omnieraser-before.png" aria-label="Open full-size illustration: A gecko on a reflective green surface, with the object selected for removal."><img src="../assets/projects/p07-omnieraser-before.png" alt="A gecko on a reflective green surface, with the object selected for removal." decoding="async"></a><figcaption>OmniEraser input: the selected object and its reflection. <a href="https://pris-cv.github.io/Omnieraser/" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+<figure><a class="figure-link" href="../assets/projects/p07-omnieraser-after.png" aria-label="Open full-size illustration: The green surface after the gecko and its reflection have been removed."><img src="../assets/projects/p07-omnieraser-after.png" alt="The green surface after the gecko and its reflection have been removed." decoding="async"></a><figcaption>OmniEraser result: the object and its reflection are removed. <a href="https://pris-cv.github.io/Omnieraser/" target="_blank" rel="noopener noreferrer">Image source ↗</a></figcaption></figure>
+    </section>
+    <section class="task-section" aria-labelledby="task-title">
+      <h2 id="task-title">What you’ll build</h2>
+      <p>Adapt an inpainting model using aligned images with and without an object, then preserve the original pixels outside the removal mask.</p>
+    </section>
+    <div class="details-grid">
+      <section aria-labelledby="model-title">
+        <h2 id="model-title">Model and adaptation</h2>
+        <p>Stable Diffusion inpainting with LoRA in U-Net attention; frozen VAE and text encoder.</p>
+        <p class="context">Latent diffusion provides the inpainting foundation; OmniEraser studies removal together with object effects. The local course evaluator measures masked reconstruction and does not reproduce RemovalBench&#x27;s official semantic scoring.</p>
+      </section>
+      <section aria-labelledby="data-title">
+        <h2 id="data-title">Data</h2>
+        <h3>Training</h3>
+        <p>Licensed input/mask/clean-target triples, separated by scene. Clearly labelled synthetic pairs can support initial experiments.</p>
+        <h3>Evaluation</h3>
+        <p>Held-out scenes and RemovalBench as a separate test benchmark; include the object&#x27;s shadow or reflection in the mask when needed.</p>
+      </section>
+      <section aria-labelledby="metrics-title">
+        <h2 id="metrics-title">How to measure success</h2>
+        <dl class="metrics"><dt>Masked MAE ↓</dt><dd>Pixel error inside the edited region against the clean target.</dd>
+<dt>Masked PSNR ↑</dt><dd>Reconstruction quality inside the removal mask.</dd>
+<dt>Outside-mask MAE ↓</dt><dd>Preservation of untouched pixels; compositing makes this zero by construction.</dd>
+<dt>Visual review</dt><dd>Check object remnants, seams, invented objects, shadows and reflections.</dd></dl>
+      </section>
+      <section aria-labelledby="deliverables-title">
+        <h2 id="deliverables-title">What to submit</h2>
+        <ul class="deliverables"><li>A saved inpainting model and mask-based editing demo.</li>
+<li>Before/after examples with visible removal masks.</li>
+<li>A baseline comparison on held-out paired scenes.</li>
+<li>An error analysis of difficult backgrounds and object effects.</li></ul>
+        <div class="project-resources">
+          <a href="../../projects/p07_object_removal/README.md">Project README ↗</a>
+          <a href="../../projects/p07_object_removal/kaggle.ipynb" download>Kaggle notebook ↓</a>
+        </div>
+      </section>
+    </div>
+    <section class="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">Papers and further reading</h2>
+      <ul><li><a href="https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html" target="_blank" rel="noopener noreferrer">High-Resolution Image Synthesis with Latent Diffusion Models ↗</a></li>
+<li><a href="https://arxiv.org/abs/2501.07397" target="_blank" rel="noopener noreferrer">OmniEraser ↗</a></li>
+<li><a href="https://github.com/PRIS-CV/Omnieraser" target="_blank" rel="noopener noreferrer">RemovalBench reference repository ↗</a></li></ul>
+    </section>
+    <nav class="project-navigation" aria-label="Project navigation">
+      <a href="p06_music_image.html">← Previous: 06</a>
+      <a href="../course_structure.html#/capstone-projects-2">Back to catalog</a>
+      <a href="p08_lyrics.html">Next: 08 →</a>
+    </nav>
+  </main>
+  <footer>Modern AI · Project 07 of 10</footer>
+</body>
+</html>

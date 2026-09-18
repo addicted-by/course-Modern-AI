@@ -1,0 +1,1720 @@
+/* ==========================================================================
+   Layout Engines: Flexbox Columns, CSS Grids, Containers & 16:9 Canvas
+   ========================================================================== */
+
+/* 1. Flexbox Multi-Column System */
+.reveal .columns {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.reveal .columns > .column {
+  min-width: 0;
+  flex: 1;
+}
+
+/* Vertical Alignment Utilities */
+.reveal .valign-center,
+.reveal .columns.valign-center,
+.reveal .columns.align-center,
+.reveal .align-center {
+  align-items: center;
+}
+
+.reveal .valign-top,
+.reveal .columns.align-top,
+.reveal .columns.valign-top,
+.reveal .align-top {
+  align-items: flex-start;
+}
+
+.reveal .valign-bottom,
+.reveal .columns.align-bottom,
+.reveal .columns.valign-bottom,
+.reveal .align-bottom {
+  align-items: flex-end;
+}
+
+/* Explicit Column Width Presets */
+.reveal .column-20 { flex: 0 0 20% !important; max-width: 20%; }
+.reveal .column-25 { flex: 0 0 25% !important; max-width: 25%; }
+.reveal .column-30 { flex: 0 0 30% !important; max-width: 30%; }
+.reveal .column-33 { flex: 0 0 33.333% !important; max-width: 33.333%; }
+.reveal .column-35 { flex: 0 0 35% !important; max-width: 35%; }
+.reveal .column-40 { flex: 0 0 40% !important; max-width: 40%; }
+.reveal .column-45 { flex: 0 0 45% !important; max-width: 45%; }
+.reveal .column-48 { flex: 0 0 48% !important; max-width: 48%; }
+.reveal .column-50 { flex: 0 0 50% !important; max-width: 50%; }
+.reveal .column-52 { flex: 0 0 52% !important; max-width: 52%; }
+.reveal .column-55 { flex: 0 0 55% !important; max-width: 55%; }
+.reveal .column-60 { flex: 0 0 60% !important; max-width: 60%; }
+.reveal .column-65 { flex: 0 0 65% !important; max-width: 65%; }
+.reveal .column-66 { flex: 0 0 66.666% !important; max-width: 66.666%; }
+.reveal .column-70 { flex: 0 0 70% !important; max-width: 70%; }
+.reveal .column-75 { flex: 0 0 75% !important; max-width: 75%; }
+.reveal .column-80 { flex: 0 0 80% !important; max-width: 80%; }
+
+/* 2. Modern CSS Grid System */
+.reveal .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.reveal .grid-3,
+.reveal .grid-1-1-1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.reveal .grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.reveal .grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
+  width: 100%;
+}
+
+/* Asymmetric Grids */
+.reveal .grid-60-40,
+.reveal .grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.reveal .grid-40-60,
+.reveal .grid-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.reveal .grid-70-30 {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.reveal .grid-30-70 {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.reveal .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.reveal .metric-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.reveal .grid-center {
+  align-items: center;
+}
+
+.reveal .grid-top {
+  align-items: start;
+}
+
+.reveal .grid-bottom {
+  align-items: end;
+}
+
+.reveal .grid-stretch {
+  align-items: stretch;
+}
+
+/* 3. Aspect Ratio & Container Helpers */
+.reveal .aspect-16-9,
+.reveal .aspect-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+}
+
+.reveal .aspect-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.reveal .aspect-1-1,
+.reveal .aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.reveal .container-pad-sm { padding: 0.75rem; }
+.reveal .container-pad-md { padding: 1.25rem; }
+.reveal .container-pad-lg { padding: 2rem; }
+
+.reveal .gap-xs { gap: 0.5rem !important; }
+.reveal .gap-sm { gap: 0.85rem !important; }
+.reveal .gap-md { gap: 1.25rem !important; }
+.reveal .gap-lg { gap: 2rem !important; }
+
+.reveal .full-width, .reveal .w-100 { width: 100%; }
+.reveal .full-height, .reveal .h-100 { height: 100%; }
+.reveal .fit-content { width: fit-content; }
+
+.reveal .center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+/* 4. Glassmorphic Card Container System */
+.reveal .card,
+.reveal .glass-card {
+  background: var(--lecture-surface-glass);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--lecture-border-glass);
+  border-radius: var(--lecture-radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--lecture-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--lecture-shadow-md);
+    border-color: var(--lecture-accent-border);
+  }
+}
+
+.reveal .card-accent {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-accent-border);
+  border-top: 4px solid var(--lecture-accent);
+}
+
+.reveal .card-glow {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-accent-border, var(--lecture-accent));
+  box-shadow: var(--lecture-shadow-glow);
+}
+
+.reveal .card-muted {
+  background: var(--lecture-surface-alt);
+  border: 1px solid var(--lecture-border);
+}
+
+.reveal .card-compact {
+  padding: 0.85rem 1.1rem;
+}
+
+.reveal .card-title,
+.reveal .card-header,
+.reveal .column-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--lecture-fg);
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  display: block;
+
+  p {
+    margin: 0;
+    color: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+  }
+}
+
+/* 5. Hero / Title Slide Layout & Archetype Suite */
+.reveal .hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72vh;
+  position: relative;
+  width: 100%;
+}
+
+.reveal .hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--lecture-accent-soft, rgba(234, 88, 12, 0.18));
+  border: 1px solid var(--lecture-accent-border, rgba(254, 215, 170, 0.4));
+  color: var(--lecture-accent, #ea580c);
+  padding: 0.35rem 1rem;
+  border-radius: var(--lecture-radius-pill, 9999px);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  width: fit-content;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.reveal .hero-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 2.8em;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--lecture-fg, #0f172a);
+  margin-bottom: 0.4em;
+}
+
+.reveal .hero-subtitle {
+  font-size: 1.35em;
+  color: var(--lecture-fg-soft, #334155);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  max-width: 85%;
+  line-height: 1.35;
+}
+
+.reveal .hero-footer {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--lecture-border, #e2e8f0);
+  font-size: 0.75em;
+  color: var(--lecture-muted, #64748b);
+}
+
+/* Hero Archetype 1: Modern Split / Grid Hero (.hero-split / .hero-grid) */
+.reveal .hero-split,
+.reveal .hero-grid,
+.reveal .hero-container.hero-split,
+.reveal .hero-container.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  min-height: 72vh;
+  width: 100%;
+
+  .hero-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+
+    .hero-title {
+      font-size: 2.6em;
+      line-height: 1.08;
+    }
+    .hero-subtitle {
+      max-width: 100%;
+      margin-bottom: 1.5rem;
+      font-size: 1.25em;
+    }
+    .hero-footer {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+    }
+  }
+
+  .hero-side,
+  .hero-side-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--lecture-surface-glass);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--lecture-border-glass);
+    border-radius: var(--lecture-radius-lg);
+    padding: 1.75rem 2rem;
+    box-shadow: var(--lecture-shadow-md);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--lecture-accent-gradient, var(--lecture-accent));
+    }
+
+    .hero-side-title,
+    .hero-side-header {
+      font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+      font-size: 1.05em;
+      font-weight: 700;
+      color: var(--lecture-fg);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-side-list,
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      li {
+        font-size: 0.88em;
+        color: var(--lecture-fg-soft);
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        line-height: 1.35;
+
+        &::before {
+          content: '▸';
+          color: var(--lecture-accent);
+          font-weight: bold;
+          font-size: 1.1em;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--lecture-border);
+
+      .hero-stat-item {
+        display: flex;
+        flex-direction: column;
+
+        .hero-stat-num {
+          font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+          font-size: 1.4em;
+          font-weight: 800;
+          color: var(--lecture-accent);
+          line-height: 1.1;
+        }
+        .hero-stat-lbl {
+          font-size: 0.68em;
+          color: var(--lecture-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+/* Hero Archetype 2: Atmospheric Dark / Glow Hero (.hero-glow / .hero-atmospheric) */
+.reveal .hero-glow,
+.reveal .hero-atmospheric,
+.reveal .hero-container.hero-glow,
+.reveal .hero-container.hero-atmospheric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72vh;
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: 450px;
+    background: var(--lecture-glow-gradient, radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.22) 0%, transparent 70%));
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.85;
+  }
+
+  .hero-badge {
+    box-shadow: var(--lecture-shadow-glow);
+    border-color: var(--lecture-accent-border);
+  }
+
+  .hero-title {
+    font-size: 3.1em;
+    letter-spacing: -0.04em;
+    text-shadow: 0 0 40px var(--lecture-accent-soft, rgba(56, 189, 248, 0.2));
+  }
+
+  .hero-subtitle {
+    font-size: 1.4em;
+    max-width: 82%;
+    line-height: 1.4;
+  }
+
+  .hero-footer {
+    border-top: 1px solid var(--lecture-border-glass-dark, rgba(255, 255, 255, 0.15));
+
+    .hero-glow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lecture-accent);
+      box-shadow: 0 0 10px var(--lecture-accent);
+      display: inline-block;
+    }
+  }
+}
+
+/* Hero Archetype 3: Editorial Swiss / Academic Hero (.hero-editorial / .hero-academic) */
+.reveal .hero-editorial,
+.reveal .hero-academic,
+.reveal .hero-container.hero-editorial,
+.reveal .hero-container.hero-academic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72vh;
+  position: relative;
+  padding-left: 0;
+
+  .hero-top-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--lecture-border);
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lecture-accent);
+    font-family: var(--lecture-font-mono, monospace);
+
+    .hero-institution {
+      color: var(--lecture-muted);
+      font-weight: 500;
+    }
+  }
+
+  .hero-title {
+    font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.5em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3em;
+    line-height: 1.45;
+    color: var(--lecture-fg-soft);
+    max-width: 82%;
+    margin-bottom: 2rem;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--lecture-accent);
+  }
+
+  .hero-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--lecture-border);
+    width: 100%;
+
+    .hero-footer-item {
+      display: flex;
+      flex-direction: column;
+
+      .hero-footer-label {
+        font-size: 0.68em;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--lecture-muted);
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+      }
+      .hero-footer-val {
+        font-size: 0.88em;
+        color: var(--lecture-fg);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* Hero Archetype 4: Glass Card Hero (.hero-card / .hero-glass) */
+.reveal .hero-card,
+.reveal .hero-glass,
+.reveal .hero-container.hero-card,
+.reveal .hero-container.hero-glass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72vh;
+  position: relative;
+  width: 100%;
+
+  .hero-card-panel,
+  &.hero-card-panel {
+    background: var(--lecture-surface-glass);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--lecture-border-glass);
+    border-radius: var(--lecture-radius-xl, 24px);
+    padding: 2.75rem 3.25rem;
+    box-shadow: var(--lecture-shadow-lg);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--lecture-accent-gradient, var(--lecture-accent));
+    }
+
+    .hero-title {
+      font-size: 2.7em;
+    }
+    .hero-subtitle {
+      max-width: 90%;
+    }
+  }
+}
+
+/* Pure Minimalist Hero Archetypes Suite */
+
+/* Hero Archetype 5: Swiss Pure Monograph (.hero-swiss-pure) */
+.reveal .hero-swiss-pure,
+.reveal .hero-container.hero-swiss-pure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 72vh;
+  width: 100%;
+  text-align: left;
+
+  .hero-kicker,
+  .kicker {
+    font-family: var(--lecture-font-mono, monospace);
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--lecture-accent);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .hero-title {
+    font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+    font-size: 3.2em;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: var(--lecture-fg);
+    margin-bottom: 0.45em;
+    max-width: 92%;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3em;
+    color: var(--lecture-fg-soft);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 82%;
+    margin-bottom: 2rem;
+  }
+
+  .hero-hairline {
+    width: 100%;
+    height: 1px;
+    background: var(--lecture-border);
+    margin: 1.5rem 0;
+  }
+
+  .hero-meta-row,
+  .hero-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--lecture-border);
+    font-size: 0.72em;
+    font-family: var(--lecture-font-mono, monospace);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--lecture-muted);
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+
+      strong, .meta-val {
+        color: var(--lecture-fg);
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+/* Hero Archetype 6: Minimal Split Typography (.hero-minimal-split) */
+.reveal .hero-minimal-split,
+.reveal .hero-container.hero-minimal-split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3.5rem;
+  align-items: center;
+  min-height: 72vh;
+  width: 100%;
+
+  .hero-left,
+  .hero-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+
+    .hero-kicker,
+    .kicker {
+      font-family: var(--lecture-font-mono, monospace);
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--lecture-accent);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+      font-size: 2.9em;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.038em;
+      color: var(--lecture-fg);
+      margin-bottom: 0.4em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25em;
+      line-height: 1.55;
+      color: var(--lecture-fg-soft);
+      max-width: 100%;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .hero-right,
+  .hero-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .hero-meta-entry,
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--lecture-border);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .meta-label {
+        font-family: var(--lecture-font-mono, monospace);
+        font-size: 0.68em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--lecture-muted);
+        font-weight: 600;
+      }
+
+      .meta-value {
+        font-family: var(--lecture-font-sans);
+        font-size: 0.95em;
+        font-weight: 600;
+        color: var(--lecture-fg);
+        line-height: 1.35;
+      }
+    }
+  }
+}
+
+/* Hero Archetype 7: Warm Editorial Hero (.hero-editorial-warm) */
+.reveal .hero-editorial-warm,
+.reveal .hero-container.hero-editorial-warm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72vh;
+  width: 100%;
+  padding-left: 0;
+
+  .hero-top-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--lecture-border);
+    font-size: 0.75em;
+    font-family: var(--lecture-font-mono, monospace);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--lecture-accent);
+
+    .hero-institution,
+    .hero-date {
+      color: var(--lecture-muted);
+      font-weight: 500;
+    }
+  }
+
+  .hero-title {
+    font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+    font-size: 3.1em;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--lecture-fg);
+    margin-bottom: 0.5em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3em;
+    line-height: 1.5;
+    color: var(--lecture-fg-soft);
+    max-width: 85%;
+    margin-bottom: 2.2rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--lecture-accent);
+  }
+
+  .hero-author-stamp,
+  .hero-footer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--lecture-border);
+    font-size: 0.8em;
+    color: var(--lecture-muted);
+
+    strong, .author-name, .hero-footer-val {
+      color: var(--lecture-fg);
+      font-weight: 600;
+    }
+  }
+}
+
+/* Hero Archetype 8: Deep Matte Dark Minimalist Hero (.hero-dark-minimal) */
+.reveal .hero-dark-minimal,
+.reveal .hero-container.hero-dark-minimal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72vh;
+  width: 100%;
+  text-align: left;
+  position: relative;
+
+  .hero-accent-stripe {
+    width: 48px;
+    height: 3px;
+    background: var(--lecture-accent);
+    border-radius: var(--lecture-radius-pill, 9999px);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+    font-size: 3.2em;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    margin-bottom: 0.45em;
+    max-width: 90%;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3em;
+    color: #cbd5e1;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 82%;
+    margin-bottom: 2rem;
+  }
+
+  .hero-footer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.75em;
+    color: #94a3b8;
+
+    strong, .hero-author, .hero-footer-val {
+      color: #ffffff;
+    }
+  }
+}
+
+/* 6. Section Header Slide Layout & Archetype Suite */
+.reveal .section-header-slide,
+.reveal .section-slide {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 2.5rem;
+  border-left: 6px solid var(--lecture-accent);
+  position: relative;
+}
+
+.reveal .section-number {
+  font-size: 0.85em;
+  font-weight: 800;
+  color: var(--lecture-accent, #ea580c);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.6em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    background: currentColor;
+  }
+}
+
+.reveal .section-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 2.4em;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--lecture-fg, #0f172a);
+  margin-bottom: 0.3em;
+  letter-spacing: -0.035em;
+}
+
+.reveal .section-desc {
+  font-size: 1.15em;
+  color: var(--lecture-muted, #64748b);
+  font-weight: 400;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+/* Section Archetype 1: Bold Numeral & Watermark Section (.section-watermark / .section-numeral) */
+.reveal .section-watermark,
+.reveal .section-numeral,
+.reveal .section-slide.section-watermark,
+.reveal .section-slide.section-numeral {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 2.5rem;
+  border-left: 6px solid var(--lecture-accent);
+  position: relative;
+  overflow: hidden;
+
+  .section-watermark-num,
+  .section-bg-numeral,
+  .watermark-num {
+    position: absolute;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+    font-size: 15rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--lecture-watermark-num-color);
+    opacity: 0.10;
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: -0.06em;
+  }
+
+  .section-number,
+  .section-title,
+  .section-desc {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    font-size: 2.6em;
+    max-width: 78%;
+  }
+
+  .section-desc {
+    max-width: 70%;
+  }
+}
+
+/* Section Archetype 2: Split Overview / Agenda Card Section (.section-split / .section-agenda) */
+.reveal .section-split,
+.reveal .section-agenda,
+.reveal .section-slide.section-split,
+.reveal .section-slide.section-agenda {
+  min-height: 75vh;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  padding-left: 0;
+  border-left: none;
+  position: relative;
+  width: 100%;
+
+  .section-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2rem;
+    border-left: 6px solid var(--lecture-accent);
+
+    .section-title {
+      font-size: 2.3em;
+      line-height: 1.12;
+    }
+    .section-desc {
+      max-width: 95%;
+      font-size: 1.05em;
+    }
+  }
+
+  .section-agenda-card,
+  .agenda-card {
+    background: var(--lecture-surface-glass);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--lecture-border-glass);
+    border-radius: var(--lecture-radius-lg, 18px);
+    padding: 1.5rem 1.75rem;
+    box-shadow: var(--lecture-shadow-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .agenda-header {
+      font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+      font-size: 0.95em;
+      font-weight: 700;
+      color: var(--lecture-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--lecture-border-glass);
+    }
+
+    .agenda-list,
+    ol, ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      .agenda-item,
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.88em;
+        color: var(--lecture-fg-soft);
+        line-height: 1.35;
+        padding: 0.45rem 0.65rem;
+        border-radius: var(--lecture-radius-sm);
+        background: var(--lecture-surface-alt, rgba(255, 255, 255, 0.04));
+        border: 1px solid var(--lecture-border-light, rgba(255, 255, 255, 0.06));
+        transition: background 0.2s ease, border-color 0.2s ease;
+
+        .agenda-num {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: var(--lecture-accent-soft);
+          color: var(--lecture-accent);
+          font-size: 0.75em;
+          font-weight: 800;
+          flex-shrink: 0;
+        }
+
+        .agenda-tag {
+          font-weight: 600;
+          color: var(--lecture-fg);
+        }
+
+        &:hover {
+          background: var(--lecture-accent-soft, rgba(255, 255, 255, 0.08));
+          border-color: var(--lecture-accent-border);
+        }
+      }
+    }
+  }
+}
+
+/* Section Archetype 3: Minimalist Accent Section (.section-minimal / .section-line) */
+.reveal .section-minimal,
+.reveal .section-line,
+.reveal .section-slide.section-minimal,
+.reveal .section-slide.section-line {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 0;
+  border-left: none;
+  position: relative;
+
+  .section-accent-line {
+    width: 48px;
+    height: 4px;
+    background: var(--lecture-accent);
+    border-radius: var(--lecture-radius-pill);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-number {
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--lecture-accent);
+    margin-bottom: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .section-title {
+    font-size: 2.8em;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    margin-bottom: 0.4em;
+    max-width: 85%;
+  }
+
+  .section-desc {
+    font-size: 1.2em;
+    line-height: 1.45;
+    color: var(--lecture-muted);
+    max-width: 75%;
+  }
+}
+
+/* Section Archetype 4: Centered Banner Section (.section-banner / .section-centered) */
+.reveal .section-banner,
+.reveal .section-centered,
+.reveal .section-slide.section-banner,
+.reveal .section-slide.section-centered {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-left: 0;
+  border-left: none;
+  position: relative;
+  width: 100%;
+
+  .section-badge,
+  .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--lecture-accent-soft);
+    border: 1px solid var(--lecture-accent-border);
+    color: var(--lecture-accent);
+    padding: 0.35rem 1.1rem;
+    border-radius: var(--lecture-radius-pill);
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 auto 1.25rem;
+    width: fit-content;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .section-title {
+    font-size: 2.8em;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 auto 0.4em;
+    max-width: 85%;
+  }
+
+  .section-desc {
+    font-size: 1.25em;
+    line-height: 1.45;
+    color: var(--lecture-muted);
+    margin: 0 auto;
+    max-width: 75%;
+  }
+
+  .section-banner-card {
+    background: var(--lecture-surface-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--lecture-border-glass);
+    border-radius: var(--lecture-radius-xl, 24px);
+    padding: 2.75rem 3.5rem;
+    box-shadow: var(--lecture-shadow-lg);
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Pure Minimalist Section Divider Archetypes Suite */
+
+/* Section Archetype 5: Hairline Agenda Section (.section-hairline-agenda) */
+.reveal .section-hairline-agenda,
+.reveal .section-slide.section-hairline-agenda {
+  min-height: 75vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+  padding-left: 0;
+  border-left: none;
+  position: relative;
+  width: 100%;
+
+  .section-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .section-number {
+      font-family: var(--lecture-font-mono, monospace);
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lecture-accent);
+      margin-bottom: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .section-title {
+      font-size: 2.6em;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--lecture-fg);
+      margin-bottom: 0.4em;
+    }
+
+    .section-desc {
+      font-size: 1.15em;
+      line-height: 1.5;
+      color: var(--lecture-fg-soft);
+      max-width: 90%;
+    }
+  }
+
+  .section-agenda-hairline,
+  .agenda-hairline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .agenda-hairline-item,
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--lecture-border);
+      font-size: 0.92em;
+      color: var(--lecture-fg-soft);
+      line-height: 1.35;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .agenda-index {
+        font-family: var(--lecture-font-mono, monospace);
+        font-size: 0.8em;
+        font-weight: 700;
+        color: var(--lecture-accent);
+        flex-shrink: 0;
+      }
+
+      .agenda-text {
+        font-weight: 600;
+        color: var(--lecture-fg);
+      }
+    }
+  }
+}
+
+/* Section Archetype 6: Pure Numeral & Italic Abstract Section (.section-pure-numeral) */
+.reveal .section-pure-numeral,
+.reveal .section-slide.section-pure-numeral {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 0;
+  border-left: none;
+  position: relative;
+
+  .section-numeral-large,
+  .pure-numeral {
+    font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--lecture-accent);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.05em;
+  }
+
+  .section-title {
+    font-size: 2.7em;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--lecture-fg);
+    margin-bottom: 0.6em;
+    max-width: 85%;
+  }
+
+  .section-abstract,
+  .section-desc {
+    font-size: 1.25em;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--lecture-fg-soft);
+    max-width: 80%;
+    border-left: 2px solid var(--lecture-border);
+    padding-left: 1.25rem;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Section Archetype 7: Minimal Line & Tracker Section (.section-minimal-line) */
+.reveal .section-minimal-line,
+.reveal .section-slide.section-minimal-line {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 0;
+  border-left: none;
+  position: relative;
+
+  .section-accent-line {
+    width: 48px;
+    height: 2px;
+    background: var(--lecture-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-tracker,
+  .section-number {
+    font-family: var(--lecture-font-mono, monospace);
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lecture-accent);
+    margin-bottom: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .section-title {
+    font-size: 2.8em;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--lecture-fg);
+    margin-bottom: 0.4em;
+    max-width: 85%;
+  }
+
+  .section-desc {
+    font-size: 1.2em;
+    line-height: 1.45;
+    color: var(--lecture-fg-soft);
+    max-width: 75%;
+  }
+}
+
+/* Section Archetype 8: Centered Modern Hairline Section (.section-centered-modern) */
+.reveal .section-centered-modern,
+.reveal .section-slide.section-centered-modern {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-left: 0;
+  border-left: none;
+  position: relative;
+  width: 100%;
+
+  .section-centered-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 85%;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid var(--lecture-border);
+    border-bottom: 1px solid var(--lecture-border);
+    margin: 0 auto;
+
+    .section-tracker,
+    .section-number {
+      font-family: var(--lecture-font-mono, monospace);
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lecture-accent);
+      margin-bottom: 0.85rem;
+      display: inline-block;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .section-title {
+      font-size: 2.9em;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--lecture-fg);
+      margin: 0 auto 0.45em;
+      max-width: 90%;
+    }
+
+    .section-subtitle,
+    .section-desc {
+      font-size: 1.25em;
+      line-height: 1.45;
+      color: var(--lecture-fg-soft);
+      max-width: 80%;
+      margin: 0 auto;
+    }
+  }
+}
+
+/* 7. Robust Dark Slide Atmospheric Background Contrast Protection */
+.reveal .has-dark-background,
+.reveal .dark-slide,
+.reveal section[data-background-color="#0f172a"],
+.reveal section[data-background-color="#090a0f"],
+.reveal section[data-background-color="#0b0f19"],
+.reveal section[data-background-color="#18181b"],
+.reveal section[data-background-color="#1c1917"],
+.reveal section[data-background-color="#1e1b4b"],
+.reveal section[data-background-color="#0a0a0a"],
+.reveal section[data-background-color="#05070c"],
+.reveal section[data-background-color*="#0f"],
+.reveal section[data-background-color*="#09"],
+.reveal section[data-background-color*="#0b"],
+.reveal section[data-background-color*="#18"],
+.reveal section[data-background-color*="#1c"],
+.reveal section[data-background-color*="#1e"],
+.reveal section[data-background-color*="#0a"],
+.reveal section[data-background-color*="#05"] {
+  color: #f8fafc;
+
+  h1, h2, h3, h4, h5, h6,
+  .hero-title,
+  .section-title,
+  .hero-side-title,
+  .hero-side-header,
+  .hero-footer-val,
+  .agenda-tag,
+  .agenda-text,
+  .meta-value,
+  .hero-stat-num {
+    color: #ffffff !important;
+  }
+
+  p, li,
+  .hero-subtitle,
+  .section-desc,
+  .section-subtitle,
+  .section-abstract,
+  .hero-side-list li,
+  .agenda-item,
+  .agenda-hairline-item,
+  .lead,
+  .hero-stat-lbl {
+    color: #cbd5e1 !important;
+  }
+
+  .muted,
+  .hero-footer,
+  .hero-institution,
+  .hero-footer-label,
+  .meta-label,
+  .source-ref,
+  .caption {
+    color: #94a3b8 !important;
+  }
+
+  .section-number,
+  .section-tracker,
+  .agenda-index {
+    color: var(--lecture-accent, #60a5fa) !important;
+
+    &::before {
+      background: var(--lecture-accent, #60a5fa) !important;
+    }
+  }
+
+  .hero-hairline,
+  .hero-top-meta,
+  .hero-footer,
+  .hero-footer-grid,
+  .hero-author-stamp,
+  .agenda-header,
+  .agenda-hairline-item,
+  .hero-meta-entry,
+  .section-centered-frame {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+  }
+
+  .hero-badge {
+    background: rgba(37, 99, 235, 0.22) !important;
+    border-color: rgba(96, 165, 250, 0.45) !important;
+    color: #93c5fd !important;
+  }
+
+  .hero-footer {
+    border-top-color: rgba(255, 255, 255, 0.14) !important;
+  }
+
+  .card,
+  .glass-card,
+  .hero-side,
+  .hero-side-card,
+  .section-agenda-card,
+  .agenda-card,
+  .hero-card-panel,
+  .section-banner-card {
+    background: rgba(15, 23, 42, 0.75);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+
+    p, li {
+      color: #cbd5e1 !important;
+    }
+  }
+
+  code {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #f8fafc !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+  }
+
+  strong, b {
+    color: #ffffff !important;
+  }
+}
+
+/* Direct fallback selectors outside section nesting */
+.reveal .has-dark-background .hero-title,
+.reveal .has-dark-background .section-title,
+.reveal section[data-background-color="#0f172a"] .hero-title,
+.reveal section[data-background-color="#0f172a"] .section-title,
+.reveal section[data-background-color="#090a0f"] .hero-title,
+.reveal section[data-background-color="#090a0f"] .section-title,
+.reveal section[data-background-color="#0b0f19"] .hero-title,
+.reveal section[data-background-color="#0b0f19"] .section-title,
+.reveal section[data-background-color="#18181b"] .hero-title,
+.reveal section[data-background-color="#18181b"] .section-title,
+.reveal section[data-background-color="#1c1917"] .hero-title,
+.reveal section[data-background-color="#1c1917"] .section-title,
+.reveal section[data-background-color="#1e1b4b"] .hero-title,
+.reveal section[data-background-color="#1e1b4b"] .section-title,
+.reveal section[data-background-color="#0a0a0a"] .hero-title,
+.reveal section[data-background-color="#0a0a0a"] .section-title,
+.reveal section[data-background-color="#05070c"] .hero-title,
+.reveal section[data-background-color="#05070c"] .section-title {
+  color: #ffffff !important;
+}
+
+.reveal .has-dark-background .hero-subtitle,
+.reveal .has-dark-background .section-desc,
+.reveal section[data-background-color="#0f172a"] .hero-subtitle,
+.reveal section[data-background-color="#0f172a"] .section-desc,
+.reveal section[data-background-color="#090a0f"] .hero-subtitle,
+.reveal section[data-background-color="#090a0f"] .section-desc,
+.reveal section[data-background-color="#0b0f19"] .hero-subtitle,
+.reveal section[data-background-color="#0b0f19"] .section-desc,
+.reveal section[data-background-color="#18181b"] .hero-subtitle,
+.reveal section[data-background-color="#18181b"] .section-desc,
+.reveal section[data-background-color="#1c1917"] .hero-subtitle,
+.reveal section[data-background-color="#1c1917"] .section-desc,
+.reveal section[data-background-color="#1e1b4b"] .hero-subtitle,
+.reveal section[data-background-color="#1e1b4b"] .section-desc,
+.reveal section[data-background-color="#0a0a0a"] .hero-subtitle,
+.reveal section[data-background-color="#0a0a0a"] .section-desc,
+.reveal section[data-background-color="#05070c"] .hero-subtitle,
+.reveal section[data-background-color="#05070c"] .section-desc {
+  color: #cbd5e1 !important;
+}
+
+/* 8. Visual Media & Figures */
+.reveal .figure-frame {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-border);
+  border-radius: var(--lecture-radius-md);
+  padding: 0.75rem;
+  box-shadow: var(--lecture-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.reveal .figure-large img,
+.reveal img.figure-img {
+  max-height: 62vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: var(--lecture-radius-sm);
+}
+
+.reveal .caption {
+  color: var(--lecture-muted);
+  font-size: 0.68em;
+  margin-top: 0.6rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Source Citation / Footer Attribution */
+.reveal .source-ref {
+  font-size: 0.6em;
+  color: var(--lecture-muted);
+  margin-top: 0.8rem;
+  border-top: 1px solid var(--lecture-border);
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    color: var(--lecture-muted);
+    text-decoration: underline;
+  }
+}
