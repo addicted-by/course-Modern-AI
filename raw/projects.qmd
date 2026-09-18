@@ -1,0 +1,42 @@
+---
+title: "Capstone Projects"
+subtitle: "Applied Research, Baselines & End-to-End Systems"
+---
+
+## Overview
+
+The capstone project is the central practical component of **Modern AI**. Students choose one candidate project from the curated catalog below, establish competitive baselines, implement optimizations, finetune to the specific task and report quantitative evaluation results.
+
+::: {.callout-tip}
+### Project Workflow & Timeline
+- **Week 1:** Select 2–3 candidate projects from the catalog.
+- **Week 3:** Finalize project selection and run initial baseline notebooks (HW0 / benchmark).
+- **Week 7:** Midterm check-in: baseline versus adapted model comparison.
+- **Week 10:** Final deliverable: reproducible code, model weights/adapters, and technical report.
+:::
+
+## Curated Project Catalog
+
+| # | Project name | Project description | Domain | Articles | Project page |
+|:---:|---|---|---|---|:---:|
+| **01** | **DreamBooth** | Teach a diffusion model to place your own subject in new scenes while preserving identity. | Image Generation | [Ruiz et al., 2022](https://arxiv.org/abs/2208.12242) · [SDXL](https://arxiv.org/abs/2307.01952) | [Open brief →](lectures/01_intro/project_pages/p01_dreambooth.html){.btn .btn-outline-primary .btn-sm} |
+| **02** | **Textual Inversion** | Learn a new concept token in CLIP text space without updating diffusion weights. | Image Generation | [Gal et al., 2022](https://arxiv.org/abs/2208.01618) · [SD 1.5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) | [Open brief →](lectures/01_intro/project_pages/p02_textual_inversion.html){.btn .btn-outline-primary .btn-sm} |
+| **03** | **Weapon Detection & Blur** | Detect firearms in video streams and apply automated regional blur filters in real-time. | Computer Vision · Video | [YOLOv10](https://arxiv.org/abs/2405.14458) · [Dataset](https://www.sciencedirect.com/science/article/pii/S2352340924000040) | [Open brief →](lectures/01_intro/project_pages/p03_weapon_detection.html){.btn .btn-outline-primary .btn-sm} |
+| **04** | **Text-to-SQL with LoRA** | Fine-tune Qwen2.5 with LoRA to generate executable SQL queries from natural language questions. | Language · Code | [Hu et al. (LoRA)](https://arxiv.org/abs/2106.09685) · [Qwen2.5](https://arxiv.org/abs/2409.12186) | [Open brief →](lectures/01_intro/project_pages/p04_sql_lora.html){.btn .btn-outline-primary .btn-sm} |
+| **05** | **Structured JSON with LoRA** | Adapt open LLMs to strictly adhere to complex JSON schemas under constrained compute. | Language · Structured Output | [LoRA](https://arxiv.org/abs/2106.09685) · [JSONSchemaBench](https://arxiv.org/abs/2501.10868) | [Open brief →](lectures/01_intro/project_pages/p05_json_lora.html){.btn .btn-outline-primary .btn-sm} |
+| **06** | **Music-to-Image** | Cross-modal generation: convert audio feature representations into visual diffusion conditioning. | Audio → Image | [SonicDiffusion](https://arxiv.org/abs/2405.00878) · [M²UGen](https://arxiv.org/abs/2311.11255) | [Open brief →](lectures/01_intro/project_pages/p06_music_image.html){.btn .btn-outline-primary .btn-sm} |
+| **07** | **Object Removal** | Segment target items and reconstruct photorealistic backgrounds with diffusion inpainting. | Image Editing · Inpainting | [Latent Diffusion](https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html) · [OmniEraser](https://arxiv.org/abs/2501.07397) | [Open brief →](lectures/01_intro/project_pages/p07_object_removal.html){.btn .btn-outline-primary .btn-sm} |
+| **08** | **Lyrics Transcription** | Robust singing speech recognition: adapt Whisper models to handle musical accompaniment and vocals. | Audio → Text · Speech | [Whisper](https://arxiv.org/abs/2212.04356) · [WhisperMSS](https://www.isca-archive.org/interspeech_2025/liang25c_interspeech.html) | [Open brief →](lectures/01_intro/project_pages/p08_lyrics.html){.btn .btn-outline-primary .btn-sm} |
+| **09** | **Hair Segmentation & Sharpening** | Precise boundary segmentation and localized unsharp masking for portrait enhancements. | Segmentation · Image Enhancement | [SAM 2](https://arxiv.org/abs/2408.00714) · [Face Parsing](https://ojs.aaai.org/index.php/AAAI/article/view/6832) | [Open brief →](lectures/01_intro/project_pages/p09_hair.html){.btn .btn-outline-primary .btn-sm} |
+| **10** | **Portrait Bokeh** | Optical bokeh simulation using subject matting and estimated monocular depth fields. | Depth Estimation · Blur | [SAM 2](https://arxiv.org/abs/2408.00714) · [Portrait Matting](https://arxiv.org/abs/2104.14222) | [Open brief →](lectures/01_intro/project_pages/p10_bokeh.html){.btn .btn-outline-primary .btn-sm} |
+
+---
+
+## Deliverables & Evaluation Standards
+
+Each project deliverable consists of four required artifacts:
+
+1. **Clean Code & Config:** Self-contained training scripts, configuration files, and inference notebooks.
+2. **Model Weights / Adapters:** Uploaded model checkpoint or lightweight LoRA adapter.
+3. **Controlled Benchmark Comparison:** Matched comparison against an established baseline using fixed seeds and prompts.
+4. **Error Analysis & Tradeoffs:** Detailed write-up analyzing failure modes, edge cases, and computational efficiency.

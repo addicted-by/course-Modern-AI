@@ -1,22 +1,93 @@
 ---
 title: "Modern AI"
-subtitle: "Architectural Foundations, Mathematical Rigor & End-to-End Systems"
+subtitle: "Architectural Foundations, Infrastructure & End-to-End Systems"
 author: "Aleksey Ryabykin"
 ---
 
 ## Overview
 
-Welcome to **Modern AI: Architectural Foundations, Mathematical Rigor & End-to-End Systems** (2026–2027).
+Welcome to **Modern Artificial Intelligence** course (2026–2027).
 
-This course covers modern AI architectures, mathematical fundamentals, training and optimization techniques, experiment infrastructure, and capstone applied projects.
+This course combines rigorous mathematical foundations with practical systems engineering: reading research papers alongside code, implementing components from scratch, and executing a capstone applied project.
+
+::: {.grid}
+
+
+::: {.g-col-12 .g-col-md-3}
+### 🧩 [Modules](raw/modules.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-3}
+### 📚 [Lectures](raw/lectures.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-3}
+### 🛠️ [Seminars](raw/seminars.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-3}
+### 🚀 [Projects](raw/projects.qmd)
+:::
+
+:::
+
+---
 
 ## Lectures
 
-| # | Lecture | Format | Slides |
-|---|---------|--------|--------|
-| 01 | Course Structure & Roadmap | Reveal.js | [Open slides](01_intro/course_structure.qmd) |
+| # | M | Topic | Interactive | PDF | PPTX |
+|:---:|:---:|---|:---:|:---:|:---:|
+| **01** | **M1** | **Course Structure & Roadmap** | [HTML →](raw/lectures/01_intro/course_structure.qmd){.btn .btn-outline-primary .btn-sm} | [PDF](raw/lectures/01_intro/course_structure.pdf){.btn .btn-outline-secondary .btn-sm} | [PPTX](raw/lectures/01_intro/course_structure.pptx){.btn .btn-outline-secondary .btn-sm} |
+| <span class="text-muted">**02**</span> | <span class="text-muted">**M1**</span> | <span class="text-muted">**AI Overview: Models & Modalities Taxonomy**</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
 
 ::: {.callout-note}
-### Slide Navigation
-The lecture slides are presented using Reveal.js. Use arrow keys (`←`, `→` or `Space`) to navigate slides, `F` for fullscreen, and `O` for slide overview mode.
+### Lecture Materials
+Lecture materials will be uploaded to the website within 1–3 days after each lecture.
 :::
+
+---
+
+## Seminars
+
+| # | M | Topic | Link | Materials |
+|:---:|:---:|---|:---:|:---:|
+| <span class="text-muted">**01**</span> | <span class="text-muted">**M1**</span> | <span class="text-muted">**Environment Setup, PyTorch & Kaggle Basics**</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
+
+::: {.callout-note}
+### Seminar Materials
+Seminar materials will be uploaded to the website within 1–2 days after each seminar.
+:::
+
+---
+
+## Capstone Projects
+
+| # | Project name | Project Page |
+|:---:|---|:---:|
+| **01** | **DreamBooth** | [Open →](raw/lectures/01_intro/project_pages/p01_dreambooth.html){.btn .btn-outline-primary .btn-sm} |
+| **02** | **Textual Inversion** | [Open →](raw/lectures/01_intro/project_pages/p02_textual_inversion.html){.btn .btn-outline-primary .btn-sm} |
+| **03** | **Weapon Detection & Blur** | [Open →](raw/lectures/01_intro/project_pages/p03_weapon_detection.html){.btn .btn-outline-primary .btn-sm} |
+| **04** | **Text-to-SQL with LoRA** | [Open →](raw/lectures/01_intro/project_pages/p04_sql_lora.html){.btn .btn-outline-primary .btn-sm} |
+| **05** | **Structured JSON with LoRA** | [Open →](raw/lectures/01_intro/project_pages/p05_json_lora.html){.btn .btn-outline-primary .btn-sm} |
+| **06** | **Music-to-Image** | [Open →](raw/lectures/01_intro/project_pages/p06_music_image.html){.btn .btn-outline-primary .btn-sm} |
+| **07** | **Object Removal** | [Open →](raw/lectures/01_intro/project_pages/p07_object_removal.html){.btn .btn-outline-primary .btn-sm} |
+| **08** | **Lyrics Transcription** | [Open →](raw/lectures/01_intro/project_pages/p08_lyrics.html){.btn .btn-outline-primary .btn-sm} |
+| **09** | **Hair Segmentation & Sharpening** | [Open →](raw/lectures/01_intro/project_pages/p09_hair.html){.btn .btn-outline-primary .btn-sm} |
+| **10** | **Portrait Bokeh** | [Open →](raw/lectures/01_intro/project_pages/p10_bokeh.html){.btn .btn-outline-primary .btn-sm} |
+
+::: {.callout-tip}
+### Detailed Project Catalog
+View full project details, research paper references in the [Capstone Projects Hub](raw/projects.qmd).
+:::
+
+---
+
+## Contacts & Community
+
+```{=html}
+{{< include pages/contacts.html >}}
+```
+
+
+
+

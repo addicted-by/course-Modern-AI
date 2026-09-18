@@ -1,0 +1,27 @@
+---
+title: "Seminars"
+subtitle: "Hands-on Practice, Notebooks & Kaggle Environments"
+---
+
+## Practical Sessions
+
+::: {.callout-important}
+### Computing Environment
+Practical assignments and seminars will be hosted on **Kaggle** with complimentary GPU quotas. Make sure to create a Kaggle account and join the course workspace before the last week of the course.
+:::
+
+## Seminar Schedule
+
+| # | M | Topic | Link | Materials |
+|:---:|:---:|---|:---:|:---:|
+| <span class="text-muted">**01**</span> | <span class="text-muted">**M1**</span> | <span class="text-muted">**Environment Setup, PyTorch & Kaggle Basics**</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
+
+::: {.callout-note}
+### Seminar Materials
+Seminar materials will be uploaded to the website within 1–2 days after each seminar.
+:::
+
+::: {.callout-tip}
+### Questions and Support
+Technical discussions, troubleshooting for GPU environments take place in topic **`🛠 03 · Kaggle support`** in our Telegram group.
+:::

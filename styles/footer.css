@@ -1,0 +1,15 @@
+/* Page footer styling */
+.nav-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 0.92rem;
+}
+
+.nav-footer a {
+  text-decoration: none;
+}
+
+.nav-footer a:hover {
+  text-decoration: underline;
+}

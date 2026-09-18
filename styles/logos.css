@@ -1,0 +1,95 @@
+/* Quarto Navbar Logo (Baikal & Huawei from Lectures) */
+.navbar-brand-container {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.navbar-brand-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-right: 12px !important;
+  padding-right: 12px !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+.navbar-logo {
+  height: 24px !important;
+  max-height: 24px !important;
+  width: auto !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-logo.light-content {
+  display: inline-block !important;
+}
+
+.navbar-brand-logo:hover .navbar-logo {
+  opacity: 0.85;
+}
+
+/* Hide duplicate dark-content image that Quarto renders */
+.navbar-logo.dark-content {
+  display: none !important;
+}
+
+@media (max-width: 576px) {
+  .navbar-logo {
+    height: 20px !important;
+    max-height: 20px !important;
+  }
+  .navbar-brand-logo {
+    margin-right: 8px !important;
+    padding-right: 8px !important;
+  }
+}
+
+/* Page Body Partner Logos (for index.qmd and other pages) */
+.partner-logos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 18px;
+  background-color: #f8fafc;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  margin: 1.25rem 0 1.75rem 0;
+}
+
+.partner-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.page-partner-logo {
+  height: 22px;
+  width: auto;
+  max-width: 105px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.page-partner-logo:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.logo-divider-dark {
+  width: 1px;
+  height: 18px;
+  background-color: #cbd5e1;
+  display: inline-block;
+}
+
+@media (max-width: 576px) {
+  .partner-logos-badge {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,25 @@
+---
+title: "Lectures"
+subtitle: "Modern Artificial Intelligence"
+---
+
+## Overview
+
+::: {.callout-note}
+### Slide Navigation
+The interactive lecture slides are built with Quarto and Reveal.js. Use arrow keys (`←`, `→` or `Space`) to navigate slides, `F` for fullscreen, and `O` for slide overview mode.
+:::
+
+## Lecture Schedule & Materials
+
+| # | M | Topic | Interactive | PDF | PPTX |
+|:---:|:---:|---|:---:|:---:|:---:|
+| **01** | **M1** | **Course Structure & Roadmap** | [HTML →](lectures/01_intro/course_structure.qmd){.btn .btn-outline-primary .btn-sm} | [PDF](lectures/01_intro/course_structure.pdf){.btn .btn-outline-secondary .btn-sm} | [PPTX](lectures/01_intro/course_structure.pptx){.btn .btn-outline-secondary .btn-sm} |
+| <span class="text-muted">**02**</span> | <span class="text-muted">**M1**</span> | <span class="text-muted">**AI overview & Models and Modalities Taxonomy**</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
+
+---
+
+::: {.callout-note}
+### Lecture Materials
+Lecture materials will be uploaded to the website within 1–3 days after each lecture.
+:::

@@ -186,7 +186,8 @@ Conversation, interesting discoveries and AI discussions beyond the classroom.
   <figcaption>Scan to join the course group</figcaption>
 </figure>
 
-<p class="telegram-contact">Me on Telegram<br><strong>@addicted-by</strong></p>
+<p class="telegram-contact">Me on Telegram<br><strong>@addicted_by</strong></p>
+
 ```
 
 ::::
@@ -935,66 +936,6 @@ Projects 9 and 10 combine Segment Anything 2 (SAM2) masks with classical image p
 
 :::
 
-## Capstone Project Lifecycle: Step-by-Step Evolution
-
-<span class="kicker">Capstone Timeline • How Your Project Grows</span>
-
-::::: {.columns}
-
-:::: {.column width="50%"}
-
-::: {.card}
-<span class="card-title" style="display:block;">Phase 1: Discovery & Benchmark</span>
-
-- **Week 1:** Select 2–3 candidate projects from the catalog.
-- **HW0:** Deploy baselines on Kaggle and record initial benchmark metrics (latency, VRAM, baseline scores).
-- **HW1:** Articles overview: methods, datasets and evaluation of candidate approaches.
-
-:::
-
-::: {.card}
-<span class="card-title" style="display:block;">Phase 2: Decomposition & Analysis</span>
-
-- **HW2:** Tensor foundations in torch, numpy/cupy and scipy.
-- **HW3:** Forward/backward passes, hooks and initialization for local distillation.
-- **HW4:** Truncated SVD & LoRA decomposition of project operators; singular spectrum analysis.
-- **HW5:** Matrix differentiation.
-- **HW6:** Taylor importance estimation across project operators.
-
-:::
-
-::::
-
-:::: {.column width="50%"}
-
-::: {.card}
-<span class="card-title" style="display:block;">Phase 3: Distillation & Optimization</span>
-
-- **HW7:** Local distillation with initialization from **HW3** ($\mathcal{L}_{MSE} + \mathcal{L}_{cos}$).
-- **HW8:** Accelerating distillation convergence using importance estimates from **HW6** and the **Muon** / **Lion** optimizer.
-
-:::
-
-::: {.card .card-glow}
-<span class="card-title" style="display:block;">Phase 4: Scaling & Final Defense</span>
-
-- **HW9:** Infrastructure, reproducible launches and distributed training.
-- **HW10:** Full fine-tuning (LoRA / SFT), comprehensive benchmark evaluation, GitHub repo, and final oral defense.
-
-:::
-
-::::
-
-:::::
-
-::: {.notes}
-⏱️ **Timing:** 2.5 min
-🗣️ **Key Points:**
-Notice that you do not start your final project from scratch in the last week.
-The assignments progressively supply the experiments, analysis and infrastructure for the final project.
-
-:::
-
 ## What Are the Homework Assignments? {#homework-list}
 
 ::::: {.columns .homework-index}
@@ -1025,86 +966,6 @@ The assignments progressively supply the experiments, analysis and infrastructur
 
 ::: {.notes}
 HW7 reuses the work and initialization from HW3. HW8 extends local distillation with importance estimates from HW6. HW10 integrates the course work into the final project.
-:::
-
-## How Will Homework Work on Kaggle? {#kaggle-homework}
-
-::::: {.columns}
-:::: {.column width="50%"}
-::: {.card .card-accent}
-<span class="card-title" style="display:block;">Working in Kaggle</span>
-
-**[Placeholder: platform overview and homework setup]**
-
-- [How to open and copy the starter notebook].
-- [How to attach datasets and select an accelerator].
-- [How to run an experiment and save the results].
-
-:::
-::: {.structure-placeholder .kaggle-placeholder}
-[Kaggle screenshot / starter notebook link]
-:::
-::::
-:::: {.column width="50%"}
-::: {.card}
-<span class="card-title" style="display:block;">Submitting Your Homework</span>
-
-**[Placeholder: submission and review process]**
-
-- **What to submit:** [notebook, metrics, conclusions, artifacts].
-- **Where to submit:** [link / form / section].
-- **Format:** [assignment name and run version].
-- **Deadlines and feedback:** [rules and where to find reviews].
-
-:::
-::::
-:::::
-
-::: {.notes}
-Demonstrate the full workflow: open the starter notebook, run an experiment, save a version and submit the assignment. Discuss environment and execution questions in the Telegram topic "03 · Kaggle support".
-:::
-
-## Grading Criteria & Academic Integrity
-
-<span class="kicker">Academic Regulations</span>
-
-::::: {.columns}
-
-:::: {.column width="50%"}
-
-::: {.card}
-<span class="card-title" style="display:block;">📊 Grading Components</span>
-
-- **Theoretical Rigor (20%):** Mathematical precision of proofs (e.g. HW5 matrix differentiation, HW6 Taylor importance & HW4 SVD).
-- **Engineering Quality (30%):** Modularity, type annotations, PyTorch hooks, vectorized execution, zero hardcoded constants.
-- **Empirical Research (30%):** Depth of analysis, ablation studies, baseline comparisons, justification of hyperparameters and optimizers.
-- **Defense & Presentation (20%):** Proposal presentation at Seminar 4 and final capstone demonstration at semester end.
-
-:::
-
-::::
-
-:::: {.column width="50%"}
-
-::: {.card}
-<span class="card-title" style="display:block;">⚖️ Deadlines & AI Policy</span>
-
-- **On-time Submission:** 100% maximum score.
-- **Late Penalties:** -10% per day of delay without a verified academic or medical reason.
-- **LLM Coding Assistants:** Using LLM copilots is permitted and encouraged for boilerplate and debugging, **BUT** students must be able to explain and defend every line of code and mathematical derivation. Blind copy-pasting without understanding results in a zero grade.
-
-:::
-
-::::
-
-:::::
-
-::: {.notes}
-⏱️ **Timing:** 2.0 min
-🗣️ **Key Points:**
-We live in the era of advanced AI — using coding assistants is natural, but during project defense you will be questioned on mechanics.
-If you use a method or library, you must understand exactly how it works under the hood.
-
 :::
 
 ## What I Hope You’ll Get Out of the Course {#course-outcomes}

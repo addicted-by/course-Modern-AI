@@ -1,0 +1,99 @@
+---
+title: "Modules"
+subtitle: "Curriculum Architecture & Modular Progression"
+---
+
+## Overview
+
+The curriculum is structured into an **8-Module Progression**, logically divided into two foundational halves:
+
+1. **Foundations (Modules 1–4):** Mathematical rigor, computational graphs, reverse-mode autodiff, first-order optimization, and local operator distillation.
+2. **Scaling & Systems (Modules 5–8):** Advanced spectral optimization, distributed multi-GPU infrastructure, autoregressive LLM pretraining & SFT, and multimodal vision-language models.
+
+---
+
+## Course Modules
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M1: Intro & Modalities</h4>
+<h6 class="card-subtitle mb-2 text-muted">Weeks 01–02 · Foundations</h6>
+<p class="card-text">Taxonomy of data modalities, generative architectures, Kaggle setup, capstone catalog.</p>
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M2: Linear Algebra & LoRA</h4>
+<h6 class="card-subtitle mb-2 text-muted">Weeks 03–04 · Subspace Geometry</h6>
+<p class="card-text">SVD, Eckart-Young theorem, low-rank factorization, LoRA from scratch, PyTorch hooks.</p>
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M3: Graphs & Pruning</h4>
+<h6 class="card-subtitle mb-2 text-muted">Weeks 05–06 · Gradient Mechanics</h6>
+<p class="card-text">Autograd internals, reverse-mode autodiff, 1st-order Taylor sensitivity, pruning maps.</p>
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M4: Distillation</h4>
+<h6 class="card-subtitle mb-2 text-muted">Week 07 · Optimization Dynamics</h6>
+<p class="card-text">First-order optimizers (SGD, AdamW), loss landscapes, local operator distillation.</p>
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M5: Deep Optimization</h4>
+<h6 class="card-subtitle mb-2 text-muted">Weeks 08–09 · Advanced Optimization</h6>
+<p class="card-text">Spectral optimization (Muon), Newton-Schulz iterations, Lion, SAM, scaling laws.</p>
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M6: Distributed & DDP</h4>
+<h6 class="card-subtitle mb-2 text-muted">Week 10 · High-Throughput Compute</h6>
+<p class="card-text">Data/Tensor parallelism, DDP, FSDP, ZeRO, mixed precision (BF16), Accelerate, W&B.</p>
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M7: nanoGPT & SFT</h4>
+<h6 class="card-subtitle mb-2 text-muted">Week 11 · Large Language Architectures</h6>
+<p class="card-text">Causal attention, RoPE, RMSNorm, SwiGLU, Qwen2.5 audit, SFT, QLoRA, benchmarks.</p>
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .shadow-sm}
+::: {.card-body}
+<h4 class="card-title text-primary">M8: nanoVLM & Vision</h4>
+<h6 class="card-subtitle mb-2 text-muted">Week 12 · Multimodal Frontier</h6>
+<p class="card-text">Multimodal fusion, ViT, SigLIP, projection layers, cross-attention, instruction tuning.</p>
+:::
+:::
+:::
+
+:::

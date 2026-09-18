@@ -3,22 +3,70 @@ project:
   output-dir: _site
   render:
     - index.qmd
-    - 01_intro/course_structure.qmd
+    - raw/modules.qmd
+    - raw/lectures.qmd
+    - raw/seminars.qmd
+    - raw/projects.qmd
+    - raw/lectures/01_intro/course_structure.qmd
   resources:
-    - "01_intro/assets/**"
-    - "01_intro/project_pages/**"
-    - "01_intro/vendor/**"
+    - "raw/lectures/01_intro/assets/**"
+    - "raw/lectures/01_intro/project_pages/**"
+    - "raw/lectures/01_intro/vendor/**"
+    - "raw/lectures/01_intro/course_structure.pdf"
+    - "raw/lectures/01_intro/course_structure.pptx"
+    - "assets/**"
 
 website:
-  title: "Modern AI"
+  title: "MAI"
   navbar:
+    logo: assets/logos/partners-dark.svg
     left:
       - href: index.qmd
+
+
         text: Home
-      - href: 01_intro/course_structure.qmd
-        text: "01. Course Structure"
+      - href: raw/modules.qmd
+        text: "Modules"
+      - href: raw/lectures.qmd
+        text: "Lectures"
+      - href: raw/seminars.qmd
+        text: "Seminars"
+      - href: raw/projects.qmd
+        text: "Projects"
+    right:
+      - icon: telegram
+        href: https://t.me/+I-joDKs8iiIwOTQy
+        aria-label: "Telegram Group"
+      - icon: send
+        href: https://t.me/addicted_by
+        aria-label: "Telegram: @addicted_by"
+      - icon: github
+        href: https://github.com/addicted-by/course-Modern-AI/tree/main
+        aria-label: "GitHub"
+  page-footer:
+    left: "Modern AI (2026–2027) · Aleksey Ryabykin"
+    right:
+      - icon: telegram
+        text: "Telegram Group"
+        href: https://t.me/+I-joDKs8iiIwOTQy
+      - icon: send
+        text: "<span>@</span>addicted_by"
+        href: https://t.me/addicted_by
+      - icon: github
+        text: "GitHub"
+        href: https://github.com/addicted-by/course-Modern-AI/tree/main
 
 format:
   html:
     theme: cosmo
+    css:
+      - styles/contact_cards.css
+      - styles/footer.css
+      - styles/logos.css
     toc: true
+
+
+
+
+
+
