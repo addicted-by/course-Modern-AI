@@ -5,6 +5,9 @@
 01_intro/course_structure_files/
 01_intro/course_structure.html
 
+.agents
+AGENTS.md
+
 # Operating System Files
 .DS_Store
 .DS_Store?
