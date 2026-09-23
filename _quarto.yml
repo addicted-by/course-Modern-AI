@@ -8,6 +8,7 @@ project:
     - raw/seminars.qmd
     - raw/projects.qmd
     - raw/lectures/01_intro/course_structure.qmd
+    - raw/lectures/01_intro/lecture_01_final.qmd
   resources:
     - "raw/lectures/01_intro/assets/**"
     - "raw/lectures/01_intro/project_pages/**"
