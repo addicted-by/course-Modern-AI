@@ -20,6 +20,7 @@
         <p class="eyebrow">$modality</p>
         <h1>$title</h1>
         <p class="summary">$summary</p>
+        $registration_cta
       </div>
     </div>
     <section class="gallery" aria-label="Research illustrations">
@@ -49,16 +50,14 @@
       <section aria-labelledby="deliverables-title">
         <h2 id="deliverables-title">What to submit</h2>
         <ul class="deliverables">$deliverables</ul>
-        <div class="project-resources">
-          <a href="../../projects/$id/README.md">Project README ↗</a>
-          <a href="../../projects/$id/kaggle.ipynb" download>Kaggle notebook ↓</a>
-        </div>
+        $project_resources
       </section>
     </div>
     <section class="reading" aria-labelledby="reading-title">
       <h2 id="reading-title">Papers and further reading</h2>
       <ul>$papers</ul>
     </section>
+    $registration_section
     <nav class="project-navigation" aria-label="Project navigation">
       $previous
       <a href="../course_structure.html#/$catalog">Back to catalog</a>

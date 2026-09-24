@@ -28,6 +28,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Build project pages
+        run: python3 raw/lectures/01_intro/project_pages/build.py
+
       - name: Render Quarto Website
         uses: quarto-dev/quarto-actions/render@v2
 
