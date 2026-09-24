@@ -50,7 +50,7 @@ def registration_markup(config, project_title):
       <h2 id="registration-title">Запись на проект</h2>
       <p>Проект «{title}» уже выбран. Укажите имя, фамилию и Telegram ник, затем отправьте форму.</p>
       <p><a href="{form_url}" target="_blank" rel="noopener noreferrer">Открыть форму в отдельной вкладке ↗</a></p>
-      <iframe class="registration-frame" src="{embedded_url}" title="Форма записи на проект {title}"></iframe>
+      <iframe class="registration-frame" src="{embedded_url}" title="Форма записи на проект {title}" onload="if (this.dataset.loaded) this.closest('section').scrollIntoView(); this.dataset.loaded = 'true';"></iframe>
     </section>''',
     }
 
