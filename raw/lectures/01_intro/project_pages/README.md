@@ -25,9 +25,11 @@ README and notebook links appear only when the corresponding files exist under
 
 ## Project registration
 
-One Google Form serves all ten projects. Each generated page has a Russian
-registration button, an embedded form, and a link to open the same prefilled form
-in a new tab. The project dropdown uses the exact `title` values in
+One Google Form serves all ten projects. Each generated page has an English
+registration button and a form collapsed by default. Clicking **Sign up for this
+project** expands the form and scrolls to it. The **Project registration** heading
+also toggles the form. The expanded section includes the embedded form and a link
+to open the same prefilled form in a new tab. The project dropdown uses the exact `title` values in
 `projects.json`; keep the form choices synchronized when renaming a project.
 Prefilling does not lock the dropdown: students may change their selection.
 
@@ -35,15 +37,15 @@ Prefilling does not lock the dropdown: students may change their selection.
 
 Create the form in the course owner's Google account:
 
-1. Name it **Modern AI — запись на проект**.
-2. Add four required questions: **Проект** (dropdown with the ten project titles
-   from `projects.json`), **Имя**, **Фамилия**, and **Telegram** (short answers).
-   Add the hint `@username` to Telegram.
+1. Name it **Modern AI — Project Registration**.
+2. Add four required questions: **Project** (dropdown with the ten project titles
+   from `projects.json`), **First name**, **Last name**, and **Telegram** (short answers).
+   Add the hint `Example: @username` to Telegram.
 3. Under response settings, turn off email collection and the one-response limit.
    Do not require Google sign-in or restrict access to an organization.
 4. Under presentation settings, keep the response summary hidden and set the
-   confirmation message to **Заявка получена. По вопросам участия свяжитесь с
-   преподавателем**.
+   confirmation message to **Your application has been received. Contact the
+   instructor if you have any questions about participation.**
 5. In Responses, link a new Google Sheet. Keep both the editor access and the
    response spreadsheet restricted to the course owner; do not publish the sheet.
 6. Publish the form for anyone with its responder link. Use the form menu's
@@ -63,8 +65,11 @@ Only the public responder URL and the project field identifier belong in
 Replace the example values with those from the real prefilled URL. The
 `entry.<digits>` query parameter that contains the selected project is the
 project field identifier. Use the full responder URL, without its query string,
-not a shortened URL or an editor URL. The generator adds the prefilled project
-and the iframe embedding option, with proper URL and HTML escaping.
+not a shortened URL or an editor URL. The generator adds the prefilled project,
+`hl=en` to request the English Google Forms interface, and the iframe embedding
+option, with proper URL and HTML escaping.
+Google may still localize its built-in controls according to the respondent's
+browser or account language; `hl=en` does not override every locale setting.
 
 When `enabled` is `false`, pages contain no registration button or iframe. This
 allows normal course builds before the live form is ready. When enabled, invalid

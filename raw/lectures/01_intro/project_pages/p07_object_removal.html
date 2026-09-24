@@ -20,7 +20,7 @@
         <p class="eyebrow">Image editing</p>
         <h1>Object Removal</h1>
         <p class="summary">Remove a selected object and reconstruct a plausible background inside its mask.</p>
-        <a class="registration-cta" href="#registration" lang="ru">Записаться на проект</a>
+        <a class="registration-cta" href="#registration" aria-controls="registration" aria-expanded="false" onclick="document.getElementById('registration').open = true;">Sign up for this project</a>
       </div>
     </div>
     <section class="gallery" aria-label="Research illustrations">
@@ -66,12 +66,12 @@
 <li><a href="https://arxiv.org/abs/2501.07397" target="_blank" rel="noopener noreferrer">OmniEraser ↗</a></li>
 <li><a href="https://github.com/PRIS-CV/Omnieraser" target="_blank" rel="noopener noreferrer">RemovalBench reference repository ↗</a></li></ul>
     </section>
-    <section id="registration" class="registration" aria-labelledby="registration-title" lang="ru">
-      <h2 id="registration-title">Запись на проект</h2>
-      <p>Проект «Object Removal» уже выбран. Укажите имя, фамилию и Telegram ник, затем отправьте форму.</p>
-      <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;entry.1578333420=Object+Removal" target="_blank" rel="noopener noreferrer">Открыть форму в отдельной вкладке ↗</a></p>
-      <iframe class="registration-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;entry.1578333420=Object+Removal&amp;embedded=true" title="Форма записи на проект Object Removal" onload="if (this.dataset.loaded) this.closest('section').scrollIntoView(); this.dataset.loaded = 'true';"></iframe>
-    </section>
+    <details id="registration" class="registration" ontoggle="document.querySelector('.registration-cta').setAttribute('aria-expanded', this.open);">
+      <summary><h2>Project registration</h2></summary>
+      <p>The project “Object Removal” is already selected. Enter your first name, last name, and Telegram username, then submit the form.</p>
+      <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;hl=en&amp;entry.1578333420=Object+Removal" target="_blank" rel="noopener noreferrer">Open the form in a new tab ↗</a></p>
+      <iframe class="registration-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;hl=en&amp;entry.1578333420=Object+Removal&amp;embedded=true" title="Registration form for Object Removal" loading="lazy" onload="if (this.dataset.loaded &amp;&amp; this.closest('details').open) this.closest('details').scrollIntoView(); this.dataset.loaded = 'true';"></iframe>
+    </details>
     <nav class="project-navigation" aria-label="Project navigation">
       <a href="p06_music_image.html">← Previous: 06</a>
       <a href="../course_structure.html#/capstone-projects-2">Back to catalog</a>

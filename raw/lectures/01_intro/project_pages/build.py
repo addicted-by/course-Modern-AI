@@ -40,18 +40,18 @@ def load_registration(require_enabled=False):
 def registration_markup(config, project_title):
     if config is None:
         return {"registration_cta": "", "registration_section": ""}
-    query = {"usp": "pp_url", config["project_entry_id"]: project_title}
+    query = {"usp": "pp_url", "hl": "en", config["project_entry_id"]: project_title}
     form_url = escape(config["form_url"] + "?" + urlencode(query), quote=True)
     embedded_url = escape(config["form_url"] + "?" + urlencode({**query, "embedded": "true"}), quote=True)
     title = escape(project_title, quote=True)
     return {
-        "registration_cta": '<a class="registration-cta" href="#registration" lang="ru">Записаться на проект</a>',
-        "registration_section": f'''<section id="registration" class="registration" aria-labelledby="registration-title" lang="ru">
-      <h2 id="registration-title">Запись на проект</h2>
-      <p>Проект «{title}» уже выбран. Укажите имя, фамилию и Telegram ник, затем отправьте форму.</p>
-      <p><a href="{form_url}" target="_blank" rel="noopener noreferrer">Открыть форму в отдельной вкладке ↗</a></p>
-      <iframe class="registration-frame" src="{embedded_url}" title="Форма записи на проект {title}" onload="if (this.dataset.loaded) this.closest('section').scrollIntoView(); this.dataset.loaded = 'true';"></iframe>
-    </section>''',
+        "registration_cta": '<a class="registration-cta" href="#registration" aria-controls="registration" aria-expanded="false" onclick="document.getElementById(\'registration\').open = true;">Sign up for this project</a>',
+        "registration_section": f'''<details id="registration" class="registration" ontoggle="document.querySelector('.registration-cta').setAttribute('aria-expanded', this.open);">
+      <summary><h2>Project registration</h2></summary>
+      <p>The project “{title}” is already selected. Enter your first name, last name, and Telegram username, then submit the form.</p>
+      <p><a href="{form_url}" target="_blank" rel="noopener noreferrer">Open the form in a new tab ↗</a></p>
+      <iframe class="registration-frame" src="{embedded_url}" title="Registration form for {title}" loading="lazy" onload="if (this.dataset.loaded &amp;&amp; this.closest('details').open) this.closest('details').scrollIntoView(); this.dataset.loaded = 'true';"></iframe>
+    </details>''',
     }
 
 

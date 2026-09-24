@@ -20,7 +20,7 @@
         <p class="eyebrow">Audio → Image</p>
         <h1>Music-to-Image</h1>
         <p class="summary">Convert a music excerpt into visual conditioning and generate an image that matches its mood or content.</p>
-        <a class="registration-cta" href="#registration" lang="ru">Записаться на проект</a>
+        <a class="registration-cta" href="#registration" aria-controls="registration" aria-expanded="false" onclick="document.getElementById('registration').open = true;">Sign up for this project</a>
       </div>
     </div>
     <section class="gallery" aria-label="Research illustrations">
@@ -65,12 +65,12 @@
 <li><a href="https://arxiv.org/abs/2311.11255" target="_blank" rel="noopener noreferrer">M²UGen ↗</a></li>
 <li><a href="https://huggingface.co/datasets/M2UGen/MUImage" target="_blank" rel="noopener noreferrer">MUImage dataset ↗</a></li></ul>
     </section>
-    <section id="registration" class="registration" aria-labelledby="registration-title" lang="ru">
-      <h2 id="registration-title">Запись на проект</h2>
-      <p>Проект «Music-to-Image» уже выбран. Укажите имя, фамилию и Telegram ник, затем отправьте форму.</p>
-      <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;entry.1578333420=Music-to-Image" target="_blank" rel="noopener noreferrer">Открыть форму в отдельной вкладке ↗</a></p>
-      <iframe class="registration-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;entry.1578333420=Music-to-Image&amp;embedded=true" title="Форма записи на проект Music-to-Image" onload="if (this.dataset.loaded) this.closest('section').scrollIntoView(); this.dataset.loaded = 'true';"></iframe>
-    </section>
+    <details id="registration" class="registration" ontoggle="document.querySelector('.registration-cta').setAttribute('aria-expanded', this.open);">
+      <summary><h2>Project registration</h2></summary>
+      <p>The project “Music-to-Image” is already selected. Enter your first name, last name, and Telegram username, then submit the form.</p>
+      <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;hl=en&amp;entry.1578333420=Music-to-Image" target="_blank" rel="noopener noreferrer">Open the form in a new tab ↗</a></p>
+      <iframe class="registration-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSeT0ahWBCSSdhE7IotNCTqRmPNUFxk2aCHtY3n-kFvYpmW8JQ/viewform?usp=pp_url&amp;hl=en&amp;entry.1578333420=Music-to-Image&amp;embedded=true" title="Registration form for Music-to-Image" loading="lazy" onload="if (this.dataset.loaded &amp;&amp; this.closest('details').open) this.closest('details').scrollIntoView(); this.dataset.loaded = 'true';"></iframe>
+    </details>
     <nav class="project-navigation" aria-label="Project navigation">
       <a href="p05_json_lora.html">← Previous: 05</a>
       <a href="../course_structure.html#/capstone-projects-1">Back to catalog</a>
