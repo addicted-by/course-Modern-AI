@@ -1,0 +1,48 @@
+# Instructor workflow: see INSTRUCTOR.md.
+# The single lecture catalog. Entries appear in this order on both site pages.
+# All local paths are relative to the repository root; HTTPS links also work.
+# source: optional QMD to render; html/pdf/pptx: published links, null = TBA.
+# assets/ and vendor/ beside each source are copied automatically.
+# resources: optional extra files or globs to publish.
+lectures:
+  - number: 1
+    module: M1
+    title: "Course Structure & Roadmap"
+    source: raw/lectures/01_intro/course_structure.qmd
+    html: raw/lectures/01_intro/course_structure.html
+    pdf: raw/lectures/01_intro/course_structure.pdf
+    pptx: raw/lectures/01_intro/course_structure.pptx
+    resources:
+      - raw/lectures/01_intro/project_pages/**
+
+  - number: 2
+    module: M1
+    title: "From single modality to multi-modal models."
+    source: raw/lectures/01_intro/lecture_01_final_part1.qmd
+    html: raw/lectures/01_intro/lecture_01_final_part1.html
+    pdf: null
+    pptx: null
+
+  - number: 3
+    module: M1
+    title: "There is no single trick."
+    source: null
+    html: null
+    pdf: null
+    pptx: null
+
+  - number: 4
+    module: M1
+    title: "Can we name it AGI?"
+    source: null
+    html: null
+    pdf: null
+    pptx: null
+
+  - number: 5
+    module: M1
+    title: "Code Agents. Workflow."
+    source: null
+    html: null
+    pdf: null
+    pptx: null

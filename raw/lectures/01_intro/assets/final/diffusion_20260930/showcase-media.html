@@ -1,0 +1,139 @@
+<script>
+(() => {
+  const setup = () => {
+    const scope = document.querySelector('.reveal');
+    if (!scope || scope.dataset.showcaseReady) return;
+    scope.dataset.showcaseReady = 'true';
+    const rows = [...scope.querySelectorAll('.audio-example')];
+    const status = scope.querySelector('.audio-status');
+    const resets = new Map();
+    const timeOf = media => Number.isFinite(media.currentTime) ? media.currentTime : 0;
+    const timeline = (media, render) => {
+      let frame = null;
+      const stop = () => {
+        if (frame !== null) cancelAnimationFrame(frame);
+        frame = null;
+      };
+      const tick = () => {
+        frame = null;
+        render(timeOf(media));
+        if (!media.paused && !media.ended) frame = requestAnimationFrame(tick);
+      };
+      media.addEventListener('playing', () => {
+        stop();
+        tick();
+      });
+      ['pause', 'ended', 'waiting'].forEach(event => {
+        media.addEventListener(event, () => {
+          stop();
+          render(timeOf(media));
+        });
+      });
+      ['timeupdate', 'seeking', 'seeked', 'loadedmetadata', 'durationchange'].forEach(event => {
+        media.addEventListener(event, () => render(timeOf(media)));
+      });
+      media.addEventListener('emptied', () => {
+        stop();
+        render(0);
+      });
+      resets.set(media, () => {
+        stop();
+        media.pause();
+        media.currentTime = 0;
+        render(0);
+      });
+      render(0);
+    };
+    const update = (row, playing) => {
+      row.classList.toggle('is-playing', playing);
+      const button = row.querySelector('.audio-toggle, button');
+      if (!button) return;
+      button.textContent = playing ? 'Ⅱ' : '▶';
+      button.setAttribute('aria-pressed', String(playing));
+      button.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${row.dataset.sound}`);
+    };
+    rows.forEach(row => {
+      const audio = row.querySelector('audio');
+      const button = row.querySelector('.audio-toggle, button');
+      const elapsed = row.querySelector('.audio-elapsed');
+      if (!audio) return;
+      // Elapsed time is visual state, not an announcement on every animation frame.
+      if (elapsed) elapsed.setAttribute('aria-live', 'off');
+      timeline(audio, time => {
+        const progress = Number.isFinite(audio.duration) && audio.duration > 0
+          ? Math.min(100, Math.max(0, 100 * time / audio.duration)) : 0;
+        row.style.setProperty('--play-progress', `${progress}%`);
+        const label = `${time.toFixed(1)} s`;
+        if (elapsed && elapsed.textContent !== label) elapsed.textContent = label;
+      });
+      button?.addEventListener('click', async () => {
+        if (!audio.paused) { audio.pause(); return; }
+        if (audio.ended) audio.currentTime = 0;
+        if (status) status.textContent = '';
+        try { await audio.play(); }
+        catch (error) {
+          if (status && error.name !== 'AbortError') {
+            status.textContent = 'Audio unavailable. Check the local media files.';
+          }
+        }
+      });
+      // Handle native playback as well as the custom button.
+      audio.addEventListener('play', () => {
+        rows.forEach(other => {
+          if (other === row) return;
+          const previous = other.querySelector('audio');
+          resets.get(previous)?.();
+          update(other, false);
+        });
+        update(row, true);
+      });
+      audio.addEventListener('pause', () => update(row, false));
+      audio.addEventListener('ended', () => update(row, false));
+      update(row, false);
+    });
+    scope.querySelectorAll('.wan-video').forEach(video => {
+      const slide = video.closest('.showcase-slide');
+      const keyframes = [...(slide?.querySelectorAll('.wan-keyframes figure[data-time]') || [])]
+        .map(figure => ({ figure, time: Number(figure.dataset.time) }))
+        .filter(keyframe => Number.isFinite(keyframe.time));
+      let current = null;
+      timeline(video, time => {
+        if (!keyframes.length) return;
+        const nearest = keyframes.reduce((best, candidate) =>
+          Math.abs(candidate.time - time) < Math.abs(best.time - time) ? candidate : best);
+        if (nearest === current) return;
+        current = nearest;
+        keyframes.forEach(({ figure }) => {
+          const active = figure === nearest.figure;
+          figure.classList.toggle('is-current', active);
+          figure.setAttribute('aria-current', String(active));
+        });
+      });
+    });
+    scope.querySelectorAll('#diff-d21 video').forEach(video => {
+      const phase = video.closest('#diff-d21')?.querySelector('.trellis-phase span');
+      timeline(video, time => {
+        const label = video.paused && time === 0 ? 'Appearance'
+          : time < 0.3 || time >= 9.8 ? 'Appearance / Geometry'
+          : time < 4.8 ? 'Appearance'
+          : time <= 5.3 ? 'Appearance → Geometry' : 'Geometry';
+        if (phase && phase.textContent !== label) phase.textContent = label;
+      });
+    });
+    Reveal.on('slidechanged', ({ previousSlide }) => {
+      previousSlide?.querySelectorAll('audio, video').forEach(media => {
+        if (!media.closest('.showcase-slide')) return;
+        const reset = resets.get(media);
+        if (reset) reset();
+        else { media.pause(); media.currentTime = 0; }
+        const row = media.closest('.audio-example');
+        if (row) update(row, false);
+        if (media.tagName === 'VIDEO') media.load();
+      });
+      if (status) status.textContent = '';
+    });
+  };
+  if (window.Reveal?.isReady()) setup();
+  else window.Reveal?.on('ready', setup);
+})();
+</script>

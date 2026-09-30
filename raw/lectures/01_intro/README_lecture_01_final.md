@@ -1,5 +1,34 @@
 # Building the introduction lecture
 
+## Part 1 (current website version)
+
+Run from the repository root:
+
+```sh
+quarto render raw/lectures/01_intro/lecture_01_final_part1.qmd
+# Build the complete website:
+quarto render
+```
+
+The presentation is generated at
+`_site/raw/lectures/01_intro/lecture_01_final_part1.html`.
+The second entry in `lectures.yml` supplies its build target and the links on
+the homepage and Lectures page. The existing GitHub Pages workflow publishes
+it on a push to `main`.
+
+The minimal import adds 51 files: `lecture_01_final_part1.qmd`, four included
+QMD fragments and `sources.bib` in `final_parts/diffusion_20260930/`, and the
+referenced styles, scripts, images, audio and video in
+`assets/final/{diffusion_20260930,vlm_20260930}/`. Keep these relative paths.
+The existing `lecture_01_final.css`, `lecture_01_final.bib`, shared images,
+slide metadata, theme and KaTeX are reused. No prebuilt HTML, `_files/` runtime,
+authoring scripts, research files or other lecture parts need to be copied.
+The VLM details include ten paper diagrams in `assets/final/vlm_20260930/papers/`.
+All 66 lecture-specific source/dependency files match the authoring copy
+byte-for-byte; the website's existing shared logo variant is retained.
+
+## Original complete lecture
+
 The source filename is `lecture_01_final.qmd` (with an underscore after
 `lecture`). Run from the **repository root**:
 
@@ -11,9 +40,10 @@ quarto render
 
 The published presentation is generated at
 `_site/raw/lectures/01_intro/lecture_01_final.html`.
-It is linked from the lectures catalog and included in the root
-`_quarto.yml` render list. The existing `assets/**` and `vendor/**` resource
-rules copy its images, animations and local KaTeX distribution into `_site`.
+This older source remains available for direct rendering; the current catalog
+uses Part 1 instead. The pre-render script copies
+the source directory's `assets/**` and `vendor/**` resources, including its
+images, animations and local KaTeX distribution, into `_site`.
 
 ## Required files
 

@@ -1,0 +1,39 @@
+/* D01–D06: editable diffusion mechanisms. */
+.reveal .diff-slide .d0106-svg { display:block; width:100%; height:100%; overflow:visible; font-family:var(--lecture-font-sans); }
+.reveal .diff-slide .d0106-svg text { font-size:26px; fill:var(--lecture-fg); font-weight:400; }
+.reveal .diff-slide .d0106-svg .d0106-small { font-size:22px; }
+.reveal .diff-slide .d0106-svg .d0106-strong { font-weight:600; }
+.reveal .diff-slide .d0106-svg .d0106-muted { fill:#777; }
+.reveal .diff-slide .d0106-box { fill:#fff; stroke:#111; stroke-width:2; }
+.reveal .diff-slide .d0106-arrow { fill:none; stroke:#111; stroke-width:2.2; stroke-linejoin:round; }
+.reveal .diff-slide .d0106-lime-line { stroke:var(--lecture-pop-lime); stroke-width:2.2; }
+.reveal .diff-slide .d0106-lime-fill { fill:var(--lecture-pop-lime); stroke:none; }
+.reveal .diff-slide .d0106-divider { stroke:#c9c9c9; stroke-width:1; }
+.reveal .diff-slide .d0106-lock { fill:none; stroke:#111; stroke-width:2.5; }
+.reveal .diff-slide .d0106-highlight { fill:none; stroke:var(--lecture-pop-lime); stroke-width:7; }
+.reveal .diff-slide .d0106-light-box { stroke:#aaa; }
+.reveal .diff-slide .d0106-latent-loop { stroke:#b8b8b8; fill:none; }
+.reveal .diff-slide .d0106-formula { position:absolute; left:52px; right:52px; top:687px; text-align:center; font-size:29px; }
+.reveal .diff-slide .d0106-formula p { margin:0; }
+.reveal .diff-slide .d0106-formula .katex-display { margin:0; }
+.reveal .diff-d01 .d0106-muted-lane text { fill:#888; }
+.reveal .diff-d01 .d0106-muted-lane .d0106-arrow { stroke:#999; }
+.reveal .diff-d01 .d0106-muted-lane .d0106-box { stroke:#aaa; }
+.reveal .diff-d01 .d0106-svg .d0106-question { font-size:75px; font-weight:600; }
+.reveal .diff-d02 .diff-body { top:175px; }
+.reveal .diff-d04 .d0106-svg .d04-count { font-size:64px; font-weight:600; }
+.reveal .diff-d04 .d04-count-1,.reveal .diff-d04 .d04-count-2,.reveal .diff-d04 .d04-count-3,
+.reveal .diff-d04 .d04-state-1,.reveal .diff-d04 .d04-state-2,.reveal .diff-d04 .d04-state-3 { visibility:hidden; }
+.reveal .diff-d04:has(.d04-step-1.visible) .d04-count-zero,.reveal .diff-d04:has(.d04-step-1.visible) .d04-state-zero { visibility:hidden; }
+.reveal .diff-d04:has(.d04-step-1.visible) .d04-count-1,.reveal .diff-d04:has(.d04-step-1.visible) .d04-state-1 { visibility:visible; }
+.reveal .diff-d04:has(.d04-step-2.visible) .d04-count-1,.reveal .diff-d04:has(.d04-step-2.visible) .d04-state-1 { visibility:hidden; }
+.reveal .diff-d04:has(.d04-step-2.visible) .d04-count-2,.reveal .diff-d04:has(.d04-step-2.visible) .d04-state-2 { visibility:visible; }
+.reveal .diff-d04:has(.d04-step-3.visible) .d04-count-2,.reveal .diff-d04:has(.d04-step-3.visible) .d04-state-2 { visibility:hidden; }
+.reveal .diff-d04:has(.d04-step-3.visible) .d04-count-3,.reveal .diff-d04:has(.d04-step-3.visible) .d04-state-3 { visibility:visible; }
+.reveal .diff-d05 .d05-formula { top:680px; right:auto; width:960px; }
+
+.reveal .diff-slide .d0106-formula .katex-display { border:0; background:transparent; box-shadow:none; padding:0; }
+
+.reveal .diff-d05:has(.d05-guidance.visible) .d05-direct-prediction { visibility:hidden; }
+.reveal .diff-d05 .d05-formula { visibility:hidden; }
+.reveal .diff-d05:has(.d05-guidance.visible) .d05-formula { visibility:visible; }

@@ -1,0 +1,87 @@
+/* Evidence-led model demonstrations. All layouts are scoped to D19–D23. */
+.reveal .showcase-slide > h2 { font-size:50px; right:270px; }
+.reveal .showcase-slide .showcase-subtitle { position:absolute; left:52px; right:52px; top:120px; font-size:26px; line-height:1.2; }
+.reveal .showcase-slide .showcase-body { position:absolute; left:52px; right:52px; top:170px; height:592px; }
+.reveal .showcase-slide .showcase-mechanism { position:absolute; left:52px; right:52px; bottom:66px; font-size:20px; line-height:1.25; color:var(--lecture-muted); }
+.reveal .showcase-slide figure { margin:0; }
+.reveal .showcase-slide figcaption { font-size:22px; line-height:1.2; font-weight:500; color:var(--lecture-fg); }
+.reveal .showcase-slide .showcase-body img { display:block; object-fit:contain; border:0; box-shadow:none; }
+.reveal .showcase-slide .showcase-body video { display:block; max-width:100%; max-height:100%; margin:0; object-fit:contain; background:#fff; }
+.reveal .showcase-slide .showcase-body svg { display:block; overflow:hidden; }
+.reveal .showcase-slide .showcase-body .print-only { display:none; }
+
+/* Two full references, a matching pair of untouched detail crops, one result. */
+.reveal .diff-d19 .flux-inputs { position:absolute; left:0; top:0; width:270px; display:flex; flex-direction:column; gap:20px; }
+.reveal .diff-d19 .flux-inputs figure { height:285px; }
+.reveal .diff-d19 .flux-inputs figcaption { padding-left:25px; margin-bottom:8px; }
+.reveal .diff-d19 .flux-inputs img { width:270px; height:250px; }
+.reveal .diff-d19 .flux-bracket { position:absolute; left:295px; top:155px; width:28px; height:305px; border:2px solid var(--lecture-fg); border-left:0; }
+.reveal .diff-d19 .flux-details { position:absolute; left:400px; top:0; width:344px; display:flex; flex-direction:column; gap:14px; }
+.reveal .diff-d19 .flux-details figcaption { font-size:20px; margin-bottom:7px; }
+.reveal .diff-d19 .flux-details svg { width:344px; height:258px; border-left:5px solid var(--lecture-pop-lime); }
+.reveal .diff-d19 .flux-output { position:absolute; left:930px; top:0; width:500px; }
+.reveal .diff-d19 .flux-output figcaption { margin-left:16px; margin-bottom:8px; font-weight:600; }
+.reveal .diff-d19 .flux-output img { width:500px; height:555px; }
+
+/* Full scene at left; two permanent, source-linked details at right. */
+.reveal .diff-d20 .qwen-scene { position:absolute; left:0; top:0; width:855px; height:570px; }
+.reveal .diff-d20 .qwen-callouts { position:absolute; inset:0; width:1496px; height:592px; pointer-events:none; }
+.reveal .diff-d20 .qwen-callouts rect { fill:none; stroke:var(--lecture-pop-lime); stroke-width:4; }
+.reveal .diff-d20 .qwen-callouts path { fill:none; stroke:var(--lecture-pop-lime); stroke-width:2.5; }
+.reveal .diff-d20 .qwen-details { position:absolute; left:965px; top:0; width:500px; }
+.reveal .diff-d20 .qwen-details figure { position:absolute; left:0; width:500px; background:#fff; }
+.reveal .diff-d20 .qwen-details figcaption { margin-bottom:8px; }
+.reveal .diff-d20 .qwen-sign { top:0; }
+.reveal .diff-d20 .qwen-sign img { width:500px; height:286px; }
+.reveal .diff-d20 .qwen-books { top:339px; }
+.reveal .diff-d20 .qwen-books svg { width:500px; height:214.3px; }
+
+/* Equal visual weight for appearance and geometry of the same asset. */
+.reveal .diff-d21 .trellis-main, .reveal .diff-d21 .trellis-mesh { position:absolute; top:0; width:625px; }
+.reveal .diff-d21 .trellis-main { left:52px; }
+.reveal .diff-d21 .trellis-mesh { right:48px; }
+.reveal .diff-d21 .trellis-comparison figcaption { height:37px; font-size:26px; font-weight:600; text-align:center; }
+.reveal .diff-d21 .trellis-main video, .reveal .diff-d21 .trellis-comparison img { width:555px; height:555px; margin:0 auto; }
+.reveal .diff-d21 .trellis-divider { position:absolute; left:748px; top:15px; bottom:15px; border-left:1px solid var(--lecture-border); }
+
+/* Real waveforms, a clock and playhead; a measured spectrogram at right. */
+.reveal .diff-d22 .audio-examples { position:absolute; left:0; top:0; width:990px; height:592px; display:flex; flex-direction:column; gap:12px; }
+.reveal .diff-d22 .audio-example { position:relative; flex:1; min-height:0; padding:14px 20px 12px; border-top:1px solid var(--lecture-border); transition:background .18s; --play-progress:0%; }
+.reveal .diff-d22 .audio-example:last-child { border-bottom:1px solid var(--lecture-border); }
+.reveal .diff-d22 .audio-example.is-playing { background:var(--lecture-pop-lime); }
+.reveal .diff-d22 .audio-label { font-size:29px; line-height:1.25; font-weight:500; padding-right:210px; }
+.reveal .diff-d22 .audio-duration { position:absolute; right:96px; top:22px; font-size:18px; color:var(--lecture-muted); }
+.reveal .diff-d22 .audio-toggle { position:absolute; right:20px; top:14px; width:56px; height:42px; border:1px solid currentColor; border-radius:24px; background:transparent; color:var(--lecture-fg); font:inherit; font-size:22px; cursor:pointer; }
+.reveal .diff-d22 .audio-toggle:focus-visible { outline:3px solid var(--lecture-fg); outline-offset:5px; }
+.reveal .diff-d22 .audio-waveform-track { position:relative; width:100%; height:84px; margin-top:14px; }
+.reveal .diff-d22 .audio-waveform { width:100%; height:84px; }
+.reveal .diff-d22 .audio-playhead { position:absolute; top:0; bottom:0; left:clamp(0px,var(--play-progress),calc(100% - 2px)); width:2px; background:var(--lecture-fg); opacity:.3; }
+.reveal .diff-d22 .is-playing .audio-playhead { opacity:1; }
+.reveal .diff-d22 .audio-elapsed { position:absolute; right:20px; bottom:8px; font-family:var(--lecture-font-mono,monospace); font-size:17px; line-height:1.2; color:var(--lecture-muted); }
+.reveal .diff-d22 audio { display:none; }
+.reveal .diff-d22 .audio-spectrum { position:absolute; right:0; top:0; width:440px; }
+.reveal .diff-d22 .audio-spectrum figcaption { margin-top:8px; font-size:25px; }
+.reveal .diff-d22 .audio-spectrum img { width:440px; height:420px; margin-top:20px; }
+.reveal .diff-d22 .spectrum-caption { margin-top:17px; font-size:19px; line-height:1.35; color:var(--lecture-muted); }
+.reveal .diff-d22 .audio-status { position:absolute; right:52px; bottom:66px; font-size:18px; color:var(--lecture-muted); }
+
+/* A cinema stage with a synchronized strip of frames from the same clip. */
+.reveal .diff-d23 .showcase-mechanism { top:109px; bottom:auto; }
+.reveal .diff-d23 .showcase-body.wan-stage { top:146px; height:684px; background:#101010; }
+.reveal .diff-d23 .showcase-body video.wan-video { width:928px; height:522px; margin:0 auto; background:#101010; }
+.reveal .diff-d23 .wan-keyframes { display:flex; justify-content:center; gap:18px; margin-top:10px; }
+.reveal .diff-d23 .wan-keyframes figure { width:224px; flex:0 0 224px; }
+.reveal .diff-d23 .wan-keyframes img { width:224px; height:126px; outline:3px solid transparent; outline-offset:0; }
+.reveal .diff-d23 .wan-keyframes figcaption { text-align:center; padding-top:4px; font-size:16px; line-height:1.2; color:#d2d2d2; }
+.reveal .diff-d23 .wan-keyframes .is-current img { outline-color:var(--lecture-pop-lime); }
+.reveal .diff-d23 .wan-keyframes .is-current figcaption { color:var(--lecture-pop-lime); }
+
+@media print {
+  .reveal .showcase-slide video, .reveal .diff-d22 .audio-toggle, .reveal .diff-d22 .audio-playhead, .reveal .diff-d22 .audio-elapsed { display:none!important; }
+  .reveal .showcase-slide .showcase-body .print-only { display:block!important; }
+  .reveal .diff-d23 .showcase-body.wan-stage { background:#fff; }
+  .reveal .diff-d23 .wan-keyframes { position:absolute; inset:160px 0 auto; gap:20px; margin:0; }
+  .reveal .diff-d23 .wan-keyframes figure { width:480px; flex-basis:480px; }
+  .reveal .diff-d23 .wan-keyframes img { width:480px; height:270px; outline:0; }
+  .reveal .diff-d23 .wan-keyframes figcaption { color:var(--lecture-fg)!important; font-size:22px; }
+}

@@ -7,6 +7,54 @@
   font-family: var(--course-font-body, system-ui, sans-serif);
 }
 
+.course-lecture-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.course-lecture-table-wrap:focus-visible {
+  outline: 2px solid var(--course-ink);
+  outline-offset: 3px;
+}
+
+.course-lecture-table {
+  width: 100%;
+  min-width: 39rem;
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: var(--course-text);
+  font-family: var(--course-font-body, system-ui, sans-serif);
+}
+
+.course-lecture-table th,
+.course-lecture-table td {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid var(--course-rule);
+  vertical-align: middle;
+  text-align: left;
+}
+
+.course-lecture-table thead th {
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--course-rule);
+  color: var(--course-muted);
+  font-family: var(--course-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.course-lecture-table th:first-child,
+.course-lecture-table td:first-child {
+  width: 7rem;
+  padding-left: 0;
+}
+
+.course-lecture-table th:last-child,
+.course-lecture-table td:last-child {
+  width: 19rem;
+  padding-right: 0;
+}
+
 .course-material-item {
   display: grid;
   grid-template-columns: 5rem minmax(0, 1fr) 18rem;
@@ -119,5 +167,42 @@ body.course-site .course-material-actions .course-material-link {
 
   .course-material-actions {
     grid-column: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .course-lecture-table,
+  .course-lecture-table tbody {
+    display: block;
+    min-width: 0;
+  }
+
+  .course-lecture-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .course-lecture-table tr {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--course-rule);
+  }
+
+  .course-lecture-table tr > th,
+  .course-lecture-table tr > td {
+    width: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .course-lecture-table .course-material-index {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.75rem;
   }
 }

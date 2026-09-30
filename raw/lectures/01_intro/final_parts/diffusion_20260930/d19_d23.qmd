@@ -1,0 +1,169 @@
+## FLUX.2 — generate, edit, combine {#diff-d19 .exp-slide .diff-slide .showcase-slide .diff-d19 background-color="#ffffff"}
+
+```{=html}
+<div class="showcase-subtitle">“The Man wears the Sweater”</div>
+<div class="showcase-body flux-composition">
+  <div class="flux-inputs">
+    <figure><figcaption>Identity</figcaption><img src="assets/final/diffusion_20260930/showcase/flux/input-02-man.png" alt="Published identity reference: a man in a city street"></figure>
+    <figure><figcaption>Clothing</figcaption><img src="assets/final/diffusion_20260930/showcase/flux/input-01-sweater.png" alt="Published clothing reference: a patterned sweater"></figure>
+  </div>
+  <div class="flux-bracket" aria-hidden="true"></div>
+  <div class="flux-details">
+    <figure><figcaption>Reference pattern</figcaption><svg viewBox="430 467 360 270" role="img" aria-label="Unretouched detail of the red cable car on the reference sweater"><image href="assets/final/diffusion_20260930/showcase/flux/input-01-sweater.png" width="1162" height="1377"/></svg></figure>
+    <figure><figcaption>Pattern in the result</figcaption><svg viewBox="418 662 240 180" role="img" aria-label="Unretouched detail of the corresponding red cable car in the generated result"><image href="assets/final/diffusion_20260930/showcase/flux/output-man-in-sweater.png" width="1152" height="1376"/></svg></figure>
+  </div>
+  <figure class="flux-output"><figcaption>Combined scene</figcaption><img src="assets/final/diffusion_20260930/showcase/flux/output-man-in-sweater.png" alt="Published FLUX.2 result: the same man wearing the reference sweater"></figure>
+</div>
+<div class="showcase-mechanism">Rectified-flow Transformer · latent space</div>
+<div class="exp-source"><a href="https://bfl.ai/models/flux-2">Black Forest Labs · FLUX.2 · Combine and compose</a></div>
+```
+
+::: {.notes}
+Все элементы видны сразу. Слева — два исходных референса, справа — крупный результат. В центре сопоставлены увеличенные фрагменты узора: красная кабина, жёлтое поле и горы. Они помогают объяснить перенос деталей одежды. Опубликованная инструкция «The Man wears the Sweater» задаёт объединение внешности и сцены из одного референса со свитером из другого. Это один законченный официальный кейс.
+
+FLUX.2 поддерживает генерацию, редактирование и объединение визуальных референсов. В официальном описании семейства основа — latent flow matching и rectified-flow Transformer. Та же формулировка архитектуры присутствует в карточке открытой FLUX.2 [dev]. Однако вариант конкретно показанного результата на странице не указан, поэтому пример подписан только FLUX.2, без [dev]. [@show_flux_blog; @show_flux_dev]
+
+Исходная композиционная инструкция: **The Man wears the Sweater**. Официальная страница называет эту стадию Combine and compose. Все два входа показаны полностью. Следующая стадия страницы добавляет отдельный style reference, но он не относится к выбранному результату.
+
+Источники: [официальный кейс и его входы](https://bfl.ai/models/flux-2), [FLUX.2: Frontier Visual Intelligence, How It Works](https://bfl.ai/blog/flux-2), [карточка FLUX.2 [dev]](https://huggingface.co/black-forest-labs/FLUX.2-dev).
+:::
+
+## Qwen-Image — words inside the image {#diff-d20 .exp-slide .diff-slide .showcase-slide .diff-d20 background-color="#ffffff"}
+
+```{=html}
+<div class="showcase-subtitle">Text is part of the generated scene</div>
+<div class="showcase-body qwen-composition">
+  <img class="qwen-scene" src="assets/final/diffusion_20260930/showcase/qwen/bookstore-original.png" alt="Complete published Qwen-Image bookstore window with signage and titled books">
+  <svg class="qwen-callouts" viewBox="0 0 1496 592" aria-hidden="true"><rect x="151.1" y="48.6" width="285" height="163"/><rect x="97.2" y="309.8" width="325" height="139.3"/><path d="M436.1 130H916V158H962 M422.2 379.4H906V465H962"/></svg>
+  <div class="qwen-details">
+    <figure class="qwen-sign"><figcaption>Signage</figcaption><img src="assets/final/diffusion_20260930/showcase/qwen/bookstore-sign-crop.png" alt="Unretouched enlarged New Arrivals This Week sign from the same scene"></figure>
+    <figure class="qwen-books"><figcaption>Book titles</figcaption><svg viewBox="180 574 602 258" role="img" aria-label="Unretouched enlargement of the first three generated book covers"><image href="assets/final/diffusion_20260930/showcase/qwen/bookstore-original.png" width="1584" height="1056"/></svg></figure>
+  </div>
+</div>
+<div class="showcase-mechanism">MMDiT · flow matching · text-to-image</div>
+<div class="exp-source"><a href="https://qwenlm.github.io/blog/qwen-image/#demo">Qwen Team · Qwen-Image · 4 August 2025</a> · Details enlarged from the same image</div>
+```
+
+::: {.notes}
+Полная витрина и оба увеличения показаны одновременно. Лаймовые рамки связывают вывеску и первые три обложки с деталями справа. Рассказать о тексте внутри сцены, последовательно указав на вывеску и названия книг. Текст находится внутри опубликованного результата модели, а не наложен поверх слайда.
+
+Здесь именно исходная Qwen-Image из анонса 4 августа 2025 года. Авторы демонстрируют генерацию английского и китайского текста внутри изображения. Архитектура — MMDiT, обучение генерации — flow matching. Это отдельная способность, которую не показывает обычный фотореалистичный портрет. [@show_qwen_blog; @show_qwen_report]
+
+Содержание исходного prompt: витрина книжного магазина с вывеской о новинках недели, табличкой о бестселлерах, афишей субботней встречи с автором и четырьмя книгами с заданными названиями. [Полный опубликованный prompt](https://qwenlm.github.io/blog/qwen-image/#demo) находится непосредственно перед изображением Bookstore window display. В нём есть опечатка в названии The Silent Patient; пример не следует описывать как доказательство безошибочной передачи любого мелкого текста.
+
+Оба увеличения — прямоугольные фрагменты того же результата. Буквы, цвета и композиция сохранены. Источники: [официальный анонс, Demo](https://qwenlm.github.io/blog/qwen-image/#demo), [Qwen-Image Technical Report, §§2.1, 2.4, 4.1](https://arxiv.org/html/2508.02324v1).
+:::
+
+## TRELLIS — appearance and geometry {#diff-d21 .exp-slide .diff-slide .showcase-slide .diff-d21 background-color="#ffffff"}
+
+```{=html}
+<div class="showcase-subtitle">“A wooden rocking chair with a woven seat and back.”</div>
+<div class="showcase-body trellis-comparison">
+  <figure class="trellis-main">
+    <figcaption class="trellis-phase"><span>Appearance</span></figcaption>
+    <video controls muted playsinline preload="metadata" poster="assets/final/diffusion_20260930/showcase/trellis/rocking-chair-poster.png" aria-label="Play the official TRELLIS turntable, from color appearance to geometry">
+      <source src="assets/final/diffusion_20260930/showcase/trellis/rocking-chair-turntable.mp4" type="video/mp4">
+    </video>
+    <img class="print-only" src="assets/final/diffusion_20260930/showcase/trellis/rocking-chair-poster.png" alt="Published TRELLIS text-to-3D rocking chair in color">
+  </figure>
+  <div class="trellis-divider" aria-hidden="true"></div>
+  <figure class="trellis-mesh">
+    <figcaption>Geometry</figcaption>
+    <img src="assets/final/diffusion_20260930/showcase/trellis/rocking-chair-geometry-poster.png" alt="Original geometry-render frame of the same rocking chair, matched to the color view">
+  </figure>
+</div>
+<div class="showcase-mechanism">Text → 3D asset · Rectified flow · structured 3D latents</div>
+<div class="exp-source"><a href="https://microsoft.github.io/TRELLIS/">Xiang et al. · TRELLIS · Text-to-3D</a> · One generated asset, two representations</div>
+```
+
+::: {.notes}
+Слева крупно показан внешний вид кресла, справа — его геометрия в том же ракурсе. Запустить официальный 10-секундный ролик: сначала вращается цветное представление, затем оно переходит в геометрию. Подпись слева следует за текущим представлением. Это настоящий рендер вращения 3D-объекта. В статичной версии остаются совпадающие ракурсы appearance и geometry.
+
+TRELLIS генерирует structured 3D latents с помощью rectified-flow Transformers. Представление можно декодировать в meshes, 3D Gaussians и radiance fields. Показан именно text-to-3D результат исходного TRELLIS, а не image-to-3D пример TRELLIS.2. [@show_trellis]
+
+Исходное текстовое условие: **A wooden rocking chair with a woven seat and back.** Этот объект опубликован в Figure 12 и в разделе Text-to-3D официального проекта. Первая половина ролика показывает цветное представление 3D Gaussians, вторая — геометрию mesh. Справа опубликованный кадр geometry из того же видео на секунде 7, соответствующий начальному цветному постеру на секунде 2. Этот объект также приведён в Figure 12 статьи. Это способы отображения одного результата, а не сравнение разных моделей.
+
+Источники: [официальная страница TRELLIS, Text-to-3D Generation](https://trellis3d.github.io/), [Xiang et al., Structured 3D Latents for Scalable and Versatile 3D Generation, Figure 12](https://arxiv.org/abs/2412.01506), [официальный репозиторий и text-conditioned models](https://github.com/microsoft/TRELLIS).
+:::
+
+## Stable Audio Open — text becomes sound {#diff-d22 .exp-slide .diff-slide .showcase-slide .diff-d22 background-color="#ffffff"}
+
+```{=html}
+<div class="showcase-subtitle">Text → Sound</div>
+<div class="showcase-body audio-composition">
+  <div class="audio-examples">
+  <div class="audio-example" data-sound="Rain on a roof">
+    <div class="audio-label">Rain on a roof</div><span class="audio-duration">7 s excerpt</span>
+    <button class="audio-toggle" type="button" aria-label="Play Rain on a roof" aria-pressed="false">▶</button>
+    <div class="audio-waveform-track"><img class="audio-waveform" src="assets/final/diffusion_20260930/showcase/audio/rain-waveform.svg" alt="Waveform measured from the rain audio"><span class="audio-playhead" aria-hidden="true"></span></div>
+    <span class="audio-elapsed">0.0 s</span>
+    <audio preload="metadata" src="assets/final/diffusion_20260930/showcase/audio/rain.wav"></audio>
+  </div>
+  <div class="audio-example" data-sound="A coin on a table">
+    <div class="audio-label">A coin on a table</div><span class="audio-duration">5 s sample</span>
+    <button class="audio-toggle" type="button" aria-label="Play A coin on a table" aria-pressed="false">▶</button>
+    <div class="audio-waveform-track"><img class="audio-waveform" src="assets/final/diffusion_20260930/showcase/audio/coin-waveform.svg" alt="Waveform measured from the coin audio"><span class="audio-playhead" aria-hidden="true"></span></div>
+    <span class="audio-elapsed">0.0 s</span>
+    <audio preload="metadata" src="assets/final/diffusion_20260930/showcase/audio/coin.wav"></audio>
+  </div>
+  <div class="audio-example" data-sound="Blackbird in a forest">
+    <div class="audio-label">Blackbird in a forest</div><span class="audio-duration">7 s excerpt</span>
+    <button class="audio-toggle" type="button" aria-label="Play Blackbird in a forest" aria-pressed="false">▶</button>
+    <div class="audio-waveform-track"><img class="audio-waveform" src="assets/final/diffusion_20260930/showcase/audio/blackbird-waveform.svg" alt="Waveform measured from the blackbird audio"><span class="audio-playhead" aria-hidden="true"></span></div>
+    <span class="audio-elapsed">0.0 s</span>
+    <audio preload="metadata" src="assets/final/diffusion_20260930/showcase/audio/blackbird.wav"></audio>
+  </div>
+  </div>
+  <figure class="audio-spectrum">
+    <figcaption>Blackbird · spectrogram</figcaption>
+    <img src="assets/final/diffusion_20260930/showcase/audio/blackbird-spectrogram.svg" alt="Measured spectrogram of the same seven-second blackbird excerpt: time from zero to seven seconds, frequency from zero to ten kilohertz, power in decibels relative to the displayed peak">
+    <div class="spectrum-caption">The same 7 s excerpt<br>Brighter = more energy at that frequency</div>
+  </figure>
+</div>
+<div class="showcase-mechanism">Latent audio diffusion · DiT · Up to 47 s · stereo · 44.1 kHz</div>
+<div class="audio-status" role="status" aria-live="polite"></div>
+<div class="exp-source"><a href="https://stability.ai/news-updates/stable-audio-open-research-paper">Stability AI · Stable Audio Open · Published generated samples</a></div>
+```
+
+::: {.notes}
+Все названия видны сразу. Лектор последовательно запускает дождь, монету и птицу. Активная строка становится лаймовой, указатель движется по waveform синхронно со звуком, а счётчик показывает текущую секунду. Справа спектрограмма того же 7-секундного отрезка птицы: по горизонтали время, по вертикали частота, яркость отражает относительную спектральную мощность. При выборе следующего звука предыдущий останавливается. При переходе на другой слайд всё воспроизведение прекращается.
+
+Stable Audio Open 1.0 создаёт по тексту стереоаудио до 47 секунд при 44,1 кГц. Генератор — DiT в latent-пространстве аудиоавтоэнкодера. Эти примеры показывают звуковые эффекты и окружающую среду. Модель также ориентирована на короткие музыкальные сэмплы, но её не следует представлять как универсальный синтезатор речи или полноценных песен с вокалом. [@show_audio_blog; @show_audio_model]
+
+Это generated samples из раздела Use Cases официальной статьи. Полные опубликованные подписи: **Sound of the rain hitting the roof**, **Coin falling on the table**, **Blackbird song in a forest**. Отдельные более длинные prompts или seeds для этих трёх примеров не опубликованы.
+
+Дождь: первые 7 секунд исходника. Монета: весь 5-секундный пример. Птица: секунды 7–14 исходника. Длительность подписи — длина прослушиваемого фрагмента, не время генерации. Waveforms вычислены из фактических звуковых файлов: минимум и максимум PCM в каждом временном интервале, с единой шкалой амплитуды. Спектрограмма вычислена по тому же WAV с окном Hann 2048 и шагом 256, с усреднением мощностей двух каналов. Цветовая шкала от −70 до 0 dB относительно максимума показанного спектра, не уровень звукового давления. Графика показывает измеренные свойства звука.
+
+Источники: [Stability AI, Stable Audio Open: Research Paper, Use Cases](https://stability.ai/news-updates/stable-audio-open-research-paper), [Stable Audio Open 1.0 model card](https://huggingface.co/stabilityai/stable-audio-open-1.0).
+:::
+
+## Wan2.2 — motion over time {#diff-d23 .exp-slide .diff-slide .showcase-slide .diff-d23 background-color="#ffffff"}
+
+```{=html}
+<div class="showcase-body wan-stage">
+  <video class="wan-video" controls muted loop playsinline preload="metadata" poster="assets/final/diffusion_20260930/showcase/wan/poster.jpg" aria-label="Play a silent scene from the official Wan2.2 family demonstration">
+    <source src="assets/final/diffusion_20260930/showcase/wan/wan22-family-motion.mp4" type="video/mp4">
+  </video>
+  <div class="wan-keyframes" aria-label="Three video frames, highlighted in sync with playback">
+    <figure data-time="0" class="is-current" aria-current="true"><img src="assets/final/diffusion_20260930/showcase/wan/frame-start.jpg" alt="Beginning of the same Wan2.2 scene"><figcaption>0.00 s</figcaption></figure>
+    <figure data-time="1.33" aria-current="false"><img src="assets/final/diffusion_20260930/showcase/wan/frame-middle.jpg" alt="Middle of the same Wan2.2 scene"><figcaption>1.33 s</figcaption></figure>
+    <figure data-time="2.63" aria-current="false"><img src="assets/final/diffusion_20260930/showcase/wan/frame-end.jpg" alt="End of the same Wan2.2 scene"><figcaption>2.63 s</figcaption></figure>
+  </div>
+</div>
+<div class="showcase-mechanism">Video diffusion · T2V-A14B architecture: high- / low-noise experts</div>
+<div class="exp-source"><a href="https://github.com/Wan-Video/Wan2.2#video-demos">Wan Team · Official Wan2.2 family demo</a> · Clip checkpoint and input mode not specified</div>
+```
+
+::: {.notes}
+Сначала показать статичный первый кадр, затем запустить ролик. Три человека движутся в изогнутом зелёном пространстве. Видно, что генерация видео задаёт изменение сцены во времени. Короткий фрагмент повторяется, чтобы аудитория успела рассмотреть движение. Три кадра внизу — начало, середина и конец самого ролика, не шаги denoising. Лаймовая рамка автоматически выделяет ближайший по времени кадр; на паузе она сохраняет положение.
+
+На экране один непрерывный 2,667-секундный фрагмент официальной демонстрации семейства Wan2.2, без монтажа разных сюжетов. Музыка исходного трейлера удалена: этот слайд не демонстрирует генерацию звука. При переходе к другому слайду воспроизведение останавливается.
+
+Архитектурная строка отдельно описывает Wan2.2-T2V-A14B: video diffusion с двумя экспертами, разделёнными по уровню шума. High-noise expert работает на раннем участке генерации, low-noise expert — на позднем. Это условный выбор эксперта вдоль траектории шума, а не две модели для первой и второй половины готового видео. [@show_wan]
+
+Атрибуция примера ограничена семейством Wan2.2. Один и тот же официальный трейлер опубликован в карточках T2V-A14B и TI2V-5B; для выбранной сцены отдельно не указаны checkpoint, режим входа и исходный prompt. Поэтому нельзя выдавать именно этот фрагмент за подтверждённый результат T2V-A14B или утверждать, что он сгенерирован только из текста. Сведения о T2V-A14B относятся к архитектуре, а не к установленному происхождению выбранной сцены.
+
+Источники: [официальный репозиторий, Video Demos и Mixture-of-Experts Architecture](https://github.com/Wan-Video/Wan2.2), [карточка T2V-A14B](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B), [карточка TI2V-5B с тем же трейлером](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B).
+
+Переход ко второй части: «Генерация изображений, объектов, звука и видео показывает только часть возможностей. Что ещё произошло?» Открыть Something else happened.
+:::

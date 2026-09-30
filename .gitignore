@@ -1,6 +1,7 @@
 # Quarto build output and caches
 /.quarto/
 /_site/
+/_lecture-build.yml
 01_intro/.quarto/
 01_intro/course_structure_files/
 01_intro/course_structure.html

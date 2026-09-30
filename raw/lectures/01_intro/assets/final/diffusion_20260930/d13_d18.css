@@ -1,0 +1,32 @@
+/* Distillation diagrams: editable SVG, scoped to D13–D18. */
+.reveal :is(.diff-d13,.diff-d14,.diff-d15,.diff-d16,.diff-d17,.diff-d18) .fragment.fade-out.visible { opacity:0!important; visibility:hidden!important; }
+.reveal .diff-slide .dlate-svg { width:100%; height:100%; overflow:visible; font-family:var(--lecture-font-sans, sans-serif); color:var(--lecture-fg); }
+.reveal .diff-slide .dlate-svg text { fill:var(--lecture-fg); font-size:27px; }
+.reveal .diff-slide .dlate-svg .dl-small { font-size:23px; }
+.reveal .diff-slide .dlate-svg .dl-label { font-size:30px; font-weight:600; }
+.reveal .diff-slide .dlate-svg .dl-muted { fill:var(--lecture-muted); }
+.reveal .diff-slide .dlate-svg .dl-line { fill:none; stroke:var(--lecture-fg); stroke-width:2.6; }
+.reveal .diff-slide .dlate-svg .dl-soft-line { fill:none; stroke:#b7b7b7; stroke-width:2.4; }
+.reveal .diff-slide .dlate-svg .dl-dashed { stroke-dasharray:9 7; }
+.reveal .diff-slide .dlate-svg .dl-box { fill:white; stroke:var(--lecture-fg); stroke-width:2.6; }
+.reveal .diff-slide .dlate-svg .dl-soft { fill:#f0f0f0; stroke:none; }
+.reveal .diff-slide .dlate-svg .dl-lime { fill:var(--lecture-pop-lime); stroke:var(--lecture-fg); stroke-width:2.6; }
+.reveal .diff-slide .dlate-svg .dl-feedback { fill:none; stroke:var(--lecture-pop-lime); stroke-width:8; }
+.reveal .diff-slide .dlate-svg .dl-feedback-edge { fill:none; stroke:var(--lecture-fg); stroke-width:2; }
+.reveal .diff-slide .dlate-svg .dl-clean-signal { fill:none; stroke:var(--lecture-pop-lime); stroke-width:4; stroke-linejoin:round; }
+.reveal .diff-slide .dlate-svg .dl-inference-loop { fill:none; stroke:#777; stroke-width:2.6; stroke-linejoin:round; }
+.reveal .diff-slide .dlate-svg .dl-point { fill:var(--lecture-fg); stroke:white; stroke-width:2; }
+.reveal .diff-slide .dlate-svg .dl-endpoint { fill:white; stroke:var(--lecture-fg); stroke-width:3; }
+.reveal .diff-d14 .dl-trajectory.current-fragment .dl-trajectory-path { stroke:var(--lecture-pop-lime); stroke-width:10; }
+.reveal .diff-d14 .dl-trajectory.current-fragment .dl-endpoint { fill:var(--lecture-pop-lime); }
+.reveal .diff-d15 .dl-lcm-evidence { position:absolute; top:442px; left:0; right:0; height:135px; }
+.reveal .diff-d15 .dl-lcm-evidence img { width:100%; height:135px; object-fit:contain; object-position:left top; }
+.reveal .diff-d15 .dl-lcm-caption { position:absolute; top:414px; left:0; right:0; font-size:20px; line-height:1.2; color:var(--lecture-muted); }
+.reveal .diff-d18 .dl-option.current-fragment rect { fill:var(--lecture-pop-lime); }
+.reveal .diff-d18 .dl-choice.current-fragment rect { fill:var(--lecture-pop-lime); }
+.reveal .diff-d18 .fragment.custom:is(.dl-option,.dl-choice) { opacity:1; visibility:inherit; }
+.reveal .diff-d18 .dl-question { position:absolute; left:0; right:0; bottom:0; font-size:25px; line-height:1.2; }
+.reveal .diff-d17 > h2 { font-size:48px; right:220px; }
+.reveal .diff-d13 > h2, .reveal .diff-d15 > h2, .reveal .diff-d16 > h2 { font-size:50px; }
+
+.reveal .diff-d17 .dlate-svg .dl-score-label { paint-order:stroke; stroke:#fff; stroke-width:7px; stroke-linejoin:round; }

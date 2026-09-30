@@ -1,0 +1,52 @@
+/* D07–D12: editable geometry and training diagrams. */
+.reveal .diff-slide .diff-geo { width:100%; height:100%; overflow:visible; font-family:var(--lecture-font-sans); }
+.reveal .diff-geo text { fill:var(--lecture-fg); font-family:var(--lecture-font-sans); }
+.reveal .diff-geo .dg-label { font-size:27px; font-weight:560; }
+.reveal .diff-geo .dg-small { font-size:23px; font-weight:420; }
+.reveal .diff-geo .dg-module-title { font-size:34px; font-weight:600; }
+.reveal .diff-geo .dg-emphasis { font-size:34px; font-weight:600; letter-spacing:-.025em; }
+.reveal .diff-geo .dg-formula { font-size:32px; font-family:var(--lecture-font-sans); }
+.reveal .diff-geo .dg-box { fill:#fff; stroke:var(--lecture-fg); stroke-width:2.2; }
+.reveal .diff-geo .dg-no-border { fill:#fff; stroke:none; }
+.reveal .diff-geo .dg-module { fill:#fff; stroke:var(--lecture-pop-lime); stroke-width:7; }
+.reveal .diff-geo .dg-line { fill:none; stroke:var(--lecture-fg); stroke-width:2.5; }
+.reveal .diff-geo .dg-grid { fill:none; stroke:#fff; stroke-width:3; }
+.reveal .diff-geo .dg-lime-line { fill:none; stroke:var(--lecture-pop-lime); stroke-width:5; }
+.reveal .diff-geo .dg-dot { fill:var(--lecture-fg); }
+.reveal .diff-geo .dg-lime-dot { fill:var(--lecture-pop-lime); stroke:var(--lecture-fg); stroke-width:1.4; }
+.reveal .diff-geo .dg-soft-dot { fill:#777; }
+.reveal .diff-geo .dg-lock { fill:#fff; stroke:var(--lecture-fg); stroke-width:2.4; }
+.reveal .diff-geo .dg-trajectory { fill:none; stroke:#646464; stroke-width:2.7; }
+.reveal .diff-geo .dg-contour { fill:none; stroke:#b5b5b5; stroke-width:1.7; }
+.reveal .diff-geo .dg-field { fill:none; stroke:#666; stroke-width:1.9; }
+.reveal .diff-geo .dg-divider { fill:none; stroke:#ddd; stroke-width:1.5; }
+.reveal .diff-geo .dg-slice { fill:none; stroke:#ddd; stroke-width:1.8; stroke-dasharray:5 7; }
+.reveal .diff-geo .dg-marginal { fill:#bef264; fill-opacity:.15; stroke:#6a872f; stroke-width:1.6; }
+.reveal .diff-geo .dg-dashed { fill:none; stroke:#aaa; stroke-width:2; stroke-dasharray:8 8; }
+.reveal .diff-geo .diff-speed-row.fragment { opacity:.28; visibility:visible; transition:opacity .2s ease; }
+.reveal .diff-geo .diff-speed-row.fragment.current-fragment { opacity:1; }
+.reveal .diff-slide .dg-qualifier { font-size:23px; font-weight:400; margin-left:20px; }
+@media print { .reveal .diff-geo .diff-speed-row.fragment { opacity:1; } }
+/* Keep KaTeX in normal HTML layout, outside SVG foreignObject. */
+.reveal .diff-slide .dg-equations {
+  position:absolute;
+  top:414px;
+  left:0;
+  right:0;
+  height:70px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  column-gap:36px;
+  align-items:center;
+  justify-items:center;
+  font-size:29px;
+  line-height:1.2;
+  color:var(--lecture-fg);
+  pointer-events:none;
+}
+.reveal .diff-slide .dg-equations .math { display:inline-block; margin:0; padding:0; white-space:nowrap; }
+.reveal .diff-slide .dg-equations .katex { font-size:1.1em; }
+.reveal .diff-slide .dg-equations.dg-equation-single { top:496px; height:60px; grid-template-columns:1fr; }
+.reveal .diff-geo .dg-merge { fill:#fff; stroke:var(--lecture-fg); stroke-width:2.2; }
+.reveal .diff-d10 .dg-update,
+.reveal .diff-d10 .dg-local-vector { stroke-width:2.8; }
