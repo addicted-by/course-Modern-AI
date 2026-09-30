@@ -1,77 +1,47 @@
-<div class="row g-4 pt-2">
-  <div class="col-12 col-md-4">
-    <div class="card h-100 shadow-sm contact-card">
-      <div class="card-body d-flex flex-column">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="contact-icon-box icon-telegram">
-            <i class="bi bi-telegram"></i>
-          </div>
-          <span class="badge bg-primary">Community</span>
-        </div>
-        <h4 class="card-title mb-1 unanchored">Telegram Group</h4>
-        <p class="text-muted small mb-3">Official course discussion space</p>
-        <p class="card-text text-secondary flex-grow-1">
-          Join the Telegram group for course announcements, lecture discussions, seminar support, and Q&amp;A.
-        </p>
-        <div class="pt-2">
-          <a href="https://t.me/+I-joDKs8iiIwOTQy" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-100 mb-2">
-            <i class="bi bi-telegram me-1"></i> Join Telegram Group
-          </a>
-          <details class="text-center text-muted small mt-2">
-            <summary style="cursor: pointer;">Show QR Code</summary>
-            <div class="mt-2 text-center">
-              <img src="raw/lectures/01_intro/assets/qr/qr_group.svg" alt="Telegram Group QR Code" class="contact-qr-preview img-fluid">
-              <div class="text-muted small mt-1">Scan with phone to join</div>
-            </div>
-          </details>
-        </div>
-      </div>
+<div class="course-contacts">
+  <article class="course-contact" id="telegram-group" aria-labelledby="telegram-group-title">
+    <div class="course-contact-top">
+      <span class="course-contact-icon" aria-hidden="true"><i class="bi bi-telegram"></i></span>
+      <span class="course-contact-label">Community</span>
     </div>
-  </div>
+    <h3 class="course-contact-title unanchored" id="telegram-group-title">Telegram Group</h3>
+    <p class="course-contact-meta">Official course discussion space</p>
+    <p class="course-contact-description">Join the Telegram group for course announcements, lecture discussions, seminar support, and Q&amp;A.</p>
+    <div class="course-contact-actions">
+      <a href="https://t.me/+I-joDKs8iiIwOTQy" target="_blank" rel="noopener noreferrer" class="course-button course-contact-button"><i class="bi bi-telegram" aria-hidden="true"></i> Join Telegram Group</a>
+      <details class="course-contact-qr">
+        <summary>Show QR Code</summary>
+        <div class="course-contact-qr-content">
+          <img src="raw/lectures/01_intro/assets/qr/qr_group.svg" alt="Telegram Group QR Code" class="course-contact-qr-image">
+          <p>Scan with phone to join</p>
+        </div>
+      </details>
+    </div>
+  </article>
 
-  <div class="col-12 col-md-4">
-    <div class="card h-100 shadow-sm contact-card">
-      <div class="card-body d-flex flex-column">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="contact-icon-box icon-direct">
-            <i class="bi bi-send-fill"></i>
-          </div>
-          <span class="badge bg-info">Instructor</span>
-        </div>
-        <h4 class="card-title mb-1 unanchored">Direct Contact</h4>
-        <p class="text-muted small mb-3">Aleksey Ryabykin &middot; <code>@addicted_by</code></p>
-        <p class="card-text text-secondary flex-grow-1">
-          Have questions about curriculum, capstone project proposals, research collaboration, or course feedback? Reach out directly.
-        </p>
-        <div class="pt-2 mt-auto">
-          <a href="https://t.me/addicted_by" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
-            <i class="bi bi-chat-dots-fill me-1"></i> Message @addicted_by
-          </a>
-        </div>
-      </div>
+  <article class="course-contact" id="direct-contact" aria-labelledby="direct-contact-title">
+    <div class="course-contact-top">
+      <span class="course-contact-icon" aria-hidden="true"><i class="bi bi-send-fill"></i></span>
+      <span class="course-contact-label">Instructor</span>
     </div>
-  </div>
+    <h3 class="course-contact-title unanchored" id="direct-contact-title">Direct Contact</h3>
+    <p class="course-contact-meta">Aleksey Ryabykin &middot; <code>@addicted_by</code></p>
+    <p class="course-contact-description">Have questions about curriculum, capstone project proposals, research collaboration, or course feedback? Reach out directly.</p>
+    <div class="course-contact-actions">
+      <a href="https://t.me/addicted_by" target="_blank" rel="noopener noreferrer" class="course-button course-button-secondary course-contact-button"><i class="bi bi-chat-dots-fill" aria-hidden="true"></i> Message @addicted_by</a>
+    </div>
+  </article>
 
-  <div class="col-12 col-md-4">
-    <div class="card h-100 shadow-sm contact-card">
-      <div class="card-body d-flex flex-column">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-          <div class="contact-icon-box icon-github">
-            <i class="bi bi-github"></i>
-          </div>
-          <span class="badge bg-dark">Repository</span>
-        </div>
-        <h4 class="card-title mb-1 unanchored">GitHub Page</h4>
-        <p class="text-muted small mb-3"><code>addicted-by/course-Modern-AI</code></p>
-        <p class="card-text text-secondary flex-grow-1">
-          Access slides source materials, seminar notebooks, code implementations, issues, and project briefs.
-        </p>
-        <div class="pt-2 mt-auto">
-          <a href="https://github.com/addicted-by/course-Modern-AI/tree/main" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark w-100">
-            <i class="bi bi-github me-1"></i> View Repository
-          </a>
-        </div>
-      </div>
+  <article class="course-contact" id="github-page" aria-labelledby="github-page-title">
+    <div class="course-contact-top">
+      <span class="course-contact-icon" aria-hidden="true"><i class="bi bi-github"></i></span>
+      <span class="course-contact-label">Repository</span>
     </div>
-  </div>
+    <h3 class="course-contact-title unanchored" id="github-page-title">GitHub Page</h3>
+    <p class="course-contact-meta"><code>addicted-by/course-Modern-AI</code></p>
+    <p class="course-contact-description">Access slides source materials, seminar notebooks, code implementations, issues, and project briefs.</p>
+    <div class="course-contact-actions">
+      <a href="https://github.com/addicted-by/course-Modern-AI/tree/main" target="_blank" rel="noopener noreferrer" class="course-button course-button-secondary course-contact-button"><i class="bi bi-github" aria-hidden="true"></i> View Repository</a>
+    </div>
+  </article>
 </div>

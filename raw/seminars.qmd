@@ -12,9 +12,7 @@ Practical assignments and seminars will be hosted on **Kaggle** with complimenta
 
 ## Seminar Schedule
 
-| # | M | Topic | Link | Materials |
-|:---:|:---:|---|:---:|:---:|
-| <span class="text-muted">**01**</span> | <span class="text-muted">**M1**</span> | <span class="text-muted">**Environment Setup, PyTorch & Kaggle Basics**</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
+{{< include ../pages/_seminar-materials.qmd >}}
 
 ::: {.callout-note}
 ### Seminar Materials

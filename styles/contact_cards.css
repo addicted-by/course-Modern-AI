@@ -1,49 +1,124 @@
-
-.contact-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
+.course-contacts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: 1.5rem 2rem;
 }
 
-.contact-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
-  border-color: rgba(39, 128, 227, 0.35);
+.course-contact {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  border: 2px solid var(--course-ink, #1a1a1a);
+  background: var(--course-bg, #fff);
+  color: var(--course-text, #27272a);
 }
 
-.contact-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
+.course-contact-top {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.course-contact-icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  background: var(--course-lime, #bef264);
+  color: var(--course-ink, #1a1a1a);
+  font-size: 1.35rem;
+}
+
+.course-contact-label {
+  color: var(--course-muted, #52525b);
+  font: 600 0.72rem/1.3 var(--course-font-mono, monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.course-contact-title {
+  overflow-wrap: anywhere;
+  margin: 0 0 0.35rem;
+  color: var(--course-ink, #1a1a1a);
+  font: 700 clamp(1.3rem, 2vw, 1.65rem)/1.15 var(--course-font-heading, sans-serif);
+}
+
+.course-contact-meta {
+  min-width: 0;
+  margin: 0 0 1.25rem;
+  color: var(--course-muted, #52525b);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.course-contact-meta code {
+  color: inherit;
+  font-size: inherit;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.course-contact-description {
+  overflow-wrap: anywhere;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.course-contact-actions {
+  margin-top: auto;
+}
+
+.course-contact-button {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 44px;
+  text-align: center;
 }
 
-.icon-telegram {
-  background-color: #e7f3fb;
-  color: #229ED9;
+.course-contact-qr {
+  margin-top: 0.75rem;
+  color: var(--course-muted, #52525b);
+  font-size: 0.875rem;
+  text-align: center;
 }
 
-.icon-direct {
-  background-color: #ede9fe;
-  color: #7c3aed;
+.course-contact-qr summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
-.icon-github {
-  background-color: #f3f4f6;
-  color: #24292f;
+.course-contact-qr-content {
+  padding-top: 0.75rem;
 }
 
-.contact-qr-preview {
-  max-width: 140px;
+.course-contact-qr-image {
+  display: block;
+  width: min(140px, 100%);
   height: auto;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-  padding: 6px;
-  background: #ffffff;
+  margin-inline: auto;
+  padding: 0.35rem;
+  border: 1px solid var(--course-rule, #e4e4e7);
+  background: var(--course-bg, #fff);
 }
 
+.course-contact-qr-content p {
+  margin: 0.5rem 0 0;
+}
+
+@media (max-width: 900px) {
+  .course-contacts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

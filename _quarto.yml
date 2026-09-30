@@ -21,6 +21,7 @@ website:
   title: "MAI"
   navbar:
     logo: assets/logos/partners-dark.svg
+    logo-alt: "Modern AI home — course partners"
     left:
       - href: index.qmd
 
@@ -59,15 +60,16 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - default
+      - styles/course-site.scss
+    body-classes: course-site
     css:
       - styles/contact_cards.css
+      - styles/course-home.css
+      - styles/course-modules.css
+      - styles/course-materials.css
+      - styles/course-projects.css
       - styles/footer.css
       - styles/logos.css
     toc: true
-
-
-
-
-
-

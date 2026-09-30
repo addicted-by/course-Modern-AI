@@ -1,0 +1,198 @@
+/*-- scss:defaults --*/
+$body-bg: #ffffff;
+$body-color: #27272a;
+$primary: #1a1a1a;
+$secondary: #52525b;
+$link-color: #1a1a1a;
+$link-hover-color: #27272a;
+$border-color: #e4e4e7;
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$font-family-monospace: "JetBrains Mono", Consolas, Monaco, monospace;
+$headings-font-family: "Space Grotesk", "Inter", sans-serif;
+$headings-color: #1a1a1a;
+$navbar-bg: #ffffff;
+$navbar-fg: #1a1a1a;
+$navbar-hl: #1a1a1a;
+$code-bg: #f4f4f5;
+$code-color: #27272a;
+
+/*-- scss:rules --*/
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap");
+
+body.course-site {
+  --course-bg: #ffffff;
+  --course-ink: #1a1a1a;
+  --course-text: #27272a;
+  --course-muted: #52525b;
+  --course-surface: #f4f4f5;
+  --course-rule: #e4e4e7;
+  --course-lime: #bef264;
+  --course-font-heading: "Space Grotesk", "Inter", -apple-system, sans-serif;
+  --course-font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --course-font-mono: "JetBrains Mono", Consolas, Monaco, monospace;
+  background: var(--course-bg);
+  color: var(--course-text);
+  font-family: var(--course-font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+
+  ::selection { background: var(--course-lime); color: var(--course-ink); }
+  a { text-decoration-thickness: 1px; text-underline-offset: .16em; }
+  a:hover { color: var(--course-ink); }
+  :focus-visible { outline: 3px solid var(--course-ink); outline-offset: 3px; }
+
+  .quarto-container, .navbar-container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 3.2vw, 40px);
+  }
+  #quarto-content { min-height: 55vh; }
+  main.content { padding-top: clamp(2.25rem, 4vw, 4rem); padding-bottom: clamp(3rem, 6vw, 6rem); }
+  #title-block-header { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  #title-block-header .title {
+    max-width: 20ch;
+    margin-bottom: .35em;
+    font-family: var(--course-font-heading);
+    font-size: clamp(3rem, 6.2vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -.055em;
+  }
+  #title-block-header .subtitle { max-width: 60ch; color: var(--course-muted); font-size: clamp(1.125rem, 2vw, 1.45rem); line-height: 1.4; }
+  #title-block-header .quarto-title-meta { color: var(--course-muted); }
+  h1, h2, h3, h4, h5, h6 { color: var(--course-ink); font-family: var(--course-font-heading); line-height: 1.18; letter-spacing: -.035em; }
+  h2 { font-size: clamp(1.75rem, 3vw, 2.55rem); }
+  h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); }
+  p, li { color: var(--course-text); }
+  .text-muted { color: var(--course-muted) !important; }
+  hr { border-color: var(--course-rule); opacity: 1; margin-block: 2.5rem; }
+
+  .navbar {
+    background: var(--course-bg) !important;
+    border-bottom: 1px solid var(--course-ink);
+    box-shadow: none;
+    color: var(--course-ink);
+  }
+  .navbar .nav-link, .navbar .navbar-brand, .navbar .quarto-navbar-tools .quarto-navigation-tool {
+    color: var(--course-ink) !important;
+  }
+  .navbar .nav-link {
+    position: relative;
+    border-bottom: 3px solid transparent;
+    padding-top: .8rem;
+    padding-bottom: .65rem;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+  .navbar .nav-link:hover {
+    background: var(--course-surface);
+  }
+  .navbar .nav-link.active::after, .navbar .nav-link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    inset-inline: .65rem;
+    bottom: 0;
+    height: 3px;
+    background: var(--course-lime);
+    pointer-events: none;
+  }
+  .navbar .nav-link:focus-visible, .navbar .navbar-toggler:focus-visible,
+  .navbar .quarto-navigation-tool:focus-visible, .navbar .aa-DetachedSearchButton:focus-visible {
+    outline: 3px solid var(--course-ink);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+  .navbar .nav-link:focus-visible { outline-offset: -3px; }
+  .navbar .navbar-toggler { color: var(--course-ink); border-color: var(--course-rule); }
+  .navbar .navbar-toggler-icon { filter: brightness(0); }
+  .navbar .aa-DetachedSearchButton, .navbar #quarto-search { color: var(--course-ink); }
+
+  .sidebar nav[role="doc-toc"] a, #TOC a { color: var(--course-muted); text-decoration: none; }
+  .sidebar nav[role="doc-toc"] a:hover, .sidebar nav[role="doc-toc"] a.active,
+  #TOC a:hover, #TOC a.active { color: var(--course-ink); border-left-color: var(--course-lime); }
+  .sidebar nav[role="doc-toc"] a:focus-visible, #TOC a:focus-visible { outline-offset: 1px; }
+
+  .btn, .course-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45em;
+    min-height: 2.7rem;
+    padding: .55rem 1.1rem;
+    border: 1px solid var(--course-ink);
+    border-radius: 0;
+    background: var(--course-ink);
+    color: var(--course-bg);
+    font-family: var(--course-font-body);
+    font-size: .9rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover, .course-button:hover { background: var(--course-lime); color: var(--course-ink); box-shadow: 3px 3px 0 var(--course-ink); }
+  .btn-outline-primary, .btn-outline-secondary, .course-button-secondary {
+    background: var(--course-bg);
+    color: var(--course-ink);
+  }
+  .btn-sm { min-height: 2.25rem; padding: .4rem .75rem; font-size: .78rem; }
+  .course-button:focus-visible, .btn:focus-visible { outline-offset: 3px; box-shadow: none; }
+
+  .callout, .course-note {
+    margin-block: 1.5rem;
+    padding: 1.15rem 1.3rem;
+    border: 1px solid var(--course-rule);
+    border-left: 4px solid var(--course-ink);
+    border-radius: 0;
+    background: var(--course-surface);
+    color: var(--course-text);
+  }
+  .callout .callout-title { color: var(--course-ink); font-weight: 700; }
+  .callout .callout-body { color: var(--course-text); }
+  .callout.callout-style-default, .callout.callout-style-simple { border-left-color: var(--course-ink); }
+  .callout.callout-style-default > .callout-header {
+    background: var(--course-surface);
+    color: var(--course-ink);
+  }
+  .callout .callout-icon, .callout .callout-toggle { filter: grayscale(1) brightness(.25); }
+
+  .course-kicker {
+    display: block;
+    margin-bottom: .65rem;
+    color: var(--course-muted);
+    font-family: var(--course-font-mono);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .course-section-heading {
+    max-width: 22ch;
+    margin-bottom: 1.25rem;
+    color: var(--course-ink);
+    font-family: var(--course-font-heading);
+    font-size: clamp(1.9rem, 3.3vw, 3.1rem);
+    font-weight: 700;
+    letter-spacing: -.045em;
+    line-height: 1.1;
+  }
+  .course-index {
+    color: var(--course-muted);
+    font-family: var(--course-font-mono);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  body.course-site .navbar .nav-link { display: inline-block; }
+  body.course-site .quarto-container, body.course-site .navbar-container { padding-inline: 20px; }
+  body.course-site main.content { padding-top: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.course-site .btn, body.course-site .course-button { transition: none; }
+}

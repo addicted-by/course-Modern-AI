@@ -1,15 +1,13 @@
-/* Page footer styling */
-.nav-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  font-size: 0.92rem;
+body.course-site .nav-footer {
+  margin-top: 1rem;
+  padding: 1.5rem clamp(20px, 3.2vw, 40px);
+  border-top: 1px solid var(--course-ink);
+  background: var(--course-bg);
+  color: var(--course-muted);
+  font-family: var(--course-font-body);
+  font-size: .82rem;
 }
 
-.nav-footer a {
-  text-decoration: none;
-}
-
-.nav-footer a:hover {
-  text-decoration: underline;
-}
+body.course-site .nav-footer a { color: var(--course-ink); text-decoration: none; }
+body.course-site .nav-footer a:hover { text-decoration: underline; text-decoration-color: var(--course-lime); text-decoration-thickness: 3px; }
+body.course-site .nav-footer a:focus-visible { outline: 3px solid var(--course-ink); outline-offset: 3px; }

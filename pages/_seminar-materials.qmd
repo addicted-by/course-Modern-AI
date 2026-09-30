@@ -1,0 +1,17 @@
+```{=html}
+<ol class="course-material-list" role="list" aria-label="Seminar schedule and materials">
+  <li class="course-material-item">
+    <div class="course-material-index">
+      <span class="course-material-number">01</span>
+      <span class="course-material-module">M1</span>
+    </div>
+    <div class="course-material-content">
+      <h3 class="course-material-title">Environment Setup, PyTorch &amp; Kaggle Basics</h3>
+    </div>
+    <div class="course-material-actions course-material-actions-seminar">
+      <span class="course-material-unavailable">Link: TBA</span>
+      <span class="course-material-unavailable">Materials: TBA</span>
+    </div>
+  </li>
+</ol>
+```

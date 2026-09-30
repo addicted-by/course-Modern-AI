@@ -1,0 +1,172 @@
+/* Homepage components use the shared course-site typography and color tokens. */
+body.course-site #title-block-header:empty { display: none; }
+body.course-site.fullcontent #quarto-content {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: clamp(20px, 3.2vw, 40px);
+}
+body.course-site.fullcontent main.content { padding-top: clamp(1.5rem, 3vw, 3rem); }
+body.course-site .course-home { color: var(--course-text, #27272a); max-width: 100%; }
+body.course-site .course-home-hero {
+  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(2rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--course-rule, #e4e4e7);
+  background-image:
+    linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .96) 38%, rgba(255, 255, 255, 0) 65%),
+    url("../assets/backgrounds/modern-ai-neural-field.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body.course-site .course-home-hero-kicker {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .75rem;
+  margin: 0 0 clamp(1.75rem, 4vw, 3.5rem);
+}
+body.course-site .course-home-marker {
+  display: inline-block; flex: 0 0 auto; width: .8rem; height: .8rem;
+  background: var(--course-lime, #bef264);
+}
+body.course-site .course-home-kicker-separator { color: var(--course-rule, #e4e4e7); }
+body.course-site h1.course-home-title {
+  max-width: 11ch; margin: 0 0 1.5rem;
+  color: var(--course-ink, #1a1a1a);
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: clamp(3rem, 7vw, 6rem); font-weight: 700;
+  letter-spacing: -.075em; line-height: .98;
+}
+body.course-site .course-home-subtitle {
+  max-width: 25ch; margin: 0;
+  color: var(--course-text, #27272a);
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: clamp(1.375rem, 2.5vw, 2.25rem);
+  font-weight: 400; letter-spacing: -.035em; line-height: 1.25;
+}
+body.course-site .course-home-hero-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: .75rem 2rem; margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 1rem; border-top: 1px solid var(--course-rule, #e4e4e7);
+  font-family: var(--course-font-mono, "JetBrains Mono", monospace);
+  font-size: .76rem; letter-spacing: -.01em;
+}
+body.course-site .course-home-hero-bottom p { margin: 0; }
+body.course-site .course-home-meta-label { margin-right: .75rem; color: var(--course-muted, #52525b); }
+body.course-site .course-home-year { color: var(--course-muted, #52525b); }
+body.course-site .course-home-year strong {
+  margin-left: .5rem; color: var(--course-ink, #1a1a1a); font-weight: 600;
+}
+body.course-site .course-home-section {
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  border-bottom: 1px solid var(--course-rule, #e4e4e7);
+}
+body.course-site .course-home-section > .course-kicker { margin: 0 0 1rem; }
+body.course-site h2.course-home-heading {
+  margin: 0 0 clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--course-ink, #1a1a1a);
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 600;
+  letter-spacing: -.06em; line-height: 1.05;
+}
+body.course-site .course-home-overview > section > p {
+  max-width: 68ch; font-size: clamp(1rem, 1.35vw, 1.125rem); line-height: 1.7;
+}
+body.course-site .course-home-hubs {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px;
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  background: var(--course-rule, #e4e4e7);
+  border: 1px solid var(--course-rule, #e4e4e7);
+}
+body.course-site .course-home-hubs > p { display: contents; }
+body.course-site .course-home-hub {
+  display: flex; min-width: 0; min-height: 11.5rem;
+  flex-direction: column; align-items: flex-start; justify-content: space-between;
+  gap: 1.5rem; padding: 1.25rem;
+  background: var(--course-bg, #fff); color: var(--course-ink, #1a1a1a);
+  text-decoration: none; transition: background-color 160ms ease;
+}
+body.course-site .course-home-hub:hover,
+body.course-site .course-home-hub:focus-visible {
+  background: var(--course-lime, #bef264); color: var(--course-ink, #1a1a1a);
+  text-decoration: none;
+}
+body.course-site .course-home-hub-number,
+body.course-site .course-home-project-number {
+  font-family: var(--course-font-mono, "JetBrains Mono", monospace);
+  font-size: .75rem; font-weight: 500;
+}
+body.course-site .course-home-hub-title {
+  margin-top: auto;
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 600;
+  letter-spacing: -.045em; line-height: 1.1;
+}
+body.course-site .course-home-hub-arrow {
+  align-self: flex-end; margin-top: -2.75rem; font-size: 1.5rem; line-height: 1;
+}
+body.course-site .course-home-note {
+  margin-top: 1.5rem; padding: 1.2rem 1.5rem;
+  background: var(--course-surface, #f4f4f5);
+  border-left: 3px solid var(--course-lime, #bef264);
+  color: var(--course-text, #27272a); font-size: .9rem; line-height: 1.6;
+}
+body.course-site .course-home-note > p { margin: 0; }
+body.course-site .course-home-note > p + p { margin-top: .25rem; }
+body.course-site .course-home-note strong {
+  color: var(--course-ink, #1a1a1a);
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: 1rem;
+}
+body.course-site .course-home-project-grid > ol {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2rem; margin: 0; padding: 0;
+  border-top: 1px solid var(--course-rule, #e4e4e7); list-style: none;
+}
+body.course-site .course-home-project-grid li {
+  min-width: 0; margin: 0; padding: 0;
+  border-bottom: 1px solid var(--course-rule, #e4e4e7);
+}
+body.course-site .course-home-project-link {
+  display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) 1.5rem;
+  align-items: center; gap: .75rem; min-height: 4rem; padding: .75rem .25rem;
+  color: var(--course-ink, #1a1a1a); text-decoration: none;
+}
+body.course-site .course-home-project-link:hover,
+body.course-site .course-home-project-link:focus-visible {
+  color: var(--course-ink, #1a1a1a);
+  background: var(--course-surface, #f4f4f5); text-decoration: none;
+}
+body.course-site .course-home-project-name {
+  min-width: 0;
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: clamp(.95rem, 1.4vw, 1.15rem); font-weight: 500;
+  letter-spacing: -.025em; line-height: 1.25; overflow-wrap: anywhere;
+}
+body.course-site .course-home-project-arrow { justify-self: end; font-size: 1.25rem; }
+body.course-site .course-home-catalog-note { margin-top: 2rem; }
+body.course-site .course-home-contacts { border-bottom: 0; }
+@media (max-width: 900px) {
+  body.course-site .course-home-hubs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  body.course-site .course-home-hero {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .92)),
+      url("../assets/backgrounds/modern-ai-neural-field.png");
+    background-position: right center;
+    background-size: auto 100%;
+  }
+  body.course-site .course-home-hubs,
+  body.course-site .course-home-project-grid > ol { grid-template-columns: minmax(0, 1fr); }
+  body.course-site .course-home-hub { min-height: 8rem; }
+  body.course-site .course-home-hero-bottom { flex-direction: column; }
+}
+@media (max-width: 400px) {
+  body.course-site h1.course-home-title { font-size: 3rem; }
+  body.course-site .course-home-project-link {
+    grid-template-columns: 1.75rem minmax(0, 1fr) 1rem; gap: .5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.course-site .course-home-hub { transition: none; }
+}

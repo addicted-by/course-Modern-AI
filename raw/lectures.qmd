@@ -12,10 +12,7 @@ The interactive lecture slides are built with Quarto and Reveal.js. Use arrow ke
 
 ## Lecture Schedule & Materials
 
-| # | M | Topic | Interactive | PDF | PPTX |
-|:---:|:---:|---|:---:|:---:|:---:|
-| **01** | **M1** | **Course Structure & Roadmap** | [HTML →](lectures/01_intro/course_structure.qmd){.btn .btn-outline-primary .btn-sm} | [PDF](lectures/01_intro/course_structure.pdf){.btn .btn-outline-secondary .btn-sm} | [PPTX](lectures/01_intro/course_structure.pptx){.btn .btn-outline-secondary .btn-sm} |
-| **02** | **M1** | **AI overview & Models and Modalities Taxonomy** | [HTML →](lectures/01_intro/lecture_01_final.qmd){.btn .btn-outline-primary .btn-sm} | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
+{{< include ../pages/_lecture-materials.qmd >}}
 
 ---
 

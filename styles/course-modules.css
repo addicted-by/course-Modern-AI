@@ -1,0 +1,88 @@
+.course-module-group {
+  border-top: 2px solid var(--course-ink, #1a1a1a);
+  margin-top: 2.5rem;
+}
+
+.course-module-group > h3 {
+  color: var(--course-ink, #1a1a1a);
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  margin: 0;
+  padding: 1.25rem 0 1.5rem;
+}
+
+.course-module-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.course-module-card {
+  border-top: 1px solid var(--course-rule, #e4e4e7);
+  min-width: 0;
+  padding: 1.5rem 1.75rem 1.75rem 0;
+}
+
+.course-module-card:nth-child(even) {
+  border-left: 1px solid var(--course-rule, #e4e4e7);
+  padding-left: 1.75rem;
+  padding-right: 0;
+}
+
+.course-module-card > p:first-child {
+  margin: 0;
+}
+
+.course-module-index {
+  background: var(--course-lime, #bef264);
+  color: var(--course-ink, #1a1a1a);
+  display: inline-block;
+  font-family: var(--course-font-mono, "JetBrains Mono", monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.45rem 0.55rem;
+}
+
+.course-module-card h4 {
+  color: var(--course-ink, #1a1a1a);
+  font-family: var(--course-font-heading, "Space Grotesk", sans-serif);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  margin: 1.15rem 0 0.55rem;
+  overflow-wrap: anywhere;
+}
+
+.course-module-meta {
+  color: var(--course-muted, #52525b);
+  font-family: var(--course-font-mono, "JetBrains Mono", monospace);
+  font-size: 0.77rem;
+  line-height: 1.5;
+  margin: 0 0 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+.course-module-description {
+  color: var(--course-text, #27272a);
+  font-family: var(--course-font-body, Inter, sans-serif);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+  .course-module-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .course-module-card,
+  .course-module-card:nth-child(even) {
+    border-left: 0;
+    padding: 1.25rem 0 1.5rem;
+  }
+}

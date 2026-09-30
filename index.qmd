@@ -1,93 +1,127 @@
 ---
-title: "Modern AI"
-subtitle: "Architectural Foundations, Infrastructure & End-to-End Systems"
-author: "Aleksey Ryabykin"
+title: ""
+pagetitle: "Modern AI"
+toc: false
 ---
 
-## Overview
+::: {.course-home}
+
+::: {.course-home-hero}
+
+<p class="course-kicker course-home-hero-kicker"><span class="course-home-marker" aria-hidden="true"></span> Modern Artificial Intelligence <span class="course-home-kicker-separator" aria-hidden="true">/</span> 2026–2027</p>
+
+```{=html}
+<h1 class="course-home-title">Modern AI</h1>
+```
+
+<p class="course-home-subtitle">Architectural Foundations, Infrastructure &amp; End-to-End Systems</p>
+
+<div class="course-home-hero-bottom">
+  <p class="course-home-author"><span class="course-home-meta-label">Course by</span> Aleksey Ryabykin</p>
+  <p class="course-home-year">Academic year <strong>2026–2027</strong></p>
+</div>
+
+:::
+
+::: {.course-home-section .course-home-overview}
+
+<p class="course-kicker">01 / The course</p>
+
+## Overview {#overview .course-home-heading}
 
 Welcome to **Modern Artificial Intelligence** course (2026–2027).
 
 This course combines rigorous mathematical foundations with practical systems engineering: reading research papers alongside code, implementing components from scratch, and executing a capstone applied project.
 
-::: {.grid}
+::: {.course-home-hubs role="navigation" aria-label="Explore course sections"}
 
+[<span class="course-home-hub-number">01</span><span class="course-home-hub-title">Modules</span><span class="course-home-hub-arrow" aria-hidden="true">↗</span>](raw/modules.qmd){#modules .course-home-hub}
 
-::: {.g-col-12 .g-col-md-3}
-### 🧩 [Modules](raw/modules.qmd)
-:::
+[<span class="course-home-hub-number">02</span><span class="course-home-hub-title">Lectures</span><span class="course-home-hub-arrow" aria-hidden="true">↗</span>](raw/lectures.qmd){#lectures .course-home-hub}
 
-::: {.g-col-12 .g-col-md-3}
-### 📚 [Lectures](raw/lectures.qmd)
-:::
+[<span class="course-home-hub-number">03</span><span class="course-home-hub-title">Seminars</span><span class="course-home-hub-arrow" aria-hidden="true">↗</span>](raw/seminars.qmd){#seminars .course-home-hub}
 
-::: {.g-col-12 .g-col-md-3}
-### 🛠️ [Seminars](raw/seminars.qmd)
-:::
+[<span class="course-home-hub-number">04</span><span class="course-home-hub-title">Projects</span><span class="course-home-hub-arrow" aria-hidden="true">↗</span>](raw/projects.qmd){#projects .course-home-hub}
 
-::: {.g-col-12 .g-col-md-3}
-### 🚀 [Projects](raw/projects.qmd)
 :::
 
 :::
 
----
+::: {.course-home-section .course-home-materials}
 
-## Lectures
+<p class="course-kicker">02 / Teaching materials</p>
 
-| # | M | Topic | Interactive | PDF | PPTX |
-|:---:|:---:|---|:---:|:---:|:---:|
-| **01** | **M1** | **Course Structure & Roadmap** | [HTML →](raw/lectures/01_intro/course_structure.qmd){.btn .btn-outline-primary .btn-sm} | [PDF](raw/lectures/01_intro/course_structure.pdf){.btn .btn-outline-secondary .btn-sm} | [PPTX](raw/lectures/01_intro/course_structure.pptx){.btn .btn-outline-secondary .btn-sm} |
-| <span class="text-muted">**02**</span> | <span class="text-muted">**M1**</span> | <span class="text-muted">**AI Overview: Models & Modalities Taxonomy**</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
+## Lectures {#lectures-1 .course-home-heading}
 
-::: {.callout-note}
-### Lecture Materials
+{{< include pages/_lecture-materials.qmd >}}
+
+::: {.course-home-note}
+**Lecture Materials**
+
 Lecture materials will be uploaded to the website within 1–3 days after each lecture.
 :::
 
----
+:::
 
-## Seminars
+::: {.course-home-section .course-home-materials}
 
-| # | M | Topic | Link | Materials |
-|:---:|:---:|---|:---:|:---:|
-| <span class="text-muted">**01**</span> | <span class="text-muted">**M1**</span> | <span class="text-muted">**Environment Setup, PyTorch & Kaggle Basics**</span> | <span class="text-muted">*TBA*</span> | <span class="text-muted">*TBA*</span> |
+<p class="course-kicker">03 / Practice</p>
 
-::: {.callout-note}
-### Seminar Materials
+## Seminars {#seminars-1 .course-home-heading}
+
+{{< include pages/_seminar-materials.qmd >}}
+
+::: {.course-home-note}
+**Seminar Materials**
+
 Seminar materials will be uploaded to the website within 1–2 days after each seminar.
 :::
 
----
+:::
 
-## Capstone Projects
+::: {.course-home-section .course-home-projects}
 
-| # | Project name | Project Page |
-|:---:|---|:---:|
-| **01** | **DreamBooth** | [Open →](raw/lectures/01_intro/project_pages/p01_dreambooth.html){.btn .btn-outline-primary .btn-sm} |
-| **02** | **Textual Inversion** | [Open →](raw/lectures/01_intro/project_pages/p02_textual_inversion.html){.btn .btn-outline-primary .btn-sm} |
-| **03** | **Weapon Detection & Blur** | [Open →](raw/lectures/01_intro/project_pages/p03_weapon_detection.html){.btn .btn-outline-primary .btn-sm} |
-| **04** | **Text-to-SQL with LoRA** | [Open →](raw/lectures/01_intro/project_pages/p04_sql_lora.html){.btn .btn-outline-primary .btn-sm} |
-| **05** | **Structured JSON with LoRA** | [Open →](raw/lectures/01_intro/project_pages/p05_json_lora.html){.btn .btn-outline-primary .btn-sm} |
-| **06** | **Music-to-Image** | [Open →](raw/lectures/01_intro/project_pages/p06_music_image.html){.btn .btn-outline-primary .btn-sm} |
-| **07** | **Object Removal** | [Open →](raw/lectures/01_intro/project_pages/p07_object_removal.html){.btn .btn-outline-primary .btn-sm} |
-| **08** | **Lyrics Transcription** | [Open →](raw/lectures/01_intro/project_pages/p08_lyrics.html){.btn .btn-outline-primary .btn-sm} |
-| **09** | **Hair Segmentation & Sharpening** | [Open →](raw/lectures/01_intro/project_pages/p09_hair.html){.btn .btn-outline-primary .btn-sm} |
-| **10** | **Portrait Bokeh** | [Open →](raw/lectures/01_intro/project_pages/p10_bokeh.html){.btn .btn-outline-primary .btn-sm} |
+<p class="course-kicker">04 / Applied work</p>
 
-::: {.callout-tip}
-### Detailed Project Catalog
+## Capstone Projects {#capstone-projects .course-home-heading}
+
+::: {.course-home-project-grid}
+
+```{=html}
+<ol role="list">
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p01_dreambooth.html"><span class="course-home-project-number">01</span><span class="course-home-project-name">DreamBooth</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p02_textual_inversion.html"><span class="course-home-project-number">02</span><span class="course-home-project-name">Textual Inversion</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p03_weapon_detection.html"><span class="course-home-project-number">03</span><span class="course-home-project-name">Weapon Detection &amp; Blur</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p04_sql_lora.html"><span class="course-home-project-number">04</span><span class="course-home-project-name">Text-to-SQL with LoRA</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p05_json_lora.html"><span class="course-home-project-number">05</span><span class="course-home-project-name">Structured JSON with LoRA</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p06_music_image.html"><span class="course-home-project-number">06</span><span class="course-home-project-name">Music-to-Image</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p07_object_removal.html"><span class="course-home-project-number">07</span><span class="course-home-project-name">Object Removal</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p08_lyrics.html"><span class="course-home-project-number">08</span><span class="course-home-project-name">Lyrics Transcription</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p09_hair.html"><span class="course-home-project-number">09</span><span class="course-home-project-name">Hair Segmentation &amp; Sharpening</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p10_bokeh.html"><span class="course-home-project-number">10</span><span class="course-home-project-name">Portrait Bokeh</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+</ol>
+```
+
+:::
+
+::: {.course-home-note .course-home-catalog-note}
+**Detailed Project Catalog**
+
 View full project details, research paper references in the [Capstone Projects Hub](raw/projects.qmd).
 :::
 
----
+:::
 
-## Contacts & Community
+::: {.course-home-section .course-home-contacts}
+
+<p class="course-kicker">05 / Stay connected</p>
+
+## Contacts & Community {#contacts-community .course-home-heading}
 
 ```{=html}
 {{< include pages/contacts.html >}}
 ```
 
+:::
 
-
-
+:::
