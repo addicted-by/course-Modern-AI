@@ -1,0 +1,381 @@
+/* Methods inserted after the acceleration overview. All rules are scoped. */
+.reveal .slides section.speed-slide {
+  background: #fff;
+  --speed-gray: #999;
+  --speed-light: #d9d9d9;
+}
+.reveal .speed-slide > h2 {
+  top: 36px;
+  right: 315px;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+}
+.reveal .speed-slide .speed-category {
+  position: absolute;
+  top: 110px;
+  left: 52px;
+  right: 52px;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  border-left: 4px solid var(--lecture-pop-lime);
+  padding-left: 12px;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+.reveal .speed-slide .speed-combination {
+  font-weight: 400;
+  color: var(--lecture-muted);
+}
+.reveal .speed-slide .speed-lead {
+  position: absolute;
+  top: 157px;
+  left: 52px;
+  right: 52px;
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 400;
+}
+.reveal .speed-slide .speed-body {
+  position: absolute;
+  top: 245px;
+  left: 52px;
+  width: 1496px;
+  height: 440px;
+  display: grid;
+  grid-template-columns: 900px 550px;
+  gap: 46px;
+  font-size: 24px;
+  line-height: 1.25;
+}
+.reveal .speed-slide .speed-mechanism,
+.reveal .speed-slide .speed-results { min-width: 0; position: relative; }
+.reveal .speed-slide .speed-label {
+  font-size: 17px;
+  color: var(--lecture-muted);
+  line-height: 1.2;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.reveal .speed-slide .speed-mechanism > svg {
+  display: block;
+  width: 900px;
+  height: 430px;
+  max-height: none;
+  overflow: visible;
+  font-family: var(--lecture-font-sans);
+}
+.reveal .speed-slide .speed-results {
+  border-left: 1px solid var(--lecture-border);
+  padding-left: 28px;
+}
+.reveal .speed-slide .speed-context {
+  font-size: 20px;
+  line-height: 1.35;
+  margin: 0 0 18px;
+}
+.reveal .speed-slide .speed-result-note {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--lecture-muted);
+}
+.reveal .speed-slide .speed-results img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 315px;
+  object-fit: contain;
+  object-position: left center;
+}
+.reveal .speed-slide .speed-results svg {
+  width: 100%;
+  max-height: 320px;
+  overflow: visible;
+}
+.reveal .speed-slide .speed-metric {
+  margin: 18px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 16px;
+  row-gap: 8px;
+}
+.reveal .speed-slide .speed-metric-label { font-size: 22px; line-height: 1.2; }
+.reveal .speed-slide .speed-metric-value {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+}
+.reveal .speed-slide .speed-bar {
+  grid-column: 1 / -1;
+  height: 10px;
+  background: var(--speed-light);
+}
+.reveal .speed-slide .speed-highlight .speed-bar { background: var(--lecture-pop-lime); }
+.reveal .speed-slide .speed-highlight .speed-metric-value {
+  text-decoration: underline;
+  text-decoration-color: var(--lecture-pop-lime);
+  text-decoration-thickness: 7px;
+  text-underline-offset: 5px;
+}
+.reveal .speed-slide .speed-takeaway {
+  position: absolute;
+  left: 52px;
+  right: 52px;
+  top: 730px;
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.reveal .speed-slide .speed-source {
+  position: absolute;
+  left: 52px;
+  right: 52px;
+  bottom: 24px;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--lecture-muted);
+}
+.reveal .speed-slide .speed-source a { color: inherit; }
+.reveal .speed-slide svg text {
+  font-family: var(--lecture-font-sans);
+  fill: var(--lecture-fg);
+  font-size: 24px;
+}
+.reveal .speed-slide svg .speed-text { font-size: 24px; }
+.reveal .speed-slide svg .speed-small { font-size: 20px; }
+.reveal .speed-slide svg .speed-path {
+  fill: none;
+  stroke: var(--speed-gray);
+  stroke-width: 3;
+}
+.reveal .speed-slide svg .speed-accent {
+  fill: none;
+  stroke: var(--lecture-pop-lime);
+  stroke-width: 5;
+}
+.reveal .speed-slide svg .speed-dot { fill: var(--lecture-fg); }
+.reveal .speed-slide svg .speed-accent-dot {
+  fill: var(--lecture-pop-lime);
+  stroke: var(--lecture-fg);
+  stroke-width: 1;
+}
+.reveal .speed-slide svg .speed-box {
+  fill: #fff;
+  stroke: var(--speed-gray);
+  stroke-width: 2;
+}
+.reveal .speed-slide svg .speed-accent-box {
+  fill: var(--lecture-pop-lime);
+  stroke: var(--lecture-fg);
+  stroke-width: 1.5;
+}
+.reveal .speed-slide .speed-training {
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--lecture-muted);
+}
+/* DDIM Appendix D.2: keep the schedule graph separate from reported FID. */
+.reveal #speed-m01 .ddim-schedule-plot {
+  display: block;
+  width: 900px;
+  height: 430px;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+.reveal #speed-m01 .ddim-rule {
+  position: absolute;
+  top: 52px;
+  left: 558px;
+  width: 340px;
+  font-size: 22px;
+  line-height: 1.35;
+}
+.reveal #speed-m01 .ddim-rule > p {
+  margin: 0 0 17px;
+  font-size: 30px;
+}
+.reveal #speed-m01 .ddim-example {
+  font-size: 20px;
+  color: var(--lecture-muted);
+}
+.reveal #speed-m01 .ddim-explanation {
+  margin-top: 19px;
+  padding-left: 12px;
+  border-left: 4px solid var(--lecture-pop-lime);
+}
+.reveal #speed-m01 .ddim-model {
+  margin-top: 17px;
+  font-size: 20px;
+  color: var(--lecture-muted);
+}
+/* Flow Matching solver comparison. Keep all additions local to this slide. */
+.reveal #speed-flow-solvers .speed-body {
+  top: 220px;
+  height: 540px;
+  grid-template-columns: 1030px 430px;
+  gap: 36px;
+}
+.reveal #speed-flow-solvers .speed-lead .math { margin-left: 10px; }
+.reveal #speed-flow-solvers .fm-trajectory {
+  width: 1030px;
+  height: 260px;
+}
+.reveal #speed-flow-solvers svg .fm-caption {
+  font-size: 17px;
+  letter-spacing: .055em;
+  fill: var(--lecture-muted);
+}
+.reveal #speed-flow-solvers .fm-reference {
+  fill: none;
+  stroke: var(--speed-light);
+  stroke-width: 5;
+}
+.reveal #speed-flow-solvers .fm-velocity {
+  fill: none;
+  stroke: var(--lecture-fg);
+  stroke-width: 2.5;
+}
+.reveal #speed-flow-solvers .fm-euler {
+  fill: none;
+  stroke: var(--speed-gray);
+  stroke-width: 3;
+  stroke-dasharray: 7 6;
+}
+.reveal #speed-flow-solvers .fm-predictor-dot {
+  fill: #fff;
+  stroke: var(--speed-gray);
+  stroke-width: 2;
+}
+.reveal #speed-flow-solvers .fm-error {
+  fill: none;
+  stroke: var(--speed-gray);
+  stroke-width: 1.5;
+}
+.reveal #speed-flow-solvers .fm-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 12px;
+}
+.reveal #speed-flow-solvers .fm-method {
+  min-width: 0;
+  border-top: 1px solid var(--lecture-border);
+  padding-top: 14px;
+}
+.reveal #speed-flow-solvers .fm-method-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 24px;
+}
+.reveal #speed-flow-solvers .fm-method-heading > span {
+  font-size: 18px;
+  white-space: nowrap;
+}
+.reveal #speed-flow-solvers .fm-method-subtitle {
+  font-size: 21px;
+  margin-top: 4px;
+  color: var(--lecture-muted);
+}
+.reveal #speed-flow-solvers .fm-cache-flow { margin-top: 15px; }
+.reveal #speed-flow-solvers .fm-cache-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  font-size: 20px;
+}
+.reveal #speed-flow-solvers .fm-cache-inputs > span {
+  border: 1px solid var(--speed-gray);
+  padding: 6px 10px;
+  text-align: center;
+}
+.reveal #speed-flow-solvers .fm-cache-flow > svg {
+  display: block;
+  width: 100%;
+  height: 28px;
+  overflow: visible;
+}
+.reveal #speed-flow-solvers .fm-next-update {
+  background: var(--lecture-pop-lime);
+  border: 1px solid var(--lecture-fg);
+  text-align: center;
+  font-size: 21px;
+  padding: 5px;
+}
+.reveal #speed-flow-solvers .fm-formula {
+  margin-top: 15px;
+  font-size: 23px;
+  white-space: nowrap;
+}
+.reveal #speed-flow-solvers .fm-method-note {
+  margin-top: 12px;
+  font-size: 20px;
+  color: var(--lecture-muted);
+}
+.reveal #speed-flow-solvers .fm-heun-steps {
+  margin-top: 15px;
+  font-size: 21px;
+  line-height: 1.7;
+}
+.reveal #speed-flow-solvers .fm-heun-steps > div {
+  display: grid;
+  grid-template-columns: 94px 1fr;
+  gap: 8px;
+}
+.reveal #speed-flow-solvers .fm-step-label {
+  font-size: 18px;
+  color: var(--lecture-muted);
+}
+.reveal #speed-flow-solvers .fm-corrected {
+  margin-top: 6px;
+  border-left: 4px solid var(--lecture-pop-lime);
+  padding-left: 12px;
+}
+.reveal #speed-flow-solvers .fm-evidence { padding-left: 24px; }
+.reveal #speed-flow-solvers table {
+  width: 100%;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  border-collapse: collapse;
+}
+.reveal #speed-flow-solvers table th,
+.reveal #speed-flow-solvers table td {
+  padding: 9px 5px;
+  border-bottom: 1px solid var(--lecture-border);
+  vertical-align: middle;
+  text-align: left;
+}
+.reveal #speed-flow-solvers table thead th {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--lecture-muted);
+}
+.reveal #speed-flow-solvers table th:first-child,
+.reveal #speed-flow-solvers table td:first-child { padding-left: 0; }
+.reveal #speed-flow-solvers table td:nth-last-child(-n+2) {
+  font-variant-numeric: tabular-nums;
+}
+.reveal #speed-flow-solvers .fm-comparison td:nth-child(2) { font-size: 18px; }
+.reveal #speed-flow-solvers .fm-footnote {
+  margin-top: 12px;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--lecture-muted);
+}
+.reveal #speed-flow-solvers .fm-benchmark { margin-top: 28px; }
+.reveal #speed-flow-solvers .fm-benchmark .speed-label { margin-bottom: 8px; }
+.reveal #speed-flow-solvers .fm-benchmark-context { font-size: 20px; margin-bottom: 10px; }
+.reveal #speed-flow-solvers .fm-ot-row { background: var(--lecture-pop-lime); }
+.reveal #speed-flow-solvers .speed-takeaway { top: 787px; }
+@media print {
+  .reveal .speed-slide .fragment { opacity: 1; visibility: visible; }
+}

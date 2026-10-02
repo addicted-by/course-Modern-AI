@@ -1,0 +1,253 @@
+## DDIM — Skip steps, keep the model {#speed-m01 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Choose fewer noise levels while reusing the same trained denoiser.</div>
+<div class="speed-body">
+  <div class="speed-mechanism speed-ddim-mechanism">
+    <div class="speed-label">Quadratic timestep selection</div>
+    <img class="ddim-schedule-plot" src="assets/final/acceleration_20261002/m01/quadratic_schedule.svg" alt="Quadratic versus linear timestep selection for T=1000 and S=10. The parabola selects 10, 40, 90, 160, 250, 360, 490, 640, 810, and 1000. The timeline shows more steps near small t; reverse sampling moves from noise toward the image." />
+    <div class="ddim-rule">
+```
+
+$\tau_i = \lfloor c i^2 \rfloor$
+
+```{=html}
+      <div class="ddim-example">Example: T = 1000, S = 10<br>c = T / S² = 10</div>
+      <div class="ddim-explanation">More steps near small t,<br>at the end of denoising.</div>
+      <div class="ddim-model">Same frozen denoiser<br>η = 0: no fresh noise</div>
+    </div>
+  </div>
+  <div class="speed-results">
+    <div class="speed-label">Reported results</div>
+    <div class="speed-context">DDPM checkpoint · CIFAR-10 · 32×32<br>Unconditional · 1 denoiser call / step</div>
+    <svg viewBox="0 0 510 305" role="img" aria-label="Reported CIFAR-10 FID by sampling steps from DDIM Table 1; log-scaled x axis." style="width:100%;height:auto;max-height:305px"><rect x="190.0259759430841" y="34" width="24" height="189" fill="var(--lecture-pop-lime)" opacity="0.25"/><path d="M50 223.0 H485" stroke="var(--lecture-border)" stroke-width="1" fill="none"/><text x="40" y="230.0" class="speed-small" text-anchor="end" >0</text><path d="M50 139.0 H485" stroke="var(--lecture-border)" stroke-width="1" fill="none"/><text x="40" y="146.0" class="speed-small" text-anchor="end" >20</text><path d="M50 55.0 H485" stroke="var(--lecture-border)" stroke-width="1" fill="none"/><text x="40" y="62.0" class="speed-small" text-anchor="end" >40</text><path d="M50 34 V223 H485" stroke="var(--lecture-muted)" stroke-width="1.5" fill="none"/><text x="50" y="23" class="speed-small" text-anchor="start" >FID ↓</text><text x="50.0" y="251" class="speed-small" text-anchor="middle" >10</text><text x="115.47402405691591" y="251" class="speed-small" text-anchor="middle" >20</text><text x="202.0259759430841" y="251" class="speed-small" text-anchor="middle" >50</text><text x="267.5" y="251" class="speed-small" text-anchor="middle" >100</text><text x="485.0" y="251" class="speed-small" text-anchor="middle" >1000</text><text x="485" y="23" class="speed-small" text-anchor="end" >Steps · log scale</text><polyline points="50.00,50.51 115.47,145.89 202.03,189.36 267.50,198.72 485.00,203.13" fill="none" stroke="var(--lecture-muted)" stroke-width="4"/><circle cx="50.00" cy="50.51" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 1: 10 NFE, FID 41.07</title></circle><circle cx="115.47" cy="145.89" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 1: 20 NFE, FID 18.36</title></circle><circle cx="202.03" cy="189.36" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 1: 50 NFE, FID 8.01</title></circle><circle cx="267.50" cy="198.72" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 1: 100 NFE, FID 5.78</title></circle><circle cx="485.00" cy="203.13" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 1: 1000 NFE, FID 4.73</title></circle><path d="M50 289 H75" stroke="var(--lecture-muted)" stroke-width="5"/><text x="83" y="297" class="speed-small" text-anchor="start" >η = 1</text><polyline points="50.00,166.89 115.47,194.27 202.03,203.39 267.50,205.53 485.00,206.03" fill="none" stroke="var(--lecture-pop-lime)" stroke-width="4"/><circle cx="50.00" cy="166.89" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 0: 10 NFE, FID 13.36</title></circle><circle cx="115.47" cy="194.27" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 0: 20 NFE, FID 6.84</title></circle><circle cx="202.03" cy="203.39" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 0: 50 NFE, FID 4.67</title></circle><circle cx="267.50" cy="205.53" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 0: 100 NFE, FID 4.16</title></circle><circle cx="485.00" cy="206.03" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>η = 0: 1000 NFE, FID 4.04</title></circle><path d="M270 289 H295" stroke="var(--lecture-pop-lime)" stroke-width="5"/><text x="303" y="297" class="speed-small" text-anchor="start" >η = 0</text></svg>
+    <div class="speed-result-note">50 steps: η = 0 → <strong>4.67</strong>; η = 1 → <strong>8.01</strong> FID.</div>
+  </div>
+</div>
+<div class="speed-takeaway">Change the sampling process, not the network.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m01">DDIM: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2010.02502v4#A4.SS2">DDIM · Appendix D.2</a> · schedule: illustrative normalization · FID: Table 1 (v4), redrawn from reported values</div>
+```
+
+::: {.notes}
+
+Слева показан выбор временных шагов из Appendix D.2: $\tau_i=\lfloor ci^2\rfloor$. Ось i — индекс в возрастающей подпоследовательности, ось $\tau_i$ — выбранный шаг исходного диффузионного процесса. Серый пунктир показывает линейный выбор при том же числе точек. Для наглядности взяты T = 1000, S = 10 и c = T/S² = 10: получаются шаги 10, 40, 90, 160, 250, 360, 490, 640, 810, 1000. Это учебная нормировка формулы статьи. В Appendix D.2 требуется лишь подобрать c так, чтобы последний шаг был близок к T; точное значение c там не фиксируется.
+
+Нижние ряды переносят те же точки на общую шкалу t. Квадратичная сетка плотнее при малых t. Обратный процесс идёт справа налево, поэтому частые вызовы сети приходятся на конец удаления шума. Ноль на шкале обозначает чистое изображение и не входит в десять выбранных шагов. Кривая сверху соединяет дискретные точки для наглядности; речь о выборе времён, а не о квадратичном расписании β. Авторы использовали квадратичный выбор для CIFAR-10 и линейный для остальных датасетов. [@diff_ddim]
+
+График иллюстрирует правило статьи, а не буквально индексацию реализации: [официальный код](https://github.com/ermongroup/ddim/blob/main/runners/diffusion.py#L315-L326) строит quad-сетку через linspace(0, sqrt(0.8T), S)² с округлением вниз и нулевой индексацией. Поэтому крайняя точка в коде около 0.8T, а на учебном графике T. Десять точек слева не соответствуют выделенному результату на 50 шагах справа.
+
+Одна и та же обученная модель используется во всех выбранных точках. Детерминированный режим η = 0 не добавляет новый шум между обновлениями; при фиксированных исходном шуме, модели и расписании результат воспроизводим.
+
+График построен по Table 1 версии v4: CIFAR-10 32×32, безусловная DDPM-модель, один вызов сети на шаг. Ось шагов логарифмическая, FID — линейная. η = 1 обозначает стохастический вариант из этой таблицы; это не строка с другой дисперсией σ̂. При 50 шагах соответствующие FID равны 4.67 и 8.01. Изменение расписания не гарантирует тождественные изображения или отсутствие потерь качества: наклон кривых показывает компромисс. [@diff_ddim]
+
+Переход: можно улучшать не только выбор точек, но и само численное обновление.
+
+:::
+
+## DPM-Solver — Solve the easy part exactly {#speed-m02 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Integrate known linear dynamics exactly; spend network calls on the nonlinear part.</div>
+<div class="speed-body">
+  <div class="speed-mechanism">
+    <div class="speed-label">Schematic</div>
+    <svg viewBox="0 0 900 430" role="img" aria-label="Known linear evolution is integrated exactly while two denoiser evaluations approximate the neural contribution."><defs><marker id="speed-m02-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs><text x="68" y="39" class="speed-text" text-anchor="start" >One second-order solver step</text><path d="M80 197 C260 55 472 59 810 178" class="speed-path" stroke-dasharray="7 7"/><text x="580" y="49" class="speed-small" text-anchor="start" >Reference path</text><path d="M80 197 L810 94" class="speed-path" marker-end="url(#speed-m02-arrow)" /><circle cx="810" cy="94" r="8" class="speed-dot" /><text x="819" y="102" class="speed-small" text-anchor="start" >RK2</text><circle cx="80" cy="197" r="8" class="speed-dot" /><text x="58" y="240" class="speed-small" text-anchor="start" >Start</text><g class="fragment" data-fragment-index="0"><path d="M80 197 Q240 91 412 111 Q610 104 810 178" class="speed-accent" marker-end="url(#speed-m02-arrow)" /><circle cx="412" cy="111" r="8" class="speed-accent-dot" /><circle cx="810" cy="178" r="8" class="speed-accent-dot" /><text x="545" y="214" class="speed-small" text-anchor="start" >DPM-Solver-2</text></g><rect x="60" y="284" width="325" height="69" rx="0" class="speed-box"/><text x="222.5" y="327.5" class="speed-text" text-anchor="middle" >Exact linear update</text><text x="415" y="330" class="speed-text" text-anchor="middle" >+</text><g class="fragment" data-fragment-index="0"><rect x="448" y="284" width="390" height="69" rx="0" class="speed-accent-box"/><text x="643.0" y="327.5" class="speed-text" text-anchor="middle" >Neural contribution</text></g><text x="220" y="392" class="speed-small" text-anchor="middle" >Known analytically</text><text x="650" y="392" class="speed-small" text-anchor="middle" >2 evaluations: start + midpoint</text></svg>
+  </div>
+  <div class="speed-results">
+    <div class="speed-label">Reported results</div>
+    <div class="speed-context">VP deep continuous-time DPM<br>CIFAR-10 · 32×32 · unconditional · 12 NFE</div>
+    <div style="margin-top:25px"><div class="speed-metric"><div class="speed-metric-label">RK2 in t · FID ↓</div><div class="speed-metric-value">16.40</div><div class="speed-bar" style="width:91.111%"></div></div><div class="speed-metric speed-highlight"><div class="speed-metric-label">DPM-Solver-2 · FID ↓</div><div class="speed-metric-value">5.28</div><div class="speed-bar" style="width:29.333%"></div></div></div>
+    <div class="speed-result-note">Same NFE budget; RK2 uses uniform t, DPM-Solver uniform log-SNR.</div>
+  </div>
+</div>
+<div class="speed-takeaway">One solver step can require several network evaluations.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m02">DPM-Solver: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2206.00927v3">DPM-Solver · 2022</a> · v3: Algorithm 1, Table 1</div>
+```
+
+::: {.notes}
+
+Серая пунктирная траектория — авторская схема эталонного решения, а не измерение из эксперимента. Линейная часть диффузионного ODE известна, поэтому её интегрируют аналитически. Часть с выходом нейросети остаётся приближённой. Клик выделяет именно эту часть и схематичное уточнение траектории.
+
+У DPM-Solver-2 один шаг использует два вычисления: в начале и в промежуточной точке. Значит, 12 NFE здесь соответствуют шести полным шагам второго порядка, а не двенадцати таким шагам.
+
+Столбцы: Table 1, v3, безусловный VP deep continuous-time checkpoint на CIFAR-10 32×32, 50 000 сэмплов. При 12 NFE RK2 в t получает 16.40 FID, DPM-Solver-2 — 5.28. Это сравнение методов с их расписаниями: RK2 использует равномерную сетку t, DPM-Solver — равномерную сетку half-log-SNR λ. Нельзя приписывать всю разницу только одной операции или переносить числа на другую модель. [@diff_dpm_solver]
+
+:::
+
+## Flow Matching — make large ODE steps accurate {#speed-flow-solvers .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">A learned velocity field still needs an accurate ODE solver: <span class="math inline">\frac{dx}{dt}=v_\theta(x,t)</span>.</div>
+<div class="speed-body fm-solver-body">
+  <div class="speed-mechanism">
+    <svg class="fm-trajectory" viewBox="0 0 1030 270" role="img" aria-label="Schematic noise-to-data ODE path. A large Euler step follows the current tangent and misses the curved reference path. AB2 reuses the previous velocity. Heun evaluates the velocity at the Euler predictor and corrects the step.">
+      <defs><marker id="fm-solvers-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs>
+      <text x="0" y="22" class="fm-caption">ONE LEARNED FIELD, DIFFERENT NUMERICAL UPDATES</text>
+      <path d="M65 224 C125 217 164 173 260 139 C340 109 402 91 470 100 C580 115 625 177 690 188 C785 217 856 178 953 133" class="fm-reference"/>
+      <text x="55" y="110" class="speed-small">Reference ODE path</text>
+      <circle cx="65" cy="224" r="6" class="speed-dot"/><text x="26" y="260">Noise</text>
+      <circle cx="953" cy="133" r="6" class="speed-dot"/><text x="930" y="107">Data</text>
+      <circle cx="470" cy="100" r="7" class="speed-dot"/><text x="439" y="148">xₙ</text>
+      <path d="M470 100 L558 112" class="fm-velocity" marker-end="url(#fm-solvers-arrow)"/><text x="518" y="83">vₙ</text>
+      <circle cx="690" cy="188" r="7" class="speed-dot"/><text x="657" y="237">xₙ₊₁</text>
+      <path d="M690 188 L776 211" class="fm-velocity" marker-end="url(#fm-solvers-arrow)"/><text x="773" y="242">vₙ₊₁</text>
+      <g class="fragment" data-fragment-index="0">
+        <path d="M470 100 L690 130" class="fm-euler" marker-end="url(#fm-solvers-arrow)"/>
+        <circle cx="690" cy="130" r="6" class="fm-predictor-dot"/>
+        <path d="M690 143 V174" class="fm-error"/><path d="M681 143 H699 M681 174 H699" class="fm-error"/>
+        <text x="566" y="56" class="speed-small">Large Euler step</text>
+        <text x="724" y="190" class="speed-small">Error</text>
+      </g>
+      <g class="fragment" data-fragment-index="1">
+        <circle cx="260" cy="139" r="7" class="speed-dot"/><text x="223" y="201">xₙ₋₁</text>
+        <path d="M260 139 L348 103" class="fm-velocity" marker-end="url(#fm-solvers-arrow)"/><text x="280" y="96">vₙ₋₁</text>
+        <path d="M470 100 Q572 111 690 188" class="speed-accent" marker-end="url(#fm-solvers-arrow)"/>
+        <circle cx="690" cy="188" r="7" class="speed-accent-dot"/>
+        <text x="475" y="210" class="speed-small">Corrected update</text>
+      </g>
+      <g class="fragment" data-fragment-index="2">
+        <path d="M690 130 L782 169" class="fm-velocity" marker-end="url(#fm-solvers-arrow)"/>
+        <path d="M690 130 Q721 161 690 188" class="speed-accent" marker-end="url(#fm-solvers-arrow)"/>
+        <text x="748" y="122" class="speed-small">k₂ at predictor</text>
+        <text x="627" y="109" class="speed-small">x̃ₙ₊₁</text>
+      </g>
+    </svg>
+    <div class="fm-methods">
+      <div class="fm-method fragment" data-fragment-index="1">
+        <div class="fm-method-heading"><strong>Adams–Bashforth 2</strong><span>1 new NFE / step*</span></div>
+        <div class="fm-method-subtitle">Reuse the past</div>
+        <div class="fm-cache-flow">
+          <div class="fm-cache-inputs"><span>Previous <span class="math inline">v_{n-1}</span></span><span>Current <span class="math inline">v_n</span></span></div>
+          <svg viewBox="0 0 485 28" aria-hidden="true"><path d="M121 0 V9 H364 V0" class="fm-velocity"/><path d="M242 9 V26" class="fm-velocity" marker-end="url(#fm-solvers-arrow)"/></svg>
+          <div class="fm-next-update">Next update</div>
+        </div>
+        <div class="fm-formula"><span class="math inline">x_{n+1}=x_n+h\!\left(\frac32v_n-\frac12v_{n-1}\right)</span></div>
+        <div class="fm-method-note">Extrapolate the change in velocity.</div>
+      </div>
+      <div class="fm-method fragment" data-fragment-index="2">
+        <div class="fm-method-heading"><strong>RK2 / Heun</strong><span>2 NFE / step</span></div>
+        <div class="fm-method-subtitle">Look ahead and correct</div>
+        <div class="fm-heun-steps">
+          <div><span class="fm-step-label">Current</span><span class="math inline">k_1=v_\theta(x_n,t_n)</span></div>
+          <div><span class="fm-step-label">Predict</span><span class="math inline">\tilde x_{n+1}=x_n+h\,k_1</span></div>
+          <div><span class="fm-step-label">Evaluate</span><span class="math inline">k_2=v_\theta(\tilde x_{n+1},t_{n+1})</span></div>
+        </div>
+        <div class="fm-formula fm-corrected"><span class="math inline">x_{n+1}=x_n+\frac h2(k_1+k_2)</span></div>
+        <div class="fm-method-note">Average the two velocity estimates.</div>
+      </div>
+    </div>
+  </div>
+  <div class="speed-results fm-evidence">
+    <div class="speed-label">Cost of one step</div>
+    <table class="fm-comparison" aria-label="Euler, AB2 and Heun information, network evaluations and global order">
+      <thead><tr><th>Solver</th><th>Uses</th><th>NFE</th><th>Order</th></tr></thead>
+      <tbody>
+        <tr class="fragment" data-fragment-index="0"><th>Euler</th><td>Current</td><td>1</td><td>1</td></tr>
+        <tr class="fragment" data-fragment-index="1"><th>AB2</th><td>Past + current</td><td>1*</td><td>2</td></tr>
+        <tr class="fragment" data-fragment-index="2"><th>Heun</th><td>Current + predictor</td><td>2</td><td>2</td></tr>
+      </tbody>
+    </table>
+    <div class="fm-footnote">* After warm-up. AB2 formula uses fixed <span class="math inline">h</span>.<br>NFE = network evaluations. Order = global order.</div>
+    <div class="fm-benchmark">
+      <div class="speed-label">Path geometry also matters</div>
+      <div class="fm-benchmark-context">ImageNet 64×64, unconditional</div>
+      <table aria-label="Flow Matching paper Table 1, ImageNet64 reported FID and mean NFE with the same adaptive solver">
+        <thead><tr><th>Trained path</th><th>FID ↓</th><th>Mean NFE ↓</th></tr></thead>
+        <tbody>
+          <tr><td>DDPM</td><td>17.36</td><td>264</td></tr>
+          <tr><td>FM, diffusion</td><td>16.88</td><td>187</td></tr>
+          <tr class="fm-ot-row"><td>FM, OT</td><td>14.45</td><td>138</td></tr>
+        </tbody>
+      </table>
+      <div class="fm-footnote">Different trained paths, same adaptive solver.<br>dopri5, atol = rtol = 10⁻⁵. Not a solver ablation.</div>
+    </div>
+  </div>
+</div>
+<div class="speed-takeaway">Reuse the past or evaluate the future.</div>
+<div class="speed-source"><a href="https://arxiv.org/html/2210.02747v2#S6">Flow Matching · ICLR 2023 · Table 1</a> &nbsp; / &nbsp; <a href="https://arxiv.org/pdf/2206.00364">EDM · NeurIPS 2022 · Algorithm 1</a> &nbsp; / &nbsp; Schematic trajectory</div>
+```
+
+::: {.notes}
+
+Flow Matching обучает непрерывное поле скоростей $v_\theta(x,t)$. Генерация идёт от шума к данным через ODE $dx/dt=v_\theta(x,t)$. Даже хорошее поле надо численно интегрировать: на крупном шаге Euler продолжает текущую касательную и отклоняется от искривлённого решения. Главная мысль: точность поля и точность интегрирования — разные составляющие качества генерации. [@speed_flow_matching]
+
+Клик 1: показать большой шаг Euler и расстояние до reference path. Здесь $v_n=v_\theta(x_n,t_n)$, $h=t_{n+1}-t_n$. Серое решение и зелёная поправка — авторская геометрическая схема, не измерение ошибки и не реальные изображения. Совпадение зелёной точки с reference условно: оба метода второго порядка обычно имеют ненулевую ошибку и не обязаны дать один и тот же результат. Состояния на рисунке условные; схема не задаёт конкретное аналитическое поле.
+
+Клик 2: AB2 помнит, куда поток двигался. Две скорости $v_{n-1},v_n$ позволяют экстраполировать изменение направления: $x_{n+1}=x_n+h(3v_n/2-v_{n-1}/2)$. Это стандартный Adams–Bashforth второго порядка, а не метод из статьи Flow Matching. Формула относится к постоянному шагу h. Сначала нужен стартовый шаг, например Euler; затем прошлый вектор находится в кэше и каждый следующий шаг требует одну новую оценку сети. При неравномерной сетке коэффициенты должны учитывать отношение шагов. Кэш экономит вызовы, но не делает метод безусловно устойчивым на любом крупном шаге.
+
+Клик 3: Heun спрашивает, куда поток направлен впереди. Сначала $k_1=v_\theta(x_n,t_n)$, затем Euler predictor $\tilde x_{n+1}=x_n+hk_1$, затем новый вызов сети $k_2=v_\theta(\tilde x_{n+1},t_{n+1})$. Средняя скорость $(k_1+k_2)/2$ даёт corrected state. Это два вызова сети на полный шаг. $k_2$ измеряется в provisional point, поэтому он вообще не равен скорости в скорректированном $x_{n+1}$. В EDM Algorithm 1 используется именно эта структура Heun; конкретное поле EDM записано через denoiser и параметризацию по уровню шума. Последний переход EDM к $\sigma=0$ использует Euler, избегая деления на ноль. Для гладкого поля Heun и AB2 имеют глобальную ошибку порядка $O(h^2)$, локальную — $O(h^3)$; Euler имеет глобальную $O(h)$. Сравнивать их полезно при фиксированном бюджете NFE, а не только при одном числе шагов. [@speed_edm_heun]
+
+Правая нижняя таблица взята из Table 1 статьи Flow Matching, ImageNet 64×64, безусловная генерация, FID по 50 000 сэмплов. Во всех трёх строках для оценки используются dopri5 и допуски atol = rtol = 1e-5; NFE усреднено. DDPM: FID 17.36 / 264 NFE, FM diffusion path: 16.88 / 187, FM OT path: 14.45 / 138. Это сравнение обученных моделей и путей при одном адаптивном интеграторе, а не эксперимент Euler против AB2 против Heun. Оно иллюстрирует связь геометрии обученного потока с качеством и вычислительной стоимостью. Прямолинейность условного OT path не означает, что любая траектория выученного маргинального поля прямая. [@speed_flow_matching]
+
+Итоговая метафора: AB2 = remember where the flow was going; Heun = check where the flow is going. Следующий слайд возвращает нас к специализированным diffusion-solvers: UniPC уточняет предсказанный шаг, используя уже доступные решателю оценки.
+
+:::
+
+## UniPC — Predict, then correct {#speed-m04 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Refine a predicted step using information already available to the solver.</div>
+<div class="speed-body">
+  <div class="speed-mechanism">
+    <div class="speed-label">Schematic</div>
+    <svg viewBox="0 0 900 430" role="img" aria-label="UniPC predicts the next state and applies a correction using cached evaluations without an extra model call for correction."><defs><marker id="speed-m04-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs><path d="M87 215 C269 43 533 89 788 130" class="speed-path" stroke-dasharray="7 7"/><text x="430" y="63" class="speed-small" text-anchor="start" >Reference path</text><circle cx="87" cy="215" r="8" class="speed-dot" /><text x="60" y="251" class="speed-small" text-anchor="start" >Current</text><path d="M87 215 L751 221" class="speed-path" marker-end="url(#speed-m04-arrow)" /><circle cx="751" cy="221" r="8" class="speed-dot" /><text x="360" y="242" class="speed-text" text-anchor="middle" >Predict</text><g class="fragment" data-fragment-index="0"><path d="M751 221 L786 132" class="speed-accent" marker-end="url(#speed-m04-arrow)" /><circle cx="786" cy="132" r="8" class="speed-accent-dot" /><text x="742" y="191" class="speed-text" text-anchor="end" >Correct</text></g><rect x="81" y="302" width="527" height="67" rx="0" class="speed-box"/><text x="344.5" y="344.5" class="speed-text" text-anchor="middle" >Cached predictions</text><rect x="110" y="388" width="27" height="15" class="speed-box"/><rect x="158" y="388" width="27" height="15" class="speed-box"/><rect x="206" y="388" width="27" height="15" class="speed-box"/><text x="630" y="345" class="speed-text" text-anchor="start" >Extra NFE: 0</text><g class="fragment" data-fragment-index="0"><path d="M608 321 H724 V258" class="speed-accent" marker-end="url(#speed-m04-arrow)" /></g></svg>
+  </div>
+  <div class="speed-results">
+    <div class="speed-label">Reported results</div>
+    <div class="speed-context">Latent diffusion · FFHQ · 256×256<br>Unconditional · 5 NFE · FID ↓</div>
+    <div style="margin-top:25px"><div class="speed-metric"><div class="speed-metric-label">DPM-Solver++</div><div class="speed-metric-value">27.94</div><div class="speed-bar" style="width:93.133%"></div></div><div class="speed-metric speed-highlight"><div class="speed-metric-label">UniPC · B₁(h) = h</div><div class="speed-metric-value">18.66</div><div class="speed-bar" style="width:62.200%"></div></div></div>
+    <div class="speed-result-note">Table 1(b) ablation. The correction adds no extra NFE; the iteration still uses the model.</div>
+  </div>
+</div>
+<div class="speed-takeaway">A correction can improve accuracy without another network call.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m04">UniPC: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2302.04867v3">UniPC · 2023</a> · v3: Algorithms 1–2, Table 1(b)</div>
+```
+
+::: {.notes}
+
+Сначала указать на длинную стрелку Predict: решатель предлагает следующее состояние. Клик добавляет короткую поправку Correct и связь с сохранёнными предсказаниями. Неподвижный счётчик Extra NFE: 0 относится именно к дополнительной коррекции, а не ко всему sampling-шагу. В UniPC вычисление модели в предсказанной точке затем используется и для коррекции, и в дальнейшей истории.
+
+Справа воспроизведена абляция Table 1(b) v3: FFHQ, latent-space diffusion, 5 NFE, безусловная генерация. Для B₁(h) = h FID равен 18.66, для baseline DPM-Solver++ — 27.94. Сохраняем именно эту таблицу: в приложении есть другие baseline-числа, их нельзя смешивать. Разрешение выхода — 256×256; оно согласуется с официальной конфигурацией FFHQ LDM, latent имеет меньший размер. [@speed_unipc]
+
+Схема объясняет двухчастную операцию; близость нарисованных точек не является экспериментальным измерением ошибки.
+
+:::
+
+## DEIS — Use the history to take a better step {#speed-m05 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Fit the changing neural contribution from previous evaluations, then integrate it.</div>
+<div class="speed-body">
+  <div class="speed-mechanism">
+    <div class="speed-label">Schematic</div>
+    <svg viewBox="0 0 900 430" role="img" aria-label="DEIS approximates the neural contribution with a polynomial through previous predictions and integrates it together with exact linear evolution."><defs><marker id="speed-m05-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs><text x="58" y="37" class="speed-small" text-anchor="start" >Network prediction along the trajectory</text><path d="M60 241 H842" class="speed-path"/><text x="838" y="274" class="speed-small" text-anchor="end" >Sampling progress</text><path d="M455 116 L820 116" class="speed-path" marker-end="url(#speed-m05-arrow)" /><text x="626" y="91" class="speed-small" text-anchor="start" >Latest only</text><circle cx="455" cy="116" r="8" class="speed-dot" /><text x="455" y="218" class="speed-small" text-anchor="middle" >Current</text><g class="fragment" data-fragment-index="0"><circle cx="87" cy="186" r="8" class="speed-accent-dot" /><circle cx="268" cy="126" r="8" class="speed-accent-dot" /><text x="88" y="218" class="speed-small" text-anchor="middle" >Older</text><text x="268" y="218" class="speed-small" text-anchor="middle" >Previous</text><path d="M87 186 C214 135 344 100 455 116 S694 190 820 177" class="speed-accent"/><circle cx="820" cy="177" r="8" class="speed-accent-dot" /><text x="658" y="211" class="speed-small" text-anchor="start" >History-based fit</text></g><rect x="58" y="312" width="329" height="68" rx="0" class="speed-box"/><text x="222.5" y="355.0" class="speed-text" text-anchor="middle" >Exact linear evolution</text><text x="416" y="356" class="speed-text" text-anchor="middle" >+</text><g class="fragment" data-fragment-index="0"><rect x="455" y="312" width="387" height="68" rx="0" class="speed-accent-box"/><text x="648.5" y="355.0" class="speed-text" text-anchor="middle" >Integrate polynomial fit</text></g></svg>
+  </div>
+  <div class="speed-results">
+    <div class="speed-label">Reported results</div>
+    <div class="speed-context">VP-SDE score model · CIFAR-10 · 32×32<br>Unconditional · FID ↓ vs NFE</div>
+    <svg viewBox="0 0 510 305" role="img" aria-label="DEIS Table 2 reported FID at 5, 10 and 20 NFE on CIFAR-10." style="width:100%;height:auto;max-height:305px"><rect x="183.0" y="34" width="24" height="189" fill="var(--lecture-pop-lime)" opacity="0.25"/><path d="M50 223.0 H485" stroke="var(--lecture-border)" stroke-width="1" fill="none"/><text x="40" y="230.0" class="speed-small" text-anchor="end" >0</text><path d="M50 160.0 H485" stroke="var(--lecture-border)" stroke-width="1" fill="none"/><text x="40" y="167.0" class="speed-small" text-anchor="end" >10</text><path d="M50 97.0 H485" stroke="var(--lecture-border)" stroke-width="1" fill="none"/><text x="40" y="104.0" class="speed-small" text-anchor="end" >20</text><path d="M50 34.0 H485" stroke="var(--lecture-border)" stroke-width="1" fill="none"/><text x="40" y="41.0" class="speed-small" text-anchor="end" >30</text><path d="M50 34 V223 H485" stroke="var(--lecture-muted)" stroke-width="1.5" fill="none"/><text x="50" y="23" class="speed-small" text-anchor="start" >FID ↓</text><text x="50.0" y="251" class="speed-small" text-anchor="middle" >5</text><text x="195.0" y="251" class="speed-small" text-anchor="middle" >10</text><text x="485.0" y="251" class="speed-small" text-anchor="middle" >20</text><text x="485" y="23" class="speed-small" text-anchor="end" >NFE</text><polyline points="50.00,53.47 195.00,152.82 485.00,188.54" fill="none" stroke="var(--lecture-muted)" stroke-width="4"/><circle cx="50.00" cy="53.47" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>DDIM: 5 NFE, FID 26.91</title></circle><circle cx="195.00" cy="152.82" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>DDIM: 10 NFE, FID 11.14</title></circle><circle cx="485.00" cy="188.54" r="4.8" fill="var(--lecture-muted)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>DDIM: 20 NFE, FID 5.47</title></circle><path d="M50 289 H75" stroke="var(--lecture-muted)" stroke-width="5"/><text x="83" y="297" class="speed-small" text-anchor="start" >DDIM</text><polyline points="50.00,126.17 195.00,196.73 485.00,204.98" fill="none" stroke="var(--lecture-pop-lime)" stroke-width="4"/><circle cx="50.00" cy="126.17" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>tAB3-DEIS: 5 NFE, FID 15.37</title></circle><circle cx="195.00" cy="196.73" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>tAB3-DEIS: 10 NFE, FID 4.17</title></circle><circle cx="485.00" cy="204.98" r="4.8" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="0.7"><title>tAB3-DEIS: 20 NFE, FID 2.86</title></circle><path d="M270 289 H295" stroke="var(--lecture-pop-lime)" stroke-width="5"/><text x="303" y="297" class="speed-small" text-anchor="start" >tAB3-DEIS</text></svg>
+    <div class="speed-result-note">10 NFE: DDIM <strong>11.14</strong> → tAB3-DEIS <strong>4.17</strong>. Best tested schedules per method.</div>
+  </div>
+</div>
+<div class="speed-takeaway">Past evaluations are useful information.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m05">DEIS: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2204.13902v3">DEIS · 2022</a> · v3: §3.2, Algorithm 1, Table 2 · chart redrawn from reported values</div>
+```
+
+::: {.notes}
+
+Здесь на схеме изображён один условный компонент прогноза сети вдоль sampling-траектории. Его нельзя читать как пространственную траекторию изображения. Серая горизонтальная линия продолжает только последнее значение. Клик открывает историю и полиномиальную аппроксимацию меняющегося прогноза. Она входит в интегрирование нейросетевой части вместе с точной линейной эволюцией.
+
+Это отличается от предыдущего слайда: ключевая операция DEIS — аппроксимация интеграла по истории, а не отдельная стадия Correct. На схеме показаны три точки только для наглядности; tAB3 в статье означает степень полинома и при заполненной истории использует четыре оценки. В начале запуска порядок наращивается.
+
+График перерисован по Table 2 v3: безусловная VP-SDE модель на CIFAR-10 32×32. При 10 NFE tAB3-DEIS даёт FID 4.17 против 11.14 у DDIM. По Appendix E.1 таблица выбирает лучшие значения среди испытанных временных сеток и конечных времён для каждого метода. Поэтому числа не доказывают выигрыш при любом одинаковом расписании. [@speed_deis]
+
+:::

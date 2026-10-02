@@ -1,0 +1,196 @@
+## DDSS — Learn the sampler, not the denoiser {#speed-m06 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Differentiate through a short sampling chain to optimize the quality of its final images.</div>
+<div class="speed-body">
+<div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Five frozen denoiser calls with learned sampler coefficients, and gradients from a sample-quality objective." xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="speed-m06-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#656565"/></marker><marker id="speed-m06-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#84ad32"/></marker></defs>
+<text x="0" y="30" class="speed-text" style="font-size:24px;font-weight:600">Backbone frozen · Sampler optimized</text>
+<text x="0" y="88" class="speed-text">Short generation chain</text>
+<path class="speed-path" d="M15 180H682" marker-end="url(#speed-m06-arrow)"/>
+<rect x="28" y="137" width="86" height="86" rx="5" fill="#161616"/><text x="71" y="173" text-anchor="middle" style="fill:#fff;font-size:24px">εθ</text><text x="71" y="204" text-anchor="middle" style="fill:#fff;font-size:24px">fixed</text><rect x="123" y="160" width="26" height="40" rx="3" class="speed-box"/><g class="fragment" data-fragment-index="0"><rect x="123" y="160" width="26" height="40" rx="3" class="speed-accent-box"/><path class="speed-accent" d="M136 106V151" marker-end="url(#speed-m06-lime)"/></g><rect x="157" y="137" width="86" height="86" rx="5" fill="#161616"/><text x="200" y="173" text-anchor="middle" style="fill:#fff;font-size:24px">εθ</text><text x="200" y="204" text-anchor="middle" style="fill:#fff;font-size:24px">fixed</text><rect x="252" y="160" width="26" height="40" rx="3" class="speed-box"/><g class="fragment" data-fragment-index="0"><rect x="252" y="160" width="26" height="40" rx="3" class="speed-accent-box"/><path class="speed-accent" d="M265 106V151" marker-end="url(#speed-m06-lime)"/></g><rect x="286" y="137" width="86" height="86" rx="5" fill="#161616"/><text x="329" y="173" text-anchor="middle" style="fill:#fff;font-size:24px">εθ</text><text x="329" y="204" text-anchor="middle" style="fill:#fff;font-size:24px">fixed</text><rect x="381" y="160" width="26" height="40" rx="3" class="speed-box"/><g class="fragment" data-fragment-index="0"><rect x="381" y="160" width="26" height="40" rx="3" class="speed-accent-box"/><path class="speed-accent" d="M394 106V151" marker-end="url(#speed-m06-lime)"/></g><rect x="415" y="137" width="86" height="86" rx="5" fill="#161616"/><text x="458" y="173" text-anchor="middle" style="fill:#fff;font-size:24px">εθ</text><text x="458" y="204" text-anchor="middle" style="fill:#fff;font-size:24px">fixed</text><rect x="510" y="160" width="26" height="40" rx="3" class="speed-box"/><g class="fragment" data-fragment-index="0"><rect x="510" y="160" width="26" height="40" rx="3" class="speed-accent-box"/><path class="speed-accent" d="M523 106V151" marker-end="url(#speed-m06-lime)"/></g><rect x="544" y="137" width="86" height="86" rx="5" fill="#161616"/><text x="587" y="173" text-anchor="middle" style="fill:#fff;font-size:24px">εθ</text><text x="587" y="204" text-anchor="middle" style="fill:#fff;font-size:24px">fixed</text><rect x="687" y="130" width="201" height="100" rx="4" class="speed-box"/>
+<text x="787" y="168" text-anchor="middle" class="speed-text">Sample-quality</text><text x="787" y="201" text-anchor="middle" class="speed-text">objective</text>
+<g class="fragment" data-fragment-index="0"><path class="speed-accent" d="M787 129V104H136" marker-end="url(#speed-m06-lime)"/><text x="716" y="83" text-anchor="middle" class="speed-text">Gradient</text><rect x="230" y="278" width="398" height="58" rx="5" class="speed-accent-box"/><text x="429" y="315" text-anchor="middle" class="speed-text">Sampler parameters + times</text></g>
+<path class="speed-path" d="M71 224V250H587V224" stroke-dasharray="6 6"/>
+<text x="330" y="388" text-anchor="middle" class="speed-text">Shared model weights never update</text>
+</svg>
+</div>
+<div class="speed-results"><div class="speed-label">Reported results</div>
+<div class="speed-context">DDPM · CIFAR-10 32×32<br>Unconditional · 10 steps · FID ↓</div>
+<div class="speed-metric"><div class="speed-metric-label">DDIM · quadratic stride</div><div class="speed-metric-value">13.62</div><div class="speed-bar" style="width:91%"></div></div><div class="speed-metric speed-highlight"><div class="speed-metric-label">GGDM + PRED + TIME</div><div class="speed-metric-value">8.227</div><div class="speed-bar" style="width:55%"></div></div>
+<div class="speed-result-note">The optimized objective is KID; the reported metric is FID.</div>
+</div>
+</div>
+<div class="speed-takeaway">Learn the sampling procedure from sample quality.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m06">DDSS: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2202.05830v1">Watson et al. · DDSS (2022), v1 · Fig. 2; Table 1</a></div>
+```
+
+::: {.notes}
+Здесь обучаем сам способ семплирования. Пять повторяющихся чёрных блоков обозначают вызовы одной замороженной модели; это условная длина схемы, тогда как справа сравниваются десять шагов. На каждом переходе есть отдельные параметры семплера. После клика выделяются обучаемые коэффициенты и временные точки, а сверху появляется обратный путь градиента от качества готовых изображений. Производная проходит через вычисления denoiser, но его веса не обновляются.
+
+DDSS — процедура поиска семплера; GGDM — используемое семейство, допускающее связи с предыдущими более шумными состояниями. PRED расширяет параметризацию предсказания чистого изображения, TIME делает обучаемыми времена запросов. Обучающая цель сравнивает статистики сгенерированных и реальных изображений в пространстве признаков; в работе используется KID. Это не ошибка относительно траектории учителя. Справа приведены FID из Table 1 для CIFAR-10, unconditional DDPM: при 10 шагах 13.62 у DDIM с quadratic stride и 8.227 у GGDM + PRED + TIME. Нельзя переименовывать KID-обучение в прямую оптимизацию FID. [@speed_ddss]
+
+Схема авторская и редактируемая; обратный контур показывает обучение, а при обычной генерации блок objective не требуется. Источник: [DDSS, §§3–5, Fig. 2, Table 1](https://arxiv.org/html/2202.05830v1).
+:::
+
+## GENIE — Learn how the trajectory bends {#speed-m07 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">A small learned head predicts the change of direction needed for a higher-order step.</div>
+<div class="speed-body">
+<div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="A tangent misses a curved reference trajectory; a derivative correction bends toward the reference, using an extra learned head attached to a frozen score network." xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="speed-m07-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#656565"/></marker><marker id="speed-m07-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#84ad32"/></marker></defs>
+<text x="0" y="30" class="speed-text" style="font-size:24px;font-weight:600">Backbone frozen · Sampler optimized</text>
+<path class="speed-path" d="M85 255C165 75 470 65 665 201" stroke-dasharray="8 8"/>
+<circle cx="180" cy="149" r="9" class="speed-dot"/><text x="105" y="126" class="speed-text">Current state</text>
+<path class="speed-path" d="M180 149L610 52" marker-end="url(#speed-m07-arrow)"/><text x="526" y="93" class="speed-text">Direction</text>
+<circle cx="665" cy="201" r="10" fill="white" stroke="#171717" stroke-width="3"/><text x="687" y="207" class="speed-text">Reference</text>
+<g class="fragment" data-fragment-index="0"><path class="speed-accent" d="M180 149Q422 86 645 195" marker-end="url(#speed-m07-lime)"/><circle cx="645" cy="195" r="8" class="speed-accent-dot"/><text x="235" y="247" class="speed-text">Direction + change of direction</text></g>
+<rect x="70" y="302" width="285" height="80" rx="5" fill="#161616"/><text x="212" y="335" text-anchor="middle" style="fill:#fff;font-size:24px">Frozen score network</text><text x="212" y="365" text-anchor="middle" style="fill:#fff;font-size:24px">current direction</text>
+<path class="speed-path" d="M355 342H416" marker-end="url(#speed-m07-arrow)"/>
+<g class="fragment" data-fragment-index="0"><rect x="424" y="302" width="297" height="80" rx="5" class="speed-accent-box"/><text x="572" y="335" text-anchor="middle" class="speed-text">Learned derivative head</text><text x="572" y="365" text-anchor="middle" class="speed-text">change of direction</text></g>
+<text x="396" y="420" text-anchor="middle" class="speed-text">Train the small head on derivative targets</text>
+</svg>
+</div>
+<div class="speed-results"><div class="speed-label">Reported results</div>
+<div class="speed-context">DDPM++ checkpoint · CIFAR-10 32×32<br>Unconditional · 10 NFE budget · FID ↓</div>
+<div class="speed-metric"><div class="speed-metric-label">DDIM</div><div class="speed-metric-value">11.2</div><div class="speed-bar" style="width:93%"></div></div><div class="speed-metric speed-highlight"><div class="speed-metric-label">GENIE · base schedule</div><div class="speed-metric-value">5.97</div><div class="speed-bar" style="width:50%"></div></div>
+<div class="speed-result-note">Extra head: +1.47% compute on CIFAR-10.<br>The paper adjusts NFE budgets for this overhead.</div>
+</div>
+</div>
+<div class="speed-takeaway">Keep the backbone; learn the derivative correction.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m07">GENIE: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2210.05475v1">Dockhorn et al. · GENIE (2022), v1 · Fig. 1; Table 1; Appendix C.2</a></div>
+```
+
+::: {.notes}
+Текущая скорость задаёт касательную, но крупный шаг вдоль неё может промахнуться мимо изогнутой траектории. После клика появляется поправка, учитывающая изменение направления. Это геометрическая иллюстрация, а не измеренная двумерная траектория изображения. В GENIE используется разложение Тейлора в преобразованной параметризации diffusion ODE.
+
+Основной score-network заморожен. К нему добавляется обучаемая небольшая prediction head, использующая признаки модели и предсказывающая информацию о производных. Поэтому подпись «Sampler optimized» включает обучение дополнительного модуля и не означает отсутствие новых нейросетевых весов. Производные основной сети, вычисленные автоматическим дифференцированием во время обучения, служат целями для head; при генерации их заменяет её предсказание. [@speed_genie]
+
+В Table 1 берём базовый GENIE без звёздочки: CIFAR-10, unconditional, бюджет 10 NFE, FID 5.97 против 11.2 у DDIM на том же checkpoint. Вариант со звёздочкой дополнительно подбирает stride. Авторы оценивают накладные вычисления head для CIFAR-10 в 1.47% и учитывают их округлённой корректировкой NFE; сам по себе сырой счётчик вызовов не равен времени. Источник: [GENIE, §5, Table 1, Appendix C.2](https://arxiv.org/html/2210.05475v1).
+:::
+
+## D-ODE — Distill the solver, freeze the model {#speed-m08 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Fit a few solver coefficients so a short trajectory follows a longer reference from the same model.</div>
+<div class="speed-body">
+<div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="A long teacher solver and a short distilled solver both use a single frozen denoiser; only lambda coefficients are fitted." xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="speed-m08-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#656565"/></marker><marker id="speed-m08-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#84ad32"/></marker></defs>
+<text x="0" y="30" class="speed-text" style="font-size:24px;font-weight:600">Backbone frozen · Sampler optimized</text>
+<text x="0" y="81" class="speed-text">Teacher solver · many steps</text>
+<path class="speed-path" d="M270 104H859" marker-end="url(#speed-m08-arrow)"/>
+<circle cx="280" cy="104" r="6" class="speed-dot"/><circle cx="326" cy="104" r="6" class="speed-dot"/><circle cx="372" cy="104" r="6" class="speed-dot"/><circle cx="418" cy="104" r="6" class="speed-dot"/><circle cx="464" cy="104" r="6" class="speed-dot"/><circle cx="510" cy="104" r="6" class="speed-dot"/><circle cx="556" cy="104" r="6" class="speed-dot"/><circle cx="602" cy="104" r="6" class="speed-dot"/><circle cx="648" cy="104" r="6" class="speed-dot"/><circle cx="694" cy="104" r="6" class="speed-dot"/><circle cx="740" cy="104" r="6" class="speed-dot"/><circle cx="786" cy="104" r="6" class="speed-dot"/><circle cx="832" cy="104" r="6" class="speed-dot"/><rect x="5" y="133" width="223" height="125" rx="5" fill="#161616"/><text x="116" y="181" text-anchor="middle" style="fill:#fff;font-size:24px">Same frozen</text><text x="116" y="215" text-anchor="middle" style="fill:#fff;font-size:24px">denoiser</text>
+<path class="speed-path" d="M228 162H251V104H266M228 229H251V290H270"/>
+<g class="fragment" data-fragment-index="0"><path class="speed-path" d="M510 114V260M740 114V260" stroke-dasharray="6 7" marker-end="url(#speed-m08-arrow)"/><text x="475" y="194" class="speed-text">Match teacher states</text></g>
+<text x="280" y="245" class="speed-text">Distilled solver · fewer steps</text><path class="speed-path" d="M275 290H858" marker-end="url(#speed-m08-arrow)"/>
+<circle cx="282" cy="290" r="8" class="speed-dot"/><circle cx="510" cy="290" r="8" class="speed-dot"/><circle cx="740" cy="290" r="8" class="speed-dot"/>
+<g class="fragment" data-fragment-index="0"><rect x="368" y="267" width="62" height="46" rx="4" class="speed-accent-box"/><text x="399" y="298" text-anchor="middle" class="speed-text">λ₁</text><rect x="595" y="267" width="62" height="46" rx="4" class="speed-accent-box"/><text x="626" y="298" text-anchor="middle" class="speed-text">λ₂</text><rect x="284" y="353" width="553" height="57" rx="4" class="speed-accent-box"/><text x="560" y="389" text-anchor="middle" class="speed-text">Current prediction + λ × prediction change</text></g>
+</svg>
+</div>
+<div class="speed-results"><div class="speed-label">Reported results</div>
+<div class="speed-context">EDM data-prediction model · CIFAR-10 32×32<br>Unconditional · original Fig. 4(a)</div>
+<a href="assets/final/acceleration_20261002/m06_m10/dode_figure4a.png"><img src="assets/final/acceleration_20261002/m06_m10/dode_figure4a.png" style="display:block;width:100%;height:292px;object-fit:contain;margin:5px 0" alt="Original Figure 4(a): FID against NFE; solid D-EDM improves on dotted EDM at low NFE, but EDM is slightly better at 25 and 49 NFE. DDIM and D-DDIM curves are also shown."/></a>
+<div class="speed-result-note">Green curves: EDM / D-EDM.<br>Largest gains at low NFE; no uniform win.</div>
+</div>
+</div>
+<div class="speed-takeaway">Distill the numerical rule while sharing the denoiser.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m08">D-ODE: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2309.16421v2">Kim et al. · D-ODE (2023; v2 2024) · Fig. 1; Eq. 10; Fig. 4(a)</a></div>
+```
+
+::: {.notes}
+В обеих строках вызывается одна и та же замороженная модель. Учитель здесь — длинный запуск численного решателя. Ученик — короткий запуск с дополнительными коэффициентами, а не новая нейросеть. После клика появляются λ и привязка редких состояний к более точной траектории.
+
+Правило модифицирует предсказание denoiser: к текущему выходу прибавляется λ, умноженное на разность текущего и предыдущего выхода. Коэффициенты подбираются отдельно по шагам на небольшом калибровочном батче, затем повторно используются при генерации новых батчей. Значения λ на схеме символические; длины линий не показывают конкретные бюджеты эксперимента. [@speed_dode]
+
+Справа сохранена исходная Fig. 4(a) версии v2, без оцифровки или вымышленных точек. Зелёные линии — EDM и D-EDM, коричневые — DDIM и D-DDIM. Для EDM указаны NFE 3, 5, 9, 25, 49, 99, 249; оси логарифмические. При малом бюджете коррекция заметно помогает, но при 25 и 49 NFE обычный EDM здесь немного лучше. Нельзя утверждать преимущество при каждом бюджете. Эксперимент: data-prediction checkpoint на CIFAR-10 32×32, unconditional. Источник: [D-ODE, §§3.2–4.2, Fig. 4(a)](https://arxiv.org/html/2309.16421v2).
+:::
+
+## Bespoke Solvers — Tailor the coordinates to the model {#speed-m09 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Learn a time and state transformation, integrate there, then map the result back.</div>
+<div class="speed-body">
+<div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="A curved path is mapped into more convenient time and state coordinates, integrated by an RK solver, and transformed back." xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="speed-m09-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#656565"/></marker><marker id="speed-m09-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#84ad32"/></marker></defs>
+<text x="0" y="30" class="speed-text" style="font-size:24px;font-weight:600">Backbone frozen · Sampler optimized</text>
+<text x="127" y="93" text-anchor="middle" class="speed-text">Original coordinates</text><text x="450" y="93" text-anchor="middle" class="speed-text">Learned transformation</text><text x="785" y="93" text-anchor="middle" class="speed-text">Transform back</text>
+<rect x="4" y="120" width="249" height="173" class="speed-box"/><rect x="328" y="120" width="249" height="173" class="speed-box"/><rect x="652" y="120" width="245" height="173" class="speed-box"/>
+<path d="M30 260H228M30 260V139M58 260V145M90 260V145M125 260V145M166 260V145M220 260V145" fill="none" stroke="#ddd" stroke-width="2"/><path class="speed-path" d="M34 244C64 165 83 261 121 199S169 143 222 163"/>
+<path class="speed-path" d="M265 205H315M590 205H640" marker-end="url(#speed-m09-arrow)"/>
+<g class="fragment" data-fragment-index="0"><path d="M354 260H552M354 260V139M378 260V145M422 260V145M466 260V145M510 260V145M550 260V145" fill="none" stroke="#ddd" stroke-width="2"/><path class="speed-accent" d="M359 247Q420 225 545 157"/><circle cx="359" cy="247" r="6" class="speed-accent-dot"/><circle cx="421" cy="220" r="6" class="speed-accent-dot"/><circle cx="484" cy="189" r="6" class="speed-accent-dot"/><circle cx="545" cy="157" r="6" class="speed-accent-dot"/>
+<rect x="320" y="321" width="112" height="45" rx="4" class="speed-accent-box"/><text x="376" y="352" text-anchor="middle" class="speed-text">Time</text><rect x="453" y="321" width="180" height="45" rx="4" class="speed-accent-box"/><text x="543" y="352" text-anchor="middle" class="speed-text">State scaling</text></g>
+<path class="speed-path" d="M680 244C708 165 731 261 767 199S816 143 866 163"/><circle cx="866" cy="163" r="7" class="speed-dot"/>
+<text x="450" y="410" text-anchor="middle" class="speed-text">Base RK solver in transformed coordinates → inverse map</text>
+</svg>
+</div>
+<div class="speed-results"><div class="speed-label">Reported results</div>
+<div class="speed-context">Same FM-OT model · CIFAR-10 32×32<br>Unconditional · RK2-Bespoke</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;font-size:27px;line-height:1.3;margin-top:17px"><span style="color:#666">NFE</span><span style="color:#666">FID ↓</span><span>8</span><span>3.13</span><strong style="background:#bef264;padding:4px 8px">10</strong><strong style="background:#bef264;padding:4px 8px">2.73</strong><span>16</span><span>2.60</span><span>20</span><span>2.59</span></div>
+<div class="speed-result-note">Same model, different NFE budgets.<br>Reference solver: FID 2.57 (Table 3).</div>
+</div>
+</div>
+<div class="speed-takeaway">A new coordinate system, not a new generative model.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m09">Bespoke Solvers: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2310.19075v1">Shaul et al. · Bespoke Solvers (2023), v1 · Fig. 2; Tables 1, 3</a></div>
+```
+
+::: {.notes}
+Преобразование координат может сделать численную интеграцию удобнее без изменения исходной генеративной модели. Сначала показана исходная траектория, затем после клика появляется её представление после обучаемой смены времени и масштаба состояния. Далее базовый Runge–Kutta solver работает в новых координатах, а обратное преобразование возвращает результат в исходное пространство. [@speed_bespoke]
+
+Это объясняющая схема, а не свидетельство того, что любая траектория становится строго прямой. На слайде использован частный случай преобразований из работы — time reparameterization и state scaling; более общая формулировка допускает обратимое преобразование состояния. Обязательный inverse map справа принципиален: координаты результата сами по себе могут отличаться от исходных.
+
+В Table 1 исходного текста нет соседней строки обычного solver на том же FM-OT backbone при 10 NFE. Поэтому нельзя сравнить 2.73 с DDIM или DEIS из другого блока и назвать это чистым эффектом solver. Здесь показаны точные значения Table 3 для одной FM-OT модели: 3.13 / 2.73 / 2.60 / 2.59 при 8 / 10 / 16 / 20 NFE. FID эталонного решения этой модели — 2.57. Это сравнение разных бюджетов, явно подписанных в таблице. Источник: [Bespoke Solvers, §2.1, Fig. 2, Tables 1 и 3](https://arxiv.org/html/2310.19075v1).
+:::
+
+## AMED — Learn where to look between two steps {#speed-m10 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Use current U-Net features to choose an intermediate evaluation time and a direction scale.</div>
+<div class="speed-body">
+<div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="An AMED predictor reads frozen U-Net features and interval times, moves an intermediate evaluation point and scales the update direction." xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="speed-m10-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#656565"/></marker><marker id="speed-m10-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#84ad32"/></marker></defs>
+<text x="0" y="30" class="speed-text" style="font-size:24px;font-weight:600">Backbone frozen · Sampler optimized</text>
+<rect x="656" y="7" width="100" height="37" rx="4" class="speed-box"/><text x="706" y="33" text-anchor="middle" class="speed-text">Solver</text><rect x="770" y="7" width="111" height="37" rx="4" class="speed-box"/><text x="825" y="33" text-anchor="middle" class="speed-text">Plugin</text>
+<path class="speed-path" d="M73 185H819"/><circle cx="73" cy="185" r="8" class="speed-dot"/><circle cx="819" cy="185" r="8" class="speed-dot"/><text x="73" y="222" text-anchor="middle" class="speed-text">Start</text><text x="819" y="222" text-anchor="middle" class="speed-text">Next state</text>
+<g class="fragment fade-out" data-fragment-index="0"><circle cx="445" cy="185" r="10" fill="white" stroke="#777" stroke-width="3"/><text x="445" y="96" text-anchor="middle" class="speed-text">Fixed midpoint</text><path class="speed-path" d="M445 185L620 93" marker-end="url(#speed-m10-arrow)"/></g>
+<g class="fragment" data-fragment-index="0"><circle cx="555" cy="185" r="12" class="speed-accent-dot"/><text x="535" y="131" text-anchor="middle" class="speed-text">Evaluate here</text><path class="speed-accent" d="M555 185L750 91" marker-end="url(#speed-m10-lime)"/><text x="759" y="86" text-anchor="middle" class="speed-text">Scaled direction</text></g>
+<rect x="4" y="277" width="225" height="103" rx="5" fill="#161616"/><text x="116" y="317" text-anchor="middle" style="fill:#fff;font-size:24px">Frozen U-Net</text><text x="116" y="350" text-anchor="middle" style="fill:#fff;font-size:24px">sample features</text>
+<path class="speed-path" d="M229 328H292" marker-end="url(#speed-m10-arrow)"/>
+<rect x="304" y="277" width="244" height="103" rx="5" class="speed-accent-box"/><text x="426" y="317" text-anchor="middle" class="speed-text">AMED predictor</text><text x="426" y="350" text-anchor="middle" class="speed-text">+ interval times</text>
+<path class="speed-path" d="M548 328H600V295H623M600 328V365H623" marker-end="url(#speed-m10-arrow)"/><text x="641" y="304" class="speed-text">Intermediate time</text><text x="641" y="374" class="speed-text">Direction scale</text>
+<text x="430" y="422" text-anchor="middle" class="speed-text">The current sample helps choose the intermediate point</text>
+</svg>
+</div>
+<div class="speed-results"><div class="speed-label">Reported results</div>
+<div class="speed-context">Pixel diffusion · LSUN Bedroom 256×256<br>Unconditional · 5 NFE (AFS) · FID ↓</div>
+<div class="speed-metric"><div class="speed-metric-label">DPM-Solver++ (3M)</div><div class="speed-metric-value">23.15</div><div class="speed-bar" style="width:93%"></div></div><div class="speed-metric speed-highlight"><div class="speed-metric-label">AMED-Solver</div><div class="speed-metric-value">13.20</div><div class="speed-bar" style="width:53%"></div></div>
+<div class="speed-result-note">These numbers are for AMED-Solver.<br>AMED-Plugin has separate results.</div>
+</div>
+</div>
+<div class="speed-takeaway">Learn the intermediate point from the current sample.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m10">AMED: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2312.00094v3">Zhou et al. · AMED (2023; v3 2024) · Fig. 6; Eq. 11; Table 2(d)</a></div>
+```
+
+::: {.notes}
+Внутри крупного интервала можно менять точку, в которой вычисляется направление, и масштаб итогового перемещения. После клика фиксированная промежуточная точка заменяется выбранной предиктором, а длина стрелки меняется. Это условная геометрия одного шага; горизонтальная линия обозначает интервал и не доказывает прямолинейность реального потока.
+
+Небольшой AMED predictor получает bottleneck-признаки текущего образца из уже вычисленного замороженного U-Net, а также времена начала и конца интервала. Выходы задают промежуточное время и direction scaling. Параметры модуля обучаются на согласование короткой траектории с более точной teacher trajectory. Положение промежуточной точки зависит от признаков образца, поэтому это шире заранее фиксированного time schedule. [@speed_amed]
+
+AMED-Solver использует собственное правило, AMED-Plugin переносит настройку точки и масштаба на существующий solver. Нельзя смешивать их результаты. В Table 2(d), версия v3, unconditional LSUN Bedroom 256×256 при 5 NFE: FID 13.20 у AMED-Solver против 23.15 у DPM-Solver++(3M). В этой же таблице Plugin применяется к DPM-Solver-2 и даёт другую цифру. Пять NFE здесь включают analytical first step (AFS): первый вызов заменяется аналитическим направлением. Это NFE, а не универсальное число интеграционных шагов. Источник: [AMED, §§3.2–3.4, Fig. 6, Eq. 11, Table 2(d)](https://arxiv.org/html/2312.00094v3).
+:::
+

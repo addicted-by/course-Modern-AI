@@ -14,19 +14,22 @@ format:
       - assets/final/diffusion_20260930/m01_m06.css
       - assets/final/diffusion_20260930/d13_d18.css
       - assets/final/diffusion_20260930/d19_d23.css
+      - assets/final/acceleration_20261002/methods.css
+      - assets/final/acceleration_20261002/implementations.css
     include-after-body:
       - assets/final/vlm_20260930/details.html
       - assets/final/diffusion_20260930/showcase-media.html
+      - assets/final/acceleration_20261002/implementations.html
       - text: |
           <script>
           (() => {
             const start = 1;
             Reveal.configure({
-              slideNumber: (slide) => [Reveal.getSlidePastCount(slide) + start, "/", 80]
+              slideNumber: (slide) => [Reveal.getSlidePastCount(slide) + start, "/", Reveal.getTotalSlides()]
             });
             Reveal.on("pdf-ready", () => {
               document.querySelectorAll(".slide-number-pdf").forEach((number, index) => {
-                number.textContent = `${start + index} / 80`;
+                number.textContent = `${start + index} / ${Reveal.getTotalSlides()}`;
               });
             });
           })();
@@ -37,6 +40,10 @@ format:
 bibliography:
   - lecture_01_final.bib
   - final_parts/diffusion_20260930/sources.bib
+  - final_parts/acceleration_20261002/m01_m05.bib
+  - final_parts/acceleration_20261002/m06_m10.bib
+  - final_parts/acceleration_20261002/m11_m17.bib
+  - final_parts/acceleration_20261002/m18_m24.bib
 suppress-bibliography: true
 ---
 
@@ -947,6 +954,14 @@ SVO-Probes показывает тип проверки, а не измерен�
 {{< include final_parts/diffusion_20260930/d01_d06.qmd >}}
 
 {{< include final_parts/diffusion_20260930/d07_d12.qmd >}}
+
+{{< include final_parts/acceleration_20261002/m01_m05.qmd >}}
+
+{{< include final_parts/acceleration_20261002/m06_m10.qmd >}}
+
+{{< include final_parts/acceleration_20261002/m11_m17.qmd >}}
+
+{{< include final_parts/acceleration_20261002/m18_m24.qmd >}}
 
 {{< include final_parts/diffusion_20260930/d13_d18.qmd >}}
 

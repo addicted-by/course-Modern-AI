@@ -16,15 +16,20 @@ The second entry in `lectures.yml` supplies its build target and the links on
 the homepage and Lectures page. The existing GitHub Pages workflow publishes
 it on a push to `main`.
 
-The minimal import adds 51 files: `lecture_01_final_part1.qmd`, four included
-QMD fragments and `sources.bib` in `final_parts/diffusion_20260930/`, and the
-referenced styles, scripts, images, audio and video in
-`assets/final/{diffusion_20260930,vlm_20260930}/`. Keep these relative paths.
+The minimal import consists of `lecture_01_final_part1.qmd`, the included QMD
+fragments and bibliographies in `final_parts/diffusion_20260930/` and
+`final_parts/acceleration_20261002/`, and the referenced styles, scripts,
+images, audio and video in
+`assets/final/{diffusion_20260930,vlm_20260930,acceleration_20261002}/`.
+Keep these relative paths.
 The existing `lecture_01_final.css`, `lecture_01_final.bib`, shared images,
 slide metadata, theme and KaTeX are reused. No prebuilt HTML, `_files/` runtime,
 authoring scripts, research files or other lecture parts need to be copied.
-The VLM details include ten paper diagrams in `assets/final/vlm_20260930/papers/`.
-All 66 lecture-specific source/dependency files match the authoring copy
+The VLM details include paper diagrams in `assets/final/vlm_20260930/papers/`.
+The acceleration block includes 24 method slides and interactive code examples.
+The code examples are embedded in `acceleration_20261002/implementations.html`;
+their Python/JSON authoring files are not required for the website build.
+Lecture-specific source/dependency files match the authoring copy
 byte-for-byte; the website's existing shared logo variant is retained.
 
 ## Original complete lecture

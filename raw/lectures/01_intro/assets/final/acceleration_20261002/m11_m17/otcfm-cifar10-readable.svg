@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 316" role="img" aria-label="Original OT-CFM Figure 3 right curve geometry, larger labels">
+<title>OT-CFM Figure 3 right: original curve geometry; axes and legend relabeled</title>
+<desc>The three colored path d strings are copied verbatim from the published SVG. A linear coordinate transform resizes the plot. Original numerical ticks are retained; minor ticks are omitted. No data values are estimated or fitted.</desc>
+<rect width="520" height="316" fill="white"/>
+<g font-family="Arial, sans-serif" font-size="21" fill="#181818">
+<text x="0" y="54">FID ↓</text>
+<path d="M55 63 V262 H505" fill="none" stroke="#888" stroke-width="1.5"/>
+<text x="44" y="224.6561604185309" text-anchor="end">10</text>
+<path d="M50 217.6561604185309 H505" stroke="#e8e8e8"/>
+<text x="44" y="168.95848969371576" text-anchor="end">20</text>
+<path d="M50 161.95848969371576 H505" stroke="#e8e8e8"/>
+<text x="44" y="113.26081896890062" text-anchor="end">30</text>
+<path d="M50 106.26081896890062 H505" stroke="#e8e8e8"/>
+<path d="M128.97346355017982 262 V268" stroke="#888"/>
+<text x="128.97346355017982" y="290" text-anchor="middle">10</text>
+<path d="M306.7594802222948 262 V268" stroke="#888"/>
+<text x="306.7594802222948" y="290" text-anchor="middle">100</text>
+<path d="M484.5454478587773 262 V268" stroke="#888"/>
+<text x="484.5454478587773" y="290" text-anchor="middle">1000</text>
+<text x="285" y="313" text-anchor="middle">NFE (log scale)</text></g>
+<g transform="translate(55 262) scale(1.2258908139915003 -0.7810169704390963) translate(-74.28 -71.364)">
+<path stroke-width="2.25" stroke-linecap="square" stroke-linejoin="round" fill="none" stroke="#1f77b4" d="M90.965457 309.05998 134.62262 153.89527 178.27979 114.00329 192.33426 106.973178 235.99143 94.51582 261.52925 90.43891 279.6486 88.06885 323.30577 85.947849 381.0174 83.69322 424.67454 82.94563"/>
+<path stroke-width="2.25" stroke-linecap="butt" stroke-dasharray="9,3.375" stroke-linejoin="round" fill="none" stroke="#ff7f0e" d="M90.965457 314.57838 134.62262 159.16153 178.27979 117.63621 192.33426 109.773708 235.99143 96.38527 261.52925 91.32951 279.6486 89.70915 323.30577 86.05969 381.0174 83.825679 424.67454 84.13273"/>
+<path stroke-width="2.25" stroke-linecap="butt" stroke-dasharray="2.25,2.25" stroke-linejoin="round" fill="none" stroke="#2ca02c" d="M90.965457 218.4115 134.62262 142.53995 178.27979 114.26 192.33426 107.10133 235.99143 95.37045 261.52925 90.728809 279.6486 88.60102 323.30577 85.671367 381.0174 83.3185 424.67454 83.80768"/>
+</g><g font-family="Arial, sans-serif" font-size="21" fill="#181818">
+<path d="M45 19 h35" stroke="#1f77b4" stroke-width="3" stroke-dasharray=""/>
+<text x="88" y="27">I-CFM</text>
+<path d="M215 19 h35" stroke="#ff7f0e" stroke-width="3" stroke-dasharray="9 4"/>
+<text x="258" y="27">FM</text>
+<path d="M350 19 h35" stroke="#2ca02c" stroke-width="3" stroke-dasharray="3 3"/>
+<text x="393" y="27">OT-CFM</text>
+</g></svg>

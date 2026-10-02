@@ -1,0 +1,201 @@
+## BNS — Every step can have its own rule {#speed-m11 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Learn a different combination of past states and model evaluations for each sampling step.</div>
+<div class="speed-body">
+  <div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Editable explanatory schematic for method 11">
+<defs><marker id="speed-m11-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999999"/></marker><marker id="speed-m11-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7ff41"/></marker></defs>
+<text x="0" y="30" text-anchor="start" style="font-size:24px" >One shared rule</text><rect x="45" y="55" width="160" height="55" rx="4" class="speed-box"/><text x="125.0" y="90.5" text-anchor="middle" style="font-size:24px" >same rule</text><path d="M205 82 H250" class="speed-path" marker-end="url(#speed-m11-arrow)" /><rect x="260" y="55" width="160" height="55" rx="4" class="speed-box"/><text x="340.0" y="90.5" text-anchor="middle" style="font-size:24px" >same rule</text><path d="M420 82 H465" class="speed-path" marker-end="url(#speed-m11-arrow)" /><rect x="475" y="55" width="160" height="55" rx="4" class="speed-box"/><text x="555.0" y="90.5" text-anchor="middle" style="font-size:24px" >same rule</text><path d="M635 82 H680" class="speed-path" marker-end="url(#speed-m11-arrow)" /><rect x="690" y="55" width="160" height="55" rx="4" class="speed-box"/><text x="770.0" y="90.5" text-anchor="middle" style="font-size:24px" >same rule</text><text x="0" y="166" text-anchor="start" style="font-size:24px" >Step-specific rules</text><g class="fragment fade-in" data-fragment-index="1"><rect x="45" y="190" width="160" height="55" rx="4" class="speed-accent-box"/><text x="125.0" y="225.5" text-anchor="middle" style="font-size:24px" >weights 1</text><path d="M205 217 H250" class="speed-accent" marker-end="url(#speed-m11-lime)" /><path d="M450 321 C450 283 125 294 125 248" class="speed-accent" style="stroke-width:2px" /><rect x="260" y="190" width="160" height="55" rx="4" class="speed-accent-box"/><text x="340.0" y="225.5" text-anchor="middle" style="font-size:24px" >weights 2</text><path d="M420 217 H465" class="speed-accent" marker-end="url(#speed-m11-lime)" /><path d="M450 321 C450 283 340 294 340 248" class="speed-accent" style="stroke-width:3px" /><rect x="475" y="190" width="160" height="55" rx="4" class="speed-accent-box"/><text x="555.0" y="225.5" text-anchor="middle" style="font-size:24px" >weights 3</text><path d="M635 217 H680" class="speed-accent" marker-end="url(#speed-m11-lime)" /><path d="M450 321 C450 283 555 294 555 248" class="speed-accent" style="stroke-width:4px" /><rect x="690" y="190" width="160" height="55" rx="4" class="speed-accent-box"/><text x="770.0" y="225.5" text-anchor="middle" style="font-size:24px" >weights 4</text><path d="M450 321 C450 283 770 294 770 248" class="speed-accent" style="stroke-width:5px" /></g><rect x="155" y="321" width="590" height="52" rx="4" class="speed-box"/><text x="450.0" y="355.0" text-anchor="middle" style="font-size:24px" >History: states + model evaluations</text>
+<text x="0" y="420" text-anchor="start" style="font-size:20px" >Backbone frozen · Sampler optimized</text>
+</svg>
+  </div>
+  <div class="speed-results"><div class="speed-label">Reported results</div>
+    <div class="speed-context">FM-OT text-to-image · MS-COCO · 512×512<br>16 NFE · guidance 6.5 · PSNR ↑</div>
+<div class="speed-metric"><span class="speed-metric-label">RK-Midpoint</span><span class="speed-metric-value">9.98 dB</span><div class="speed-bar" style="width:47%"></div></div><div class="speed-metric speed-highlight"><span class="speed-metric-label">BNS</span><span class="speed-metric-value">21.23 dB</span><div class="speed-bar" style="width:100%"></div></div>
+    <div class="speed-result-note">Agreement with the reference solution.<br>PSNR measures fidelity to a solved ODE, not image realism.</div>
+  </div>
+</div>
+<div class="speed-takeaway">Each step learns how much of the available history to use.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m11">BNS: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2403.01329v1">Shaul et al., Bespoke Non-Stationary Solvers (2024)</a> · v1 · Eq. 10; Table 2</div>
+```
+
+::: {.notes}
+Сначала показать одинаковое правило; по клику — отдельные коэффициенты каждого шага и связи с накопленной историей. Толщина связей здесь условная, это не опубликованные значения весов. BNS разрешает линейные комбинации предыдущих состояний и вычислений поля. Веса основной модели заморожены. Справа PSNR относительно результата DOPRI5: 21.23 против 9.98 dB при 16 NFE и guidance 6.5. Это точность воспроизведения эталонного решения, а не прямая мера реалистичности. [@speed_bns]
+:::
+
+## AYS — The right steps matter {#speed-m12 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Optimize when a frozen model is evaluated while keeping the solver and evaluation budget fixed.</div>
+<div class="speed-body">
+  <div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Editable explanatory schematic for method 12">
+<defs><marker id="speed-m12-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999999"/></marker><marker id="speed-m12-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7ff41"/></marker></defs>
+<text x="0" y="30" text-anchor="start" style="font-size:24px" >Original schedule</text><path d="M65 80 H830" class="speed-path" /><circle cx="65" cy="80" r="8" class="speed-dot"/><circle cx="256" cy="80" r="8" class="speed-dot"/><circle cx="447" cy="80" r="8" class="speed-dot"/><circle cx="638" cy="80" r="8" class="speed-dot"/><circle cx="830" cy="80" r="8" class="speed-dot"/><text x="65" y="116" text-anchor="start" style="font-size:20px" >Noise</text><text x="830" y="116" text-anchor="end" style="font-size:20px" >Data</text><text x="0" y="166" text-anchor="start" style="font-size:24px" >Where is discretization costly?</text><rect x="65.0" y="185" width="62" height="32" fill="#999999" opacity="0.1"/><rect x="128.75" y="185" width="62" height="32" fill="#999999" opacity="0.12"/><rect x="192.5" y="185" width="62" height="32" fill="#999999" opacity="0.15"/><rect x="256.25" y="185" width="62" height="32" fill="#999999" opacity="0.18"/><rect x="320.0" y="185" width="62" height="32" fill="#999999" opacity="0.22"/><rect x="383.75" y="185" width="62" height="32" fill="#999999" opacity="0.3"/><rect x="447.5" y="185" width="62" height="32" fill="#999999" opacity="0.4"/><rect x="511.25" y="185" width="62" height="32" fill="#999999" opacity="0.5"/><rect x="575.0" y="185" width="62" height="32" fill="#999999" opacity="0.68"/><rect x="638.75" y="185" width="62" height="32" fill="#999999" opacity="0.8"/><rect x="702.5" y="185" width="62" height="32" fill="#999999" opacity="0.95"/><rect x="766.25" y="185" width="62" height="32" fill="#999999" opacity="1"/><text x="0" y="270" text-anchor="start" style="font-size:24px" >Optimized schedule</text><path d="M65 317 H830" class="speed-path" /><g class="fragment fade-in" data-fragment-index="1"><path d="M65 88 L65 309" class="speed-path" style="stroke-width:1.3px" stroke-dasharray="4 7"/><circle cx="65" cy="317" r="10" class="speed-accent-dot"/><path d="M256 88 L392 309" class="speed-path" style="stroke-width:1.3px" stroke-dasharray="4 7"/><circle cx="392" cy="317" r="10" class="speed-accent-dot"/><path d="M447 88 L609 309" class="speed-path" style="stroke-width:1.3px" stroke-dasharray="4 7"/><circle cx="609" cy="317" r="10" class="speed-accent-dot"/><path d="M638 88 L752 309" class="speed-path" style="stroke-width:1.3px" stroke-dasharray="4 7"/><circle cx="752" cy="317" r="10" class="speed-accent-dot"/><path d="M830 88 L830 309" class="speed-path" style="stroke-width:1.3px" stroke-dasharray="4 7"/><circle cx="830" cy="317" r="10" class="speed-accent-dot"/></g><text x="448" y="374" text-anchor="middle" style="font-size:24px" >Same five evaluations · new time points</text>
+<text x="0" y="420" text-anchor="start" style="font-size:20px" >Backbone frozen · Sampler optimized</text>
+</svg>
+  </div>
+  <div class="speed-results"><div class="speed-label">Reported results</div>
+    <div class="speed-context">EDM backbone · CIFAR-10 · 32×32<br>DPM-Solver++ (2M) · unconditional</div>
+<svg viewBox="0 0 540 270" role="img" aria-label="CIFAR-10 FID versus NFE: DPM-Solver++ 2M with LogSNR and AYS schedules, exact Table 5 data">
+<path d="M50 25 V204 H490" fill="none" stroke="#999" stroke-width="2"/>
+<g style="font-size:18px" fill="#333"><path d="M46 204 H490" stroke="#e6e6e6"/><text x="36" y="210" text-anchor="end" style="font-size:18px" >2</text><path d="M46 154 H490" stroke="#e6e6e6"/><text x="36" y="160" text-anchor="end" style="font-size:18px" >3</text><path d="M46 104 H490" stroke="#e6e6e6"/><text x="36" y="110" text-anchor="end" style="font-size:18px" >4</text><path d="M46 54 H490" stroke="#e6e6e6"/><text x="36" y="60" text-anchor="end" style="font-size:18px" >5</text><text x="50" y="230" text-anchor="middle" style="font-size:18px" >10</text><text x="160" y="230" text-anchor="middle" style="font-size:18px" >20</text><text x="270" y="230" text-anchor="middle" style="font-size:18px" >30</text><text x="490" y="230" text-anchor="middle" style="font-size:18px" >50</text><text x="12" y="18" text-anchor="start" style="font-size:18px" >FID ↓</text><text x="490" y="250" text-anchor="end" style="font-size:18px" >NFE</text><polyline points="50,50.5 160,185.5 270,198.0 490,202.0" fill="none" stroke="#999999" stroke-width="4"/><circle cx="50" cy="50.5" r="5" fill="#999999" stroke="#333" stroke-width="1"/><circle cx="160" cy="185.5" r="5" fill="#999999" stroke="#333" stroke-width="1"/><circle cx="270" cy="198.0" r="5" fill="#999999" stroke="#333" stroke-width="1"/><circle cx="490" cy="202.0" r="5" fill="#999999" stroke="#333" stroke-width="1"/><polyline points="50,155.0 160,199.0 270,203.0 490,203.5" fill="none" stroke="#c7ff41" stroke-width="4"/><circle cx="50" cy="155.0" r="5" fill="#c7ff41" stroke="#333" stroke-width="1"/><circle cx="160" cy="199.0" r="5" fill="#c7ff41" stroke="#333" stroke-width="1"/><circle cx="270" cy="203.0" r="5" fill="#c7ff41" stroke="#333" stroke-width="1"/><circle cx="490" cy="203.5" r="5" fill="#c7ff41" stroke="#333" stroke-width="1"/><path d="M175 25 H210" stroke="#999999" stroke-width="4"/><text x="220" y="31" text-anchor="start" style="font-size:18px" >LogSNR</text><path d="M345 25 H380" stroke="#c7ff41" stroke-width="4"/><text x="390" y="31" text-anchor="start" style="font-size:18px" >AYS</text></g></svg>
+    <div class="speed-result-note">Exact Table 5 data · 10–50 NFE.<br>AYS searches the schedule without gradient descent.</div>
+  </div>
+</div>
+<div class="speed-takeaway">Same solver. Same budget. Better timing.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m12">AYS: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2404.14507v1">Sabour et al., Align Your Steps (2024)</a> · v1 · Fig. 7; Table 5 (one solver)</div>
+```
+
+::: {.notes}
+Число точек на двух шкалах одинаково. Клик показывает перераспределение бюджета; полоса ошибки качественная и относится только к Schematic. AYS оптимизирует расписание по оценке ошибки дискретизации, используя безградиентный поиск. График воспроизводит точные значения Table 5 для одного решателя DPM-Solver++ (2M): при 10 NFE FID 5.07 у LogSNR и 2.98 у AYS. Это не обучение новой нейросети. Результаты не следует сравнивать напрямую с другими слайдами, где могут отличаться модели и условия. [@speed_ays]
+:::
+
+## LD3 — Move the time points with gradients {#speed-m13 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Learn time points so a short solver matches the output of a more accurate reference solver.</div>
+<div class="speed-body">
+  <div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Editable explanatory schematic for method 13">
+<defs><marker id="speed-m13-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999999"/></marker><marker id="speed-m13-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7ff41"/></marker></defs>
+<text x="0" y="30" text-anchor="start" style="font-size:24px" >Accurate reference</text><path d="M60 80 H810" class="speed-path" marker-end="url(#speed-m13-arrow)" /><circle cx="60" cy="80" r="5" class="speed-dot"/><circle cx="110" cy="80" r="5" class="speed-dot"/><circle cx="160" cy="80" r="5" class="speed-dot"/><circle cx="210" cy="80" r="5" class="speed-dot"/><circle cx="260" cy="80" r="5" class="speed-dot"/><circle cx="310" cy="80" r="5" class="speed-dot"/><circle cx="360" cy="80" r="5" class="speed-dot"/><circle cx="410" cy="80" r="5" class="speed-dot"/><circle cx="460" cy="80" r="5" class="speed-dot"/><circle cx="510" cy="80" r="5" class="speed-dot"/><circle cx="560" cy="80" r="5" class="speed-dot"/><circle cx="610" cy="80" r="5" class="speed-dot"/><circle cx="660" cy="80" r="5" class="speed-dot"/><circle cx="710" cy="80" r="5" class="speed-dot"/><circle cx="760" cy="80" r="5" class="speed-dot"/><circle cx="810" cy="80" r="5" class="speed-dot"/><text x="0" y="157" text-anchor="start" style="font-size:24px" >Short solver · movable times</text><path d="M60 211 H810" class="speed-path" marker-end="url(#speed-m13-arrow)" /><circle cx="60" cy="211" r="10" class="speed-accent-dot"/><text x="60" y="250" text-anchor="middle" style="font-size:24px" >t₀</text><circle cx="267" cy="211" r="10" class="speed-accent-dot"/><text x="267" y="250" text-anchor="middle" style="font-size:24px" >t₁</text><circle cx="497" cy="211" r="10" class="speed-accent-dot"/><text x="497" y="250" text-anchor="middle" style="font-size:24px" >t₂</text><circle cx="810" cy="211" r="10" class="speed-accent-dot"/><text x="810" y="250" text-anchor="middle" style="font-size:24px" >t₃</text><path d="M810 85 V194" class="speed-path" /><text x="822" y="142" text-anchor="start" style="font-size:20px" >Match</text><g class="fragment fade-in" data-fragment-index="1"><path d="M800 186 C698 117 468 118 283 187" class="speed-accent" marker-end="url(#speed-m13-lime)" /><text x="505" y="122" text-anchor="middle" style="font-size:24px" >Gradient → time points</text></g><rect x="25" y="287" width="810" height="91" rx="4" class="speed-box"/><text x="43" y="316" text-anchor="start" style="font-size:20px" >Training only</text><text x="228" y="319" text-anchor="start" style="font-size:24px" >Hard target</text><circle cx="388" cy="312" r="8" class="speed-dot"/><text x="470" y="319" text-anchor="start" style="font-size:24px" >Soft target</text><circle cx="644" cy="312" r="21" fill="none" stroke="#999999" stroke-dasharray="4 4"/><circle cx="644" cy="312" r="8" class="speed-dot"/><circle cx="656" cy="306" r="6" class="speed-accent-dot"/><text x="228" y="357" text-anchor="start" style="font-size:20px" >Fixed noise</text><text x="470" y="357" text-anchor="start" style="font-size:20px" >Bounded noise adjustment</text>
+<text x="0" y="420" text-anchor="start" style="font-size:20px" >Backbone frozen · Sampler optimized</text>
+</svg>
+  </div>
+  <div class="speed-results"><div class="speed-label">Reported results</div>
+    <div class="speed-context">EDM backbone · CIFAR-10 · 32×32<br>iPNDM (3M) · 6 NFE · unconditional · FID ↓</div>
+<div class="speed-metric"><span class="speed-metric-label">Original iPNDM</span><span class="speed-metric-value">11.80</span><div class="speed-bar" style="width:100%"></div></div><div class="speed-metric speed-highlight"><span class="speed-metric-label">iPNDM + LD3</span><span class="speed-metric-value">3.35</span><div class="speed-bar" style="width:28.4%"></div></div>
+    <div class="speed-result-note">The original schedule is Time LogSNR.<br>Soft targets adjust initial noise during training only.</div>
+  </div>
+</div>
+<div class="speed-takeaway">The solver formula stays fixed; gradients move its time points.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m13">LD3: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2405.15506v4">Tong et al., Learning to Discretize Denoising Diffusion ODEs (2024)</a> · v4 (2025) · Fig. 1; Table 2</div>
+```
+
+::: {.notes}
+Стрелка градиента направлена к временным координатам короткого решателя. Формула обновления и сеть остаются прежними. Soft teacher forcing разрешает ограниченно скорректировать исходный шум для обучающей пары; это часть подготовки решателя, а не оптимизация каждого нового изображения во время генерации. В Table 2 iPNDM (3M) с исходным Time LogSNR получает FID 11.80, с LD3 — 3.35 при 6 NFE. Год 2024 — первый препринт; числа проверены по v4 от 2025 года. [@speed_ld3]
+:::
+
+## S4S — Learn when and how to step {#speed-m14 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Better sampling"><span class="speed-category-name">Better sampling</span></div>
+<div class="speed-lead">Learn solver coefficients from reference outputs, then alternate with schedule optimization in S4S-Alt.</div>
+<div class="speed-body">
+  <div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Editable explanatory schematic for method 14">
+<defs><marker id="speed-m14-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999999"/></marker><marker id="speed-m14-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7ff41"/></marker></defs>
+<text x="0" y="32" text-anchor="start" style="font-size:24px" >When: time points</text><path d="M80 94 H810" class="speed-path" /><circle cx="80" cy="94" r="7" class="speed-dot"/><circle cx="325" cy="94" r="7" class="speed-dot"/><circle cx="568" cy="94" r="7" class="speed-dot"/><circle cx="810" cy="94" r="7" class="speed-dot"/><g class="fragment fade-in" data-fragment-index="2"><circle cx="80" cy="94" r="10" class="speed-accent-dot"/><circle cx="275" cy="94" r="10" class="speed-accent-dot"/><circle cx="652" cy="94" r="10" class="speed-accent-dot"/><circle cx="810" cy="94" r="10" class="speed-accent-dot"/><text x="450" y="66" text-anchor="middle" style="font-size:24px" >2 · Optimize the schedule</text></g><path d="M80 185 H810" class="speed-path" marker-end="url(#speed-m14-arrow)" /><circle cx="80" cy="185" r="9" class="speed-dot"/><path d="M80 105 V173" class="speed-path" style="stroke-width:1.5px" stroke-dasharray="4 6"/><circle cx="325" cy="185" r="9" class="speed-dot"/><path d="M325 105 V173" class="speed-path" style="stroke-width:1.5px" stroke-dasharray="4 6"/><circle cx="568" cy="185" r="9" class="speed-dot"/><path d="M568 105 V173" class="speed-path" style="stroke-width:1.5px" stroke-dasharray="4 6"/><circle cx="810" cy="185" r="9" class="speed-dot"/><path d="M810 105 V173" class="speed-path" style="stroke-width:1.5px" stroke-dasharray="4 6"/><text x="0" y="242" text-anchor="start" style="font-size:24px" >How: solver coefficients</text><g class="fragment fade-in" data-fragment-index="1"><rect x="90" y="270" width="200" height="54" rx="4" class="speed-accent-box"/><text x="190.0" y="305.0" text-anchor="middle" style="font-size:24px" >weights 1</text><path d="M280 267 H312 V204" class="speed-accent" marker-end="url(#speed-m14-lime)" /><rect x="340" y="270" width="200" height="54" rx="4" class="speed-accent-box"/><text x="440.0" y="305.0" text-anchor="middle" style="font-size:24px" >weights 2</text><path d="M440 267 V204" class="speed-accent" marker-end="url(#speed-m14-lime)" /><rect x="590" y="270" width="200" height="54" rx="4" class="speed-accent-box"/><text x="690.0" y="305.0" text-anchor="middle" style="font-size:24px" >weights 3</text><path d="M690 267 V204" class="speed-accent" marker-end="url(#speed-m14-lime)" /><text x="440" y="363" text-anchor="middle" style="font-size:24px" >1 · Optimize the coefficients</text></g><text x="810" y="222" text-anchor="middle" style="font-size:20px" >Output</text>
+<text x="0" y="420" text-anchor="start" style="font-size:20px" >Backbone frozen · Sampler optimized</text>
+</svg>
+  </div>
+  <div class="speed-results"><div class="speed-label">Reported results</div>
+    <div class="speed-context">EDM backbone · CIFAR-10 · 32×32<br>6 NFE · unconditional · FID ↓</div>
+<div class="speed-metric"><span class="speed-metric-label">Best Trad. (LD3)</span><span class="speed-metric-value">3.55</span><div class="speed-bar" style="width:100%"></div></div><div class="speed-metric"><span class="speed-metric-label">Best S4S</span><span class="speed-metric-value">3.17</span><div class="speed-bar" style="width:89.3%"></div></div><div class="speed-metric speed-highlight"><span class="speed-metric-label">S4S-Alt</span><span class="speed-metric-value">2.67</span><div class="speed-bar" style="width:75.2%"></div></div>
+    <div class="speed-result-note">“Best” selects the best compared solver for that NFE budget; S4S-Alt also learns the schedule.</div>
+  </div>
+</div>
+<div class="speed-takeaway">Optimize both when to ask the model and how to use its answers.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m14">S4S / S4S-Alt: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2502.17423v1">Frankel et al., S4S: Solving for a Diffusion Model Solver (2025)</a> · v1 · Fig. 1; Table 3</div>
+```
+
+::: {.notes}
+Первый клик выделяет коэффициенты обновления, второй — временную сетку. Оба набора параметров принадлежат решателю, веса diffusion-модели фиксированы. S4S обучает коэффициенты по конечному результату сильного решателя; S4S-Alt чередует оптимизацию коэффициентов и временных точек. Table 3: Best Trad. (LD3) — 3.55, Best S4S — 3.17, S4S-Alt — 2.67 FID при 6 NFE. Слово Best важно: это выбранные лучшие варианты среди рассмотренных конфигураций, а не один универсальный baseline. [@speed_s4s]
+:::
+
+## Rectified Flow — Straighten the path before sampling {#speed-m15 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Simpler Path"><span class="speed-category-name">Simpler Path</span></div>
+<div class="speed-lead">Train on straight interpolations, then use a learned flow’s endpoints as new pairs to simplify the next flow.</div>
+<div class="speed-body">
+  <div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Editable explanatory schematic for method 15">
+<defs><marker id="speed-m15-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999999"/></marker><marker id="speed-m15-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7ff41"/></marker></defs>
+<text x="140" y="30" text-anchor="middle" style="font-size:24px" >Initial coupling</text><rect x="4" y="51" width="276" height="278" fill="none" stroke="#ddd"/><circle cx="30" cy="100" r="8" class="speed-dot"/><circle cx="250" cy="100" r="8" class="speed-dot"/><circle cx="30" cy="185" r="8" class="speed-dot"/><circle cx="250" cy="185" r="8" class="speed-dot"/><circle cx="30" cy="270" r="8" class="speed-dot"/><circle cx="250" cy="270" r="8" class="speed-dot"/><text x="450" y="30" text-anchor="middle" style="font-size:24px" >Learned flow</text><rect x="314" y="51" width="276" height="278" fill="none" stroke="#ddd"/><circle cx="340" cy="100" r="8" class="speed-dot"/><circle cx="560" cy="100" r="8" class="speed-dot"/><circle cx="340" cy="185" r="8" class="speed-dot"/><circle cx="560" cy="185" r="8" class="speed-dot"/><circle cx="340" cy="270" r="8" class="speed-dot"/><circle cx="560" cy="270" r="8" class="speed-dot"/><text x="760" y="30" text-anchor="middle" style="font-size:24px" >Reflow</text><rect x="624" y="51" width="276" height="278" fill="none" stroke="#ddd"/><circle cx="650" cy="100" r="8" class="speed-dot"/><circle cx="870" cy="100" r="8" class="speed-dot"/><circle cx="650" cy="185" r="8" class="speed-dot"/><circle cx="870" cy="185" r="8" class="speed-dot"/><circle cx="650" cy="270" r="8" class="speed-dot"/><circle cx="870" cy="270" r="8" class="speed-dot"/><path d="M30 100 L250 270" class="speed-path" /><path d="M30 185 L250 100" class="speed-path" /><path d="M30 270 L250 185" class="speed-path" /><text x="140" y="366" text-anchor="middle" style="font-size:20px" >Straight training pairs</text><path d="M340 100 C420 172 472 56 560 100" class="speed-path" /><path d="M340 185 C425 275 488 132 560 185" class="speed-path" /><path d="M340 270 C418 344 493 222 560 270" class="speed-path" /><text x="450" y="366" text-anchor="middle" style="font-size:20px" >Learned trajectories</text><g class="fragment fade-in" data-fragment-index="1"><path d="M650 100 C726 115 805 90 870 100" class="speed-accent" /><circle cx="650" cy="100" r="5" class="speed-accent-dot"/><circle cx="722" cy="106" r="5" class="speed-accent-dot"/><circle cx="796" cy="100" r="5" class="speed-accent-dot"/><circle cx="870" cy="100" r="5" class="speed-accent-dot"/><path d="M650 185 C726 200 805 175 870 185" class="speed-accent" /><circle cx="650" cy="185" r="5" class="speed-accent-dot"/><circle cx="722" cy="191" r="5" class="speed-accent-dot"/><circle cx="796" cy="185" r="5" class="speed-accent-dot"/><circle cx="870" cy="185" r="5" class="speed-accent-dot"/><path d="M650 270 C726 285 805 260 870 270" class="speed-accent" /><circle cx="650" cy="270" r="5" class="speed-accent-dot"/><circle cx="722" cy="276" r="5" class="speed-accent-dot"/><circle cx="796" cy="270" r="5" class="speed-accent-dot"/><circle cx="870" cy="270" r="5" class="speed-accent-dot"/><text x="760" y="366" text-anchor="middle" style="font-size:20px" >Retrain on flow endpoints</text></g><path d="M283 186 H305" class="speed-path" marker-end="url(#speed-m15-arrow)" /><path d="M592 186 H615" class="speed-path" marker-end="url(#speed-m15-arrow)" />
+<text x="0" y="420" text-anchor="start" style="font-size:20px" >Train the dynamics</text>
+</svg>
+  </div>
+  <div class="speed-results"><div class="speed-label">Reported results</div>
+    <div class="speed-context">DDPM++ architecture · CIFAR-10 · 32×32<br>Euler · 1–1000 steps / NFE · unconditional</div>
+<img src="assets/final/acceleration_20261002/m11_m17/rf-cifar10-fid-selected.svg" style="height:288px;width:auto;max-width:100%" alt="Original FID versus Euler steps chart: 1-, 2- and 3-Rectified Flow; separate distilled stars omitted">
+    <div class="speed-result-note">Original FID curves · log axes relabeled.<br>Separate k-Distilled points are omitted.</div>
+  </div>
+</div>
+<div class="speed-takeaway">Reflow simplifies learned trajectories; a straight training pair does not guarantee a straight ODE.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m15">Rectified Flow / Reflow: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2209.03003v1">Liu, Gong &amp; Liu, Flow Straight and Fast (2022)</a> · v1 · Fig. 8(a), FID crop; distilled points omitted</div>
+```
+
+::: {.notes}
+Начальные прямые соединяют случайные пары и могут пересекаться. Обученный поток усредняет условные скорости; его траектории уже не обязаны повторять эти отрезки. По клику появляются новые пары по концам ранее обученного потока и повторное обучение Reflow. Небольшая кривизна оставлена намеренно. Справа сохранена геометрия исходного FID-графика с логарифмическими осями. Три отдельные звезды k-Distilled удалены: они относятся к дополнительной дистилляции. Пунктирные diffusion-baselines сохранены для контекста. Повторное выпрямление не гарантирует монотонного улучшения FID при любом бюджете. [@diff_rectified_flow]
+:::
+
+## Flow Matching — Choose an easier path to learn {#speed-m16 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Simpler Path"><span class="speed-category-name">Simpler Path</span></div>
+<div class="speed-lead">Choose simpler conditional probability paths and learn a velocity field that can be easier to integrate.</div>
+<div class="speed-body">
+  <div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Editable explanatory schematic for method 16">
+<defs><marker id="speed-m16-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999999"/></marker><marker id="speed-m16-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7ff41"/></marker></defs>
+<text x="0" y="25" text-anchor="start" style="font-size:24px" >Diffusion path</text><ellipse cx="65" cy="89" rx="44" ry="43" fill="#f3f3f3" stroke="#999999" stroke-width="2"/><ellipse cx="235" cy="89" rx="32" ry="43" fill="#f3f3f3" stroke="#999999" stroke-width="2"/><ellipse cx="405" cy="89" rx="13" ry="43" fill="#f3f3f3" stroke="#999999" stroke-width="2"/><path d="M65 94 C172 12 321 164 405 89" class="speed-path" /><text x="20" y="151" text-anchor="start" style="font-size:20px" >Noise</text><text x="430" y="151" text-anchor="end" style="font-size:20px" >Data</text><text x="0" y="203" text-anchor="start" style="font-size:24px" >Conditional OT path</text><g class="fragment fade-in" data-fragment-index="1"><ellipse cx="65" cy="259" rx="44" ry="43" fill="#f8ffeb" stroke="#999999" stroke-width="2"/><ellipse cx="235" cy="259" rx="28" ry="43" fill="#f8ffeb" stroke="#999999" stroke-width="2"/><ellipse cx="405" cy="259" rx="13" ry="43" fill="#f8ffeb" stroke="#999999" stroke-width="2"/><path d="M65 275 L405 245" class="speed-accent" /><circle cx="236" cy="260" r="8" class="speed-accent-dot"/><path d="M236 260 L299 254" class="speed-accent" marker-end="url(#speed-m16-lime)" /></g><path d="M455 89 H497 V185 H535" class="speed-path" marker-end="url(#speed-m16-arrow)" /><path d="M455 259 H497 V185" class="speed-path" /><rect x="535" y="145" width="320" height="75" rx="4" class="speed-box"/><text x="695.0" y="190.5" text-anchor="middle" style="font-size:24px" >Same FM objective</text><text x="694" y="250" text-anchor="middle" style="font-size:24px" >Regress target velocity</text><path d="M553 341 C650 274 734 388 851 323" class="speed-path" /><text x="702" y="379" text-anchor="middle" style="font-size:24px" >Learned marginal ODE</text><text x="0" y="376" text-anchor="start" style="font-size:20px" >Chosen conditional training paths</text>
+<text x="0" y="420" text-anchor="start" style="font-size:20px" >Train the dynamics</text>
+</svg>
+  </div>
+  <div class="speed-results"><div class="speed-label">Reported results</div>
+    <div class="speed-context">Same U-Net architecture · ImageNet · 64×64<br>Unconditional · adaptive dopri5</div>
+<div style="display:grid;grid-template-columns:1fr auto auto;gap:18px 22px;align-items:baseline;margin-top:28px">
+<span></span><span style="font-size:20px">FID ↓</span><span style="font-size:20px">NFE ↓</span>
+<span style="font-size:22px">FM / Diffusion</span><strong style="font-size:34px;font-weight:600">16.88</strong><strong style="font-size:34px;font-weight:600">187</strong>
+<span style="font-size:22px">FM / OT</span><strong style="font-size:34px;font-weight:600;border-bottom:7px solid #c7ff41">14.45</strong><strong style="font-size:34px;font-weight:600;border-bottom:7px solid #c7ff41">138</strong>
+</div>
+    <div class="speed-result-note">Same absolute / relative tolerance: 10<sup>−5</sup>.<br>NFE is an average from adaptive integration.</div>
+  </div>
+</div>
+<div class="speed-takeaway">The training path shapes the sampling problem.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m16">Flow Matching: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2210.02747v2">Lipman et al., Flow Matching for Generative Modeling (2022)</a> · v2 · Fig. 3; Table 1</div>
+```
+
+::: {.notes}
+Слева выбранный условный путь: для одной конечной точки данных задаётся распределение промежуточных состояний и целевая скорость. Справа обучается общее поле скоростей. Даже если условные траектории прямые, усреднённый marginal ODE может изгибаться; схема специально показывает это отдельно. OT в этом слайде относится к условным путям, а не к доказанному глобально оптимальному соответствию двух полных распределений. Table 1: ImageNet 64×64, FID 16.88 → 14.45, NFE 187 → 138. dopri5 адаптивный, с одинаковыми допусками 10⁻⁵, поэтому это не фиксированная временная сетка. [@diff_flow_matching]
+:::
+
+## OT-CFM — Better pairings make simpler flows {#speed-m17 .exp-slide .speed-slide background-color="#ffffff"}
+
+```{=html}
+<div class="speed-category" data-category="Simpler Path"><span class="speed-category-name">Simpler Path</span></div>
+<div class="speed-lead">Optimize source–target pairings inside each training minibatch before fitting the flow.</div>
+<div class="speed-body">
+  <div class="speed-mechanism"><div class="speed-label">Schematic</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="Editable explanatory schematic for method 17">
+<defs><marker id="speed-m17-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999999"/></marker><marker id="speed-m17-lime" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c7ff41"/></marker></defs>
+<rect x="2" y="8" width="893" height="364" rx="4" fill="none" stroke="#ddd" stroke-width="2"/><text x="20" y="39" text-anchor="start" style="font-size:24px" >Training · minibatch pairing</text><text x="215" y="88" text-anchor="middle" style="font-size:24px" >Random pairs</text><text x="676" y="88" text-anchor="middle" style="font-size:24px" >Minibatch OT pairs</text><circle cx="57" cy="140" r="8" class="speed-dot"/><circle cx="372" cy="140" r="8" class="speed-dot"/><circle cx="57" cy="213" r="8" class="speed-dot"/><circle cx="372" cy="213" r="8" class="speed-dot"/><circle cx="57" cy="286" r="8" class="speed-dot"/><circle cx="372" cy="286" r="8" class="speed-dot"/><circle cx="522" cy="140" r="8" class="speed-dot"/><circle cx="837" cy="140" r="8" class="speed-dot"/><circle cx="522" cy="213" r="8" class="speed-dot"/><circle cx="837" cy="213" r="8" class="speed-dot"/><circle cx="522" cy="286" r="8" class="speed-dot"/><circle cx="837" cy="286" r="8" class="speed-dot"/><path d="M57 140 L372 286" class="speed-path" /><path d="M57 213 L372 140" class="speed-path" /><path d="M57 286 L372 213" class="speed-path" /><g class="fragment fade-in" data-fragment-index="1"><path d="M522 140 L837 140" class="speed-accent" /><path d="M522 213 L837 213" class="speed-accent" /><path d="M522 286 L837 286" class="speed-accent" /><text x="676" y="348" text-anchor="middle" style="font-size:20px" >Shorter paired displacements</text></g><text x="215" y="348" text-anchor="middle" style="font-size:20px" >Long, crossing displacements</text><text x="448" y="392" text-anchor="middle" style="font-size:24px" >Same points · different training pairs</text>
+<text x="0" y="420" text-anchor="start" style="font-size:20px" >Train the dynamics</text>
+</svg>
+  </div>
+  <div class="speed-results"><div class="speed-label">Reported results</div>
+    <div class="speed-context">U-Net (128 channels) · CIFAR-10 · 32×32<br>400k training steps · Euler · unconditional</div>
+<img src="assets/final/acceleration_20261002/m11_m17/otcfm-cifar10-readable.svg" style="height:280px;width:auto;max-width:100%" alt="Original Figure 3 right curve geometry, relabeled axes: FID against NFE for OT-CFM, I-CFM and FM after 400 thousand training steps">
+    <div class="speed-result-note">Original Fig. 3 curves · axes relabeled.<br>Minibatch OT is an approximation to global OT.</div>
+  </div>
+</div>
+<div class="speed-takeaway">Better training pairs can produce a flow that needs fewer sampling steps.</div>
+<div class="speed-impl-entry"><button type="button" class="speed-impl-open" data-impl-open="speed-m17">OT-CFM: implementation ↗</button></div>
+<div class="speed-source"><a href="https://arxiv.org/html/2302.00482v4">Tong et al., Improving and Generalizing Flow-Based Generative Models with Minibatch OT (2023)</a> · v4 · Fig. 3 right</div>
+```
+
+::: {.notes}
+Координаты точек слева и справа одинаковы; меняются только соответствия. OT выполняется на обучающем мини-батче и не добавляется как отдельная операция во время генерации каждого изображения. Схема с тремя парами — иллюстрация, не измеренные данные. Мини-батчевый план не равен оптимальному транспорту между полными распределениями. Справа оригинальная правая панель Fig. 3: одинаковая процедура обучения, 400 тысяч шагов, Euler с разным NFE. OT-CFM, I-CFM и FM сравниваются внутри одной работы; это не межстатейный рейтинг FID. [@speed_otcfm]
+:::
