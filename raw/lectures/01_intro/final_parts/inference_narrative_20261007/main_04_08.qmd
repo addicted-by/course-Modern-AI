@@ -1,0 +1,143 @@
+## Why doesn't the answer start immediately? {#inference-04 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I06</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n04-body">
+  <div class="n04-input"><span>The input context is one sequence</span><b>“Why does the Moon shine at night?”</b></div>
+  <div class="n04-process" role="img" aria-label="The trained model processes the entire input context. It computes context representations needed to start the answer.">
+    <div class="n04-text"><span>Full input</span><div class="n04-strip"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <b class="n04-arrow">→</b>
+    <div class="n04-model"><b>Trained model</b><span>Input processing</span></div>
+    <b class="n04-arrow">→</b>
+    <div class="n04-state"><div class="n04-reps"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Context representations<br>to start the answer</span></div>
+  </div>
+  <div class="n04-name"><strong>prefill</strong><span>The initial processing of the input.</span></div>
+</div>
+<div class="fv-takeaway">Before answering, the model must process the input context.</div>
+<div class="fv-source"><a href="https://huggingface.co/docs/transformers/cache_explanation">Hugging Face Transformers · How caching works</a> · Illustration of autoregressive model execution</div>
+```
+
+::: {.notes}
+Пока мы выбирали способ поиска, каждый отдельный запуск модели оставался для нас чёрным ящиком. Теперь проследим один запрос от входа до потока ответа.
+
+Вход — это вся последовательность, которую модель получает в этом запуске: не только последняя реплика, но и нужная история разговора и инструкции. На схеме дан один короткий пример, чтобы не отвлекаться на структуру чата. Прямоугольники обозначают позиции последовательности условно: это не утверждение о конкретном разбиении русского предложения токенизатором.
+
+Сначала обученная модель обрабатывает вход и вычисляет промежуточные представления. После объяснения процесса вводим название prefill. В причинной модели позиции учитывают только допустимый предшествующий контекст; обработка входной последовательности не означает, что будущий ответ уже известен. Результат этой фазы позволяет выбрать первый токен ответа. Здесь намеренно не обсуждаем очереди, серверы или показатели производительности: это только последовательность вычислений одного запроса.
+
+Переход: первый токен ещё не является полным ответом. На следующем слайде посмотрим, как модель получает продолжение.
+
+Источник для сохранения и использования представлений: [Hugging Face Transformers, How caching works](https://huggingface.co/docs/transformers/cache_explanation). Терминология фаз дополнительно сверена с [DistServe, v3, §2.1](https://arxiv.org/html/2401.09670v3#S2.SS1). Проверено 7 октября 2026 года.
+:::
+
+## Why does the answer arrive token by token? {#inference-05 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I07</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n05-body">
+  <p class="n05-lead">Each generated token becomes part of the context for the next step.</p>
+  <div class="n05-steps" role="img" aria-label="Answer tokens are added to the input context one at a time. Each step selects the next token.">
+    <div class="n05-step"><span class="n05-context">Input</span><span class="n05-old">token 1</span><b class="n05-arrow">→</b><strong class="n05-new">token 2</strong><span class="n05-comment">select the next token</span></div>
+    <div class="n05-step"><span class="n05-context">Input</span><span class="n05-old">token 1</span><span class="n05-old">token 2</span><b class="n05-arrow">→</b><strong class="n05-new">token 3</strong></div>
+    <div class="n05-step"><span class="n05-context">Input</span><span class="n05-old">token 1</span><span class="n05-old">token 2</span><span class="n05-old">token 3</span><b class="n05-arrow">→</b><strong class="n05-new">token 4</strong><span class="n05-repeat">…</span></div>
+  </div>
+  <div class="n05-name"><strong>decode</strong><span>Continue the answer one token at a time.</span></div>
+  <div class="n05-timeline"><div><b>Process the input</b><span>prefill · before the first token</span></div><b class="n05-time-arrow">→</b><div><b>Generate the continuation</b><span>decode · one token after another</span></div></div>
+</div>
+<div class="fv-takeaway">Each step depends on the token selected at the previous step.</div>
+<div class="fv-source"><a href="https://huggingface.co/docs/transformers/cache_explanation">Hugging Face Transformers · How caching works</a> · Illustration of standard autoregressive generation</div>
+```
+
+::: {.notes}
+Начинаем с момента, когда первый токен уже выбран после обработки входа. Теперь система подаёт его модели вместе с состоянием предшествующего контекста, получает вероятности следующего токена и выбирает его. Выбранный токен становится частью контекста, после чего цикл повторяется. На слайде показаны именно позиции токенов, а не предположение о соответствии одного слова одному токену.
+
+Вводим название decode после демонстрации нескольких шагов. Стрелка здесь означает вычисление и выбор следующего токена; она не предполагает, что это всегда выбор максимальной вероятности. Возможны разные правила сэмплирования. Цикл продолжается до условия остановки.
+
+В конце возвращаемся к временной линии: prefill обрабатывает вход и даёт возможность выбрать первый токен, decode получает последующие. Длины отрезков на схеме иллюстративны и не выражают отношение измеренных времён. Здесь рассматриваем обычную авторегрессионную генерацию: позже отдельно объясним, как проверка черновика меняет количество последовательных запусков основной модели.
+
+Переход: если весь предыдущий контекст нужен на каждом шаге, обязательно ли вычислять его представления заново? Следующий слайд отвечает на этот вопрос.
+
+Источник: [Hugging Face Transformers, How caching works](https://huggingface.co/docs/transformers/cache_explanation), начало страницы и пример цикла генерации. Определения границы фаз: [DistServe, v3, §2.1](https://arxiv.org/html/2401.09670v3#S2.SS1). Проверено 7 октября 2026 года.
+:::
+
+## What does the model retain between steps? {#inference-06 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I08</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n06-body">
+  <p class="n06-lead"><b>KV cache</b> stores intermediate representations<br>of positions already processed.</p>
+  <div class="n06-cache" role="img" aria-label="Stored representations for positions one, two, and three are reused. Processing the new token adds a representation for position four.">
+    <div class="n06-row"><span class="n06-row-label">Before the step</span><div class="n06-bank"><span>position 1</span><span>position 2</span><span>position 3</span></div><div class="n06-current">New token<br><b>position 4</b></div></div>
+    <div class="n06-actions"><b>↓ reuse</b><b>↓ compute and append</b></div>
+    <div class="n06-row"><span class="n06-row-label">After the step</span><div class="n06-bank"><span>position 1</span><span>position 2</span><span>position 3</span><span class="n06-added">position 4</span></div></div>
+  </div>
+  <div class="n06-purpose"><b>At the next step:</b><span>read the stored state + process the new token.</span></div>
+  <div class="n06-boundary">This is neither a ready-made answer nor a knowledge base.</div>
+</div>
+<div class="fv-takeaway">The cache lets computation continue without recomputing past representations.</div>
+<div class="fv-source"><a href="https://huggingface.co/docs/transformers/cache_explanation">Hugging Face Transformers · How caching works</a> · A simple growing cache for causal attention</div>
+```
+
+::: {.notes}
+Рассмотрим состояние после обработки трёх позиций и новый токен на четвёртой позиции. Подписи внутри прямоугольников обозначают промежуточные представления соответствующих позиций, а не сами текстовые токены. Ранее вычисленное состояние используется при обработке нового токена; для него вычисляется и сохраняется новая запись. Затем обновлённое состояние доступно следующему шагу.
+
+Название KV cache связано с ключами и значениями attention. Для основного рассказа достаточно видеть сохранённую работу: прошлые представления не вычисляются с нуля, но модель всё ещё должна читать нужное состояние и выполнять новые вычисления. Cache не является готовым ответом и не заменяет знания, закреплённые в весах. Он относится к обработанному контексту конкретного запроса.
+
+На схеме выбран простой растущий cache причинного трансформера. Слои и attention heads скрыты; это не одна общая таблица, буквально существующая во всей модели. Детали оконного состояния и ограничений хранения здесь не нужны.
+
+Переход: состояние соединяет обработку входа с последующим продолжением. Это позволяет разделить две фазы между группами вычислительных ресурсов — но тогда состояние придётся передать.
+
+Источник: [Hugging Face Transformers, How caching works](https://huggingface.co/docs/transformers/cache_explanation), разделы Attention matrices, Cache class и Cache storage implementation. Проверено 7 октября 2026 года.
+:::
+
+## Why separate input processing from generation? {#inference-07 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I09</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n07-body">
+  <div class="n07-mixed"><h3>On shared resources, the phases interfere with each other</h3><div class="n07-schedule"><span class="n07-decode">decode</span><span class="n07-prefill">prefill for a new request<small>decode waits</small></span><span class="n07-decode">decode</span></div><p>Processing a long new input delays the continuation of active answers.</p></div>
+  <div class="n07-separate"><h3>DistServe: a separate resource group for each phase</h3><div class="n07-groups"><div class="n07-group"><b>Prefill group</b><span>Processes inputs</span><div class="n07-work"><i></i><i></i><i></i></div></div><div class="n07-handoff"><span>Already computed<br>state</span><b>→</b></div><div class="n07-group n07-group-decode"><b>Decode group</b><span>Continues answers</span><div class="n07-work"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+</div>
+<div class="fv-takeaway">Each phase has its own resources; state is transferred between them.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2401.09670v3#S2.SS3">Zhong et al., DistServe, 2024, v3 · §2.3</a> · Illustration: from phase interference to separation</div>
+```
+
+::: {.notes}
+Сначала показываем проблему на верхней схеме. Обслуживание многих запросов одновременно отличается от вычисления одного ответа. Пока одни запросы продолжают генерацию, у новых нужно обработать вход. При общих ресурсах эти работы конкурируют: добавление длинной обработки входа может задержать последующие токены активных ответов. Отрезки и число прямоугольников условные, они не являются измерением длительности или числа GPU.
+
+Затем показываем нижнюю схему. DistServe выделяет разные группы вычислительных ресурсов для prefill и decode. Одни обрабатывают входы, другие продолжают ответы. Между ними передаются уже вычисленные промежуточные представления, главным образом KV cache, вместе с информацией, необходимой для продолжения запроса. Это одна передача состояния от начальной фазы к фазе продолжения, а не повторное обучение или изменение весов.
+
+Главная идея слайда — снять непосредственное взаимное влияние двух фаз и позволить выделять каждой подходящие ресурсы. Разбиение по машинам, сетевые соединения и настройки параллелизма здесь не нужны. Эти вопросы важны для реализации, но затемняют причинную связь, которую мы сейчас объясняем.
+
+Переход: насколько полезна такая организация? Оценим один опыт с одинаковыми требованиями к задержке.
+
+Источник: [DistServe, arXiv:2401.09670v3, §2.3 Problems and Opportunities](https://arxiv.org/html/2401.09670v3#S2.SS3). Проверено 7 октября 2026 года.
+:::
+
+## What does this separation achieve in practice? {#inference-08 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I10</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n08-body">
+  <div class="n08-setting"><b>OPT-175B · ShareGPT</b><span>A100-80GB · FP16 · 2024 experiment</span></div>
+  <div class="n08-main">
+    <div class="n08-chart"><h3>Supported request rate</h3><p>requests per second per GPU</p><svg viewBox="0 0 750 325" role="img" aria-label="Maximum load with both latency requirements met for more than 90 percent of requests. vLLM: approximately 0.10 requests per second per GPU. DistServe: approximately 0.20. Values are estimated from threshold lines in the original Figure 8c."><line class="n08-grid" x1="195" y1="42" x2="195" y2="246"/><line class="n08-grid" x1="425" y1="42" x2="425" y2="246"/><line class="n08-grid" x1="655" y1="42" x2="655" y2="246"/><text x="170" y="99" text-anchor="end">vLLM</text><rect class="n08-bar-old" x="195" y="62" width="230" height="54"/><text class="n08-value" x="447" y="99">≈0.10</text><text x="170" y="207" text-anchor="end">DistServe</text><rect class="n08-bar-new" x="195" y="170" width="460" height="54"/><text class="n08-value" x="655" y="154" text-anchor="end">≈0.20</text><line class="n08-axis" x1="195" y1="246" x2="700" y2="246"/><text class="n08-tick" x="195" y="286" text-anchor="middle">0</text><text class="n08-tick" x="425" y="286" text-anchor="middle">0.10</text><text class="n08-tick" x="655" y="286" text-anchor="middle">0.20</text></svg><div class="n08-chart-note">Threshold loads from Fig. 8c, rounded.</div></div>
+    <div class="n08-reading"><div class="n08-limits"><b>The same requirements:</b><p>time to first token — <strong>≤4.0 s</strong></p><p>mean time per output token<br>after the first — <strong>≤0.20 s</strong></p><span>Both limits are met<br>for <strong>&gt;90% of requests</strong>.</span></div><div class="n08-result"><strong>≈2×</strong><p>more requests per GPU<br>under these requirements</p></div></div>
+  </div>
+</div>
+<div class="fv-takeaway">The gain depends on system design: separation requires state transfer.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2401.09670v3#S6.F8">DistServe, 2024, v3 · Fig. 8c, top panel</a> · <a href="https://arxiv.org/html/2401.09670v3#S6.T1">Table 1</a> · Load at the marked threshold, not individual-answer speedup</div>
+```
+
+::: {.notes}
+Выбран ровно один опыт: OPT-175B в FP16, входы и длины ответов из ShareGPT, оборудование NVIDIA A100-80GB. По исходным кривым верхней правой панели Figure 8 сравниваем, какую нагрузку на GPU система выдерживает, когда более 90% запросов выполняют оба ограничения. Приход запросов моделируется пуассоновским процессом.
+
+Сначала читаем требования словами. Время от прихода запроса до первого токена должно укладываться в 4 секунды. Среднее время на последующий выходной токен должно укладываться в 0,20 секунды. В статье эти величины называются TTFT и TPOT. Второе требование относится к среднему по запросу, а не к каждому отдельному промежутку между токенами.
+
+На слайде показана упрощённая диаграмма пороговых нагрузок: около 0,10 запроса в секунду на GPU у использованной авторами версии vLLM и около 0,20 у DistServe. Эти округления прочитаны по вертикальным пороговым линиям Figure 8c; исходные векторные данные сохранены в материалах проверки. Отношение составляет примерно два. Высоты кривых SLO attainment нельзя складывать или трактовать как точность модели.
+
+Это сравнение организации обслуживания при фиксированной модели, данных и требованиях к задержке. Оно не означает, что отдельный ответ или проход модели ускорился в два раза. Использованные ресурсы нормированы на число GPU; группы фаз могут иметь разный размер. Отдельные детали конфигурации для вводного вывода не требуются.
+
+Ограничение: состояние нужно перенести от обработки входа к продолжению. Поэтому эффект определяется всей организацией системы, включая стоимость этой передачи; одно только объявление двух групп ресурсов не гарантирует тот же результат.
+
+Источник: [Zhong et al., DistServe, arXiv:2401.09670v3, Figure 8c, Table 1, §§6.1–6.2](https://arxiv.org/html/2401.09670v3#S6.F8). Использована версия v3 от 6 июня 2024 года; в ранних версиях статьи условия отличаются. Проверено 7 октября 2026 года. Это проверка опубликованных результатов, а не локальное воспроизведение GPU-эксперимента.
+:::

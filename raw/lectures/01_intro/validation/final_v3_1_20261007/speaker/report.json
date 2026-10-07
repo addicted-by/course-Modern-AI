@@ -1,0 +1,398 @@
+{
+  "checkedAt": "2026-10-07T12:35:11.084Z",
+  "builtSite": "/Users/alexey/Documents/projects/github/course-Modern-AI/_site",
+  "prefix": "/course-Modern-AI/",
+  "runtime": "v24.21.0",
+  "assertions": [
+    {
+      "label": "unprefixed site path is rejected",
+      "passed": true
+    },
+    {
+      "label": "speaker popup displays the selected original notes",
+      "passed": false
+    },
+    {
+      "label": "speaker closes document stream and completes font loading",
+      "passed": true
+    },
+    {
+      "label": "speaker uses local Frontier Inter and KaTeX style",
+      "passed": true
+    },
+    {
+      "label": "speaker style sources include deployment prefix",
+      "passed": true
+    },
+    {
+      "label": "speaker font URLs include deployment prefix",
+      "passed": true
+    },
+    {
+      "label": "rendered speaker text uses downloaded local Inter font",
+      "passed": true
+    },
+    {
+      "label": "rendered speaker formula uses downloaded local KaTeX font",
+      "passed": true
+    },
+    {
+      "label": "runtime fixture formula propagates to speaker popup",
+      "passed": true
+    },
+    {
+      "label": "speaker styles and formulas survive closing and reopening",
+      "passed": true
+    },
+    {
+      "label": "no browser JavaScript errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "label": "no failed local resource requests",
+      "passed": true,
+      "detail": {
+        "failed": [],
+        "badResponses": []
+      }
+    },
+    {
+      "label": "all fetched fonts use deployment prefix and return HTTP 200",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/lecture01_final_v3.1.html#/arch-01",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "failedRequests": [],
+  "badResponses": [],
+  "fontResponses": [
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/JetBrainsMono-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/SpaceGrotesk-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/JetBrainsMono-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/SpaceGrotesk-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/SpaceGrotesk-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/JetBrainsMono-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size1-Regular.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/JetBrainsMono-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/SpaceGrotesk-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size1-Regular.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/SpaceGrotesk-variable.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/JetBrainsMono-variable.ttf",
+      "status": 200
+    }
+  ],
+  "notes": [
+    {
+      "slide": "arch-01",
+      "mathCount": 1,
+      "mathErrors": [],
+      "unrenderedMath": [],
+      "fontStatus": "loaded"
+    }
+  ],
+  "browser": "154.0.8037.98",
+  "url": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/lecture01_final_v3.1.html",
+  "nativeNotes": {
+    "mainNotesSlides": 128,
+    "mathNotesSlides": 0,
+    "mathCount": 0,
+    "allDOMNotes": 135
+  },
+  "notesSourceSlides": [],
+  "selected": {
+    "id": "arch-01",
+    "indices": {
+      "h": 0
+    },
+    "title": "Decoder-only backbone",
+    "noteText": "Начнём с устройства системы, не с названия конкретной модели. Снизу приходят идентификаторы токенов. Embeddings превращают их в векторы. Дальше повторяется блок из двух разных преобразований: token mixing передаёт информацию между позициями последовательности, а FFN преобразует представление каждой позиции. На рисунке сохранены нормализация, обходные residual-связи и выходная проекция в оценки следующего токена.\nЭто обобщённый decoder-only backbone, адаптированный по Transformer и LLaMA. Мы не утверждаем, что все модели имеют именно такую нормализацию, одинаковое число слоёв или один способ смешивания токенов. Схема нужна как постоянная карта. Позже мы вернёмся к тем же узлам и увидим, какой ресурс меняет каждое решение.\nСправа маршрут всей презентации: Architecture, Data, Training, Inference и Tools. Эти направления связаны: вычислительная структура определяет, как модель обрабатывает обучающий опыт; данные дают этот опыт; обучение обновляет параметры; inference организует выполнение; инструменты добавляют внешние операции. Начинаем с архитектуры. Следующий экран покажет семь тем архитектурной части. Ни один механизм сам по себе не объясняет весь результат системы.\nИсточники: https://arxiv.org/abs/1706.03762 ; https://arxiv.org/abs/2302.13971 .\n\n        span.MJX_Assistive_MathML {\n          position:absolute!important;\n          clip: rect(1px, 1px, 1px, 1px);\n          padding: 1px 0 0 0!important;\n          border: 0!important;\n          height: 1px!important;\n          width: 1px!important;\n          overflow: hidden!important;\n          display:block!important;\n      }",
+    "math": []
+  },
+  "limitation": "The combined deck has no native math expressions in speaker notes. Math integration is tested by temporarily copying one existing rendered deck formula into a note in browser memory. No source or built file is modified.",
+  "fixture": {
+    "sourceSlide": "arch-05",
+    "noteSlide": "arch-01",
+    "tex": "y=\\sum_i g_i(x)E_i(x)",
+    "rendered": true
+  },
+  "popup": {
+    "title": "reveal.js - Speaker View",
+    "readyState": "complete",
+    "fontStatus": "loaded",
+    "bodyFont": "\"Frontier Inter\", sans-serif",
+    "katexFont": "KaTeX_Main, \"Times New Roman\", serif",
+    "mathMLPosition": "absolute",
+    "styles": [
+      {
+        "id": "frontier-speaker-katex",
+        "source": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/katex.min.css"
+      },
+      {
+        "id": "frontier-speaker-fonts",
+        "source": "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/local-fonts.css"
+      }
+    ],
+    "fonts": [
+      {
+        "family": "KaTeX_AMS",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Caligraphic",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Caligraphic",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Fraktur",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Fraktur",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Main",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Main",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Main",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Main",
+        "status": "loaded"
+      },
+      {
+        "family": "KaTeX_Math",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Math",
+        "status": "loaded"
+      },
+      {
+        "family": "KaTeX_SansSerif",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_SansSerif",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_SansSerif",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Script",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Size1",
+        "status": "loaded"
+      },
+      {
+        "family": "KaTeX_Size2",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Size3",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Size4",
+        "status": "unloaded"
+      },
+      {
+        "family": "KaTeX_Typewriter",
+        "status": "unloaded"
+      },
+      {
+        "family": "Frontier Inter",
+        "status": "loaded"
+      },
+      {
+        "family": "Frontier Space Grotesk",
+        "status": "unloaded"
+      },
+      {
+        "family": "Frontier JetBrains Mono",
+        "status": "unloaded"
+      }
+    ],
+    "fontURLs": [
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_AMS-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_AMS-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_AMS-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Caligraphic-Bold.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Caligraphic-Bold.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Caligraphic-Bold.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Caligraphic-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Caligraphic-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Caligraphic-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Fraktur-Bold.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Fraktur-Bold.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Fraktur-Bold.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Fraktur-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Fraktur-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Fraktur-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Bold.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Bold.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Bold.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-BoldItalic.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-BoldItalic.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-BoldItalic.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Italic.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Italic.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Italic.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Main-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-BoldItalic.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-BoldItalic.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-BoldItalic.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-Italic.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-Italic.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Math-Italic.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Bold.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Bold.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Bold.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Italic.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Italic.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Italic.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_SansSerif-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Script-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Script-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Script-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size1-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size1-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size1-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size2-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size2-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size2-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size3-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size3-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size3-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size4-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size4-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Size4-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Typewriter-Regular.woff2\") format(\"woff2\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Typewriter-Regular.woff\") format(\"woff\"), url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/fonts/KaTeX_Typewriter-Regular.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/Inter-variable.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/SpaceGrotesk-variable.ttf\") format(\"truetype\")",
+      "url(\"http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/JetBrainsMono-variable.ttf\") format(\"truetype\")"
+    ]
+  },
+  "screenshot": "speaker-notes.png",
+  "fontProof": [
+    {
+      "selector": ".speaker-controls-notes .value p",
+      "fonts": [
+        {
+          "familyName": "Inter",
+          "postScriptName": "Inter-Regular_opsz159999_wght",
+          "isCustomFont": true,
+          "glyphCount": 65
+        }
+      ]
+    },
+    {
+      "selector": ".speaker-controls-notes .katex .mord.mathnormal",
+      "fonts": [
+        {
+          "familyName": "KaTeX_Math",
+          "postScriptName": "KaTeX_Math-Italic",
+          "isCustomFont": true,
+          "glyphCount": 1
+        }
+      ]
+    },
+    {
+      "selector": ".speaker-controls-notes .katex .mrel",
+      "fonts": [
+        {
+          "familyName": "KaTeX_Main",
+          "postScriptName": "KaTeX_Main-Regular",
+          "isCustomFont": true,
+          "glyphCount": 1
+        }
+      ]
+    }
+  ],
+  "reopened": {
+    "styles": [
+      "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/vendor/katex/dist/katex.min.css",
+      "http://127.0.0.1:64028/course-Modern-AI/raw/lectures/01_intro/assets/frontier_v2_20261006/fonts/local-fonts.css"
+    ],
+    "mathCount": 1
+  },
+  "summary": {
+    "passed": false,
+    "assertions": 13,
+    "nativeNotes": {
+      "mainNotesSlides": 128,
+      "mathNotesSlides": 0,
+      "mathCount": 0,
+      "allDOMNotes": 135
+    },
+    "mathFixtureUsed": true,
+    "testedMath": 1,
+    "localResourceErrors": 0,
+    "pageErrors": 0,
+    "consoleErrors": 1,
+    "fontResponses": 23
+  }
+}

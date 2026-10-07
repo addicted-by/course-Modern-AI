@@ -26,10 +26,15 @@ lectures:
   - number: 3
     module: M1
     title: "There is no single trick."
-    source: null
-    html: null
+    source: raw/lectures/01_intro/lecture01_final_v3.1.qmd
+    html: raw/lectures/01_intro/lecture01_final_v3.1.html
     pdf: null
     pptx: null
+    resources:
+      - raw/lectures/01_intro/final_parts/arch_20261007/details.js
+      - raw/lectures/01_intro/final_parts/training_20261007/*.css
+      - raw/lectures/01_intro/final_parts/inference_narrative_20261007/*.css
+      - raw/lectures/01_intro/final_parts/inference_evidence_20261007/*.css
 
   - number: 4
     module: M1
@@ -42,6 +47,30 @@ lectures:
   - number: 5
     module: M1
     title: "Code Agents. Workflow."
+    source: null
+    html: null
+    pdf: null
+    pptx: null
+
+  - number: 6
+    module: M2
+    title: "Linear Algebra & Decomposition & LoRA. Preliminaries"
+    source: null
+    html: null
+    pdf: null
+    pptx: null
+
+  - number: 7
+    module: M2
+    title: "Linear Algebra & Decomposition & LoRA. Decomposition applications"
+    source: null
+    html: null
+    pdf: null
+    pptx: null
+  
+  - number: 8
+    module: M2
+    title: "Linear Algebra & Decomposition & LoRA. LoRA in details"
     source: null
     html: null
     pdf: null

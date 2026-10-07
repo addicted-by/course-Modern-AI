@@ -1,0 +1,88 @@
+/* Slides 62–65: source-backed replay and diffusion evidence. 1600 × 900 grid. */
+.reveal .fv-slide .inf62-body {display:grid;grid-template-rows:48px 448px;gap:24px}
+.reveal .fv-slide .inf62-lead {display:flex;align-items:center;gap:28px;border-bottom:1px solid var(--fv-line);padding-bottom:15px;font-size:25px}
+.reveal .fv-slide .inf62-columns {display:grid;grid-template-columns:874px 568px;gap:46px}
+.reveal .fv-slide .inf62-mechanism svg {width:874px;height:354px;display:block}
+.reveal .fv-slide .inf62-caption {font-size:22px;line-height:1.32;color:var(--fv-muted);margin-top:15px}
+.reveal .fv-slide .inf62-evidence {border-left:1px solid var(--fv-line);padding-left:30px}
+.reveal .fv-slide .inf62-evidence h3 {font-size:29px;margin:12px 0 23px}
+.reveal .fv-slide .inf62-evidence table {font-size:27px}
+.reveal .fv-slide .inf62-evidence th {font-size:22px;padding:8px 0}
+.reveal .fv-slide .inf62-evidence td {padding:9px 0;vertical-align:middle}
+.reveal .fv-slide .inf62-evidence td:last-child {text-align:right;font-size:42px}
+.reveal .fv-slide .inf62-protocol {font-size:22px;color:var(--fv-muted);line-height:1.4;margin-top:20px}
+.reveal .fv-slide .inf62-boundary {font-size:23px;border-left:4px solid var(--fv-lime);padding-left:14px;margin-top:20px;line-height:1.35}
+
+.reveal .fv-slide .inf63-body {display:grid;grid-template-rows:45px 230px 100px 91px;gap:18px}
+.reveal .fv-slide .inf63-lead {display:flex;align-items:start;justify-content:space-between;border-bottom:1px solid var(--fv-line);font-size:25px}
+.reveal .fv-slide .inf63-compare {display:grid;grid-template-columns:704px 746px;gap:38px}
+.reveal .fv-slide .inf63-compare h3 {font-size:28px;margin-bottom:22px}
+.reveal .fv-slide .inf63-replay {border-left:1px solid var(--fv-line);padding-left:30px}
+.reveal .fv-slide .inf63-state-row {display:flex;gap:11px;align-items:center;margin-top:32px}
+.reveal .fv-slide .inf63-state-row b {width:116px;height:91px;border:1px solid var(--fv-ink);display:grid;place-items:center;font-size:35px;background:var(--fv-soft)}
+.reveal .fv-slide .inf63-state-row > span {font-size:28px}
+.reveal .fv-slide .inf63-state-row b.inf63-accepted {background:var(--fv-lime)}
+.reveal .fv-slide .inf63-rejected {opacity:.36;text-decoration:line-through}
+.reveal .fv-slide .inf63-input-row {display:flex;gap:19px;align-items:center;height:60px}
+.reveal .fv-slide .inf63-input-row > b {font-size:32px;border:1px solid var(--fv-ink);padding:11px 26px}
+.reveal .fv-slide .inf63-input-row > i {font-style:normal;font-size:29px;background:var(--fv-soft);border:1px solid var(--fv-line);padding:4px 25px}
+.reveal .fv-slide .inf63-rebuild {display:flex;align-items:center;gap:22px;margin-top:17px;font-size:25px}
+.reveal .fv-slide .inf63-rebuild b {padding:6px 28px;background:var(--fv-lime);font-size:31px}
+.reveal .fv-slide .inf63-compare p {font-size:22px;color:var(--fv-muted);margin-top:16px;line-height:1.32}
+.reveal .fv-slide .inf63-result {display:grid;grid-template-columns:230px 1fr 265px;gap:24px;align-items:center;border-top:1px solid var(--fv-ink);border-bottom:1px solid var(--fv-line)}
+.reveal .fv-slide .inf63-result b {font-size:27px;display:block;margin-bottom:7px}
+.reveal .fv-slide .inf63-result div > span {font-size:24px;display:block}
+.reveal .fv-slide .inf63-result p {font-size:21px;line-height:1.35;color:var(--fv-muted);padding-left:20px;border-left:1px solid var(--fv-line)}
+.reveal .fv-slide .inf63-swa {display:grid;grid-template-columns:565px 1fr;gap:30px;padding:13px 20px;background:var(--fv-soft);align-items:center}
+.reveal .fv-slide .inf63-swa b {font-size:25px;line-height:1.22}
+.reveal .fv-slide .inf63-swa > span {font-size:22px;line-height:1.35}
+
+.reveal .fv-slide .inf64-body {display:grid;grid-template-rows:45px 451px;gap:24px}
+.reveal .fv-slide .inf64-protocol {display:flex;align-items:start;justify-content:space-between;border-bottom:1px solid var(--fv-line);font-size:25px}
+.reveal .fv-slide .inf64-columns {display:grid;grid-template-columns:635px 805px;gap:48px}
+.reveal .fv-slide .inf64-mechanism h3 {font-size:29px;margin-bottom:24px}
+.reveal .fv-slide .inf64-blocks {display:flex;gap:19px;align-items:center;height:143px}
+.reveal .fv-slide .inf64-prefix {width:225px;display:flex;gap:9px;flex-wrap:wrap}
+.reveal .fv-slide .inf64-prefix > span,.reveal .fv-slide .inf64-current > span {font-size:22px;display:block;width:100%;color:var(--fv-muted);margin-bottom:8px}
+.reveal .fv-slide .inf64-prefix b {width:87px;height:48px;display:grid;place-items:center;background:var(--fv-soft);border:1px solid var(--fv-line);font-size:27px}
+.reveal .fv-slide .inf64-prefix small {font-size:20px;display:block;margin-top:3px;color:var(--fv-muted)}
+.reveal .fv-slide .inf64-right {font-size:32px}
+.reveal .fv-slide .inf64-current {width:325px}
+.reveal .fv-slide .inf64-current > div {display:flex;gap:8px}
+.reveal .fv-slide .inf64-current i {width:58px;height:48px;background:var(--fv-lime);border:1px solid var(--fv-ink);display:grid;place-items:center;font-size:27px;font-style:normal}
+.reveal .fv-slide .inf64-current > b {font-size:22px;display:block;margin-top:9px}
+.reveal .fv-slide .inf64-commit {font-size:23px;border-top:1px solid var(--fv-line);border-bottom:1px solid var(--fv-line);padding:15px 0;margin-top:13px}
+.reveal .fv-slide .inf64-length {margin-top:24px}
+.reveal .fv-slide .inf64-length p {font-size:23px;margin-top:8px}
+.reveal .fv-slide .inf64-length > div {display:flex;gap:30px;margin-top:9px;font-size:22px}
+.reveal .fv-slide .inf64-length b {font-size:30px;margin-left:6px}
+.reveal .fv-slide .inf64-length small {font-size:20px;display:block;margin-top:7px;color:var(--fv-muted)}
+.reveal .fv-slide .inf64-evidence {border-left:1px solid var(--fv-line);padding-left:30px}
+.reveal .fv-slide .inf64-metric h3 {font-size:31px;margin-bottom:9px}
+.reveal .fv-slide .inf64-metric span {font-size:22px;color:var(--fv-muted)}
+.reveal .fv-slide .inf64-evidence table {font-size:26px;margin-top:17px}
+.reveal .fv-slide .inf64-evidence th {font-size:22px;padding:10px 13px}
+.reveal .fv-slide .inf64-evidence td {padding:12px 13px;vertical-align:middle}
+.reveal .fv-slide .inf64-evidence td:nth-child(2) {font-size:34px}
+.reveal .fv-slide .inf64-highlight {background:var(--fv-lime)}
+.reveal .fv-slide .inf64-budget {border-top:1px solid var(--fv-ink);margin-top:16px;padding-top:16px}
+.reveal .fv-slide .inf64-budget b {font-size:24px;display:block}
+.reveal .fv-slide .inf64-budget span {font-size:22px;display:block;color:var(--fv-muted);margin-top:8px}
+
+.reveal .fv-slide .inf65-body {display:grid;grid-template-columns:790px 652px;gap:46px}
+.reveal .fv-slide .inf65-architecture svg {width:790px;height:370px;display:block;margin-top:17px}
+.reveal .fv-slide .inf65-model {border-top:1px solid var(--fv-line);padding-top:17px;font-size:23px;color:var(--fv-muted)}
+.reveal .fv-slide .inf65-results {border-left:1px solid var(--fv-line);padding-left:30px}
+.reveal .fv-slide .inf65-results > .fv-label {font-size:19px;white-space:nowrap}
+.reveal .fv-slide .inf65-speed {margin-top:16px;padding-bottom:18px;border-bottom:1px solid var(--fv-line)}
+.reveal .fv-slide .inf65-speed > b {display:block;font-size:58px;line-height:1.1}
+.reveal .fv-slide .inf65-speed small {font-size:29px;font-weight:500}
+.reveal .fv-slide .inf65-speed > span {display:block;font-size:23px;margin-top:11px}
+.reveal .fv-slide .inf65-speed p {font-size:21px;color:var(--fv-muted);margin-top:9px}
+.reveal .fv-slide .inf65-quality {margin-top:22px}
+.reveal .fv-slide .inf65-quality h3 {font-size:27px;margin-bottom:13px}
+.reveal .fv-slide .inf65-quality table {font-size:23px}
+.reveal .fv-slide .inf65-quality td {padding:11px 0;vertical-align:middle}
+.reveal .fv-slide .inf65-quality td:last-child {font-size:31px;text-align:right}
+.reveal .fv-slide .inf65-quality p {font-size:20px;color:var(--fv-muted);margin-top:13px}
+.reveal .fv-slide .inf65-separate {font-size:22px;line-height:1.35;border-left:4px solid var(--fv-lime);padding-left:15px;margin-top:23px}

@@ -1,0 +1,205 @@
+## The model is trained. What can change while it answers? {#inference-01 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<link rel="stylesheet" href="lecture01_part2_final_v3_inference.css">
+<div class="fv-meta"><span class="fv-id">I01</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n01-body">
+<div class="n01-flow"><div class="n01-end"><span class="n01-step">01</span><b>Request</b><p>What needs solving?</p></div><span class="n01-arrow">→</span><div class="n01-model"><span class="n01-step">02</span><b>Run the<br>trained model</b><div class="n01-fixed">Weights stay fixed</div></div><span class="n01-arrow">→</span><div class="n01-end"><span class="n01-step">03</span><b>Answer</b><p>Result of computation</p></div></div>
+<div class="n01-change">We change <b>how computation is organized</b> to produce the answer</div>
+<div class="n01-questions"><div><span>QUESTION 1</span><b>How can we get<br>a better answer?</b></div><div><span>QUESTION 2</span><b>How can we answer<br>faster and at lower cost?</b></div></div>
+</div>
+<div class="fv-takeaway">These methods change how the model runs while keeping its trained weights fixed.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2408.03314v1#S2">Snell et al., 2024, §2</a> · Conceptual diagram · Inference is computation after training</div>
+```
+
+::: {.notes}
+Начнём с того, что уже знакомо. Есть запрос пользователя, есть обученная модель и есть ответ, который появляется после выполнения вычислений. Обучение уже завершено. Во всех рассматриваемых здесь методах мы используем фиксированные веса: не продолжаем обучение на каждом запросе и не объясняем улучшение ответа изменением параметров.
+
+Но фиксированные веса ещё не задают единственный способ организовать получение ответа. Можно изменить, сколько вычислений выполнить для данного запроса, как использовать уже сделанную работу и как организовать выдачу продолжения. На этом вводном слайде важен сам предмет разговора: организация работы уже обученной модели.
+
+Раздел отвечает на два разных вопроса. Первый — качество: удаётся ли получить более полезный и правильный ответ от той же модели? Второй — стоимость: удаётся ли получить ответ быстрее или затратить меньше ресурсов? Улучшение одного показателя не означает автоматически улучшения другого. Например, увеличение объёма вычислений может помочь качеству, но за эту работу нужно заплатить временем и ресурсами.
+
+Пока не называем конкретные алгоритмы. Следующий слайд начнёт с самого понятного изменения: вместо одной попытки получить несколько вариантов, затем выбрать один ответ.
+
+**Источник и граница схемы:** [Snell et al., 2024, §2](https://arxiv.org/html/2408.03314v1#S2) рассматривает управление вычислениями при фиксированных обученных моделях. Схема здесь учебная и не является измерением производительности. Проверено 7 октября 2026.
+:::
+
+## Instead of one attempt, generate several {#inference-02 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I02</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n02-body">
+<div class="n02-process"><div class="n02-query"><span>ONE</span><b>Request</b></div><svg class="n02-fan" viewBox="0 0 72 302" role="img" aria-label="One request produces three independent, complete candidate solutions"><path d="M0 151H28V41H62M28 151H62M28 151V261H62" fill="none" stroke="currentColor" stroke-width="2"/><path d="m53 34 10 7-10 7m0 96 10 7-10 7m0 96 10 7-10 7" fill="none" stroke="currentColor" stroke-width="2"/></svg><div class="n02-candidates"><div><b>Candidate A</b><span>complete solution</span></div><div><b>Candidate B</b><span>complete solution</span></div><div><b>Candidate C</b><span>complete solution</span></div></div><svg class="n02-fan" viewBox="0 0 72 302" role="img" aria-label="All candidates are evaluated"><path d="M0 41H25V261H0M25 151H62M0 151H25" fill="none" stroke="currentColor" stroke-width="2"/><path d="m53 144 10 7-10 7" fill="none" stroke="currentColor" stroke-width="2"/></svg><div class="n02-evaluation"><b>Check / score<br>the candidates</b><p>Compare candidates<br>and select an answer</p></div><span class="n02-arrow">→</span><div class="n02-answer"><span>ONE</span><b>Selected<br>answer</b><p>For example, candidate B</p></div></div>
+<div class="n02-names fragment" data-fragment-index="1"><div><span>The method</span><b>Best-of-N</b><span>N = number of candidates</span></div><div><span>The evaluator</span><b>verifier</b><span>scores the candidates</span></div></div>
+<div class="n02-cost"><b>Additional computation:</b><span>generate candidates</span><strong>+</strong><span>evaluate them</span></div>
+</div>
+<div class="fv-takeaway">More attempts provide more candidates; answer quality also depends on which one is selected.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2408.03314v1#S2">Snell et al., 2024, §§2, 5.1–5.2</a> · Conceptual diagram · The selected candidate may still be wrong</div>
+```
+
+::: {.notes}
+Возьмём один запрос. Вместо единственного решения попросим модель сгенерировать несколько полных вариантов. На схеме их три, но конкретное число можно менять. Каждый кандидат — завершённая попытка решить исходную задачу, а не следующий шаг предыдущего решения.
+
+Получить несколько вариантов недостаточно: пользователь в итоге должен получить один ответ. Поэтому все кандидаты поступают в механизм проверки или оценки. Он сопоставляет их и определяет, какой ответ вернуть. На рисунке условно выбран B. Мы не утверждаем, что B правильный: схема показывает действие выбора, а не его успешность.
+
+Сначала проговорите процесс слева направо и только затем откройте названия. **Один клик:** такой способ называется Best-of-N, где N — число кандидатов. Оценивающий механизм часто называют verifier, то есть проверяющий. Им может быть отдельная обученная модель; слово «проверка» не превращает её оценки в безошибочный эталон.
+
+Внизу две части дополнительной работы. Нужно сгенерировать кандидатов, а затем оценить их. Даже если часть операций выполняется параллельно, они потребляют ресурсы. На этом слайде мы не приравниваем количество вариантов к времени ожидания и не обещаем определённого ускорения.
+
+Для успеха нужны две вещи: среди попыток должен появиться полезный ответ, и система должна его выбрать. Наличие правильного кандидата само по себе не означает, что пользователь получит правильный результат. Теперь посмотрим, как можно направлять поиск ещё до завершения решения. После двух способов такого отбора вернёмся к эксперименту Best-of-N, где качество измеряется именно после выбора ответа.
+
+**Источник:** [Snell et al., 2024, §§2, 5.1–5.2](https://arxiv.org/html/2408.03314v1#S5.SS1). У показанной учебной схемы нет выдуманных оценок правильности. В эксперименте после объяснения стратегий поиска используется конкретный вариант — PRM Best-of-N weighted: оценки решений с одним итоговым ответом суммируются. Эту техническую деталь можно пояснить при обсуждении графика, не меняя основной последовательности «сгенерировать → оценить → выбрать». Проверено 7 октября 2026.
+:::
+
+## How do we choose paths after each solution step? {#inference-beam .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I03</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body nsm-body">
+  <div class="nsm-process nsm-beam-process">
+    <div class="nsm-query"><span>ONE</span><b>Request</b></div>
+    <svg class="nsm-connect" viewBox="0 0 60 312" aria-hidden="true"><path d="M0 156H23V58H50M23 156H50M23 156V254H50"/><path d="m42 51 10 7-10 7m0 84 10 7-10 7m0 84 10 7-10 7"/></svg>
+    <div class="nsm-candidates"><div><b>Path A</b><span>solution prefix</span></div><div><b>Path B</b><span>solution prefix</span></div><div><b>Path C</b><span>solution prefix</span></div></div>
+    <svg class="nsm-connect" viewBox="0 0 60 312" aria-hidden="true"><path d="M0 58H20V254H0M0 156H50"/><path d="m42 149 10 7-10 7"/></svg>
+    <div class="nsm-evaluation"><b>Score the<br>partial solutions</b><p>Keep the two best<br>according to the verifier</p></div>
+    <span class="nsm-arrow">→</span>
+    <div class="nsm-kept"><span class="nsm-label">CONTINUE THESE PATHS</span><div class="nsm-kept-paths"><b>Path A</b><b>Path C</b></div><p>Propose next solution<br>steps for each path</p><span class="nsm-pruned"><del>Path B</del> no longer expanded</span></div>
+  </div>
+  <svg class="nsm-repeat" viewBox="0 0 1488 66" role="img" aria-label="Expand and score the retained paths again; repeat selection after each step, then choose one answer"><path d="M1254 1V20H382V1"/><path d="m375 10 7-9 7 9"/><text x="382" y="58">Repeat selection after each step; choose one answer at the end.</text></svg>
+  <div class="nsm-names fragment" data-fragment-index="1"><div><span>The method</span><b>Beam Search</b></div><div><span>Keep a limited number of paths — two here</span></div></div>
+  <div class="nsm-cost"><b>Additional computation:</b><span>new continuations</span><strong>+</strong><span>evaluation at each step</span></div>
+</div>
+<div class="fv-takeaway">Selection guides further generation; a scoring error can eliminate a promising path.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2408.03314v1#S5.SS2">Snell et al., 2024 · §5.2, Figure 2</a> · Search over solution steps · Conceptual diagram: path count and selection of A/C are illustrative</div>
+```
+
+::: {.notes}
+В Best-of-N мы сначала получали полные решения, а потом выбирали ответ. Здесь начинаем отбор раньше. Из одного запроса модель предлагает несколько первых шагов решения. Каждый путь содержит весь уже построенный префикс: это ещё не готовый ответ.
+
+Проверяющий оценивает получившиеся незавершённые решения. На схеме условно оставлены A и C, а B больше не расширяется. Для каждого оставленного пути модель предлагает новые варианты следующего шага. Затем все новые кандидаты снова участвуют в общем отборе. Повторяем этот цикл, пока не получим завершённые решения, из которых выбираем ответ. Начальный запрос показан только для первого раунда; обратная стрелка возвращает в расширение уже выбранных путей, а не запускает решение заново.
+
+После разбора схемы одним кликом открываем название **Beam Search**. Здесь поиск идёт по шагам рассуждения, каждый из которых может содержать много токенов. Это вариант с проверяющим из статьи Snell; его не следует путать с обычным токенным beam search по суммарной логарифмической вероятности последовательности.
+
+Два сохраняемых пути — только число в учебном примере. В обозначениях статьи N — число оцениваемых кандидатов на раунд, M — параметр расширения: алгоритм оставляет N/M путей, а затем сэмплирует M следующих шагов для каждого. Схема не воспроизводит экспериментальную конфигурацию и не показывает численных оценок качества. Зелёное выделение обозначает выбор проверяющего, а не доказанную правильность.
+
+Цена складывается из генерации продолжений, в том числе затем отброшенных, и повторной оценки на каждом шаге. Выигрыш зависит от качества оценивания: если перспективный путь получает низкую оценку, поиск может потерять его слишком рано.
+
+Источник: [Snell et al., §5.2, Figure 2](https://arxiv.org/html/2408.03314v1#S5.SS2).
+:::
+
+## How do we score a path by looking a few steps ahead? {#inference-lookahead .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I04</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body nsm-body">
+  <div class="nsm-process nsm-lookahead-process">
+    <div class="nsm-query"><span>ONE</span><b>Request</b></div>
+    <svg class="nsm-connect" viewBox="0 0 50 312" aria-hidden="true"><path d="M0 156H18V58H41M18 156H41M18 156V254H41"/><path d="m33 51 10 7-10 7m0 84 10 7-10 7m0 84 10 7-10 7"/></svg>
+    <div class="nsm-candidates"><div><b>Path A</b><span>solution prefix</span></div><div><b>Path B</b><span>solution prefix</span></div><div><b>Path C</b><span>solution prefix</span></div></div>
+    <svg class="nsm-connect" viewBox="0 0 50 312" aria-hidden="true"><path d="M0 58H41M0 156H41M0 254H41"/><path d="m33 51 10 7-10 7m0 84 10 7-10 7m0 84 10 7-10 7"/></svg>
+    <div class="nsm-probes"><div><span>Trial continuation A</span><p><i>+1</i><b>→</b><i>+2</i></p></div><div><span>Trial continuation B</span><p><i>+1</i><b>→</b><i>+2</i></p></div><div><span>Trial continuation C</span><p><i>+1</i><b>→</b><i>+2</i></p></div></div>
+    <svg class="nsm-connect" viewBox="0 0 50 312" aria-hidden="true"><path d="M0 58H18V254H0M0 156H41"/><path d="m33 149 10 7-10 7"/></svg>
+    <div class="nsm-evaluation"><b>Score the ends<br>of the trial<br>continuations</b><p>Use these scores<br>to select the<br>original paths</p></div>
+    <span class="nsm-arrow">→</span>
+    <div class="nsm-kept"><span class="nsm-label">KEEP THE PREFIXES</span><div class="nsm-kept-paths"><b>Path A</b><b>Path C</b></div><p>Without the added<br>trial steps</p><span class="nsm-pruned"><del>Path B</del> discarded</span></div>
+  </div>
+  <svg class="nsm-repeat" viewBox="0 0 1488 66" role="img" aria-label="Search continues from the selected prefixes A and C. Trial continuations are used only to score candidates"><path d="M1325 1V20H337V1"/><path d="m330 10 7-9 7 9"/><text x="337" y="58">Continue from the selected prefixes; trial steps are used only for scoring.</text></svg>
+  <div class="nsm-names fragment" data-fragment-index="1"><div><span>The method</span><b>Lookahead Search</b></div><div><span>Lookahead depth — two steps ahead here</span></div></div>
+  <div class="nsm-cost"><b>Additional computation:</b><span>candidates</span><strong>+</strong><span>trial steps</span><strong>+</strong><span>evaluation</span></div>
+</div>
+<div class="fv-takeaway">Looking ahead helps score a path, but costs computation and does not guarantee a better choice.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2408.03314v1#S5.SS2">Snell et al., 2024 · §5.2, Figure 2</a> · Conceptual diagram: two trial steps · Selection based on verifier scores</div>
+```
+
+::: {.notes}
+Сохраняем цикл предыдущего слайда, но меняем способ оценки кандидата. Иногда начало решения трудно оценить само по себе: полезно посмотреть, к чему оно может привести.
+
+Для каждого возможного следующего шага строим временное продолжение. На схеме это два дополнительных шага, обозначенные +1 и +2. Проверяющий оценивает состояние в конце этого пробного продолжения. Полученную оценку используем для ранжирования исходного кандидата — начала пути перед пробой. В примере отобраны начала A и C.
+
+Ключевая граница: пробные шаги служат оценке. Мы сохраняем исходные выбранные префиксы и следующий раунд основного поиска начинаем с них. Схема не означает, что основной поиск автоматически продвинулся на всю длину пробного продолжения. Пунктиром обведена временная вычислительная работа, а зелёным выделены выбранные начала.
+
+После объяснения процесса одним кликом открываем название **Lookahead Search**. В варианте Snell число пробных шагов равно k; продолжение может завершиться раньше, если уже получен полный ответ. Rollout выполняется с temperature=0, а оценку даёт PRM в конце пробного продолжения. При k=0 получаем вариант без просмотра вперёд, то есть рассмотренный beam search.
+
+Цена включает обычные кандидаты, их пробные продолжения и оценку. В статье нормировка generation budget учитывает дополнительные шаги множителем k+1. Она не является прямым измерением задержки. Более длинная проба сама по себе не гарантирует лучший результат: проверяющий и пробная траектория могут направить отбор неверно. Далее вернёмся к Best-of-N и посмотрим, как дополнительные попытки влияют на качество выбранного ответа. Сравнение всех трёх стратегий по вычислительному бюджету находится в приложении.
+
+Источник: [Snell et al., §5.2, Figure 2](https://arxiv.org/html/2408.03314v1#S5.SS2).
+:::
+
+## How much do additional attempts help? {#inference-03 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I05</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n03-body">
+<div class="n03-setting"><b>MATH problems · PaLM 2-S*</b><span>Candidates scored by a trained verifier · Best-of-N</span></div>
+<div class="n03-main"><div class="n03-chart-wrap">
+<svg class="n03-chart" viewBox="0 0 965 466" role="img" aria-labelledby="n03-chart-title n03-chart-desc">
+<title id="n03-chart-title">Additional attempts and the quality of the selected answer</title>
+<desc id="n03-chart-desc">One PRM Best-of-N weighted series from Snell Figure 3. The horizontal axis shows the number of complete candidates, doubling at each tick. The vertical axis shows the percentage of MATH problems for which the system selects a correct answer. Approximately 11 percent at N=1 and 34 percent at N=64.</desc>
+<text x="94" y="27" fill="#141414" font-size="24" font-weight="600">Correct selected answers, % of problems</text>
+<line x1="94" y1="370.0000" x2="922" y2="370.0000" stroke="#d6d6d6" stroke-width="1"/>
+<text x="76" y="378.0000" text-anchor="end" fill="#626262" font-size="23">0</text>
+<line x1="94" y1="292.5000" x2="922" y2="292.5000" stroke="#d6d6d6" stroke-width="1"/>
+<text x="76" y="300.5000" text-anchor="end" fill="#626262" font-size="23">10</text>
+<line x1="94" y1="215.0000" x2="922" y2="215.0000" stroke="#d6d6d6" stroke-width="1"/>
+<text x="76" y="223.0000" text-anchor="end" fill="#626262" font-size="23">20</text>
+<line x1="94" y1="137.5000" x2="922" y2="137.5000" stroke="#d6d6d6" stroke-width="1"/>
+<text x="76" y="145.5000" text-anchor="end" fill="#626262" font-size="23">30</text>
+<line x1="94" y1="60.0000" x2="922" y2="60.0000" stroke="#d6d6d6" stroke-width="1"/>
+<text x="76" y="68.0000" text-anchor="end" fill="#626262" font-size="23">40</text>
+<path d="M94 60V370H922" fill="none" stroke="#141414" stroke-width="1.5"/>
+<line x1="94.0000" y1="370" x2="94.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="94.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">1</text>
+<line x1="186.0000" y1="370" x2="186.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="186.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">2</text>
+<line x1="278.0000" y1="370" x2="278.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="278.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">4</text>
+<line x1="370.0000" y1="370" x2="370.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="370.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">8</text>
+<line x1="462.0000" y1="370" x2="462.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="462.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">16</text>
+<line x1="554.0000" y1="370" x2="554.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="554.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">32</text>
+<rect x="618.0000" y="382" width="56" height="32" fill="#bef264"/>
+<line x1="646.0000" y1="370" x2="646.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="646.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">64</text>
+<line x1="738.0000" y1="370" x2="738.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="738.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">128</text>
+<line x1="830.0000" y1="370" x2="830.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="830.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">256</text>
+<line x1="922.0000" y1="370" x2="922.0000" y2="376" stroke="#141414" stroke-width="1.5"/>
+<text x="922.0000" y="405" text-anchor="middle" fill="#141414" font-size="23">512</text>
+<line x1="646.0000" y1="108.7523" x2="646.0000" y2="370" stroke="#626262" stroke-width="1.5" stroke-dasharray="5 6"/>
+<path d="M94.0000 288.6129 L186.0000 246.5328 L278.0000 207.6980 L370.0000 171.1641 L462.0000 145.3469 L554.0000 123.7559 L646.0000 108.7523 L738.0000 96.0859 L830.0000 85.1269 L922.0000 75.8148" fill="none" stroke="#141414" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="94.0000" cy="288.6129" r="9" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<circle cx="186.0000" cy="246.5328" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<circle cx="278.0000" cy="207.6980" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<circle cx="370.0000" cy="171.1641" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<circle cx="462.0000" cy="145.3469" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<circle cx="554.0000" cy="123.7559" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<circle cx="646.0000" cy="108.7523" r="9" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<circle cx="738.0000" cy="96.0859" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<circle cx="830.0000" cy="85.1269" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<circle cx="922.0000" cy="75.8148" r="5" fill="#ffffff" stroke="#141414" stroke-width="2"/>
+<text x="508" y="448" text-anchor="middle" fill="#141414" font-size="24">Complete candidates per problem · each axis step: ×2</text>
+</svg>
+</div><div class="n03-result"><div class="n03-result-label">ONE RESULT FROM THIS EXPERIMENT</div><div class="n03-budget"><b>1 → 64</b><span>complete candidates</span></div><div class="n03-quality"><b>≈11% → ≈34%</b><span>of problems with a correct<br>selected answer</span></div><p>Quality is measured on the<br>answer the system returns.</p><div class="n03-limit">The correct candidate<br>still has to be selected.</div></div></div>
+</div>
+<div class="fv-takeaway">Here, additional attempts improved answer quality — at the cost of generating and evaluating candidates.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2408.03314v1#S5.F3">Snell et al., 2024 · Fig. 3, Best-of-N weighted only</a> · Editable reconstruction from the original SVG; rounded values · Budget ≠ latency</div>
+```
+
+::: {.notes}
+Вернёмся к Best-of-N и проверим этот способ на одном эксперименте. Генератор — PaLM 2-S*, задачи — MATH, а кандидатов оценивает обученная проверяющая модель. На графике оставлена только одна серия из Figure 3: PRM Best-of-N weighted. На этом графике показан только Best-of-N.
+
+Сначала прочитайте оси. По горизонтали — число полных сгенерированных вариантов на задачу. Каждый следующий шаг по оси удваивает число попыток: 1, 2, 4 и далее. Это логарифмическая шкала, а не одинаковая прибавка кандидатов. По вертикали — процент задач MATH, для которых итоговый ответ, выбранный системой, оказался правильным. Ось качества начинается с нуля.
+
+Выделен один результат: при переходе от одной попытки к 64 точность выбранного ответа возрастает примерно с 11% до 34%. Эти значения округлены по координатам оригинальной кривой; в статье здесь приведён график, а не таблица с точными численными результатами. Не следует воспринимать округлённые числа как дополнительную точность измерения.
+
+Очень важно, что это не доля задач, в которых среди 64 кандидатов хотя бы один оказался верным. Проверяется ответ после отбора. Если верное решение появилось, но система предпочла неверное, такая задача остаётся ошибкой в показанной метрике. Тем самым график оценивает совместную работу генерации и выбора.
+
+**Условия и вариант отбора.** Работа использует MATH split из 12 тысяч обучающих и 500 тестовых задач. PRM обучена на Monte Carlo продолжениях. Для оценки полного решения берётся прогноз проверяющей модели на последнем шаге; затем веса решений с одинаковым итоговым ответом суммируются, и выбирается ответ с наибольшей суммой. Поэтому точное название серии — PRM Best-of-N weighted. Параметры моделей во время этого эксперимента не обновляются.
+
+**Как читать вывод.** Дополнительные попытки помогли качеству в данной постановке. Они требуют вычислений и на генерацию, и на оценку, поэтому график не показывает ускорение или цену API. Из числа кандидатов нельзя напрямую вывести задержку одного запроса. Следующий шаг рассказа — понять, из каких последовательных действий вообще складывается получение ответа.
+
+**Источник и воспроизводимость рисунка:** [Snell et al., 2024, v1, Figure 3 и §§4–5.3](https://arxiv.org/html/2408.03314v1#S5.F3). Линия реконструирована из координат оранжевой серии оригинального векторного рисунка; оставлена только эта серия, подписи переведены, вертикальная ось расширена до нуля. Исходный путь, преобразование координат и приближённые значения сохранены в `assets/inference_narrative_20261007/search/best_of_n_curve.json`. Первоисточник повторно проверен 7 октября 2026.
+:::

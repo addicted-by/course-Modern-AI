@@ -1,0 +1,24 @@
+---
+pagetitle: "Modern AI — Inference"
+lang: en
+format:
+  revealjs:
+    theme: assets/frontier_v2_20261006/theme-local.scss
+    template: assets/frontier_v2_20261006/reveal-template-no-minimal-ui.html
+    section-divs: false
+    pdf-separate-fragments: false
+    css:
+      - lecture01_part2_final_v3.css
+      - lecture01_part2_final_v3_inference.css
+    include-in-header:
+      - assets/frontier_v2_20261006/math.html
+      - assets/frontier_v2_20261006/speaker-math.html
+    html-math-method:
+      method: katex
+      url: vendor/katex/dist/
+suppress-bibliography: true
+---
+
+{{< include final_parts/inference_narrative_20261007/main.inc >}}
+
+{{< include final_parts/inference_narrative_20261007/appendix.qmd >}}

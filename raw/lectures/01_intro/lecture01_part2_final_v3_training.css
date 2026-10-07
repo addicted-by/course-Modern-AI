@@ -1,0 +1,9 @@
+/* Training-specific layouts. Course geometry, fonts and tokens come from v3.css. */
+@import url("final_parts/training_20261007/slides_38_42.css");
+@import url("final_parts/training_20261007/slides_43_46.css");
+@import url("final_parts/training_20261007/slides_47_50.css");
+@import url("final_parts/training_20261007/slides_51_53.css");
+
+.reveal .training-slide .fv-source { line-height: 1.2; }
+.reveal .training-slide figure { margin: 0; }
+.reveal .training-slide img { object-fit: contain; }

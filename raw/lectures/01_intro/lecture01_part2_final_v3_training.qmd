@@ -1,0 +1,28 @@
+---
+pagetitle: "Modern AI — Training"
+lang: en
+format:
+  revealjs:
+    theme: assets/frontier_v2_20261006/theme-local.scss
+    template: assets/frontier_v2_20261006/reveal-template-no-minimal-ui.html
+    section-divs: false
+    pdf-separate-fragments: false
+    css:
+      - lecture01_part2_final_v3.css
+      - lecture01_part2_final_v3_training.css
+    include-in-header:
+      - assets/frontier_v2_20261006/math.html
+      - assets/frontier_v2_20261006/speaker-math.html
+    html-math-method:
+      method: katex
+      url: vendor/katex/dist/
+suppress-bibliography: true
+---
+
+{{< include final_parts/training_20261007/slides_38_42.qmd >}}
+
+{{< include final_parts/training_20261007/slides_43_46.qmd >}}
+
+{{< include final_parts/training_20261007/slides_47_50.qmd >}}
+
+{{< include final_parts/training_20261007/slides_51_53.qmd >}}

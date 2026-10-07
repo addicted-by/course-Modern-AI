@@ -1,0 +1,96 @@
+[
+  {
+    "family": "Frontier Inter",
+    "folder": "inter",
+    "api": "https://api.github.com/repos/google/fonts/contents/ofl/inter?ref=7085eb89a950e85db5b166b7a58d414544b4140c",
+    "commit": "7085eb89a950e85db5b166b7a58d414544b4140c",
+    "files": [
+      {
+        "file": "Inter-variable.ttf",
+        "url": "https://raw.githubusercontent.com/google/fonts/7085eb89a950e85db5b166b7a58d414544b4140c/ofl/inter/Inter%5Bopsz%2Cwght%5D.ttf",
+        "git_blob_sha": "047c92f6e2212473dc436020afed689527076d44",
+        "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+        "bytes": 876576
+      },
+      {
+        "file": "Inter-OFL.txt",
+        "url": "https://raw.githubusercontent.com/google/fonts/7085eb89a950e85db5b166b7a58d414544b4140c/ofl/inter/OFL.txt",
+        "git_blob_sha": "21f6aff961064c2e429f570995e446bcdd555422",
+        "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57",
+        "bytes": 4377
+      }
+    ],
+    "metadata": "name: \"Inter\"\ndesigner: \"Rasmus Andersson\"\nlicense: \"OFL\"\ncategory: \"SANS_SERIF\"\ndate_added: \"2020-01-24\"\nfonts {\n  name: \"Inter\"\n  style: \"normal\"\n  weight: 400\n  filename: \"Inter[opsz,wght].ttf\"\n  post_script_name: \"Inter-Regular\"\n  full_name: \"Inter Regular\"\n  copyright: \"Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)\"\n}\nfonts {\n  name: \"Inter\"\n  style: \"italic\"\n  weight: 400\n  filename: \"Inter-Italic[opsz,wght].ttf\"\n  post_script_name: \"Inter-Italic\"\n  full_name: \"Inter Italic\"\n  copyright: \"Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)\"\n}\nsubsets: \"cyrillic\"\nsubsets: \"cyrillic-ext\"\nsubsets: \"greek\"\nsubsets: \"greek-ext\"\nsubsets: \"latin\"\nsubsets: \"latin-ext\"\nsubsets: \"menu\"\nsubsets: \"vietnamese\"\naxes {\n  tag: \"opsz\"\n  min_value: 14.0\n  max_value: 32.0\n}\naxes {\n  tag: \"wght\"\n  min_value: 100.0\n  max_value: 900.0\n}\nsource {\n  repository_url: \"https://www.github.com/rsms/inter\"\n  commit: \"66647c0bbbe41a850d79d9c76fb13add3378940f\"\n  archive_url: \"https://github.com/rsms/inter/files/15438431/Inter-4.1-GoogleFonts.zip\"\n  files {\n    source_file: \"Inter[opsz,wght].ttf\"\n    dest_file: \"Inter[opsz,wght].ttf\"\n  }\n  files {\n    source_file: \"Inter-Italic[opsz,wght].ttf\"\n    dest_file: \"Inter-Italic[opsz,wght].ttf\"\n  }\n  branch: \"master\"\n}\nminisite_url: \"https://rsms.me/inter\"\n",
+    "axes": {
+      "opsz": [
+        14.0,
+        32.0
+      ],
+      "wght": [
+        100.0,
+        900.0
+      ]
+    },
+    "russian_alphabet_complete": true
+  },
+  {
+    "family": "Frontier Space Grotesk",
+    "folder": "spacegrotesk",
+    "api": "https://api.github.com/repos/google/fonts/contents/ofl/spacegrotesk?ref=7085eb89a950e85db5b166b7a58d414544b4140c",
+    "commit": "7085eb89a950e85db5b166b7a58d414544b4140c",
+    "files": [
+      {
+        "file": "SpaceGrotesk-variable.ttf",
+        "url": "https://raw.githubusercontent.com/google/fonts/7085eb89a950e85db5b166b7a58d414544b4140c/ofl/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+        "git_blob_sha": "a1b2e6c26093066510a31147e7aec9abdc8d6c5e",
+        "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+        "bytes": 136676
+      },
+      {
+        "file": "SpaceGrotesk-OFL.txt",
+        "url": "https://raw.githubusercontent.com/google/fonts/7085eb89a950e85db5b166b7a58d414544b4140c/ofl/spacegrotesk/OFL.txt",
+        "git_blob_sha": "cb512b9af44ff61e75e1aad387b7424cdfab36a3",
+        "sha256": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72",
+        "bytes": 4495
+      }
+    ],
+    "metadata": "name: \"Space Grotesk\"\ndesigner: \"Florian Karsten\"\nlicense: \"OFL\"\ncategory: \"SANS_SERIF\"\ndate_added: \"2020-10-07\"\nfonts {\n  name: \"Space Grotesk\"\n  style: \"normal\"\n  weight: 400\n  filename: \"SpaceGrotesk[wght].ttf\"\n  post_script_name: \"SpaceGrotesk-Light\"\n  full_name: \"Space Grotesk Light\"\n  copyright: \"Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)\"\n}\nsubsets: \"latin\"\nsubsets: \"latin-ext\"\nsubsets: \"menu\"\nsubsets: \"vietnamese\"\naxes {\n  tag: \"wght\"\n  min_value: 300.0\n  max_value: 700.0\n}\nsource {\n  repository_url: \"https://github.com/floriankarsten/space-grotesk\"\n  files {\n    source_file: \"OFL.txt\"\n    dest_file: \"OFL.txt\"\n  }\n  files {\n    source_file: \"DESCRIPTION.en_us.html\"\n    dest_file: \"DESCRIPTION.en_us.html\"\n  }\n  files {\n    source_file: \"fonts/ttf/SpaceGrotesk[wght].ttf\"\n    dest_file: \"SpaceGrotesk[wght].ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/static/SpaceGrotesk-Bold.ttf\"\n    dest_file: \"static/SpaceGrotesk-Bold.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/static/SpaceGrotesk-Light.ttf\"\n    dest_file: \"static/SpaceGrotesk-Light.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/static/SpaceGrotesk-Medium.ttf\"\n    dest_file: \"static/SpaceGrotesk-Medium.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/static/SpaceGrotesk-Regular.ttf\"\n    dest_file: \"static/SpaceGrotesk-Regular.ttf\"\n  }\n  branch: \"master\"\n  commit: \"03507d024a01282884232081fc6011c09ff4e849\"\n}\nminisite_url: \"https://floriankarsten.github.io/space-grotesk\"\n",
+    "axes": {
+      "wght": [
+        300.0,
+        700.0
+      ]
+    },
+    "russian_alphabet_complete": false
+  },
+  {
+    "family": "Frontier JetBrains Mono",
+    "folder": "jetbrainsmono",
+    "api": "https://api.github.com/repos/google/fonts/contents/ofl/jetbrainsmono?ref=7085eb89a950e85db5b166b7a58d414544b4140c",
+    "commit": "7085eb89a950e85db5b166b7a58d414544b4140c",
+    "files": [
+      {
+        "file": "JetBrainsMono-variable.ttf",
+        "url": "https://raw.githubusercontent.com/google/fonts/7085eb89a950e85db5b166b7a58d414544b4140c/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf",
+        "git_blob_sha": "aa310be8b717fe3774f9444dd89d5f4101cc6d10",
+        "sha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+        "bytes": 187208
+      },
+      {
+        "file": "JetBrainsMono-OFL.txt",
+        "url": "https://raw.githubusercontent.com/google/fonts/7085eb89a950e85db5b166b7a58d414544b4140c/ofl/jetbrainsmono/OFL.txt",
+        "git_blob_sha": "821a3dac22aff15a1f1c9689a1d79c45bb58ca39",
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+        "bytes": 4399
+      }
+    ],
+    "metadata": "name: \"JetBrains Mono\"\ndesigner: \"JetBrains, Philipp Nurullin, Konstantin Bulenkov\"\nlicense: \"OFL\"\ncategory: \"MONOSPACE\"\ndate_added: \"2020-11-18\"\nfonts {\n  name: \"JetBrains Mono\"\n  style: \"normal\"\n  weight: 400\n  filename: \"JetBrainsMono[wght].ttf\"\n  post_script_name: \"JetBrainsMono-Regular\"\n  full_name: \"JetBrains Mono Regular\"\n  copyright: \"Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)\"\n}\nfonts {\n  name: \"JetBrains Mono\"\n  style: \"italic\"\n  weight: 400\n  filename: \"JetBrainsMono-Italic[wght].ttf\"\n  post_script_name: \"JetBrainsMono-Italic\"\n  full_name: \"JetBrains Mono Italic\"\n  copyright: \"Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)\"\n}\nsubsets: \"cyrillic\"\nsubsets: \"cyrillic-ext\"\nsubsets: \"greek\"\nsubsets: \"latin\"\nsubsets: \"latin-ext\"\nsubsets: \"menu\"\nsubsets: \"vietnamese\"\naxes {\n  tag: \"wght\"\n  min_value: 100.0\n  max_value: 800.0\n}\nsource {\n  repository_url: \"https://github.com/JetBrains/JetBrainsMono\"\n  commit: \"19371302b95d218af43299bce79ddbddd0bc364d\"\n  files {\n    source_file: \"fonts/variable/JetBrainsMono[wght].ttf\"\n    dest_file: \"JetBrainsMono[wght].ttf\"\n  }\n  files {\n    source_file: \"fonts/variable/JetBrainsMono-Italic[wght].ttf\"\n    dest_file: \"JetBrainsMono-Italic[wght].ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-Bold.ttf\"\n    dest_file: \"static/JetBrainsMono-Bold.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-BoldItalic.ttf\"\n    dest_file: \"static/JetBrainsMono-BoldItalic.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-ExtraBold.ttf\"\n    dest_file: \"static/JetBrainsMono-ExtraBold.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-ExtraBoldItalic.ttf\"\n    dest_file: \"static/JetBrainsMono-ExtraBoldItalic.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-ExtraLight.ttf\"\n    dest_file: \"static/JetBrainsMono-ExtraLight.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-ExtraLightItalic.ttf\"\n    dest_file: \"static/JetBrainsMono-ExtraLightItalic.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-Italic.ttf\"\n    dest_file: \"static/JetBrainsMono-Italic.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-Light.ttf\"\n    dest_file: \"static/JetBrainsMono-Light.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-LightItalic.ttf\"\n    dest_file: \"static/JetBrainsMono-LightItalic.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-Medium.ttf\"\n    dest_file: \"static/JetBrainsMono-Medium.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-MediumItalic.ttf\"\n    dest_file: \"static/JetBrainsMono-MediumItalic.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-Regular.ttf\"\n    dest_file: \"static/JetBrainsMono-Regular.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-Thin.ttf\"\n    dest_file: \"static/JetBrainsMono-Thin.ttf\"\n  }\n  files {\n    source_file: \"fonts/ttf/JetBrainsMono-ThinItalic.ttf\"\n    dest_file: \"static/JetBrainsMono-ThinItalic.ttf\"\n  }\n  files {\n    source_file: \"OFL.txt\"\n    dest_file: \"OFL.txt\"\n  }\n  branch: \"master\"\n  config_yaml: \"sources/config.yaml\"\n}\nminisite_url: \"https://www.jetbrains.com/lp/mono/\"\n",
+    "axes": {
+      "wght": [
+        100.0,
+        800.0
+      ]
+    },
+    "russian_alphabet_complete": true
+  }
+]

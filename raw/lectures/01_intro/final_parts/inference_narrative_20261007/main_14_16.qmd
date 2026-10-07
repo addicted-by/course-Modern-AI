@@ -1,0 +1,71 @@
+## Beyond the next token: refining a whole block {#inference-14 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I16</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n14-body">
+  <div class="n14-ar"><div><b>One token per step</b><span>Autoregressive generation</span></div><div class="n14-ar-trace" aria-label="Sequential generation of tokens a, b, c, d"><span><i class="n14-new">a</i><i>·</i><i>·</i><i>·</i></span><b>→</b><span><i>a</i><i class="n14-new">b</i><i>·</i><i>·</i></span><b>→</b><span><i>a</i><i>b</i><i class="n14-new">c</i><i>·</i></span><b>→</b><span><i>a</i><i>b</i><i>c</i><i class="n14-new">d</i></span></div></div>
+  <div class="n14-intro">What if we refine several positions in a block together?</div>
+  <div class="n14-states" aria-label="Illustrative block states: unknown positions, a partially revealed block, a completed block">
+    <div class="n14-stage"><h3><small>1</small> Start</h3><div class="n14-tokens"><i>?</i><i>?</i><i>?</i><i>?</i></div><p>Positions are still unknown</p></div><span class="n14-arrow">→</span>
+    <div class="n14-stage"><h3><small>2</small> Refinement</h3><div class="n14-tokens"><i class="n14-new">a</i><i>?</i><i class="n14-new">c</i><i>?</i></div><p>Several positions per step</p></div><span class="n14-arrow">→</span>
+    <div class="n14-stage"><h3><small>3</small> Block complete</h3><div class="n14-tokens"><i>a</i><i class="n14-new">b</i><i>c</i><i class="n14-new">d</i></div><p>All positions are determined</p></div>
+  </div>
+  <div class="n14-next"><b>Completed block a b c d</b><span>→ becomes context →</span><div><i>?</i><i>?</i><i>?</i><i>?</i></div><span>next block</span></div>
+  <div class="n14-name"><span>This process is called</span><b>block diffusion</b><span>— diffusion within a block</span></div>
+</div>
+<div class="fv-takeaway">Positions are refined together within a block; completed blocks become context for the next.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2503.09573#S3">Arriola et al., Block Diffusion, Fig. 1; §3, 2025</a> · Illustrative diagram; symbols represent tokens, and the number of steps can vary</div>
+```
+
+::: {.notes}
+Сначала напомним верхнюю строку. При авторегрессионной генерации выбирается следующий токен, после чего он входит в историю для очередного выбора. Буквы обозначают условные токены, точки — ещё не созданные позиции.
+
+Теперь пройдём нижнюю последовательность слева направо. У блока сразу есть несколько позиций, но их содержимое ещё неизвестно. На показанном шаге определились первая и третья позиции. После дальнейшего уточнения заполнен весь блок. Это учебная схема, не опубликованный текст и не утверждение о ровно двух вычислительных шагах для любого блока. Совместная обработка даёт возможность раскрыть несколько позиций за шаг; конкретное расписание зависит от метода.
+
+Когда блок завершён, он становится частью контекста следующего блока. Только после разбора этих состояний называем процесс block diffusion. Между блоками сохраняется последовательность; внутри блока меняется способ получения продолжения. Сама схема не доказывает ускорения: повторные уточнения тоже имеют стоимость. На следующем слайде посмотрим одно измерение качества при заданном числе вызовов модели.
+
+**Источник:** [Block Diffusion, Figure 1; §3](https://arxiv.org/html/2503.09573#S3). Первичный текст повторно проверен 2026-10-07.
+:::
+
+## What does block generation achieve? {#inference-15 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I17</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n15-body">
+  <div class="n15-protocol"><b>One experiment</b><span>110M parameters · trained on 524B OpenWebText tokens</span><span>300 texts of 1024 tokens each</span></div>
+  <div class="n15-main"><div class="n15-results"><table aria-label="Generative perplexity of three generation methods at 1K function evaluations"><thead><tr><th>Generation method</th><th>Generative<br>perplexity ↓</th></tr></thead><tbody><tr><td><b>One token at a time</b><small>Autoregressive model, AR</small></td><td>14.1</td></tr><tr><td><b>Refine the entire sequence</b><small>Diffusion model, MDLM</small></td><td>46.8</td></tr><tr class="n15-highlight"><td><b>Refine blocks of 4 tokens</b><small>Block model, BD3-LM</small></td><td>25.7</td></tr></tbody></table></div><div class="n15-explain"><span class="fv-label">How to read the metric</span><h3>How likely is the generated text under another model?</h3><p>An external <b>GPT-2 Large</b> model scores the generated texts.</p><div class="n15-direction"><b>Lower is better</b><span>on this metric</span></div><p class="n15-limit">One score does not capture overall answer quality.</p></div></div>
+  <div class="n15-budget"><div><b>All methods: 1K model calls</b><span>function evaluations — the same count of model calls</span></div><p>This is not a runtime comparison:<br>the cost per call differs.</p></div>
+</div>
+<div class="fv-takeaway">On this metric, block generation outperforms MDLM but trails the autoregressive model.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2503.09573#S6.SS2">Arriola et al., Block Diffusion, §6.2, Table 7</a> · <a href="https://arxiv.org/html/2503.09573#A3.SS5">Appendix C.5: evaluation protocol</a> · Verified 2026-10-07</div>
+```
+
+::: {.notes}
+Зададим узкий вопрос: какое качество сэмплов получается у блочной модели при том же опубликованном числе вызовов сети? Здесь один эксперимент из Table 7, без смешения с длинами генерации или другой моделью. Взяты 300 текстов по 1024 токена, 110M параметров и обучение на 524B токенов OpenWebText. Все три строки имеют 1K function evaluations.
+
+Generative perplexity вычисляется внешней GPT-2 Large по вероятностям полученных текстов. Меньшее число означает, что эти тексты менее неожиданны для оценщика. Это не вероятность правильного решения задачи и не исчерпывающая оценка полезности или фактической точности.
+
+Результаты: AR — 14,1; MDLM — 46,8; BD3-LM с блоком 4 — 25,7. Блочное обучение улучшает результат относительно MDLM, но AR остаётся лучше по выбранной метрике. Одинаковые 1K вызовов не равны одинаковому времени: отличаются объём работы и организация каждого прохода. Поэтому из этой таблицы не выводим численный speedup. Полученный компромисс имеет смысл обсуждать вместе с конкретной метрикой и бюджетом.
+
+**Источник:** [Block Diffusion, §6.2, Table 7; Appendix C.5](https://arxiv.org/html/2503.09573). Числа повторно сверены в первоисточнике 2026-10-07.
+:::
+
+## Inference: organizing computation after training {#inference-16 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I18</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n16-body">
+  <div class="n16-summary"><div><span>01</span><h3>Additional attempts</h3><p>Help search for an answer —<br>generation and selection both cost compute.</p></div><div><span>02</span><h3>Reusing state</h3><p>Reduces repeated work —<br>computed state is used again.</p></div><div><span>03</span><h3>Other generation methods</h3><p>Change the cost of continuing —<br>both quality and compute cost matter.</p></div></div>
+  <div class="n16-transition"><div><span>So far: computing an answer</span><a href="#/frontier-f35"><b>Next: Tools → external actions</b></a></div><a class="n16-appendix" href="#/inference-a01"><span>Optional</span><b>Explore the appendix ↗</b></a></div>
+</div>
+<div class="fv-takeaway">Weights stay fixed; the organization and cost of computation change.</div>
+<div class="fv-source">Main Inference section recap · The appendix can be read separately</div>
+```
+
+::: {.notes}
+Вернёмся к двум вопросам начала раздела: как получить более качественный ответ и как сделать его получение быстрее и дешевле. Мы рассмотрели три взаимосвязанные идеи.
+
+Первая — потратить дополнительные вычисления на несколько попыток и выбор. Вторая — сохранить уже вычисленное и использовать снова, сокращая повторную работу. Третья — изменить порядок генерации продолжения. Для каждой идеи нужно спрашивать, что измерили, что сохранили и чем заплатили за результат. Эти приёмы не дают одинаковый выигрыш при любом запросе.
+
+На этом основной рассказ завершён. Ссылка на приложение ведёт к необязательным углублениям; их не нужно проходить перед следующим разделом. До сих пор мы обсуждали вычисление ответа обученной моделью. Теперь перейдём к Tools: система может выполнять внешние действия и возвращать их результаты в дальнейшую работу.
+:::

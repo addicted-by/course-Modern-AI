@@ -1,0 +1,180 @@
+## Reasoning / capability RL: learning from the model’s own attempts {#training-47 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">47</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr47-body">
+  <div class="tr47-demo"><span>SFT</span> Prompt → Demonstration → Training</div>
+  <svg class="tr47-loop" viewBox="0 0 1488 450" role="img" aria-label="The model receives a task. Its own attempts are checked against an answer, tests, or the environment state. The result feeds back into training and changes subsequent attempts.">
+    <defs><marker id="tr47-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#141414"/></marker></defs>
+    <rect x="0" y="146" width="206" height="94" fill="#f3f3f3" stroke="#c5c5c5"/><text x="103" y="203" text-anchor="middle" font-size="33" font-weight="600">Task</text>
+    <g class="fragment" data-fragment-index="1">
+      <path d="M213 193H267" fill="none" stroke="#141414" stroke-width="2" marker-end="url(#tr47-arrow)"/>
+      <rect x="278" y="92" width="314" height="203" fill="white" stroke="#141414" stroke-width="2"/>
+      <text x="302" y="136" font-size="30" font-weight="600">Model attempts</text>
+      <path d="M301 158H569" stroke="#c5c5c5"/>
+      <text x="303" y="195" font-size="26">Solution A</text><text x="303" y="234" font-size="26">Solution B</text><text x="303" y="271" font-size="26" fill="#626262">…</text>
+    </g>
+    <g class="fragment" data-fragment-index="2">
+      <path d="M599 193H654" fill="none" stroke="#141414" stroke-width="2" marker-end="url(#tr47-arrow)"/>
+      <rect x="666" y="138" width="317" height="110" fill="#bef264" stroke="#141414"/>
+      <text x="824" y="181" text-anchor="middle" font-size="29" font-weight="600">Check</text><text x="824" y="218" text-anchor="middle" font-size="29" font-weight="600">the outcome</text>
+      <path d="M1032 193H993" fill="none" stroke="#626262" stroke-width="2" marker-end="url(#tr47-arrow)"/>
+      <text x="1060" y="72" font-size="21" fill="#626262" letter-spacing="1">HOW TO CHECK</text>
+      <text x="1060" y="128" font-size="30" font-weight="600">Answer</text><text x="1060" y="162" font-size="23" fill="#626262">matches the known answer</text>
+      <path d="M1060 185H1480" stroke="#c5c5c5"/>
+      <text x="1060" y="226" font-size="30" font-weight="600">Tests</text><text x="1060" y="260" font-size="23" fill="#626262">verify execution</text>
+      <path d="M1060 283H1480" stroke="#c5c5c5"/>
+      <text x="1060" y="324" font-size="30" font-weight="600">Environment state</text><text x="1060" y="358" font-size="23" fill="#626262">the goal is achieved</text>
+    </g>
+    <g class="fragment" data-fragment-index="3">
+      <path d="M824 257V354" fill="none" stroke="#141414" stroke-width="2" marker-end="url(#tr47-arrow)"/>
+      <path d="M278 365H983V441H278Z" fill="#f3f3f3" stroke="#141414"/>
+      <text x="631" y="413" text-anchor="middle" font-size="29" font-weight="600">Learning from feedback</text>
+      <path d="M271 403H238V282H266" fill="none" stroke="#141414" stroke-width="2" marker-end="url(#tr47-arrow)"/>
+      <text x="25" y="356" font-size="23" fill="#626262">Future</text><text x="25" y="389" font-size="23" fill="#626262">attempts</text>
+    </g>
+  </svg>
+</div>
+<div class="fv-takeaway">An attempt’s outcome becomes a training signal.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2501.12948v1#S2.SS2.SSS2">DeepSeek-R1, 2025, §2.2.2</a> · <a href="https://arxiv.org/html/2603.00729v1#S4.SS2">Qwen3-Coder-Next, 2026, §4.2</a> · Conceptual diagram by the lecturer</div>
+```
+
+::: {.notes}
+Previously, we discussed a demonstrated answer and comparisons between answers. Here, the model produces the learning material itself: it attempts the task, and the system checks the outcome. The small SFT path at the top compares the sources of training signals. It does not imply that SFT must precede every RL experiment.
+
+**First click — the model’s own attempts.** A model can generate several candidate solutions for one prompt. They reflect its current behavior, including its mistakes. A verifiable task specifies a goal but need not provide a detailed demonstration of how to reach it.
+
+**Second click — outcome verification.** The labels on the right are ways to obtain feedback, not separate models: compare a mathematical answer with a known correct answer, run tests on a program, or check the outcome of actions in an environment. DeepSeek-R1-Zero used mathematical answer checks and test cases. Its reward also included a format component, so this conceptual diagram is not an exhaustive description of its reward system. In Qwen3-Coder-Next, coding tasks run in verifiable environments, and execution outcomes provide feedback for expert training.
+
+**Third click — learning and feedback.** Feedback changes the model that produces subsequent attempts. This is parameter learning, not merely a search for a successful answer within one request. Verification must reflect the actual task goal: the quality of the verifier determines what the training signal means. Our focus here is the general loop rather than a particular optimization algorithm. The next slide asks whether measured task success improves.
+
+**Sources:** [DeepSeek-R1 v1, §2.2.2](https://arxiv.org/html/2501.12948v1#S2.SS2.SSS2); [Qwen3-Coder-Next, §4.2](https://arxiv.org/html/2603.00729v1#S4.SS2). This diagram synthesizes ideas from both papers; it does not reproduce a single algorithm.
+:::
+
+## Capability RL: solving more tasks successfully {#training-48 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">48</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr48-body">
+  <div class="tr48-figure">
+    <svg class="tr48-filter-defs" width="0" height="0" aria-hidden="true"><defs><filter id="tr48-secondary-red" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.58 0 -0.58 0 0" result="red-mask"/><feFlood flood-color="#ffffff" result="white"/><feComposite in="white" in2="red-mask" operator="in" result="red-wash"/><feComposite in="red-wash" in2="SourceGraphic" operator="over"/></filter></defs></svg>
+    <img src="assets/training_20261007/rl_distill/deepseek_r1_v1_figure2.png" alt="Original DeepSeek-R1 v1 Figure 2: AIME accuracy against RL steps. Blue: r1-zero-pass@1; red: r1-zero-cons@16; dashed baselines: o1-0912-pass@1 and o1-0912-cons@64." />
+    <svg class="tr48-focus-overlay fragment" data-fragment-index="1" viewBox="0 0 810 520" aria-hidden="true"><circle cx="92" cy="450" r="10" fill="none" stroke="#0000ff" stroke-width="2.5"/><circle cx="767" cy="138" r="10" fill="none" stroke="#0000ff" stroke-width="2.5"/></svg>
+  </div>
+  <div class="tr48-reading">
+    <div class="tr48-context">DeepSeek-R1-Zero · AIME 2024</div>
+    <div class="fragment tr48-pass" data-fragment-index="1"><div class="tr48-method"><span class="tr48-blue"></span><strong>pass@1</strong></div><div class="tr48-value">15.6% → 71.0%</div><p>Success rate of a single attempt.</p></div>
+    <div class="fragment tr48-cons" data-fragment-index="2"><div class="tr48-method"><span class="tr48-red"></span><strong>cons@16</strong></div><p>Another mode: combine 16 attempts.</p><p class="tr48-small">Responses are combined at evaluation time,<br>not in an additional training stage.</p></div>
+    <div class="tr48-protocol">At each point: 16 responses per question;<br>pass@1 averages individual correctness.</div>
+  </div>
+</div>
+<div class="fv-takeaway">With the evaluation mode held fixed, feedback improves task success.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2501.12948v1#S2.F2">DeepSeek-R1 v1, 2025, Figure 2</a> · <a href="https://arxiv.org/html/2501.12948v1#S2.SS2.SSS4">§2.2.4</a> · Original plot; pass@1 and cons@16 are different evaluation modes</div>
+```
+
+::: {.notes}
+This is Figure 2 from the first version of the DeepSeek-R1 report. Later versions changed the paper’s structure, so the link is pinned to v1. In this version, the results are in §2.2.4; §2.2.3 describes the training template.
+
+The horizontal axis shows RL steps; the vertical axis shows accuracy on AIME 2024. The original points, fluctuations, scale, legend, and reference lines are retained. The blue pass@1 curve is our main focus; the red curve is visually subdued without changing its geometry.
+
+**First click — pass@1.** The paper reports an increase from 15.6% to 71.0%. This estimates the success rate of an individual generated solution. To reduce measurement noise, the authors generate 16 responses per question and average their correctness. Averaging these responses to estimate pass@1 does not turn the metric into a best-of-16 result. The curve fluctuates: improvement is not guaranteed at every training step.
+
+**Second click — the separate cons@16 evaluation mode.** The red curve combines multiple responses. It evaluates the same sequence of trained checkpoints using a different procedure for producing the final answer. The vertical gap between the red and blue curves therefore cannot be attributed to another training stage. The dashed o1 baselines have their own labels, including cons@64; these must not be confused with cons@16. The paper’s final table and discussion of majority voting use different consensus conditions, so here we follow the labels in Figure 2 directly.
+
+The conclusion is specific to this experiment: verifiable feedback is associated with improved mathematical task performance. Reasoning length is not the metric on this slide. Next, we ask whether the acquired behavior can become a training resource for another model.
+
+**Source of the plot and values:** [DeepSeek-R1 v1, Figure 2 and §2.2.4](https://arxiv.org/html/2501.12948v1#S2.F2). The condition of 16 responses per question is retained from the original caption.
+:::
+
+## Distillation / synthetic-data loops: models become a source of training data {#training-49 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">49</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr49-body">
+  <div class="tr49-distill fragment" data-fragment-index="1">
+    <div class="tr49-kicker">DISTILLATION</div><h3>Transfer between models</h3>
+    <div class="tr49-transfer"><div class="tr49-model"><strong>Teacher</strong><span>learned<br>behavior</span></div><div class="tr49-signal"><span class="tr49-arrow">→</span><strong>Training<br>signal</strong><small>answers / examples</small><span class="tr49-arrow">→</span></div><div class="tr49-model tr49-student"><strong>Student</strong><span>learning<br>from examples</span></div></div>
+    <div class="tr49-distill-note">Answers or other signals are transferred.<br>The teacher’s weights are not copied.</div>
+  </div>
+  <div class="tr49-synthetic fragment" data-fragment-index="2">
+    <div class="tr49-kicker">SYNTHETIC-DATA LOOP · STaR</div><h3>Updating the training data</h3>
+    <svg viewBox="0 0 728 384" role="img" aria-label="STaR: the model generates solutions. Known correct answers from an external source enable verification. Correct solutions are selected for retraining; the updated model generates the next dataset.">
+      <defs><marker id="tr49-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#141414"/></marker></defs>
+      <rect x="388" y="15" width="320" height="73" fill="#bef264"/><text x="548" y="44" text-anchor="middle" font-size="23" font-weight="600">Known correct answers</text><text x="548" y="74" text-anchor="middle" font-size="23" font-weight="600">from an external source</text>
+      <path d="M548 93V119" stroke="#141414" stroke-width="2" marker-end="url(#tr49-arrow)"/>
+      <rect x="20" y="132" width="260" height="80" fill="white" stroke="#141414"/><text x="150" y="181" text-anchor="middle" font-size="29" font-weight="600">Generate</text>
+      <path d="M290 172H406" stroke="#141414" stroke-width="2" marker-end="url(#tr49-arrow)"/>
+      <rect x="418" y="132" width="260" height="80" fill="white" stroke="#141414"/><text x="548" y="181" text-anchor="middle" font-size="29" font-weight="600">Check</text>
+      <g class="fragment" data-fragment-index="3">
+        <path d="M548 221V268" stroke="#141414" stroke-width="2" marker-end="url(#tr49-arrow)"/>
+        <rect x="418" y="280" width="260" height="80" fill="white" stroke="#141414"/><text x="548" y="329" text-anchor="middle" font-size="29" font-weight="600">Select</text>
+        <path d="M406 320H291" stroke="#141414" stroke-width="2" marker-end="url(#tr49-arrow)"/>
+        <rect x="20" y="280" width="260" height="80" fill="#f3f3f3" stroke="#141414"/><text x="150" y="329" text-anchor="middle" font-size="27" font-weight="600">Retrain</text>
+        <path d="M150 268V223" stroke="#141414" stroke-width="2" marker-end="url(#tr49-arrow)"/>
+        <text x="310" y="253" text-anchor="middle" font-size="21" fill="#626262">next dataset</text>
+      </g>
+    </svg>
+  </div>
+</div>
+<div class="fv-takeaway">Transferring behavior and updating training data are distinct processes.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2501.12948v1#S2.SS4">DeepSeek-R1, 2025, §2.4</a> · <a href="https://arxiv.org/html/2203.14465v2#S3">STaR, 2022, §3</a> · Lecturer’s diagrams of two distinct processes</div>
+```
+
+::: {.notes}
+Distillation and synthetic-data loops often appear together, but they answer different questions. On the left: which model receives the learned behavior? On the right: how is the material for the next round of training updated? Both processes can occur in one system without being identical.
+
+**First click — transfer.** The teacher generates answers or provides another training signal, and the student learns from it. In DeepSeek-R1, smaller Qwen and Llama models were fine-tuned on examples prepared using R1. The teacher’s weights are not transferred, and the student need not share its architecture. This diagram shows transfer through examples; other forms of distillation can provide a richer signal. On the Training map, this path feeds generated examples back into the training of another model, for example through SFT.
+
+**Second click — generation and external verification.** In STaR, the original tasks come with known correct answers. The model generates a rationale and an answer; correctness of the final answer determines whether the rationale enters the next training dataset. The green box is essential: a model’s answer is not declared correct merely because the model generated it. Generation alone does not supply a selection criterion.
+
+**Third click — selection and retraining.** Selected solutions become training data, yielding a new model version for the next generation round. In the original STaR procedure, each outer iteration restarts fine-tuning from the original pretrained model using the updated dataset. The return arrow therefore means that the data-generating model is replaced, not that one checkpoint must be fine-tuned continuously. STaR with rationalization additionally provides the correct answer as a hint when generating rationales for previously unsolved tasks. This diagram shows the basic loop used in Figure 4(a) on the next slide.
+
+**Sources:** [DeepSeek-R1, §2.4](https://arxiv.org/html/2501.12948v1#S2.SS4); [STaR, §3](https://arxiv.org/html/2203.14465v2#S3). The diagrams are the lecturer’s synthesis; the external source of correct answers is explicit.
+:::
+
+## Distillation and synthetic loops: improvement at the same model size {#training-50 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">50</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr50-body">
+  <div class="tr50-state tr50-table-state fragment fade-out" data-fragment-index="2">
+    <div class="tr50-caption"><strong>Learning from a teacher</strong><span>Qwen3 · one 8B student · Table 21</span></div>
+    <table class="tr50-table" aria-label="Qwen3 Table 21. RL and on-policy distillation are alternative continuations of the same 8B off-policy checkpoint.">
+      <colgroup><col class="tr50-col-method"><col class="tr50-col-focus"><col><col><col class="tr50-col-focus"><col><col><col></colgroup>
+      <thead><tr><th>Student training</th><th class="tr50-focus">AIME’24</th><th>AIME’25</th><th>MATH-500</th><th class="tr50-focus">LiveCodeBench<br>v5</th><th>MMLU-Redux</th><th>GPQA-<br>Diamond</th><th>GPU hours</th></tr></thead>
+      <tbody>
+        <tr class="tr50-base"><td><strong>Off-policy Distillation</strong><small>Shared starting checkpoint</small></td><td class="tr50-focus">55.0<span>(90.0)</span></td><td>42.8<span>(83.3)</span></td><td>92.4</td><td class="tr50-focus">42.0</td><td>86.4</td><td>55.6</td><td>—</td></tr>
+        <tr class="fragment tr50-choice" data-fragment-index="1"><td><span class="tr50-branch">↳</span> + RL</td><td class="tr50-focus">67.6<span>(90.0)</span></td><td>55.5<span>(83.3)</span></td><td>94.8</td><td class="tr50-focus">52.9</td><td>86.9</td><td>61.3</td><td>17,920</td></tr>
+        <tr class="fragment tr50-choice" data-fragment-index="1"><td><span class="tr50-branch">↳</span> + On-policy Distillation</td><td class="tr50-focus">74.4<span>(93.3)</span></td><td>65.5<span>(86.7)</span></td><td>97.0</td><td class="tr50-focus">60.3</td><td>88.3</td><td>63.3</td><td>1,800</td></tr>
+      </tbody>
+    </table>
+    <div class="tr50-table-note fragment" data-fragment-index="1"><strong>One checkpoint → two alternative continuations</strong><span>RL and on-policy distillation are compared separately.</span></div>
+    <div class="tr50-table-foot">AIME: pass@1 (pass@64). GPU hours measure the cost of each subsequent training branch.</div>
+  </div>
+  <div class="tr50-state tr50-star-state fragment" data-fragment-index="2">
+    <div class="tr50-caption"><strong>Repeated training cycles</strong><span>STaR, 2022 · a separate experiment on GPT-J 6B</span></div>
+    <div class="tr50-star-content">
+      <img class="tr50-star-plot" src="assets/training_20261007/rl_distill/star_figure4a.svg" alt="Original STaR Figure 4(a), without rationalization. The x-axis shows iterations 0–28; the y-axis shows Accuracy (%) 0–100. The five curves labeled 1, 2, 3, 4, 5 represent the number of digits in the arithmetic operands." />
+      <div class="tr50-star-reading"><div class="tr50-history">Arithmetic · Figure 4(a)</div><h3>Accuracy changes<br>across iterations</h3><p>Generate → check the answer →<br>select → retrain</p><div class="fragment tr50-digits" data-fragment-index="3"><strong>Legend 1–5: task difficulty</strong><span>Number of digits in each operand.<br>Harder tasks improve later.</span></div><p class="tr50-separate">Basic STaR without rationalization.<br>Absolute scores are not comparable to Qwen3.</p></div>
+    </div>
+  </div>
+</div>
+<div class="fv-takeaway">New training signals can improve a model without increasing its size.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2505.09388v1#S4.T21">Qwen3, 2025, §4.7, Table 21</a> · <a href="https://arxiv.org/html/2203.14465v2#S4.F4">STaR, 2022, Figure 4(a)</a> · Two independent experiments</div>
+```
+
+::: {.notes}
+The slide has two successive states. They share a question—what can improve without increasing the parameter count—but use different models, tasks, and evaluation protocols. Absolute scores are not comparable across the two studies.
+
+**Initial state — Qwen3 Table 21.** The student has 8B parameters. The first row is the shared checkpoint after off-policy distillation. AIME’24 and LiveCodeBench v5 are highlighted, while the remaining results and reported compute costs are also retained. For AIME, the main value is pass@1 and the parenthesized value is pass@64. A value in parentheses is not a separate training outcome.
+
+**First click — two alternative branches.** Both lower rows start from the same model in the first row. Adding RL yields 67.6 on AIME’24 and 52.9 on LiveCodeBench v5. Adding on-policy distillation instead yields 74.4 and 60.3. The starting values are 55.0 and 42.0. The rows do not mean “RL first, then distillation.” With on-policy distillation, the student receives teacher feedback on its own trajectories; this additional signal improves performance without changing the student’s size. The table supports that conclusion for this comparison, not universal superiority at every budget and on every task. GPU hours refer to the subsequent training branches, not the full cost of developing the models.
+
+**Second click — the plot completely replaces the table.** This is a separate historical STaR experiment on GPT-J 6B. We show the original left panel of Figure 4: the basic loop without rationalization. The x-axis counts outer iterations; the y-axis measures accuracy. The model generates rationales and answers for arithmetic problems. Solutions with correct final answers are selected, and the next training round uses the updated dataset. Known answers supply the verification signal.
+
+**Third click — reading difficulty.** Legend entries 1 through 5 indicate the number of digits in each of the two operands. Improvements depend on difficulty and emerge at different iterations. Replacing these curves with an overall average would hide that structure. In particular, the 89.5% result after 16 iterations discussed for another version of the procedure must not be attributed to this panel, which extends to 28 iterations.
+
+The studies demonstrate different sources of useful training material: a strong teacher and repeated selection of the model’s own generations. On the Training map, these are feedback paths rather than a mandatory stage traversed only once.
+
+**Sources:** [Qwen3, §4.7, Table 21](https://arxiv.org/html/2505.09388v1#S4.SS7); [STaR, §4.1, §4.3, Figure 4(a)](https://arxiv.org/html/2203.14465v2#S4.F4). Qwen3’s values are reproduced unchanged; STaR uses the original vector plot with its legend retained.
+:::

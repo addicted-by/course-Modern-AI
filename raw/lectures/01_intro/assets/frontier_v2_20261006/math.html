@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="vendor/katex/dist/katex.min.css">
+<script defer src="vendor/katex/dist/katex.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fv-slide .math').forEach((element) => {
+    if (element.querySelector('.katex') || !window.katex) return;
+    const expression = element.textContent.trim();
+    const inline = expression.startsWith('\\(') && expression.endsWith('\\)');
+    const display = expression.startsWith('\\[') && expression.endsWith('\\]');
+    if (!inline && !display) return;
+    try {
+      katex.render(expression.slice(2, -2), element, {displayMode: display, throwOnError: true, strict: 'error'});
+    } catch (error) {
+      element.classList.add('katex-error');
+      element.title = error.message;
+      console.error('Frontier slide math:', error.message);
+    }
+  });
+});
+</script>

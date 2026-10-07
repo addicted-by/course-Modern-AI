@@ -1,0 +1,77 @@
+/* Local additions to the Tools excerpt; uses the shared Frontier theme tokens. */
+.reveal .fv-slide .skills-body {
+  display: grid; grid-template-columns: 280px 660px 476px; gap: 36px;
+}
+.reveal .skills-body .skills-caption { font-size: 20px; color: var(--fv-muted); }
+.reveal .skills-operations { border-right: 1px solid var(--fv-line); padding-right: 24px; }
+.reveal .skills-operations h3 { font: 600 29px/1.2 var(--lecture-font-mono); margin-bottom: 9px; }
+.reveal .skills-tool { margin-top: 25px; padding-bottom: 22px; border-bottom: 1px solid var(--fv-line); }
+.reveal .skills-tool b { display: block; font: 550 25px/1.3 var(--lecture-font-mono); }
+.reveal .skills-tool code { display: block; margin-top: 9px; font-size: 18px; line-height: 1.55; }
+.reveal .skills-tool + .skills-caption { margin-top: 15px; font-size: 18px; }
+.reveal .skills-directory { font: 550 24px/1.2 var(--lecture-font-mono); margin-bottom: 12px; }
+.reveal .skills-file { border: 1.5px solid var(--fv-ink); border-left: 6px solid var(--fv-lime); padding: 20px 24px; }
+.reveal .skills-file h3 { font: 650 33px/1.1 var(--lecture-font-mono); }
+.reveal .skills-metadata { margin-top: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--fv-line); font-size: 23px; line-height: 1.4; }
+.reveal .skills-metadata b { font-family: var(--lecture-font-mono); font-size: 21px; }
+.reveal .skills-instructions { margin-top: 16px; font-size: 24px; }
+.reveal .skills-instructions ol { margin-top: 10px; padding-left: 1.12em; font-size: 22px; line-height: 1.32; }
+.reveal .skills-instructions li + li { margin-top: 7px; }
+.reveal .skills-resources { display: flex; gap: 28px; margin: 14px 0 6px; }
+.reveal .skills-resources code { font-size: 21px; }
+.reveal .skills-discovery { margin-top: 17px; font-size: 20px; }
+.reveal .skills-procedure { padding-left: 6px; }
+.reveal .skills-procedure h3 { font-size: 29px; }
+.reveal .skills-procedure p { font-size: 24px; margin-top: 9px; }
+.reveal .skills-down { font-size: 34px; line-height: 1; margin: 15px 0; color: var(--fv-muted); }
+.reveal .skills-unchanged { margin-top: 27px; border-top: 4px solid var(--fv-lime); padding-top: 14px; font-size: 28px; }
+.reveal .skills-unchanged p { font-size: 23px; }
+
+/* One run timeline, with prompts, validation and callbacks on distinct levels. */
+.reveal .fv-slide .rules-body { top: 180px; }
+.reveal .rules-body svg { display: block; font-size: 27px; fill: var(--fv-ink); color: var(--fv-ink); overflow: visible; }
+.reveal .rules-body .rules-band { fill: var(--fv-soft); }
+.reveal .rules-body .rules-bold { font-weight: 650; }
+.reveal .rules-body .rules-caption { font-size: 23px; fill: var(--fv-muted); }
+.reveal .rules-body .rules-small { font-size: 22px; }
+.reveal .rules-body .rules-footnote { font-size: 19px; fill: var(--fv-muted); }
+.reveal .rules-body .rules-code { font: 19px var(--lecture-font-mono); fill: var(--fv-muted); }
+.reveal .rules-body .rules-node { fill: white; stroke: var(--fv-ink); stroke-width: 1.5; }
+.reveal .rules-body .rules-validation { fill: var(--fv-lime); stroke: var(--fv-ink); stroke-width: 1; }
+.reveal .rules-body .rules-line { fill: none; stroke: var(--fv-ink); stroke-width: 1.5; marker-end: url(#rules-arrow); }
+.reveal .rules-body .rules-hook-line { fill: none; stroke: var(--fv-ink); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.reveal .rules-body .rules-divider { fill: none; stroke: var(--fv-line); stroke-width: 1.5; }
+.reveal .fv-slide .rules-definitions { position: absolute; top: 708px; left: 56px; width: 1488px; display: flex; justify-content: space-between; font-size: 22px; }
+
+/* The published SWE-agent figure stays intact. All explanatory layers are editable. */
+.reveal .fv-slide .controller-body { top: 166px; height: 571px; }
+.reveal .controller-parameters { position: absolute; top: 309px; left: 0; width: 208px; border-top: 1px solid var(--fv-line); padding-top: 14px; }
+.reveal .controller-parameters b { display: block; font-size: 20px; }
+.reveal .controller-parameters span { display: block; font-size: 18px; margin-top: 8px; color: var(--fv-muted); }
+.reveal .controller-single { position: absolute; top: 160px; left: 350px; width: 760px; display: flex; align-items: center; justify-content: space-between; font-size: 40px; }
+.reveal .controller-single span { border: 1.5px solid var(--fv-ink); padding: 30px 44px; }
+.reveal .controller-single b { font-size: 52px; }
+.reveal .controller-cycle { position: absolute; inset: 0; }
+.reveal .controller-cycle .controller-evidence { position: absolute; top: 86px; left: 264px; width: 970px; height: auto; max-height: none; }
+.reveal .controller-cycle .controller-overlay { position: absolute; top: 0; left: 0; width: 1488px; height: 445px; max-height: none; overflow: visible; color: var(--fv-ink); }
+.reveal .controller-overlay text { font-size: 30px; font-weight: 600; fill: var(--fv-ink); }
+.reveal .controller-overlay path:not(defs path) { fill: none; stroke: var(--fv-ink); stroke-width: 1.6; marker-end: url(#controller-arrow); }
+.reveal .controller-overlay .controller-caption { font-size: 21px; font-weight: 400; fill: var(--fv-muted); }
+.reveal .controller-mechanisms { position: absolute; inset: 0; }
+.reveal .controller-mechanisms > div:not(.controller-states) { position: absolute; }
+.reveal .controller-mechanisms b { font-size: 25px; line-height: 1.15; }
+.reveal .controller-mechanisms span { display: block; font-size: 20px; color: var(--fv-muted); margin-top: 8px; }
+.reveal .controller-skills { left: 728px; top: 0; display: flex; gap: 18px; align-items: center; }
+.reveal .controller-skills b { background: var(--fv-lime); padding: 3px 10px; }
+.reveal .controller-skills span { margin-top: 0; }
+.reveal .controller-rules { left: 0; top: 117px; width: 204px; }
+.reveal .controller-tools { left: 1290px; top: 112px; width: 198px; }
+.reveal .controller-environment { left: 1290px; top: 246px; width: 198px; }
+.reveal .controller-environment b { font-size: 22px; }
+.reveal .controller-environment span { font-size: 19px; }
+.reveal .controller-hooks { left: 230px; top: 422px; display: flex; align-items: center; gap: 17px; }
+.reveal .controller-hooks b { font-size: 22px; }
+.reveal .controller-hooks span { display: none; }
+.reveal .controller-states { position: absolute; top: 463px; left: 0; width: 1488px; display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 32px; padding-top: 16px; border-top: 1px solid var(--fv-line); }
+.reveal .controller-states h3 { font-size: 28px; }
+.reveal .controller-states p { margin-top: 8px; font-size: 22px; line-height: 1.3; }

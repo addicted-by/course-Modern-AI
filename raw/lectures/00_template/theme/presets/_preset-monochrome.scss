@@ -6,7 +6,10 @@
 /*-- scss:defaults --*/
 
 // Typography Web Fonts
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap");
+$lecture-load-web-fonts: true !default;
+@if $lecture-load-web-fonts {
+  @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap");
+}
 
 // Reveal.js SASS Variable Defaults (Monochrome Theme)
 $body-bg: #ffffff !default;

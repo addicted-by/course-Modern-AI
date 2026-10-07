@@ -1,0 +1,104 @@
+/* Concrete data cases. Reuse the Frontier deck's grid, fonts and palette. */
+.reveal .fv-slide .dc-body { display: flex; flex-direction: column; gap: 22px; }
+.reveal .fv-slide .dc-kicker { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--fv-line); padding-bottom: 13px; font-size: 23px; }
+.reveal .fv-slide .dc-kicker span { color: var(--fv-muted); font-size: 21px; }
+.reveal .fv-slide .dc-two { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+.reveal .fv-slide .dc-evidence { display: grid; grid-template-columns: 920px 524px; gap: 44px; height: 445px; }
+.reveal .fv-slide .dc-figure { margin: 0; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; min-height: 0; }
+.reveal .fv-slide .dc-figure img { width: 100%; height: 400px; object-fit: contain; }
+.reveal .fv-slide .dc-figure figcaption { width: 100%; font-size: 19px; color: var(--fv-muted); line-height: 1.25; }
+.reveal .fv-slide .dc-aside { display: flex; flex-direction: column; gap: 24px; justify-content: center; }
+.reveal .fv-slide .dc-aside p { font-size: 27px; line-height: 1.35; }
+.reveal .fv-slide .dc-aside small { font-size: 22px; color: var(--fv-muted); line-height: 1.3; }
+.reveal .fv-slide .dc-highlight { background: var(--fv-lime); padding: 16px 20px; }
+.reveal .fv-slide .dc-rule { border-top: 1px solid var(--fv-line); padding-top: 16px; }
+.reveal .fv-slide .dc-caption { font-size: 22px; color: var(--fv-muted); line-height: 1.3; }
+.reveal .fv-slide .dc-number { font: 600 62px/1.08 var(--lecture-font-heading); letter-spacing: -.035em; }
+.reveal .fv-slide .dc-metric { display: flex; align-items: baseline; gap: 22px; }
+.reveal .fv-slide .dc-metric span { font-size: 26px; }
+.reveal .fv-slide .dc-table { font-size: 26px; font-variant-numeric: tabular-nums; }
+.reveal .fv-slide .dc-table th { font-size: 21px; color: var(--fv-muted); font-weight: 500; }
+.reveal .fv-slide .dc-table th, .reveal .fv-slide .dc-table td { padding: 12px 18px; vertical-align: middle; }
+.reveal .fv-slide .dc-table td:not(:first-child), .reveal .fv-slide .dc-table th:not(:first-child) { text-align: right; }
+.reveal .fv-slide .dc-table .dc-em td { background: var(--fv-lime); font-weight: 600; }
+.reveal .fv-slide .dc-table .dc-reference td { background: var(--fv-soft); }
+.reveal .fv-slide .dc-mixture { display: grid; grid-template-columns: 1030px 414px; gap: 44px; }
+.reveal .fv-slide .dc-mixture .dc-table { font-size: 25px; }
+.reveal .fv-slide .dc-mixture .dc-table th, .reveal .fv-slide .dc-mixture .dc-table td { padding: 9px 15px; }
+.reveal .fv-slide .dc-mixture .dc-aside { justify-content: start; gap: 23px; padding-top: 18px; }
+.reveal .fv-slide .dc-mixture .dc-aside p { font-size: 25px; }
+.reveal .fv-slide .dc-formula { font: 500 24px/1.5 var(--lecture-font-mono); }
+.reveal .fv-slide .dc-quote { margin: 0; padding: 15px 22px; border-left: 5px solid var(--fv-lime); background: var(--fv-soft); width: 100%; box-shadow: none; font-size: 27px; line-height: 1.32; font-style: normal; }
+.reveal .fv-slide .dc-quote cite { display: block; font-size: 19px; color: var(--fv-muted); font-style: normal; margin-top: 10px; }
+.reveal .fv-slide .dc-pipeline { display: grid; grid-template-columns: 1fr 44px 1fr 44px 1fr; align-items: stretch; gap: 18px; }
+.reveal .fv-slide .dc-step { border-top: 2px solid var(--fv-ink); padding-top: 18px; }
+.reveal .fv-slide .dc-step h3 { font-size: 33px; margin: 9px 0 18px; }
+.reveal .fv-slide .dc-step p { font-size: 26px; line-height: 1.3; }
+.reveal .fv-slide .dc-step .dc-caption { font-size: 22px; margin-top: 15px; }
+.reveal .fv-slide .dc-arrow { align-self: center; text-align: center; font-size: 37px; }
+.reveal .fv-slide .dc-bottom { margin-top: auto; border-top: 1px solid var(--fv-line); padding-top: 17px; font-size: 25px; line-height: 1.32; }
+.reveal .fv-slide .dc-dedup { display: grid; grid-template-columns: 250px 1fr 355px; gap: 25px; align-items: center; border-bottom: 1px solid var(--fv-line); min-height: 102px; }
+.reveal .fv-slide .dc-dedup > b { font-size: 32px; }
+.reveal .fv-slide .dc-dedup > p { font-size: 27px; }
+.reveal .fv-slide .dc-dedup > span { font-size: 23px; color: var(--fv-muted); }
+.reveal .fv-slide .dc-dedup strong { background: var(--fv-lime); padding: 3px 8px; }
+.reveal .fv-slide .dc-ablation th, .reveal .fv-slide .dc-ablation td { padding: 18px 20px; }
+.reveal .fv-slide .dc-ablation td:last-child { font-size: 40px; font-weight: 600; }
+.reveal .fv-slide .dc-ablation th:first-child { width: 62%; }
+.reveal .fv-slide .dc-delta { display: flex; gap: 35px; align-items: baseline; font-size: 26px; }
+.reveal .fv-slide .dc-delta b { font-size: 35px; }
+.reveal .fv-slide .dc-recipe { border-top: 2px solid var(--fv-ink); padding-top: 22px; }
+.reveal .fv-slide .dc-recipe h3 { font-size: 31px; margin-bottom: 18px; }
+.reveal .fv-slide .dc-recipe p { margin-top: 19px; font-size: 27px; line-height: 1.35; }
+.reveal .fv-slide .dc-recipe .dc-caption { font-size: 22px; }
+.reveal .fv-slide .dc-recipe .dc-number { display: inline-block; background: var(--fv-lime); padding: 4px 14px; }
+.reveal .fv-slide .dc-recipe code { font-size: 24px; }
+.reveal .fv-slide .dc-document { display: grid; grid-template-columns: 475px 54px 1fr; gap: 32px; align-items: center; }
+.reveal .fv-slide .dc-page { padding: 24px 28px; border: 1px solid var(--fv-ink); height: 340px; }
+.reveal .fv-slide .dc-page h3 { font-size: 28px; margin-bottom: 20px; }
+.reveal .fv-slide .dc-page-block { padding: 13px 0; border-top: 1px solid var(--fv-line); font-size: 25px; }
+.reveal .fv-slide .dc-page-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 10px 0; }
+.reveal .fv-slide .dc-page-pair span { background: var(--fv-soft); padding: 17px 12px; text-align: center; font-size: 23px; }
+.reveal .fv-slide .dc-structure h3 { font-size: 31px; margin-bottom: 12px; }
+.reveal .fv-slide .dc-structure table { font-size: 25px; }
+.reveal .fv-slide .dc-structure td:first-child { width: 230px; font-weight: 600; }
+.reveal .fv-slide .dc-structure td { padding: 12px 10px; }
+.reveal .fv-slide .dc-schedule { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 25px; row-gap: 20px; }
+.reveal .fv-slide .dc-phase { grid-column: span 2; border-bottom: 2px solid var(--fv-ink); padding-bottom: 15px; font-size: 27px; }
+.reveal .fv-slide .dc-length { font: 600 82px/1.2 var(--lecture-font-heading); padding: 15px 20px 10px; border-bottom: 1px solid var(--fv-line); }
+.reveal .fv-slide .dc-length:last-child { background: var(--fv-lime); }
+.reveal .fv-slide .dc-length small { display: block; font: 400 22px/1.3 var(--lecture-font-sans); padding-top: 13px; padding-bottom: 12px; }
+.reveal .fv-slide .dc-sampling { display: grid; grid-template-columns: 460px 1fr; gap: 40px; margin-top: 24px; }
+.reveal .fv-slide .dc-sampling b { font-size: 31px; }
+.reveal .fv-slide .dc-sampling p { font-size: 28px; line-height: 1.4; }
+.reveal .fv-slide .dc-context-label { display: flex; justify-content: space-between; font-size: 22px; color: var(--fv-muted); margin: 14px 0 12px; }
+.reveal .fv-slide .dc-context { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; border: 1px solid var(--fv-ink); }
+.reveal .fv-slide .dc-context > div { padding: 20px; font-size: 25px; line-height: 1.4; }
+.reveal .fv-slide .dc-context > div + div { border-left: 1px solid var(--fv-line); }
+.reveal .fv-slide .dc-context b { display: block; margin-bottom: 10px; font-size: 27px; }
+.reveal .fv-slide .dc-context span { display: inline-block; background: var(--fv-lime); padding: 3px 7px; }
+.reveal .fv-slide .dc-dependency { display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 8px; }
+.reveal .fv-slide .dc-dependency b { font-size: 31px; }
+.reveal .fv-slide .dc-dependency p { max-width: 800px; font-size: 26px; line-height: 1.35; }
+.reveal .fv-slide .dc-trip { display: grid; grid-template-columns: 745px 699px; gap: 44px; }
+.reveal #frontier-f19-case .dc-body { gap: 14px; }
+.reveal .fv-slide .dc-trip h3 { font-size: 29px; margin-bottom: 16px; }
+.reveal .fv-slide .dc-trip p { font-size: 25px; line-height: 1.35; }
+.reveal .fv-slide .dc-trip .dc-constraints { margin-top: 19px; font-size: 25px; }
+.reveal .fv-slide .dc-trip .dc-constraints div { border-top: 1px solid var(--fv-line); padding: 12px 0; }
+.reveal .fv-slide .dc-tools { font: 23px/1.6 var(--lecture-font-mono); background: var(--fv-soft); padding: 14px 18px; }
+.reveal .fv-slide .dc-answer { margin-top: 15px; font-size: 21px; line-height: 1.4; }
+.reveal .fv-slide .dc-answer code { font-size: 21px; }
+.reveal .fv-slide .dc-dataset { display: flex; gap: 42px; align-items: baseline; border-top: 1px solid var(--fv-line); padding-top: 15px; font-size: 24px; }
+.reveal .fv-slide .dc-dataset b { font-size: 34px; margin-right: 8px; }
+.reveal .fv-slide .dc-transfer .dc-figure img { height: 422px; }
+.reveal .fv-slide .dc-transfer .dc-number { font-size: 65px; }
+.reveal .fv-slide .dc-transfer .dc-aside { gap: 22px; }
+.reveal .fv-slide .dc-transfer .dc-aside p { font-size: 25px; }
+/* The expanded long-context case adds sampling; the schedule is a reminder. */
+.reveal #frontier-f18-case-sampling .dc-sampling { margin-top: 0; padding: 16px 20px; }
+.reveal #frontier-f18-case-sampling .dc-sampling p { font-size: 26px; }
+.reveal #frontier-f18-case-sampling .dc-length { font-size: 62px; padding: 8px 20px 3px; }
+@media print {
+  .reveal .fv-slide .dc-figure img { object-fit: contain; }
+}

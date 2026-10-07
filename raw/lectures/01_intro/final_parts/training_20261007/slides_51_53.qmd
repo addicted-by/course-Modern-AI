@@ -1,0 +1,109 @@
+## Safety post-training: learning the boundaries of acceptable behavior {#training-51 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">51</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr51-body">
+  <div class="tr51-stages" aria-label="Rules become a training signal">
+    <div class="fragment fv-highlight" data-fragment-index="0"><small>01</small><strong>Rules</strong></div><span>→</span>
+    <div class="fragment fv-highlight" data-fragment-index="1"><small>02</small><strong>Prepare<br>and verify examples</strong></div><span>→</span>
+    <div class="fragment fv-highlight" data-fragment-index="2"><small>03</small><strong>SFT</strong></div><span>→</span>
+    <div class="fragment fv-highlight" data-fragment-index="3"><small>04</small><strong>RL</strong></div>
+  </div>
+  <div class="tr51-original">
+    <img src="assets/training_20261007/safety/figure3_pipeline.png" alt="Original lower pipeline from Figure 3 of Deliberative Alignment: specifications and prompts generate SFT data, followed by SFT and RL with a policy-aware reward model.">
+    <div class="tr51-method-note">Figure 3 · overall pipeline. A model with access to the rules evaluates the examples.</div>
+  </div>
+  <div class="tr51-outcomes" aria-label="Three equally valid outcomes of applying the rules"><div>Answer</div><div>Refuse</div><div>Provide safe assistance</div></div>
+  <div class="tr51-navigation"><span>Safety spans the training process</span><b>Synthetic examples</b><i>↔</i><b>SFT</b><i>↔</i><b>RL</b><i>↔</i><strong>Safety</strong></div>
+</div>
+<div class="fv-takeaway">Safety means applying rules correctly, not maximizing refusals.</div>
+<div class="fv-source"><a href="https://openai.com/index/deliberative-alignment/">OpenAI, Deliberative Alignment (2024), Method</a> · <a href="https://arxiv.org/abs/2412.16339v1">Figure 3, lower pipeline</a> · Labels and three outcomes: course annotations</div>
+```
+
+::: {.notes}
+Training now has a distinct objective: applying rules to a particular request. The familiar SFT and RL methods are used again. The diagram comes from Figure 3 of Deliberative Alignment. We have enlarged its lower pipeline. The full original remains in the lecture materials.
+
+The first reveal shows the rules defining acceptable behavior. The second shows example preparation and quality checks. The third shows SFT on the selected examples. The fourth shows RL using an additional signal from a reward model with access to the rules.
+
+The three outcomes below are equally valid. An allowed request should receive an answer, a disallowed request requires refusal, and a sensitive situation may call for safe assistance. Refusal frequency alone therefore cannot tell us how well safety works.
+
+The small navigation strip reconnects this objective to training processes we have already studied: synthetic examples, demonstrations, and learning from outcome evaluation. Safety shapes model behavior during training. Next, we assess both protection and unnecessary refusals.
+:::
+
+## Safety: stronger defenses and the cost of unnecessary refusals {#training-52 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">52</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr52-body">
+  <div class="tr52-scope"><strong>Controlled o1-mini ablation</strong><span>Reduced training setup · selected metrics from Figure 14</span></div>
+  <div class="tr52-legend fragment fv-highlight" data-fragment-index="0" aria-label="Four training variants in bar order, from top to bottom">
+    <div><i class="tr52-swatch tr52-none"></i><span>No safety training</span></div>
+    <div><i class="tr52-swatch tr52-sft"></i><span>Safety in SFT only</span></div>
+    <div><i class="tr52-swatch tr52-rl"></i><span>Safety in RL only</span></div>
+    <div><i class="tr52-swatch tr52-both"></i><span>Safety in SFT &amp; RL</span></div>
+  </div>
+  <div class="tr52-secondary"><i class="tr52-swatch tr52-prompt"></i><span>Fifth bar, gray: rules in the inference prompt, without safety training.</span></div>
+  <div class="tr52-plots">
+    <div class="tr52-metric fragment tr52-focus" data-fragment-index="1">
+      <div class="tr52-metric-head"><strong>Jailbreak robustness</strong><span>StrongREJECT · goodness@0.1 ↑</span></div>
+      <img class="tr52-bars" src="assets/training_20261007/safety/figure14_strongreject.png" alt="Original StrongREJECT group from Figure 14: no safety 0.44, SFT 0.81, RL 0.73, SFT and RL 0.87, rules in the prompt 0.80.">
+      <img class="tr52-axis" src="assets/training_20261007/safety/figure14_axis.png" alt="Original Figure 14 axis: Test score, from 0.0 to 1.0, higher is better.">
+      <p>Stronger defenses</p>
+    </div>
+    <div class="tr52-metric fragment tr52-focus" data-fragment-index="1">
+      <div class="tr52-metric-head"><strong>Response style adherence</strong><span>Hard Refusal · style_adherence ↑</span></div>
+      <img class="tr52-bars" src="assets/training_20261007/safety/figure14_hard_refusal.png" alt="Original Hard Refusal group from Figure 14: no safety 0.13, SFT 0.85, RL 0.81, SFT and RL 0.88, rules in the prompt 0.54.">
+      <img class="tr52-axis" src="assets/training_20261007/safety/figure14_axis.png" alt="Original Figure 14 axis: Test score, from 0.0 to 1.0, higher is better.">
+      <p>Both stages contribute</p>
+    </div>
+    <div class="tr52-metric fragment tr52-focus tr52-overrefusal" data-fragment-index="2">
+      <div class="tr52-metric-head"><strong>Avoiding unnecessary refusals</strong><span>XSTest · not_overrefuse ↑</span></div>
+      <img class="tr52-bars" src="assets/training_20261007/safety/figure14_xstest.png" alt="Original XSTest group from Figure 14: no safety 0.98, SFT 0.93, RL 0.94, SFT and RL 0.91, rules in the prompt 0.93. Higher means fewer unnecessary refusals.">
+      <img class="tr52-axis" src="assets/training_20261007/safety/figure14_axis.png" alt="Original Figure 14 axis: Test score, from 0.0 to 1.0, higher is better.">
+      <p><b>Higher = fewer unnecessary refusals</b></p>
+    </div>
+  </div>
+  <div class="tr52-reading fragment" data-fragment-index="2">In this ablation, <strong>not_overrefuse falls from 0.98 to 0.91</strong>: unnecessary refusals increase.</div>
+</div>
+<div class="fv-takeaway fragment" data-fragment-index="3">Evaluate both harmful and benign requests.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2412.16339v1">Deliberative Alignment (2024), §4.1, Figure 14</a> · Original bars and axis, order preserved · Not a comparison of final flagship models</div>
+```
+
+::: {.notes}
+This is a controlled ablation on an o1-mini variant with a reduced training setup. We compare four combinations of safety data in SFT and RL. The gray bar represents a separate variant that receives the rules only in its prompt.
+
+The first reveal establishes the training variants. The second focuses on StrongREJECT and refusal style adherence: both training stages contribute. We then turn to XSTest. Here, not_overrefuse measures the absence of unnecessary refusal, so higher is better. The variant with both stages scores 0.91, versus 0.98 without safety training. In this experiment, stronger defenses come with more unnecessary refusals.
+
+The slide enlarges three selected groups from the original chart. The bars, numerical labels, and scale are preserved. The full Figure 14 also contains other categories. Do not generalize this specific tradeoff to every model or safety training setup. The final point is to measure both sides of behavior on appropriate sets of requests.
+:::
+
+## Training shapes the model. Inference uses its capabilities. {#training-53 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">53</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr53-body">
+  <span class="fragment tr53-collapse" data-fragment-index="0" aria-hidden="true"></span>
+  <div class="tr53-map" aria-label="Seven outcomes of training">
+    <div class="tr53-map-caption">What training has developed</div>
+    <div class="tr53-map-first"><div><small>1</small><strong>Foundation</strong></div><i>→</i><div><small>2</small><strong>Preparation</strong></div><i>→</i><div><small>3</small><strong>Instructions</strong></div><i>→</i><div><small>4</small><strong>Preferences</strong></div></div>
+    <div class="tr53-map-turn">↓</div>
+    <div class="tr53-map-second"><div><small>5</small><strong>Problem solving</strong></div><i>←</i><div><small>6</small><strong>Transfer</strong></div><i>←</i><div><small>7</small><strong>Safety</strong></div></div>
+    <div class="tr53-map-note">Different training signals develop different aspects of the model.</div>
+  </div>
+  <div class="tr53-trained"><span class="tr53-kicker">Training outcome</span><strong>Trained model</strong><div>Capabilities</div><div>Behavior</div><div>Constraints</div></div>
+  <div class="tr53-bridge fragment" data-fragment-index="1"><div>Fixed weights.<br>A specific task.<br>A compute budget.</div><span>→</span></div>
+  <div class="tr53-inference fragment" data-fragment-index="1"><span class="tr53-kicker">Next section</span><strong>Inference</strong><div class="tr53-query"><small>New query</small><span>Solve a specific task</span></div></div>
+</div>
+<div class="fv-takeaway fragment" data-fragment-index="2">How should we organize computation to get a better result from the trained model?</div>
+<div class="fv-source">Course synthesis of Training · From training outcomes to inference with fixed weights</div>
+```
+
+::: {.notes}
+Return to the map from the opening slide, keeping only the outcomes of the seven training objectives. Foundation provides initial capabilities. Preparation changes the model's experience before its target use. Instructions and preferences shape interaction. Learning from its own attempts improves problem solving. Transfer carries acquired skills to another model or setting. Safety teaches the boundaries of acceptable behavior. This is a narrative map, not a mandatory sequence for every model.
+
+On the first click, the map collapses into a single trained checkpoint. The three lines inside the block are a course synthesis: capabilities, behavior, and constraints. They are not measured dimensions and do not add up to an overall score.
+
+On the second click, a new query and the Inference section appear. For the next discussion, we hold the model's weights fixed. The question becomes how to use its available capabilities for this task within a given compute budget.
+
+The last click leaves the question for the next section: how should we organize computation to get a better result? This leads to test-time compute, solution strategies, and result verification with a fixed checkpoint.
+:::

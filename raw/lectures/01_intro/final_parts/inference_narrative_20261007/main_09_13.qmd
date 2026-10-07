@@ -1,0 +1,143 @@
+## Request history can be stored in small blocks {#inference-09 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I11</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n09-body">
+<div class="n09-problem"><div><h3>Request lengths vary</h3><div class="n09-allocation"><b>A</b><span style="width:120px"></span><i style="width:370px">reserve?</i></div><div class="n09-allocation"><b>B</b><span style="width:290px"></span><i style="width:200px">reserve?</i></div><div class="n09-allocation"><b>C</b><span style="width:190px"></span><i style="width:300px">reserve?</i></div></div><p>The output length is unknown in advance.<br>Some reserved memory<br>sits idle.</p></div>
+<div class="n09-diagram">
+<svg viewBox="0 0 1488 218" width="1488" height="218" role="img" aria-label="Request A has logical KV blocks A1, A2, A3, stored in separate physical memory slots">
+<g fill="#626262" font-size="23"><text x="0" y="30">ORDER WITHIN REQUEST A</text><text x="650" y="30">GPU MEMORY SLOTS</text></g>
+<g stroke="#141414" stroke-width="1.5" fill="#bef264"><rect x="0" y="66" width="138" height="68"/><rect x="174" y="66" width="138" height="68"/><rect x="348" y="66" width="138" height="68"/></g>
+<g fill="#141414" font-size="30" text-anchor="middle"><text x="69" y="109">A₁</text><text x="243" y="109">A₂</text><text x="417" y="109">A₃</text><text x="156" y="109">→</text><text x="330" y="109">→</text></g>
+<g stroke="#c5c5c5" fill="#f3f3f3"><rect x="650" y="66" width="138" height="68"/><rect x="806" y="66" width="138" height="68"/><rect x="962" y="66" width="138" height="68"/><rect x="1118" y="66" width="138" height="68"/><rect x="1274" y="66" width="138" height="68"/></g>
+<g stroke="#141414" fill="#bef264"><rect x="650" y="66" width="138" height="68"/><rect x="962" y="66" width="138" height="68"/><rect x="1274" y="66" width="138" height="68"/></g>
+<g fill="#141414" font-size="30" text-anchor="middle"><text x="719" y="109">A₂</text><text x="1031" y="109">A₃</text><text x="1343" y="109">A₁</text></g>
+<g fill="#626262" font-size="21" text-anchor="middle"><text x="875" y="107">free</text><text x="1187" y="107">another</text><text x="1187" y="161">request</text><text x="719" y="161">slot 2</text><text x="1031" y="161">slot 5</text><text x="1343" y="161">slot 7</text></g>
+<g stroke="#141414" stroke-width="2" fill="none"><path d="M512 100h95"/><path d="M596 91l12 9-12 9"/></g>
+<g fill="#626262" font-size="23"><text x="0" y="193">A₁ → slot 7 · A₂ → slot 2 · A₃ → slot 5</text></g>
+</svg>
+</div>
+<div class="n09-name"><b>Paged state</b><span>state is stored in blocks</span><b>PagedAttention</b><span>attention reads separate KV blocks</span></div>
+</div>
+<div class="fv-takeaway">History stays in order even when its blocks occupy different memory locations.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2309.06180#S3">Kwon et al., 2023 · §3, §§4.1–4.3</a> · Illustrative KV-state placement</div>
+```
+
+::: {.notes}
+На прошлом слайде мы переносили сохранённое состояние между стадиями. Теперь посмотрим, как оно занимает память. Запросы имеют разную длину, и их продолжения растут по-разному. Зелёные полосы сверху обозначают уже нужное состояние, серые — потенциальный запас. Если заранее резервировать большие непрерывные области, часть памяти простаивает.
+
+Внизу тот же запрос A представлен небольшими блоками A₁, A₂, A₃. Это блоки промежуточных KV-представлений, а не текстовые слова. Слева показан логический порядок, справа — физическое размещение. Таблица соответствий позволяет прочитать первый блок в месте 7, второй в месте 2, третий в месте 5. Промежутки могут обслуживать другие запросы. Размеры блоков и номера мест в схеме учебные.
+
+Теперь вводим названия: paged state — организация состояния блоками; PagedAttention — способ вычислять attention, обращаясь к таким раздельно размещённым KV-блокам. Блоки выделяются по мере необходимости. На этом шаге речь только о размещении памяти. Общая часть двух запросов — следующий, отдельный вопрос.
+
+**Источник:** [Kwon et al., §3 и §§4.1–4.3](https://arxiv.org/html/2309.06180#S4). [@ai26_ef8b5f9fca84]
+:::
+
+## A shared prefix need not be processed again {#inference-10 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I12</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n10-body">
+<svg viewBox="0 0 1488 398" width="1488" height="398" role="img" aria-label="Two requests share a prefix. Its computed KV state is reused, while each continuation is computed separately">
+<g fill="#626262" font-size="23"><text x="0" y="29">REQUEST A</text><text x="790" y="29">REQUEST B</text></g>
+<g stroke="#141414" stroke-width="1.5"><rect x="0" y="53" width="415" height="70" fill="#bef264"/><rect x="415" y="53" width="270" height="70" fill="#f3f3f3"/><rect x="790" y="53" width="415" height="70" fill="#bef264"/><rect x="1205" y="53" width="283" height="70" fill="#f3f3f3"/></g>
+<g fill="#141414" font-size="27" text-anchor="middle"><text x="207" y="98">shared prefix</text><text x="550" y="98">continuation A</text><text x="997" y="98">shared prefix</text><text x="1346" y="98">continuation B</text></g>
+<g stroke="#141414" stroke-width="2" fill="none"><path d="M207 124v43h385v44"/><path d="M997 124v43H892v44"/><path d="M583 202l9 10 9-10M883 202l9 10 9-10"/></g>
+<rect x="394" y="213" width="698" height="107" fill="#bef264" stroke="#141414" stroke-width="1.5"/>
+<g fill="#141414" text-anchor="middle"><text x="743" y="255" font-size="31">Already computed prefix state</text><text x="743" y="293" font-size="25">one shared, precomputed part</text></g>
+<g stroke="#141414" stroke-width="2" fill="none"><path d="M394 267H305"/><path d="M316 258l-12 9 12 9"/><path d="M1092 267h87"/><path d="M1168 258l12 9-12 9"/></g>
+<g fill="#141414" text-anchor="middle" font-size="26"><text x="145" y="258">Compute</text><text x="145" y="293">continuation A</text><text x="1344" y="258">Compute</text><text x="1344" y="293">continuation B</text></g>
+<text x="743" y="377" fill="#626262" text-anchor="middle" font-size="25">The shared part does not need to be recomputed for every request.</text>
+</svg>
+<div class="n10-name"><b>Prefix caching</b><span>reuse the computed shared prefix</span></div>
+</div>
+<div class="fv-takeaway">Block storage and prefix reuse are related but distinct ideas.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2309.06180#S4.SS4">Kwon et al., 2023 · §4.4, shared prefix</a> · Illustrative: identical prefix tokens and model configuration</div>
+```
+
+::: {.notes}
+Представим запросы, начинающиеся одной инструкцией или одними примерами. Зелёные части одинаковы, а продолжения различаются. Если состояние общей части уже вычислено и доступно, последующий запрос может использовать его и начать работу с места расхождения. Для каждого продолжения требуется собственное дальнейшее вычисление.
+
+Это prefix caching. Важна именно общая начальная последовательность токенов, а не случайно совпавший фрагмент текста в середине запроса. Модель, позиции и конфигурация должны быть совместимыми. Здесь сохранён результат вычисления общей истории; готовые ответы этим не подменяются.
+
+Прямо сопоставьте два слайда. На предыдущем решали задачу «где положить блоки одного запроса». Сейчас решаем задачу «какое вычисление можно повторно использовать между запросами». Страничное размещение удобно для такого reuse, но само по себе оно ещё не означает, что система нашла и переиспользовала общий префикс.
+
+Переход: проверим эту возможность на реальной нагрузке перевода, где повторяются инструкции и примеры.
+
+**Источник:** [Kwon et al., §4.4](https://arxiv.org/html/2309.06180#S4.SS4). [@ai26_ef8b5f9fca84]
+:::
+
+## What does reusing a shared prefix achieve? {#inference-11 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I13</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n11-body">
+<div class="n11-setup"><b>English → German translation</b><span>LLaMA-13B · WMT16 · Figure 16(b)</span></div>
+<div class="n11-main"><div class="n11-workload"><h3>What was shared?</h3><div class="n11-prefix"><b>Instruction + 5 translation examples</b><span>341 tokens in the shared prefix</span></div><div class="n11-requests"><span>+ new sentence A</span><span>+ new sentence B</span><span>+ new sentence C</span></div><p>The sentence to translate changes.<br>The beginning of each request repeats.</p></div>
+<div class="n11-result"><h3>Serving throughput</h3><p class="n11-axis">Requests per unit of time,<br>relative to Orca (Oracle)</p><div class="n11-chart"><div class="n11-bar-row"><span>Orca (Oracle)</span><div class="n11-bar n11-baseline"></div><b>1×</b></div><div class="n11-bar-row"><span>vLLM</span><div class="n11-bar n11-vllm"></div><b>3.58×</b></div></div><p class="n11-boundary">Whole-system comparison.<br>The contribution of prefix caching is not isolated.</p></div></div>
+</div>
+<div class="fv-takeaway">vLLM serves more requests with a shared prefix; this is a whole-system result.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2309.06180#S6.SS4">Kwon et al., 2023 · §6.4, Figure 16(b)</a> · Relative throughput from the published result</div>
+```
+
+::: {.notes}
+Теперь один эксперимент и одна метрика. В §6.4 статьи PagedAttention используется LLaMA-13B и перевод WMT16 English→German. Каждый запрос начинается инструкцией и пятью примерами перевода: 341 общий токен. После них идёт новое предложение. Именно эта повторяющаяся начальная часть создаёт возможность reuse.
+
+Авторы сообщают 3,58× throughput vLLM относительно Orca (Oracle). График на слайде пересоздаёт только это отношение: baseline нормирован к единице. Речь о потоке обслуживаемых запросов, не об ускорении каждого отдельного перевода в 3,58 раза. В оригинальной Figure 16 показаны кривые нормированной задержки в зависимости от интенсивности запросов.
+
+Orca (Oracle) — baseline авторов с заранее известными фактическими длинами ответов. Сравниваются реализации систем целиком. Этот эксперимент демонстрирует поведение vLLM на нагрузке с общим префиксом, но не измеряет изолированный вклад только prefix caching. Поэтому не подписываем столбец «ускорение от cache».
+
+Мы научились не повторять прошлые вычисления. Но новые токены всё ещё получаем последовательно. Дальше попробуем заранее предложить несколько следующих токенов.
+
+**Источник, повторно проверен 2026-10-07:** [Kwon et al., §6.4; Figure 16(b)](https://arxiv.org/html/2309.06180#S6.SS4). [@ai26_ef8b5f9fca84]
+:::
+
+## A fast draft, checked by the main model {#inference-12 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I14</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n12-body">
+<div class="n12-normal"><span>Standard</span><div>model → token 1</div><b>→</b><div>model → token 2</div><b>→</b><div>model → token 3</div></div>
+<div class="n12-stages"><div class="n12-stage"><span class="n12-label">1 · PROPOSE</span><h3>Fast draft</h3><p>Several upcoming tokens</p><div class="n12-tokens"><span>d₁</span><span>d₂</span><span>d₃</span><span>d₄</span></div></div><div class="n12-arrow">→</div><div class="n12-stage n12-verify"><span class="n12-label">2 · VERIFY</span><h3>Main model</h3><p>Checks the proposed<br>continuation</p><div class="n12-check">one joint verification</div></div><div class="n12-arrow">→</div><div class="n12-stage"><span class="n12-label">3 · ACCEPT THE PREFIX</span><h3>Move forward</h3><p>Up to the first rejection</p><div class="n12-tokens n12-outcome"><span>d₁</span><span>d₂</span><del>d₃</del><del>d₄</del></div><div class="n12-outcome-label"><b>accepted</b><span>tail discarded</span></div></div></div>
+<div class="n12-name"><b>Speculative decoding</b><span>draft cheaply → verify with the main model</span></div>
+</div>
+<div class="fv-takeaway">One verification cycle can accept several upcoming tokens at once.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2211.17192#S2">Leviathan et al., 2023 · §2, Algorithm 1</a> · Illustrative tokens; verification follows the main model’s generation protocol</div>
+```
+
+::: {.notes}
+Сначала прочитайте верхнюю строку: в обычном decode после каждого нового токена снова вызывается основная модель. Новый шаг зависит от предыдущего результата.
+
+Ниже — другая организация. Более дешёвый механизм предлагает несколько будущих токенов, а основная модель проверяет всё предложенное продолжение за один цикл, вычисляя нужные условные предсказания более параллельно. В учебном примере d₁ и d₂ приняты. На d₃ происходит первый отказ, поэтому d₃ и весь последующий хвост d₄ отбрасываются. После отказа выбирается корректирующий токен; точный протокол — в приложении. Система продвинулась на принятое начало и продолжает генерацию.
+
+Это speculative decoding. «Проверка» здесь не означает оценку фактической истинности текста или выбор лучшего решения. Она проверяет совместимость предложений с процедурой генерации основной модели. Детали математической коррекции вынесены в приложение; на этом слайде нужен только процесс.
+
+Выигрыш не гарантируется самим наличием черновика. Если предложения часто отклоняются либо черновик и его проверка слишком дороги, преимуществ может не быть. Следующий слайд показывает одну измеренную конфигурацию.
+
+**Источник:** [Leviathan et al., §2, Algorithm 1](https://arxiv.org/html/2211.17192#S2). [@ai26_011288a5bb28]
+:::
+
+## When does a draft actually speed up the response? {#inference-13 .fv-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">I15</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body n13-body">
+<div class="n13-models"><div><span>Main model</span><b>T5-XXL · 11B</b></div><div><span>Draft model</span><b>T5-small · 77M</b></div><div class="n13-conditions"><b>English → German</b><span>temperature = 1 · one request at a time · one TPU-v4</span></div></div>
+<div class="n13-main"><div class="n13-result"><strong>2.6×</strong><b>wall-time speedup</b><span>over standard generation in T5X</span></div><div class="n13-reason"><h3>What must pay off?</h3><div><b>More accepted tokens</b><span>per verification cycle</span></div><div><b>Low drafting cost</b><span>and efficient verification by the main model</span></div><p>The result depends on this balance.</p></div></div>
+<div class="n13-distribution"><span>Correct draft verification preserves the main model’s distribution.</span><a class="n13-appendix-link" href="#/inference-a06">Proof → appendix</a></div>
+</div>
+<div class="fv-takeaway">Speedup depends on how much is accepted and how much drafting and verification cost.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2211.17192#S4.SS1">Leviathan et al., 2023 · §4.1, Table 2</a> · Distribution preservation: <a href="https://arxiv.org/html/2211.17192#A1.SS1">Appendix A.1</a></div>
+```
+
+::: {.notes}
+Показываем один результат из Table 2: основная модель T5-XXL 11B, черновик T5-small 77M, задача English→German, temperature=1, batch size 1, одна TPU-v4. Авторы сравнивают время выполнения со стандартной реализацией T5X и получают ускорение 2,6×. В строке таблицы использованы длина черновика 7 и средняя acceptance 0,62; эти дополнительные параметры оставлены в заметках.
+
+Чем больше полезного продолжения принимает одна проверка, тем больше последовательных вызовов можно избежать. Но черновик тоже требует вычислений, а проверка имеет собственную стоимость. Поэтому число 2,6× относится к указанным моделям, задаче, аппаратуре и режиму, а не к любому speculative decoding.
+
+Корректный speculative sampling сохраняет целевое распределение основной модели. Это теоретическое свойство протокола, доказанное отдельно, не следствие экспериментального ускорения. Оно не означает одинаковую случайную последовательность в двух запусках. Подробная схема принятия и коррекции — в приложении.
+
+Переход: мы ускоряли процедуру, сохраняя исходное распределение. Следующий подход меняет сам процесс генерации — вместо одного следующего токена будем уточнять целый блок.
+
+**Источник, повторно проверен 2026-10-07:** [Leviathan et al., §4.1, Table 2; Appendix A.1](https://arxiv.org/html/2211.17192). [@ai26_011288a5bb28]
+:::

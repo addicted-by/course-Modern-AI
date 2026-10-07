@@ -1,0 +1,145 @@
+## Training: seven learning objectives, not one recipe {#training-38 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<link rel="stylesheet" href="lecture01_part2_final_v3_training.css">
+<div class="fv-meta"><span class="fv-id">38</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr38-body">
+  <div class="tr38-caption">Lecture roadmap · a synthesis of several approaches</div>
+  <svg class="tr38-route" viewBox="0 0 1488 454" aria-hidden="true">
+    <defs><marker id="tr38-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#141414"/></marker></defs>
+    <g class="fragment" data-fragment-index="0" fill="none" stroke="#141414" stroke-width="2" marker-end="url(#tr38-arrow)"><path d="M344 85H374"/><path d="M720 85H750"/><path d="M1096 85H1126"/></g>
+    <g class="fragment" data-fragment-index="1" fill="none" stroke="#141414" stroke-width="2" marker-end="url(#tr38-arrow)"><path d="M1300 155V275"/><path d="M1128 355H1098"/><path d="M752 355H722"/></g>
+    <g class="fragment" data-fragment-index="2" fill="none" stroke="#626262" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#tr38-arrow)"><path d="M924 275V210H548V157"/><path d="M924 210V157"/></g>
+  </svg>
+  <div class="tr38-step tr38-s1 fragment" data-fragment-index="0"><span class="tr38-num">1</span><strong>Pretraining</strong><small>Foundation</small></div>
+  <div class="tr38-step tr38-s2 fragment" data-fragment-index="0"><span class="tr38-num">2</span><strong>Continued /<br>mid-training</strong><small>Preparation</small></div>
+  <div class="tr38-step tr38-s3 fragment" data-fragment-index="0"><span class="tr38-num">3</span><strong>Instruction tuning /<br>SFT</strong><small>Instructions</small></div>
+  <div class="tr38-step tr38-s4 fragment" data-fragment-index="0"><span class="tr38-num">4</span><strong>Preference /<br>alignment training</strong><small>Preferences</small></div>
+  <div class="tr38-step tr38-s5 fragment" data-fragment-index="1"><span class="tr38-num">5</span><strong>Reasoning /<br>capability RL</strong><small>Problem solving</small></div>
+  <div class="tr38-step tr38-s6 fragment" data-fragment-index="1"><span class="tr38-num">6</span><strong>Distillation /<br>synthetic-data loops</strong><small>Transfer</small></div>
+  <div class="tr38-step tr38-s7 fragment" data-fragment-index="1"><span class="tr38-num">7</span><strong>Safety<br>post-training</strong><small>Safety</small></div>
+  <div class="tr38-repeat fragment" data-fragment-index="2">Synthetic data feeds<br>back into training</div>
+  <div class="tr38-route-note fragment" data-fragment-index="1">Stages can<br>repeat<br>and overlap</div>
+  <div class="tr38-safety fragment" data-fragment-index="3"><b>Safety</b><span>constraints and checks run throughout the process</span></div>
+</div>
+<div class="fv-takeaway">Each stage has its own training signal and an outcome to verify.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2501.12948v1#S2.SS3">DeepSeek-R1, §2.3, 2025</a> · <a href="https://arxiv.org/html/2411.15124v1#S2.SS3">Tülu 3, §2.3, 2024</a> · Author-created roadmap, not a recipe for a single model</div>
+```
+
+::: {.notes}
+Start by introducing the roadmap for this part of the lecture. The seven items describe learning objectives, not seven mandatory, independent training runs. The sequence supports the explanation: foundation, preparation, interaction, preferences, problem solving, transfer, and constraints.
+
+Reveal sequence: 1 — the upper row, stages 1–4; 2 — continue from right to left through stages 5–7; 3 — synthetic data feeds back into preparation and SFT; 4 — the safety band spans the process. Follow the numbers and arrows. The feedback paths are a synthesis, not an exact diagram from one paper.
+
+Evidence: DeepSeek-R1, §2.3, combines cold-start SFT, reasoning RL, collection of new demonstrations, and further SFT/RL. Tülu 3, §2.3 and Figure 1, separately describes SFT, preference tuning, and RL with verifiable rewards. This explains why “training a model” can involve different signals and outcomes. Safety is a separate topic in our narrative, while its criteria apply at several stages.
+
+Transition: begin with the process that builds a broad foundation of capabilities.
+:::
+
+## Pretraining: build a broad foundation of capabilities {#training-39 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">39</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr39-body">
+  <div class="tr39-corpus fragment" data-fragment-index="0">
+    <div class="fv-label">Diverse experience</div><h3>Broad corpus</h3>
+    <div class="tr39-categories"><span>Documents</span><span>Books</span><span>Code</span><span>Mathematics</span><span class="tr39-wide">Multiple languages</span></div>
+    <div class="tr39-excerpt">Qwen3: “textbooks, question-answer pairs, and code snippets”<small>Excerpt describing the synthetic part of the corpus</small></div>
+  </div>
+  <div class="tr39-arrow fragment" data-fragment-index="1">→</div>
+  <div class="tr39-learn fragment" data-fragment-index="1"><div class="tr39-model"><span class="fv-label">Pretraining</span><strong>Model</strong><span>Context → continuation</span></div><p>Learn patterns of continuation<br>from a broad corpus</p></div>
+  <div class="tr39-arrow fragment" data-fragment-index="2">→</div>
+  <div class="tr39-base fragment" data-fragment-index="2"><div class="fv-label">Outcome</div><h3>Base model</h3><div class="tr39-abilities"><span>Language and knowledge</span><span>Mathematical tasks</span><span>Code generation</span><span>Multiple languages</span></div><small>A starting point for<br>further training</small></div>
+</div>
+<div class="fv-takeaway">First build capabilities. Then teach the model how to apply them.</div>
+<div class="fv-source"><a href="https://qwenlm.github.io/blog/qwen3/#pre-training">Qwen, Qwen3: Think Deeper, Act Faster, Pre-training, 2025</a> · <a href="https://arxiv.org/html/2505.09388v1#S3.SS1">Qwen3 Technical Report, §3.1</a> · Teaching diagram</div>
+```
+
+::: {.notes}
+Pretraining develops a broad set of capabilities through exposure to a corpus. For a causal language model, the basic training signal is to predict a continuation from the available context. This slide addresses what the model learns rather than the mechanics of an optimization step.
+
+Reveal sequence: 1 — the corpus categories; 2 — the central model and the continuation caption; 3 — the base model and its capabilities. The output deliberately has no chat interface: the desired organization of an assistant's response still needs to be learned.
+
+The categories come from the Qwen3 Technical Report, §3.1, and the Pre-training section of Qwen's official announcement. The corpus includes books, multilingual texts, STEM, and code, as well as extracted documents and synthetic material. The quoted excerpt at the bottom of the data block refers specifically to synthetic examples, not the entire corpus. The categories overlap and do not specify mixture proportions.
+
+Transition: a base model already has skills. Measurements before post-training can demonstrate them.
+:::
+
+## Pretraining: what a model can do before post-training {#training-40 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">40</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr40-body">
+  <div class="tr40-top"><strong>Before post-training</strong><span>Qwen3 · Table 4 · selected rows</span></div>
+  <table class="tr40-table" aria-label="Selected rows from Table 4 of the Qwen3 Technical Report"><colgroup><col class="tr40-benchmark"><col><col><col><col><col class="tr40-selected"></colgroup><thead><tr><th>Task / benchmark</th><th>Qwen2.5-32B<small>Base</small></th><th>Qwen2.5-72B<small>Base</small></th><th>Gemma-3-27B<small>Base</small></th><th>Llama-4-Scout<small>Base</small></th><th>Qwen3-32B<small>Base</small></th></tr></thead><tbody>
+    <tr class="fragment" data-fragment-index="0"><th><small>General Tasks</small>MMLU</th><td>83.32</td><td>86.06</td><td>78.69</td><td>78.27</td><td>83.61</td></tr>
+    <tr class="fragment" data-fragment-index="1"><th><small>Math &amp; STEM Tasks</small>MATH</th><td>57.70</td><td>62.12</td><td>51.78</td><td>51.66</td><td>61.62</td></tr>
+    <tr class="fragment" data-fragment-index="2"><th><small>Coding Tasks</small>EvalPlus</th><td>66.25</td><td>65.93</td><td>55.78</td><td>59.90</td><td>72.05</td></tr>
+    <tr class="fragment" data-fragment-index="3"><th><small>Multilingual Tasks</small>MGSM</th><td>78.12</td><td>82.40</td><td>73.74</td><td>79.93</td><td>83.06</td></tr>
+  </tbody></table>
+  <div class="tr40-note">Results after all Qwen3 pretraining stages, not an ablation of the initial stage.</div>
+</div>
+<div class="fv-takeaway">The foundation is already there. Which tasks should it be prepared for next?</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2505.09388v1#S3.SS3">Qwen3 Technical Report, §3.3 and Table 4, 2025</a> · Exact transcription of selected rows; scores from different tests are not averaged</div>
+```
+
+::: {.notes}
+Focus on the highlighted Qwen3-32B-Base column. Four reveals: general knowledge, MMLU — 83.61; mathematics, MATH — 61.62; code, EvalPlus — 72.05; multilingual tasks, MGSM — 83.06. The other columns preserve the context of the original Table 4; they are not an invitation to declare one universal winner.
+
+Evaluation settings from §3.3: MMLU — 5-shot; MATH — 4-shot with CoT; EvalPlus — 0-shot, averaged across HumanEval, MBPP, and their “+” versions; MGSM — 8-shot with CoT. The authors use a common evaluation pipeline for the compared base models. These are different tests with different prompting settings, so we should not average the four values into an “intelligence score.”
+
+Keep the on-screen qualification explicit: the Qwen3 base model has completed all three pretraining stages, including more targeted material and long-context training (§3.2). The table does not isolate the causal contribution of the first stage. Before post-training does not mean before any specialization.
+
+Transition: the next stage shifts the model's experience toward the work it will do.
+:::
+
+## Continued / mid-training: prepare a model for target tasks {#training-41 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">41</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr41-body">
+  <div class="tr41-states"><div><span>General base</span><small>Broad foundation</small></div><b>→</b><div class="fragment fv-highlight" data-fragment-index="0"><span>Targeted preparation</span><small>Task-focused preparation</small></div><b class="fragment" data-fragment-index="2">→</b><div class="fragment" data-fragment-index="2"><span>Ready for post-training</span><small>Foundation for the next stage</small></div></div>
+  <div class="tr41-main"><div class="tr41-model"><span class="fv-label">The same model</span><strong>Model</strong><small>The training experience changes</small></div><div class="tr41-feed-arrow">←</div><div class="tr41-experience">
+    <div class="tr41-general fragment fade-out" data-fragment-index="0"><span class="fv-label">Broad corpus</span><strong>Documents · books · code<br>mathematics · multiple languages</strong></div>
+    <div class="tr41-target fragment" data-fragment-index="0"><span class="fv-label">Qwen3-Coder-Next · targeted data</span><div class="tr41-categories"><div><strong>Repositories</strong><small>Cross-file dependencies</small></div><div><strong>Pull requests</strong><small>Issues and code changes</small></div><div><strong>Text and code</strong><small>Documents grounded in code</small></div><div class="fragment fv-highlight" data-fragment-index="1"><strong>Verified trajectories</strong><small>Steps of environment interaction</small></div></div></div>
+  </div></div>
+  <div class="tr41-terms"><b>Continued pretraining</b> — further pretraining. <b>Mid-training</b> here means intermediate preparation for future tasks.</div>
+</div>
+<div class="fv-takeaway">Prepare for the work ahead, rather than simply adding more data.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2510.14865">Liu et al., Midtraining Bridges Pretraining and Posttraining Distributions, 2025</a> · <a href="https://arxiv.org/html/2603.00729v1#S3">Qwen3-Coder-Next, §3, 2026</a></div>
+```
+
+::: {.notes}
+Between the general base and post-training, the nature of the experience changes: data moves closer to the target tasks, formats, and dependencies. The model block remains in place throughout. We are not depicting an architecture change; training changes the parameters and behavior.
+
+Reveal sequence: 1 — the broad corpus is replaced by specific Qwen3-Coder-Next data; 2 — highlight verified agentic trajectories; 3 — readiness for further post-training. Section 3 of the report lists repositories, PRs, text–code grounding, and filtered trajectories of environment interaction. The slide does not invent mixture proportions.
+
+The terms are not strict synonyms. Continued pretraining broadly refers to further pretraining; we use mid-training to describe intermediate preparation. Liu et al. study a mixture of general and specialized material as a bridge to post-training. Exact definitions and stage boundaries vary across papers; Qwen describes its targeted preparation in the Mid-training section.
+
+Transition: examine the measured benefits of this preparation and the limits of transfer.
+:::
+
+## Mid-training: targeted preparation delivers measurable results {#training-42 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">42</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr42-body">
+  <div class="tr42-plots">
+    <div class="tr42-pair fragment" data-fragment-index="0"><h3>A familiar interaction<br>setup</h3><img src="assets/training_20261007/pretraining/figure3-within.png" alt="The two left panels of the original Figure 3: training and evaluation both use OpenHands or SWE-agent; SWE-Bench performance improves with mid-training volume."><div class="tr42-read">OpenHands → OpenHands · SWE-agent → SWE-agent</div></div>
+    <div class="tr42-pair fragment" data-fragment-index="1"><h3>A different interaction<br>setup</h3><img src="assets/training_20261007/pretraining/figure3-cross.png" alt="The two right panels of the original Figure 3: transfer from OpenHands to SWE-agent remains near zero; transfer in the opposite direction is limited. Original axes and scales are preserved."><div class="tr42-read">OpenHands → SWE-agent · SWE-agent → OpenHands</div></div>
+  </div>
+  <div class="tr42-scale fragment" data-fragment-index="1"><b>The panels use different scales.</b><span>Read trends within each panel; OH = OpenHands, SA = SWE-agent.</span></div>
+</div>
+<div class="fv-takeaway">Preparation works under specific conditions. Those conditions need to be tested.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2603.00729v1#S3.SS1.SSS2">Qwen3-Coder-Next Technical Report, §3.1.2, Figure 3, 2026</a> · Original panels, axes, and legend preserved</div>
+```
+
+::: {.notes}
+The first reveal shows the two left panels of Figure 3. In each panel, trajectory training and evaluation use the same agent scaffold. Both curves generally improve as training volume grows: pink is SWE-Bench Verified, blue is Multilingual. Training volume is an axis for observing the result here; we are not deriving a scaling law.
+
+The second reveal shows the right panels: OpenHands training data evaluated in SWE-agent, and the reverse direction. Transfer is limited and asymmetric. For OpenHands → SWE-agent, the vertical scale is around one percent, whereas the other panels show values in the tens of percent. Equal visual line heights therefore do not mean equal performance.
+
+A scaffold organizes interaction: available tools, action formats, and the working loop. Success within a familiar system does not establish robustness to a change of scaffold. Original source: Qwen3-Coder-Next, §3.1.2, Figure 3, PDF p.5. The image is split only in the gap between panels; the data, colors, axes, and scale intervals have not been redrawn.
+
+Transition: once the base is prepared, we need to demonstrate what fulfilling a request should look like. That is the role of SFT.
+:::

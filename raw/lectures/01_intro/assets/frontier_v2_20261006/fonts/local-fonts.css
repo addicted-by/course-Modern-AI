@@ -1,0 +1,23 @@
+/* Unmodified OFL variable fonts from google/fonts; provenance is in README.md.
+   Unique family names keep web-hosted theme definitions from affecting this deck. */
+@font-face {
+  font-family: "Frontier Inter";
+  src: url("Inter-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+}
+@font-face {
+  font-family: "Frontier Space Grotesk";
+  src: url("SpaceGrotesk-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: block;
+}
+@font-face {
+  font-family: "Frontier JetBrains Mono";
+  src: url("JetBrainsMono-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: block;
+}

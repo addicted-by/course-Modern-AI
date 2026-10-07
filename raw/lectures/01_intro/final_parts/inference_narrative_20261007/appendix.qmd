@@ -1,0 +1,320 @@
+## How do Best-of-N, beam, and lookahead compare? {#inference-a01 .fv-slide .inference-appendix background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A01</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf54-body">
+<div class="inf54-setting"><b>MATH · PaLM 2-S*</b><span>Verifier: PRM trained on Monte Carlo rollouts · fixed weights</span></div>
+<div class="inf54-main">
+<div class="inf54-methods">
+  <div class="inf54-method"><h3>Best-of-N</h3><div class="inf54-flow"><span>N complete<br>solutions</span><b>→</b><span>PRM<br>+ select</span><b>→</b><span class="inf54-chosen">answer</span></div><p>Independent attempts; weighted selection</p></div>
+  <div class="inf54-method"><h3>Beam search</h3><div class="inf54-flow"><span>Candidate<br>steps</span><b>→</b><span class="inf54-chosen">PRM<br>+ top</span><b>→</b><span>expand<br>branches ↻</span></div><p>Score and prune at every step</p></div>
+  <div class="inf54-method"><h3>Lookahead search</h3><div class="inf54-flow"><span>Candidate<br>+ k steps</span><b>→</b><span>PRM<br>at the end</span><b>→</b><span class="inf54-chosen">select<br>branches ↻</span></div><p>Rollouts cost compute too: budget N(k + 1)</p></div>
+<div class="inf54-reading"><b>Small budget: beam wins.</b><span>The gap shrinks as the budget grows;<br>lookahead usually lags at the same budget.</span></div>
+</div>
+<div class="inf54-evidence"><img src="assets/inference_evidence_20261007/search_serving/snell_figure3_left.svg" alt="Snell et al., Figure 3, left: MATH accuracy versus generation budget for Best-of-N, beam, and lookahead search"></div>
+</div>
+</div>
+<div class="fv-takeaway">More complex search ≠ better results: verification cost and verifier behavior matter.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2408.03314v1#S5.F3">Snell et al., 2024 · Fig. 3 (left)</a> · §§4–5 · Left: teaching diagram based on Fig. 2 · Generation budget ≠ latency</div>
+```
+
+::: {.notes}
+В основном рассказе мы разобрали несколько полных попыток с последующим отбором. Теперь вопрос углубления: как с той же обученной моделью сравнить этот подход с поиском по промежуточным шагам? Веса генератора и проверяющей модели остаются фиксированными.
+
+В Best-of-N получаем N независимых полных решений. В данной статье применяется weighted selection: оценки verifier суммируются для решений с одинаковым итоговым ответом. Поэтому это не просто выбор одной наиболее уверенной траектории. В beam search проверка выполняется уже на промежуточных шагах: часть ветвей сохраняется и расширяется. Здесь речь идёт о поиске по шагам решения с PRM, а не об обычном token-level beam decoding по вероятности токенов. Lookahead сначала пробно продолжает каждый рассматриваемый префикс ещё на k шагов; оценка в конце такого продолжения определяет, какие текущие ветви оставить.
+
+Справа оригинальная левая панель Figure 3. По горизонтали generation budget, по вертикали accuracy на MATH. Нельзя выбирать лучшую точку каждой кривой при разных бюджетах и объявлять её победителем: сравниваем вертикальный срез при одной и той же стоимости по протоколу авторов. При малом бюджете beam search сильнее Best-of-N. При увеличении бюджета отрыв сокращается, а некоторые варианты beam оказываются ниже Best-of-N. Lookahead в целом не окупает дополнительные rollout-вычисления при сопоставимом generation budget.
+
+Постановка: PaLM 2-S* (Codey), MATH, разделение на 12 тысяч train и 500 test задач. Используется process reward model, обученная оценивать шаги по Monte Carlo продолжениям базовой модели. Это модельный сигнал, а не безошибочная проверка по эталону. Более интенсивный поиск может усиливать ошибочные предпочтения verifier: высокая оценка сама по себе не гарантирует правильного решения.
+
+**Как считать стоимость.** В §5.3 бюджет для Best-of-N и beam задаётся N, для lookahead — N(k + 1). Это принятая авторами единица generation budget, а не измеренные секунды, счёт за API или универсальное число FLOPs. Реальная система оплачивает генерацию, проверки и организацию поиска. Этот рисунок не позволяет утверждать, что какой-либо алгоритм всегда быстрее по wall-clock time.
+
+**Вывод и переход.** Усложнение поиска не гарантирует роста качества: нужна полезная оценка и оправданная стоимость её получения. Следующий слайд объясняет, почему усреднённая кривая скрывает разные ответы для разных задач.
+
+**Источник:** [Snell et al., Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters, 2024, v1, Figures 2–3, §§4–5.3](https://arxiv.org/html/2408.03314v1#S5). Оригинальная панель сохранена без перерисовки данных; обрезана только правая панель. Дата проверки: 7 октября 2026.
+:::
+
+## How should the budget depend on task difficulty? {#inference-a02 .fv-slide .inference-appendix .fv-detail background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A02</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf55-body">
+<div class="inf55-panel"><div class="inf55-label">Fig. 3 · Difficulty relative to the base model</div><img src="assets/inference_evidence_20261007/search_serving/snell_figure3_right.svg" alt="Figure 3: beam and Best-of-N across five difficulty bins; budgets 4, 16, 64, and 256 in each bin"><div class="inf55-bins"><div><b>Bins 1–2</b><span>Beam can<br>overoptimize the PRM</span></div><div><b>Bins 3–4</b><span>Beam helps<br>guide the search</span></div><div class="inf55-limit"><b>Bin 5</b><span>No substantial<br>progress</span></div></div></div>
+<div class="inf55-panel"><div class="inf55-label">Fig. 4 · Choosing by difficulty and budget</div><img src="assets/inference_evidence_20261007/search_serving/snell_figure4.svg" alt="Figure 4: adaptive strategy selection using oracle or predicted difficulty approaches PRM Best-of-N with 16 rather than 64 generations"><div class="inf55-result"><strong>16 ≈ 64</strong><div><b>Adaptive search ≈ PRM Best-of-N</b><span>generations; low-budget regime</span></div></div></div>
+<div class="inf55-caveat"><b>MATH · PaLM 2-S* · PRM</b><span>The main evaluation excludes the cost of estimating difficulty.</span></div>
+</div>
+<div class="fv-takeaway">Allocate compute to the task; search cannot replace the base model’s capabilities.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2408.03314v1#S5.F3">Snell et al., 2024 · Fig. 3 (right)</a> · <a href="https://arxiv.org/html/2408.03314v1#S5.F4">Fig. 4</a> · §§3.2, 5.3 · 16 ≈ 64: the authors’ estimate, not a universal equivalence</div>
+```
+
+::: {.notes}
+Одинаковый бюджет может дать разный эффект в зависимости от того, насколько задача доступна данной модели. Поэтому слева авторы разбивают MATH на пять групп сложности. Это сложность относительно PaLM 2-S*, а не школьная экспертная разметка: вопрос, простой для одной модели, может быть трудным для другой.
+
+Слева оригинальная правая панель Figure 3. В каждой группе четыре соседних столбца соответствуют возрастающим бюджетам: 4, 16, 64 и 256. Цвета методов наложены друг на друга; это не составные столбцы, их высоты нельзя складывать. На лёгких задачах, в группах 1 и 2, сильная оптимизация PRM через beam может ухудшать результат. В группах 3 и 4 beam полезнее: промежуточная проверка помогает направить генератор к верному решению. В наиболее сложной группе 5 существенного продвижения нет. Поэтому выражение «на сложных задачах beam лучше» нужно читать вместе с этой границей, а не распространять на произвольно трудные вопросы.
+
+Справа Figure 4: для каждой группы сложности и каждого бюджета выбирается наиболее успешная стратегия. Oracle использует сведения о правильности по эталону; predicted использует прогноз проверяющей модели. Авторы оценивают сложность по 2048 сэмплам на задачу, а выбор стратегии проверяют через two-fold cross-validation. В режиме небольшого бюджета адаптивное распределение приближается к результату PRM Best-of-N с 16 генерациями вместо 64. Равенство на слайде приблизительное: это ориентир сопоставимого качества в данном эксперименте, а не тождество точностей и не четырёхкратное сокращение latency.
+
+Важное ограничение вынесено на сам слайд. Работа, нужная для определения сложности, не включена в основную оценку. Даже predicted difficulty не бесплатна: отсутствие обращения к эталону не устраняет её вычислительную стоимость. В развёрнутой системе нужно решить, сколько бюджета отдать диагностике задачи, а сколько — её решению.
+
+**Вывод и переход.** Подходящая стратегия зависит от задачи и размера бюджета. Дополнительный поиск помогает использовать имеющиеся возможности генератора, но не создаёт универсальную замену более способной базовой модели. После выбора алгоритма возникает следующий системный вопрос: как обслуживать эту нагрузку на GPU с требуемыми задержками.
+
+**Источник:** [Snell et al., 2024, v1, §§3.2 и 5.3, Figures 3–4](https://arxiv.org/html/2408.03314v1#S5.F4). Оригинальные кривые и столбцы сохранены; числа точности не оцифровывались и не выдумывались. Дата проверки: 7 октября 2026.
+:::
+
+## What does state transfer between prefill and decode cost? {#inference-a03 .fv-slide .inference-appendix .fv-detail background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A03</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf57-body">
+<div class="inf57-mechanism"><div class="inf57-stages"><div class="inf57-prefill"><h3>Prefill</h3><div class="inf57-tokens"><span>x₁</span><span>x₂</span><span>x₃</span></div><div class="inf57-kv">K₁V₁ · K₂V₂ · K₃V₃</div><p>Final logits<br>→ select y₁</p></div><div class="inf57-handoff"><span>Transfer →</span><b>KV[1:3]</b><p>position = 3<br>y₁ + metadata</p></div><div class="inf57-decode"><h3>Decode</h3><div class="inf57-tokens"><span>y₁</span><b>→</b><span>y₂</span></div><div class="inf57-kv">KV[1:3] + K₄V₄</div><p>Process y₁<br>→ logits for y₂</p></div></div><div class="inf57-shape"><span class="math inline">\(K,V\in\mathbb{R}^{n\times h_{\mathrm{KV}}\times d_h}\)</span><p>per layer: n positions, h<sub>KV</sub> KV heads,<br>d<sub>h</sub> head width; batch dimension omitted</p></div><div class="inf57-placement"><b>Measured on one machine with NVLINK</b><p>Matching prefill and decode pipeline stages<br>share a node; KV transfer stays within it.</p></div></div>
+<div class="inf57-evidence"><div class="inf57-label">DistServe · Figure 10, right</div><img src="assets/inference_evidence_20261007/search_serving/distserve_figure10_cdf.svg" alt="Figure 10: CDF of KV transfer time for OPT-13B, OPT-66B, and OPT-175B; X-axis in seconds"><div class="inf57-result"><strong>&gt;95%</strong><div><b>of KV transfers take under 30 ms</b><span>the authors’ aggregate statement, §6.3</span></div></div><p class="inf57-caption">Measures state transfer,<br>not total request latency.</p></div>
+</div>
+<div class="fv-takeaway">Low-cost KV transfer needs suitable placement and links; the handoff is not free.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2401.09670v3#S6.F10">DistServe, 2024, v3 · Fig. 10 (right), §6.3</a> · <a href="https://huggingface.co/docs/transformers/cache_explanation">Hugging Face: How caching works</a> · Left: illustrative handoff</div>
+```
+
+::: {.notes}
+Рассмотрим вход из трёх токенов. Prefill формирует ключи K и значения V для этих трёх позиций в каждом attention-слое. Последние logits позволяют выбрать первый выходной токен y один. Но выбор токена и включение его в cache — разные события. При показанной границе handoff KV содержит входные позиции x один, x два и x три; самого y один в cache ещё нет.
+
+Исполнитель decode получает этот cache, позицию и metadata, а также выбранный y один. Он обрабатывает y один как следующий вход, дописывает K четыре и V четыре и получает logits для выбора y два. Схема описывает логику состояния; конкретный serving runtime может иначе организовать транспорт токена и metadata. Весовые параметры модели не пересылаются заново на каждый запрос: они уже доступны исполнителям.
+
+Формула задаёт логические оси одного слоя: число сохранённых позиций n, число KV-heads и ширина head. Batch опущен. Фактическая раскладка и API могут менять порядок осей и размещать KV в блоках. Документация Hugging Face используется здесь для объяснения содержания cache и обновления состояния, а не как источник численного результата DistServe. Для гибридных архитектур дополнительно может потребоваться recurrent state; измерения справа относятся к OPT и его KV.
+
+Справа оригинальная правая панель Figure 10. CDF показывает, какая доля передач завершилась не позднее указанного времени. Ось X дана в секундах: 30 мс соответствуют 0,03 с. Кривые для разных OPT-моделей различаются, особенно хвост у OPT-175B. В §6.3 авторы сообщают, что более 95% запросов имеют время передачи KV меньше 30 мс. На слайде это воспроизведено именно как итоговая формулировка текста статьи, без попытки приписать всем отдельным кривым одинаковый точный перцентиль.
+
+**Ключевое условие.** Соответствующие стадии pipeline prefill и decode размещены на одной машине, так что передача использует NVLINK. При этом весь большой model pipeline может занимать несколько машин: совместное размещение относится к соответствующим стадиям. Это не измерение произвольной передачи всего cache через межмашинную сеть 25 Gbps. Результат следует читать вместе с политикой размещения и коммуникаций DistServe.
+
+Малая стоимость handoff не означает нулевую стоимость и ничего сама по себе не говорит о TTFT, времени ожидания в очереди или полной задержке ответа. Передачу можно сделать относительно дешёвой, но это инженерный результат конкретной конфигурации. На следующем шаге разберём, как организовать адресацию KV и совместное владение уже вычисленными блоками.
+
+**Источники:** [DistServe, v3, Figure 10 и §6.3](https://arxiv.org/html/2401.09670v3#S6.SS3), [Hugging Face Transformers, How caching works](https://huggingface.co/docs/transformers/cache_explanation). Оригинальная CDF-панель сохранена без изменения кривых. Дата проверки: 7 октября 2026.
+:::
+
+## How can branches safely share KV blocks? {#inference-a04 .fv-slide .inference-appendix .fv-detail background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A04</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf59-body">
+<div class="inf59-mechanism">
+<div class="inf59-label">ADDRESSING · 2 TOKENS PER BLOCK</div>
+<div class="inf59-address"><b>i = 5</b><span>block = ⌊5 / 2⌋ = 2</span><span>slot = 5 mod 2 = 1</span></div>
+<table class="inf59-table"><thead><tr><th>Logical block</th><th>Request A</th><th>Request B</th></tr></thead><tbody><tr><td>0 · positions 0, 1</td><td>P₇</td><td>P₇</td></tr><tr><td>1 · positions 2, 3</td><td>P₂</td><td>P₂</td></tr><tr><td>2 · positions 4, 5</td><td class="inf59-active">P₅ → slot 1</td><td>P₁</td></tr></tbody></table>
+<div class="inf59-cow"><div class="inf59-label">SEPARATE EXAMPLE · COPY-ON-WRITE</div><p><b>A, B → P₉ [x₄, ∅]</b><span>refcount = 2</span></p><div><span>A appends a₅</span><b>→ copy P₃ [x₄, a₅]</b></div><small>B keeps P₉; the shared prefix needs no copy.</small></div>
+</div>
+<div class="inf59-evidence">
+<div class="inf59-label">EXPERIMENT · FIGURE 15</div>
+<h3>OPT-13B · Alpaca · beam search</h3>
+<p class="inf59-setup">Beam widths: 2, 4, and 6</p>
+<div class="inf59-number">37.6–55.2<span>%</span></div>
+<p class="inf59-metric">fewer <b>KV blocks</b><br>with sharing</p>
+<div class="inf59-denominator"><span>Denominator:</span><b>all KV blocks without sharing</b></div>
+<p class="inf59-boundary">Not a share of total GPU memory<br>or an attention-kernel speedup.</p>
+</div>
+</div>
+<div class="fv-takeaway">Shared state needs no duplication: copy-on-write keeps continuations independent.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2309.06180#S6.SS3">Kwon et al., 2023 · §4, §6.3, Fig. 15</a> · Kernel latency and system throughput: §7.1 · Illustrative addressing</div>
+```
+
+::: {.notes}
+Позиции нумеруются с нуля. В учебном блоке на два токена i=5 задаёт логический блок 2 и слот 1; таблица запроса A разрешает адрес P₅, slot 1. У B тот же логический индекс разрешается в другую страницу.
+
+Ниже показан отдельный случай: ветви A и B ссылаются на частично заполненный P₉, refcount=2. Перед дописыванием a₅ ветвь A получает копию P₃ и меняет свою таблицу блоков; B продолжает владеть исходным P₉. Полные общие блоки остаются разделяемыми.
+
+В Figure 15 для OPT-13B / Alpaca при beam search с шириной 2, 4 и 6 авторы измеряют 37,6–55,2% экономии: число сохранённых благодаря sharing KV-блоков делится на число блоков без sharing. Это не вся память GPU. Освободившееся место помогает обслуживать больше последовательностей, но системный throughput не равен скорости отдельного attention kernel; §7.1 рассматривает kernel latency отдельно.
+
+Переход: управление памятью экономит прошлое; speculative decoding пытается дешевле получить будущее.
+
+**Источник:** [Kwon et al., §§4, 6.3, 7.1; Figure 15](https://arxiv.org/html/2309.06180#S6.SS3). [@ai26_ef8b5f9fca84]
+:::
+
+## How does MTP help propose a draft? {#inference-a05 .fv-slide .inference-appendix background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A05</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf60-body">
+<div class="inf60-mechanism">
+<div class="inf60-stage"><b class="inf60-step">01</b><div><h3>Who proposes the draft?</h3><p>An MTP module or a separate small model</p><div class="inf60-tokens"><span>d₁</span><span>d₂</span><span>d₃</span><small>illustrative continuation</small></div></div></div>
+<div class="inf60-stage"><b class="inf60-step">02</b><div><h3>How does the target verify?</h3><p>Target probabilities → accept / correct</p><div class="inf60-outcome"><span>d₁</span><span>d₂</span><del>d₃</del><b>+ correction</b></div></div></div>
+<div class="inf60-state"><b>State reconciliation</b><span>KV / recurrent state → accepted prefix</span></div>
+</div>
+<div class="inf60-evidence">
+<div class="inf60-label">DEEPSEEK-V3 · INFERENCE, §5.4.3</div>
+<h3>MTP + speculative decoding</h3>
+<div class="inf60-stat"><strong>85–90%</strong><span>acceptance of the second<br>predicted token</span></div>
+<div class="inf60-stat inf60-tps"><strong>1.8×</strong><span>TPS · tokens per second</span></div>
+<p class="inf60-boundary">Result of the authors’ implementation.<br>Not guaranteed for every MTP module.</p>
+</div>
+</div>
+<div class="fv-takeaway">A useful drafter yields enough accepted tokens to justify proposing and verifying them.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2412.19437#S5.SS4.SSS3">DeepSeek-V3, 2024 · §5.4.3</a> · MTP: §2.2 · <a href="https://arxiv.org/html/2211.17192#S2.SS3">Leviathan et al., 2023 · Algorithm 1</a> · Teaching diagram</div>
+```
+
+::: {.notes}
+Разделяем два решения. MTP задаёт источник кандидатов; speculative sampling задаёт проверку и коррекцию. В DeepSeek-V3 дополнительные MTP-модули сохраняют причинную зависимость предсказаний (§2.2). Это не просто независимые головы, одновременно угадывающие любое число токенов.
+
+Схема слева условная: d₁ и d₂ приняты, d₃ отвергнут; после первого отказа оставшийся draft отбрасывается. Состояние должно соответствовать принятому продолжению. Проверка target используется вместе с корректным протоколом sampling, а не с произвольным правилом «заменить неудачный токен».
+
+В §5.4.3 DeepSeek-V3 использует предсказание двух следующих токенов: авторы сообщают acceptance второго 85–90% на разных темах генерации и 1,8× TPS совместно со speculative decoding. Три условных токена слева не изображают эту конкретную конфигурацию. Метрика справа относится к inference, не к абляции качества MTP при обучении. В этом разделе не приведён полный разрез условий по batch size, температуре и аппаратуре: число нельзя переносить на произвольное развёртывание или любой MTP-модуль.
+
+Высокая acceptance полезна только вместе с низкой стоимостью drafter и эффективной target verification. Следующий слайд отдельно отвечает на вопрос о корректности распределения.
+
+**Источники:** [DeepSeek-V3, §2.2, §5.4.3](https://arxiv.org/html/2412.19437#S5.SS4.SSS3), [Leviathan et al., Algorithm 1](https://arxiv.org/html/2211.17192#S2.SS3). [@deepseek2024v3; @ai26_011288a5bb28]
+:::
+
+## Why does speculative sampling preserve the target distribution? {#inference-a06 .fv-slide .inference-appendix .fv-detail background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A06</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf61-body">
+<div class="inf61-theory">
+<div class="inf61-label">THEORY · ALGORITHM 1, APPENDIX A.1</div>
+<p class="inf61-defs">Same prefix: p is target, q is draft; x ∼ q</p>
+<div class="inf61-rules"><div><span>Accept</span><span class="math inline">\(a(x)=\min(1,p(x)/q(x))\)</span></div><div><span>Correction on rejection</span><span class="math inline">\(r(x)=\dfrac{[p(x)-q(x)]_+}{\sum_z[p(z)-q(z)]_+}\)</span></div></div>
+<p class="inf61-legend">[v]<sub>+</sub> = max(v, 0); z ranges over the vocabulary</p>
+<table class="inf61-mass"><thead><tr><th>Probability mass</th><th>A</th><th>B</th><th>C</th></tr></thead><tbody><tr><td>Draft q</td><td>0.6</td><td>0.3</td><td>0.1</td></tr><tr><td>Accepted: min(p, q)</td><td>0.2</td><td>0.3</td><td>0.1</td></tr><tr><td>Correction: [p − q]<sub>+</sub></td><td>0</td><td>0.2</td><td>0.2</td></tr><tr class="inf61-sum"><td>Total = target p</td><td>0.2</td><td>0.5</td><td>0.3</td></tr></tbody></table>
+<p class="inf61-protocol">First rejection → correction.<br>Full draft accepted → one extra target token.</p>
+</div>
+<div class="inf61-evidence">
+<div class="inf61-label">EXPERIMENT · TABLE 2</div>
+<h3>English → German</h3>
+<div class="inf61-speed"><strong>2.6×</strong><span>wall-time speedup</span></div>
+<table class="inf61-setup"><tbody><tr><td>Target / draft</td><td>T5-XXL 11B<br>T5-small 77M</td></tr><tr><td>Setup</td><td>temperature = 1<br>batch size = 1 · TPU-v4</td></tr><tr><td>Draft / acceptance</td><td>γ = 7 · α = 0.62</td></tr></tbody></table>
+<p class="inf61-boundary">Same distribution ≠<br>identical random sequence.</p>
+</div>
+</div>
+<div class="fv-takeaway">The protocol preserves the target distribution; speedup depends on the configuration.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2211.17192#S2.SS3">Leviathan et al., 2023 · Algorithm 1</a> · <a href="https://arxiv.org/html/2211.17192#S4.SS1">§4.1, Table 2</a> · <a href="https://arxiv.org/html/2211.17192#A1.SS1">Appendix A.1</a> · Illustrative probability balance</div>
+```
+
+::: {.notes}
+Здесь два разных типа результата. Слева — механизм распределительной корректности, справа — измеренная производительность одной конфигурации.
+
+В учебном примере p=(0,2;0,5;0,3), q=(0,6;0,3;0,1). Acceptance для A равна 1/3; для B и C — единице. Принятая масса (0,2;0,3;0,1), суммарный отказ 0,4. Нормированная положительная разность даёт r=(0;0,5;0,5); её вклад с учётом частоты отказа равен (0;0,2;0,2). Сумма возвращает p. Символ [v]₊ означает max(v,0); z пробегает словарь. Строка «коррекция» содержит безусловную массу, не само распределение r.
+
+Algorithm 1 формирует γ кандидатов последовательно, а target вычисляет условные распределения для проверки. Принимается префикс до первого отказа; затем выбирается correction. Если приняты все γ кандидатов, добавляется токен из p на следующей позиции. Протокол при корректных условных p и q сохраняет распределение последовательностей; он не обещает побитовое совпадение двух случайных запусков. Температура должна уже учитываться в фактически используемом p. Отношение p/q нужно только на предложенном токене, где q>0; нормированная разность используется только при возможном отказе.
+
+Table 2: T5-XXL 11B + T5-small 77M, English→German, temperature=1, γ=7, α=0,62 — 2,6× по wall time при batch size 1 на одной TPU-v4 (§4.1). Таблица измеряет ускорение, а доказательство находится в Appendix A.1. Следующий вопрос — как восстановить вычислительное состояние после отвергнутого продолжения.
+
+**Источник:** [Leviathan et al., Algorithm 1, Table 2, §4.1, Appendix A.1](https://arxiv.org/html/2211.17192). [@ai26_011288a5bb28]
+:::
+
+## How can a recurrent model verify a draft? {#inference-a07 .fv-slide .inference-appendix background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A07</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf62-body">
+  <div class="inf62-lead"><span class="fv-label">SpecLA · Figure 2</span><b>After rejection, restore the state of the accepted history</b></div>
+  <div class="inf62-columns">
+    <div class="inf62-mechanism">
+      <svg viewBox="0 0 874 354" role="img" aria-label="SpecLA: draft with pruning, verification, posterior selection, accepted-factor buffer, and deferred state update">
+        <defs><marker id="inf62-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#141414"/></marker></defs>
+        <g fill="none" stroke="#141414" stroke-width="2" marker-end="url(#inf62-arrow)">
+          <path d="M224 87H275"/><path d="M560 87H611"/>
+          <path d="M745 128V232H559"/><path d="M309 265H268V135H285"/>
+          <path d="M114 233V162H324V139"/>
+        </g>
+        <rect x="4" y="39" width="220" height="96" fill="#f3f3f3" stroke="#141414"/>
+        <text x="114" y="75" text-anchor="middle" font-size="27" font-weight="650">Draft + prune</text>
+        <text x="114" y="110" text-anchor="middle" font-size="22">candidates / tree</text>
+        <rect x="285" y="39" width="275" height="96" fill="#bef264" stroke="#141414"/>
+        <text x="422" y="76" text-anchor="middle" font-size="27" font-weight="650">Verify</text>
+        <text x="422" y="110" text-anchor="middle" font-size="22">topology-aware</text>
+        <rect x="622" y="39" width="248" height="96" fill="#f3f3f3" stroke="#141414"/>
+        <text x="746" y="76" text-anchor="middle" font-size="27" font-weight="650">Accept / reject</text>
+        <text x="746" y="110" text-anchor="middle" font-size="22">target selects a path</text>
+        <rect x="4" y="233" width="220" height="77" fill="#fff" stroke="#141414"/>
+        <text x="114" y="267" text-anchor="middle" font-size="26" font-weight="650">Durable state</text>
+        <text x="114" y="295" text-anchor="middle" font-size="21">accepted history</text>
+        <rect x="309" y="213" width="250" height="98" fill="#fff" stroke="#141414"/>
+        <text x="434" y="251" text-anchor="middle" font-size="26" font-weight="650">Accepted factors</text>
+        <text x="434" y="285" text-anchor="middle" font-size="22">compact buffer</text>
+        <text x="727" y="181" text-anchor="end" font-size="22">accepted path only</text>
+        <text x="420" y="342" text-anchor="middle" font-size="23">↳ Next round: Update + Verify in one kernel</text>
+      </svg>
+      <p class="inf62-caption">Verification factors are stored separately from the large state.<br>Based on Figure 2; box sizes are illustrative.</p>
+    </div>
+    <div class="inf62-evidence">
+      <span class="fv-label">Figure 9 · full generation</span>
+      <h3>Speedup over AR</h3>
+      <table aria-label="End-to-end speedup SpecLA"><thead><tr><th>Task</th><th>Speedup</th></tr></thead><tbody><tr><td>GSM8K</td><td><strong>1.70×</strong></td></tr><tr><td>HumanEval</td><td><strong>1.06×</strong></td></tr></tbody></table>
+      <div class="inf62-protocol">GDN-1.3B · NVIDIA H100<br>Greedy decoding · up to 128 new tokens</div>
+      <p class="inf62-boundary">End-to-end latency:<br>draft + verify + acceptance + state.</p>
+    </div>
+  </div>
+</div>
+<div class="fv-takeaway">State management helps, but the gain depends on the useful draft length.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2607.16673v1#S3">SpecLA, Fig. 2</a> · <a href="https://arxiv.org/html/2607.16673v1#S8.SS2">Fig. 9; §§8.1–8.4, 2026</a> · Diagram redrawn; values from the authors</div>
+```
+
+::: {.notes}
+В recurrent-модели проверка продолжения меняет общее состояние. Если часть draft отклонена, нельзя просто удалить отдельные cache slots: нужно оставить состояние только принятой истории. Читаем схему слева направо, затем идём по обратной стрелке. Она упрощает Figure 2 SpecLA: proposal проходит pruning; verifier учитывает дерево зависимостей; target выбирает принятый путь; компактные факторы этого пути применяются вместе со следующей проверкой. Не следует смешивать этот буфер факторов с replay по исходным токенам.
+
+Справа — опубликованное ускорение полной генерации относительно авторегрессионной target-модели. Это GDN-1.3B на H100, greedy decoding, до 128 новых токенов. GSM8K даёт 1,70×, HumanEval — лишь 1,06×. В §8.2 средняя принятая длина составляет соответственно 5,00 и 2,34 токена: drafter по-разному окупает проверку. Эти числа не являются ускорением отдельного kernel. Время draft, принятия и управления состоянием остаётся в итоговой стоимости.
+
+Педагогический акцент: специальный runtime создаёт возможность экономии, а полезные кандидаты реализуют её. Переход: следующий слайд показывает другой конкретный способ хранить достаточно данных для восстановления принятого состояния.
+
+**Источник:** [SpecLA, Figure 2; Figure 9; §5; §§8.1–8.4](https://arxiv.org/html/2607.16673v1). Дата проверки: 2026-10-07.
+:::
+
+## How can we restore the state of an accepted continuation? {#inference-a08 .fv-slide .inference-appendix .fv-detail background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A08</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf63-body">
+  <div class="inf63-lead"><span class="fv-label">Kimi K3 · KDA · §5.4.2</span><span>First two positions accepted; third rejected</span></div>
+  <div class="inf63-compare">
+    <div class="inf63-snapshots"><h3>Full-state snapshot at every step</h3><div class="inf63-state-row"><b>S₀</b><span>→</span><b>S₁</b><span>→</span><b class="inf63-accepted">S₂</b><span>→</span><b class="inf63-rejected">S₃</b></div><p>Store and transfer large states</p></div>
+    <div class="inf63-replay"><h3>Save compact projected inputs</h3><div class="inf63-input-row"><b>S₀</b><span>+</span><i>u₁</i><i>u₂</i><i class="inf63-rejected">u₃</i></div><div class="inf63-rebuild"><span>Replay u₁, u₂ on the GPU</span><span>→</span><b>S₂</b></div><p>uᵢ: projected inputs; no snapshot needed at every position</p></div>
+  </div>
+  <div class="inf63-result"><span class="fv-label">Authors’ result</span><div><b>Verification latency grows sublinearly</b><span>with verified token count; lower than state-caching baselines</span></div><p>No separate numerical<br>speedup reported for replay</p></div>
+  <div class="inf63-swa"><b>Separate mechanism: SWA bounded replay</b><span>DeepSeek-V4.1-Flash replays the latest window <i>W</i>.<br>Approximate recovery; small quality impact in the authors’ tests.</span></div>
+</div>
+<div class="fv-takeaway">Replaying compact updates can cost less than storing and transferring full states.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2607.24653v1#S5.SS4.SSS2">Kimi K3, §5.4.2, KDA</a> · <a href="https://arxiv.org/html/2609.19969v1#S3.SS2.SSS2">DeepSeek-V4.1-Flash, §3.2.2, 2026</a> · Teaching diagram</div>
+```
+
+::: {.notes}
+Здесь S — многомерное recurrent state, u — компактные projected inputs. Три позиции и принятие первых двух — условная схема, а не экспериментальный размер окна Kimi K3. Слева snapshots обеспечили бы возврат к S₂, но увеличили бы state traffic. Справа тот же принятый префикс восстанавливается из сохранённых проекций. В KDA replay принятых позиций, bonus token и следующего draft window объединены внутри одного fused kernel. Он охватывает short convolution, нормализацию, gating и рекурсию.
+
+§5.4.2 сообщает качественный результат: verification latency увеличивается сублинейно с числом проверяемых токенов и ниже state-caching baselines. Отдельного множителя ускорения replay авторы здесь не дают. Общую скорость Kimi K3 подставлять в эту строку нельзя.
+
+Нижняя сноска намеренно отделена. SWA bounded replay в DeepSeek-V4.1-Flash ограничивает область повторного расчёта последними W токенами. Для точного восстановления многослойного SWA потребовалась бы более длинная история; ограниченное окно даёт приближённое состояние. Авторы сообщают о незначительном влиянии на качество в своих проверках. Это не обещание той же точности, что у восстановления принятой KDA-траектории.
+
+В основном рассказе мы уже познакомились с совместным уточнением блока. Следующее углубление показывает конкретную архитектуру, которая отделяет завершённый контекст от активного блока.
+
+**Источники:** [Kimi K3, §5.4.2, KDA](https://arxiv.org/html/2607.24653v1#S5.SS4.SSS2), [DeepSeek-V4.1-Flash, §3.2.2](https://arxiv.org/html/2609.19969v1#S3.SS2.SSS2). Проверены 2026-10-07.
+:::
+
+## How does DiffusionGemma separate context from the active canvas? {#inference-a09 .fv-slide .inference-appendix .fv-detail background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">A09</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
+<div class="fv-body inf65-body">
+  <div class="inf65-architecture"><span class="fv-label">Encoder–decoder · block autoregressive</span>
+    <svg viewBox="0 0 790 370" role="img" aria-label="An autoregressive encoder processes the prompt and completed canvases; the decoder accesses KV context via cross-attention and refines the active canvas bidirectionally">
+      <defs><marker id="inf65-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#141414"/></marker></defs>
+      <g fill="none" stroke="#141414" stroke-width="2" marker-end="url(#inf65-arrow)"><path d="M216 73H268"/><path d="M489 73H550"/><path d="M665 128V240H564"/><path d="M268 272H217"/><path d="M90 210V151H379V126"/></g>
+      <rect x="0" y="30" width="216" height="92" fill="#f3f3f3" stroke="#141414"/><text x="108" y="65" text-anchor="middle" font-size="25" font-weight="650">Prompt</text><text x="108" y="98" text-anchor="middle" font-size="22">+ finished canvases</text>
+      <rect x="280" y="30" width="209" height="92" fill="#fff" stroke="#141414"/><text x="384" y="66" text-anchor="middle" font-size="26" font-weight="650">AR encoder</text><text x="384" y="98" text-anchor="middle" font-size="22">prefill / append</text>
+      <rect x="563" y="30" width="223" height="98" fill="#f3f3f3" stroke="#141414"/><text x="674" y="65" text-anchor="middle" font-size="26" font-weight="650">KV context</text><text x="674" y="100" text-anchor="middle" font-size="22">completed history</text>
+      <text x="645" y="184" text-anchor="end" font-size="22">cross-attention</text>
+      <rect x="280" y="200" width="280" height="135" fill="#bef264" stroke="#141414"/><text x="420" y="235" text-anchor="middle" font-size="27" font-weight="650">Diffusion decoder</text><text x="420" y="273" text-anchor="middle" font-size="24">↔ active canvas</text><text x="420" y="310" text-anchor="middle" font-size="22">256 tokens · denoising</text>
+      <rect x="0" y="215" width="216" height="114" fill="#fff" stroke="#141414"/><text x="108" y="253" text-anchor="middle" font-size="25" font-weight="650">Canvas complete</text><text x="108" y="288" text-anchor="middle" font-size="22">append to context</text><text x="108" y="316" text-anchor="middle" font-size="21">→ next canvas</text>
+      <text x="660" y="274" text-anchor="middle" font-size="22">↻ sampler</text><text x="660" y="306" text-anchor="middle" font-size="21">adaptive steps</text>
+    </svg>
+    <div class="inf65-model">25.2B total · 3.8B active parameters · up to 256K context</div>
+  </div>
+  <div class="inf65-results"><span class="fv-label">Developer-reported · model card</span><div class="inf65-speed"><b>&gt;1100 <small>tokens/s</small></b><span>Generation speed · H100 · FP8 · small batch</span><p>Not TTFT or total request latency</p></div><div class="inf65-quality"><h3>MMLU Pro · separate benchmark</h3><table aria-label="MMLU Pro from the model card"><tbody><tr><td>DiffusionGemma 26B A4B</td><td><b>77.6%</b></td></tr><tr><td>Gemma 4 26B A4B</td><td><b>82.6%</b></td></tr></tbody></table><p>Instruction-tuned · recommended EB sampler</p></div><div class="inf65-separate">Speed and quality use different protocols;<br>not one measured operating point.</div></div>
+</div>
+<div class="fv-takeaway">DiffusionGemma changes the speed–quality tradeoff; it is not a lossless AR speedup.</div>
+<div class="fv-source"><a href="https://ai.google.dev/gemma/docs/diffusiongemma/model_card">Google DeepMind, DiffusionGemma model card: Model Overview, Benchmark Results, Core Capabilities, Best Practices</a> · Accessed: 2026-10-07</div>
+```
+
+::: {.notes}
+Сначала encoder обрабатывает prompt и строит KV-контекст. Decoder обращается к нему через cross-attention, а позиции активного canvas используют двунаправленное внимание. После завершения canvas encoder добавляет его в контекст; начинается следующий блок. Таким образом, завершённая история и текущее поле уточнения имеют разные роли. Canvas содержит 256 токенов. Рекомендованный sampler использует entropy-bounded denoising и adaptive stopping.
+
+Справа показаны два опубликованных результата разработчика, не независимое измерение. Скорость свыше 1100 tokens/s относится к генерации на H100 в FP8 при малом batch. Из этой величины нельзя получить TTFT или полную задержку запроса: нужны длительность prefill, объём вывода и условия измерения. MMLU Pro 77,6% против 82,6% у Gemma 4 26B A4B взят из отдельной таблицы instruction-tuned моделей с рекомендованным EB sampler. Не связываем эти столбцы в одну измеренную точку «скорость–качество».
+
+Это новая процедура генерации со своим компромиссом, а не автоматически lossless-ускорение исходной AR-модели. К основному рассказу можно вернуться по ссылке в верхней строке. Его завершение связывает вычисление ответа с последующим разделом Tools о внешних действиях.
+
+**Источник:** [официальная DiffusionGemma model card](https://ai.google.dev/gemma/docs/diffusiongemma/model_card), разделы Model Overview, Benchmark Results, Core Capabilities, Best Practices. Дата обращения: **2026-10-07**.
+:::

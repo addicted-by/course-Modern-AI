@@ -1,0 +1,12 @@
+/* Main narrative and optional advanced material for Inference. */
+@import url("final_parts/inference_narrative_20261007/main_01_03.css");
+@import url("final_parts/inference_narrative_20261007/main_04_08.css");
+@import url("final_parts/inference_narrative_20261007/main_09_13.css");
+@import url("final_parts/inference_narrative_20261007/main_14_16.css");
+@import url("final_parts/inference_narrative_20261007/main_search_methods.css");
+@import url("final_parts/inference_evidence_20261007/search_serving.css");
+@import url("final_parts/inference_evidence_20261007/paged_speculation.css");
+@import url("final_parts/inference_evidence_20261007/replay_diffusion.css");
+
+.reveal .fv-slide .inference-appendix-return { margin-left:18px; font-size:17px; color:var(--fv-muted); letter-spacing:0; white-space:nowrap; }
+.reveal .inference-appendix .fv-meta { width:1220px; gap:13px; }
