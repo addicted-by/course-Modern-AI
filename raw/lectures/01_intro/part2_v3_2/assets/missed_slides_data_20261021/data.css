@@ -1,0 +1,20 @@
+/* Brief DATA additions. Scoped to the data deck; native editable SVGs retain its monochrome + lime visual language. */
+.reveal .brief-data-slide .bd-body { top: 190px; height: 530px; }
+.reveal .brief-data-slide .bd-svg { width:1488px; height:530px; overflow:visible; }
+.reveal .brief-data-slide > h2 {font-size:48px;}
+.reveal .brief-data-slide .fv-source {font-size:15px;top:838px;line-height:1.4;}
+.reveal .fv-slide .bd-extra {position:absolute;left:56px;top:170px;width:1488px;height:655px;padding-top:20px;background:#fff;z-index:12;}
+.reveal .fv-slide .bd-extra .bd-svg {width:1488px;height:520px;}
+.reveal .fv-slide .bd-extra .bd-extra-take {border-top:1px solid var(--fv-line);border-left:5px solid var(--fv-lime);padding:14px 0 0 20px;font-size:28px;line-height:1.3;}
+.reveal .fv-slide .bd-extra-source {position:absolute;left:56px;top:838px;width:1410px;font-size:15px;line-height:1.4;background:#fff;z-index:14;}
+@media print { .reveal .bd-print-continuation .bd-extra {position:absolute;left:56px;top:170px;margin-top:0;} }
+.reveal #frontier-f14:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #frontier-f18:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #data-safety:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #data-still-open:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #frontier-f14:has(.bd-extra.visible) > .fv-body, .reveal #frontier-f14:has(.bd-extra.visible) > .fv-body *, .reveal #frontier-f14:has(.bd-extra.visible) > .fv-takeaway, .reveal #frontier-f14:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #frontier-f18:has(.bd-extra.visible) > .fv-body, .reveal #frontier-f18:has(.bd-extra.visible) > .fv-body *, .reveal #frontier-f18:has(.bd-extra.visible) > .fv-takeaway, .reveal #frontier-f18:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #data-safety:has(.bd-extra.visible) > .fv-body, .reveal #data-safety:has(.bd-extra.visible) > .fv-body *, .reveal #data-safety:has(.bd-extra.visible) > .fv-takeaway, .reveal #data-safety:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-body, .reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-body *, .reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-takeaway, .reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #data-still-open:has(.bd-extra.visible) > .fv-body, .reveal #data-still-open:has(.bd-extra.visible) > .fv-body *, .reveal #data-still-open:has(.bd-extra.visible) > .fv-takeaway, .reveal #data-still-open:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}

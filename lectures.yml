@@ -26,15 +26,13 @@ lectures:
   - number: 3
     module: M1
     title: "There is no single trick."
-    source: raw/lectures/01_intro/lecture01_final_v3.1.qmd
-    html: raw/lectures/01_intro/lecture01_final_v3.1.html
+    source: null
+    html: raw/lectures/01_intro/part2_v3_2/lecture01_part2_final_v3_2.html
     pdf: null
     pptx: null
     resources:
-      - raw/lectures/01_intro/final_parts/arch_20261007/details.js
-      - raw/lectures/01_intro/final_parts/training_20261007/*.css
-      - raw/lectures/01_intro/final_parts/inference_narrative_20261007/*.css
-      - raw/lectures/01_intro/final_parts/inference_evidence_20261007/*.css
+      - raw/lectures/01_intro/part2_v3_2/**
+      - raw/lectures/01_intro/lecture01_final_v3.1.html
 
   - number: 4
     module: M1
