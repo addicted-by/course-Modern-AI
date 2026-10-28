@@ -35,3 +35,11 @@ node_modules/
 .npm
 
 **/*.quarto_ipynb
+
+# Instructor-only quiz packages (local copies; never commit answer keys).
+/raw/quizzes/*/Code.gs
+/raw/quizzes/*/questions.json
+/raw/quizzes/*/instructor_key.md
+/raw/quizzes/*/test_with_answers.md
+/raw/quizzes/*/README.md
+/raw/quizzes/*/validation.txt

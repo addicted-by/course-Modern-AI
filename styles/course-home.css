@@ -71,7 +71,7 @@ body.course-site .course-home-overview > section > p {
   max-width: 68ch; font-size: clamp(1rem, 1.35vw, 1.125rem); line-height: 1.7;
 }
 body.course-site .course-home-hubs {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4.5rem);
   background: var(--course-rule, #e4e4e7);
   border: 1px solid var(--course-rule, #e4e4e7);

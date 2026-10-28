@@ -1,0 +1,17 @@
+---
+title: "Quizzes"
+subtitle: "Check your understanding of Modern AI"
+toc: false
+---
+
+Short quizzes to revisit the ideas covered in lectures. Each quiz page includes instructions and the available ways to take the test.
+
+## 01 · Architectures, Representations & Generation
+
+**Module M1 · 15 questions · 20 points · 20–25 minutes · Русский**
+
+MoE, GQA and KV cache, prefill/decode, sparse attention, Mamba, DINO, CLIP, residual connections, memory and diffusion.
+
+Choose one answer per question. All 15 questions are required; there is no automatic timer.
+
+[Open quiz ↗](quizzes/lecture01_arch/index.qmd){.course-button}

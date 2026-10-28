@@ -43,6 +43,10 @@ This course combines rigorous mathematical foundations with practical systems en
 
 [<span class="course-home-hub-number">04</span><span class="course-home-hub-title">Projects</span><span class="course-home-hub-arrow" aria-hidden="true">↗</span>](raw/projects.qmd){#projects .course-home-hub}
 
+[<span class="course-home-hub-number">05</span><span class="course-home-hub-title">Quizzes</span><span class="course-home-hub-arrow" aria-hidden="true">↗</span>](raw/quizzes.qmd){#quizzes .course-home-hub}
+
+[<span class="course-home-hub-number">06</span><span class="course-home-hub-title">Homeworks</span><span class="course-home-hub-arrow" aria-hidden="true">↗</span>](raw/homeworks.qmd){#homeworks .course-home-hub}
+
 :::
 
 :::

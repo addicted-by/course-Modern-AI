@@ -1,0 +1,38 @@
+---
+title: "Architectures, Representations & Generation"
+subtitle: "Quiz 01 · Modern AI · M1"
+lang: ru
+format: html
+toc: false
+resources:
+  - student_test.md
+---
+
+[← Все quizzes](/raw/quizzes.qmd)
+
+**15 вопросов · 20 баллов · 20–25 минут**
+
+В каждом вопросе ровно один правильный ответ. Все вопросы обязательны: десять по 1 баллу и пять по 2 балла. Имя можно не указывать. Автоматического таймера нет; можно пользоваться простым калькулятором.
+
+Темы: MoE, GQA/KV cache, prefill/decode, sparse attention, Mamba/RNN, DINO, CLIP, residual connections, память моделей и diffusion.
+
+## Пройти тест
+
+[Открыть Google Форму в отдельной вкладке ↗](https://docs.google.com/forms/d/e/1FAIpQLSdpW8TvmXLKHuP-r5G5RvIpVHiIo8YDE94x2nI_2dUtKKjJCg/viewform){.course-button target="_blank" rel="noopener"}
+
+```{=html}
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdpW8TvmXLKHuP-r5G5RvIpVHiIo8YDE94x2nI_2dUtKKjJCg/viewform?embedded=true"
+  title="Quiz 01: Architectures, Representations &amp; Generation"
+  width="100%" height="1500" style="border:0;display:block" loading="lazy">
+  Загрузка Google Формы…
+</iframe>
+```
+
+
+[Скачать вопросы без ответов](student_test.md){.course-button .course-button-secondary download="student_test.md"}
+
+## Материалы для повторения
+
+- [Лекции и презентации](/raw/lectures.qmd)
+- [From single modality to multi-modal models](/raw/lectures/01_intro/lecture_01_final_part1.html)
+- [There is no single trick](/raw/lectures/01_intro/part2_v3_2/lecture01_part2_final_v3_2.html)

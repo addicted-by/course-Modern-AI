@@ -10,6 +10,8 @@ subtitle: "Modern Artificial Intelligence"
 The interactive lecture slides are built with Quarto and Reveal.js. Use arrow keys (`←`, `→` or `Space`) to navigate slides, `F` for fullscreen, and `O` for slide overview mode.
 :::
 
+[Quizzes — check your understanding](quizzes.qmd){.course-button}
+
 ## Lecture Schedule & Materials
 
 {{< include ../pages/_lecture-materials.qmd >}}

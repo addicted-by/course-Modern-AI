@@ -7,6 +7,9 @@ project:
     - raw/modules.qmd
     - raw/lectures.qmd
     - raw/seminars.qmd
+    - raw/quizzes.qmd
+    - raw/quizzes/*/index.qmd
+    - raw/homeworks.qmd
     - raw/projects.qmd
   resources:
     - "assets/**"
@@ -34,6 +37,10 @@ website:
         text: "Lectures"
       - href: raw/seminars.qmd
         text: "Seminars"
+      - href: raw/quizzes.qmd
+        text: "Quizzes"
+      - href: raw/homeworks.qmd
+        text: "Homeworks"
       - href: raw/projects.qmd
         text: "Projects"
     right:

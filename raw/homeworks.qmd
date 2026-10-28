@@ -1,0 +1,14 @@
+---
+title: "Homeworks"
+subtitle: "Assignments & Independent Practice"
+toc: false
+---
+
+Practice the ideas from lectures and seminars through independent assignments.
+
+## Assignments
+
+No homework assignments have been published yet. Assignment briefs, deadlines and submission instructions will appear here as they become available.
+
+[Browse lectures](lectures.qmd){.course-button}
+[Explore seminars](seminars.qmd){.course-button .course-button-secondary}

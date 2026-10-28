@@ -34,6 +34,9 @@ jobs:
       - name: Render Quarto Website
         uses: quarto-dev/quarto-actions/render@v2
 
+      - name: Check quiz pages and private files
+        run: python3 scripts/check-quiz-publication.py
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
