@@ -1,0 +1,35 @@
+/* Missed-slide brief INF-01–INF-10. Scoped to inference additions. */
+.reveal .brief-inf .bi-body { top:200px; height:530px; }
+.reveal .brief-inf .bi-body > svg { display:block; width:1488px; max-height:none; }
+.reveal .brief-inf .bi-caption { margin-top:4px; font-size:23px; line-height:1.15; color:var(--fv-muted); }
+.reveal .brief-inf .bi-split { display:flex; justify-content:space-between; gap:25px; }
+.reveal .brief-inf .bi-anchor { position:absolute; left:0; top:270px; }
+.reveal .brief-inf .fv-takeaway { font-size:29px; }
+.reveal .brief-inf .fv-source { font-size:16px; }
+/* Retain the original I11 memory diagram as the main visual; reserve a slim audio band. */
+.reveal .fv-slide.bi-audio-serving .n09-body { top:185px; height:550px; }
+.reveal .fv-slide.bi-audio-serving .n09-problem { height:153px; }
+.reveal .fv-slide.bi-audio-serving .n09-problem h3 { margin-bottom:8px; }
+.reveal .fv-slide.bi-audio-serving .n09-allocation { height:29px; margin-top:7px; }
+.reveal .fv-slide.bi-audio-serving .n09-allocation > span, .reveal .fv-slide.bi-audio-serving .n09-allocation > i { height:27px; line-height:25px; }
+.reveal .fv-slide.bi-audio-serving .n09-diagram { height:174px; padding-top:8px; }
+.reveal .fv-slide.bi-audio-serving .n09-diagram svg { width:1488px; height:162px; }
+.reveal .fv-slide.bi-audio-serving .n09-name { margin-top:5px; padding:10px 18px; font-size:22px; }
+.reveal .fv-slide.bi-audio-serving .n09-name b { font-size:23px; }
+.reveal .fv-slide.bi-audio-serving .bi-audio-strip { margin-top:13px; display:grid; grid-template-columns:1.08fr 1fr .95fr; gap:24px; border-top:2px solid var(--fv-ink); padding-top:13px; }
+.reveal .fv-slide.bi-audio-serving .bi-audio-strip > div { display:flex; flex-direction:column; gap:6px; }
+.reveal .fv-slide.bi-audio-serving .bi-audio-strip b { font-size:23px; line-height:1.2; }
+.reveal .fv-slide.bi-audio-serving .bi-audio-strip span { font-size:20px; line-height:1.2; }
+.reveal .fv-slide.bi-audio-serving .fv-source { top:835px; font-size:15px; line-height:1.35; }
+@media print {
+  .reveal .brief-inf .fragment, .reveal .fv-slide.bi-audio-serving .fragment { opacity:1 !important; visibility:visible !important; }
+}
+@media print {
+  .reveal .brief-inf .fragment.fade-out { opacity:0 !important; visibility:hidden !important; }
+}
+
+.reveal .brief-inf .bi-audio-demo { position:absolute; left:1140px; top:60px; width:340px; display:flex; flex-direction:column; gap:10px; }
+.reveal .brief-inf .bi-audio-demo label { display:block; font-size:21px; line-height:1.2; }
+.reveal .brief-inf .bi-audio-demo audio { display:block; width:340px; height:36px; margin-top:5px; }
+.reveal .brief-inf .bi-audio-demo > span { font-size:17px; color:var(--fv-muted); }
+@media print { .reveal .brief-inf .bi-audio-demo audio { display:none; } }

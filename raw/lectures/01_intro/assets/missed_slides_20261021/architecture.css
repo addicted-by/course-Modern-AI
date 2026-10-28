@@ -1,0 +1,26 @@
+/* Brief ARC-01–12; scoped supplements preserve the existing course palette and grid. */
+.reveal .brief-arc-slide .brief-arc-body, .reveal .arch-slide .brief-arc-supplement { top: 185px; height: 540px; }
+.reveal .brief-arc-svg { width: 1488px; height: 530px; display:block; }
+.reveal .brief-arc-slide > h2 { font-size:48px; }
+.reveal .brief-arc-slide .fv-takeaway { font-size:28px; }
+.reveal .brief-arc-supplement { background:#fff; z-index:2; }
+.reveal .brief-arc-extra-source { position:absolute; top:535px; font-size:16px; color:#626262; background:#fff; }
+.reveal .arch-slide .brief-arc-print-scene { top:185px; height:540px; }
+@media print {
+  .reveal .brief-arc-print-scene .fragment { visibility:visible!important; opacity:1!important; }
+}
+
+/* Slide 10: keep the mechanism above the measured quality comparison. */
+.reveal #brief-arc-10 .latentmoe-body { top:150px; height:580px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.reveal #brief-arc-10 .brief-arc-svg { width:1168px; height:365px; flex:0 0 365px; }
+.reveal #brief-arc-10 .latentmoe-results { width:100%; }
+.reveal #brief-arc-10 .latentmoe-caption { display:flex; justify-content:space-between; align-items:baseline; padding:0 10px 8px; font-size:23px; }
+.reveal #brief-arc-10 .latentmoe-caption span { color:var(--fv-muted); font-size:21px; }
+.reveal #brief-arc-10 table { font-size:24px; line-height:1.15; font-variant-numeric:tabular-nums; }
+.reveal #brief-arc-10 th, .reveal #brief-arc-10 td { padding:8px 14px; white-space:nowrap; }
+.reveal #brief-arc-10 thead th { font-size:21px; color:var(--fv-muted); font-weight:500; border-top:1px solid var(--fv-line); }
+.reveal #brief-arc-10 tbody th { font-weight:550; }
+.reveal #brief-arc-10 .latentmoe-acc { background:var(--fv-soft); }
+.reveal #brief-arc-10 .latentmoe-acc strong { background:var(--fv-lime); padding:1px 6px; }
+.reveal #brief-arc-10 sub { font-size:70%; }
+.reveal #brief-arc-10 .fv-takeaway { font-size:27px; }

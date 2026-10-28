@@ -1,4 +1,4 @@
-## Request history can be stored in small blocks {#inference-09 .fv-slide background-color="#ffffff"}
+## Request history can be stored in small blocks {#inference-09 .fv-slide .bi-audio-serving background-color="#ffffff"}
 
 ```{=html}
 <div class="fv-meta"><span class="fv-id">I11</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
@@ -18,9 +18,15 @@
 </svg>
 </div>
 <div class="n09-name"><b>Paged state</b><span>state is stored in blocks</span><b>PagedAttention</b><span>attention reads separate KV blocks</span></div>
+<!-- Brief: INF-07 -->
+<div id="brief-inf-07" class="bi-audio-strip">
+  <div><b>Audio models use the same serving ideas</b><span>LM → Acoustic stage → Decoder</span><span class="fragment" data-fragment-index="0">Offload → Host RAM · less VRAM, transfer cost</span></div>
+  <div><b>Local single request</b><span>YuE2 · RTX 4090 · 11.18 GiB peak</span><span>32 warm requests · full planning</span></div>
+  <div><b>Batched server</b><span>vLLM-Omni coordinates stages</span><span>Throughput ≠ single-request latency</span></div>
+</div>
 </div>
 <div class="fv-takeaway">History stays in order even when its blocks occupy different memory locations.</div>
-<div class="fv-source"><a href="https://arxiv.org/html/2309.06180#S3">Kwon et al., 2023 · §3, §§4.1–4.3</a> · Illustrative KV-state placement</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2309.06180#S3">Kwon et al., 2023 · §3, §§4.1–4.3</a> · <a href="https://huggingface.co/m-a-p/YuE2-3B">YuE2 resources</a> · <a href="https://docs.vllm.ai/projects/vllm-omni/en/latest/">vLLM-Omni</a><br>Code license: <a href="https://github.com/multimodal-art-projection/YuE/blob/main/LICENSE">repository LICENSE</a> · Weights license: <a href="https://github.com/multimodal-art-projection/YuE/blob/main/MODEL_LICENSE">release MODEL_LICENSE</a> · Resource measurement checked 2026-10-21</div>
 ```
 
 ::: {.notes}
@@ -29,6 +35,10 @@
 Внизу тот же запрос A представлен небольшими блоками A₁, A₂, A₃. Это блоки промежуточных KV-представлений, а не текстовые слова. Слева показан логический порядок, справа — физическое размещение. Таблица соответствий позволяет прочитать первый блок в месте 7, второй в месте 2, третий в месте 5. Промежутки могут обслуживать другие запросы. Размеры блоков и номера мест в схеме учебные.
 
 Теперь вводим названия: paged state — организация состояния блоками; PagedAttention — способ вычислять attention, обращаясь к таким раздельно размещённым KV-блокам. Блоки выделяются по мере необходимости. На этом шаге речь только о размещении памяти. Общая часть двух запросов — следующий, отдельный вопрос.
+
+INF-07 addition: an audio generator also carries model weights, intermediate states, and an audio decoder. YuE2's reported 11.18 GiB peak is the full-planning RTX 4090 result from 32 warm, sequential requests. It is not a minimum GPU-memory requirement: the authors recommend 24 GB GPU memory and report a 14.08 GiB maximum-context peak. Quantization and offload trade memory for other costs. The host-RAM annotation describes a general serving option, not a claim that this specific measured run used offload.
+
+vLLM-Omni supports coordinating autoregressive and non-autoregressive stages for multiple modalities. This is a runtime example, not a claim of a measured YuE2 vLLM-Omni integration. Throughput and single-request latency should not share an axis. Code and weight licenses are separate release artifacts and must be checked independently. [YuE2 model card](https://huggingface.co/m-a-p/YuE2-3B), [vLLM-Omni overview](https://docs.vllm.ai/projects/vllm-omni/en/latest/), checked 2026-10-21.
 
 **Источник:** [Kwon et al., §3 и §§4.1–4.3](https://arxiv.org/html/2309.06180#S4). [@ai26_ef8b5f9fca84]
 :::
@@ -137,7 +147,23 @@ Orca (Oracle) — baseline авторов с заранее известными
 
 Корректный speculative sampling сохраняет целевое распределение основной модели. Это теоретическое свойство протокола, доказанное отдельно, не следствие экспериментального ускорения. Оно не означает одинаковую случайную последовательность в двух запусках. Подробная схема принятия и коррекции — в приложении.
 
-Переход: мы ускоряли процедуру, сохраняя исходное распределение. Следующий подход меняет сам процесс генерации — вместо одного следующего токена будем уточнять целый блок.
+Переход: теперь посмотрим на другой источник черновика — MTP-модули самой модели. После этого перейдём к уточнению целого блока.
 
 **Источник, повторно проверен 2026-10-07:** [Leviathan et al., §4.1, Table 2; Appendix A.1](https://arxiv.org/html/2211.17192). [@ai26_011288a5bb28]
+:::
+
+<!-- Brief: INF-08 -->
+## MTP can provide the speculative draft {#brief-inf-08 .fv-slide .brief-inf  background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">INF-08</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bi-body"><svg viewBox="0 0 1488 510" width="1488" height="510" role="img" aria-label="A shared model feeds its main prediction path and sequential MTP modules. The modules propose future tokens. A separate verification pass accepts a prefix and corrects rejection. Timelines show the drafting and verification costs without a numerical speedup."><text x="0" y="25" font-size="23" text-anchor="start" fill="#626262" font-weight="400" >DRAFT SOURCE</text><rect x="0" y="95" width="245" height="165" fill="#f3f3f3" stroke="#141414"/><text x="122.5" y="187.65" font-size="29" text-anchor="middle" fill="#141414" font-weight="400" >Shared model</text><path d="M245 135L300 135" fill="none" stroke="#141414" stroke-width="2" /><rect x="300" y="91" width="210" height="78" fill="#f3f3f3" stroke="#141414"/><text x="405.0" y="139.1" font-size="26" text-anchor="middle" fill="#141414" font-weight="400" >Main path</text><text x="550" y="139" font-size="31" text-anchor="start" fill="#141414" font-weight="650" >t₁</text><g class="fragment" data-fragment-index="0"><path d="M245 220L300 220" fill="none" stroke="#141414" stroke-width="2" /><rect x="300" y="181" width="210" height="78" fill="#bef264" stroke="#141414"/><text x="405.0" y="229.1" font-size="26" text-anchor="middle" fill="#141414" font-weight="400" >MTP 1</text><text x="550" y="229" font-size="31" text-anchor="start" fill="#141414" font-weight="650" >t₂</text><path d="M510 220H540M590 220H650" fill="none" stroke="#141414" stroke-width="2" /><rect x="650" y="181" width="210" height="78" fill="#bef264" stroke="#141414"/><text x="755.0" y="229.1" font-size="26" text-anchor="middle" fill="#141414" font-weight="400" >MTP 2</text><text x="887" y="229" font-size="31" text-anchor="start" fill="#141414" font-weight="650" >t₃</text></g><text x="300" y="304" font-size="24" text-anchor="start" fill="#626262" font-weight="400" >Trained to predict further future tokens</text><g class="fragment" data-fragment-index="1"><rect x="1020" y="58" width="460" height="124" fill="#f3f3f3" stroke="#141414"/><text x="1250.0" y="130.85" font-size="31" text-anchor="middle" fill="#141414" font-weight="400" >Verification pass</text><text x="1250" y="220" font-size="23" text-anchor="middle" fill="#626262" font-weight="400" >ACCEPTANCE RULE</text></g><g class="fragment" data-fragment-index="1"><rect x="1030" y="248" width="100" height="58" fill="#bef264" stroke="#141414"/><text x="1080.0" y="286.1" font-size="26" text-anchor="middle" fill="#141414" font-weight="400" >t₁ ✓</text><rect x="1145" y="248" width="100" height="58" fill="#bef264" stroke="#141414"/><text x="1195.0" y="286.1" font-size="26" text-anchor="middle" fill="#141414" font-weight="400" >t₂ ✓</text><rect x="1260" y="248" width="100" height="58" fill="#f3f3f3" stroke="#141414"/><text x="1310.0" y="286.1" font-size="26" text-anchor="middle" fill="#141414" font-weight="400" >t₃ ✕</text><text x="1408" y="287" font-size="31" text-anchor="middle" fill="#141414" font-weight="400" >→</text></g><g class="fragment" data-fragment-index="2"><text x="1020" y="350" font-size="23" text-anchor="start" fill="#141414" font-weight="650" >Keep prefix; correct the rejected token</text></g><text x="0" y="419" font-size="24" text-anchor="start" fill="#141414" font-weight="650" >Serial decoding</text><rect x="300" y="388" width="140" height="43" fill="#f3f3f3" stroke="#141414"/><text x="370.0" y="416.85" font-size="21" text-anchor="middle" fill="#141414" font-weight="400" >target</text><rect x="450" y="388" width="140" height="43" fill="#f3f3f3" stroke="#141414"/><text x="520.0" y="416.85" font-size="21" text-anchor="middle" fill="#141414" font-weight="400" >target</text><rect x="600" y="388" width="140" height="43" fill="#f3f3f3" stroke="#141414"/><text x="670.0" y="416.85" font-size="21" text-anchor="middle" fill="#141414" font-weight="400" >target</text><rect x="750" y="388" width="140" height="43" fill="#f3f3f3" stroke="#141414"/><text x="820.0" y="416.85" font-size="21" text-anchor="middle" fill="#141414" font-weight="400" >target</text><text x="0" y="486" font-size="24" text-anchor="start" fill="#141414" font-weight="650" >Draft + verify</text><rect x="300" y="454" width="180" height="43" fill="#bef264" stroke="#141414"/><text x="390.0" y="482.85" font-size="21" text-anchor="middle" fill="#141414" font-weight="400" >draft</text><rect x="492" y="454" width="280" height="43" fill="#f3f3f3" stroke="#141414"/><text x="632.0" y="482.85" font-size="21" text-anchor="middle" fill="#141414" font-weight="400" >verify + reconcile</text><text x="820" y="483" font-size="22" text-anchor="start" fill="#626262" font-weight="400" >illustrative timing; no fixed speedup</text></svg></div>
+<div class="fv-takeaway">MTP supplies a draft; speedup still depends on accepted tokens and total cost.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2412.19437v2#S2.SS2">DeepSeek-V3 · §2.2, Figure 3</a> · <a href="https://arxiv.org/html/2211.17192#S2">Leviathan et al. · Algorithm 1</a> · <a href="#/inference-a06">Verification details → appendix</a> · Checked 2026-10-21</div>
+```
+
+::: {.notes}
+This slide moves former appendix A05 into the main narrative after I15. Multi-token prediction is a training objective and an associated module design. Its modules may be discarded after training, or used as a source of draft tokens during inference. The simplified diagram shows two future modules to teach the idea, not the exact deployed DeepSeek-V3 inference configuration. MTP modules are sequentially dependent; the arrows must not suggest two independent parallel heads.
+
+Reveal the proposal, then verification, then the accepted prefix. The acceptance example is illustrative. Correct speculative sampling separates the proposal distribution from the target probabilities and correction rule. Preservation of the target distribution belongs to that complete protocol, not to arbitrary acceptance of MTP predictions. The timelines illustrate cost categories only. No measured multiplier is implied. Ask: can an accurate MTP draft still be slow? Yes, if drafting, verification, or state reconciliation costs outweigh the saved target calls.
 :::

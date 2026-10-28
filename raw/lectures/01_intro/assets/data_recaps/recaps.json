@@ -1,0 +1,216 @@
+{
+  "categories": [
+    {
+      "title": "SOURCES & TOKENS",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 2H11L15 6V11M11 2V6H15M3 2V13H7M6 6H8M6 9H11M7 16H18M15 13L18 16L15 19\"/><rect x=\"2\" y=\"20\" width=\"5\" height=\"3\"/><rect x=\"10\" y=\"20\" width=\"5\" height=\"3\"/><rect x=\"18\" y=\"20\" width=\"5\" height=\"3\"/></svg>",
+      "summary": "Data isn't free; every modality becomes tokens that cost compute."
+    },
+    {
+      "title": "DATA MIXTURES",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 4V20M12 4V20M20 4V20\"/><path d=\"M1 8H7M9 16H15M17 10H23\"/></svg>",
+      "summary": "Want more data; when it runs out, reweight and add synthetic."
+    },
+    {
+      "title": "FILTERING & DEDUPLICATION",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 4H21L14 12V19L10 21V12Z\"/><path d=\"M17 16L19 18L23 14\"/></svg>",
+      "summary": "Keep ~1.4%; judge every filter by training results."
+    },
+    {
+      "title": "SYNTHETIC DATA",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 8V21H18V11M4 8H11M8 12H13M8 16H14M17 1L18.5 5.5L23 7L18.5 8.5L17 13L15.5 8.5L11 7L15.5 5.5Z\"/></svg>",
+      "summary": "Generation is cheap; verification makes synthetic data useful."
+    },
+    {
+      "title": "LONG-CONTEXT DATA",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2 18H22M2 15V21M22 15V21M4 10V4H20V10M2 10H6M18 10H22M9 7H15\"/></svg>",
+      "summary": "Long context is taught by data that needs it."
+    },
+    {
+      "title": "INTERACTION TRAJECTORIES",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"4\" cy=\"6\" r=\"3\"/><circle cx=\"20\" cy=\"18\" r=\"3\"/><path d=\"M7 6H17Q21 6 21 10T15 14H9M9 14L12 11M9 14L12 17M4 9V20H14\"/></svg>",
+      "summary": "Agent data = verified trajectories in environments."
+    },
+    {
+      "title": "SAFETY DATA",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 2L21 6V12Q20 19 12 22Q4 19 3 12V6Z\"/><path d=\"M7 12L10 15L17 8\"/></svg>",
+      "summary": "Safety is a small slice of data; every later stage must keep it."
+    },
+    {
+      "title": "PART II · IMAGES & VIDEO",
+      "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"1\" y=\"3\" width=\"14\" height=\"13\" rx=\"1\"/><path d=\"M2 14L6 9L10 13L12 11L15 14M8 20H23M18 5H23M18 9H23M18 13H23\"/><circle cx=\"11\" cy=\"7\" r=\"1\"/></svg>",
+      "summary": ""
+    }
+  ],
+  "recaps": {
+    "sources": {
+      "current": 1,
+      "points": [
+        {
+          "title": "The web isn't free to take, and most of it isn't worth learning",
+          "evidence": "DCLM: 240T tokens extracted → ~4T kept",
+          "ref": "D 03",
+          "target": "brief-data-06"
+        },
+        {
+          "title": "Pick sources per skill and modality",
+          "evidence": "a cutoff date is not a knowledge guarantee",
+          "ref": "D 04–05",
+          "target": "brief-data-08"
+        },
+        {
+          "title": "Every modality becomes tokens — and tokens are the cost",
+          "evidence": "10 s of 4K60 video = 19.4M tokens (16×16 patches, uncompressed)",
+          "ref": "D 06–09",
+          "target": "brief-data-01"
+        }
+      ],
+      "takeaway": "Collection and tokenization already decide what the model can learn — and what it costs.",
+      "source": "Recap of D 03–D 09"
+    },
+    "mixtures": {
+      "current": 2,
+      "points": [
+        {
+          "title": "More data helps — until repeats saturate",
+          "evidence": "Chinchilla: 70B / 1.4T beats 280B / 300B · repeats → ~16 effective passes (fitted law)",
+          "ref": "D 10",
+          "target": "data-scale-selection"
+        },
+        {
+          "title": "Reweighting works",
+          "evidence": "same 8B model, same budget: baseline accuracy in 2.6× fewer steps (DoReMi)",
+          "ref": "D 11",
+          "target": "frontier-f14"
+        },
+        {
+          "title": "Synthetic data is now part of the collection",
+          "evidence": "Phi-4: 40% of training, 13.8 passes — and 12 passes beat 4",
+          "ref": "D 12–13",
+          "target": "frontier-f14-case"
+        }
+      ],
+      "takeaway": "Same model, same budget — data decisions alone move quality.",
+      "source": "Recap of D 10–D 13"
+    },
+    "filtering": {
+      "current": 3,
+      "points": [
+        {
+          "title": "Most of the crawl never reaches training",
+          "evidence": "DCLM: ~1.4% of documents kept",
+          "ref": "D 14",
+          "target": "frontier-f15"
+        },
+        {
+          "title": "\"Quality\" is what trains a better model",
+          "evidence": "the filter that agrees most with humans gives worse data",
+          "ref": "D 15",
+          "target": "frontier-f15-case-quality"
+        },
+        {
+          "title": "Dedup helps by removing huge clusters",
+          "evidence": "global dedup threw away the better 90% of an old crawl",
+          "ref": "D 16–17",
+          "target": "frontier-f15-detail"
+        }
+      ],
+      "takeaway": "Every filter is a hypothesis; training results are the test.",
+      "source": "Recap of D 14–D 17"
+    },
+    "synthetic": {
+      "current": 4,
+      "points": [
+        {
+          "title": "Most generated candidates are wrong",
+          "evidence": "only ~24% of generated code solutions pass their own tests",
+          "ref": "D 18",
+          "target": "frontier-f16"
+        },
+        {
+          "title": "A check is only as good as its tests",
+          "evidence": "80× more tests in HumanEval+ → pass@k drops by up to 19–29%",
+          "ref": "D 19",
+          "target": "frontier-f16-detail"
+        },
+        {
+          "title": "Repeat knowledge, not text",
+          "evidence": "10 rephrasings × 1 pass beat 1 text × 10 passes: SimpleQA 23.76 → 28.94",
+          "ref": "D 20–21",
+          "target": "frontier-f16-case"
+        }
+      ],
+      "takeaway": "Generation is cheap; verification is what makes synthetic data useful.",
+      "source": "Recap of D 18–D 21"
+    },
+    "long-context": {
+      "current": 5,
+      "points": [
+        {
+          "title": "A long window isn't long-context skill",
+          "evidence": "the data must require distant links",
+          "ref": "D 22–23",
+          "target": "frontier-f18",
+          "links": [
+            {
+              "ref": "D 22",
+              "target": "frontier-f18"
+            },
+            {
+              "ref": "D 23",
+              "target": "frontier-f18-detail"
+            }
+          ]
+        },
+        {
+          "title": "Train with distractors and growing distance",
+          "evidence": "2K → 8K → 32K, facts placed further apart",
+          "ref": "D 23",
+          "target": "frontier-f18-detail"
+        },
+        {
+          "title": "Long data needs a share, not the whole mix",
+          "evidence": "ProLong: 60% long + 40% short best; 100% long hurts",
+          "ref": "D 24",
+          "target": "frontier-f18-case-sampling"
+        }
+      ],
+      "takeaway": "Long context is taught by data that needs it.",
+      "source": "Recap of D 22–D 24 · Kimi K3 §3.4; RULER; ProLong §3.2 / Figure 3"
+    },
+    "trajectories": {
+      "current": 6,
+      "points": [
+        {
+          "title": "Record actions, results, failure and recovery",
+          "evidence": "not just final answers",
+          "ref": "D 25–26",
+          "target": "frontier-f19",
+          "links": [
+            {
+              "ref": "D 25",
+              "target": "frontier-f19"
+            },
+            {
+              "ref": "D 26",
+              "target": "frontier-f19-detail"
+            }
+          ]
+        },
+        {
+          "title": "Each task = environment + tools + verifier",
+          "evidence": "DeepSeek-V3.2: 1,827 environments, 4,417 tasks",
+          "ref": "D 27",
+          "target": "frontier-f19-case"
+        },
+        {
+          "title": "Synthetic environments transfer",
+          "evidence": "τ²-bench ≈55% → ≈83% after RL on synthetic tasks only",
+          "ref": "D 28",
+          "target": "frontier-f19-experiment"
+        }
+      ],
+      "takeaway": "Agent data is verified trajectories, not just answers.",
+      "source": "Recap of D 25–D 28 · DeepSeek-V3.2 §3.2.3 / Figure 5"
+    }
+  }
+}

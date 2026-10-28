@@ -1,0 +1,116 @@
+/* Brief DATA additions. Scoped to the data deck; native editable SVGs retain its monochrome + lime visual language. */
+/* D03: nine replacement scenes; the navigation highlight shares each scene's fragment index. */
+.reveal .bd-web-svg .bd-web-mono { font-family: var(--lecture-font-mono); }
+.reveal .bd-web-svg { letter-spacing: 0; }
+.reveal #brief-data-06 .fragment { transition: none; }
+.reveal #brief-data-06 .fv-source { line-height: 1.45; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal #brief-data-06 .fragment { transition: none !important; animation: none !important; }
+}
+.reveal .brief-data-slide .bd-body { top: 190px; height: 530px; }
+.reveal .brief-data-slide .bd-svg { width:1488px; height:530px; overflow:visible; }
+/* D06: fixed letter positions make disappearing token boundaries visible. */
+.reveal #brief-data-01 { --fv-ink: #141414; --fv-soft: #f3f3f3; --fv-line: #c5c5c5; --fv-lime: #bef264; --fv-muted: #626262; }
+.reveal #brief-data-01 .bpe-diagram { letter-spacing: 0; fill: var(--fv-ink); }
+.reveal #brief-data-01 .bpe-rule { font-size: 28px; font-weight: 500; }
+.reveal #brief-data-01 .bpe-kicker { font-size: 20px; fill: var(--fv-muted); letter-spacing: .04em; }
+.reveal #brief-data-01 .bpe-merge-text { font-size: 28px; font-weight: 500; }
+.reveal #brief-data-01 .bpe-count { font-size: 100px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.reveal #brief-data-01 .bpe-count-label { font-size: 28px; fill: var(--fv-muted); }
+.reveal #brief-data-01 .bpe-chip rect { fill: var(--fv-soft); stroke: var(--fv-line); stroke-width: 1.5; }
+.reveal #brief-data-01 .bpe-new rect { fill: var(--fv-lime); }
+.reveal #brief-data-01 .bpe-chip-text { font-size: 44px; font-weight: 550; }
+.reveal #brief-data-01 .bpe-why { font-size: 28px; }
+.reveal #brief-data-01 .bpe-caption { font-size: 24px; fill: var(--fv-muted); }
+.reveal #brief-data-01 .bpe-sentence { font-size: 38px; font-weight: 500; }
+.reveal #brief-data-01 .bpe-comparison-chip .bpe-chip-text { font-size: 36px; }
+.reveal #brief-data-01 .bpe-result { font-size: 48px; font-weight: 600; }
+.reveal #brief-data-01 .bpe-punchline { font-size: 44px; font-weight: 600; }
+/* Reveal's initial state is the inverse of the first fade-in-then-out state. */
+.reveal #brief-data-01 .bpe-initial:not(.visible) { opacity: 1; visibility: visible; }
+.reveal #brief-data-01 .bpe-initial.visible { opacity: 0; visibility: hidden; }
+/* Child fragments must stay hidden after the frozen-rules scene replaces training. */
+.reveal #brief-data-01 .bpe-training-head.visible,
+.reveal #brief-data-01 .bpe-training-head.visible *,
+.reveal #brief-data-01 .bpe-russian-learning.visible,
+.reveal #brief-data-01 .bpe-russian-learning.visible * { visibility: hidden !important; }
+.reveal #brief-data-01 .fragment { transition: none; }
+/* The existing print mode exposes all fragments: retain only the final comparison. */
+@media print {
+  .reveal #brief-data-01 .bpe-state,
+  .reveal #brief-data-01 .bpe-training-head,
+  .reveal #brief-data-01 .bpe-russian-head { display: none !important; }
+  .reveal #brief-data-01 .bpe-application,
+  .reveal #brief-data-01 .fv-takeaway { opacity: 1 !important; visibility: visible !important; }
+}
+.reveal.print-pdf #brief-data-01 .bpe-state,
+.reveal.print-pdf #brief-data-01 .bpe-training-head,
+.reveal.print-pdf #brief-data-01 .bpe-russian-head,
+.print-pdf .reveal #brief-data-01 .bpe-state,
+.print-pdf .reveal #brief-data-01 .bpe-training-head,
+.print-pdf .reveal #brief-data-01 .bpe-russian-head { display: none !important; }
+/* D08: replace the clip, sampling, patch and sequence scenes; accumulate scale. */
+.reveal #brief-data-03 {
+  --fv-ink: #141414; --fv-soft: #f3f3f3; --fv-line: #c5c5c5;
+  --fv-lime: #bef264; --fv-muted: #626262;
+  --lecture-font-heading: "Frontier Inter", sans-serif;
+}
+.reveal #brief-data-03 .video-sequence-diagram { fill: var(--fv-ink); letter-spacing: 0; }
+.reveal #brief-data-03 .fragment { transition: none; }
+.reveal #brief-data-03 .video-intro { font-size: 56px; font-weight: 600; }
+.reveal #brief-data-03 .video-scene-title { font-size: 40px; font-weight: 550; }
+.reveal #brief-data-03 .video-caption { font-size: 24px; fill: var(--fv-muted); }
+.reveal #brief-data-03 .video-frame-label { font-size: 30px; font-weight: 550; }
+.reveal #brief-data-03 .video-thumb-bg { fill: var(--fv-soft); }
+.reveal #brief-data-03 .video-thumb-outline { fill: none; stroke: var(--fv-line); }
+.reveal #brief-data-03 .video-sprocket { fill: none; stroke: var(--fv-line); stroke-width: 6px; }
+.reveal #brief-data-03 .video-time-axis { fill: none; stroke: var(--fv-ink); stroke-width: 2px; }
+.reveal #brief-data-03 .video-grid path { fill: none; stroke: var(--fv-muted); stroke-width: 1.5px; }
+.reveal #brief-data-03 .video-grid text { font-size: 24px; font-weight: 600; }
+.reveal #brief-data-03 .video-patch-caption { font-size: 30px; }
+.reveal #brief-data-03 .video-token rect { fill: var(--fv-soft); stroke: var(--fv-line); }
+.reveal #brief-data-03 .video-token text { font-size: 34px; font-weight: 550; }
+.reveal #brief-data-03 .video-group-bracket { fill: none; stroke: var(--fv-line); stroke-width: 2px; }
+.reveal #brief-data-03 .video-transformer { font-size: 38px; font-weight: 550; }
+.reveal #brief-data-03 .video-count { font-size: 44px; font-weight: 500; }
+.reveal #brief-data-03 .video-key-accent,
+.reveal #brief-data-03 .video-reduction-accent { fill: var(--fv-lime); }
+.reveal #brief-data-03 .video-count-total { font-size: 76px; font-weight: 600; }
+.reveal #brief-data-03 .video-scale-context { font-size: 28px; font-weight: 500; }
+.reveal #brief-data-03 .video-bar-label { font-size: 26px; }
+.reveal #brief-data-03 .video-equation { font-size: 34px; }
+.reveal #brief-data-03 .video-total { font-size: 56px; font-weight: 600; }
+.reveal #brief-data-03 .video-bar { fill: var(--fv-line); }
+.reveal #brief-data-03 .video-reduction { font-size: 88px; font-weight: 600; }
+.reveal #brief-data-03 .video-4k-label { font-size: 30px; font-weight: 600; }
+.reveal #brief-data-03 .video-metric { font-size: 60px; font-weight: 600; }
+.reveal #brief-data-03 .video-footnote { font-size: 20px; fill: var(--fv-muted); }
+.reveal #brief-data-03:has(.video-4k.visible) .video-reduction-accent { fill: var(--fv-soft); }
+.reveal .brief-data-slide#brief-data-03 .fv-source { top: 822px; font-size: 20px; line-height: 1.4; }
+/* The deck prints all fragments together. Keep only the final scale comparison. */
+@media print {
+  .reveal #brief-data-03 .video-scene { display: none !important; }
+  .reveal #brief-data-03 .video-scale,
+  .reveal #brief-data-03 .video-4k,
+  .reveal #brief-data-03 .fv-takeaway { opacity: 1 !important; visibility: visible !important; }
+  .reveal #brief-data-03 .video-reduction-accent { fill: var(--fv-soft); }
+}
+.print-pdf .reveal #brief-data-03 .video-scene { display: none !important; }
+.print-pdf .reveal #brief-data-03 .video-reduction-accent { fill: var(--fv-soft); }
+.reveal .brief-data-slide > h2 {font-size:48px;}
+.reveal .brief-data-slide .fv-source {font-size:15px;top:838px;line-height:1.4;}
+.reveal .fv-slide .bd-extra {position:absolute;left:56px;top:170px;width:1488px;height:655px;padding-top:20px;background:#fff;z-index:12;}
+.reveal .fv-slide .bd-extra .bd-svg {width:1488px;height:520px;}
+.reveal .fv-slide .bd-extra .bd-extra-take {border-top:1px solid var(--fv-line);border-left:5px solid var(--fv-lime);padding:14px 0 0 20px;font-size:28px;line-height:1.3;}
+.reveal .fv-slide .bd-extra-source {position:absolute;left:56px;top:838px;width:1410px;font-size:15px;line-height:1.4;background:#fff;z-index:14;}
+@media print { .reveal .bd-print-continuation .bd-extra {position:absolute;left:56px;top:170px;margin-top:0;} }
+.reveal #frontier-f14:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #frontier-f18:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #data-safety:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #data-still-open:has(.bd-extra.visible) > .fv-source {visibility:hidden;}
+.reveal #frontier-f14:has(.bd-extra.visible) > .fv-body, .reveal #frontier-f14:has(.bd-extra.visible) > .fv-body *, .reveal #frontier-f14:has(.bd-extra.visible) > .fv-takeaway, .reveal #frontier-f14:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #frontier-f18:has(.bd-extra.visible) > .fv-body, .reveal #frontier-f18:has(.bd-extra.visible) > .fv-body *, .reveal #frontier-f18:has(.bd-extra.visible) > .fv-takeaway, .reveal #frontier-f18:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #data-safety:has(.bd-extra.visible) > .fv-body, .reveal #data-safety:has(.bd-extra.visible) > .fv-body *, .reveal #data-safety:has(.bd-extra.visible) > .fv-takeaway, .reveal #data-safety:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-body, .reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-body *, .reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-takeaway, .reveal #data-programmatic-supervision:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}
+.reveal #data-still-open:has(.bd-extra.visible) > .fv-body, .reveal #data-still-open:has(.bd-extra.visible) > .fv-body *, .reveal #data-still-open:has(.bd-extra.visible) > .fv-takeaway, .reveal #data-still-open:has(.bd-extra.visible) > .fv-takeaway * {visibility:hidden!important;}

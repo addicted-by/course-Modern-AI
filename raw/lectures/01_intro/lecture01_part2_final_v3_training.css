@@ -3,7 +3,33 @@
 @import url("final_parts/training_20261007/slides_43_46.css");
 @import url("final_parts/training_20261007/slides_47_50.css");
 @import url("final_parts/training_20261007/slides_51_53.css");
+@import url("final_parts/training_20261007/slides_53_56.css");
 
 .reveal .training-slide .fv-source { line-height: 1.2; }
 .reveal .training-slide figure { margin: 0; }
 .reveal .training-slide img { object-fit: contain; }
+
+/* Original Training roadmap in the dark Architecture-cover palette. */
+.reveal .slides section#training-38 {
+  --fv-ink: #fafafa;
+  --fv-muted: #a1a1aa;
+  --fv-line: rgba(255, 255, 255, .2);
+  --lecture-fg: #fafafa;
+  --lecture-fg-soft: #cbd5e1;
+  --lecture-muted: #a1a1aa;
+  --tr38-background: #0a0a0a;
+  --tr38-accent-ink: #141414;
+  background: var(--tr38-background);
+  color: var(--fv-ink);
+}
+.reveal #training-38 .fv-cluster { color: var(--fv-muted); }
+.reveal #training-38 .fv-cluster.active,
+.reveal #training-38 .tr38-num { color: var(--tr38-accent-ink); }
+/* Override the shared dark-slide rule that makes all bold text white. */
+.reveal #training-38 .tr38-safety b { color: var(--tr38-accent-ink) !important; }
+.reveal #training-38 .tr38-step,
+.reveal #training-38 .tr38-repeat { background: var(--tr38-background); }
+.reveal #training-38 .tr38-step { border-top-color: var(--fv-line); }
+.reveal #training-38 .tr38-route g[stroke] { stroke: var(--lecture-fg-soft); }
+.reveal #training-38 .tr38-route g[stroke-dasharray] { stroke: var(--fv-muted); }
+.reveal #training-38 .tr38-route marker path { fill: var(--lecture-fg-soft); }

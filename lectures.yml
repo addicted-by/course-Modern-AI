@@ -25,16 +25,52 @@ lectures:
 
   - number: 3
     module: M1
-    title: "There is no single trick."
-    source: null
-    html: raw/lectures/01_intro/part2_v3_2/lecture01_part2_final_v3_2.html
+    title: "There is no single trick. Architecture"
+    source: raw/lectures/01_intro/lecture01_part2_final_v3_arch.qmd
+    html: raw/lectures/01_intro/lecture01_part2_final_v3_arch.html
     pdf: null
     pptx: null
     resources:
-      - raw/lectures/01_intro/part2_v3_2/**
-      - raw/lectures/01_intro/lecture01_final_v3.1.html
+      - raw/lectures/01_intro/final_parts/arch_20261007/details.js
 
   - number: 4
+    module: M1
+    title: "There is no single trick. Data"
+    source: raw/lectures/01_intro/lecture01_part2_final_v3_data.qmd
+    html: raw/lectures/01_intro/lecture01_part2_final_v3_data.html
+    pdf: null
+    pptx: null
+
+  - number: 5
+    module: M1
+    title: "There is no single trick. Training"
+    source: raw/lectures/01_intro/lecture01_part2_final_v3_training.qmd
+    html: raw/lectures/01_intro/lecture01_part2_final_v3_training.html
+    pdf: null
+    pptx: null
+    resources:
+      - raw/lectures/01_intro/final_parts/training_20261007/*.css
+
+  - number: 6
+    module: M1
+    title: "There is no single trick. Inference"
+    source: raw/lectures/01_intro/lecture01_part2_final_v3_inference.qmd
+    html: raw/lectures/01_intro/lecture01_part2_final_v3_inference.html
+    pdf: null
+    pptx: null
+    resources:
+      - raw/lectures/01_intro/final_parts/inference_narrative_20261007/*.css
+      - raw/lectures/01_intro/final_parts/inference_evidence_20261007/*.css
+
+  - number: 7
+    module: M1
+    title: "There is no single trick. Tools"
+    source: raw/lectures/01_intro/lecture01_part2_final_v3_tools.qmd
+    html: raw/lectures/01_intro/lecture01_part2_final_v3_tools.html
+    pdf: null
+    pptx: null
+
+  - number: 8
     module: M1
     title: "Can we name it AGI?"
     source: null
@@ -42,7 +78,7 @@ lectures:
     pdf: null
     pptx: null
 
-  - number: 5
+  - number: 9
     module: M1
     title: "Code Agents. Workflow."
     source: null
@@ -50,7 +86,7 @@ lectures:
     pdf: null
     pptx: null
 
-  - number: 6
+  - number: 10
     module: M2
     title: "Linear Algebra & Decomposition & LoRA. Preliminaries"
     source: null
@@ -58,7 +94,7 @@ lectures:
     pdf: null
     pptx: null
 
-  - number: 7
+  - number: 11
     module: M2
     title: "Linear Algebra & Decomposition & LoRA. Decomposition applications"
     source: null
@@ -66,7 +102,7 @@ lectures:
     pdf: null
     pptx: null
   
-  - number: 8
+  - number: 12
     module: M2
     title: "Linear Algebra & Decomposition & LoRA. LoRA in details"
     source: null

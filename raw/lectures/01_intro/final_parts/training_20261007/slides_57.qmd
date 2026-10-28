@@ -1,0 +1,37 @@
+## Training shapes the model. Inference uses its capabilities. {#training-53 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">57</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr53-body">
+  <span class="fragment tr53-collapse" data-fragment-index="0" aria-hidden="true"></span>
+  <div class="tr53-map" aria-label="Seven training objectives: the training signal and how the result was checked">
+    <div class="tr53-map-caption">For each objective: what signal the model received, whose data it learned from, and how the result was checked</div>
+    <div class="tr53-grid">
+      <div class="tr53-head"><span></span><span>Objective</span><span>Training signal</span><span>Off / on-policy</span><span>Checked with</span></div>
+      <div class="tr53-row"><small>1</small><strong>Pretraining</strong><span>Next token · broad corpus</span><span class="tr53-off">off</span><span>MMLU · MATH · EvalPlus · MGSM</span></div>
+      <div class="tr53-row"><small>2</small><strong>Mid-training</strong><span>Next token · targeted data</span><span class="tr53-off">off</span><span>SWE-Bench, same scaffold</span></div>
+      <div class="tr53-row"><small>3</small><strong>SFT</strong><span>Demonstration of a good response</span><span class="tr53-off">off</span><span>Human preference vs. SFT 175B</span></div>
+      <div class="tr53-row"><small>4</small><strong>Preferences</strong><span>Comparison: A preferred to B</span><span class="tr53-both">off (DPO) · on (RLHF)</span><span>GPT-4 judge vs. human summaries</span></div>
+      <div class="tr53-row"><small>5</small><strong>Capability RL</strong><span>Verified outcome of own attempts</span><span class="tr53-on">on</span><span>AIME pass@1</span></div>
+      <div class="tr53-row"><small>6</small><strong>Distillation / loops</strong><span>Teacher signal · filtered own solutions</span><span class="tr53-both">off + on</span><span>AIME · LiveCodeBench · STaR accuracy</span></div>
+      <div class="tr53-row"><small>7</small><strong>Safety</strong><span>Rule-based examples + rule-aware judge</span><span class="tr53-both">off (SFT) · on (RL)</span><span>StrongREJECT · XSTest</span></div>
+    </div>
+    <div class="tr53-map-note">A few kinds of training signal, reused for different goals. <span>On-policy: the model learns from its own attempts.</span></div>
+  </div>
+  <div class="tr53-trained"><span class="tr53-kicker">Training outcome</span><strong>Trained model</strong><div>Capabilities</div><div>Behavior</div><div>Constraints</div></div>
+  <div class="tr53-bridge fragment" data-fragment-index="1"><div>Fixed weights.<br>A specific task.<br>A compute budget.</div><span>→</span></div>
+  <div class="tr53-inference fragment" data-fragment-index="1"><span class="tr53-kicker">Next section</span><strong>Inference</strong><div class="tr53-query"><small>New query</small><span>Solve a specific task</span></div></div>
+</div>
+<div class="fv-takeaway fragment" data-fragment-index="2">How should we organize computation to get a better result from the trained model?</div>
+<div class="fv-source">Course synthesis of slides 38–52 · signals and checks from the experiments shown · From training to inference with fixed weights</div>
+```
+
+::: {.notes}
+Return to the opening map after the beyond-text block (slides 53–56), which showed the same signals for images, video and audio. Now answer the two questions promised on slide 38 for each objective: what training signal the model received, and how the result was checked on the slides. Read the middle column: there are only a few kinds of signal — next token, demonstration, comparison, verified outcome — and a few providers: humans, tests, a stronger model, or the model itself. Safety introduces no new signal type; it reuses examples, SFT, and RL for a different goal. Distillation changes who provides the signal. STaR is effectively simplified RL. A few kinds of signal, reused for different goals, is the section’s main takeaway. The fourth column says whose data the model learns from. Off-policy: the data were produced by someone other than the model being trained — corpus, humans, a teacher. On-policy: the model learns from its own attempts. SFT and DPO are off-policy; RL and on-policy distillation are on-policy; STaR sits in between, using its own samples but learning from them by SFT. The right column reminds us that each conclusion was tied to a specific check. This is a narrative map, not a mandatory sequence for every model.
+
+On the first click, the table collapses into a single trained checkpoint. The three lines inside the block are a course synthesis: capabilities, behavior, and constraints. They are not measured dimensions and do not add up to an overall score.
+
+On the second click, a new query and the Inference section appear. For the next discussion, we hold the model's weights fixed. Call back two moments where the result changed without training: the cons@16 curve on slide 48 (same weights, majority vote over 16 answers) and the gray bar on slide 52 (same weights, rules in the prompt).
+
+The last click leaves the question for the next section: how should we organize computation to get a better result? This leads to test-time compute, solution strategies, and result verification with a fixed checkpoint.
+:::

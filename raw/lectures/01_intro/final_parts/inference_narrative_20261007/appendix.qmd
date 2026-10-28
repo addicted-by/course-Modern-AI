@@ -126,40 +126,6 @@
 **Источник:** [Kwon et al., §§4, 6.3, 7.1; Figure 15](https://arxiv.org/html/2309.06180#S6.SS3). [@ai26_ef8b5f9fca84]
 :::
 
-## How does MTP help propose a draft? {#inference-a05 .fv-slide .inference-appendix background-color="#ffffff"}
-
-```{=html}
-<div class="fv-meta"><span class="fv-id">A05</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster">Training</span><span class="fv-cluster active">Inference</span><span class="fv-cluster">Tools</span><a class="inference-appendix-return" href="#/inference-16">Appendix · back to main section</a></div>
-<div class="fv-body inf60-body">
-<div class="inf60-mechanism">
-<div class="inf60-stage"><b class="inf60-step">01</b><div><h3>Who proposes the draft?</h3><p>An MTP module or a separate small model</p><div class="inf60-tokens"><span>d₁</span><span>d₂</span><span>d₃</span><small>illustrative continuation</small></div></div></div>
-<div class="inf60-stage"><b class="inf60-step">02</b><div><h3>How does the target verify?</h3><p>Target probabilities → accept / correct</p><div class="inf60-outcome"><span>d₁</span><span>d₂</span><del>d₃</del><b>+ correction</b></div></div></div>
-<div class="inf60-state"><b>State reconciliation</b><span>KV / recurrent state → accepted prefix</span></div>
-</div>
-<div class="inf60-evidence">
-<div class="inf60-label">DEEPSEEK-V3 · INFERENCE, §5.4.3</div>
-<h3>MTP + speculative decoding</h3>
-<div class="inf60-stat"><strong>85–90%</strong><span>acceptance of the second<br>predicted token</span></div>
-<div class="inf60-stat inf60-tps"><strong>1.8×</strong><span>TPS · tokens per second</span></div>
-<p class="inf60-boundary">Result of the authors’ implementation.<br>Not guaranteed for every MTP module.</p>
-</div>
-</div>
-<div class="fv-takeaway">A useful drafter yields enough accepted tokens to justify proposing and verifying them.</div>
-<div class="fv-source"><a href="https://arxiv.org/html/2412.19437#S5.SS4.SSS3">DeepSeek-V3, 2024 · §5.4.3</a> · MTP: §2.2 · <a href="https://arxiv.org/html/2211.17192#S2.SS3">Leviathan et al., 2023 · Algorithm 1</a> · Teaching diagram</div>
-```
-
-::: {.notes}
-Разделяем два решения. MTP задаёт источник кандидатов; speculative sampling задаёт проверку и коррекцию. В DeepSeek-V3 дополнительные MTP-модули сохраняют причинную зависимость предсказаний (§2.2). Это не просто независимые головы, одновременно угадывающие любое число токенов.
-
-Схема слева условная: d₁ и d₂ приняты, d₃ отвергнут; после первого отказа оставшийся draft отбрасывается. Состояние должно соответствовать принятому продолжению. Проверка target используется вместе с корректным протоколом sampling, а не с произвольным правилом «заменить неудачный токен».
-
-В §5.4.3 DeepSeek-V3 использует предсказание двух следующих токенов: авторы сообщают acceptance второго 85–90% на разных темах генерации и 1,8× TPS совместно со speculative decoding. Три условных токена слева не изображают эту конкретную конфигурацию. Метрика справа относится к inference, не к абляции качества MTP при обучении. В этом разделе не приведён полный разрез условий по batch size, температуре и аппаратуре: число нельзя переносить на произвольное развёртывание или любой MTP-модуль.
-
-Высокая acceptance полезна только вместе с низкой стоимостью drafter и эффективной target verification. Следующий слайд отдельно отвечает на вопрос о корректности распределения.
-
-**Источники:** [DeepSeek-V3, §2.2, §5.4.3](https://arxiv.org/html/2412.19437#S5.SS4.SSS3), [Leviathan et al., Algorithm 1](https://arxiv.org/html/2211.17192#S2.SS3). [@deepseek2024v3; @ai26_011288a5bb28]
-:::
-
 ## Why does speculative sampling preserve the target distribution? {#inference-a06 .fv-slide .inference-appendix .fv-detail background-color="#ffffff"}
 
 ```{=html}

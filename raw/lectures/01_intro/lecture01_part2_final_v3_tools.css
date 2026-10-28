@@ -75,3 +75,16 @@
 .reveal .controller-states { position: absolute; top: 463px; left: 0; width: 1488px; display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 32px; padding-top: 16px; border-top: 1px solid var(--fv-line); }
 .reveal .controller-states h3 { font-size: 28px; }
 .reveal .controller-states p { margin-top: 8px; font-size: 22px; line-height: 1.3; }
+
+
+/* Missed-slides brief, TOOL-01–13. Scoped to the new slides only. */
+.reveal .fv-slide.btool-slide > h2 { font-size: 47px; }
+.reveal .fv-slide .btool-body { top: 176px; height: 550px; }
+.reveal .btool-body svg { display: block; overflow: visible; }
+.reveal .btool-body svg text { letter-spacing: -0.015em; }
+.reveal .btool-body svg .btool-mono { font-family: var(--lecture-font-mono); letter-spacing: -.025em; }
+.reveal .btool-slide .fv-takeaway { font-size: 28px; }
+.reveal .btool-slide .fv-source { font-size: 15px; }
+.reveal .btool-body .btool-cfg-equation { position: absolute; left: 0; top: 398px; font-size: 34px; }
+.reveal .btool-body .btool-cfg-equation p { margin-top: 20px; font-size: 22px; color: var(--fv-muted); }
+.reveal .btool-body .btool-cost-equation { position: absolute; top: 180px; right: 0; font-size: 25px; }

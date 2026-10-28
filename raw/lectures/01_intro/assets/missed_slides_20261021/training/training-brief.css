@@ -1,0 +1,76 @@
+/* Missed-slides brief, Training. Scoped to new slides and the TRAIN-04 band. */
+.reveal .bt-slide .bt-body { font-size: 27px; }
+.reveal .bt-slide .bt-diagram { display: block; width: 1488px; height: 520px; }
+.reveal .bt-slide .bt-caption { font-size: 27px; font-weight: 600; margin-bottom: 22px; }
+.reveal .bt-slide .bt-small { font-size: 22px; line-height: 1.3; color: var(--fv-muted); margin-top: 18px; }
+.reveal .bt-slide .bt-two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.reveal .bt-slide .bt-box { padding: 20px 25px; border: 1px solid var(--fv-line); font-size: 28px; }
+.reveal .bt-slide .bt-box small { display: block; font-size: 21px; color: var(--fv-muted); margin-bottom: 12px; }
+.reveal .bt-slide .bt-box small:last-child { margin: 12px 0 0; }
+.reveal .bt-slide .bt-tint, .reveal .bt-slide .bt-train { background: var(--fv-lime); }
+.reveal .bt-slide .bt-bt-equation { position: absolute; left: 825px; top: 346px; font-size: 27px; }
+.reveal .bt-slide .bt-metrics { font-size: 25px; }
+.reveal .bt-slide .bt-metrics th { background: var(--fv-soft); font-size: 23px; }
+.reveal .bt-slide .bt-metrics td { padding: 14px 18px; }
+.reveal .bt-slide .bt-metrics td:first-child { font-weight: 600; width: 24%; }
+.reveal .bt-slide .bt-metrics td:nth-child(2) { width: 41%; }
+.reveal .bt-slide .bt-contrasts { margin-top: 22px; font-size: 24px; }
+.reveal .bt-slide .bt-contrasts > div { border-left: 5px solid var(--fv-lime); padding-left: 16px; }
+.reveal .bt-slide .bt-contrasts b { display: inline-block; margin-right: 20px; }
+.reveal .bt-slide .bt-stages { border-top: 1px solid var(--fv-ink); }
+.reveal .bt-slide .bt-row { display: grid; grid-template-columns: 270px 1fr 1fr; gap: 15px; align-items: center; border-bottom: 1px solid var(--fv-line); min-height: 89px; }
+.reveal .bt-slide .bt-row > * { padding: 12px 18px; }
+.reveal .bt-slide .bt-head { min-height: 53px; font-size: 22px; background: var(--fv-soft); }
+.reveal .bt-slide .bt-uncertain { color: var(--fv-muted); font-size: 24px; }
+.reveal .bt-slide .bt-joint { display: flex; gap: 30px; align-items: center; margin-top: 32px; font-size: 27px; }
+.reveal .bt-slide .bt-mode-matrix { display: grid; grid-template-columns: 270px 1fr 1fr; grid-template-rows: 45px 132px 132px; gap: 18px; align-items: center; }
+.reveal .bt-slide .bt-mode-matrix > b { font-size: 25px; }
+.reveal .bt-slide .bt-mode { background: var(--fv-soft); border: 1px solid var(--fv-line); padding: 35px 20px; font-size: 27px; text-align: center; }
+.reveal .bt-slide .bt-condition { display: flex; gap: 24px; align-items: center; padding-top: 26px; margin-top: 22px; border-top: 1px solid var(--fv-line); font-size: 25px; }
+.reveal .bt-slide .bt-condition small { font-size: 21px; color: var(--fv-muted); }
+.reveal .bt-slide .bt-token { display: inline-block; padding: 11px 17px; border: 1px solid var(--fv-line); }
+.reveal .bt-slide .bt-drop { text-decoration: line-through; color: var(--fv-muted); background: var(--fv-soft); }
+.reveal .bt-slide .bt-lora-eq { position: absolute; left: 300px; top: 220px; width: 510px; text-align: center; font-size: 31px; }
+.reveal .bt-slide .bt-lora-eq > span:not(.math) { display: block; font-size: 24px; margin-top: 12px; }
+.reveal .bt-slide .bt-reference { display: grid; grid-template-columns: 490px 530px 1fr; gap: 26px; align-items: center; }
+.reveal .bt-slide .bt-inputs { display: grid; gap: 12px; }
+.reveal .bt-slide .bt-inputs > b { font-size: 24px; }
+.reveal .bt-slide .bt-inputs .bt-box { font-size: 26px; padding: 14px 20px; }
+.reveal .bt-slide .bt-inputs .bt-small { margin-top: 0; }
+.reveal .bt-slide .bt-model { display: flex; align-items: center; gap: 26px; }
+.reveal .bt-slide .bt-model .bt-box { width: 350px; text-align: center; padding: 40px 20px; }
+.reveal .bt-slide .bt-model b { display: block; font-size: 36px; }
+.reveal .bt-slide .bt-prefix { display: flex; gap: 20px; align-items: center; margin-top: 20px; font-size: 24px; }
+.reveal .bt-slide .bt-training-path { display: grid; grid-template-columns: 460px 45px 360px 45px 1fr; align-items: center; gap: 16px; }
+.reveal .bt-slide .bt-training-path .bt-box { min-height: 145px; display: flex; flex-direction: column; justify-content: center; }
+.reveal .bt-slide .bt-infer-path { display: grid; grid-template-columns: 210px 30px 290px 30px 360px 30px 1fr; align-items: center; gap: 15px; margin: 35px 0; }
+.reveal .bt-slide .bt-infer-path .bt-box { font-size: 26px; padding: 20px; }
+.reveal .bt-slide .bt-specific { border-top: 1px solid var(--fv-line); padding-top: 20px; }
+.reveal .bt-slide .bt-specific > b { font-size: 25px; display: block; margin-bottom: 15px; }
+.reveal .bt-slide .bt-ready { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 25px; }
+.reveal .bt-slide .bt-feedback { display: grid; grid-template-columns: 680px 1fr; gap: 48px; height: 520px; }
+.reveal .bt-slide .bt-candidates { position: relative; height: 520px; }
+.reveal .bt-slide .bt-visual-mode, .reveal .bt-slide .bt-audio-mode { position: absolute; inset: 0; }
+.reveal .bt-slide .bt-visual-mode svg { width: 680px; height: 480px; }
+.reveal .bt-slide .bt-paths { display: grid; grid-template-rows: 185px 185px 90px; gap: 20px; }
+.reveal .bt-slide .bt-route { border-left: 5px solid var(--fv-lime); padding: 10px 0 0 24px; font-size: 29px; }
+.reveal .bt-slide .bt-route b { display: block; margin-bottom: 10px; font-size: 30px; }
+.reveal .bt-slide .bt-route small { display: block; margin-top: 10px; font-size: 22px; color: var(--fv-muted); }
+.reveal .bt-slide .bt-audio-mode { padding-top: 15px; }
+.reveal .bt-slide .bt-audio-mode svg { width: 280px; height: 80px; display: block; margin: 20px 0; }
+.reveal .bt-slide audio { width: 295px; max-width: 100%; display: block; }
+.reveal .bt-slide .bt-audio-mode p { margin-top: 25px; }
+.reveal #training-50 .bt-fast { display: grid; grid-template-columns: 590px 1fr; gap: 25px; top: 746px; padding-top: 13px; font-size: 24px; }
+.reveal #training-50 .bt-fast span { display: block; font-size: 21px; color: var(--fv-muted); margin-top: 9px; }
+@media print {
+  /* A print-only continuation retains audio, transcript and feedback attributions. */
+  .reveal #brief-train-15 .bt-audio-mode { display: none !important; }
+  .reveal #brief-train-15 .bt-visual-mode { opacity: 1 !important; visibility: visible !important; }
+}
+
+.reveal #brief-train-15 .bt-visual-mode.fragment.fade-out.visible, .reveal #training-50 .tr50-table-state.fragment.fade-out.visible { opacity: 0 !important; visibility: hidden !important; }
+@media print { .reveal #brief-train-15 .bt-visual-mode.fragment.fade-out.visible { opacity: 1 !important; visibility: visible !important; } }
+
+.reveal #brief-train-15 .bt-route .fragment.fade-out.visible { opacity: 0 !important; visibility: hidden !important; }
+/* Keep the condition-dropout note clear of the fixed takeaway rule. */
+.reveal #brief-train-11 .bt-condition { margin-top: 10px; padding-top: 20px; }

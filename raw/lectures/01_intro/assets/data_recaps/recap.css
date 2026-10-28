@@ -1,0 +1,108 @@
+/* Cumulative conclusion pattern. Uses the deck's existing monochrome tokens. */
+.reveal .data-recap-slide .recap-layout {
+  top: 166px;
+  height: 650px;
+  display: grid;
+  grid-template-columns: 370px minmax(0, 1fr);
+  gap: 46px;
+}
+.reveal .data-recap-slide .recap-progress {
+  border-right: 1px solid var(--fv-line);
+  padding-right: 24px;
+}
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-progress ol,
+.reveal .data-recap-slide .recap-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-progress ol {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-topic {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  margin: 0;
+  padding: 7px 8px;
+}
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-icon { font-size: 23px; line-height: 1; }
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  margin: 0;
+}
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-topic-title {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: .015em;
+}
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-summary {
+  margin-top: 7px;
+  font-size: 19px;
+  line-height: 1.28;
+}
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-future { color: var(--fv-muted); }
+.reveal :is(.data-recap-slide, .data-progress-only) .recap-current {
+  background: var(--fv-lime);
+  border-left: 3px solid var(--fv-ink);
+  padding-left: 5px;
+}
+.reveal .data-recap-slide .recap-main { min-width: 0; display: flex; flex-direction: column; }
+.reveal .data-recap-slide .recap-heading {
+  font: 600 24px/1.3 var(--lecture-font-sans);
+  letter-spacing: 0;
+  margin: 5px 0 27px;
+}
+.reveal .data-recap-slide .recap-heading span { font-weight: 400; color: var(--fv-muted); }
+.reveal .data-recap-slide .recap-points { display: grid; gap: 26px; }
+.reveal .data-recap-slide .recap-point {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 116px;
+  align-items: start;
+  gap: 15px;
+  min-height: 123px;
+  margin: 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--fv-line);
+}
+.reveal .data-recap-slide .recap-number { font: 500 23px/1.4 var(--lecture-font-mono); color: var(--fv-muted); }
+.reveal .data-recap-slide .recap-point h4 {
+  font: 600 30px/1.16 var(--lecture-font-heading);
+  letter-spacing: -.02em;
+}
+.reveal .data-recap-slide .recap-evidence { margin-top: 10px; font-size: 23px; line-height: 1.28; color: var(--fv-muted); }
+.reveal .data-recap-slide .recap-ref { font: 500 20px/1.5 var(--lecture-font-mono); white-space: nowrap; text-align: right; }
+.reveal .data-recap-slide .recap-ref:focus-visible { outline: 2px solid var(--fv-ink); outline-offset: 5px; }
+.reveal .data-recap-slide .fv-takeaway {
+  position: static;
+  width: auto;
+  margin-top: auto;
+  font-size: 28px;
+  padding-top: 15px;
+}
+/* Cumulative reveal: no movement, no disappearing earlier points. */
+.reveal .data-recap-slide .fragment { transition: none; }
+@media print {
+  .reveal .data-recap-slide .fragment { visibility: visible !important; opacity: 1 !important; }
+}
+
+.reveal .data-recap-slide .recap-refs { display: flex; flex-direction: column; align-items: flex-end; }
+/* Later recaps accumulate summaries while retaining the original three-point layout. */
+.reveal :is(#data-recap-long-context, #data-recap-trajectories) .recap-layout { grid-template-columns: 400px minmax(0, 1fr); gap: 38px; }
+.reveal :is(#data-recap-long-context, #data-recap-trajectories) .recap-progress ol { gap: 6px; }
+.reveal :is(#data-recap-long-context, #data-recap-trajectories) .recap-topic { padding-top: 4px; padding-bottom: 4px; }
+.reveal :is(#data-recap-long-context, #data-recap-trajectories) .recap-summary { font-size: 18px; margin-top: 5px; }
+.reveal #data-close .data-progress-only .recap-progress { border-left: 1px solid var(--fv-line); padding-left: 24px; }
+.reveal #data-close .data-progress-only .recap-progress ol { gap: 4px; }
+.reveal #data-close .data-progress-only .recap-topic { padding: 4px 0; gap: 10px; }
+.reveal #data-close .data-progress-only .recap-topic-title { font-size: 18px; }
+.reveal #data-close .data-progress-only .recap-summary { font-size: 18px; line-height: 1.22; margin-top: 3px; }

@@ -1,0 +1,319 @@
+## Beyond text: web-scale pairs buy robustness {#training-mm-pretraining .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">53</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body mm53-body">
+  <div class="mm53-frame"><span class="fv-label">Beyond text</span><b>Same objectives, new data:</b> images, video, audio <i>·</i> <span>Pretraining</span></div>
+  <div class="mm53-panels">
+    <div class="mm53-panel">
+      <div class="mm53-head"><h3>Images · CLIP</h3><span>400M image–text pairs from the web</span></div>
+      <img src="assets/training_20261007/multimodal/clip_fig13_right.png" alt="Original right panel of CLIP Figure 13: banana examples from ImageNet, ImageNetV2, ImageNet-R, ObjectNet, ImageNet Sketch and ImageNet-A, with accuracy of ImageNet ResNet-101 versus zero-shot CLIP: 76.2 vs 76.2, 64.3 vs 70.1, 37.7 vs 88.9, 32.6 vs 72.3, 25.2 vs 60.2, 2.7 vs 77.1.">
+      <div class="mm53-read fragment" data-fragment-index="1"><b>Same ImageNet accuracy: 76.2</b><span>ObjectNet: 32.6 vs 72.3 · accuracy ↑</span></div>
+    </div>
+    <div class="mm53-panel fragment" data-fragment-index="2">
+      <div class="mm53-head"><h3>Speech · Whisper</h3><span>680,000 hours of weakly labeled audio</span></div>
+      <img class="mm53-whisper" src="assets/training_20261007/multimodal/whisper_table2.png" alt="Original Whisper Table 2: wav2vec 2.0 Large (no LM) and zero-shot Whisper Large V2 both reach 2.7 WER on LibriSpeech Clean; on 13 other datasets the average WER is 29.3 versus 12.8, a 55.2% relative error reduction.">
+      <div class="mm53-read"><b>Same LibriSpeech WER: 2.7</b><span>Other datasets: 29.3 vs 12.8 · WER ↓</span></div>
+    </div>
+  </div>
+</div>
+<div class="fv-takeaway">Broad, noisy web data buys robustness that a clean benchmark cannot show.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2103.00020">Radford et al. · CLIP · 2021</a> · Figure 13, right panel · <a href="https://arxiv.org/abs/2212.04356">Radford et al. · Whisper · 2022</a> · Table 2 · Original figure and table</div>
+```
+
+::: {.notes}
+This slide opens a short block on the same training objectives beyond text: images, video and audio. What changes is how data become model input, the pretraining signal, and the check. We start with pretraining.
+
+**Initial view — CLIP.** CLIP learns from 400 million image–text pairs collected from the internet; the signal is which caption goes with which image. The right panel of Figure 13 compares the best zero-shot CLIP model (ViT-L/14@336px) with ResNet-101, chosen because it has the same ImageNet accuracy.
+
+**First click.** Read the first row: both models reach 76.2 on ImageNet. Then read down: on ObjectNet, ResNet-101 drops to 32.6 while zero-shot CLIP keeps 72.3; on ImageNet-A, 2.7 versus 77.1. The axis here is accuracy: higher is better.
+
+**Second click — Whisper.** The same experiment for speech. Whisper is trained on 680,000 hours of weakly labeled audio. Table 2 compares it with wav2vec 2.0 Large (no LM), fine-tuned on LibriSpeech: both reach 2.7 WER on LibriSpeech Clean, but the average WER on the other datasets is 29.3 versus 12.8, a 55.2% relative error reduction. Warn about the direction: WER is an error rate, so lower is better, unlike the CLIP panel.
+
+The lesson is shared across modalities: one clean benchmark cannot reveal what broad, noisy web data adds. Both are author-reported results on their protocols; CLIP's right panel shows one class, bananas, on 5 of 7 shift datasets. Transition: what comes after broad pretraining when the target is video?
+
+Sources: [CLIP, Figure 13](https://arxiv.org/abs/2103.00020); [Whisper, Table 2](https://arxiv.org/abs/2212.04356). Crops and boxes: research/training_20261007/multimodal/provenance.txt.
+:::
+
+## Audio quality needs several independent measurements {#brief-train-08 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-08 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T08</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><div class="bt-caption">One recording, several questions: “The blue cup is on the table.”</div><table class="bt-metrics"><thead><tr><th>What we test</th><th>How we measure it</th><th>What it does not prove</th></tr></thead><tbody><tr><td>Intelligibility</td><td>WER / CER ↓ · ASR vs transcript</td><td>Naturalness or voice identity</td></tr><tr class="fragment" data-fragment-index="1"><td>Naturalness</td><td>MOS ↑ · listener ratings 1–5</td><td>Correct words or task success</td></tr><tr class="fragment" data-fragment-index="2"><td>Speaker similarity</td><td>SIM ↑ · speaker embeddings</td><td>A pleasant or intelligible result</td></tr><tr class="fragment" data-fragment-index="3"><td>Preference</td><td>Blind pairs · score + uncertainty</td><td>Universal quality across protocols</td></tr><tr class="fragment" data-fragment-index="4"><td>Music</td><td>WildSongBench metrics + expert listening</td><td>That all musical criteria agree</td></tr></tbody></table><div class="bt-two bt-contrasts fragment" data-fragment-index="5"><div><b>Illustrative A</b>Words right · voice less similar</div><div><b>Illustrative B</b>Voice similar · a word missing</div></div><div class="bt-small">Match language, reference, texts, judges and date. Preference scores: see T01.</div></div>
+<div class="fv-takeaway">Choose the measurements that match the use case, then listen.</div>
+<div class="fv-source"><a href="https://www.itu.int/rec/T-REC-P.800-199608-I/en">ITU-T P.800</a> · <a href="https://arxiv.org/html/2505.07916v1">MiniMax-Speech · §3.2–3.3</a> · <a href="https://arxiv.org/html/2609.33757v1">YuE2 · §4.1</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+Begin with the WER already introduced by Whisper. The reference transcript tells us what words should be spoken; an ASR system provides a proxy transcript. WER and CER count word-level and character-level errors, respectively, and depend on the recognizer and normalization.
+
+Reveal listener ratings, speaker similarity and blind preferences in turn. MOS averages a specified listening scale; the P.800 absolute-category scale has five levels. SIM depends on the speaker encoder. Pairwise preference inherits the protocol caveats from T01. None substitutes for the others.
+
+The music row separates automated musical/alignment measurements from human listening. YuE2 uses WildSongBench for its prompt benchmark and SongBench as one automatic evaluator. These names refer to different parts of the evaluation protocol. No single score or historical vendor leaderboard is recreated.
+
+The final two invented outcomes show why axes can disagree: the words can be accurate with a weak identity match, or the identity can be convincing with a missing word. They are qualitative illustrations, not results from real models. Ask what matters most for an audiobook, a language lesson or a voice assistant.
+
+Sources: [P.800](https://www.itu.int/rec/T-REC-P.800-199608-I/en); [MiniMax-Speech](https://arxiv.org/html/2505.07916v1); [YuE2 §4.1](https://arxiv.org/html/2609.33757v1).
+:::
+
+## Curriculum: from cheap and broad to the target setting {#training-mm-curriculum .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">54</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body mm54-body">
+  <div class="mm54-main">
+    <div class="mm54-head"><h3>Video generation · Movie Gen</h3><span>Figure 2 · training recipe</span></div>
+    <img src="assets/training_20261007/multimodal/moviegen_fig2.png" alt="Original Movie Gen Figure 2: text-to-image at 256 px, then joint text-to-image and text-to-video pre-training from 256 to 768 px videos up to 16 s at 16 FPS, then branches for personalized text-to-video, text-to-video finetuning and video-to-video editing.">
+    <div class="mm54-funnel fragment" data-fragment-index="1">
+      <div><small>256 px · images</small><b>1.94B</b></div><i>→</i>
+      <div><small>256 px · images + videos</small><b>394.8M</b></div><i>→</i>
+      <div><small>768 px · images + videos</small><b>73.8M</b></div>
+      <p>samples seen (Table 3)</p>
+    </div>
+    <div class="mm54-quote fragment" data-fragment-index="1">From scratch, at the same GPU hours: “significantly worse visual and temporal quality”</div>
+  </div>
+  <div class="mm54-side fragment" data-fragment-index="2">
+    <div class="mm54-head"><h3>VLM · Qwen3-VL</h3><span>Table 1 · pretraining</span></div>
+    <div class="mm54-table" role="table" aria-label="Qwen3-VL Table 1, transcribed">
+      <div class="mm54-th" role="row"><span role="columnheader">Stage</span><span role="columnheader">Trains</span><span role="columnheader">Tokens</span><span role="columnheader">Context</span></div>
+      <div class="mm54-row mm54-s0" role="row"><span role="cell">S0</span><span role="cell">Merger only</span><span role="cell">67B</span><span role="cell">8,192</span></div>
+      <div class="mm54-row" role="row"><span role="cell">S1</span><span role="cell">All</span><span role="cell">~1T</span><span role="cell">8,192</span></div>
+      <div class="mm54-row" role="row"><span role="cell">S2</span><span role="cell">All</span><span role="cell">~1T</span><span role="cell">32,768</span></div>
+      <div class="mm54-row" role="row"><span role="cell">S3</span><span role="cell">All</span><span role="cell">100B</span><span role="cell">262,144</span></div>
+    </div>
+    <p class="mm54-note">S0: vision encoder and LLM frozen; only the bridge between them learns.</p>
+  </div>
+</div>
+<div class="fv-takeaway">As in mid-training: cheap, broad experience first, then closer to the target.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2410.13720">Movie Gen · 2024</a> · Figure 2, §3.2.2, Table 3 · <a href="https://arxiv.org/abs/2511.21631">Qwen3-VL · 2025</a> · Table 1, §3.1 · Original figure; table transcribed</div>
+```
+
+::: {.notes}
+Pretraining for other modalities is also staged. This slide parallels slides 41–42: the experience moves step by step toward the target setting.
+
+**Initial view — Movie Gen Figure 2.** The original training recipe of Movie Gen Video: text-to-image training at 256 px, then joint text-to-image and text-to-video pretraining from 256 to 768 px, then finetuning and additional capabilities such as personalization and editing. Images are treated as single-frame videos, so one model learns both.
+
+**First click — why stages.** Table 3 counts samples seen at each stage: 1.94B at 256 px images, 394.8M at 256 px images plus videos, 73.8M at 768 px. Cheap low-resolution images dominate; expensive high-resolution video comes last. Section 3.2.2 gives the reason: training the joint model from scratch converged more slowly and, at the same GPU hours, gave significantly worse visual and temporal quality than the multi-stage recipe.
+
+**Second click — Qwen3-VL Table 1, transcribed.** The same pattern for a vision–language model. In S0 only the MLP merger between the frozen vision encoder and the frozen LLM is trained, on about 67B tokens. Then all parameters train on about 1T tokens, then context grows to 32K and finally 262K. Link to projects: an adapter that connects a pretrained audio encoder to an image generator is the S0 idea.
+
+Keep the analogy precise: the authors call these stages pretraining; the course groups them with mid-training because they move the model toward the target setting.
+
+Sources: [Movie Gen, Figure 2, §3.2.2, Table 3](https://arxiv.org/abs/2410.13720); [Qwen3-VL, Table 1, §3.1](https://arxiv.org/abs/2511.21631).
+:::
+
+## Early fusion starts with a mixed training stream {#brief-train-09 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-09 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T09</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><svg class="bt-diagram" viewBox="0 0 1488 520" role="img" aria-label="Text and image tokens are interleaved from step zero of shared Transformer training. A separately prepared image tokenizer supplies the image codes."><text x="0" y="30" font-size="22" fill="#626262" font-weight="400" text-anchor="start">ONE MIXED DOCUMENT</text><g class="fragment" data-fragment-index="1"><rect x="0" y="67" width="300" height="90" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><text x="150.0" y="121.8" font-size="28" fill="#141414" font-weight="600" text-anchor="middle">A red cup</text><rect x="322" y="67" width="280" height="90" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="462.0" y="121.8" font-size="28" fill="#141414" font-weight="600" text-anchor="middle">Image codes</text><rect x="624" y="67" width="420" height="90" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><text x="834.0" y="121.8" font-size="28" fill="#141414" font-weight="600" text-anchor="middle">beside a blue plate</text><rect x="1066" y="67" width="420" height="90" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="1276.0" y="121.8" font-size="28" fill="#141414" font-weight="600" text-anchor="middle">Image codes</text></g><g class="fragment" data-fragment-index="2"><path d="M740 160L740 216" fill="none" stroke="#141414" stroke-width="2"/><path d="M735 207L740 216L745 207" fill="none" stroke="#141414" stroke-width="2"/><rect x="325" y="226" width="830" height="103" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><text x="740.0" y="290.1" font-size="36" fill="#141414" font-weight="600" text-anchor="middle">Shared Transformer</text><text x="0" y="300" font-size="24" fill="#141414" font-weight="400" text-anchor="start">Image tokenizer</text><text x="0" y="337" font-size="22" fill="#626262" font-weight="400" text-anchor="start">prepared separately</text><path d="M140 215L140 165" fill="none" stroke="#626262" stroke-width="2" stroke-dasharray="7 6"/></g><g class="fragment" data-fragment-index="3"><path d="M1155 278L1240 278" fill="none" stroke="#141414" stroke-width="2"/><path d="M1231 273L1240 278L1231 283" fill="none" stroke="#141414" stroke-width="2"/><rect x="1250" y="226" width="235" height="103" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="1367.5" y="286.6" font-size="26" fill="#141414" font-weight="600" text-anchor="middle">Next token</text><path d="M1360 330L1360 386" fill="none" stroke="#141414" stroke-width="2"/><path d="M1360 386L740 386" fill="none" stroke="#141414" stroke-width="2"/><path d="M749 381L740 386L749 391" fill="none" stroke="#141414" stroke-width="2"/><text x="770" y="419" font-size="25" fill="#141414" font-weight="400" text-anchor="start">Autoregressive training signal</text><path d="M0 468L1485 468" fill="none" stroke="#141414" stroke-width="2"/><text x="0" y="509" font-size="28" fill="#141414" font-weight="600" text-anchor="start">step 0: text + image tokens already in the training stream</text></g></svg></div>
+<div class="fv-takeaway">Early fusion is a choice about the base training stream.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2405.09818v1">Chameleon · Figure 1, §2–2.1</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+First click constructs a tiny mixed document: a text span, image tokens, another text span and another image. The blocks are symbolic; their width is not an actual token-count ratio. Second click sends the mixed sequence through one shared Transformer. Chameleon trains that Transformer from scratch on mixed-modal sequences, while the image tokenizer is prepared separately.
+
+Third click introduces next-token prediction and the training timeline. Both modalities are present at the beginning of this base model’s training, which is the point of “early” fusion here. The same sequence vocabulary can support mixed text and image outputs; the diagram does not claim superiority over late fusion.
+
+Distinguish this decision from attaching a vision encoder or bridge to an already pretrained language model. Chameleon is one implementation with discrete image tokens, not a template that all multimodal models must follow. Ask which part of the previous curriculum slide changes only a bridge, and which part of this slide learns the joint sequence from its starting point.
+
+Source: [Chameleon, §2 and §2.1](https://arxiv.org/html/2405.09818v1).
+:::
+
+## Audio generators learn components in stages {#brief-train-10 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-10 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T10</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><div class="bt-caption">MiniMax Music 3 · disclosed stages, not a synchronized global schedule</div><div class="bt-stages"><div class="bt-row bt-head"><b>Component</b><b>First</b><b>Then</b></div><div class="bt-row"><b>Tokenizer</b><span class="bt-train">RVQ codebook 1</span><span class="fragment bt-train" data-fragment-index="1">All 8 codebooks</span></div><div class="bt-row"><b>Music LM</b><span class="fragment bt-train" data-fragment-index="2">Global input / output adaptation</span><span class="fragment bt-train" data-fragment-index="2">Global + Local joint training</span></div><div class="bt-row"><b>Acoustic synthesis</b><span class="fragment bt-train" data-fragment-index="3">Flow-VAE adapted for music</span><span class="fragment bt-uncertain" data-fragment-index="3">Cross-row timing not disclosed</span></div></div><div class="bt-joint fragment" data-fragment-index="4"><b>Separate example · YuE2</b><span>Joint objectives</span><span><span class="math inline">\(\mathcal L=0.25\mathcal L_{\rm AR}+\mathcal L_{\rm FM}\)</span></span></div><div class="bt-small">Highlighted = trained in this stage. Gray = not specified here, not a claim of freezing.</div></div>
+<div class="fv-takeaway">A training schedule is different from a generation pipeline.</div>
+<div class="fv-source"><a href="https://github.com/minimax-ai/minimax-music3">MiniMax Music 3 · training sections</a> · <a href="https://arxiv.org/html/2609.33757v1">YuE2 · §2.4, Eq. 7</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+Read across each component row; do not read a global timeline down the columns. MiniMax’s README states that the first RVQ codebook is optimized before all eight are trained jointly. It also describes Global LM input/output adaptation followed by joint Global and Local LM training. The Flow-VAE is adapted for music, but this source does not disclose a complete cross-component schedule.
+
+The colored cells identify the named trained components. Gray is deliberately labeled “not disclosed” rather than “frozen”: silence in a README is not evidence that other parameters were fixed. This is a factual clarification of the brief’s suggested trainable/frozen color scheme.
+
+The final reveal is a separate YuE2 objective combining autoregressive prediction and flow matching. Its coefficient 0.25 belongs to YuE2; it does not attach to MiniMax. Ask which model each row describes before transitioning to the four YuE2 training tasks. Keep inference ordering on the earlier architecture slides.
+
+Sources: [MiniMax Music 3](https://github.com/minimax-ai/minimax-music3); [YuE2 §2.4](https://arxiv.org/html/2609.33757v1).
+:::
+
+## One checkpoint can learn several generation modes {#brief-train-11 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-11 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T11</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><div class="bt-caption">YuE2 · four training tasks, one checkpoint</div><div class="bt-mode-matrix"><div></div><b>Score present</b><b>Score absent</b><b>Semantic<br>tokens present</b><div class="bt-mode">Score → Semantic → Audio</div><div class="bt-mode fragment" data-fragment-index="1">Semantic → Audio</div><b>Semantic<br>tokens absent</b><div class="bt-mode fragment" data-fragment-index="2">Score → Audio</div><div class="bt-mode fragment" data-fragment-index="3">Direct → Audio</div></div><div class="bt-condition fragment" data-fragment-index="4"><b>Separate: condition dropout</b><span class="bt-token">Description</span><span class="bt-token bt-drop">Lyrics</span><span>→ missing inputs / CFG</span></div><div class="bt-small fragment" data-fragment-index="4">Either or both text conditions may be dropped. All four tasks train acoustic generation.</div></div>
+<div class="fv-takeaway">Task mixture changes available representations; condition dropout changes guidance inputs.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2609.33757v1">YuE2 · §2.4, Appendix C, Table 14</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+The matrix transposes Table 14 into two binary representation choices. Reveal the full path first, then remove the score, semantic tokens and both. Each cell is a training task of the same checkpoint. Included discrete representations receive next-token supervision; acoustic generation is trained in all four cases. The display does not assert four separate expert networks.
+
+The last reveal is a separate mechanism: dropping description and lyrics independently or together. A struck-through token is an example of an absent condition, not the removal of the corresponding representation task. This prepares generation with missing conditions and supports classifier-free guidance. Refer back to part 1’s condition / CFG explanation (diff-d05).
+
+Ask the room to distinguish “no symbolic score” from “no lyrics.” The first changes an intermediate representation; the second changes conditioning text. Both can occur in training, but they should not be counted as the same four-way switch. The four equally sized boxes express the shared checkpoint rather than performance or parameter allocation.
+
+Source: [YuE2, Table 14](https://arxiv.org/html/2609.33757v1).
+:::
+
+## A few thousand good examples: SFT for image generation {#training-mm-quality .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">55</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body mm55-body">
+  <div class="mm55-figure"><img src="assets/training_20261007/multimodal/emu_fig7_top.png" alt="Original Emu Figure 7, top rows: the same prompts, a rowboat and a classic cocktail next to a napkin, generated by the pre-trained model and by the quality-tuned model."><span>Figure 7 · random, not cherry-picked</span></div>
+  <div class="mm55-read">
+    <div class="mm55-passport">
+      <div><span>Pretraining</span><b>1.1B image–text pairs</b></div>
+      <div><span>Quality-tuning</span><b>2,000 hand-picked images,<br>captions written by hand</b></div>
+    </div>
+    <div class="mm55-table fragment" data-fragment-index="1" role="table" aria-label="Emu Table 3, transcribed: visual appeal against SDXL">
+      <div class="mm55-caption">Visual appeal vs SDXL · Table 3</div>
+      <div class="mm55-th" role="row"><span role="columnheader">Fine-tune data</span><span role="columnheader">win %</span><span role="columnheader">tie %</span><span role="columnheader">lose %</span></div>
+      <div class="mm55-row" role="row"><span role="cell">w/o quality-tuning</span><span role="cell">24.8</span><span role="cell">1.4</span><span role="cell">73.9</span></div>
+      <div class="mm55-row mm55-hit" role="row"><span role="cell">100 images</span><span role="cell">60.3</span><span role="cell">1.5</span><span role="cell">38.2</span></div>
+      <div class="mm55-row" role="row"><span role="cell">1,000</span><span role="cell">63.2</span><span role="cell">1.9</span><span role="cell">35.0</span></div>
+      <div class="mm55-row" role="row"><span role="cell">2,000</span><span role="cell">67.0</span><span role="cell">2.6</span><span role="cell">30.4</span></div>
+    </div>
+    <div class="mm55-self fragment" data-fragment-index="2"><b>vs its own pre-trained model:</b> preferred 82.9% on visual appeal (PartiPrompts) · Figure 6</div>
+  </div>
+</div>
+<div class="fv-takeaway">Pretraining gives the capability; a small curated set sets the standard.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2309.15807">Dai et al. · Emu · 2023</a> · Figure 7, Figure 6, Table 3, §4.2 · Original figure; table transcribed</div>
+```
+
+::: {.notes}
+This is the image-generation counterpart of SFT on slides 43–44. Emu is a latent diffusion model pretrained on 1.1 billion image–text pairs and then quality-tuned: supervised fine-tuning on a small set of very appealing images. In the main experiment the set has 2,000 images with manually written captions.
+
+**Initial view — Figure 7.** Same prompts before and after quality-tuning: a rowboat, a cocktail next to a napkin. The authors state that these examples are random, not cherry-picked. The model already knew what a rowboat is; the small set changes how it renders it.
+
+**First click — Table 3, transcribed.** Win rates for visual appeal against SDXL as the fixed reference. Without quality-tuning Emu wins 24.8%; with only 100 fine-tuning images, 60.3%; with 1,000, 63.2%; with 2,000, 67.0%. Most of the gain comes from the first hundred images.
+
+**Second click — against itself.** Compared with its own pre-trained model, Emu is preferred 82.9% of the time on visual appeal on PartiPrompts (Figure 6). Text faithfulness improves too; the authors attribute this partly to the hand-written captions.
+
+The parallel with slide 43: a demonstration does not add new knowledge; it shows how to use what the model already has. Course projects on DreamBooth and textual inversion are the same move with 5–10 personal photos. Human aesthetic judgments are subjective; the authors note this limitation themselves. Optional remark for VLMs: PixMo collected dense captions by having annotators speak about each image for 60–90 seconds, without external VLMs.
+
+Sources: [Emu, Figures 6–7, Table 3, §4.2–4.3](https://arxiv.org/abs/2309.15807); [Molmo/PixMo, §2](https://arxiv.org/abs/2409.17146).
+:::
+
+## LoRA learns a small update to frozen weights {#brief-train-12 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-12 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T12</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><svg class="bt-diagram" viewBox="0 0 1488 520" role="img" aria-label="A frozen base matrix and a trainable low-rank A then B branch sum at the output. Only A and B receive gradients; compatible updates can be stored separately."><rect x="0" y="210" width="140" height="80" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><text x="70.0" y="264.0" font-size="40" fill="#141414" font-weight="600" text-anchor="middle">x</text><path d="M140 250L220 250" fill="none" stroke="#141414" stroke-width="2"/><path d="M220 110L220 390" fill="none" stroke="#141414" stroke-width="2"/><path d="M220 110L330 110" fill="none" stroke="#141414" stroke-width="2"/><path d="M321 105L330 110L321 115" fill="none" stroke="#141414" stroke-width="2"/><rect x="340" y="35" width="430" height="155" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><text x="555.0" y="126.5" font-size="40" fill="#141414" font-weight="600" text-anchor="middle">W₀ · FROZEN</text><path d="M770 110L870 110" fill="none" stroke="#141414" stroke-width="2"/><path d="M861 105L870 110L861 115" fill="none" stroke="#141414" stroke-width="2"/><path d="M870 110L870 250" fill="none" stroke="#141414" stroke-width="2"/><g class="fragment" data-fragment-index="1"><path d="M220 390L340 390" fill="none" stroke="#141414" stroke-width="2"/><path d="M331 385L340 390L331 395" fill="none" stroke="#141414" stroke-width="2"/><rect x="350" y="337" width="120" height="106" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="410.0" y="402.6" font-size="36" fill="#141414" font-weight="600" text-anchor="middle">A</text><path d="M470 390L590 390" fill="none" stroke="#141414" stroke-width="2"/><path d="M581 385L590 390L581 395" fill="none" stroke="#141414" stroke-width="2"/><text x="530" y="360" font-size="23" fill="#141414" font-weight="400" text-anchor="middle">rank r</text><rect x="600" y="337" width="120" height="106" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="660.0" y="402.6" font-size="36" fill="#141414" font-weight="600" text-anchor="middle">B</text><path d="M720 390L870 390" fill="none" stroke="#141414" stroke-width="2"/><path d="M861 385L870 390L861 395" fill="none" stroke="#141414" stroke-width="2"/><path d="M870 390L870 250" fill="none" stroke="#141414" stroke-width="2"/></g><circle cx="870" cy="250" r="36" fill="white" stroke="#141414" stroke-width="2"/><text x="870" y="264" font-size="45" fill="#141414" font-weight="400" text-anchor="middle">+</text><path d="M906 250L1000 250" fill="none" stroke="#141414" stroke-width="2"/><path d="M991 245L1000 250L991 255" fill="none" stroke="#141414" stroke-width="2"/><rect x="1010" y="210" width="140" height="80" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><text x="1080.0" y="264.0" font-size="40" fill="#141414" font-weight="600" text-anchor="middle">y</text><g class="fragment" data-fragment-index="2"><text x="335" y="493" font-size="27" fill="#a74d0b" font-weight="600" text-anchor="start">Gradients update A and B only</text><text x="1210" y="60" font-size="20" fill="#626262" font-weight="400" text-anchor="start">SAVED UPDATES</text><rect x="1200" y="90" width="285" height="62" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="1342.5" y="130.1" font-size="26" fill="#141414" font-weight="600" text-anchor="middle">Style A</text><rect x="1200" y="165" width="285" height="62" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="1342.5" y="205.1" font-size="26" fill="#141414" font-weight="600" text-anchor="middle">Task B</text><rect x="1200" y="240" width="285" height="62" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="1342.5" y="280.1" font-size="26" fill="#141414" font-weight="600" text-anchor="middle">Domain C</text><text x="1200" y="370" font-size="23" fill="#141414" font-weight="400" text-anchor="start">Same compatible base</text><text x="1200" y="424" font-size="23" fill="#141414" font-weight="400" text-anchor="start">Optional merge:</text><text x="1200" y="461" font-size="29" fill="#141414" font-weight="600" text-anchor="start">W₀ + ΔW</text></g></svg><div class="bt-lora-eq"><span class="math inline">\(y=W_0x+\frac{\alpha}{r}BAx\)</span> <span>· r ≪ dimensions of W₀</span></div></div>
+<div class="fv-takeaway">Store a small task-specific change while sharing the base model.</div>
+<div class="fv-source"><a href="https://arxiv.org/pdf/2106.09685">Hu et al. · LoRA · Figure 1, §4.1</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+Trace the base path first: a frozen linear map transforms x. The first click adds the narrow trainable branch A then B. If W₀ has shape d by k, A has shape r by k and B has shape d by r. The rank r is much smaller than the large matrix dimensions; alpha divided by r scales the update.
+
+Second click marks gradients in only the small branch and shows three saved illustrative updates for the same compatible base. This is a parameterization of a weight update, not an inference prompt. Small parameter count does not guarantee high quality, and switching an update requires compatible base weights, layers and shapes.
+
+Merging can form W₀ plus the scaled update for a suitable implementation. The optional label avoids promising that every quantized setup supports the same merge procedure. Do not infer LoRA from a product’s use of “professional voice clone.” The next two slides distinguish input conditioning from model-specific personal training.
+
+Source: [LoRA, Figure 1 and §4.1](https://arxiv.org/pdf/2106.09685).
+:::
+
+## A reference can steer generation without weight updates {#brief-train-13 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-13 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T13</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><div class="bt-reference"><div class="bt-inputs"><b>Speech</b><div class="bt-box"><small>Content · new text</small>“The museum opens at ten.”</div><div class="bt-box bt-tint"><small>Reference · voice</small>Short recording of speaker</div><b>Music</b><div class="bt-small">Style · Lyrics · Reference</div></div><div class="bt-model"><span>→</span><div class="bt-box"><small>Weights unchanged</small><b>Fixed model</b></div><span>→</span></div><div class="bt-output"><div class="bt-box"><small>Output</small>New speech<br>in the reference voice</div><div class="bt-small">Illustrative task,<br>not a measured result</div></div></div><div class="bt-prefix fragment" data-fragment-index="1"><b>VALL-E implementation</b><span class="bt-token">Reference audio codes</span><span>→</span><span class="bt-token bt-tint">Generated audio codes</span></div><div class="bt-condition fragment" data-fragment-index="2"><b>Suno v6 input formats</b><span>Text · audio · images · video</span><small>Internal encoders not specified here</small></div><div class="bt-small">Part 1 callback: conditioning (diff-d05) and reference inputs after diff-d18.</div></div>
+<div class="fv-takeaway">A supplied example can condition output without training a personal model.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2301.02111v1">VALL-E · §4.3</a> · <a href="https://elevenlabs.io/docs/eleven-api/concepts/voice-cloning">ElevenLabs IVC</a> · <a href="https://help.suno.com/en/articles/13924481">Suno v6 FAQ</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+Keep speech and music separate. The speech example supplies new content and a recording that carries voice characteristics. Lyrics belong in the music group; they are not an extra speech input. ElevenLabs explicitly describes Instant Voice Cloning as inference-time conditioning without model weight updates.
+
+First reveal: VALL-E is a concrete research implementation in which reference acoustic tokens supply an in-context prefix. That token diagram belongs to VALL-E, not to ElevenLabs or every instant clone. A system may instead use extracted features or another representation.
+
+Second reveal: Suno v6 documents several input formats, including audio, images and video. This tells us what the interface accepts; it does not disclose a particular encoder architecture. Do not state a universal duration such as 10–30 seconds for references. Required data and quality constraints vary by system.
+
+Use the same content/model/output positions on the next slide so that the added preparation stage is unmistakable. Sources: [VALL-E](https://arxiv.org/html/2301.02111v1); [ElevenLabs voice cloning](https://elevenlabs.io/docs/eleven-api/concepts/voice-cloning); [Suno v6 FAQ](https://help.suno.com/en/articles/13924481).
+:::
+
+## Professional voice cloning adds a training step {#brief-train-14 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-14 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T14</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><div class="bt-training-path"><div class="bt-box"><small>Before use</small>One speaker’s recordings<small>ElevenLabs: 30 min to ~3 h</small></div><span>→</span><div class="bt-box bt-tint">Personal training</div><span>→</span><div class="bt-box bt-tint">Saved personalization</div></div><div class="bt-infer-path"><div class="bt-box">New text</div><span>+</span><div class="bt-box bt-tint">Personalization</div><span>→</span><div class="bt-box">Compatible base</div><span>→</span><div class="bt-box">Speech</div></div><div class="bt-two"><div class="bt-specific fragment" data-fragment-index="1"><b>MiniMax-Speech · disclosed mechanism</b><div class="bt-box bt-tint">Trainable speaker embedding</div><div class="bt-small">Base model stays frozen</div></div><div class="bt-specific fragment" data-fragment-index="2"><b>Per-base readiness · illustrative statuses</b><div class="bt-ready"><span>Base A</span><strong>Ready ✓</strong><span>Base B</span><strong>Training …</strong></div><div class="bt-small">A voice ID does not imply universal compatibility</div></div></div></div>
+<div class="fv-takeaway">Personalization has a preparation stage and a compatible model to run with.</div>
+<div class="fv-source"><a href="https://elevenlabs.io/docs/eleven-creative/voices/voice-cloning/professional-voice-cloning">ElevenLabs PVC · guide + FAQ</a> · <a href="https://arxiv.org/html/2505.07916v1">MiniMax-Speech · §4.3</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+Relative to the previous slide, add the preparation path above inference: recordings, optimization and a stored personalization. ElevenLabs documents fine-tuning, recommends a minimum of about 30 minutes and preferably around 2–3 hours of good recordings, and exposes readiness by supported base model. The displayed Base A / Base B statuses are illustrative, not a current customer account.
+
+First click provides a disclosed mechanism from a different system: MiniMax-Speech optimizes a speaker embedding while its base stays frozen. This is evidence that personal training need not update every model weight or use LoRA. Do not attribute MiniMax’s embedding implementation to ElevenLabs, Cartesia or HeyGen.
+
+Second click makes compatibility concrete. A saved voice can require another preparation step for a different supported base. The existence of a voice identifier does not guarantee portability to a new version. The colored objects show the personalized state; the generic top path does not claim which parameters a closed product changes.
+
+Sources: [ElevenLabs PVC](https://elevenlabs.io/docs/eleven-creative/voices/voice-cloning/professional-voice-cloning); [MiniMax-Speech §4.3](https://arxiv.org/html/2505.07916v1).
+:::
+
+## Multimodal post-training reuses the text recipe {#training-mm-recipe .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">56</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body mm56-body">
+  <div class="mm56-grid" role="table" aria-label="Post-training stages of Qwen3, Qwen3-VL and Qwen3-Omni grouped by training signal">
+    <div class="mm56-th" role="row"><span role="columnheader">Model</span><span role="columnheader">Demonstrations</span><span role="columnheader">Teacher</span><span role="columnheader">Verified reward</span><span role="columnheader">Judge / preferences</span></div>
+    <div class="mm56-row mm56-text" role="row"><span role="cell"><b>Qwen3</b><small>text · slides 39–50</small></span><span role="cell">Long-CoT cold start; thinking-mode fusion</span><span role="cell">Strong-to-weak, off → on-policy (small models)</span><span role="cell">Reasoning RL</span><span role="cell">General RL: rules + preference reward model</span></div>
+    <div class="mm56-row fragment" data-fragment-index="1" role="row"><span role="cell"><b>Qwen3-VL</b><small>image · video</small></span><span role="cell">SFT, 32K → 256K context</span><span role="cell" class="mm56-hit">Strong-to-weak on <b>text-only</b> data</span><span role="cell">Reasoning RL: ~30K verifiable queries</span><span role="cell">General RL: instructions, preferences</span></div>
+    <div class="mm56-row fragment" data-fragment-index="2" role="row"><span role="cell"><b>Qwen3-Omni</b><small>Thinker · all inputs</small></span><span role="cell">Lightweight SFT</span><span role="cell">Off → on-policy, KL to teacher logits</span><span role="cell">GSPO: rule-based rewards</span><span role="cell">GSPO: LLM judges (Qwen3, Qwen2.5-VL)</span></div>
+    <div class="mm56-row fragment" data-fragment-index="2" role="row"><span role="cell"><b>Qwen3-Omni</b><small>Talker · speech out</small></span><span role="cell">Speaker fine-tuning</span><span role="cell" class="mm56-none">—</span><span role="cell" class="mm56-none">—</span><span role="cell">DPO on multilingual speech pairs</span></div>
+  </div>
+  <div class="mm56-callout fragment" data-fragment-index="1"><b>Qwen3-VL, §4.1:</b> distillation on text-only data improves reasoning “across both text-centric and multimodal tasks”.</div>
+</div>
+<div class="fv-takeaway">Different data, the same few signals.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2505.09388v1#S4">Qwen3 §4</a> · <a href="https://arxiv.org/abs/2511.21631">Qwen3-VL §4.1, §4.4</a> · <a href="https://arxiv.org/abs/2509.17765">Qwen3-Omni §4.1–4.2</a> · Course table; stage names from the reports</div>
+```
+
+::: {.notes}
+The last slide of the block returns to post-training. The columns are the signal types from slide 57: demonstrations, a teacher, a verified reward, and a judge or preference model. Each cell names a stage from the report; the grouping is the course's.
+
+**Initial view — Qwen3, text.** The model already used on slides 39–42 and 50: long chain-of-thought cold start and thinking-mode fusion as demonstrations, reasoning RL with verifiable rewards, general RL with rules and a reward model trained on human preferences, and strong-to-weak distillation off-policy then on-policy for lightweight models.
+
+**First click — Qwen3-VL.** The same order: SFT (32K, then 256K context), strong-to-weak distillation, then reasoning RL on about 30K queries verifiable by rules or code executors, then general RL. Read the callout: the distillation stage uses text-only data to fine-tune the LLM backbone, and the authors report gains on multimodal tasks as well.
+
+**Second click — Qwen3-Omni.** The Thinker, which reads text, images, audio and video, follows the same three stages: lightweight SFT, off-policy then on-policy distillation from Qwen3 teachers, and GSPO with rule-based rewards and LLM judges. The Talker, which produces speech, adds DPO on multilingual speech preference pairs and speaker fine-tuning.
+
+The conclusion is limited to one model family whose reports describe their stages; closed multimodal systems rarely publish recipes. Transition: collect the signals and checks for all objectives in one table. Lecture 8 (nanoVLM) builds a small VLM and its bridge stage in practice.
+
+Sources: [Qwen3 §4](https://arxiv.org/html/2505.09388v1#S4); [Qwen3-VL §4.1, §4.4](https://arxiv.org/abs/2511.21631); [Qwen3-Omni §4.1–4.2](https://arxiv.org/abs/2509.17765).
+:::
+
+## Preference training also changes visual generators {#brief-train-15 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-15 -->
+```{=html}
+<script src="assets/missed_slides_20261021/training/training-print.js"></script>
+<div class="fv-meta"><span class="fv-id">T15</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><div class="bt-feedback"><div class="bt-candidates"><div class="bt-visual-mode fragment fade-out" data-fragment-index="3"><svg class="bt-diagram" viewBox="0 0 680 480" role="img" aria-label="Two illustrative drawings show two cups versus one cup for the same request. They are not samples from a measured model."><text x="0" y="30" font-size="26" fill="#141414" font-weight="600" text-anchor="start">Prompt: two cups on a table</text><rect x="0" y="55" width="310" height="205" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><path d="M30 125h70v52q-35 30-70 0z M100 134h16q20 22-16 30" fill="#bef264" stroke="#141414" stroke-width="3"/><path d="M175 125h70v52q-35 30-70 0z M245 134h16q20 22-16 30" fill="#bef264" stroke="#141414" stroke-width="3"/><rect x="340" y="55" width="310" height="205" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><path d="M455 125h70v52q-35 30-70 0z M525 134h16q20 22-16 30" fill="#bef264" stroke="#141414" stroke-width="3"/><text x="0" y="302" font-size="24" fill="#141414" font-weight="400" text-anchor="start">A · two cups</text><text x="340" y="302" font-size="24" fill="#141414" font-weight="400" text-anchor="start">B · one cup</text><text x="0" y="349" font-size="24" fill="#141414" font-weight="400" text-anchor="start">Prompt alignment ≠ visual appeal</text><path d="M50 395h110 M185 395h80 M290 395h45" stroke="#626262" stroke-width="8"/><text x="0" y="450" font-size="23" fill="#141414" font-weight="400" text-anchor="start">Denoising: noisy → less noisy → image</text></svg></div><div class="bt-audio-mode fragment" data-fragment-index="3"><div class="bt-caption">Same text, different delivery</div><div class="bt-two"><div><b>Audio A · steady</b><svg viewBox="0 0 280 60" role="img" aria-label="Symbolic audio waveform; it does not measure quality"><path d="M0 30h10l7-15 7 30 7-43 7 56 7-40 7 20 7-12 7 8 7-27 7 45 7-17 7 4 7-28 7 40 7-7 7 4 7-32 7 34 7-20 7 15 7-5h70" fill="none" stroke="#141414" stroke-width="2"/></svg><audio controls preload="metadata" aria-label="Play Audio A, steady delivery"><source src="assets/missed_slides_20261021/training/audio-a.wav" type="audio/wav"></audio></div><div><b>Audio B · brisk</b><svg viewBox="0 0 280 60" role="img" aria-label="Symbolic audio waveform; it does not measure quality"><path d="M0 30h10l7-15 7 30 7-43 7 56 7-40 7 20 7-12 7 8 7-27 7 45 7-17 7 4 7-28 7 40 7-7 7 4 7-32 7 34 7-20 7 15 7-5h70" fill="none" stroke="#141414" stroke-width="2"/></svg><audio controls preload="metadata" aria-label="Play Audio B, brisk delivery"><source src="assets/missed_slides_20261021/training/audio-b.wav" type="audio/wav"></audio></div></div><p class="bt-small">Transcript for both: “The blue cup is on the table.”</p><p>Words · Voice · Listener preference</p><p class="bt-small">Course system-TTS examples; no vendor comparison.<br>Waveforms are symbols, not measurements.</p></div></div><div class="bt-paths"><div class="bt-route fragment" data-fragment-index="1"><b>Online RL</b><div>Generate → Reward → Update ↺</div><small class="fragment fade-out" data-fragment-index="3">DDPO: denoising steps as actions</small><small class="fragment" data-fragment-index="3">Lyria 3.5: human + critic feedback</small></div><div class="bt-route fragment" data-fragment-index="2"><b>Preference pairs</b><div>Chosen / Rejected → Update</div><small class="fragment fade-out" data-fragment-index="3">Diffusion-DPO: direct preference objective</small><small class="fragment" data-fragment-index="3">Qwen3-Omni Talker: DPO</small></div><div class="bt-box">Updated generator</div></div></div><!-- Brief: TRAIN-16 --></div>
+<div class="fv-takeaway">Reward feedback and preference pairs are two alternative training routes.</div>
+<div class="fv-source"><a href="https://bair.berkeley.edu/blog/2023/07/14/ddpo/">DDPO</a> · <a href="https://arxiv.org/html/2311.12908v1">Diffusion-DPO §4</a> · <a href="https://arxiv.org/html/2509.17765v1">Qwen3-Omni §4.2</a> · <a href="https://deepmind.google/models/model-cards/lyria-3-5/">Lyria 3.5</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+The fixed prompt makes one criterion inspectable: count the cups. These drawings are course illustrations, not model before/after results. A preference for polished appearance can conflict with adherence to the requested count.
+
+First click: DDPO uses rewards on generated images and treats denoising as a sequence of actions. Second click: Diffusion-DPO learns from chosen/rejected pairs through an objective adapted to diffusion. The branches are alternatives; no arrow says one must run after the other, and DPO does not require training an explicit separate reward model.
+
+Third click implements TRAIN-16 as an audio mode in the same comparison area. Play the two local system-TTS clips if desired. Both say “The blue cup is on the table”; only the speaking rate changes. Ask for a preference and its reason. A waveform does not prove naturalness, intelligibility or similarity; these waveforms are deliberately symbolic. The same transcript provides an accessible fallback when playback is unavailable.
+
+Qwen3-Omni’s Talker reports DPO on multilingual speech preference pairs. Lyria 3.5’s card states reinforcement learning with human and critic feedback without specifying a complete reward formula here. Those labels establish feedback types; they do not claim Lyria uses DDPO or that Qwen uses Diffusion-DPO. The existing slide 56 supplies the broader Talker recipe, so this slide does not repeat it.
+
+Sources: [DDPO](https://bair.berkeley.edu/blog/2023/07/14/ddpo/); [Diffusion-DPO](https://arxiv.org/html/2311.12908v1); [Qwen3-Omni §4.2](https://arxiv.org/html/2509.17765v1); [Lyria 3.5](https://deepmind.google/models/model-cards/lyria-3-5/).
+:::

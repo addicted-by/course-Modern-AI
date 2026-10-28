@@ -1,0 +1,86 @@
+{
+  "source_url": "https://arxiv.org/html/2408.03314v1#S5.F3",
+  "original_asset_url": "https://arxiv.org/html/2408.03314v1/search_comparing_and_bins3.svg",
+  "source_sha256": "f3ec7e9505a7a90f4dada7f078ca9796c905cb5e9a9dd312cb074be8835b368b",
+  "series": "Best-of-N Weighted (PRM)",
+  "metric": "MATH final selected-answer accuracy (%)",
+  "not_metric": "pass@N",
+  "source_svg_path": "M79.00449 61.792577 132.80615 121.99695 186.6078 177.55823 240.40946 229.82775 294.2111 266.76466 348.01277 297.65513 401.81443 319.1208 455.61607 337.24275 509.41773 352.92189 563.21939 366.2448",
+  "source_mapping": {
+    "x": "79.00449 + 53.8016556 * log2(N)",
+    "accuracy_percent": "10 + (source_svg_y - 56.23125) / 11.088"
+  },
+  "precision_note": "Recovered from plotted SVG geometry, not a published numeric table. Slide headline rounds to nearest whole percentage and prefixes approximately.",
+  "data": [
+    {
+      "N": 1,
+      "source_svg_x": 79.00449,
+      "source_svg_y": 61.792577,
+      "accuracy_percent_derived": 10.50156268037518,
+      "accuracy_percent_rounded": 10.5
+    },
+    {
+      "N": 2,
+      "source_svg_x": 132.80615,
+      "source_svg_y": 121.99695,
+      "accuracy_percent_derived": 15.93125,
+      "accuracy_percent_rounded": 15.9
+    },
+    {
+      "N": 4,
+      "source_svg_x": 186.6078,
+      "source_svg_y": 177.55823,
+      "accuracy_percent_derived": 20.942187950937953,
+      "accuracy_percent_rounded": 20.9
+    },
+    {
+      "N": 8,
+      "source_svg_x": 240.40946,
+      "source_svg_y": 229.82775,
+      "accuracy_percent_derived": 25.65625,
+      "accuracy_percent_rounded": 25.7
+    },
+    {
+      "N": 16,
+      "source_svg_x": 294.2111,
+      "source_svg_y": 266.76466,
+      "accuracy_percent_derived": 28.987500901875904,
+      "accuracy_percent_rounded": 29.0
+    },
+    {
+      "N": 32,
+      "source_svg_x": 348.01277,
+      "source_svg_y": 297.65513,
+      "accuracy_percent_derived": 31.773437950937954,
+      "accuracy_percent_rounded": 31.8
+    },
+    {
+      "N": 64,
+      "source_svg_x": 401.81443,
+      "source_svg_y": 319.1208,
+      "accuracy_percent_derived": 33.709375,
+      "accuracy_percent_rounded": 33.7
+    },
+    {
+      "N": 128,
+      "source_svg_x": 455.61607,
+      "source_svg_y": 337.24275,
+      "accuracy_percent_derived": 35.34375,
+      "accuracy_percent_rounded": 35.3
+    },
+    {
+      "N": 256,
+      "source_svg_x": 509.41773,
+      "source_svg_y": 352.92189,
+      "accuracy_percent_derived": 36.757813852813854,
+      "accuracy_percent_rounded": 36.8
+    },
+    {
+      "N": 512,
+      "source_svg_x": 563.21939,
+      "source_svg_y": 366.2448,
+      "accuracy_percent_derived": 37.959375,
+      "accuracy_percent_rounded": 38.0
+    }
+  ]
+}

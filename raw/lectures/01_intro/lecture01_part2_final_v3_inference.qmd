@@ -1,6 +1,7 @@
 ---
 pagetitle: "Modern AI — Inference"
 lang: en
+bibliography: lecture01_final_v3.1.bib
 format:
   revealjs:
     theme: assets/frontier_v2_20261006/theme-local.scss

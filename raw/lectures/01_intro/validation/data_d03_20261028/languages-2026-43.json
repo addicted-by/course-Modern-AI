@@ -1,0 +1,1136 @@
+[
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "<unknown>",
+    "pages": "66279987",
+    "urls": "66279987",
+    "%pages/crawl": "3.0552"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "aar",
+    "pages": "2107",
+    "urls": "2099",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "abk",
+    "pages": "13992",
+    "urls": "13943",
+    "%pages/crawl": "0.0006"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "afr",
+    "pages": "174122",
+    "urls": "173549",
+    "%pages/crawl": "0.0080"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "aka",
+    "pages": "6613",
+    "urls": "6609",
+    "%pages/crawl": "0.0003"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "amh",
+    "pages": "90407",
+    "urls": "90124",
+    "%pages/crawl": "0.0042"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ara",
+    "pages": "14479934",
+    "urls": "14409328",
+    "%pages/crawl": "0.6675"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "asm",
+    "pages": "66442",
+    "urls": "66316",
+    "%pages/crawl": "0.0031"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "aym",
+    "pages": "2824",
+    "urls": "2800",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "aze",
+    "pages": "1328697",
+    "urls": "1324910",
+    "%pages/crawl": "0.0612"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bak",
+    "pages": "68155",
+    "urls": "68099",
+    "%pages/crawl": "0.0031"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bel",
+    "pages": "340557",
+    "urls": "339904",
+    "%pages/crawl": "0.0157"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ben",
+    "pages": "2476988",
+    "urls": "2472260",
+    "%pages/crawl": "0.1142"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bih",
+    "pages": "17112",
+    "urls": "17099",
+    "%pages/crawl": "0.0008"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bis",
+    "pages": "3273",
+    "urls": "3084",
+    "%pages/crawl": "0.0002"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bod",
+    "pages": "24020",
+    "urls": "23901",
+    "%pages/crawl": "0.0011"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bos",
+    "pages": "1269342",
+    "urls": "1266179",
+    "%pages/crawl": "0.0585"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bre",
+    "pages": "43221",
+    "urls": "43056",
+    "%pages/crawl": "0.0020"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "bul",
+    "pages": "5306466",
+    "urls": "5283658",
+    "%pages/crawl": "0.2446"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "cat",
+    "pages": "4531572",
+    "urls": "4502261",
+    "%pages/crawl": "0.2089"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ceb",
+    "pages": "41566",
+    "urls": "41483",
+    "%pages/crawl": "0.0019"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ces",
+    "pages": "24888322",
+    "urls": "24719044",
+    "%pages/crawl": "1.1472"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "chr",
+    "pages": "731",
+    "urls": "731",
+    "%pages/crawl": "0.0000"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "cos",
+    "pages": "65107",
+    "urls": "64947",
+    "%pages/crawl": "0.0030"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "crs",
+    "pages": "2781",
+    "urls": "2768",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "cym",
+    "pages": "252532",
+    "urls": "250562",
+    "%pages/crawl": "0.0116"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "dan",
+    "pages": "11186215",
+    "urls": "11108034",
+    "%pages/crawl": "0.5156"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "deu",
+    "pages": "125117258",
+    "urls": "124178273",
+    "%pages/crawl": "5.7673"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "div",
+    "pages": "53124",
+    "urls": "53013",
+    "%pages/crawl": "0.0024"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "dzo",
+    "pages": "2211",
+    "urls": "2208",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ell",
+    "pages": "11078470",
+    "urls": "11033316",
+    "%pages/crawl": "0.5107"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "eng",
+    "pages": "923409281",
+    "urls": "916246016",
+    "%pages/crawl": "42.5647"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "epo",
+    "pages": "154630",
+    "urls": "154268",
+    "%pages/crawl": "0.0071"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "est",
+    "pages": "3159927",
+    "urls": "3141665",
+    "%pages/crawl": "0.1457"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "eus",
+    "pages": "807367",
+    "urls": "803923",
+    "%pages/crawl": "0.0372"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "fao",
+    "pages": "123317",
+    "urls": "122595",
+    "%pages/crawl": "0.0057"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "fas",
+    "pages": "13372804",
+    "urls": "13327209",
+    "%pages/crawl": "0.6164"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "fij",
+    "pages": "2720",
+    "urls": "2714",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "fin",
+    "pages": "8171131",
+    "urls": "8115297",
+    "%pages/crawl": "0.3766"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "fra",
+    "pages": "103275909",
+    "urls": "102626273",
+    "%pages/crawl": "4.7605"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "fry",
+    "pages": "44310",
+    "urls": "44180",
+    "%pages/crawl": "0.0020"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "gla",
+    "pages": "42342",
+    "urls": "42208",
+    "%pages/crawl": "0.0020"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "gle",
+    "pages": "167847",
+    "urls": "166925",
+    "%pages/crawl": "0.0077"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "glg",
+    "pages": "722607",
+    "urls": "719688",
+    "%pages/crawl": "0.0333"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "glv",
+    "pages": "16803",
+    "urls": "16787",
+    "%pages/crawl": "0.0008"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "got",
+    "pages": "700",
+    "urls": "700",
+    "%pages/crawl": "0.0000"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "grn",
+    "pages": "18469",
+    "urls": "18430",
+    "%pages/crawl": "0.0009"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "guj",
+    "pages": "277741",
+    "urls": "277030",
+    "%pages/crawl": "0.0128"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "hat",
+    "pages": "66658",
+    "urls": "66379",
+    "%pages/crawl": "0.0031"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "hau",
+    "pages": "87352",
+    "urls": "87196",
+    "%pages/crawl": "0.0040"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "haw",
+    "pages": "22938",
+    "urls": "22874",
+    "%pages/crawl": "0.0011"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "heb",
+    "pages": "5724082",
+    "urls": "5690567",
+    "%pages/crawl": "0.2639"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "hin",
+    "pages": "4579568",
+    "urls": "4568229",
+    "%pages/crawl": "0.2111"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "hmn",
+    "pages": "21837",
+    "urls": "21511",
+    "%pages/crawl": "0.0010"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "hrv",
+    "pages": "4714581",
+    "urls": "4694225",
+    "%pages/crawl": "0.2173"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "hun",
+    "pages": "11541824",
+    "urls": "11487194",
+    "%pages/crawl": "0.5320"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "hye",
+    "pages": "659376",
+    "urls": "655324",
+    "%pages/crawl": "0.0304"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ibo",
+    "pages": "35342",
+    "urls": "35260",
+    "%pages/crawl": "0.0016"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "iku",
+    "pages": "9435",
+    "urls": "9388",
+    "%pages/crawl": "0.0004"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ile",
+    "pages": "6487",
+    "urls": "6474",
+    "%pages/crawl": "0.0003"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ina",
+    "pages": "13220",
+    "urls": "13188",
+    "%pages/crawl": "0.0006"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ind",
+    "pages": "23074984",
+    "urls": "22984178",
+    "%pages/crawl": "1.0636"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ipk",
+    "pages": "1554",
+    "urls": "1551",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "isl",
+    "pages": "793209",
+    "urls": "787991",
+    "%pages/crawl": "0.0366"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ita",
+    "pages": "55954700",
+    "urls": "55633478",
+    "%pages/crawl": "2.5792"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "jav",
+    "pages": "67728",
+    "urls": "67651",
+    "%pages/crawl": "0.0031"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "jpn",
+    "pages": "106032542",
+    "urls": "105618430",
+    "%pages/crawl": "4.8876"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kal",
+    "pages": "19139",
+    "urls": "19050",
+    "%pages/crawl": "0.0009"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kan",
+    "pages": "326419",
+    "urls": "326013",
+    "%pages/crawl": "0.0150"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kas",
+    "pages": "61",
+    "urls": "61",
+    "%pages/crawl": "0.0000"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kat",
+    "pages": "1021759",
+    "urls": "1017601",
+    "%pages/crawl": "0.0471"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kaz",
+    "pages": "835285",
+    "urls": "830841",
+    "%pages/crawl": "0.0385"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kha",
+    "pages": "10157",
+    "urls": "10138",
+    "%pages/crawl": "0.0005"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "khm",
+    "pages": "232845",
+    "urls": "232139",
+    "%pages/crawl": "0.0107"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kin",
+    "pages": "71437",
+    "urls": "71264",
+    "%pages/crawl": "0.0033"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kir",
+    "pages": "266960",
+    "urls": "266001",
+    "%pages/crawl": "0.0123"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kor",
+    "pages": "19125493",
+    "urls": "19056758",
+    "%pages/crawl": "0.8816"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "kur",
+    "pages": "141344",
+    "urls": "140772",
+    "%pages/crawl": "0.0065"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "lao",
+    "pages": "121695",
+    "urls": "121383",
+    "%pages/crawl": "0.0056"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "lat",
+    "pages": "2084945",
+    "urls": "2080691",
+    "%pages/crawl": "0.0961"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "lav",
+    "pages": "1991724",
+    "urls": "1978518",
+    "%pages/crawl": "0.0918"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "lif",
+    "pages": "145",
+    "urls": "145",
+    "%pages/crawl": "0.0000"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "lin",
+    "pages": "12901",
+    "urls": "12886",
+    "%pages/crawl": "0.0006"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "lit",
+    "pages": "3737342",
+    "urls": "3715812",
+    "%pages/crawl": "0.1723"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ltz",
+    "pages": "81416",
+    "urls": "81103",
+    "%pages/crawl": "0.0038"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "lug",
+    "pages": "8426",
+    "urls": "8422",
+    "%pages/crawl": "0.0004"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mal",
+    "pages": "486060",
+    "urls": "485233",
+    "%pages/crawl": "0.0224"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mar",
+    "pages": "594355",
+    "urls": "592862",
+    "%pages/crawl": "0.0274"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mfe",
+    "pages": "2559",
+    "urls": "2554",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mkd",
+    "pages": "888296",
+    "urls": "884813",
+    "%pages/crawl": "0.0409"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mlg",
+    "pages": "91376",
+    "urls": "90529",
+    "%pages/crawl": "0.0042"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mlt",
+    "pages": "74133",
+    "urls": "73929",
+    "%pages/crawl": "0.0034"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mon",
+    "pages": "344167",
+    "urls": "343263",
+    "%pages/crawl": "0.0159"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mri",
+    "pages": "41002",
+    "urls": "40880",
+    "%pages/crawl": "0.0019"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "msa",
+    "pages": "1988640",
+    "urls": "1982782",
+    "%pages/crawl": "0.0917"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "mya",
+    "pages": "341257",
+    "urls": "340287",
+    "%pages/crawl": "0.0157"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "nau",
+    "pages": "671",
+    "urls": "669",
+    "%pages/crawl": "0.0000"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "nep",
+    "pages": "1090794",
+    "urls": "1088747",
+    "%pages/crawl": "0.0503"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "nld",
+    "pages": "37986126",
+    "urls": "37713093",
+    "%pages/crawl": "1.7510"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "nno",
+    "pages": "299141",
+    "urls": "297589",
+    "%pages/crawl": "0.0138"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "nor",
+    "pages": "7345832",
+    "urls": "7293201",
+    "%pages/crawl": "0.3386"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "nso",
+    "pages": "2162",
+    "urls": "2154",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "nya",
+    "pages": "18305",
+    "urls": "18237",
+    "%pages/crawl": "0.0008"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "oci",
+    "pages": "66458",
+    "urls": "66311",
+    "%pages/crawl": "0.0031"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ori",
+    "pages": "139249",
+    "urls": "138878",
+    "%pages/crawl": "0.0064"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "orm",
+    "pages": "14256",
+    "urls": "14223",
+    "%pages/crawl": "0.0007"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "pan",
+    "pages": "212562",
+    "urls": "211924",
+    "%pages/crawl": "0.0098"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "pol",
+    "pages": "41002891",
+    "urls": "40803164",
+    "%pages/crawl": "1.8900"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "por",
+    "pages": "53579385",
+    "urls": "53299476",
+    "%pages/crawl": "2.4697"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "pus",
+    "pages": "96892",
+    "urls": "96566",
+    "%pages/crawl": "0.0045"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "que",
+    "pages": "17692",
+    "urls": "17678",
+    "%pages/crawl": "0.0008"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "roh",
+    "pages": "27529",
+    "urls": "27427",
+    "%pages/crawl": "0.0013"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ron",
+    "pages": "12490826",
+    "urls": "12435205",
+    "%pages/crawl": "0.5758"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "run",
+    "pages": "3270",
+    "urls": "3269",
+    "%pages/crawl": "0.0002"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "rus",
+    "pages": "136713010",
+    "urls": "136100613",
+    "%pages/crawl": "6.3018"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sag",
+    "pages": "11516",
+    "urls": "11516",
+    "%pages/crawl": "0.0005"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "san",
+    "pages": "84231",
+    "urls": "83859",
+    "%pages/crawl": "0.0039"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sco",
+    "pages": "15167",
+    "urls": "15100",
+    "%pages/crawl": "0.0007"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sin",
+    "pages": "197603",
+    "urls": "197241",
+    "%pages/crawl": "0.0091"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "slk",
+    "pages": "8770897",
+    "urls": "8707074",
+    "%pages/crawl": "0.4043"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "slv",
+    "pages": "3403110",
+    "urls": "3385738",
+    "%pages/crawl": "0.1569"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "smo",
+    "pages": "18621",
+    "urls": "18558",
+    "%pages/crawl": "0.0009"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sna",
+    "pages": "23961",
+    "urls": "23861",
+    "%pages/crawl": "0.0011"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "snd",
+    "pages": "43358",
+    "urls": "43284",
+    "%pages/crawl": "0.0020"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "som",
+    "pages": "129816",
+    "urls": "129527",
+    "%pages/crawl": "0.0060"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sot",
+    "pages": "18537",
+    "urls": "18412",
+    "%pages/crawl": "0.0009"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "spa",
+    "pages": "102808986",
+    "urls": "102204445",
+    "%pages/crawl": "4.7390"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sqi",
+    "pages": "1018478",
+    "urls": "1015413",
+    "%pages/crawl": "0.0469"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "srp",
+    "pages": "5716254",
+    "urls": "5692331",
+    "%pages/crawl": "0.2635"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ssw",
+    "pages": "1472",
+    "urls": "1467",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sun",
+    "pages": "32856",
+    "urls": "32774",
+    "%pages/crawl": "0.0015"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "sux",
+    "pages": "693",
+    "urls": "693",
+    "%pages/crawl": "0.0000"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "swa",
+    "pages": "215652",
+    "urls": "215077",
+    "%pages/crawl": "0.0099"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "swe",
+    "pages": "15353079",
+    "urls": "15248549",
+    "%pages/crawl": "0.7077"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "syr",
+    "pages": "6639",
+    "urls": "6625",
+    "%pages/crawl": "0.0003"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tam",
+    "pages": "940632",
+    "urls": "938574",
+    "%pages/crawl": "0.0434"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tat",
+    "pages": "165885",
+    "urls": "165557",
+    "%pages/crawl": "0.0076"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tel",
+    "pages": "400109",
+    "urls": "399072",
+    "%pages/crawl": "0.0184"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tgk",
+    "pages": "146685",
+    "urls": "146311",
+    "%pages/crawl": "0.0068"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tgl",
+    "pages": "277361",
+    "urls": "276034",
+    "%pages/crawl": "0.0128"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tha",
+    "pages": "7549173",
+    "urls": "7510686",
+    "%pages/crawl": "0.3480"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tir",
+    "pages": "13463",
+    "urls": "13378",
+    "%pages/crawl": "0.0006"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ton",
+    "pages": "2952",
+    "urls": "2946",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tsn",
+    "pages": "6602",
+    "urls": "6594",
+    "%pages/crawl": "0.0003"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tso",
+    "pages": "1828",
+    "urls": "1813",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tuk",
+    "pages": "65377",
+    "urls": "65089",
+    "%pages/crawl": "0.0030"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "tur",
+    "pages": "24828454",
+    "urls": "24720580",
+    "%pages/crawl": "1.1445"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "uig",
+    "pages": "37367",
+    "urls": "37008",
+    "%pages/crawl": "0.0017"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ukr",
+    "pages": "17073839",
+    "urls": "16929854",
+    "%pages/crawl": "0.7870"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "urd",
+    "pages": "684176",
+    "urls": "682215",
+    "%pages/crawl": "0.0315"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "uzb",
+    "pages": "643553",
+    "urls": "640307",
+    "%pages/crawl": "0.0297"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "ven",
+    "pages": "1525",
+    "urls": "1520",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "vie",
+    "pages": "21260391",
+    "urls": "21033722",
+    "%pages/crawl": "0.9800"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "vol",
+    "pages": "20134",
+    "urls": "20100",
+    "%pages/crawl": "0.0009"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "war",
+    "pages": "30727",
+    "urls": "30519",
+    "%pages/crawl": "0.0014"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "wol",
+    "pages": "4708",
+    "urls": "4652",
+    "%pages/crawl": "0.0002"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "xho",
+    "pages": "22514",
+    "urls": "22425",
+    "%pages/crawl": "0.0010"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "yid",
+    "pages": "48518",
+    "urls": "48294",
+    "%pages/crawl": "0.0022"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "yor",
+    "pages": "37545",
+    "urls": "37465",
+    "%pages/crawl": "0.0017"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "zha",
+    "pages": "1699",
+    "urls": "1692",
+    "%pages/crawl": "0.0001"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "zho",
+    "pages": "94816807",
+    "urls": "94503719",
+    "%pages/crawl": "4.3706"
+  },
+  {
+    "crawl": "CC-MAIN-2026-43",
+    "primary_language": "zul",
+    "pages": "35948",
+    "urls": "35853",
+    "%pages/crawl": "0.0017"
+  }
+]

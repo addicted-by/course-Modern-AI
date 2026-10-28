@@ -843,7 +843,7 @@
 
 
 /* 38–45 · addressable and adaptive memory. Own namespace only. */
-.reveal #arch-40 > h2, .reveal #arch-41 > h2, .reveal #arch-43 > h2, .reveal #arch-46 > h2 { font-size:43px; }
+.reveal #arch-41 > h2, .reveal #arch-42 > h2, .reveal #arch-44 > h2, .reveal #arch-47 > h2 { font-size:43px; }
 .reveal .a38-example { display:flex; align-items:baseline; gap:28px; font-size:32px; font-weight:650; }
 .reveal .a38-example span { font-size:24px; font-weight:400; color:#626262; }
 .reveal .a38-flow { width:1488px; height:340px; margin-top:24px; }
@@ -1211,6 +1211,38 @@
 .reveal .arch-slide .n06-actions>b {font-weight:500;}
 .reveal .arch-slide .n06-purpose {display:flex;gap:20px;align-items:baseline;font-size:27px;border-top:1px solid var(--fv-line);padding-top:22px;}
 .reveal .arch-slide .n06-boundary {font-size:28px;color:var(--fv-muted);}
+
+
+/* KDA: Gated DeltaNet with a channel-wise forget gate (follows the Gated DeltaNet slide). */
+.reveal .akda-body{display:grid;grid-template-columns:560px 1fr;gap:44px}
+.reveal .akda-state{display:grid;gap:26px;align-content:start}
+.reveal .akda-panel{border-left:4px solid var(--fv-line);padding-left:22px}
+.reveal .akda-kda{border-left-color:var(--fv-lime)}
+.reveal .akda-label{font-size:22px;line-height:1.3;margin-bottom:12px}
+.reveal .akda-grid,.reveal .akda-rates{display:grid;grid-template-columns:repeat(8,56px);gap:5px}
+.reveal .akda-grid{grid-auto-rows:32px}
+.reveal .akda-grid i{display:block;border-radius:3px;background:rgb(37 99 235 / var(--a,.5))}
+.reveal .akda-kda .akda-grid i:nth-child(8n+1){--a:.95}
+.reveal .akda-kda .akda-grid i:nth-child(8n+2){--a:.35}
+.reveal .akda-kda .akda-grid i:nth-child(8n+3){--a:.8}
+.reveal .akda-kda .akda-grid i:nth-child(8n+4){--a:.15}
+.reveal .akda-kda .akda-grid i:nth-child(8n+5){--a:.6}
+.reveal .akda-kda .akda-grid i:nth-child(8n+6){--a:.9}
+.reveal .akda-kda .akda-grid i:nth-child(8n+7){--a:.25}
+.reveal .akda-kda .akda-grid i:nth-child(8n+8){--a:.7}
+.reveal .akda-rates{margin-top:6px;font-size:20px;text-align:center;color:#2563eb}
+.reveal .akda-axis{font-size:20px;line-height:1.3;color:var(--fv-muted);margin-top:8px}
+.reveal .akda-kicker{font-size:20px;line-height:1.3;color:var(--fv-muted);margin-bottom:12px}
+.reveal .akda-eq{display:grid;grid-template-columns:76px 1fr;align-items:center;white-space:nowrap}
+.reveal .akda-eq b{font-size:22px}
+.reveal .akda-eq-gdn{font-size:24px;color:var(--fv-muted);padding-bottom:10px}
+.reveal .akda-eq-kda{font-size:29px;border-bottom:1px solid var(--fv-line);padding-bottom:20px}
+.reveal .akda-steps{display:grid;gap:10px;margin-top:20px}
+.reveal .akda-step{display:grid;grid-template-columns:310px 1fr;align-items:center;background:var(--fv-soft);min-height:76px;padding:12px 22px;font-size:29px}
+.reveal .akda-step b{font-size:25px;line-height:1.2}
+.reveal .akda-step small{display:block;font-size:20px;font-weight:400;color:var(--fv-muted)}
+.reveal .akda-step.akda-changed{background:#e6f6cd}
+.reveal .akda-caption{margin:16px 0 0!important;font-size:22px;color:var(--fv-muted)}
 
 
 /* Optional detail decks stay outside the main Reveal route and print output. */

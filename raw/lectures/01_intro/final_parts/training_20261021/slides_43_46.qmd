@@ -1,0 +1,155 @@
+## Instruction tuning / SFT: demonstrate the desired behavior {#training-43 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">43</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr43-body">
+  <div class="tr43-context fragment fade-out" data-fragment-index="1">
+    <div class="tr43-process"><img src="assets/training_20261007/preferences/instructgpt_fig2_process.svg" alt="Original InstructGPT Figure 2: demonstrations and SFT; comparisons and a reward model; training the model with rewards."><div class="tr43-later"></div><div class="tr43-focus-frame"></div></div>
+    <div class="tr43-context-caption"><span class="fv-label">InstructGPT · Figure 2</span><strong>Start with<br>demonstrations</strong><span>Later stages<br>are dimmed for now</span></div>
+  </div>
+  <div class="tr43-zoom fragment" data-fragment-index="1">
+    <div class="tr43-original"><img src="assets/training_20261007/preferences/instructgpt_fig2_sft.svg" alt="Enlarged original SFT panel: a prompt, a labeler-written response, and supervised fine-tuning of GPT-3."></div>
+    <div class="tr43-reading">
+      <div class="tr43-line"><span class="tr43-step">1</span><strong>Prompt</strong><span>What is the task?</span></div>
+      <div class="tr43-line tr43-demo"><span class="tr43-step">2</span><strong>Demonstration</strong><span>This is what completing<br>the task should look like</span></div>
+      <div class="tr43-line"><span class="tr43-step">3</span><strong>Model training</strong><span>Using example responses</span></div>
+    </div>
+    <div class="tr43-result"><span class="fv-label">Outcome</span><strong>Instruction-<br>following<br>model</strong><span>Applies its capabilities<br>to a user request</span><div class="tr43-format fragment" data-fragment-index="2"><b>The example specifies</b><span>response content</span><span>response structure</span></div></div>
+  </div>
+</div>
+<div class="fv-takeaway">A demonstration shows how to use capabilities the model already has.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2203.02155">Ouyang et al. · InstructGPT · 2022</a> · Figure 2, SFT stage · original diagram; added annotations and highlighting</div>
+```
+
+::: {.notes}
+The base model has capabilities but, as slide 39 showed, does not yet answer a request. SFT addresses this through demonstrations: a person shows what a response to a request should look like.
+
+**Initial view.** This is the original Figure 2 from InstructGPT. It contains three stages. Only the first is highlighted: collecting demonstrations and supervised fine-tuning. The two later stages remain visible for context; there is no need to explain the reward model or reward-based training yet.
+
+**First click.** The original SFT panel is enlarged. Read it from top to bottom: a prompt from the dataset; a response demonstrated by a labeler; training GPT-3 on these examples. Point out the payoff: the prompt is the same moon-landing request that base GPT-3 answered with a list of new prompts on slide 39. The demonstration conveys more than a fact about the Moon: it shows how to apply knowledge for a particular audience and task. The result on the right is an instruction-following model.
+
+**Second click.** Distinguish response content from response structure. The example shows both what to tell the user and how to organize the explanation: its level of detail, format, and sequence. SFT does not make every response true.
+
+Keep the explanation focused on the training signal rather than labels, masking, or loss functions. Transition to the next slide: if demonstrations change behavior, that change should be visible in comparative evaluations of responses.
+
+Source: [InstructGPT, Figure 2 and §3.1](https://arxiv.org/abs/2203.02155). The original diagram is preserved; the explanatory annotations are an added teaching layer. If asked whether SFT can teach new facts: [Stanford CS336, Lecture 15, slide 27](https://github.com/stanford-cs336/lectures/blob/main/lecture_15.pdf); [Gekhman et al., 2024](https://arxiv.org/abs/2405.05904).
+:::
+
+## SFT: responses become more useful to users {#training-44 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">44</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr44-body">
+  <div class="tr44-plot">
+    <img src="assets/training_20261007/preferences/instructgpt_fig1_muted.svg" alt="InstructGPT Figure 1. Model size on the horizontal axis; win rate against SFT 175B on the vertical axis. Original 95% confidence intervals are preserved.">
+    <img class="fragment" data-fragment-index="1" src="assets/training_20261007/preferences/instructgpt_fig1_gpt.svg" alt="The original GPT model is highlighted.">
+    <img class="fragment" data-fragment-index="2" src="assets/training_20261007/preferences/instructgpt_fig1_gpt_sft.svg" alt="GPT and SFT are highlighted; at 6B, SFT wins more often against the shared reference model.">
+    <div class="tr44-band" aria-hidden="true"></div><div class="tr44-size">Same size: <b>6B</b></div>
+  </div>
+  <div class="tr44-read">
+    <div class="tr44-axis"><span class="fv-label">What the vertical axis means</span><strong>How often evaluators<br>prefer the response</strong><span>against the shared<br>reference model — <b>SFT 175B</b></span></div>
+    <div class="tr44-comparison"><div class="fragment" data-fragment-index="1"><i class="tr44-key-gpt"></i><b>GPT · 6B</b><span>Original model</span></div><div class="fragment" data-fragment-index="2"><i class="tr44-key-sft"></i><b>SFT · 6B</b><span>After demonstrations</span></div></div>
+    <div class="tr44-ci fragment" data-fragment-index="3"><b>95% confidence intervals</b><span>Evaluator preference is not<br>the percentage of correct answers.</span></div>
+  </div>
+</div>
+<div class="fv-takeaway">Same size, after demonstrations: responses are preferred more often.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2203.02155">Ouyang et al. · InstructGPT · 2022</a> · Figure 1 · user prompts from the API; human evaluators · PPO / PPO-ptx dimmed</div>
+```
+
+::: {.notes}
+This plot reports human evaluations on the API prompt distribution used in InstructGPT. We use Figure 1 to isolate the change after SFT, without attributing the effects of later preference training to that stage.
+
+First explain the vertical axis. An evaluator compares a response from the model under consideration with a response from the shared reference model, SFT 175B. The vertical value is the win rate against that reference. It is not accuracy on a task with one correct answer.
+
+**First click.** The GPT curve is highlighted. The vertical band fixes the size at 6B parameters. Keep GPT prompted secondary: it is a separate prompted baseline and should not be conflated with the original GPT model.
+
+**Second click.** Add SFT. At the same model size, SFT sits above GPT. The comparison therefore cannot be explained by an increase in parameter count: after demonstrations, a model of the same size is preferred more often against the common reference. Do not interpret the difference between these two win rates as the direct probability that SFT 6B beats GPT 6B: both rates are measured against SFT 175B. PPO and PPO-ptx remain dimmed; promise to return to them on slide 46, after preference training is introduced.
+
+**Third click.** Point out the preserved 95% confidence intervals; this level is stated explicitly in the original figure caption. They remind us that these are sample-based estimates for these prompts and evaluators.
+
+Transition: demonstrations have taught the model to produce more suitable responses. But one request can have several acceptable responses of different quality. The next training signal compares those alternatives.
+
+Source: [InstructGPT, Figure 1](https://arxiv.org/abs/2203.02155). Curve geometry, legend, and intervals are preserved; only the visual prominence of the curves changes.
+:::
+
+## Preference training: which response is better {#training-45 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">45</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr45-body">
+  <div class="tr45-common fragment" data-fragment-index="1"><span class="fv-label">Shared source of feedback</span><div class="tr45-input"><b>Prompt</b><i>→</i><b>Candidate responses<br><span>A / B</span></b><i>→</i><b class="tr45-preferred">A is preferred to B</b></div></div>
+  <div class="tr45-original"><img class="tr45-muted" src="assets/training_20261007/preferences/dpo_fig1_process.svg" alt="Original DPO Figure 1: preference data is used through a reward model and RL, or directly to train the final language model."><img class="fragment" data-fragment-index="2" src="assets/training_20261007/preferences/dpo_fig1_process.svg" alt="Two ways to use preferences are revealed: RLHF and DPO."><div class="tr45-method-shade" aria-hidden="true"></div></div>
+  <div class="tr45-paths fragment" data-fragment-index="2"><div><span>Through a reward model</span><b>Preferences → reward → training</b><small>RLHF</small></div><div><span>Directly from preferences</span><b>Preferences → training</b><small>DPO</small></div></div>
+</div>
+<div class="fv-takeaway">Demonstrations provide examples. Preferences compare alternatives.</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2305.18290v3">Rafailov et al. · DPO · 2023</a> · Figure 1 (arXiv v3) · original diagram with added explanatory labels</div>
+```
+
+::: {.notes}
+On the previous slide, the model learned from demonstrations of desired responses. The signal now changes: one prompt has several candidate responses and a comparative judgment. That judgment indicates which candidate is preferred under the chosen criterion.
+
+**First click.** The top row reveals the shared data source: a prompt, responses A and B, and a comparative assessment. These are schematic labels, not an invented experiment. A preference does not imply that the chosen response is uniquely correct or that the other response is necessarily false. They may differ in completeness, usefulness, clarity, or compliance with the instruction.
+
+**Second click.** Examine the original Figure 1 from DPO. On the left, a reward model is first trained on preferences. The responding model then generates responses, receives scores from the reward model, and learns from that feedback. On the right, preferences are used to train the responding model directly. These are two ways to use comparisons. RLHF and DPO are method labels, not two additional learning goals for this lecture.
+
+Clarify that the diagram shows a representative process from the paper. Do not generalize every arrow to all implementations of preference training or assume that each method requires the same data, budget, and infrastructure. Mathematical objectives, coefficients, and optimization details are unnecessary for understanding the difference between the training signals here.
+
+In the historical InstructGPT example, the comparison stage follows SFT. In DPO, the authors also start from a prepared SFT model for the tasks discussed next. A useful distinction for the audience: a demonstration shows what a good response can look like; a preference indicates which alternative is better. The next question is how to evaluate the result of that training.
+
+Source: [DPO, Figure 1, arXiv v3](https://arxiv.org/abs/2305.18290v3). The original illustration is preserved; the top row and added labels explain the process.
+:::
+
+## Preference training: changing which responses are preferred {#training-46 .fv-slide .training-slide background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">46</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body tr46-body">
+  <div class="tr46-plot">
+    <img src="assets/training_20261007/preferences/dpo_fig2_tldr_muted.svg" alt="Right panel of DPO Figure 2: GPT-4-judged win rates for TL;DR summaries against human-written references, at different sampling temperatures.">
+    <img class="fragment" data-fragment-index="1" src="assets/training_20261007/preferences/dpo_fig2_tldr_sft.svg" alt="The initial SFT result is highlighted; error bars from the original figure are preserved.">
+    <img class="fragment" data-fragment-index="2" src="assets/training_20261007/preferences/dpo_fig2_tldr_sft_dpo.svg" alt="SFT and DPO are highlighted. The comparison uses the same sampling temperature of 0.0.">
+    <div class="tr46-band" aria-hidden="true"></div><div class="tr46-temperature">Compare at the same temperature · <b>0.0</b></div>
+  </div>
+  <div class="tr46-passport"><span class="fv-label">Experiment at a glance</span><dl><div><dt>Task</dt><dd>TL;DR summarization</dd></div><div><dt>Comparison</dt><dd>Against human-written<br>reference summaries</dd></div><div><dt>Evaluator</dt><dd>GPT-4</dd></div></dl><div class="tr46-keys"><span class="fragment" data-fragment-index="1"><i class="tr46-key-sft"></i>SFT</span><span class="fragment" data-fragment-index="2"><i class="tr46-key-dpo"></i>DPO</span></div><div class="tr46-distinction fragment" data-fragment-index="3"><div><span>During training</span><b>human preferences</b></div><div><span>In this figure</span><b>a model judge evaluates</b></div></div></div>
+</div>
+<div class="fv-takeaway">Who evaluates — and what exactly counts as a better response?</div>
+<div class="fv-source"><a href="https://arxiv.org/abs/2305.18290v3">Rafailov et al. · DPO · 2023</a> · Figure 2, right panel; §6.2; App. C.2 · gpt-4-0314; randomized summary order</div>
+```
+
+::: {.notes}
+**Opening callback.** Pay off the promise from slide 44: the dimmed PPO lines in InstructGPT Figure 1 are models after preference training through a reward model, the left branch of the previous slide. They lie above SFT. The abstract states that outputs of the 1.3B InstructGPT model are preferred to those of 175B GPT-3, despite roughly 100x fewer parameters. No new figure is needed; say it in two sentences.
+
+This slide then shows a specific outcome of preference training in a different paper: Reddit TL;DR summarization. It uses the right panel of Figure 2 from arXiv v3 of the DPO paper. The left panel, which concerns reward optimization, is omitted because it addresses a different question.
+
+First read the experiment summary. The model summarizes an original post. Its output is compared with a human-written reference summary from the test set. GPT-4 chooses between them; the vertical axis reports the win rate in that comparison. It is not the proportion of objectively correct summaries.
+
+**First click.** Highlight SFT, the prepared starting model used to train DPO and other variants in this experiment. Fix the sampling temperature at 0.0, a single vertical slice. Do not compare SFT at one temperature with the maximum of another curve at a different temperature.
+
+**Second click.** Add DPO. At the chosen common temperature, its outputs win more often against the shared reference according to GPT-4. Section 6.2 reports approximately 61% for DPO at 0.0. The slide retains the original points, curves, and error bars without reading approximate SFT values into a new table. Other methods remain dimmed so that the experimental context stays visible.
+
+**Third click.** Emphasize the difference between training and evaluation: human comparative preferences were used for training, but this graph is based on a model judge. Appendix C.2 specifies gpt-4-0314 and randomized summary order. The wording of the judging criterion affects what the result means; the paper separately examines agreement between GPT-4 and humans.
+
+Error bars are retained exactly as published. Do not call them 95% confidence intervals: the corresponding level is not specified in the Figure 2 caption. Transition to capability RL: preferences are partly subjective, but for some tasks the outcome of an attempt can be checked against an answer, tests, or the state of an environment.
+
+Sources: [InstructGPT, Abstract and Figure 1](https://arxiv.org/abs/2203.02155); [DPO, Figure 2, §6.2 and Appendix C.2](https://arxiv.org/abs/2305.18290v3).
+:::
+
+## Arena scores summarize pairwise preferences {#brief-train-01 .fv-slide .training-slide .bt-slide background-color="#ffffff"}
+
+<!-- Brief: TRAIN-01 -->
+```{=html}
+<div class="fv-meta"><span class="fv-id">T01</span><span class="fv-cluster">Architecture</span><span class="fv-cluster">Data</span><span class="fv-cluster active">Training</span><span class="fv-cluster">Inference</span><span class="fv-cluster">Tools</span></div>
+<div class="fv-body bt-body"><svg class="bt-diagram" viewBox="0 0 1488 520" role="img" aria-label="Blind pairwise choices become relative Bradley–Terry estimates with overlapping uncertainty intervals."><rect x="0" y="12" width="720" height="64" fill="#f3f3f3" stroke="#141414" stroke-width="1.5"/><text x="360.0" y="53.8" font-size="28" fill="#141414" font-weight="600" text-anchor="middle">Explain why the sky looks blue.</text><text x="0" y="112" font-size="20" fill="#626262" font-weight="400" text-anchor="start">ONE PROMPT · IDENTITIES HIDDEN</text><g class="fragment" data-fragment-index="1"><rect x="0" y="137" width="345" height="150" fill="white" stroke="#141414" stroke-width="1.5"/><text x="22" y="176" font-size="28" fill="#141414" font-weight="600" text-anchor="start">Answer A</text><text x="22" y="218" font-size="25" fill="#141414" font-weight="400" text-anchor="start">Air scatters blue light</text><text x="22" y="251" font-size="25" fill="#141414" font-weight="400" text-anchor="start">more than red light.</text><rect x="375" y="137" width="345" height="150" fill="white" stroke="#141414" stroke-width="1.5"/><text x="397" y="176" font-size="28" fill="#141414" font-weight="600" text-anchor="start">Answer B</text><text x="397" y="218" font-size="25" fill="#141414" font-weight="400" text-anchor="start">Shorter wavelengths</text><text x="397" y="251" font-size="25" fill="#141414" font-weight="400" text-anchor="start">scatter more strongly.</text><rect x="160" y="312" width="390" height="56" fill="#bef264" stroke="#141414" stroke-width="1.5"/><text x="355.0" y="349.45" font-size="27" fill="#141414" font-weight="600" text-anchor="middle">Which do you prefer?</text></g><g class="fragment" data-fragment-index="2"><text x="0" y="415" font-size="25" fill="#141414" font-weight="400" text-anchor="start">Vote → reveal identities → collect more pairs</text><text x="0" y="465" font-size="29" fill="#141414" font-weight="600" text-anchor="start">A &gt; B     B &gt; C     A &gt; C     B &gt; A     …</text><path d="M735 260L795 260" fill="none" stroke="#141414" stroke-width="2"/><path d="M786 255L795 260L786 265" fill="none" stroke="#141414" stroke-width="2"/></g><g class="fragment" data-fragment-index="3"><text x="825" y="50" font-size="31" fill="#141414" font-weight="600" text-anchor="start">Bradley–Terry estimate</text><rect x="1050" y="92" width="140" height="255" fill="#f3f3f3" stroke="none" stroke-width="1.5"/><text x="825" y="128" font-size="27" fill="#141414" font-weight="400" text-anchor="start">A</text><text x="825" y="218" font-size="27" fill="#141414" font-weight="400" text-anchor="start">B</text><text x="825" y="308" font-size="27" fill="#141414" font-weight="400" text-anchor="start">C</text></g><g class="fragment" data-fragment-index="3"><path d="M1030 120L1270 120" fill="none" stroke="#141414" stroke-width="2"/><path d="M1030 110L1030 130" fill="none" stroke="#141414" stroke-width="2"/><path d="M1270 110L1270 130" fill="none" stroke="#141414" stroke-width="2"/><circle cx="1130" cy="120" r="8" fill="#141414"/></g><g class="fragment" data-fragment-index="3"><path d="M940 210L1200 210" fill="none" stroke="#141414" stroke-width="2"/><path d="M940 200L940 220" fill="none" stroke="#141414" stroke-width="2"/><path d="M1200 200L1200 220" fill="none" stroke="#141414" stroke-width="2"/><circle cx="1080" cy="210" r="8" fill="#141414"/></g><g class="fragment" data-fragment-index="3"><path d="M870 300L1110 300" fill="none" stroke="#141414" stroke-width="2"/><path d="M870 290L870 310" fill="none" stroke="#141414" stroke-width="2"/><path d="M1110 290L1110 310" fill="none" stroke="#141414" stroke-width="2"/><circle cx="980" cy="300" r="8" fill="#141414"/></g><g class="fragment" data-fragment-index="3"><text x="825" y="425" font-size="22" fill="#626262" font-weight="400" text-anchor="start">Illustrative points and intervals</text><text x="825" y="474" font-size="24" fill="#141414" font-weight="400" text-anchor="start">Voters · prompts · comparison count</text></g></svg><div class="bt-bt-equation fragment" data-fragment-index="3"><span class="math inline">\(P(A&gt;B)=\frac{e^{s_A}}{e^{s_A}+e^{s_B}}\)</span></div></div>
+<div class="fv-takeaway">A preference score describes this comparison protocol, not universal quality.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2403.04132v1">Chatbot Arena · §3.1, §4, Figures 2 & 5</a> · Course diagrams / illustrative examples</div>
+```
+
+::: {.notes}
+Start from the two ordinary explanations, not a ranking table. Ask the room to choose A or B; both can be acceptable. The example is invented and does not identify real models. First click reveals the alternatives and vote. Second click represents repeated comparisons; identities are disclosed only after voting. Third click turns those local decisions into a relative statistical estimate.
+
+The Bradley–Terry formula converts a score difference into a pairwise preference probability. The displayed points and intervals are illustrative, not fitted observations or current leaderboard results. The common gray region makes uncertainty visible; overlapping marginal intervals alone are not a formal significance test. More comparisons can narrow statistical uncertainty but do not remove selection bias in prompts or voters.
+
+Ask which measurement is missing if the task is factual retrieval or safety. Those require separate checks. “Elo” is sometimes used as a rating label; the paper discusses statistical estimation rather than requiring sequential chess-style Elo updates. Transition: an explicit reward also summarizes selected properties, and its blind spots can become training targets.
+
+Source: [Chatbot Arena, §3.1 and §4](https://arxiv.org/html/2403.04132v1).
+:::
