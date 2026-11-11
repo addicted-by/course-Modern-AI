@@ -1,0 +1,111 @@
+% Verified primary references for lecture02_final.
+% Topic mapping: 2--7 -> boyd2018vmls, mit2011projection;
+% 8--9 and 18--19 -> bindel2025sensitivity;
+% 10--14 -> bindel2025qr, strang2018leastsquares;
+% 15--17 and 21 -> strang2018svd;
+% 20 -> penrose1955generalized;
+% 21--22 -> strang2018eckartyoung, eckart1936approximation;
+% 23--24 -> bindel2025regularization.
+% Accessed 2026-10-03. Historical article years remain 1955 and 1936;
+% publisher page migration / online publication dates do not replace them.
+
+@book{boyd2018vmls,
+  author    = {Boyd, Stephen and Vandenberghe, Lieven},
+  title     = {Introduction to Applied Linear Algebra: Vectors, Matrices, and Least Squares},
+  publisher = {Cambridge University Press},
+  year      = {2018},
+  url       = {https://stanford.edu/~boyd/vmls/},
+  note      = {Author-hosted book; Chapters 6, 10--12 cover matrix maps, orthogonality, inverses, and least squares}
+}
+
+@online{mit2011projection,
+  author       = {Strang, Gilbert},
+  title        = {Projection Matrices and Least Squares},
+  organization = {MIT OpenCourseWare},
+  year         = {2011},
+  url          = {https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/least-squares-determinants-and-eigenvalues/projection-matrices-and-least-squares/},
+  note         = {18.06SC Linear Algebra, Lecture 16}
+}
+
+@online{bindel2025qr,
+  author       = {Bindel, David},
+  title        = {Householder, Givens, and {QR} Factorization},
+  organization = {Cornell University},
+  year         = {2025},
+  date         = {2025-09-29},
+  url          = {https://www.cs.cornell.edu/courses/cs6210/2025fa/lec/2025-09-29.html},
+  note         = {CS 6210: Matrix Computations; Gram--Schmidt and orthogonal transformations}
+}
+
+@online{bindel2025sensitivity,
+  author       = {Bindel, David},
+  title        = {Sensitivity Analysis and Ill-Posedness},
+  organization = {Cornell University},
+  year         = {2025},
+  date         = {2025-10-01},
+  url          = {https://www.cs.cornell.edu/courses/cs6210/2025fa/lec/2025-10-01.html},
+  note         = {CS 6210: Matrix Computations; sensitivity of least-squares solutions, including dependence on the residual and the angle to the column space}
+}
+
+@online{bindel2025regularization,
+  author       = {Bindel, David},
+  title        = {Rank Deficiency and Regularization},
+  organization = {Cornell University},
+  year         = {2025},
+  date         = {2025-10-06},
+  url          = {https://www.cs.cornell.edu/courses/cs6210/2025fa/lec/2025-10-06.html},
+  note         = {CS 6210: Matrix Computations; rank truncation and regularized inversion}
+}
+
+@online{strang2018svd,
+  author       = {Strang, Gilbert},
+  title        = {Lecture 6: Singular Value Decomposition ({SVD})},
+  organization = {MIT OpenCourseWare},
+  year         = {2018},
+  url          = {https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-6-singular-value-decomposition-svd/},
+  note         = {18.065 Matrix Methods in Data Analysis, Signal Processing, and Machine Learning}
+}
+
+@online{strang2018eckartyoung,
+  author       = {Strang, Gilbert},
+  title        = {Lecture 7: {Eckart--Young}: The Closest Rank k Matrix to {A}},
+  organization = {MIT OpenCourseWare},
+  year         = {2018},
+  url          = {https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-7-eckart-young-the-closest-rank-k-matrix-to-a/},
+  note         = {18.065 Matrix Methods in Data Analysis, Signal Processing, and Machine Learning; truncated SVD and low-rank approximation errors}
+}
+
+@online{strang2018leastsquares,
+  author       = {Strang, Gilbert},
+  title        = {Lecture 9: Four Ways to Solve Least Squares Problems},
+  organization = {MIT OpenCourseWare},
+  year         = {2018},
+  url          = {https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-9-four-ways-to-solve-least-squares-problems/},
+  note         = {18.065 Matrix Methods in Data Analysis, Signal Processing, and Machine Learning; normal equations, QR, pseudoinverse, and regularization}
+}
+
+@article{penrose1955generalized,
+  author  = {Penrose, Roger},
+  title   = {A Generalized Inverse for Matrices},
+  journal = {Proceedings of the Cambridge Philosophical Society},
+  volume  = {51},
+  number  = {3},
+  pages   = {406--413},
+  year    = {1955},
+  doi     = {10.1017/S0305004100030401},
+  url     = {https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0305004100030401},
+  note    = {Publisher-hosted original paper; four defining conditions and existence/uniqueness}
+}
+
+@article{eckart1936approximation,
+  author  = {Eckart, Carl and Young, Gale},
+  title   = {The Approximation of One Matrix by Another of Lower Rank},
+  journal = {Psychometrika},
+  volume  = {1},
+  number  = {3},
+  pages   = {211--218},
+  year    = {1936},
+  doi     = {10.1007/BF02288367},
+  url     = {https://www.cambridge.org/core/journals/psychometrika/article/abs/approximation-of-one-matrix-by-another-of-lower-rank/B29672E1EDD0FA1B7611D4DFAFC321B3},
+  note    = {Verified publisher bibliographic record and abstract; original low-rank least-squares approximation paper}
+}

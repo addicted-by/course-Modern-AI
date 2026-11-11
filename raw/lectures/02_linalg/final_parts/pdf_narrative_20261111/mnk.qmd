@@ -1,0 +1,459 @@
+## How many exact solutions can a linear system have? {#pre-06 .la-slide .pdf-core .pdf-mnk .la-long-title background-color="#ffffff"}
+
+::::: {.la-body}
+::: {.pdf-intro}
+$X\theta=y$ · Textbook notation: $Ax=b$
+:::
+
+:::: {.la-three .pdf-cases}
+::: {.la-panel}
+<h3>One solution</h3>
+
+```{=html}
+<svg class="pdf-plot" viewBox="18 4 305 220" role="img" aria-label="Three distinct straight lines intersect at (1, 1).">
+<path class="pdf-plot-axis" d="M28 124L312 124"/>
+<path class="pdf-plot-axis" d="M104 214L104 15"/>
+<text x="309" y="114" class="pdf-plot-label" text-anchor="end">θ₁</text>
+<text x="116" y="31" class="pdf-plot-label" text-anchor="start">θ₂</text>
+<path class="pdf-plot-line" d="M56 172L209.6 18.4"/>
+<path class="pdf-plot-secondary" d="M96.8 20.8L264.8 188.8"/>
+<path class="pdf-plot-dash" d="M87.2 205.6L180.8 18.4"/>
+<circle cx="152" cy="76" r="7" class="pdf-plot-focus"/>
+<text x="159" y="71" class="pdf-plot-label" text-anchor="start">(1, 1)</text>
+</svg>
+```
+
+$$\begin{aligned}\theta_1-\theta_2&=0\\ \theta_1+\theta_2&=2\\ 2\theta_1-\theta_2&=1\end{aligned}$$
+
+$\theta=(1,1)^\top$
+:::
+
+::: {.la-panel}
+<h3>Many solutions</h3>
+
+```{=html}
+<svg class="pdf-plot" viewBox="18 4 305 220" role="img" aria-label="Two equations describe exactly the same straight line.">
+<path class="pdf-plot-axis" d="M28 124L312 124"/>
+<path class="pdf-plot-axis" d="M104 214L104 15"/>
+<text x="309" y="114" class="pdf-plot-label" text-anchor="end">θ₁</text>
+<text x="116" y="31" class="pdf-plot-label" text-anchor="start">θ₂</text>
+<path class="pdf-plot-wide fragment" data-fragment-index="0" d="M87.2 205.6L180.8 18.4"/>
+<path class="pdf-plot-dash" d="M87.2 205.6L180.8 18.4"/>
+<text x="189" y="71" class="pdf-plot-label" text-anchor="start">Same line</text>
+</svg>
+```
+
+$$\begin{aligned}2\theta_1-\theta_2&=1\\4\theta_1-2\theta_2&=2\end{aligned}$$
+
+::: {.fragment data-fragment-index="0"}
+$\theta=(s,2s-1)^\top$
+:::
+:::
+
+::: {.la-panel}
+<h3>No solution</h3>
+
+```{=html}
+<svg class="pdf-plot" viewBox="18 4 305 220" role="img" aria-label="Two distinct parallel lines have no common point.">
+<path class="pdf-plot-axis" d="M28 124L312 124"/>
+<path class="pdf-plot-axis" d="M104 214L104 15"/>
+<text x="309" y="114" class="pdf-plot-label" text-anchor="end">θ₁</text>
+<text x="116" y="31" class="pdf-plot-label" text-anchor="start">θ₂</text>
+<path class="pdf-plot-line" d="M63.2 205.6L156.8 18.4"/>
+<path class="pdf-plot-secondary" d="M87.2 205.6L180.8 18.4"/>
+</svg>
+```
+
+$$\begin{aligned}2\theta_1-\theta_2&=0\\2\theta_1-\theta_2&=1\end{aligned}$$
+
+::: {.fragment data-fragment-index="1"}
+$\varnothing$
+:::
+:::
+::::
+:::::
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=1">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · pp. 1–2 · Examples 1–4</a></div>
+
+::: {.notes lang="ru"}
+
+На каждой панели прямые лежат в пространстве параметров $(\theta_1,\theta_2)$: одна прямая на уравнение. Слева все три пересекаются в $(1,1)$, и это единственное решение, хотя уравнений больше, чем неизвестных. В середине второе уравнение пропорционально первому целиком, поэтому решения образуют общую прямую. Справа совпадают только левые части, а правые различаются: две параллельные прямые не имеют общей точки.
+
+Для системы $X\theta=y$ условие существования решения — $y\in\operatorname{Col}(X)$. Если $\theta_0$ является решением, то $X\theta=y$ равносильно $X(\theta-\theta_0)=0$. Отсюда множество решений $\theta_0+\ker X$: оно состоит из одной точки при нулевом ядре и содержит бесконечно много точек при ненулевом. Когда $y$ лежит вне образа, задача меняется: нужно определить меру ошибки и найти ближайший достижимый выход.
+
+:::
+
+## How does least squares measure error? {#pre-07 .la-slide .pdf-core .pdf-mnk .ls-simple background-color="#ffffff"}
+
+```{=html}
+<div class="la-body ls-centered">
+  <table class="ls-observations" aria-label="Two observations with the same prediction">
+    <thead><tr><th scope="col">Row of X</th><th scope="col">Target</th><th scope="col">Prediction t = 2θ₁ + θ₂</th></tr></thead>
+    <tbody>
+      <tr><td>(2, 1)</td><td>3</td><td>t</td></tr>
+      <tr><td>(2, 1)</td><td>6</td><td>t</td></tr>
+    </tbody>
+  </table>
+  <div class="ls-objective fragment" data-fragment-index="0">
+    <span class="math display">\min_\theta \|X\theta-y\|_2^2</span>
+    <p>Sum of squared prediction errors</p>
+  </div>
+</div>
+```
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=3">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · p. 3 and pp. 4–5 · Least squares and Problem 1</a></div>
+
+::: {.notes lang="ru"}
+
+Две одинаковые строки матрицы требуют одного и того же предсказания. В новом примере это значение $t=2\theta_1+\theta_2$, а наблюдаемые значения равны $3$ и $6$. Как и в несовместной системе на предыдущем слайде, точное совпадение с обоими наблюдениями невозможно.
+
+В методе наименьших квадратов (МНК) минимизируется $\|X\theta-y\|_2^2$. Это сумма квадратов отклонений по наблюдениям. Для этого примера она равна $(t-3)^2+(t-6)^2$. Выбор коэффициентов $\theta$ влияет на ошибку через одно число $t$, общее для двух предсказаний.
+
+:::
+
+## Which prediction is closest to the target? {#pre-08 .la-slide .pdf-core .pdf-mnk .ls-simple background-color="#ffffff"}
+
+```{=html}
+<div class="la-body ls-split">
+  <div class="ls-side">
+    <h3>Output space</h3>
+    <span class="math display">X\theta=(t,t)^\top</span>
+    <div class="fragment" data-fragment-index="0">
+      <span class="ls-result math inline">\hat y=(4.5,4.5)^\top</span>
+    </div>
+  </div>
+  <svg class="pdf-plot" viewBox="12 0 610 356" role="img" aria-label="In output space the target (3,6) projects perpendicularly onto the reachable diagonal at (4.5,4.5).">
+<path class="pdf-plot-axis" d="M39 293L599 293"/>
+<path class="pdf-plot-axis" d="M70 340L70 17"/>
+<text x="596" y="283" class="pdf-plot-label" text-anchor="end">Prediction for row 1</text>
+<text transform="translate(49 158) rotate(-90)" class="pdf-plot-label" text-anchor="middle">Prediction for row 2</text>
+<path class="pdf-plot-line" d="M70 293L330 33"/>
+<text x="344" y="54" class="pdf-plot-label" text-anchor="start">Reachable outputs</text>
+<circle cx="199" cy="35" r="7" class="pdf-plot-point"/>
+<text x="213" y="35" class="pdf-plot-label" text-anchor="start">Target y</text>
+<g class="fragment" data-fragment-index="0">
+<path class="pdf-plot-highlight" d="M263.5 99.5L199 35"/>
+<circle cx="263.5" cy="99.5" r="7" class="pdf-plot-focus"/>
+<text x="275.5" y="124.5" class="pdf-plot-label">Closest prediction</text>
+<path class="pdf-plot-secondary" d="M252.5 88.5L263.5 77.5L274.5 88.5"/>
+</g>
+</svg>
+</div>
+```
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=3">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · pp. 3–4 · Output projection</a></div>
+
+::: {.notes lang="ru"}
+
+Обе оси на рисунке относятся к предсказаниям. Вектор $X\theta=(t,t)^\top$ лежит на диагонали. Цель $y=(3,6)^\top$ проецируется на неё в ближайшую точку $\hat y=(4.5,4.5)^\top$. Обе координаты этой точки равны среднему двух наблюдений, поскольку остаток $r=y-\hat y$ перпендикулярен направлению $(1,1)^\top$.
+
+В общем случае матрица $X\in\mathbb R^{N\times n}$ отображает $n$ коэффициентов в $N$ предсказаний. Достижимые выходы образуют подпространство $C=\operatorname{Col}(X)$. У ортогональной проекции $\hat y=P_Cy$ остаток $r=y-\hat y$ перпендикулярен $C$, а разность $X\theta-\hat y$ принадлежит $C$. По теореме Пифагора
+$$
+\|X\theta-y\|_2^2=\|X\theta-\hat y\|_2^2+\|r\|_2^2.
+$$
+Слагаемое $\|r\|_2^2$ фиксировано. Первое слагаемое обращается в ноль ровно при $X\theta=\hat y$. Это условие достижимо, поскольку $\hat y$ лежит в образе $X$. Оптимальный вектор предсказаний поэтому единственен.
+
+:::
+
+## Which coefficients have the smallest norm? {#pre-mnk-minnorm .la-slide .pdf-core .pdf-mnk .ls-simple background-color="#ffffff"}
+
+```{=html}
+<div class="la-body ls-split">
+  <div class="ls-side">
+    <h3>Parameter space</h3>
+    <span class="math display">2\theta_1+\theta_2=4.5</span>
+    <p>Every point on the line gives the best prediction.</p>
+  </div>
+  <svg class="pdf-plot" viewBox="12 0 610 356" role="img" aria-label="In parameter space the line 2θ₁+θ₂=4.5 contains all least-squares solutions. Its closest point to the origin, (1.8,0.9), has minimum norm.">
+<path class="pdf-plot-axis" d="M28 214L594 214"/>
+<path class="pdf-plot-axis" d="M156 338L156 16"/>
+<text x="591" y="204" class="pdf-plot-label" text-anchor="end">θ₁</text>
+<text x="168" y="32" class="pdf-plot-label" text-anchor="start">θ₂</text>
+<path class="pdf-plot-line" d="M251.625 22.75L411 341.5"/>
+<text x="420" y="300" class="pdf-plot-label"><tspan x="420">All least-squares</tspan><tspan x="420" dy="26">solutions</tspan></text>
+<g class="fragment" data-fragment-index="0">
+<circle cx="309" cy="137.5" r="7" class="pdf-plot-focus"/>
+<path class="pdf-plot-highlight" d="M156 214L309 137.5"/>
+<path class="pdf-plot-secondary" d="M298.3 142.9L292.9 132.1L303.6 126.8"/>
+<text x="293" y="120.5" class="pdf-plot-label" text-anchor="end">θ†</text>
+</g>
+<text x="143" y="237" class="pdf-plot-label" text-anchor="end">0</text>
+</svg>
+</div>
+```
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=3">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · pp. 3–4 · Parameter projection</a></div>
+
+::: {.notes lang="ru"}
+
+Здесь оси относятся к коэффициентам $\theta_1$ и $\theta_2$. Единственной точке $\hat y=(4.5,4.5)^\top$ из пространства выходов соответствует целая прямая $2\theta_1+\theta_2=4.5$. Каждый набор коэффициентов на этой прямой даёт один и тот же оптимальный выход. Из них $\theta^\dagger$ обозначает ближайшую к началу координат точку.
+
+В общем случае разность любых двух коэффициентных векторов с одним выходом лежит в ядре $K=\ker X$. Ортогональное разложение любого решения имеет вид $\theta=\theta^\dagger+z$, где $\theta^\dagger\in K^\perp$ и $z\in K$. Слагаемое $z$ даёт нулевой выход, поэтому $X\theta^\dagger=X\theta$. При этом $\|\theta\|_2^2=\|\theta^\dagger\|_2^2+\|z\|_2^2$. Норма минимальна только при $z=0$, то есть для вектора $\theta^\dagger$. В нашем примере это основание перпендикуляра из начала координат к прямой решений.
+
+:::
+
+## How does the pseudoinverse pick one solution? {#pre-20 .la-slide .pdf-core .pdf-mnk .ls-simple background-color="#ffffff"}
+
+```{=html}
+<div class="la-body ls-centered">
+  <div class="ls-chain">
+    <div class="ls-station"><h3>Target</h3><span class="math inline">y</span></div>
+    <div class="ls-arrow"><span>Project</span><strong aria-hidden="true">→</strong></div>
+    <div class="ls-station"><h3>Closest prediction</h3><span class="math inline">\hat y</span></div>
+    <div class="ls-arrow"><span>Recover coefficients</span><strong aria-hidden="true">→</strong></div>
+    <div class="ls-station"><h3>Smallest-norm coefficients</h3><span class="ls-result math inline">\theta^\dagger</span></div>
+  </div>
+  <div class="ls-equation fragment" data-fragment-index="0">
+    <span class="math display">\theta^\dagger=X^\dagger y</span>
+  </div>
+</div>
+```
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=3">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · pp. 3–4 · Pseudoinverse theorem</a></div>
+
+::: {.notes lang="ru"}
+
+Псевдообратная матрица Мура–Пенроуза $X^\dagger$ объединяет два действия. Сначала цель $y$ проецируется на $C=\operatorname{Col}(X)$, и получается ближайший достижимый выход $\hat y$. Затем этому выходу сопоставляются коэффициенты минимальной нормы. Соответствующий вектор $\theta^\dagger$ лежит в $K^\perp$, где $K=\ker X$.
+
+Ограничение $X|_{K^\perp}:K^\perp\to C$ обратимо. У каждого достижимого выхода есть прообраз в $K^\perp$, поскольку из любого прообраза можно удалить компоненту в ядре с сохранением выхода. Разность двух прообразов из $K^\perp$ с одинаковым выходом лежит одновременно в $K^\perp$ и $K$, поэтому равна нулю. Отсюда $X^\dagger=(X|_{K^\perp})^{-1}P_C$.
+
+Композиция $XX^\dagger=P_C$ возвращает проекцию цели на пространство достижимых выходов, а $X^\dagger X=P_{K^\perp}$ возвращает компоненту коэффициентов, ортогональную ядру. Оба проектора симметричны. Из их действия следуют равенства $XX^\dagger X=X$ и $X^\dagger XX^\dagger=X^\dagger$. При $y\in C$ вектор $X^\dagger y$ является точным решением минимальной нормы, а для квадратной обратимой $X$ псевдообратная совпадает с $X^{-1}$. В конспекте она обозначается $X^+$.
+
+:::
+
+## How does SVD compute the pseudoinverse? {#pre-19 .la-slide .pdf-core .pdf-mnk .ls-simple background-color="#ffffff"}
+
+```{=html}
+<div class="la-body ls-centered">
+  <div class="ls-svd-intro">
+    <h3>Compact singular value decomposition</h3>
+    <div class="ls-svd-factors"><span class="math inline">X=U_r\Sigma_rV_r^\top,\qquad r=\operatorname{rank}X</span></div>
+    <p><span class="math inline">U_r</span> and <span class="math inline">V_r</span> give orthonormal directions for reachable outputs and for coefficients orthogonal to the kernel.</p>
+    <p><span class="math inline">\Sigma_r</span> contains the positive singular values on its diagonal.</p>
+  </div>
+  <div class="ls-chain">
+    <div class="ls-station"><h3>Read the target in the output basis</h3><span class="math inline">U_r^\top y</span></div>
+    <div class="ls-arrow"><strong aria-hidden="true">→</strong></div>
+    <div class="ls-station"><h3>Divide by each positive singular value</h3><span class="math inline">\Sigma_r^{-1}</span></div>
+    <div class="ls-arrow"><strong aria-hidden="true">→</strong></div>
+    <div class="ls-station"><h3>Reconstruct in the parameter basis</h3><span class="math inline">V_r</span></div>
+  </div>
+  <div class="ls-equation fragment" data-fragment-index="0">
+    <span class="math display">X^\dagger=V_r\Sigma_r^{-1}U_r^\top,\qquad \theta^\dagger=X^\dagger y.</span>
+  </div>
+</div>
+```
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture03-decompositions.pdf#page=6">Linear Algebra for Data Science · Lecture 3a: Matrix Decompositions · p. 6 · SVD</a></div>
+
+::: {.notes lang="ru"}
+
+Компактное сингулярное разложение вещественной матрицы ранга $r$ имеет вид $X=U_r\Sigma_r V_r^\top$. Столбцы $U_r$ образуют ортонормированный базис пространства достижимых выходов, а столбцы $V_r$ — ортонормированный базис ортогонального дополнения к ядру. Для каждой пары направлений $Xv_i=\sigma_i u_i$, где $\sigma_i>0$ — соответствующий элемент диагонали $\Sigma_r$.
+
+Координата цели вдоль $u_i$ равна $u_i^\top y$. Эти координаты задают её проекцию на пространство достижимых выходов, а перпендикулярная составляющая образует невязку. Чтобы получить нужную координату на выходе, коэффициент вдоль $v_i$ должен равняться $(u_i^\top y)/\sigma_i$. Поэтому в исходных координатах $\theta^\dagger=V_r\Sigma_r^{-1}U_r^\top y$.
+
+К полученному вектору можно прибавить любой вектор из ядра и сохранить предсказание. Такая добавка ортогональна $\theta^\dagger$, поэтому её квадрат нормы прибавляется к квадрату нормы коэффициентов. Минимальная норма получается при нулевой добавке. Таким образом, $V_r\Sigma_r^{-1}U_r^\top$ и есть псевдообратная Мура–Пенроуза. Формула использует только положительные сингулярные значения и применима при любом ранге. Если $X=0$, положительных значений нет и $X^\dagger=0$.
+
+:::
+
+## What does the pseudoinverse give in this example? {#pre-15 .la-slide .pdf-core .pdf-mnk .ls-simple background-color="#ffffff"}
+
+```{=html}
+<div class="la-body ls-centered">
+  <div class="ls-product">
+    <span class="math inline">\displaystyle \theta^\dagger=\underbrace{\frac1{10}\begin{bmatrix}2&2\\1&1\end{bmatrix}}_{X^\dagger}\begin{bmatrix}3\\6\end{bmatrix}=</span>
+    <span class="ls-result math inline">\begin{bmatrix}1.8\\0.9\end{bmatrix}</span>
+  </div>
+  <div class="ls-equation ls-check fragment" data-fragment-index="0">
+    <span class="math display">X\theta^\dagger=\hat y=(4.5,4.5)^\top</span>
+  </div>
+</div>
+```
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=4">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · pp. 4–5 · Problem 1</a></div>
+
+::: {.notes lang="ru"}
+
+Для матрицы с двумя строками $(2,1)$ формулу псевдообратной можно получить из двух геометрических шагов. Для произвольной цели $y$ на диагонали получается предсказание $(t,t)^\top$ со средним $t=(y_1+y_2)/2$. Коэффициенты минимальной нормы лежат вдоль нормали $(2,1)^\top$ к прямой $2\theta_1+\theta_2=t$, поэтому $\theta^\dagger=(t/5)(2,1)^\top$. Объединение этих выражений даёт $X^\dagger=\tfrac1{10}\begin{pmatrix}2&2\\1&1\end{pmatrix}$.
+
+Для цели $(3,6)^\top$ получаются коэффициенты $(1.8,0.9)^\top$. Они дают оба предсказания равными $4.5$ и лежат вдоль $(2,1)^\top$, как требует условие минимальной нормы. Остаток $y-X\theta^\dagger=(-\tfrac32,\tfrac32)^\top$ имеет квадрат нормы $\tfrac92$.
+
+:::
+
+## How can we check a least-squares solution? {#pre-09 .la-slide .pdf-core .pdf-mnk .ls-simple background-color="#ffffff"}
+
+```{=html}
+<div class="la-body ls-split">
+  <div class="ls-side">
+    <p>A fit minimizes squared error exactly when its residual is perpendicular to every column of <span class="math inline">X</span>.</p>
+    <div class="ls-normal fragment" data-fragment-index="0">
+      <h3>Normal equations</h3>
+      <span class="ls-result math inline">X^\top X\theta=X^\top y</span>
+    </div>
+  </div>
+  <svg class="pdf-plot" viewBox="36 0 565 319" role="img" aria-label="The residual from the prediction to the target meets the column space of X at a right angle.">
+<path class="pdf-plot-axis" d="M39 293L599 293"/>
+<path class="pdf-plot-axis" d="M70 340L70 17"/>
+<path class="pdf-plot-line" d="M70 293L330 33"/>
+<text x="344" y="54" class="pdf-plot-label" text-anchor="start">Column space of X</text>
+<circle cx="199" cy="35" r="7" class="pdf-plot-point"/>
+<text x="213" y="35" class="pdf-plot-label" text-anchor="start">Target y</text>
+<g>
+<path class="pdf-plot-highlight" d="M263.5 99.5L199 35"/>
+<circle cx="263.5" cy="99.5" r="7" class="pdf-plot-focus"/>
+<text x="275.5" y="124.5" class="pdf-plot-label">Prediction Xθ</text>
+<path class="pdf-plot-secondary" d="M252.5 88.5L263.5 77.5L274.5 88.5"/>
+<text x="211" y="74" text-anchor="end" class="pdf-plot-label">Residual r</text>
+</g>
+</svg>
+</div>
+```
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=5">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · p. 5 · Normal system</a></div>
+
+::: {.notes lang="ru"}
+
+Вектор $X\theta$ лежит в $C=\operatorname{Col}(X)$. Он является проекцией $y$ на $C$ ровно тогда, когда остаток $r=y-X\theta$ ортогонален $C$. Столбцы $X$ порождают $C$, а $X^\top r$ содержит скалярные произведения остатка с этими столбцами. Поэтому $X^\top(y-X\theta)=0$ является необходимым и достаточным условием минимума. После раскрытия скобок получаются нормальные уравнения $X^\top X\theta=X^\top y$.
+
+В нашем примере оба столбца пропорциональны $(1,1)^\top$, так что условие сводится к $r_1+r_2=0$. Оно выполняется на всей прямой $2\theta_1+\theta_2=4.5$. Это одна и та же проверка для всех коэффициентов, которые воспроизводят оптимальный выход.
+
+При полном столбцовом ранге $v^\top X^\top Xv=\|Xv\|_2^2>0$ для любого $v\ne0$. Тогда $X^\top X$ обратима и решение $\theta=(X^\top X)^{-1}X^\top y$ единственно. При ненулевом ядре $X^\top X$ вырождена, но нормальные уравнения совместны, поскольку проекция $P_Cy$ всегда достижима.
+
+:::
+
+## How do we describe every least-squares solution? {#pre-mnk-family .la-slide .pdf-core .pdf-mnk background-color="#ffffff"}
+
+::::: {.la-body}
+:::: {.la-grid-wide .pdf-layout .mnk-argument}
+::: {.la-panel}
+<h3>Every minimizer</h3>
+
+$$\theta=X^\dagger y+z,\qquad z\in\ker(X).$$
+
+::: {.fragment data-fragment-index="0"}
+$$\theta=X^\dagger y+(I-X^\dagger X)v,\qquad v\text{ arbitrary}.$$
+:::
+
+::: {.fragment data-fragment-index="1"}
+**Rank-one example**
+
+$$\theta=(\tfrac95,\tfrac9{10})^\top+s(1,-2)^\top,\qquad s\in\mathbb R.$$
+:::
+:::
+
+::: {.la-panel}
+```{=html}
+<svg class="pdf-plot" viewBox="8 0 612 360" role="img" aria-label="The line 2θ₁+θ₂=4.5 contains every best fit; its closest point to the origin is (1.8,0.9).">
+<path class="pdf-plot-axis" d="M28 214L594 214"/>
+<path class="pdf-plot-axis" d="M156 338L156 16"/>
+<text x="591" y="204" class="pdf-plot-label" text-anchor="end">θ₁</text>
+<text x="168" y="32" class="pdf-plot-label" text-anchor="start">θ₂</text>
+<path class="pdf-plot-line" d="M251.625 22.75L411 341.5"/>
+<text x="423" y="321" class="pdf-plot-label" text-anchor="start">All minimizers</text>
+<circle cx="309" cy="137.5" r="7" class="pdf-plot-focus"/>
+<path class="pdf-plot-highlight" d="M156 214L309 137.5"/>
+<path class="pdf-plot-secondary" d="M298.3 142.9L292.9 132.1L303.6 126.8"/>
+<text x="293" y="120.5" class="pdf-plot-label" text-anchor="end">θ†</text>
+<g class="fragment" data-fragment-index="1">
+<path class="pdf-plot-highlight" d="M309 137.5L372.75 265"/>
+<circle cx="372.75" cy="265" r="7" class="pdf-plot-point"/>
+<text x="388.75" y="254" class="pdf-plot-label" text-anchor="start">θ† + s(1, −2)</text>
+</g>
+<text x="143" y="237" class="pdf-plot-label" text-anchor="end">0</text>
+</svg>
+```
+:::
+::::
+:::::
+
+::: {.la-takeaway}
+The fit is fixed. The kernel gives all the freedom in the parameters.
+:::
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=5">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · pp. 5–6 · Formula (4) and Problem 2</a></div>
+
+::: {.notes lang="ru"}
+
+Нормальные уравнения описывают все $\theta$ с выходом $X\theta=\hat y$. Одно такое решение уже известно, $\theta^\dagger=X^\dagger y$. Для любого другого решения $X(\theta-\theta^\dagger)=0$, поэтому $\theta-\theta^\dagger\in K=\ker X$. И наоборот, любой сдвиг из $K$ сохраняет выход $\hat y$. Так получается всё семейство $\theta^\dagger+K$.
+
+Вторая формула на слайде строит допустимый сдвиг из произвольного $v$. Так как $X^\dagger X$ проецирует на $K^\perp$, разность $v-X^\dagger Xv$ даёт компоненту $v$ в $K$. При изменении $v$ эта компонента пробегает всё ядро.
+
+В примере с одинаковыми строками вектор $(1,-2)^\top$ порождает ядро. Параметр $s$ задаёт сдвиг вдоль этого направления. На всей прямой $\theta^\dagger+s(1,-2)^\top$ выход остаётся $(\tfrac92,\tfrac92)^\top$, а минимум нормы параметров достигается при $s=0$. Разные точки прямой совпадают в предсказаниях на строках $X$. Для новой строки признаков $a^\top$ изменение параметров на $z\in K$ меняет предсказание на $a^\top z$.
+
+:::
+
+## What can a fitted line predict on day 4? {#pre-mnk-temperature .la-slide .pdf-core .pdf-mnk background-color="#ffffff"}
+
+::::: {.la-body}
+:::: {.la-grid .pdf-layout .mnk-temperature}
+::: {.la-panel}
+<h3>Four measurements</h3>
+
+| Day | 1 | 2 | 2 | 3 |
+|:----|--:|--:|--:|--:|
+| Reading | 19° | 18° | 20° | 15° |
+
+$$\hat y(x)=ax+c$$
+
+$$X=\begin{bmatrix}1&1\\2&1\\2&1\\3&1\end{bmatrix},\qquad
+y=\begin{bmatrix}19\\18\\20\\15\end{bmatrix}.$$
+:::
+
+::: {.la-panel}
+```{=html}
+<svg class="pdf-plot" viewBox="0 0 620 356" role="img" aria-label="Four readings: 19 on day 1, 18 and 20 on day 2, 15 on day 3. The fitted line extrapolates to 14 on day 4, shown by a hollow point.">
+<path class="pdf-plot-axis" d="M50 309L558 309"/>
+<path class="pdf-plot-axis" d="M70 325L70 42"/>
+<text x="68" y="31" class="pdf-plot-label" text-anchor="start">Temperature (°)</text>
+<text x="589" y="344" class="pdf-plot-label" text-anchor="end">Day</text>
+<path class="pdf-plot-grid" d="M63 309L549 309"/>
+<text x="57" y="315" class="pdf-plot-label" text-anchor="end">14</text>
+<path class="pdf-plot-grid" d="M63 231L549 231"/>
+<text x="57" y="237" class="pdf-plot-label" text-anchor="end">16</text>
+<path class="pdf-plot-grid" d="M63 153L549 153"/>
+<text x="57" y="159" class="pdf-plot-label" text-anchor="end">18</text>
+<path class="pdf-plot-grid" d="M63 75L549 75"/>
+<text x="57" y="81" class="pdf-plot-label" text-anchor="end">20</text>
+<text x="70" y="344" class="pdf-plot-label" text-anchor="middle">1</text>
+<text x="218" y="344" class="pdf-plot-label" text-anchor="middle">2</text>
+<text x="366" y="344" class="pdf-plot-label" text-anchor="middle">3</text>
+<text x="514" y="344" class="pdf-plot-label" text-anchor="middle">4</text>
+<circle cx="70" cy="114" r="8.5" class="pdf-plot-point"/>
+<circle cx="218" cy="153" r="8.5" class="pdf-plot-point"/>
+<circle cx="218" cy="75" r="8.5" class="pdf-plot-point"/>
+<circle cx="366" cy="270" r="8.5" class="pdf-plot-point"/>
+<g class="fragment" data-fragment-index="0">
+<path class="pdf-plot-line" d="M70 75L366 231"/>
+</g>
+<g class="fragment" data-fragment-index="1">
+<path class="pdf-plot-dash" d="M366 231L514 309"/>
+<circle cx="514" cy="309" r="8.5" class="pdf-plot-hollow"/>
+</g>
+</svg>
+```
+
+::: {.fragment data-fragment-index="0"}
+**Fitted line:** $\hat y(x)=-2x+22$
+:::
+
+::: {.fragment data-fragment-index="1"}
+**Day 4:** $\hat y(4)=14^\circ$ · model prediction
+:::
+:::
+::::
+:::::
+
+<div class="la-source"><a href="assets/pdf_narrative_20261111/sources/lecture02-pseudosolutions.pdf#page=7">Linear Algebra for Data Science · Lecture 2: Pseudosolutions · pp. 7–8 · Problem 3</a></div>
+
+::: {.notes lang="ru"}
+
+Четыре наблюдения из конспекта включают два разных показания на второй день: $18^\circ$ и $20^\circ$. Прямая $\hat y(x)=ax+c$ даёт одно предсказание на каждый день, поэтому точное совпадение со всеми наблюдениями невозможно. В $X$ одна строка на измерение, первый столбец хранит номер дня, второй — единицы. Повторная строка не нарушает независимости двух столбцов, так как наблюдения сделаны в разные дни.
+
+Для этих данных нормальные уравнения имеют вид
+$$
+\begin{pmatrix}18&8\\8&4\end{pmatrix}\begin{pmatrix}a\\c\end{pmatrix}
+=\begin{pmatrix}140\\72\end{pmatrix}.
+$$
+Они дают единственную прямую $\hat y(x)=-2x+22$. На второй день она предсказывает $18^\circ$, хотя среднее двух показаний этого дня равно $19^\circ$: наклон и свободный член подбираются по всем четырём наблюдениям сразу. Остаток $(-1,0,2,-1)^\top$ ортогонален обоим столбцам $X$, а сумма квадратов ошибок равна $6$. Значение $\hat y(4)=14^\circ$ — экстраполяция за пределы наблюдавшихся дней.
+
+:::

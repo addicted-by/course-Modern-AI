@@ -1,0 +1,62 @@
+/* Architecture pacing: fixed slide cuts and short, presenter-led reveals. */
+.reveal .slides .la-slide {
+  --la-motion-duration: 120ms;
+}
+
+.reveal .slides .la-slide .fragment {
+  transition-duration: var(--la-motion-duration);
+  transition-timing-function: ease;
+}
+
+/* These entrances disclose content in place. The fragment order stays intact. */
+.reveal .slides .la-slide .fragment.fade-up {
+  transform: none;
+}
+
+/* Keep the authored PCA transfer and stereo projection as geometric steps. */
+.reveal .slides #app-d01 .app-d01-transfer.fragment,
+.reveal .slides #app-d15 .app-d15-projection.fragment {
+  transition-duration: var(--la-motion-duration);
+  transition-timing-function: ease;
+}
+
+/* Match the reference's color feedback while keeping direct manipulation immediate. */
+.reveal .la-slide .pre-widget button,
+.reveal .la-slide .pre-state-controls button,
+.reveal .la-slide .pre-qr-tabs label,
+.reveal .pdf-decomp .decomp-four-steps .decomp-step {
+  transition: background-color var(--la-motion-duration) ease,
+              border-color var(--la-motion-duration) ease;
+}
+
+.reveal .pdf-decomp .decomp-three-steps .decomp-step h3::before {
+  transition: background-color var(--la-motion-duration) ease;
+}
+
+.reveal .pdf-decomp .decomp-accent-stroke {
+  transition: stroke var(--la-motion-duration) ease;
+}
+
+.reveal .pdf-decomp .decomp-accent-fill {
+  transition: fill var(--la-motion-duration) ease;
+}
+
+@media print, (prefers-reduced-motion: reduce) {
+  .reveal .slides .la-slide *,
+  .reveal .slides .la-slide *::before,
+  .reveal .slides .la-slide *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* The collapsed handout depicts the completed transfer and projection. */
+@media print {
+  .reveal .slides #app-d01 .app-d01-transfer.fragment {
+    transform: none !important;
+  }
+
+  .reveal .slides #app-d15 .app-d15-projection.fragment {
+    transform: translate(var(--app-d15-dx), var(--app-d15-dy)) !important;
+  }
+}

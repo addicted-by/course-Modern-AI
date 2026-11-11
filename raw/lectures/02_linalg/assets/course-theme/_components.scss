@@ -1,0 +1,795 @@
+/* ==========================================================================
+   Component Suite: Callouts, Cards, Metrics, Badges, Step Flows, and Tables
+   ========================================================================== */
+
+/* 1. Editorial Callout Suite */
+
+/* Key Idea / Insight Box */
+.reveal .key-idea {
+  border-left: 5px solid var(--lecture-accent);
+  background: var(--lecture-accent-soft);
+  padding: 1.1em 1.5em;
+  border-radius: var(--lecture-radius-md);
+  border-top: 1px solid var(--lecture-accent-border);
+  border-right: 1px solid var(--lecture-accent-border);
+  border-bottom: 1px solid var(--lecture-accent-border);
+  margin: 1em 0;
+  box-shadow: var(--lecture-shadow-xs);
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    box-shadow: var(--lecture-shadow-sm);
+  }
+}
+
+.reveal .key-idea-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 0.8em;
+  font-weight: 800;
+  color: var(--lecture-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4em;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+/* Formal Definition Box */
+.reveal .definition {
+  border-left: 5px solid var(--lecture-border-dark, var(--lecture-accent));
+  background: var(--lecture-surface);
+  padding: 1.1em 1.5em;
+  border-radius: var(--lecture-radius-md);
+  border-top: 1px solid var(--lecture-border);
+  border-right: 1px solid var(--lecture-border);
+  border-bottom: 1px solid var(--lecture-border);
+  box-shadow: var(--lecture-shadow-sm);
+  margin: 1em 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    box-shadow: var(--lecture-shadow-md);
+  }
+}
+
+.reveal .definition-term {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 0.82em;
+  font-weight: 800;
+  color: var(--lecture-fg);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4em;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+/* Warning & Pitfall Box */
+.reveal .warning {
+  border-left: 5px solid var(--lecture-warning);
+  background: var(--lecture-warning-soft);
+  padding: 1.1em 1.5em;
+  border-radius: var(--lecture-radius-md);
+  border-top: 1px solid var(--lecture-warning-border);
+  border-right: 1px solid var(--lecture-warning-border);
+  border-bottom: 1px solid var(--lecture-warning-border);
+  margin: 1em 0;
+  box-shadow: var(--lecture-shadow-xs);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    box-shadow: var(--lecture-shadow-sm);
+  }
+}
+
+.reveal .warning-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 0.8em;
+  font-weight: 800;
+  color: var(--lecture-warning);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4em;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+/* Info / Insight Box */
+.reveal .info-box,
+.reveal .insight-box {
+  border-left: 5px solid var(--lecture-info);
+  background: var(--lecture-info-soft);
+  padding: 1.1em 1.5em;
+  border-radius: var(--lecture-radius-md);
+  border-top: 1px solid var(--lecture-info-border);
+  border-right: 1px solid var(--lecture-info-border);
+  border-bottom: 1px solid var(--lecture-info-border);
+  margin: 1em 0;
+  box-shadow: var(--lecture-shadow-xs);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    box-shadow: var(--lecture-shadow-sm);
+  }
+}
+
+.reveal .info-box-title,
+.reveal .insight-box-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 0.8em;
+  font-weight: 800;
+  color: var(--lecture-info);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4em;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+/* Formula Card Box */
+.reveal .formula-card {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-border);
+  border-radius: var(--lecture-radius-md);
+  padding: 1.2rem 1.5rem;
+  box-shadow: var(--lecture-shadow-sm);
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--lecture-shadow-md);
+    border-color: var(--lecture-accent-border);
+  }
+}
+
+.reveal .formula-header {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 0.82em;
+  font-weight: 800;
+  color: var(--lecture-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--lecture-border-light);
+  padding-bottom: 0.4rem;
+}
+
+.reveal .formula-legend {
+  font-size: 0.72em;
+  color: var(--lecture-muted);
+  border-top: 1px solid var(--lecture-border-light);
+  padding-top: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+/* Final / Slide Takeaway Box */
+.reveal .takeaway {
+  text-align: center;
+  padding: 1.8em 2.4em;
+  background: var(--lecture-surface);
+  border: 2px solid var(--lecture-accent);
+  border-radius: var(--lecture-radius-xl);
+  box-shadow: var(--lecture-shadow-md), var(--lecture-shadow-glow);
+  margin: 1.5em auto;
+  max-width: 92%;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lecture-shadow-lg), var(--lecture-shadow-glow);
+  }
+}
+
+.reveal .takeaway-title {
+  color: var(--lecture-accent);
+  font-size: 0.75em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5em;
+  display: inline-block;
+  padding: 0.2em 0.8em;
+  background: var(--lecture-accent-soft);
+  border-radius: var(--lecture-radius-pill);
+}
+
+.reveal .takeaway-message {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 1.4em;
+  font-weight: 800;
+  color: var(--lecture-fg);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+/* Quarto Built-in Callout Harmonization */
+.reveal .callout {
+  border-radius: var(--lecture-radius-md);
+  border-left-width: 5px;
+  box-shadow: var(--lecture-shadow-xs);
+  margin: 1em 0;
+  background: var(--lecture-surface-alt);
+  border-top: 1px solid var(--lecture-border);
+  border-right: 1px solid var(--lecture-border);
+  border-bottom: 1px solid var(--lecture-border);
+
+  .callout-header {
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+    border-bottom: none;
+  }
+
+  .callout-body {
+    font-size: 0.9em;
+    line-height: 1.55;
+  }
+
+  &.callout-note {
+    border-left-color: var(--lecture-info);
+    background: var(--lecture-info-soft);
+    border-color: var(--lecture-info-border);
+    .callout-header { color: var(--lecture-info); }
+  }
+
+  &.callout-tip {
+    border-left-color: var(--lecture-success);
+    background: var(--lecture-success-soft);
+    border-color: var(--lecture-success-border);
+    .callout-header { color: var(--lecture-success); }
+  }
+
+  &.callout-warning,
+  &.callout-caution {
+    border-left-color: var(--lecture-warning);
+    background: var(--lecture-warning-soft);
+    border-color: var(--lecture-warning-border);
+    .callout-header { color: var(--lecture-warning); }
+  }
+
+  &.callout-important {
+    border-left-color: var(--lecture-danger);
+    background: var(--lecture-danger-soft);
+    border-color: var(--lecture-danger-border);
+    .callout-header { color: var(--lecture-danger); }
+  }
+}
+
+/* 2. Metric Counters & Stat Cards */
+
+.reveal .metric-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100%;
+  gap: 1.5rem;
+  margin: 1.2rem 0;
+}
+
+.reveal .metric,
+.reveal .metric-card {
+  flex: 1;
+  background: var(--lecture-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--lecture-border-glass);
+  border-radius: var(--lecture-radius-lg);
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  box-shadow: var(--lecture-shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lecture-shadow-md);
+    border-color: var(--lecture-accent-border);
+  }
+}
+
+.reveal .metric-value {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 2.5em;
+  font-weight: 800;
+  line-height: 1.05;
+  background: var(--lecture-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25em;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.reveal .metric-label {
+  color: var(--lecture-muted);
+  font-size: 0.72em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.reveal .metric-delta {
+  font-size: 0.65em;
+  font-weight: 700;
+  margin-top: 0.35em;
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  border-radius: var(--lecture-radius-pill);
+}
+
+.reveal .metric-delta.positive {
+  background: var(--lecture-success-soft);
+  color: var(--lecture-success);
+  border: 1px solid var(--lecture-success-border);
+}
+
+.reveal .metric-delta.negative {
+  background: var(--lecture-danger-soft);
+  color: var(--lecture-danger);
+  border: 1px solid var(--lecture-danger-border);
+}
+
+/* 3. Split-View Comparison Cards */
+
+.reveal .compare-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  width: 100%;
+}
+
+.reveal .compare-card {
+  border-radius: var(--lecture-radius-md);
+  padding: 1.4rem 1.6rem;
+  background: var(--lecture-surface-glass, var(--lecture-surface));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--lecture-border);
+  box-shadow: var(--lecture-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--lecture-shadow-md);
+  }
+}
+
+.reveal .compare-card.compare-pro {
+  border-top: 4px solid var(--lecture-success);
+  background: linear-gradient(180deg, var(--lecture-success-soft) 0%, var(--lecture-surface-glass, var(--lecture-surface)) 25%);
+}
+
+.reveal .compare-card.compare-con {
+  border-top: 4px solid var(--lecture-danger);
+  background: linear-gradient(180deg, var(--lecture-danger-soft) 0%, var(--lecture-surface-glass, var(--lecture-surface)) 25%);
+}
+
+.reveal .compare-card.compare-neutral {
+  border-top: 4px solid var(--lecture-accent);
+  background: linear-gradient(180deg, var(--lecture-accent-soft) 0%, var(--lecture-surface-glass, var(--lecture-surface)) 25%);
+}
+
+.reveal .compare-header {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 1.1em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  color: var(--lecture-fg);
+}
+
+/* 4. WOW Frontier Model Showcase Card */
+
+.reveal .wow-card {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-border);
+  border-radius: var(--lecture-radius-lg);
+  padding: 1.4rem 1.7rem;
+  box-shadow: var(--lecture-shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--lecture-accent-gradient);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lecture-shadow-lg);
+  }
+}
+
+.reveal .wow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--lecture-border-light);
+  padding-bottom: 0.75rem;
+}
+
+.reveal .wow-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  background: var(--lecture-bg-subtle, var(--lecture-bg));
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--lecture-radius-md);
+  border: 1px solid var(--lecture-border);
+}
+
+.reveal .wow-meta-item {
+  font-size: 0.78em;
+  line-height: 1.4;
+}
+
+.reveal .wow-meta-label {
+  font-weight: 700;
+  color: var(--lecture-muted);
+  text-transform: uppercase;
+  font-size: 0.82em;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 0.1em;
+}
+
+.reveal .wow-meta-val {
+  font-weight: 600;
+  color: var(--lecture-fg);
+}
+
+.reveal .wow-breakthrough {
+  background: linear-gradient(135deg, var(--lecture-accent-soft) 0%, var(--lecture-surface) 100%);
+  border-left: 4px solid var(--lecture-accent);
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--lecture-radius-xs);
+  font-size: 0.8em;
+  color: var(--lecture-accent);
+  line-height: 1.45;
+}
+
+/* 5. Interactive Audience Checkpoint Box */
+
+.reveal .checkpoint-box {
+  background: var(--lecture-bg-subtle);
+  border: 2px dashed var(--lecture-border-dark, var(--lecture-border));
+  border-radius: var(--lecture-radius-lg);
+  padding: 1.4rem 1.8rem;
+  margin: 1em 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.reveal .checkpoint-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  color: var(--lecture-accent);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.7rem;
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+}
+
+.reveal .checkpoint-question {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--lecture-fg);
+  margin-bottom: 1rem;
+  line-height: 1.35;
+}
+
+.reveal .checkpoint-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.reveal .checkpoint-option {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-border);
+  padding: 0.8rem 1.1rem;
+  border-radius: var(--lecture-radius-md);
+  font-size: 0.82em;
+  font-weight: 500;
+  color: var(--lecture-fg-soft, var(--lecture-fg));
+  box-shadow: var(--lecture-shadow-xs);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--lecture-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--lecture-shadow-sm);
+    color: var(--lecture-accent);
+  }
+
+  &.correct {
+    border-color: var(--lecture-success);
+    background: var(--lecture-success-soft);
+    color: var(--lecture-success);
+    font-weight: 600;
+  }
+
+  &.incorrect {
+    border-color: var(--lecture-danger);
+    background: var(--lecture-danger-soft);
+    color: var(--lecture-danger);
+  }
+}
+
+/* 6. Step & Timeline Process Flow */
+
+.reveal .step-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+  margin: 1.2rem 0;
+}
+
+.reveal .step-flow-item,
+.reveal .step-card {
+  flex: 1;
+  background: var(--lecture-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--lecture-border-glass);
+  border-radius: var(--lecture-radius-md);
+  padding: 1.1rem 1.3rem;
+  box-shadow: var(--lecture-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--lecture-accent-border);
+    box-shadow: var(--lecture-shadow-sm);
+  }
+}
+
+.reveal .step-number {
+  font-size: 0.72em;
+  font-weight: 800;
+  color: var(--lecture-accent);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.reveal .step-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--lecture-fg);
+  margin-bottom: 0.3em;
+}
+
+.reveal .step-desc {
+  font-size: 0.75em;
+  color: var(--lecture-fg-soft);
+  line-height: 1.4;
+}
+
+/* 7. Course Project Card */
+
+.reveal .project-card {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-border);
+  border-radius: var(--lecture-radius-md);
+  padding: 1.2rem 1.4rem;
+  box-shadow: var(--lecture-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  height: 100%;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--lecture-accent-border);
+    box-shadow: var(--lecture-shadow-md);
+  }
+}
+
+.reveal .project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--lecture-border);
+  padding-bottom: 0.5rem;
+}
+
+.reveal .project-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 1.05em;
+  font-weight: 700;
+  color: var(--lecture-fg);
+  margin: 0;
+}
+
+.reveal .project-desc {
+  font-size: 0.75em;
+  color: var(--lecture-fg-soft);
+  line-height: 1.4;
+}
+
+.reveal .project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.6rem;
+}
+
+/* 8. Architecture Taxonomy Card */
+
+.reveal .arch-box {
+  background: var(--lecture-surface);
+  border: 1px solid var(--lecture-border);
+  border-radius: var(--lecture-radius-md);
+  padding: 1.2rem 1.4rem;
+  box-shadow: var(--lecture-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--lecture-accent-border);
+    box-shadow: var(--lecture-shadow-md);
+  }
+}
+
+.reveal .arch-box .arch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--lecture-border);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.reveal .arch-box .arch-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--lecture-fg);
+  margin: 0;
+}
+
+.reveal .arch-item {
+  font-size: 0.78em;
+  line-height: 1.45;
+  margin-bottom: 0.3em;
+}
+
+.reveal .arch-label {
+  font-weight: 700;
+  color: var(--lecture-fg-soft);
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 0.03em;
+  margin-right: 0.4em;
+}
+
+/* 9. Matrix Table Styling */
+
+.reveal .matrix-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 0.6rem;
+  box-shadow: var(--lecture-shadow-sm);
+  border-radius: var(--lecture-radius-md);
+}
+
+.reveal table.matrix-table {
+  width: 100%;
+  font-size: 0.65em;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--lecture-border);
+  border-radius: var(--lecture-radius-md);
+  background: var(--lecture-surface);
+
+  th {
+    background: var(--lecture-fg);
+    color: var(--lecture-bg);
+    padding: 0.65em 0.5em;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.95em;
+    border-right: 1px solid var(--lecture-border-dark, var(--lecture-border));
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+
+    &:first-child {
+      text-align: left;
+      padding-left: 1rem;
+      width: 28%;
+    }
+  }
+
+  td {
+    padding: 0.5em 0.4em;
+    text-align: center;
+    border-bottom: 1px solid var(--lecture-border);
+    border-right: 1px solid var(--lecture-border);
+    color: var(--lecture-fg-soft);
+
+    &:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--lecture-fg);
+      padding-left: 1rem;
+      background: var(--lecture-bg-subtle);
+      border-right: 2px solid var(--lecture-border);
+    }
+  }
+
+  tr:hover td {
+    background-color: var(--lecture-accent-soft);
+  }
+}
+
+.reveal .matrix-cross {
+  color: var(--lecture-accent);
+  font-weight: 800;
+  font-size: 1.3em;
+  display: inline-block;
+}

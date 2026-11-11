@@ -1,0 +1,350 @@
+## How can a robot correct drift as it moves? {#app-d19 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<div class="app-simple-concept">A square-root Kalman filter can use QR to update its position uncertainty when new measurements arrive.</div>
+<div class="app-simple-result">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 405" role="img" aria-label="In the concept diagram, wheel motion predicts position and LiDAR observations of landmarks help correct drift. The TurtleBot clip compares wheel odometry with a LiDAR-assisted extended Kalman filter.">
+  <rect x="36" y="66" width="360" height="263" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <rect x="480" y="66" width="360" height="263" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <rect x="924" y="66" width="360" height="263" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <path d="M414 194H462m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <path d="M858 194H906m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <text x="216" y="269" text-anchor="middle" fill="var(--lecture-fg)" font-size="32" font-weight="650">Wheel motion</text>
+  <text x="216" y="304" text-anchor="middle" fill="var(--lecture-fg)" font-size="28" font-weight="500">predicts position</text>
+  <text x="660" y="269" text-anchor="middle" fill="var(--lecture-fg)" font-size="32" font-weight="650">LiDAR observes</text>
+  <text x="660" y="304" text-anchor="middle" fill="var(--lecture-fg)" font-size="28" font-weight="500">landmarks</text>
+  <text x="1104" y="269" text-anchor="middle" fill="var(--lecture-fg)" font-size="32" font-weight="650">Position estimate</text>
+  <text x="1104" y="304" text-anchor="middle" fill="var(--lecture-fg)" font-size="28" font-weight="500">corrects drift</text>
+  <text x="660" y="379" text-anchor="middle" fill="var(--lecture-muted)" font-size="26" font-weight="500">Video: wheel odometry versus LiDAR-assisted EKF</text>
+  <rect x="168" y="135" width="98" height="61" fill="white" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <rect x="151" y="146" width="18" height="41" fill="var(--lecture-fg)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <rect x="266" y="146" width="18" height="41" fill="var(--lecture-fg)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <path d="M217 131V108m-10 10 10-10 10 10" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <circle cx="617" cy="171" r="24" fill="white" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <rect x="703" y="142" width="28" height="58" fill="var(--lecture-fg)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <path d="M643 169H695M641 158l56-15M641 180l56 15" fill="none" stroke="var(--lecture-muted)" stroke-width="2" stroke-dasharray="5 4"/>
+  <circle cx="1059" cy="166" r="22" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <circle cx="1151" cy="166" r="22" fill="var(--lecture-fg)" stroke="none" stroke-width="2"/>
+  <path d="M1090 166H1121m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <circle cx="1151" cy="166" r="6" fill="var(--lecture-pop-lime)" stroke="none" stroke-width="2"/>
+</svg>
+<div class="app-video">
+  <a class="app-video-link" href="https://www.youtube.com/watch?v=ja8nJHA0zF8" target="_blank" rel="noopener noreferrer" data-video-title="LiDAR corrects drift on a TurtleBot" data-video-source-range="0:00–0:23"><span aria-hidden="true">▶</span> Watch wheel odometry and LiDAR on a TurtleBot · 0:00–0:23</a>
+  <p class="app-video-summary"><span class="app-video-description">Blue is wheel odometry. Green is the LiDAR-assisted extended Kalman filter estimate.</span>
+    <a class="app-video-source" href="https://maxpalay.com/projects/ekf-slam/" target="_blank" rel="noopener noreferrer">Max Palay · TurtleBot 3 EKF SLAM · maxpalay.com/projects/ekf-slam/</a></p>
+</div>
+</div>
+
+```
+
+::::
+
+::: {.la-source}
+
+[MathWorks · Online State Estimation](https://www.mathworks.com/help/ident/ug/extended-and-unscented-kalman-filter-algorithms-for-online-state-estimation.html) · [FilterPy · square-root Kalman filter](https://filterpy.readthedocs.io/en/latest/_modules/filterpy/kalman/square_root.html) · [Van der Merwe & Wan, 2001](https://doi.org/10.1109/ICASSP.2001.940586)
+
+:::
+
+::: {.notes lang="ru"}
+
+В 23-секундной записи TurtleBot синий след соответствует колёсной одометрии, зелёный — расширенному фильтру Калмана с поправками по ориентирам лидара. К концу этого заезда зелёная оценка возвращается ближе к начальной позе. Запись показывает качественное сравнение двух оценок.
+
+В отдельной линейной модели фильтр хранит фактор ковариации $P=LL^\top$. Если $Q=L_qL_q^\top$ — ковариация шума движения, QR-разложение матрицы $[FL,\ L_q]^\top$ даёт фактор $R_{\mathrm{qr}}$, для которого $R_{\mathrm{qr}}^\top R_{\mathrm{qr}}=FPF^\top+Q$. Фактор прогноза равен $R_{\mathrm{qr}}^\top$. При измерении блочное QR-разложение аналогично даёт фактор уточнённой ковариации.
+
+Прогноз $(0,0)$ м с ковариацией $\operatorname{diag}(4,1)$ м² и показание $(3,0)$ м при $R=I$ м² дают среднее $(2{,}4,0)$ м и ковариацию $\operatorname{diag}(0{,}8,0{,}5)$ м². С этим же прогнозом дальше сравниваются два варианта шума датчика.
+
+:::
+
+## How can QR update one user’s recommendation profile? {#app-d20 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<div class="app-simple-concept">QR updates a user profile from that user’s known ratings while keeping item profiles fixed.</div>
+<div class="app-simple-result">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1334 480" role="img" aria-label="User 1 rated item 1 five and item 3 four. QR updates User 1’s profile, while item profiles stay fixed. The updated profile coordinates are 3.799 and 0.900.">
+  <rect x="26" y="105" width="398" height="300" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <rect x="492" y="105" width="350" height="300" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <rect x="910" y="105" width="398" height="300" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <path d="M436 255H480m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <path d="M854 255H898m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <text x="62" y="160" text-anchor="start" fill="var(--lecture-fg)" font-size="35" font-weight="650">User 1 rated</text>
+  <line x1="62" y1="188" x2="388" y2="188" stroke="var(--lecture-border)" stroke-width="2"/>
+  <text x="62" y="244" text-anchor="start" fill="var(--lecture-fg)" font-size="29" font-weight="500">Item 1</text>
+  <text x="388" y="244" text-anchor="end" fill="var(--lecture-fg)" font-size="38" font-weight="650">5</text>
+  <text x="62" y="319" text-anchor="start" fill="var(--lecture-fg)" font-size="29" font-weight="500">Item 3</text>
+  <text x="388" y="319" text-anchor="end" fill="var(--lecture-fg)" font-size="38" font-weight="650">4</text>
+  <text x="667" y="237" text-anchor="middle" fill="var(--lecture-fg)" font-size="35" font-weight="650">QR update</text>
+  <text x="667" y="278" text-anchor="middle" fill="var(--lecture-fg)" font-size="25" font-weight="500">Item profiles stay fixed</text>
+  <text x="1109" y="160" text-anchor="middle" fill="var(--lecture-fg)" font-size="33" font-weight="650">Updated user profile</text>
+  <text x="946" y="212" text-anchor="start" fill="var(--lecture-fg)" font-size="25" font-weight="500">Profile coordinates</text>
+  <rect x="946" y="244" width="224" height="20" fill="var(--lecture-fg)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <rect x="946" y="305" width="53" height="20" fill="var(--lecture-fg)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <text x="1270" y="263" text-anchor="end" fill="var(--lecture-fg)" font-size="29" font-weight="500">3.799</text>
+  <text x="1270" y="324" text-anchor="end" fill="var(--lecture-fg)" font-size="29" font-weight="500">0.900</text>
+  <text x="667" y="457" text-anchor="middle" fill="var(--lecture-muted)" font-size="23" font-weight="500">Illustrative ratings and profiles</text>
+</svg>
+
+</div>
+
+```
+
+::::
+
+::: {.la-source}
+
+[ALS notebook · QR comparison](notebooks/applications/24_als_cholesky.html) · [SciPy · scipy.linalg.qr](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.qr.html) · [implicit · ALS](https://benfred.github.io/implicit/api/models/cpu/als.html)
+
+:::
+
+::: {.notes lang="ru"}
+
+Пользователь 1 поставил объектам 1 и 3 оценки 5 и 4. При фиксированных факторах объектов его профиль $u_1$ находится из задачи $\min_u \|Bu-y\|_2^2+\lambda\|u\|_2^2$. В матрицу $B$ входят только факторы оценённых объектов, в этом случае строки $(1,0{,}2)$ и $(0{,}9,0{,}5)$. Вектор $y=(5,4)^\top$ содержит их оценки.
+
+При $\lambda=0{,}3$ штраф входит в задачу МНК через дополнительные строки $\sqrt{\lambda}I$ и нули в правой части. QR-разложение расширенной матрицы и обратная подстановка дают две координаты профиля $(3{,}7986,0{,}8998)$. Решение той же задачи через Холецкого совпадает с точностью округления. Прогноз оценки объекта получается из скалярного произведения его фактора с обновлённым профилем. В полном ALS такие задачи решаются для всех пользователей, после чего обновляются факторы объектов.
+
+:::
+
+## How can a model show where its predictions are uncertain? {#app-d21 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<div class="app-simple-concept">Cholesky factors the training covariance once so the model can reuse it for new predictions.</div>
+<div class="app-simple-result">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1130 495" role="img" aria-label="Six synthetic observations with a posterior mean and 95% pointwise latent-function band. The interval is narrow at x = 1.5, near an observation, and wider at x = 7, far from observations.">
+  <text x="85" y="40" text-anchor="start" fill="var(--lecture-fg)" font-size="26" font-weight="650">Function value</text>
+  <line x1="85" y1="398" x2="1080" y2="398" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="406" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">−2</text>
+  <line x1="85" y1="320" x2="1080" y2="320" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="328" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">−1</text>
+  <line x1="85" y1="242" x2="1080" y2="242" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="250" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">0</text>
+  <line x1="85" y1="164" x2="1080" y2="164" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="172" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">1</text>
+  <line x1="85" y1="86" x2="1080" y2="86" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="94" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">2</text>
+  <text x="85.0" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">0</text>
+  <text x="223.19444444444443" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">1</text>
+  <text x="361.38888888888886" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">2</text>
+  <text x="499.5833333333333" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">3</text>
+  <text x="637.7777777777777" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">4</text>
+  <text x="775.9722222222222" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">5</text>
+  <text x="914.1666666666666" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">6</text>
+  <text x="1052.361111111111" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">7</text>
+  <text x="1104" y="425" text-anchor="start" fill="var(--lecture-muted)" font-size="24" font-weight="500">x</text>
+  <g transform="translate(-7.13 13.29) scale(1.39594 1.32203)">
+  <path d="M66.00,121.83 L70.95,124.06 L75.90,126.04 L80.85,127.75 L85.80,129.13 L90.75,130.11 L95.70,130.64 L100.65,130.65 L105.60,130.07 L110.55,128.86 L115.50,127.04 L120.45,124.67 L125.40,121.87 L130.35,118.76 L135.30,115.47 L140.25,112.13 L145.20,108.80 L150.15,105.57 L155.10,102.46 L160.05,99.53 L165.00,96.77 L169.95,94.20 L174.90,91.83 L179.85,89.64 L184.80,87.62 L189.75,85.76 L194.70,84.04 L199.65,82.43 L204.60,80.93 L209.55,79.52 L214.50,78.20 L219.45,76.96 L224.40,75.83 L229.35,74.84 L234.30,74.00 L239.25,73.36 L244.20,72.95 L249.15,72.80 L254.10,72.94 L259.05,73.39 L264.00,74.15 L268.95,75.25 L273.90,76.67 L278.85,78.40 L283.80,80.44 L288.75,82.76 L293.70,85.33 L298.65,88.13 L303.60,91.13 L308.55,94.30 L313.50,97.62 L318.45,101.07 L323.40,104.64 L328.35,108.32 L333.30,112.11 L338.25,116.03 L343.20,120.06 L348.15,124.23 L353.10,128.53 L358.05,132.96 L363.00,137.51 L367.95,142.18 L372.90,146.94 L377.85,151.76 L382.80,156.63 L387.75,161.49 L392.70,166.32 L397.65,171.06 L402.60,175.68 L407.55,180.11 L412.50,184.32 L417.45,188.25 L422.40,191.89 L427.35,195.18 L432.30,198.13 L437.25,200.72 L442.20,202.94 L447.15,204.80 L452.10,206.32 L457.05,207.48 L462.00,208.32 L466.95,208.82 L471.90,209.00 L476.85,208.86 L481.80,208.39 L486.75,207.60 L491.70,206.49 L496.65,205.03 L501.60,203.23 L506.55,201.08 L511.50,198.57 L516.45,195.70 L521.40,192.47 L526.35,188.89 L531.30,184.98 L536.25,180.75 L541.20,176.26 L546.15,171.55 L551.10,166.66 L556.05,161.64 L561.00,156.56 L565.95,151.47 L570.90,146.41 L575.85,141.42 L580.80,136.53 L585.75,131.75 L590.70,127.08 L595.65,122.49 L600.60,117.96 L605.55,113.41 L610.50,108.81 L615.45,104.11 L620.40,99.28 L625.35,94.33 L630.30,89.29 L635.25,84.22 L640.20,79.16 L645.15,74.17 L650.10,69.29 L655.05,64.56 L660.00,60.03 L664.95,55.71 L669.90,51.65 L674.85,47.86 L679.80,44.35 L684.75,41.15 L689.70,38.25 L694.65,35.67 L699.60,33.40 L704.55,31.45 L709.50,29.81 L714.45,28.46 L719.40,27.41 L724.35,26.63 L729.30,26.12 L734.25,25.86 L739.20,25.83 L744.15,26.01 L749.10,26.38 L754.05,26.93 L759.00,27.63 L763.95,28.47 L768.90,29.42 L773.85,30.47 L778.80,31.60 L778.80,247.36 L773.85,243.89 L768.90,240.22 L763.95,236.38 L759.00,232.35 L754.05,228.14 L749.10,223.78 L744.15,219.25 L739.20,214.59 L734.25,209.81 L729.30,204.92 L724.35,199.95 L719.40,194.93 L714.45,189.87 L709.50,184.81 L704.55,179.79 L699.60,174.82 L694.65,169.96 L689.70,165.24 L684.75,160.69 L679.80,156.36 L674.85,152.29 L669.90,148.52 L664.95,145.09 L660.00,142.05 L655.05,139.44 L650.10,137.30 L645.15,135.67 L640.20,134.61 L635.25,134.14 L630.30,134.32 L625.35,135.17 L620.40,136.72 L615.45,138.97 L610.50,141.91 L605.55,145.45 L600.60,149.52 L595.65,154.01 L590.70,158.82 L585.75,163.83 L580.80,168.98 L575.85,174.19 L570.90,179.40 L565.95,184.58 L561.00,189.70 L556.05,194.72 L551.10,199.64 L546.15,204.43 L541.20,209.09 L536.25,213.60 L531.30,217.95 L526.35,222.10 L521.40,226.05 L516.45,229.74 L511.50,233.15 L506.55,236.24 L501.60,238.97 L496.65,241.31 L491.70,243.23 L486.75,244.70 L481.80,245.70 L476.85,246.23 L471.90,246.28 L466.95,245.86 L462.00,244.98 L457.05,243.67 L452.10,241.95 L447.15,239.85 L442.20,237.42 L437.25,234.70 L432.30,231.72 L427.35,228.52 L422.40,225.14 L417.45,221.59 L412.50,217.91 L407.55,214.10 L402.60,210.17 L397.65,206.11 L392.70,201.93 L387.75,197.63 L382.80,193.22 L377.85,188.69 L372.90,184.07 L367.95,179.37 L363.00,174.61 L358.05,169.81 L353.10,165.01 L348.15,160.24 L343.20,155.53 L338.25,150.93 L333.30,146.47 L328.35,142.20 L323.40,138.15 L318.45,134.35 L313.50,130.81 L308.55,127.56 L303.60,124.59 L298.65,121.91 L293.70,119.50 L288.75,117.34 L283.80,115.43 L278.85,113.74 L273.90,112.27 L268.95,110.99 L264.00,109.92 L259.05,109.03 L254.10,108.34 L249.15,107.86 L244.20,107.59 L239.25,107.56 L234.30,107.78 L229.35,108.27 L224.40,109.05 L219.45,110.13 L214.50,111.53 L209.55,113.22 L204.60,115.19 L199.65,117.41 L194.70,119.85 L189.75,122.45 L184.80,125.18 L179.85,127.97 L174.90,130.79 L169.95,133.60 L165.00,136.36 L160.05,139.03 L155.10,141.60 L150.15,144.05 L145.20,146.39 L140.25,148.64 L135.30,150.83 L130.35,153.02 L125.40,155.30 L120.45,157.78 L115.50,160.57 L110.55,163.76 L105.60,167.41 L100.65,171.50 L95.70,175.98 L90.75,180.79 L85.80,185.84 L80.85,191.06 L75.90,196.39 L70.95,201.78 L66.00,207.16 Z" fill="#e6f5c9" stroke="#738646" stroke-width="1"/>
+  <path d="M66.00,164.50 L70.95,162.92 L75.90,161.22 L80.85,159.41 L85.80,157.48 L90.75,155.45 L95.70,153.31 L100.65,151.07 L105.60,148.74 L110.55,146.31 L115.50,143.81 L120.45,141.23 L125.40,138.58 L130.35,135.89 L135.30,133.15 L140.25,130.38 L145.20,127.60 L150.15,124.81 L155.10,122.03 L160.05,119.28 L165.00,116.56 L169.95,113.90 L174.90,111.31 L179.85,108.80 L184.80,106.40 L189.75,104.10 L194.70,101.94 L199.65,99.92 L204.60,98.06 L209.55,96.37 L214.50,94.86 L219.45,93.55 L224.40,92.44 L229.35,91.55 L234.30,90.89 L239.25,90.46 L244.20,90.27 L249.15,90.33 L254.10,90.64 L259.05,91.21 L264.00,92.03 L268.95,93.12 L273.90,94.47 L278.85,96.07 L283.80,97.94 L288.75,100.05 L293.70,102.41 L298.65,105.02 L303.60,107.86 L308.55,110.93 L313.50,114.22 L318.45,117.71 L323.40,121.39 L328.35,125.26 L333.30,129.29 L338.25,133.48 L343.20,137.80 L348.15,142.23 L353.10,146.77 L358.05,151.39 L363.00,156.06 L367.95,160.77 L372.90,165.50 L377.85,170.23 L382.80,174.92 L387.75,179.56 L392.70,184.12 L397.65,188.59 L402.60,192.92 L407.55,197.11 L412.50,201.11 L417.45,204.92 L422.40,208.51 L427.35,211.85 L432.30,214.92 L437.25,217.71 L442.20,220.18 L447.15,222.33 L452.10,224.13 L457.05,225.58 L462.00,226.65 L466.95,227.34 L471.90,227.64 L476.85,227.54 L481.80,227.05 L486.75,226.15 L491.70,224.86 L496.65,223.17 L501.60,221.10 L506.55,218.66 L511.50,215.86 L516.45,212.72 L521.40,209.26 L526.35,205.50 L531.30,201.46 L536.25,197.18 L541.20,192.68 L546.15,187.99 L551.10,183.15 L556.05,178.18 L561.00,173.13 L565.95,168.03 L570.90,162.91 L575.85,157.80 L580.80,152.75 L585.75,147.79 L590.70,142.95 L595.65,138.25 L600.60,133.74 L605.55,129.43 L610.50,125.36 L615.45,121.54 L620.40,118.00 L625.35,114.75 L630.30,111.81 L635.25,109.18 L640.20,106.89 L645.15,104.92 L650.10,103.29 L655.05,102.00 L660.00,101.04 L664.95,100.40 L669.90,100.09 L674.85,100.07 L679.80,100.36 L684.75,100.92 L689.70,101.75 L694.65,102.82 L699.60,104.11 L704.55,105.62 L709.50,107.31 L714.45,109.17 L719.40,111.17 L724.35,113.29 L729.30,115.52 L734.25,117.83 L739.20,120.21 L744.15,122.63 L749.10,125.08 L754.05,127.54 L759.00,129.99 L763.95,132.42 L768.90,134.82 L773.85,137.18 L778.80,139.48" fill="none" stroke="var(--lecture-fg)" stroke-width="3.1"/>
+  <circle cx="113.52" cy="145.27" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="214.5" cy="93.35" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="315.48" cy="114.59" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="422.40000000000003" cy="208.99" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="529.3199999999999" cy="206.04000000000002" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="612.4799999999999" cy="120.49000000000001" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  </g>
+  <line x1="292.29166666666663" y1="116.71328" x2="292.29166666666663" y2="160.74272" stroke="var(--lecture-fg)" stroke-width="2.5"/>
+  <line x1="284.29166666666663" y1="116.71328" x2="300.29166666666663" y2="116.71328" stroke="var(--lecture-fg)" stroke-width="2.5"/>
+  <line x1="284.29166666666663" y1="160.74272" x2="300.29166666666663" y2="160.74272" stroke="var(--lecture-fg)" stroke-width="2.5"/>
+  <circle cx="292.29166666666663" cy="138.728" r="6" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <line x1="1052.361111111111" y1="49.839200000000005" x2="1052.361111111111" y2="320.4368" stroke="var(--lecture-fg)" stroke-width="2.5"/>
+  <line x1="1044.361111111111" y1="49.839200000000005" x2="1060.361111111111" y2="49.839200000000005" stroke="var(--lecture-fg)" stroke-width="2.5"/>
+  <line x1="1044.361111111111" y1="320.4368" x2="1060.361111111111" y2="320.4368" stroke="var(--lecture-fg)" stroke-width="2.5"/>
+  <circle cx="1052.361111111111" cy="185.138" r="6" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <text x="189" y="73" text-anchor="start" fill="var(--lecture-fg)" font-size="25" font-weight="500">Near an observation</text>
+  <path d="M293 80v35" fill="none" stroke="var(--lecture-muted)" stroke-width="1.6"/>
+  <text x="982" y="32" text-anchor="end" fill="var(--lecture-fg)" font-size="25" font-weight="500">Far from observations</text>
+  <path d="M994 26h58v23" fill="none" stroke="var(--lecture-muted)" stroke-width="1.6"/>
+  <text x="610" y="221" text-anchor="middle" fill="var(--lecture-fg)" font-size="25" font-weight="650">Prediction</text>
+  <path d="M610 230v73" fill="none" stroke="var(--lecture-muted)" stroke-width="1.6"/>
+  <text x="970" y="371" text-anchor="end" fill="var(--lecture-fg)" font-size="25" font-weight="650">95% pointwise uncertainty</text>
+  <path d="M982 362h39l31-42" fill="none" stroke="var(--lecture-muted)" stroke-width="1.6"/>
+  <text x="560" y="475" text-anchor="middle" fill="var(--lecture-muted)" font-size="25" font-weight="500">Synthetic observations · uncertainty for the underlying function</text>
+</svg>
+
+</div>
+
+```
+
+::::
+
+::: {.la-source}
+
+[GPML · Algorithm 2.1](https://gaussianprocess.org/gpml/chapters/RW2.pdf) · [Distill · Visual Exploration of Gaussian Processes](https://distill.pub/2019/visual-exploration-gaussian-processes/)
+
+:::
+
+::: {.notes lang="ru"}
+
+В гауссовском процессе прогноз включает среднее и дисперсию функции в новой точке. В примере шесть синтетических наблюдений, нулевое априорное среднее и ядро RBF с амплитудой 1 и масштабом длины $\ell=1{,}05$. Стандартное отклонение шума наблюдений $\sigma_n=0{,}15$ входит в обучающую ковариацию как добавка $\sigma_n^2I$ к матрице ядра $K$. Для этих данных фактор Холецкого $L$ и преобразованные обучающие отклики вычисляются один раз. Для каждого нового $x$ решается треугольная система с вектором взаимных ковариаций $k(X,x)$.
+
+В точке $x=1{,}50$ апостериорное среднее около $1{,}324$, а стандартное отклонение латентной функции около $0{,}144$. Дальше от наблюдений, при $x=7{,}00$, они составляют $0{,}729$ и $0{,}885$. При меньшей взаимной ковариации с обучающими точками наблюдения слабее уменьшают априорную неопределённость. Полоса $\mu\pm1{,}96\sigma$ задаёт поточечный 95%-й интервал латентной функции по модели. Для предсказания нового шумного наблюдения к дисперсии функции в этой точке добавляется $\sigma_n^2$.
+
+:::
+
+## How do Gaussian process settings change its predictions? {#app-d22 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<div class="app-simple-concept">A Gaussian process refactors its training covariance when we change its assumptions.</div>
+<div class="app-simple-result">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1130 495" role="img" aria-label="Gaussian process prediction means on the same axes with the same six observations and equal noise. With the shorter range, the fitted mean returns toward zero closer to the observations.">
+  <text x="85" y="40" text-anchor="start" fill="var(--lecture-fg)" font-size="26" font-weight="650">Function value</text>
+  <line x1="85" y1="398" x2="1080" y2="398" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="406" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">−2</text>
+  <line x1="85" y1="320" x2="1080" y2="320" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="328" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">−1</text>
+  <line x1="85" y1="242" x2="1080" y2="242" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="250" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">0</text>
+  <line x1="85" y1="164" x2="1080" y2="164" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="172" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">1</text>
+  <line x1="85" y1="86" x2="1080" y2="86" stroke="var(--lecture-border)" stroke-width="1"/>
+  <text x="72" y="94" text-anchor="end" fill="var(--lecture-muted)" font-size="22" font-weight="500">2</text>
+  <text x="85.0" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">0</text>
+  <text x="223.19444444444443" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">1</text>
+  <text x="361.38888888888886" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">2</text>
+  <text x="499.5833333333333" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">3</text>
+  <text x="637.7777777777777" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">4</text>
+  <text x="775.9722222222222" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">5</text>
+  <text x="914.1666666666666" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">6</text>
+  <text x="1052.361111111111" y="425" text-anchor="middle" fill="var(--lecture-muted)" font-size="22" font-weight="500">7</text>
+  <text x="1104" y="425" text-anchor="start" fill="var(--lecture-muted)" font-size="24" font-weight="500">x</text>
+  <g transform="translate(-7.13 13.29) scale(1.39594 1.32203)">
+  <path d="M66.00,164.50 L70.95,162.92 L75.90,161.22 L80.85,159.41 L85.80,157.48 L90.75,155.45 L95.70,153.31 L100.65,151.07 L105.60,148.74 L110.55,146.31 L115.50,143.81 L120.45,141.23 L125.40,138.58 L130.35,135.89 L135.30,133.15 L140.25,130.38 L145.20,127.60 L150.15,124.81 L155.10,122.03 L160.05,119.28 L165.00,116.56 L169.95,113.90 L174.90,111.31 L179.85,108.80 L184.80,106.40 L189.75,104.10 L194.70,101.94 L199.65,99.92 L204.60,98.06 L209.55,96.37 L214.50,94.86 L219.45,93.55 L224.40,92.44 L229.35,91.55 L234.30,90.89 L239.25,90.46 L244.20,90.27 L249.15,90.33 L254.10,90.64 L259.05,91.21 L264.00,92.03 L268.95,93.12 L273.90,94.47 L278.85,96.07 L283.80,97.94 L288.75,100.05 L293.70,102.41 L298.65,105.02 L303.60,107.86 L308.55,110.93 L313.50,114.22 L318.45,117.71 L323.40,121.39 L328.35,125.26 L333.30,129.29 L338.25,133.48 L343.20,137.80 L348.15,142.23 L353.10,146.77 L358.05,151.39 L363.00,156.06 L367.95,160.77 L372.90,165.50 L377.85,170.23 L382.80,174.92 L387.75,179.56 L392.70,184.12 L397.65,188.59 L402.60,192.92 L407.55,197.11 L412.50,201.11 L417.45,204.92 L422.40,208.51 L427.35,211.85 L432.30,214.92 L437.25,217.71 L442.20,220.18 L447.15,222.33 L452.10,224.13 L457.05,225.58 L462.00,226.65 L466.95,227.34 L471.90,227.64 L476.85,227.54 L481.80,227.05 L486.75,226.15 L491.70,224.86 L496.65,223.17 L501.60,221.10 L506.55,218.66 L511.50,215.86 L516.45,212.72 L521.40,209.26 L526.35,205.50 L531.30,201.46 L536.25,197.18 L541.20,192.68 L546.15,187.99 L551.10,183.15 L556.05,178.18 L561.00,173.13 L565.95,168.03 L570.90,162.91 L575.85,157.80 L580.80,152.75 L585.75,147.79 L590.70,142.95 L595.65,138.25 L600.60,133.74 L605.55,129.43 L610.50,125.36 L615.45,121.54 L620.40,118.00 L625.35,114.75 L630.30,111.81 L635.25,109.18 L640.20,106.89 L645.15,104.92 L650.10,103.29 L655.05,102.00 L660.00,101.04 L664.95,100.40 L669.90,100.09 L674.85,100.07 L679.80,100.36 L684.75,100.92 L689.70,101.75 L694.65,102.82 L699.60,104.11 L704.55,105.62 L709.50,107.31 L714.45,109.17 L719.40,111.17 L724.35,113.29 L729.30,115.52 L734.25,117.83 L739.20,120.21 L744.15,122.63 L749.10,125.08 L754.05,127.54 L759.00,129.99 L763.95,132.42 L768.90,134.82 L773.85,137.18 L778.80,139.48" fill="none" stroke="var(--lecture-muted)" stroke-width="2.9" stroke-dasharray="9 6"/>
+  <path d="M66.00,162.82 L70.95,160.74 L75.90,158.53 L80.85,156.26 L85.80,154.01 L90.75,151.88 L95.70,149.97 L100.65,148.34 L105.60,147.08 L110.55,146.20 L115.50,145.70 L120.45,145.54 L125.40,145.63 L130.35,145.83 L135.30,145.99 L140.25,145.93 L145.20,145.47 L150.15,144.42 L155.10,142.66 L160.05,140.10 L165.00,136.70 L169.95,132.50 L174.90,127.62 L179.85,122.26 L184.80,116.66 L189.75,111.14 L194.70,106.01 L199.65,101.59 L204.60,98.17 L209.55,95.95 L214.50,95.08 L219.45,95.58 L224.40,97.39 L229.35,100.33 L234.30,104.13 L239.25,108.49 L244.20,113.04 L249.15,117.42 L254.10,121.32 L259.05,124.46 L264.00,126.65 L268.95,127.80 L273.90,127.92 L278.85,127.10 L283.80,125.53 L288.75,123.45 L293.70,121.16 L298.65,118.96 L303.60,117.16 L308.55,116.00 L313.50,115.70 L318.45,116.40 L323.40,118.15 L328.35,120.95 L333.30,124.72 L338.25,129.32 L343.20,134.60 L348.15,140.39 L353.10,146.51 L358.05,152.80 L363.00,159.13 L367.95,165.39 L372.90,171.48 L377.85,177.33 L382.80,182.88 L387.75,188.06 L392.70,192.81 L397.65,197.05 L402.60,200.70 L407.55,203.69 L412.50,205.96 L417.45,207.47 L422.40,208.19 L427.35,208.17 L432.30,207.46 L437.25,206.18 L442.20,204.46 L447.15,202.47 L452.10,200.39 L457.05,198.41 L462.00,196.69 L466.95,195.38 L471.90,194.59 L476.85,194.37 L481.80,194.74 L486.75,195.66 L491.70,197.05 L496.65,198.76 L501.60,200.65 L506.55,202.51 L511.50,204.15 L516.45,205.36 L521.40,205.95 L526.35,205.78 L531.30,204.71 L536.25,202.67 L541.20,199.63 L546.15,195.59 L551.10,190.62 L556.05,184.83 L561.00,178.35 L565.95,171.37 L570.90,164.08 L575.85,156.72 L580.80,149.52 L585.75,142.72 L590.70,136.55 L595.65,131.25 L600.60,126.98 L605.55,123.89 L610.50,122.06 L615.45,121.51 L620.40,122.20 L625.35,124.03 L630.30,126.83 L635.25,130.40 L640.20,134.52 L645.15,138.97 L650.10,143.53 L655.05,148.00 L660.00,152.23 L664.95,156.09 L669.90,159.51 L674.85,162.46 L679.80,164.93 L684.75,166.95 L689.70,168.55 L694.65,169.80 L699.60,170.74 L704.55,171.44 L709.50,171.94 L714.45,172.30 L719.40,172.54 L724.35,172.71 L729.30,172.82 L734.25,172.89 L739.20,172.93 L744.15,172.96 L749.10,172.98 L754.05,172.99 L759.00,172.99 L763.95,173.00 L768.90,173.00 L773.85,173.00 L778.80,173.00" fill="none" stroke="#334e10" stroke-width="3.1"/>
+  <path d="M66.00,162.82 L70.95,160.74 L75.90,158.53 L80.85,156.26 L85.80,154.01 L90.75,151.88 L95.70,149.97 L100.65,148.34 L105.60,147.08 L110.55,146.20 L115.50,145.70 L120.45,145.54 L125.40,145.63 L130.35,145.83 L135.30,145.99 L140.25,145.93 L145.20,145.47 L150.15,144.42 L155.10,142.66 L160.05,140.10 L165.00,136.70 L169.95,132.50 L174.90,127.62 L179.85,122.26 L184.80,116.66 L189.75,111.14 L194.70,106.01 L199.65,101.59 L204.60,98.17 L209.55,95.95 L214.50,95.08 L219.45,95.58 L224.40,97.39 L229.35,100.33 L234.30,104.13 L239.25,108.49 L244.20,113.04 L249.15,117.42 L254.10,121.32 L259.05,124.46 L264.00,126.65 L268.95,127.80 L273.90,127.92 L278.85,127.10 L283.80,125.53 L288.75,123.45 L293.70,121.16 L298.65,118.96 L303.60,117.16 L308.55,116.00 L313.50,115.70 L318.45,116.40 L323.40,118.15 L328.35,120.95 L333.30,124.72 L338.25,129.32 L343.20,134.60 L348.15,140.39 L353.10,146.51 L358.05,152.80 L363.00,159.13 L367.95,165.39 L372.90,171.48 L377.85,177.33 L382.80,182.88 L387.75,188.06 L392.70,192.81 L397.65,197.05 L402.60,200.70 L407.55,203.69 L412.50,205.96 L417.45,207.47 L422.40,208.19 L427.35,208.17 L432.30,207.46 L437.25,206.18 L442.20,204.46 L447.15,202.47 L452.10,200.39 L457.05,198.41 L462.00,196.69 L466.95,195.38 L471.90,194.59 L476.85,194.37 L481.80,194.74 L486.75,195.66 L491.70,197.05 L496.65,198.76 L501.60,200.65 L506.55,202.51 L511.50,204.15 L516.45,205.36 L521.40,205.95 L526.35,205.78 L531.30,204.71 L536.25,202.67 L541.20,199.63 L546.15,195.59 L551.10,190.62 L556.05,184.83 L561.00,178.35 L565.95,171.37 L570.90,164.08 L575.85,156.72 L580.80,149.52 L585.75,142.72 L590.70,136.55 L595.65,131.25 L600.60,126.98 L605.55,123.89 L610.50,122.06 L615.45,121.51 L620.40,122.20 L625.35,124.03 L630.30,126.83 L635.25,130.40 L640.20,134.52 L645.15,138.97 L650.10,143.53 L655.05,148.00 L660.00,152.23 L664.95,156.09 L669.90,159.51 L674.85,162.46 L679.80,164.93 L684.75,166.95 L689.70,168.55 L694.65,169.80 L699.60,170.74 L704.55,171.44 L709.50,171.94 L714.45,172.30 L719.40,172.54 L724.35,172.71 L729.30,172.82 L734.25,172.89 L739.20,172.93 L744.15,172.96 L749.10,172.98 L754.05,172.99 L759.00,172.99 L763.95,173.00 L768.90,173.00 L773.85,173.00 L778.80,173.00" fill="none" stroke="var(--lecture-pop-lime)" stroke-width="1.45"/>
+  <circle cx="113.52" cy="145.27" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="214.5" cy="93.35" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="315.48" cy="114.59" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="422.40000000000003" cy="208.99" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="529.3199999999999" cy="206.04000000000002" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  <circle cx="612.4799999999999" cy="120.49000000000001" r="5" fill="white" stroke="var(--lecture-fg)" stroke-width="2.4"/>
+  </g>
+  <line x1="634" y1="33" x2="674" y2="33" stroke="var(--lecture-muted)" stroke-width="3.8" stroke-dasharray="9 6"/>
+  <text x="685" y="41" text-anchor="start" fill="var(--lecture-fg)" font-size="26" font-weight="500">Longer range</text>
+  <line x1="878" y1="33" x2="918" y2="33" stroke="#334e10" stroke-width="5"/>
+  <line x1="878" y1="33" x2="918" y2="33" stroke="var(--lecture-pop-lime)" stroke-width="2"/>
+  <text x="929" y="41" text-anchor="start" fill="var(--lecture-fg)" font-size="26" font-weight="500">Shorter range</text>
+  <text x="560" y="475" text-anchor="middle" fill="var(--lecture-muted)" font-size="25" font-weight="500">Same observations · changing only how far each point influences the fit</text>
+</svg>
+
+</div>
+
+```
+
+::::
+
+::: {.la-source}
+
+[GPML · §2.3 and Fig. 2.5](https://gaussianprocess.org/gpml/chapters/RW2.pdf) · [scikit-learn · GPR noise level](https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_gpr_noisy.html#optimisation-of-kernel-hyperparameters-in-gpr)
+
+:::
+
+::: {.notes lang="ru"}
+
+Две кривые получены по одним и тем же шести наблюдениям при одинаковом шуме $\sigma_n=0{,}15$. С уменьшением масштаба длины RBF с $1{,}05$ до $0{,}35$ ковариации между различными точками быстрее убывают с расстоянием. Поэтому влияние каждого наблюдения распространяется на меньшую окрестность и апостериорное среднее быстрее возвращается к нулевому априорному среднему вдали от точек.
+
+Другой параметр — стандартное отклонение шума. Повышение $\sigma_n$ с $0{,}15$ до $0{,}45$ увеличивает диагональную добавку $\sigma_n^2I$ и уменьшает вклад наблюдений в снижение неопределённости функции. При изменении любого из этих параметров фактор Холецкого обучающей ковариации строится заново, затем пересчитываются среднее и полоса. На тех же обучающих данных логарифм маргинального правдоподобия равен приблизительно $-6{,}921$ для базовой настройки, $-7{,}784$ для короткого масштаба и $-7{,}331$ для повышенного шума. Эти значения сравнивают три заранее заданные настройки по тому, как модель объясняет наблюдённые данные.
+
+:::
+
+## What limits a dense Gaussian process as the dataset grows? {#app-d23 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<div class="app-simple-concept">Dense Cholesky starts from a covariance matrix that grows with every pair of observations.</div>
+<div class="app-simple-result">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1324 328" role="img" aria-label="Dense covariance stores every pair of observations. A full Float64 matrix for 50,000 observations uses 20 decimal gigabytes before factors or workspace.">
+  <rect x="27" y="51" width="390" height="232" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <rect x="487" y="51" width="350" height="232" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <rect x="907" y="51" width="390" height="232" fill="var(--lecture-pop-lime)" stroke="var(--lecture-fg)" stroke-width="2"/>
+  <path d="M430 170H474m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <path d="M850 170H894m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <text x="222" y="152" text-anchor="middle" fill="var(--lecture-fg)" font-size="37" font-weight="650">All pairs of</text>
+  <text x="222" y="200" text-anchor="middle" fill="var(--lecture-fg)" font-size="37" font-weight="650">observations</text>
+  <text x="662" y="152" text-anchor="middle" fill="var(--lecture-fg)" font-size="37" font-weight="650">Dense</text>
+  <text x="662" y="200" text-anchor="middle" fill="var(--lecture-fg)" font-size="37" font-weight="650">covariance</text>
+  <text x="1102" y="157" text-anchor="middle" fill="var(--lecture-fg)" font-size="63" font-weight="650">20 GB</text>
+  <text x="1102" y="212" text-anchor="middle" fill="var(--lecture-fg)" font-size="28" font-weight="500">at 50,000 observations</text>
+</svg>
+
+</div>
+<div class="app-simple-metrics">
+  <table>
+    <caption>Calculated storage · excludes factors and workspace</caption>
+    <thead><tr><th scope="col">Observations</th><th scope="col">One dense Float64 covariance</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">1,000</th><td>8 MB</td></tr>
+      <tr><th scope="row">10,000</th><td>0.8 GB</td></tr>
+      <tr class="app-simple-highlight"><th scope="row">50,000</th><td>20 GB</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+
+[GPML · Algorithm 2.1](https://gaussianprocess.org/gpml/chapters/RW2.pdf) · [Gardner et al. · GPyTorch, 2018](https://arxiv.org/abs/1809.11165)
+
+:::
+
+::: {.notes lang="ru"}
+
+У плотного гауссовского процесса ковариационная матрица содержит элемент для каждой пары из $n$ обучающих наблюдений. Одна полная матрица в Float64 занимает $8n^2$ байт. При удвоении числа наблюдений этот объём увеличивается в четыре раза. Для тысячи наблюдений требуется 8 МБ, для десяти тысяч — 0,8 ГБ, для пятидесяти тысяч — 20 ГБ. Это объём в десятичных единицах только для самой ковариации. Хранение фактора и рабочая память учитываются отдельно.
+
+Ведущий член стоимости плотного разложения Холецкого равен $n^3/3$ арифметических операций. При итеративном решении системы используют умножения ковариационной матрицы на вектор. Если ядро имеет подходящую структуру, её можно использовать для этих умножений или для приближения модели. Точность, память и время таких методов зависят от структуры конкретной задачи.
+
+:::
+
+## How can ALS train a recommender with small updates? {#app-d24 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<div class="app-simple-concept">ALS alternates between user and item updates that Cholesky can solve as small regularized problems.</div>
+<div class="app-simple-result">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 482" role="img" aria-label="ALS alternates user and item updates. Holding item profiles fixed, User 1 is updated from their ratings for items 1 and 3. Holding the updated users fixed, Item 1 uses ratings from users 1 and 3. Repeat these phases.">
+  <rect x="65" y="118" width="490" height="248" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <rect x="765" y="118" width="490" height="248" fill="var(--lecture-bg-subtle)" stroke="var(--lecture-border)" stroke-width="2"/>
+  <path d="M574 242H744m-14-11 14 11-14 11" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <path d="M1010 367V430H310V382m-11 14 11-14 11 14" fill="none" stroke="var(--lecture-fg)" stroke-width="3"/>
+  <rect x="592" y="411" width="138" height="35" fill="var(--lecture-pop-lime)" stroke="none" stroke-width="2"/>
+  <text x="661" y="438" text-anchor="middle" fill="var(--lecture-fg)" font-size="24" font-weight="650">Repeat</text>
+  <text x="310" y="177" text-anchor="middle" fill="var(--lecture-fg)" font-size="39" font-weight="650">Update user profiles</text>
+  <text x="310" y="222" text-anchor="middle" fill="var(--lecture-fg)" font-size="30" font-weight="500">Hold items fixed</text>
+  <line x1="117" y1="248" x2="503" y2="248" stroke="var(--lecture-border)" stroke-width="2"/>
+  <text x="310" y="305" text-anchor="middle" fill="var(--lecture-fg)" font-size="25" font-weight="500">User 1 rated items 1 and 3</text>
+  <text x="1010" y="177" text-anchor="middle" fill="var(--lecture-fg)" font-size="39" font-weight="650">Update item profiles</text>
+  <text x="1010" y="222" text-anchor="middle" fill="var(--lecture-fg)" font-size="30" font-weight="500">Hold users fixed</text>
+  <line x1="817" y1="248" x2="1203" y2="248" stroke="var(--lecture-border)" stroke-width="2"/>
+  <text x="1010" y="305" text-anchor="middle" fill="var(--lecture-fg)" font-size="25" font-weight="500">Users 1 and 3 rated item 1</text>
+  <text x="661" y="65" text-anchor="middle" fill="var(--lecture-muted)" font-size="27" font-weight="500">Illustrative recommender training loop</text>
+</svg>
+
+</div>
+
+```
+
+::::
+
+::: {.la-source}
+
+[ALS notebook · local Cholesky update](notebooks/applications/24_als_cholesky.html) · [implicit · CPU AlternatingLeastSquares](https://benfred.github.io/implicit/api/models/cpu/als.html)
+
+:::
+
+::: {.notes lang="ru"}
+
+В ALS с явными рейтингами сумма квадратов ошибок считается по наблюдённым оценкам, а к ней добавляется штраф на нормы факторов. Когда факторы объектов фиксированы, задача распадается на независимые регуляризованные задачи МНК для пользователей. На следующей фазе фиксируются обновлённые факторы пользователей и независимо подгоняются факторы объектов. Например, для пользователя 1 используются оценки объектов 1 и 3, а для объекта 1 — оценки пользователей 1 и 3.
+
+В задаче для пользователя 1 нормальная матрица $B^\top B+0{,}3I$ имеет строки $(2{,}11,0{,}65)$ и $(0{,}65,0{,}59)$, а правая часть $B^\top y$ равна $(8{,}6,3{,}0)^\top$. При $\lambda>0$ матрица $B^\top B+\lambda I$ положительно определена, поскольку её квадратичная форма на ненулевом $v$ равна $\|Bv\|_2^2+\lambda\|v\|_2^2>0$. Разложение Холецкого и две треугольные подстановки дают профиль $(3{,}7986,0{,}8998)$, как и QR в предыдущем примере.
+
+В большем синтетическом опыте ноутбука значение обучающей цели проверяется после каждой фазы ALS, а точность прогнозов на отложенных рейтингах измеряется отдельно. При неявной обратной связи постановка может использовать другую цель с весами уверенности. В описанном варианте CPU API библиотеки `implicit` по умолчанию используется решатель на основе метода сопряжённых градиентов.
+
+:::

@@ -1,0 +1,7 @@
+{{< include final_parts/applications_20261007/slides_01_08.qmd >}}
+
+{{< include final_parts/applications_20261007/slides_09_16.qmd >}}
+
+{{< include final_parts/applications_20261007/slides_17_24.qmd >}}
+
+{{< include final_parts/applications_20261007/slides_25_32.qmd >}}

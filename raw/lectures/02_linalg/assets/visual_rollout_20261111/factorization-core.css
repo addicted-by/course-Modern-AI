@@ -1,0 +1,232 @@
+.reveal .vr-visual.fc-visual {
+  color: var(--vr-ink);
+  font: 400 23px/1.3 var(--lecture-font-sans, sans-serif);
+  letter-spacing: -.01em;
+}
+
+.reveal .fc-visual .fc-controls {
+  min-height: 46px;
+  padding-bottom: 14px;
+}
+
+.reveal .fc-visual .fc-controls input[type="range"] {
+  width: 164px;
+}
+
+.reveal .fc-visual .fc-grid {
+  grid-template-columns: repeat(var(--fc-columns), minmax(0, 1fr));
+  align-items: stretch;
+  gap: 16px;
+}
+
+.reveal .fc-visual .fc-panel {
+  min-width: 0;
+  border: 1px solid var(--vr-line);
+  border-top: 3px solid var(--vr-ink);
+  padding: 15px 18px 16px;
+}
+
+.reveal .fc-visual .fc-active {
+  box-shadow: inset 0 4px 0 var(--vr-accent);
+}
+
+.reveal .fc-visual .fc-panel h3 {
+  margin: 0 0 12px;
+  color: var(--vr-ink);
+  font: 650 27px/1.18 var(--lecture-font-heading, sans-serif);
+  letter-spacing: -.025em;
+}
+
+.reveal .fc-visual .fc-chart {
+  width: 100%;
+  height: auto;
+  max-height: 282px;
+  margin: 0 auto;
+  overflow: visible;
+  font: 500 22px var(--lecture-font-sans, sans-serif);
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .fc-visual .fc-chart[viewBox="0 0 1660 270"] {
+  font-size: 30px;
+}
+
+.reveal .fc-visual .fc-arrays {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.reveal .fc-visual .fc-array {
+  margin: 8px 0;
+  min-width: 0;
+}
+
+.reveal .fc-visual .fc-array .vr-label {
+  margin-bottom: 8px;
+  color: var(--vr-muted);
+  font-size: 20px;
+}
+
+.reveal .fc-visual .fc-matrix {
+  display: inline-grid;
+  grid-template-columns: repeat(var(--fc-n), minmax(56px, auto));
+  padding-inline: 4px;
+  border-inline: 2px solid var(--vr-ink);
+  gap: 4px;
+  font-size: 24px;
+}
+
+.reveal .fc-visual .fc-matrix > span {
+  display: grid;
+  min-height: 52px;
+  padding: 4px 7px;
+  place-items: center;
+  text-align: center;
+  background: var(--fc-fill, var(--vr-wash));
+  box-sizing: border-box;
+  border: 1px solid var(--vr-line);
+  transition: background-color var(--vr-ease), border-color var(--vr-ease);
+}
+
+.reveal .fc-visual .fc-matrix > .fc-cell-hit {
+  border: 2px solid var(--vr-ink);
+  background: var(--vr-accent);
+  font-weight: 650;
+}
+
+.reveal .fc-visual .fc-equation {
+  margin-top: 12px;
+  color: var(--vr-ink);
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 1.25;
+}
+
+.reveal .fc-visual .fc-note {
+  color: var(--vr-muted);
+  font-size: 21px;
+  margin-top: 9px;
+}
+
+.reveal .fc-visual .fc-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 12px;
+}
+
+.reveal .fc-visual .fc-metrics > span,
+.reveal .fc-visual .fc-flow > div > span {
+  display: inline-grid;
+  padding: 5px 12px;
+  border-left: 3px solid var(--vr-ink);
+  background: var(--vr-wash);
+}
+
+.reveal .fc-visual :is(.fc-metrics, .fc-flow) small {
+  color: var(--vr-muted);
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.reveal .fc-visual :is(.fc-metrics, .fc-flow) strong {
+  font-weight: 650;
+  font-size: 24px;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .fc-visual .fc-flow {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr .8fr;
+  gap: 16px;
+}
+
+.reveal .fc-visual .fc-flow > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reveal .fc-visual .fc-flow-arrow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.reveal .fc-visual .fc-flow-arrow b {
+  font-size: 36px;
+}
+
+.reveal .fc-visual .fc-lab-table {
+  margin: 16px 0 0;
+  width: 100%;
+  font-size: 21px;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .fc-visual .fc-lab-table :is(th,td) {
+  border-bottom: 1px solid var(--vr-line);
+  padding: 6px 8px;
+}
+
+.reveal .fc-visual .fc-selected {
+  background: color-mix(in srgb, var(--vr-accent) 45%, white);
+}
+
+.reveal .fc-visual .vr-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.reveal :is(#pre-lu,#pre-cholesky) .fc-visual .fc-matrix {
+  grid-template-columns: repeat(var(--fc-n), minmax(72px, auto));
+  font-size: 33px;
+}
+
+.reveal :is(#pre-lu,#pre-cholesky) .fc-visual .fc-matrix > span {
+  min-height: 86px;
+}
+
+.reveal #pre-cholesky .fc-visual .fc-arrays {
+  gap: 12px;
+}
+
+.reveal #pre-tsvd-definition .fc-visual .fc-grid {
+  grid-template-columns: 1.26fr .98fr .98fr .88fr;
+}
+
+.reveal #pre-tsvd-definition .fc-visual .fc-arrays {
+  gap: 12px;
+}
+
+.reveal #pre-12 .fc-visual .fc-chart {
+  max-height: 244px;
+}
+
+.reveal #pre-tsvd-definition .fc-visual .fc-grid > .fc-panel:first-child .fc-arrays {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+}
+
+.reveal #pre-tsvd-definition .fc-visual .fc-chart {
+  font-size: 23px;
+}
+
+.reveal #pre-26 .fc-visual .fc-flow {
+  grid-template-columns: .95fr 1.18fr 1.05fr;
+}
+
+.reveal #pre-26 .fc-visual .fc-flow strong {
+  overflow-wrap: normal;
+  word-break: normal;
+}

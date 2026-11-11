@@ -1,0 +1,268 @@
+.reveal .conv-kernels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px minmax(0, 2fr);
+  align-items: center;
+  max-width: 1150px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.reveal .conv-kernel,
+.reveal .conv-factorization {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.reveal .conv-kernel > strong {
+  font: 650 39px/1.1 var(--lecture-font-heading);
+}
+
+.reveal .conv-factors {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr);
+  align-items: center;
+  width: 100%;
+}
+
+.reveal .conv-grid {
+  --kernel-cell: 58px;
+  --kernel-columns: 3;
+  --kernel-rows: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--kernel-columns), var(--kernel-cell));
+  grid-template-rows: repeat(var(--kernel-rows), var(--kernel-cell));
+  margin-block: 12px 5px;
+  border-top: 2px solid var(--lecture-fg);
+  border-left: 2px solid var(--lecture-fg);
+  background: var(--lecture-bg-subtle);
+}
+
+.reveal .conv-grid > span {
+  border-right: 2px solid var(--lecture-fg);
+  border-bottom: 2px solid var(--lecture-fg);
+}
+
+.reveal .conv-grid-point {
+  --kernel-columns: 1;
+  --kernel-rows: 1;
+  margin-block: calc(12px + var(--kernel-cell)) calc(5px + var(--kernel-cell));
+}
+
+.reveal .conv-grid-vertical { --kernel-columns: 1; }
+.reveal .conv-grid-horizontal {
+  --kernel-rows: 1;
+  margin-block: calc(12px + var(--kernel-cell)) calc(5px + var(--kernel-cell));
+}
+
+.reveal .conv-factors .conv-grid { background-color: var(--lecture-pop-lime); }
+
+.reveal .app-simple .sn-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  align-items: center;
+  gap: 34px;
+}
+
+.reveal .sn-grids {
+  display: flex;
+  gap: 18px;
+  margin-block: 9px;
+}
+
+.reveal .sn-grids > div {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+.reveal .sn-grids strong {
+  white-space: nowrap;
+  font-size: 21px;
+}
+
+.reveal .sn-grids img {
+  display: block;
+  width: 154px;
+  height: 296px;
+  margin: 0;
+  object-fit: contain;
+}
+
+.reveal .sn-evidence p,
+.reveal .a916-simple-ultrasound p {
+  margin: 0;
+  color: var(--lecture-muted);
+  font: 500 20px/1.3 var(--lecture-font-sans);
+}
+
+.reveal .sn-plots {
+  align-self: stretch;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  justify-items: start;
+  align-items: center;
+  gap: 8px;
+  min-height: 0;
+}
+
+.reveal .sn-plots > div:not(.sn-plot-controls) {
+  width: 100%;
+}
+
+.reveal .sn-plots img {
+  display: block;
+  width: 100%;
+  height: 310px;
+  object-fit: contain;
+  object-position: left center;
+  margin: 5px 0;
+}
+
+.reveal .sn-plot-controls,
+.reveal .app-ultrasound-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reveal .sn-plot-controls button,
+.reveal .app-ultrasound-action,
+.reveal .app-ultrasound-heading .app-ultrasound-reset {
+  min-height: 44px;
+  padding: 4px 14px;
+  border: 1px solid var(--lecture-fg);
+  background: #fff;
+  color: var(--lecture-fg);
+  font: 650 21px/1.25 var(--lecture-font-sans);
+  cursor: pointer;
+}
+
+.reveal .sn-plot-controls button[aria-pressed="true"],
+.reveal .app-ultrasound-action {
+  background: var(--lecture-pop-lime);
+}
+
+.reveal :is(.sn-plot-controls button, .app-ultrasound-load, .app-ultrasound-reset, .app-ultrasound-player iframe, .app-tomography-frame video):focus-visible {
+  outline: 3px solid var(--lecture-fg);
+  outline-offset: 4px;
+}
+
+.reveal .sn-plot-controls[hidden] { display: none; }
+
+.reveal .app-tomography-frame {
+  min-height: 0;
+  flex: 1 1 0;
+  width: min(100%, 1110px);
+  margin-inline: auto;
+}
+
+.reveal .app-tomography-frame :is(video, .app-tomography-still) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: contain;
+}
+
+.reveal .app-tomography-frame .app-tomography-still,
+.reveal .app-tomography-frame video[hidden] { display: none; }
+.reveal .app-tomography-frame video[hidden] + .app-tomography-still { display: block; }
+
+.reveal .app-simple .a916-simple-ultrasound {
+  display: grid;
+  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 34px;
+}
+
+.reveal #app-d09 .a916-simple-power-pair {
+  grid-template-columns: 1fr;
+  gap: 18px;
+  width: 100%;
+  margin-block: 0 9px;
+}
+
+.reveal #app-d09 .a916-simple-power-pair h3,
+.reveal .app-ultrasound-demo h3 {
+  margin: 0 0 8px;
+  font: 650 26px/1.18 var(--lecture-font-heading);
+}
+
+.reveal .app-ultrasound-player {
+  position: relative;
+  justify-content: center;
+  width: min(100%, 850px);
+  aspect-ratio: 16 / 9;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  border: 1px solid var(--lecture-border);
+  background: var(--lecture-bg-subtle);
+}
+
+.reveal .app-ultrasound-player > button.app-ultrasound-load {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  padding: 0 0 5px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.reveal .app-ultrasound-player > button.app-ultrasound-load[hidden],
+.reveal .app-ultrasound-heading .app-ultrasound-reset[hidden] { display: none; }
+
+.reveal .app-ultrasound-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(100%, 850px);
+  min-height: 47px;
+}
+
+.reveal .app-ultrasound-heading h3 { margin: 0; }
+.reveal .app-ultrasound-heading .app-ultrasound-reset { min-height: 38px; }
+
+.reveal .app-ultrasound-player .app-ultrasound-still {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: contain;
+}
+
+.reveal .app-ultrasound-player:has(.app-ultrasound-load:not([hidden])) .app-ultrasound-still {
+  height: calc(100% - 55px);
+  align-self: flex-start;
+}
+.reveal .app-ultrasound-action { display: inline-grid; grid-auto-flow: column; align-items: center; gap: 8px; }
+.reveal .app-ultrasound-load:hover .app-ultrasound-action { background: var(--lecture-fg); color: #fff; }
+
+.reveal .app-ultrasound-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+html:is(.print-pdf, .reveal-print) .reveal :is(.sn-plot-controls, .sn-norm-plot, .app-tomography-frame video, .app-ultrasound-load, .app-ultrasound-reset, .app-ultrasound-player iframe) {
+  display: none !important;
+}
+
+html:is(.print-pdf, .reveal-print) .reveal :is(.sn-fid-plot, .app-tomography-frame .app-tomography-still) {
+  display: block !important;
+}
+
+@media print {
+  .reveal :is(.sn-plot-controls, .sn-norm-plot, .app-tomography-frame video, .app-ultrasound-load, .app-ultrasound-reset, .app-ultrasound-player iframe) {
+    display: none !important;
+  }
+
+  .reveal :is(.sn-fid-plot, .app-tomography-frame .app-tomography-still) {
+    display: block !important;
+  }
+
+}

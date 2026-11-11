@@ -1,0 +1,163 @@
+@import url("fonts/local-fonts.css");
+
+/* Lecture 01 Architecture's frame, adapted to the existing Lecture 02 components. */
+:root {
+  --lecture-font-sans: "Frontier Inter", sans-serif;
+  --lecture-font-heading: "Frontier Space Grotesk", "Frontier Inter", sans-serif;
+  --lecture-font-mono: "Frontier JetBrains Mono", monospace;
+}
+
+.reveal .slides section.la-slide {
+  --lecture-fg: #1a1a1a;
+  --lecture-muted: #52525b;
+  --lecture-border: #c5c5c5;
+  --lecture-bg-subtle: #f3f3f3;
+  --lecture-pop-lime: #bef264;
+  --la-frame-inset: 56px;
+  --la-frame-body-top: 200px;
+  --la-frame-body-height: 520px;
+  width: 1600px;
+  height: 880px;
+  background: #fff;
+  font: 400 28px/1.32 var(--lecture-font-sans);
+  letter-spacing: -.015em;
+}
+
+.reveal .slides section.la-slide > h2 {
+  inset: 66px var(--la-frame-inset) auto;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: var(--lecture-fg);
+  font: 600 45px/1.12 var(--lecture-font-heading);
+  letter-spacing: -.035em;
+  text-transform: none;
+}
+
+.reveal .slides section.la-slide > .la-body {
+  inset: var(--la-frame-body-top) var(--la-frame-inset) auto;
+  height: var(--la-frame-body-height);
+}
+
+.reveal .slides section.la-slide > .la-takeaway {
+  box-sizing: border-box;
+  inset: 750px var(--la-frame-inset) auto;
+  min-height: 62px;
+  margin: 0;
+  padding: 17px 0 0 20px;
+  border-top: 1px solid var(--lecture-border);
+  border-left: 5px solid var(--lecture-pop-lime);
+  color: var(--lecture-fg);
+  font-size: 30px;
+  font-weight: 550;
+  line-height: 1.22;
+}
+
+.reveal .slides section.la-slide > .la-takeaway > p {
+  margin: 0;
+}
+
+.reveal .slides section.la-slide > .la-source {
+  inset: auto auto 9px var(--la-frame-inset);
+  width: 1410px;
+  color: var(--lecture-muted);
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: normal;
+}
+
+.reveal .slides section.la-slide > .la-source a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .16em;
+}
+
+.reveal .la-slide > .la-arch-meta {
+  position: absolute;
+  top: 23px;
+  left: var(--la-frame-inset);
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  height: 29px;
+  font-size: 18px;
+  letter-spacing: .035em;
+  white-space: nowrap;
+}
+
+.reveal .la-arch-chapter {
+  padding: 3px 7px;
+  color: #767676;
+}
+
+.reveal .la-arch-chapter[aria-current] {
+  background: var(--lecture-pop-lime);
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.reveal .slides section#pre-01 {
+  background: #0a0a0a;
+  --lecture-fg: #fafafa;
+  --lecture-muted: #a1a1aa;
+}
+
+.reveal #pre-01 .la-arch-chapter:not([aria-current]) {
+  color: var(--lecture-muted);
+}
+
+.reveal .slides section.la-slide > .app-method {
+  top: 23px;
+  right: auto;
+  left: 720px;
+  display: flex;
+  align-items: center;
+  height: 29px;
+  white-space: nowrap;
+}
+
+.reveal .app-slide svg.app-diagram rect:is(.box, .accent)[rx]:not([rx="0"], [rx="1"], [rx="2"], [rx="3"], [rx="4"]),
+.reveal #app-d32 svg.app-diagram g.fragment > rect[rx] {
+  rx: 0;
+  ry: 0;
+}
+
+/* Keep the earlier body start for taller authored diagrams and proofs. */
+.reveal .slides section.la-slide:is(#pre-02, #sl-01, #sl-02, #sl-03, #sl-04, #sl-05, #sl-06) {
+  --la-frame-body-top: 185px;
+  --la-frame-body-height: 540px;
+}
+
+.reveal .slides section.la-slide:is(.pdf-mnk, .pdf-decomp, .tsvd-slide, .pre-proof,
+    #pre-03, #pre-04, #pre-05, #pre-25, #pre-26, #r3-01) {
+  --la-frame-body-top: 168px;
+  --la-frame-body-height: 562px;
+}
+
+.reveal .slides section.la-slide:is(#pre-cholesky, #pre-spectral, #pre-12, #pre-21, #pre-26) {
+  --la-frame-body-top: 185px;
+  --la-frame-body-height: 540px;
+}
+
+.reveal #pre-04 .po-canvas {
+  height: 525px;
+}
+
+.reveal .tsvd-slide {
+  --tsvd-body: 28px;
+  --tsvd-math: 31px;
+}
+
+.reveal .tsvd-slide .katex-display { margin-block: 10px; }
+.reveal .tsvd-slide .tsvd-condition { margin-bottom: 18px; }
+.reveal .tsvd-slide .tsvd-board { margin-block: 14px; padding-block: 6px; }
+.reveal .tsvd-slide .tsvd-result { margin-top: 18px; }
+.reveal .tsvd-slide .tsvd-result .katex-display { margin-block: 8px; }
+.reveal .tsvd-slide .tsvd-example { margin-top: 18px; padding-top: 10px; }
+.reveal .tsvd-slide .tsvd-columns > div { padding-top: 16px; }
+.reveal .tsvd-slide h3 { margin-bottom: 16px; }
+
+#slide-scaler-ui {
+  bottom: 7px !important;
+}

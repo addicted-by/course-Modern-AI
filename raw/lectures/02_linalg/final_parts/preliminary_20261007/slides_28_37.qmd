@@ -1,0 +1,641 @@
+## Eckart–Young theorem: precise statement {#pre-28 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+$A\in\mathbb R^{m\times n}$, $p=\min(m,n)$, $k\in\{0,\ldots,p\}$, $\sigma_1\ge\cdots\ge\sigma_p\ge0$, $\sigma_{p+1}=0$.
+
+:::
+
+::::: {.pf-logic .pf-two}
+
+::: {.pf-logic-col}
+
+**Feasible candidate**
+
+$$A=\sum_{i=1}^{p}\sigma_i u_iv_i^\top,\qquad A_k=\sum_{i=1}^{k}\sigma_i u_iv_i^\top.$$
+
+:::
+
+::: {.pf-logic-col}
+
+**Minimum over all $B$ of rank at most $k$**
+
+$$\begin{aligned}
+\min_B\|A-B\|_2&=\|A-A_k\|_2=\sigma_{k+1},\\
+\min_B\|A-B\|_F^2&=\|A-A_k\|_F^2=\sum_{i>k}\sigma_i^2.
+\end{aligned}$$
+
+:::
+
+:::::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-28" aria-label="Three rank budgets applied to the same spectrum: no layers, one layer, and all layers">
+<div class="vr-static">
+<div class="pf-caption">σ = (5, 3, 1) · filled square = kept layer · dashed outline = discarded layer</div>
+      <div class="pf-grid pf-three"><div class="vr-panel pf-panel"><h3>k = 0</h3><svg class="pf-svg" viewBox="0 -9 404 174" role="img" aria-label="layer 1, amplitude 5, discarded; layer 2, amplitude 3, discarded; layer 3, amplitude 1, discarded"><rect x="32" y="21" width="130" height="130"
+          class="pf-empty"/>
+          <text x="97" y="15" text-anchor="middle">5</text><rect x="163" y="73" width="78" height="78"
+          class="pf-empty"/>
+          <text x="202" y="67" text-anchor="middle">3</text><rect x="294" y="125" width="26" height="26"
+          class="pf-empty"/>
+          <text x="307" y="119" text-anchor="middle">1</text></svg><div class="pf-result">A₀ = 0 · only feasible matrix</div></div><div class="vr-panel pf-panel"><h3>k = 1</h3><svg class="pf-svg" viewBox="0 -9 404 174" role="img" aria-label="layer 1, amplitude 5, kept; layer 2, amplitude 3, discarded; layer 3, amplitude 1, discarded"><rect x="32" y="21" width="130" height="130"
+          class="pf-fill"/>
+          <text x="97" y="15" text-anchor="middle">5</text><rect x="163" y="73" width="78" height="78"
+          class="pf-empty"/>
+          <text x="202" y="67" text-anchor="middle">3</text><rect x="294" y="125" width="26" height="26"
+          class="pf-empty"/>
+          <text x="307" y="119" text-anchor="middle">1</text></svg><div class="pf-result">A₁ keeps one layer</div></div><div class="vr-panel pf-panel"><h3>k ≥ r = 3</h3><svg class="pf-svg" viewBox="0 -9 404 174" role="img" aria-label="layer 1, amplitude 5, kept; layer 2, amplitude 3, kept; layer 3, amplitude 1, kept"><rect x="32" y="21" width="130" height="130"
+          class="pf-fill"/>
+          <text x="97" y="15" text-anchor="middle">5</text><rect x="163" y="73" width="78" height="78"
+          class="pf-fill"/>
+          <text x="202" y="67" text-anchor="middle">3</text><rect x="294" y="125" width="26" height="26"
+          class="pf-fill"/>
+          <text x="307" y="119" text-anchor="middle">1</text></svg><div class="pf-result">Aₖ = A · zero error</div></div></div>
+</div>
+</figure>
+```
+
+::: {.pf-note .fragment .fade-in}
+
+Proof for $1\le k<\operatorname{rank}(A)$: compute the error at $A_k$, then prove a matching lower bound for every feasible $B$.
+
+:::
+
+::::
+
+::: {.la-takeaway}
+
+The truncated SVD attains both minima.
+
+:::
+
+::: {.la-source}
+
+[MIT 18.065 · Lecture 7: Eckart–Young](https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-7-eckart-young-the-closest-rank-k-matrix-to-a/) · [Lecture 8: Matrix norms](https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-8-norms-of-vectors-and-matrices/) · [BU DS701 · Candidate and lower bound](https://ds701.cds.bu.edu/slides/12A-Appendix-SVD-Derivations.html#why-nothing-of-rank-k-does-better-proof-sketch)
+
+:::
+
+::: {.notes}
+
+Пусть $A\in\mathbb R^{m\times n}$, $p=\min(m,n)$ и $\sigma_1\ge\cdots\ge\sigma_p\ge0$. В разложении $A=\sum_{i=1}^{p}\sigma_i u_iv_i^\top$ левые и правые сингулярные векторы образуют ортонормированные системы в $\mathbb R^m$ и $\mathbb R^n$ соответственно. Для любого целого $0\le k\le p$ сравниваем усечение $A_k=\sum_{i=1}^{k}\sigma_i u_iv_i^\top$ со всеми матрицами $B$ того же размера и ранга не выше $k$. Сингулярные направления у $B$ могут быть произвольными.
+
+Теорема Эккарта–Юнга утверждает, что $A_k$ достигает обоих минимумов. В спектральной норме минимальная ошибка равна $\sigma_{k+1}$, а минимальный квадрат нормы Фробениуса равен $\sum_{i>k}\sigma_i^2$. При $k=0$ допустима только нулевая матрица. При $k\ge\operatorname{rank}(A)$ получаем $A_k=A$ и нулевую ошибку, включая случай $k=p$ по соглашению $\sigma_{p+1}=0$.
+
+Для $1\le k<\operatorname{rank}(A)$ сначала вычислим ошибку $A_k$, а затем докажем, что ошибка любого допустимого $B$ не меньше. В задаче приближения калиброванного слоя роль $A$ играет $\widehat W$.
+
+:::
+
+## First, find the truncated SVD error {#pre-29 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+$E_k=A-A_k=\sum_{i>k} C_i$, where $C_i=\sigma_i u_iv_i^\top$ and $1\le k<\operatorname{rank}(A)$.
+
+:::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-29" aria-label="The two discarded layers have Frobenius Gram matrix with diagonal 9 and 1 and spectral amplitudes 3 and 1">
+<div class="vr-static">
+<div class="pf-grid pf-two">
+      <div class="vr-panel pf-panel"><table class="pf-table"><caption>Frobenius inner products of discarded layers</caption>
+      <thead><tr><th scope="col">⟨Cᵢ, Cⱼ⟩<sub>F</sub></th><th scope="col">C₂ = 3u₂v₂ᵀ</th><th scope="col">C₃ = u₃v₃ᵀ</th></tr></thead>
+      <tbody><tr><th scope="row">C₂</th><td class="pf-active">9</td><td>0</td></tr>
+      <tr><th scope="row">C₃</th><td>0</td><td class="pf-active">1</td></tr></tbody></table><div class="pf-result">‖E₁‖<sub>F</sub>² = 9 + 0 + 0 + 1 = <b>10</b></div></div>
+      <div class="vr-panel pf-panel"><h3>Spectral norm takes the largest amplitude</h3><div class="pf-measure"><span>σ₂</span><span class="pf-track">
+      <span class="pf-fill" style="width:60%"></span></span><strong>3</strong></div><div class="pf-measure"><span>σ₃</span><span class="pf-track">
+      <span class="pf-empty" style="width:20%"></span></span><strong>1</strong></div>
+        <div class="pf-result">‖E₁‖₂ = max(3, 1) = <b>3</b> · attained at v₂</div></div>
+      </div>
+</div>
+</figure>
+```
+
+::::: {.pf-logic .pf-two}
+
+::: {.pf-logic-col}
+
+**Orthonormal directions make the cross terms vanish**
+
+$$\langle C_i,C_j\rangle_F=\sigma_i\sigma_j(u_i^\top u_j)(v_i^\top v_j)=\sigma_i^2\delta_{ij}.$$
+
+Thus $\|E_k\|_F^2=\sum_{i>k}\sigma_i^2$.
+
+:::
+
+::: {.pf-logic-col}
+
+**Bessel’s inequality bounds the stretch on every unit $x$**
+
+$$\|E_kx\|_2^2=\sum_{i>k}\sigma_i^2(v_i^\top x)^2\le \sigma_{k+1}^2.$$
+
+Equality at $x=v_{k+1}$ gives $\|E_k\|_2=\sigma_{k+1}$.
+
+:::
+
+:::::
+
+::::
+
+::: {.la-takeaway}
+
+We have evaluated one candidate. We must still rule out every better competitor.
+
+:::
+
+::: {.la-source}
+
+[MIT 18.065 · Matrix norms](https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-8-norms-of-vectors-and-matrices/) · [BU DS701 · Outer products and low rank](https://ds701.cds.bu.edu/slides/12-SVD-Low-Rank.html)
+
+:::
+
+::: {.notes}
+
+Обозначим остаток через $E_k=A-A_k=\sum_{i>k}C_i$, где $C_i=\sigma_i u_iv_i^\top$. По определению скалярного произведения Фробениуса $\langle C_i,C_j\rangle_F=\operatorname{tr}(C_i^\top C_j)$. Подстановка внешних произведений даёт $\sigma_i\sigma_j(u_i^\top u_j)(v_i^\top v_j)$. При разных индексах скалярное произведение равно нулю, а на диагонали равно $\sigma_i^2$. Поэтому $\|E_k\|_F^2=\sum_{i>k}\sigma_i^2$.
+
+Для единичного $x$ ортонормированность левых векторов даёт $\|E_kx\|_2^2=\sum_{i>k}\sigma_i^2(v_i^\top x)^2$. Каждое сингулярное значение в сумме не превосходит $\sigma_{k+1}$, а сумма квадратов проекций на ортонормированную систему по неравенству Бесселя не превосходит единицы. При $k<p$ равенство достигается при $x=v_{k+1}$. При $k=p$ остаток нулевой. В обоих случаях $\|E_k\|_2=\sigma_{k+1}$ с принятым соглашением $\sigma_{p+1}=0$.
+
+Для спектра $(5,3,1)$ при $k=1$ таблица показывает диагональные вклады $9$ и $1$ в квадрат нормы Фробениуса, а полосы — сингулярные значения остатка $3$ и $1$. Полученные ошибки дают верхние оценки минимумов, поскольку $A_k$ имеет допустимый ранг.
+
+:::
+
+## Every rank-$k$ approximation loses a direction {#pre-30 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+For $\operatorname{rank}(B)\le k<\operatorname{rank}(A)$, restrict $B$ to $S=\operatorname{span}(v_1,\ldots,v_{k+1})$.
+
+:::
+
+::: {.pf-logic}
+
+$$\dim\ker(B|_S)=\underbrace{\dim S}_{k+1}-\underbrace{\operatorname{rank}(B|_S)}_{\le k}\ge1
+\quad\Longrightarrow\quad \exists\, w\in S,\quad \|w\|_2=1,\quad Bw=0.$$
+
+:::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-30" aria-label="Two choices of the competitor row direction rotate the unit vector in the restricted kernel">
+<div class="vr-static">
+<div class="pf-grid pf-two">
+      <div class="vr-panel pf-panel"><h3>θ = 0° · q = v₁</h3><svg class="pf-svg" viewBox="0 0 390 244" role="img" aria-label="At 0 degrees, the row direction q and the kernel witness w are perpendicular in the v1 v2 plane"><circle class="pf-guide" cx="197" cy="121" r="85"/>
+      <path class="pf-axis" d="M84 121H310M197 15V227"/>
+      <text x="316" y="128" >v₁</text><text x="205" y="18" >v₂</text>
+      <path class="pf-kernel" d="M197 206L197 36"/>
+      <path class="pf-ink-vector" d="M197 121L282 121"/>
+      <polygon class="pf-ink-vector" points="282,121 270,116 270,126"/>
+      <path class="pf-accent-vector" d="M197 121L197 36"/>
+      <polygon class="pf-accent-vector" points="197,36 192,48 202,48"/>
+      <text x="304" y="113" >q</text>
+      <text x="177" y="30" >w</text>
+      <text x="198" y="238" text-anchor="middle">Dashed line · ker B within S</text></svg><div class="pf-result">w = v₂</div></div>
+      <div class="vr-panel pf-panel"><h3>θ = 45° · q = (v₁ + v₂)/√2</h3><svg class="pf-svg" viewBox="0 0 390 244" role="img" aria-label="At 45 degrees, the row direction q and the kernel witness w are perpendicular in the v1 v2 plane"><circle class="pf-guide" cx="197" cy="121" r="85"/>
+      <path class="pf-axis" d="M84 121H310M197 15V227"/>
+      <text x="316" y="128" >v₁</text><text x="205" y="18" >v₂</text>
+      <path class="pf-kernel" d="M257.1040764008565 181.10407640085654L136.89592359914346 60.89592359914346"/>
+      <path class="pf-ink-vector" d="M197 121L257.10407640085657 60.895923599143465"/>
+      <polygon class="pf-ink-vector" points="257.10407640085657,60.895923599143465 245.08326112068525,65.8456710674493 252.15432893255073,72.91673887931478"/>
+      <path class="pf-accent-vector" d="M197 121L136.89592359914346 60.89592359914346"/>
+      <polygon class="pf-accent-vector" points="136.89592359914346,60.89592359914346 141.8456710674493,72.91673887931476 148.91673887931478,65.84567106744929"/>
+      <text x="272.66042558696057" y="44.41064222490489" >q</text>
+      <text x="106.28932188134526" y="56.65328291202417" >w</text>
+      <text x="198" y="238" text-anchor="middle">Dashed line · ker B within S</text></svg><div class="pf-result">w = (−v₁ + v₂)/√2</div></div>
+      </div>
+</div>
+</figure>
+```
+
+::: {.pf-note}
+
+Example with $k=1$: $q=\cos\theta\,v_1+\sin\theta\,v_2$, $B_\theta=5u_1q^\top$. Each diagram shows the unit witness perpendicular to $q$.
+
+:::
+
+::::
+
+::: {.la-takeaway}
+
+$B$ may rotate its singular vectors. The dimension argument still applies.
+
+:::
+
+::: {.la-source}
+
+[UCLA Biostat 216 · Singular Value Decomposition](https://ucla-biostat216-2019fall.github.io/slides/12-svd/12-svd.html) · [UChicago STAT 309 · Theorem 1](https://www.stat.uchicago.edu/~lekheng/courses/309f15/notes/lect7.pdf#page=2)
+
+:::
+
+::: {.notes}
+
+Рассмотрим произвольную матрицу $B$ ранга не выше $k$ и подпространство $S=\operatorname{span}(v_1,\ldots,v_{k+1})$ в области определения $A$. Образ ограничения $B|_S$ имеет размерность не выше $k$, тогда как $\dim S=k+1$. По теореме о ранге и дефекте $\dim\ker(B|_S)\ge1$. Значит, в пересечении $S\cap\ker B$ есть единичный вектор $w=\sum_{i=1}^{k+1}\alpha_i v_i$, где $\sum_i\alpha_i^2=1$.
+
+При $k=1$ на рисунке $B_\theta=5u_1q^\top$, где $q=\cos\theta\,v_1+\sin\theta\,v_2$. Пунктир показывает прямую в $S$, перпендикулярную $q$, а на ней отмечен $w=-\sin\theta\,v_1+\cos\theta\,v_2$. Таким образом, $w$ зависит от $B$. При любом положении $q$ вектор $w$ остаётся в подпространстве, где $A$ растягивает каждый единичный вектор как минимум в $\sigma_{k+1}$ раз.
+
+:::
+
+## Spectral norm: the lower bound is attained {#pre-31 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+For any $B$ with $\operatorname{rank}(B)\le k$, take a unit $w=\sum_{i\le k+1}\alpha_i v_i$ in $\ker(B|_S)$.
+
+:::
+
+::: {.pf-logic}
+
+$$\|A-B\|_2^2\ge\|(A-B)w\|_2^2=\|Aw\|_2^2=\sum_{i\le k+1}\sigma_i^2\alpha_i^2
+\ge\sigma_{k+1}^2\sum_{i\le k+1}\alpha_i^2=\sigma_{k+1}^2.$$
+
+:::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-31" aria-label="A witness bound greater than 3 for a rotated competitor and a matching spectral minimum of 3 for the truncated SVD">
+<div class="vr-static">
+<div class="pf-grid pf-three">
+      <div class="vr-panel pf-panel"><h3>Competitor B₄₅°</h3><svg class="pf-svg" viewBox="0 0 390 213" role="img" aria-label="Image ellipse with semi-axes 5 and 3. The witness maps to an arrow of length 4.12. The dashed circle has radius 3."><path class="pf-axis" d="M64 100H326M195 16V186"/>
+      <ellipse class="pf-outline" cx="195" cy="100" rx="115" ry="69"/>
+      <circle class="pf-guide" cx="195" cy="100" r="69"/>
+      <path class="pf-accent-vector" d="M195 100L113.68272016354705 51.20963209812822"/>
+      <polygon class="pf-accent-vector" points="113.68272016354705,51.20963209812822 121.40015649495994,61.67104579182126 126.54511404923521,53.096116534695824"/>
+      <text x="100.68272016354705" y="42.20963209812822" text-anchor="end">Aw</text>
+      <text x="333" y="106" >u₁</text><text x="207" y="20" >u₂</text>
+      <text x="195" y="205" text-anchor="middle">Dashed circle · radius 3</text></svg><div class="pf-result">‖Aw‖₂ = √17 &gt; 3</div></div>
+      <div class="vr-panel pf-panel"><h3>Truncated SVD B = A₁</h3><svg class="pf-svg" viewBox="0 0 390 213" role="img" aria-label="Image ellipse with semi-axes 5 and 3. The witness maps to an arrow of length 3. The dashed circle has radius 3."><path class="pf-axis" d="M64 100H326M195 16V186"/>
+      <ellipse class="pf-outline" cx="195" cy="100" rx="115" ry="69"/>
+      <circle class="pf-guide" cx="195" cy="100" r="69"/>
+      <path class="pf-accent-vector" d="M195 100L195 31"/>
+      <polygon class="pf-accent-vector" points="195,31 190,43 200,43"/>
+      <text x="182" y="22" text-anchor="end">Aw</text>
+      <text x="333" y="106" >u₁</text><text x="207" y="20" >u₂</text>
+      <text x="195" y="205" text-anchor="middle">Dashed circle · radius 3</text></svg><div class="pf-result">w = v₂ · ‖Aw‖₂ = 3</div></div>
+      <div class="vr-panel pf-panel"><h3>Entire residual A − A₁</h3><div class="pf-measure"><span>σ₂</span><span class="pf-track">
+      <span class="pf-fill" style="width:60%"></span></span><strong>3</strong></div><div class="pf-measure"><span>σ₃</span><span class="pf-track">
+      <span class="pf-empty" style="width:20%"></span></span><strong>1</strong></div>
+        <div class="pf-result">Global maximum = <b>3</b></div></div>
+      </div>
+</div>
+</figure>
+```
+
+::: {.pf-note}
+
+The witness gives a lower bound for arbitrary $B$. The tail calculation gives the matching value $\|A-A_k\|_2=\sigma_{k+1}$.
+
+:::
+
+::::
+
+::: {.la-takeaway}
+
+Rank forces one lost direction. Its error certifies the spectral lower bound.
+
+:::
+
+::: {.la-source}
+
+[UCLA Biostat 216 · Singular Value Decomposition](https://ucla-biostat216-2019fall.github.io/slides/12-svd/12-svd.html) · [UChicago STAT 309 · Theorem 1](https://www.stat.uchicago.edu/~lekheng/courses/309f15/notes/lect7.pdf#page=2)
+
+:::
+
+::: {.notes}
+
+Для выбранного единичного $w\in S\cap\ker B$ имеем $(A-B)w=Aw$. Спектральная норма максимизирует длину образа по всем единичным входам, поэтому $\|A-B\|_2\ge\|Aw\|_2$. В ортонормированном базисе левых сингулярных векторов
+$$
+\|Aw\|_2^2=\sum_{i=1}^{k+1}\sigma_i^2\alpha_i^2
+\ge\sigma_{k+1}^2\sum_{i=1}^{k+1}\alpha_i^2
+=\sigma_{k+1}^2.
+$$
+Оценка действует для любого допустимого $B$.
+
+В примере для повёрнутой матрицы $B_{45^\circ}$ длина $Aw$ равна $\sqrt{17}$, и стрелка выходит за окружность радиуса $3$. Это нижняя оценка ошибки данного приближения. Для $B=A_1$ вектор $w=v_2$ даёт длину $3$, а спектр всего остатка $A-A_1$ подтверждает, что его максимальное растяжение равно $3$. В общем случае расчёт остатка $A-A_k$ даёт ровно $\sigma_{k+1}$, так что универсальная нижняя оценка достигается.
+
+:::
+
+## Frobenius norm: back to projections {#pre-32 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+Extend $\operatorname{Col}(B)$ to a $k$-dimensional $S$ and let $P$ be its orthogonal projector. Then $P^\top=P^2=P$ and $PB=B$.
+
+:::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-32" aria-label="Three right triangles over the same image space split column errors into outside and inside squares">
+<div class="vr-static">
+<div class="pf-caption">Same rotated A · S = span(u₁) · bⱼ = 1.5u₁ · squared lengths rounded</div>
+      <div class="pf-grid pf-four"><div class="vr-panel pf-panel"><h3>Column 1</h3><svg class="pf-svg" viewBox="0 0 211 174" role="img" aria-label="Column 1: a is at 4.24, 1.39; Pa is at 4.24, 0; b is at 1.5, 0"><path class="pf-axis" d="M16 140H197"/>
+      <path class="pf-outline" d="M176.45071950244687 108.04095281634098L113.5 140"/>
+      <path class="pf-accent-vector" d="M176.45071950244687 108.04095281634098V140"/>
+      <path class="pf-kernel" d="M176.45071950244687 140H113.5"/>
+      <path class="pf-outline" d="M176.45071950244687 131h-9v9"/>
+      <circle class="pf-ink-dot" cx="176.45071950244687" cy="108.04095281634098" r="4"/>
+      <circle class="pf-ink-dot" cx="113.5" cy="140" r="4"/>
+      <circle class="pf-fill" cx="176.45071950244687" cy="140" r="4"/>
+      <text x="182.45071950244687" y="101.04095281634098" >a₁</text>
+      <text x="176.45071950244687" y="164" text-anchor="middle">Pa₁</text>
+      <text x="113.5" y="129" text-anchor="middle">b₁</text>
+      <text x="190" y="162" >S</text></svg><div class="pf-result">Outside² <b>1.93</b> · Inside² <b>7.49</b></div></div><div class="vr-panel pf-panel"><h3>Column 2</h3><svg class="pf-svg" viewBox="0 0 211 174" role="img" aria-label="Column 2: a is at −2.16, 2.68; Pa is at −2.16, 0; b is at 1.5, 0"><path class="pf-axis" d="M16 140H197"/>
+      <path class="pf-outline" d="M29.346378341960246 78.43593330439839L113.5 140"/>
+      <path class="pf-accent-vector" d="M29.346378341960246 78.43593330439839V140"/>
+      <path class="pf-kernel" d="M29.346378341960246 140H113.5"/>
+      <path class="pf-outline" d="M29.346378341960246 131h9v9"/>
+      <circle class="pf-ink-dot" cx="29.346378341960246" cy="78.43593330439839" r="4"/>
+      <circle class="pf-ink-dot" cx="113.5" cy="140" r="4"/>
+      <circle class="pf-fill" cx="29.346378341960246" cy="140" r="4"/>
+      <text x="35.346378341960246" y="71.43593330439839" >a₂</text>
+      <text x="29.346378341960246" y="164" text-anchor="middle">Pa₂</text>
+      <text x="113.5" y="129" text-anchor="middle">b₂</text>
+      <text x="190" y="162" >S</text></svg><div class="pf-result">Outside² <b>7.16</b> · Inside² <b>13.39</b></div></div><div class="vr-panel pf-panel"><h3>Column 3</h3><svg class="pf-svg" viewBox="0 0 211 174" role="img" aria-label="Column 3: a is at −1.55, 0.95; Pa is at −1.55, 0; b is at 1.5, 0"><path class="pf-axis" d="M16 140H197"/>
+      <path class="pf-outline" d="M43.46304564688105 118.12570012521147L113.5 140"/>
+      <path class="pf-accent-vector" d="M43.46304564688105 118.12570012521147V140"/>
+      <path class="pf-kernel" d="M43.46304564688105 140H113.5"/>
+      <path class="pf-outline" d="M43.46304564688105 131h9v9"/>
+      <circle class="pf-ink-dot" cx="43.46304564688105" cy="118.12570012521147" r="4"/>
+      <circle class="pf-ink-dot" cx="113.5" cy="140" r="4"/>
+      <circle class="pf-fill" cx="43.46304564688105" cy="140" r="4"/>
+      <text x="49.46304564688105" y="111.12570012521147" >a₃</text>
+      <text x="43.46304564688105" y="164" text-anchor="middle">Pa₃</text>
+      <text x="113.5" y="129" text-anchor="middle">b₃</text>
+      <text x="190" y="162" >S</text></svg><div class="pf-result">Outside² <b>0.9</b> · Inside² <b>9.27</b></div></div>
+      <div class="vr-panel pf-panel"><h3>Sum over columns</h3><div class="pf-sum"><span>Outside S</span><b>10</b><span>Inside S</span><b>30.15</b>
+        <span>Total for B</span><b>40.15</b><span>Total for PA</span><b class="pf-active">10</b></div></div>
+      </div>
+</div>
+</figure>
+```
+
+::: {.pf-logic}
+
+$$\|A-B\|_F^2
+=\underbrace{\|(I-P)A\|_F^2}_{\text{outside }S}
++\underbrace{\|PA-B\|_F^2}_{\text{inside }S}
+\ge\|A\|_F^2-\|PA\|_F^2.$$
+
+:::
+
+::: {.pf-note}
+
+At fixed $P$, choosing $B=PA$ removes the entire inside term. The outside term stays the same.
+
+:::
+
+::::
+
+::: {.la-takeaway}
+
+How much energy can a projector with only $k$ dimensions retain?
+
+:::
+
+::: {.la-source}
+
+Orthogonal projection and the Frobenius inner product · [MIT 18.065 · Eckart–Young](https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-7-eckart-young-the-closest-rank-k-matrix-to-a/)
+
+:::
+
+::: {.notes}
+
+Пусть $B$ имеет ранг не выше $k$. Пространство его столбцов можно вложить в $k$-мерное подпространство $S\subseteq\mathbb R^m$, поскольку $k\le p\le m$. Если $P$ — ортогональный проектор на $S$, то $PB=B$. Для каждого столбца
+$$
+a_j-b_j=(I-P)a_j+(Pa_j-b_j).
+$$
+Первое слагаемое лежит в $S^\perp$, второе — в $S$. Суммируя квадраты по столбцам, получаем $\|A-B\|_F^2=\|(I-P)A\|_F^2+\|PA-B\|_F^2$.
+
+На рисунке во всех трёх сечениях горизонтальная ось представляет одно и то же $S=\operatorname{span}(u_1)$. Вертикальные катеты дают вклад $10$ от компонент вне $S$, а горизонтальные — около $30{,}15$ от расхождения между $PA$ и выбранной $B$. При фиксированном $S$ ближайшая матрица со столбцами в $S$ равна $PA$, поскольку она обнуляет горизонтальный вклад.
+
+По ортогональности $\|(I-P)A\|_F^2=\|A\|_F^2-\|PA\|_F^2$. Следовательно, выбор лучшего подпространства сводится к максимизации энергии проекции $\|PA\|_F^2$ среди проекторов ранга $k$.
+
+:::
+
+## How much energy can a rank-$k$ projector retain? {#pre-33 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+$AA^\top=\sum_{i=1}^m\lambda_i u_i u_i^\top$ in a complete left basis, with $\lambda_i=\sigma_i^2$ for $i\le p$ and $\lambda_i=0$ otherwise.
+
+:::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-33" aria-label="A rank-two plane rotating between left singular directions with weights and retained energy">
+<div class="vr-static">
+<div class="pf-grid pf-two">
+      <div class="vr-panel pf-panel"><h3>Project onto span(u₁, q)</h3><svg class="pf-svg" viewBox="0 0 315 170" role="img" aria-label="In the u2 u3 plane, q has coefficients 0.71 and 0.71"><path class="pf-axis" d="M150 31V140H276"/>
+       <path class="pf-guide" d="M150 46A94 94 0 0 1 244 140"/>
+       <text x="129" y="40" >u₃</text><text x="280" y="148" >u₂</text>
+       <path class="pf-accent-vector" d="M150 140L216.4680374315355 73.53196256846452"/>
+      <polygon class="pf-accent-vector" points="216.4680374315355,73.53196256846452 204.44722215136417,78.48171003677035 211.51828996322965,85.55277784863583"/>
+       <text x="225.4680374315355" y="63.53196256846452" >q</text></svg>
+        <div class="pf-result">q = √(1−t)u₂ + √t u₃</div></div>
+      <div class="vr-panel pf-panel"><h3>Weight aᵢ = ‖Puᵢ‖₂² · fixed 0–1 scale</h3><div class="pf-measure"><span>u₁ · λ = 9</span><span class="pf-track">
+      <span class="pf-fill" style="width:100%"></span></span><strong>1</strong></div><div class="pf-measure"><span>u₂ · λ = 4</span><span class="pf-track">
+      <span class="pf-fill" style="width:50%"></span></span><strong>0.5</strong></div><div class="pf-measure"><span>u₃ · λ = 1</span><span class="pf-track">
+      <span class="pf-fill" style="width:50%"></span></span><strong>0.5</strong></div><div class="pf-measure"><span>u₄ · λ = 0</span><span class="pf-track">
+      <span class="pf-fill" style="width:0%"></span></span><strong>0</strong></div><div class="pf-result">Σaᵢ = 2 · Retained energy = <b>11.5</b></div></div>
+      </div>
+      <div class="pf-checkpoints">
+        <span><b>t = 0</b> · q = u₂ · energy 13</span>
+        <span><b>t = ½</b> · q = (u₂ + u₃)/√2 · energy 11.5</span>
+        <span><b>t = 1</b> · q = u₃ · energy 10</span>
+      </div>
+</div>
+</figure>
+```
+
+::::: {.pf-logic .pf-two}
+
+::: {.pf-logic-col}
+
+**The projector sets the weights**
+
+$$a_i=u_i^\top Pu_i=\|Pu_i\|_2^2\in[0,1],\qquad \sum_i a_i=\operatorname{tr}(P)=k.$$
+
+:::
+
+::: {.pf-logic-col}
+
+**The weights set the retained energy**
+
+$$\|PA\|_F^2=\operatorname{tr}(PAA^\top)=\sum_i \lambda_i a_i.$$
+
+:::
+
+:::::
+
+::::
+
+::: {.la-takeaway}
+
+A $k$-dimensional projector has exactly $k$ units of directional weight.
+
+:::
+
+::: {.la-source}
+
+Spectral decomposition of $AA^\top$ · Cyclicity of the trace · $P^2=P$ · [Data · Shares and totals](../01_intro/lecture01_part2_final_v3_data.html#/frontier-f15-case-dedup)
+
+:::
+
+::: {.notes}
+
+Дополним левые сингулярные векторы до ортонормированного базиса $\mathbb R^m$. В этом базисе $AA^\top=\sum_{i=1}^m\lambda_i u_iu_i^\top$, где $\lambda_i=\sigma_i^2$ для $i\le p$, а при $i>p$ полагаем $\lambda_i=0$. Для ортогонального проектора $P$ обозначим через $a_i=\|Pu_i\|_2^2$ долю квадрата длины $u_i$, сохранённую проекцией. Из $P^\top P=P$ следует $a_i=u_i^\top Pu_i$, а из ортогональности проекции — $0\le a_i\le1$.
+
+Сумма $\sum_i a_i$ равна следу $P$ в полном базисе. У ортогонального проектора ранга $k$ ровно $k$ собственных значений равны единице, остальные равны нулю, поэтому $\sum_i a_i=k$. По цикличности следа и идемпотентности $P$ имеем
+$$
+\|PA\|_F^2=\operatorname{tr}(PAA^\top)=\sum_{i=1}^m\lambda_i a_i.
+$$
+
+На рисунке плоскость проекции натянута на $u_1$ и $q=\sqrt{1-t}\,u_2+\sqrt t\,u_3$. При повороте $q$ от $u_2$ к $u_3$ вес переносится с направления с $\lambda_2=4$ на направление с $\lambda_3=1$. Сумма весов остаётся равной $2$, а сохранённая энергия снижается с $13$ до $10$.
+
+:::
+
+## Key lemma: the top $k$ values bound the energy {#pre-34 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+$\lambda_1\ge\cdots\ge\lambda_m\ge0$, $1\le k<m$, $0\le a_i\le1$, and $\sum_i a_i\le k$.
+
+:::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-34" aria-label="Tail mass and unused head capacity for full and unused weight budgets">
+<div class="vr-static">
+<div class="pf-grid pf-two"><div class="vr-panel pf-panel"><h3>Full budget · Σaᵢ = 2</h3><div class="pf-grid pf-mass"><div><div class="pf-measure"><span>a₁ · λ = 9</span><span class="pf-track">
+      <span class="pf-fill" style="width:100%"></span></span><strong>1</strong></div><div class="pf-measure"><span>a₂ · λ = 4</span><span class="pf-track">
+      <span class="pf-fill" style="width:50%"></span></span><strong>0.5</strong></div><div class="pf-measure"><span>a₃ · λ = 1</span><span class="pf-track">
+      <span class="pf-dark-fill" style="width:50%"></span></span><strong>0.5</strong></div><div class="pf-measure"><span>a₄ · λ = 0</span><span class="pf-track">
+      <span class="pf-dark-fill" style="width:0%"></span></span><strong>0</strong></div></div>
+          <svg class="pf-svg" viewBox="0 0 190 142" role="img" aria-label="Head vacancy 0.5; tail mass 0.5"><text x="11" y="22" >Head vacancy</text><path class="pf-outline" d="M11 37v12m0 -6H61m0 -6v12"/><text x="74" y="50" >0.5</text>
+            <text x="11" y="89" >Tail mass</text><path class="pf-outline" d="M11 105v12m0 -6H61m0 -6v12"/><text x="74" y="118" >0.5</text></svg>
+          </div><div class="pf-result">Retained energy = 11.5 ≤ 13</div></div><div class="vr-panel pf-panel"><h3>Unused budget · Σaᵢ = 1.75</h3><div class="pf-grid pf-mass"><div><div class="pf-measure"><span>a₁ · λ = 9</span><span class="pf-track">
+      <span class="pf-fill" style="width:100%"></span></span><strong>1</strong></div><div class="pf-measure"><span>a₂ · λ = 4</span><span class="pf-track">
+      <span class="pf-fill" style="width:50%"></span></span><strong>0.5</strong></div><div class="pf-measure"><span>a₃ · λ = 1</span><span class="pf-track">
+      <span class="pf-dark-fill" style="width:25%"></span></span><strong>0.25</strong></div><div class="pf-measure"><span>a₄ · λ = 0</span><span class="pf-track">
+      <span class="pf-dark-fill" style="width:0%"></span></span><strong>0</strong></div></div>
+          <svg class="pf-svg" viewBox="0 0 190 142" role="img" aria-label="Head vacancy 0.5; tail mass 0.25"><text x="11" y="22" >Head vacancy</text><path class="pf-outline" d="M11 37v12m0 -6H61m0 -6v12"/><text x="74" y="50" >0.5</text>
+            <text x="11" y="89" >Tail mass</text><path class="pf-outline" d="M11 105v12m0 -6H36m0 -6v12"/><text x="49" y="118" >0.25</text></svg>
+          </div><div class="pf-result">Retained energy = 11.25 ≤ 13</div></div></div>
+</div>
+</figure>
+```
+
+::: {.pf-logic}
+
+$$h=\sum_{i\le k}(1-a_i)\ge t=\sum_{i>k}a_i,\qquad
+D=\sum_{i\le k}\lambda_i(1-a_i)-\sum_{i>k}\lambda_i a_i
+\ge\lambda_k h-\lambda_{k+1}t\ge(\lambda_k-\lambda_{k+1})t.$$
+
+:::
+
+::: {.pf-note}
+
+At a full budget, the brackets match ($h=t$). With budget left unused, $h-t=k-\sum_i a_i>0$.
+
+:::
+
+::::
+
+::: {.la-takeaway}
+
+$D=\sum_{i\le k}\lambda_i-\sum_i\lambda_i a_i\ge0$.
+
+:::
+
+::: {.la-source}
+
+Scalar weight lemma · [BU DS701 · Low-rank geometry](https://ds701.cds.bu.edu/slides/12-SVD-Low-Rank.html)
+
+:::
+
+::: {.notes}
+
+Пусть $\lambda_1\ge\cdots\ge\lambda_m\ge0$, $1\le k<m$, $0\le a_i\le1$ и $\sum_i a_i\le k$. Обозначим через $h=\sum_{i\le k}(1-a_i)$ недостающий вес в первых $k$ направлениях, а через $t=\sum_{i>k}a_i$ — суммарный вес остальных. Так как $h-t=k-\sum_i a_i$, всегда $h\ge t$. На левой панели весь допустимый вес распределён и $h=t$. На правой панели часть веса осталась нераспределённой и $h>t$.
+
+По сравнению с суммой первых $k$ значений потеря в первых направлениях составляет как минимум $\lambda_k h$. Вклад остальных направлений составляет не более $\lambda_{k+1}t$. Вычитая его из потери, получаем
+$$
+D=\sum_{i\le k}\lambda_i-\sum_i\lambda_i a_i
+\ge\lambda_k h-\lambda_{k+1}t
+\ge(\lambda_k-\lambda_{k+1})t\ge0.
+$$
+Таким образом, сохранённая энергия ограничена суммой первых $k$ значений. Если на границе есть строгий зазор, оценка через $t$ дополнительно ограничивает вес направлений за этой границей.
+
+:::
+
+## Frobenius norm: the lower bound is attained {#pre-35 .la-slide .la-long-title .pre-proof background-color="#ffffff"}
+
+:::: {.la-body}
+
+::: {.pre-proof-condition}
+
+For any $B$ of rank at most $k$, take a rank-$k$ orthogonal projector $P$ with $PB=B$.
+
+:::
+
+::: {.pf-logic}
+
+$$\|A-B\|_F^2
+=\|(I-P)A\|_F^2+\|PA-B\|_F^2
+\ge\|A\|_F^2-\|PA\|_F^2
+\ge\sum_{i>k}\sigma_i^2
+=\|A-A_k\|_F^2.$$
+
+:::
+
+```{=html}
+<figure class="vr-visual" data-vr="pre-35" aria-label="The universal lower bound and the truncated SVD tail align at one unit of squared error">
+<div class="vr-static">
+<div class="pf-grid pf-two">
+      <div class="vr-panel pf-panel"><h3>Lower bound for every B of rank ≤ 2</h3><div class="pf-measure"><span>Total</span><span class="pf-track">
+      <span class="pf-dark-fill" style="width:100%"></span></span><strong>14</strong></div><div class="pf-measure"><span>Retained ≤</span><span class="pf-track">
+      <span class="pf-empty" style="width:92.85714285714286%"></span></span><strong>13</strong></div>
+        <div class="pf-measure"><span>Lost ≥</span><span class="pf-track">
+      <span class="pf-fill" style="width:7.142857142857143%"></span></span><strong>1</strong></div><div class="pf-result">14 − 13 = <b>1</b> unit of squared error</div></div>
+      <div class="vr-panel pf-panel"><h3>Truncated SVD A₂ attains the bound</h3><div class="pf-measure"><span>Total</span><span class="pf-track">
+      <span class="pf-dark-fill" style="width:100%"></span></span><strong>14</strong></div><div class="pf-measure"><span>λ₁ + λ₂ kept</span><span class="pf-track">
+      <span class="pf-empty" style="width:92.85714285714286%"></span></span><strong>13</strong></div><div class="pf-measure"><span>λ₃ + λ₄ tail</span><span class="pf-track">
+      <span class="pf-fill" style="width:7.142857142857143%"></span></span><strong>1</strong></div>
+        <div class="pf-result">1 + 0 = <b>1</b> unit of squared error</div></div>
+      </div><div class="pf-caption">λ = (9, 4, 1, 0) · shared 0–14 energy scale</div>
+</div>
+</figure>
+```
+
+::::
+
+::: {.la-takeaway}
+
+No competitor is better. The truncated SVD attains the bound in both norms.
+
+:::
+
+::: {.la-source}
+
+[Cornell CS 6210 · Matrix nearness problems](https://www.cs.cornell.edu/courses/cs6210/2025fa/lec/2025-10-15.html) · [BU DS701 · Candidate and lower bound](https://ds701.cds.bu.edu/slides/12A-Appendix-SVD-Derivations.html#why-nothing-of-rank-k-does-better-proof-sketch)
+
+:::
+
+::: {.notes}
+
+Для любого $B$ ранга не выше $k$ проектор $P$ ранга $k$ с $PB=B$ даёт
+$$
+\|A-B\|_F^2\ge\|A\|_F^2-\|PA\|_F^2.
+$$
+Полная энергия $\|A\|_F^2$ равна сумме всех $\lambda_i$, а лемма ограничивает энергию проекции суммой первых $k$. Поэтому квадрат ошибки любого допустимого $B$ составляет как минимум $\sum_{i>k}\sigma_i^2$.
+
+Для $A_k$ проектор на $\operatorname{span}(u_1,\ldots,u_k)$ сохраняет первые $k$ сингулярных компонент, и $PA=A_k$. Квадрат ошибки совпадает с нижней оценкой. На рисунке для $\lambda=(9,4,1,0)$ и $k=2$ любой проектор ранга два сохраняет не больше $13$ из $14$ единиц энергии, а усечённое SVD достигает этого предела. Минимальный квадрат ошибки равен $1$.
+
+:::
+

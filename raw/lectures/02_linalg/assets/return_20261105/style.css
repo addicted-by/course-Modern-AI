@@ -1,0 +1,82 @@
+/* Part III · Back to the task (ReplaceMe). Scoped to .r3-slide; reuses lecture tokens. */
+.reveal .r3-slide .la-body {font-size:27px;line-height:1.3;}
+.reveal .r3-slide .la-takeaway {font-size:30px;}
+.reveal .r3-slide p {margin:0 0 12px;}
+.reveal .r3-slide h3 {font-size:27px;margin:0 0 14px;}
+
+/* Numbered display equation. */
+.reveal .r3-slide .r3-eq {position:relative;padding-right:60px;font-size:32px;}
+.reveal .r3-slide .r3-eq .katex-display {margin:12px 0;text-align:left;}
+.reveal .r3-slide .r3-eq .katex-display>.katex {text-align:left;}
+.reveal .r3-slide .r3-eqno {position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:22px;color:var(--lecture-muted);}
+
+.reveal .r3-slide .r3-label {font-size:20px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--lecture-muted);margin-bottom:10px;}
+.reveal .r3-slide .r3-rule {border-top:1px solid var(--lecture-border-dark);padding-top:18px;margin-top:22px;}
+.reveal .r3-slide .r3-muted {color:var(--lecture-muted);}
+.reveal .r3-slide .r3-two {display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.reveal .r3-slide .r3-two>div+div {border-left:1px solid var(--lecture-border);padding-left:44px;}
+.reveal .r3-slide .r3-figure {margin:0;text-align:center;}
+.reveal .r3-slide .r3-figure img {display:block;height:auto;max-width:none;max-height:none;margin:0 auto;border:0;box-shadow:none;}
+.reveal .r3-slide .r3-figure figcaption {font-size:22px;color:var(--lecture-muted);margin-top:6px;}
+
+/* Tables with numbers. */
+.reveal .r3-slide table.r3-table {width:100%;table-layout:fixed;border-collapse:collapse;font-size:27px;line-height:1.25;font-variant-numeric:tabular-nums;border-top:2px solid var(--lecture-fg);}
+.reveal .r3-slide table.r3-table th {font-size:23px;font-weight:650;padding:12px 14px;text-align:left;border-bottom:1px solid var(--lecture-fg);}
+.reveal .r3-slide table.r3-table td {padding:14px;border-bottom:1px solid var(--lecture-border);vertical-align:middle;}
+.reveal .r3-slide table.r3-table th:first-child,.reveal .r3-slide table.r3-table td:first-child {padding-left:0;}
+.reveal .r3-slide table.r3-table .r3-num {text-align:right;}
+.reveal .r3-slide table.r3-table tr.r3-best td {background:color-mix(in srgb,var(--lecture-pop-lime) 38%,transparent);}
+.reveal .r3-slide table.r3-table td.r3-bad {color:#ae492e;font-weight:650;}
+.reveal .r3-slide table.r3-table small {font-size:21px;color:var(--lecture-muted);}
+
+/* Code. */
+.reveal .r3-slide pre.r3-code {margin:0;width:100%;box-sizing:border-box;background:#f4f5f1;border-left:3px solid var(--lecture-fg);box-shadow:none;border-radius:0;}
+.reveal .r3-slide pre.r3-code::before {display:none!important;content:none!important;}
+.reveal .r3-slide pre.r3-code code {display:block;font-size:24px;line-height:1.4;padding:16px 20px;white-space:pre;max-height:none;overflow:visible;background:transparent;color:var(--lecture-fg);}
+.reveal .r3-slide pre.r3-code .r3-comment {color:var(--lecture-muted);}
+
+/* r3-01: figure + translation strip. */
+.reveal #r3-01 .r3-map {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--lecture-fg);margin-top:12px;}
+.reveal #r3-01 .r3-map>div {padding:10px 18px;border-left:1px solid var(--lecture-border);font-size:26px;}
+.reveal #r3-01 .r3-map>div:first-child {border-left:0;padding-left:0;}
+.reveal #r3-01 .r3-map span {display:block;font-size:20px;color:var(--lecture-muted);letter-spacing:.04em;}
+
+/* r3-03: filter-factor sketch. */
+.reveal #r3-03 svg {display:block;width:100%;height:auto;margin-top:6px;}
+.reveal #r3-03 svg text {font-size:22px;fill:var(--lecture-fg);}
+.reveal #r3-03 .r3-axis {stroke:var(--lecture-muted);stroke-width:1.5;fill:none;}
+.reveal #r3-03 .r3-ridge {stroke:var(--lecture-fg);stroke-width:4;fill:none;}
+.reveal #r3-03 .r3-trunc {stroke:#75821e;stroke-width:4;fill:none;stroke-dasharray:10 7;}
+
+/* r3-07: compression strip. */
+.reveal #r3-07 .r3-strip {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));font-variant-numeric:tabular-nums;}
+.reveal #r3-07 .r3-strip>div {padding:8px 14px;border-left:1px solid var(--lecture-border);}
+.reveal #r3-07 .r3-strip>div:first-child {border-left:0;padding-left:0;}
+.reveal #r3-07 .r3-strip span {display:block;font-size:20px;color:var(--lecture-muted);}
+.reveal #r3-07 .r3-strip b {font-size:31px;}
+
+/* r3-08: exercise list. */
+.reveal #r3-08 ol {margin:0;padding-left:34px;}
+.reveal #r3-08 li {margin:0 0 20px;}
+.reveal #r3-01 .r3-eq .katex-display {margin:4px 0 0;}
+.reveal #r3-01 .r3-figure figcaption {margin-top:2px;}
+
+.reveal .slides section#r3-04 {
+  --la-frame-body-top: 168px;
+  --la-frame-body-height: 590px;
+}
+
+.reveal #r3-04 .r3-general-fit {
+  margin-top: 9px;
+  border-top: 1px solid var(--lecture-border);
+}
+
+.reveal #r3-04 .r3-general-fit .katex-display {
+  margin: 8px 0;
+}
+
+.reveal #r3-04 .r3-general-fit > p {
+  margin: 0;
+  color: var(--lecture-muted);
+  font-size: 22px;
+}

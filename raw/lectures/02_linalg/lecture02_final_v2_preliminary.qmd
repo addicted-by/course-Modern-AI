@@ -1,0 +1,9 @@
+{{< include final_parts/pdf_narrative_20261111/opening.qmd >}}
+
+{{< include final_parts/foundations_20261111/slides.qmd >}}
+
+{{< include final_parts/pdf_narrative_20261111/mnk.qmd >}}
+
+{{< include final_parts/pdf_narrative_20261111/decompositions.qmd >}}
+
+{{< include final_parts/preliminary_20261007/slides_28_37.qmd >}}

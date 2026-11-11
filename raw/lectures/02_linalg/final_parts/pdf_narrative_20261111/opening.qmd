@@ -1,0 +1,309 @@
+## Replace a block with one linear layer {#pre-01 .la-slide .pre-opening background-color="#0a0a0a"}
+
+```{=html}
+<div class="po1-body">
+ <div class="po1-main">
+  <div class="po1-title">Replace a block with one linear layer</div>
+<svg class="po1-svg" viewBox="0 0 820 620" role="img" aria-label="Generalized decoder-only architecture: token IDs, embeddings, N repeated blocks of token mixing and FFN with residual paths, output projection. The input h enters one block and F(h) leaves it. On click, the interior of the block is replaced by one linear layer Wh plus c with unknown W and c.">
+<defs><marker id="po1-arrow" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#f5f5f5"/></marker></defs>
+<g fill="none" stroke="#f5f5f5" stroke-width="2" marker-end="url(#po1-arrow)"><path d="M370 570V548"/><path d="M370 82V52"/><path d="M370 494V410"/><path d="M370 206V144"/></g>
+<rect x="150" y="204" width="520" height="225" fill="none" stroke="#52525b" stroke-width="2" stroke-dasharray="6 5"/>
+<g font-size="25" text-anchor="middle" fill="#f5f5f5">
+<text x="370" y="602">Token IDs</text>
+<rect x="235" y="494" width="270" height="54" fill="#18181b" stroke="#f5f5f5"/><text x="370" y="529">Embeddings</text>
+<rect x="235" y="82" width="270" height="62" fill="#18181b" stroke="#f5f5f5"/><text x="370" y="108">Output projection</text><text x="370" y="131" font-size="20">Norm → logits</text>
+<text x="370" y="35">Next-token scores</text>
+<g class="fragment semi-fade-out po1-interior" data-fragment-index="1">
+ <g fill="none" stroke="#f5f5f5" stroke-width="2" marker-end="url(#po1-arrow)"><path d="M370 348V339"/><path d="M370 315V301"/><path d="M370 239V230"/></g>
+ <rect x="235" y="348" width="270" height="62" fill="#0a0a0a" stroke="#f5f5f5"/><text class="po1-nt" x="370" y="375">Token mixing</text><text class="po1-nt" x="370" y="398" font-size="20">Norm → causal mixing</text>
+ <rect x="235" y="239" width="270" height="62" fill="#0a0a0a" stroke="#f5f5f5"/><text class="po1-nt" x="370" y="266">FFN</text><text class="po1-nt" x="370" y="290" font-size="20">Norm → transformation</text>
+ <path d="M370 429H590V327H383" fill="none" stroke="#f5f5f5" stroke-width="2" marker-end="url(#po1-arrow)"/><path d="M370 308H590V218H383" fill="none" stroke="#f5f5f5" stroke-width="2" marker-end="url(#po1-arrow)"/>
+ <circle cx="370" cy="327" r="12" fill="#0a0a0a" stroke="#f5f5f5"/><text x="370" y="335">+</text><circle cx="370" cy="218" r="12" fill="#0a0a0a" stroke="#f5f5f5"/><text x="370" y="226">+</text>
+ <text x="736" y="289" font-size="22">Residual</text><text x="736" y="318" font-size="22">paths</text>
+</g>
+<g class="fragment fade-out po1-before" data-fragment-index="1"><text x="83" y="294" font-size="34" font-weight="650">× N</text><text x="83" y="325" font-size="21">blocks</text></g>
+<g class="fragment" data-fragment-index="1"><text x="83" y="263" font-size="21">one of</text><text x="83" y="294" font-size="34" font-weight="650">N</text><text x="83" y="325" font-size="21">blocks</text></g>
+<g class="fragment" data-fragment-index="1"><path d="M370 239V206" fill="none" stroke="#f5f5f5" stroke-width="2"/><rect x="235" y="239" width="270" height="171" fill="#bef264" stroke="#bef264"/><text x="370" y="320" font-size="34" font-weight="600" fill="#141414">Wh + c</text><text x="370" y="358" font-size="22" fill="#141414">W = ?&#160;&#160;&#160;c = ?</text></g>
+<g fill="#bef264" font-size="28" text-anchor="start"><text x="388" y="468">h</text><text x="388" y="182">F(h)</text></g>
+</g></svg>
+ </div>
+ <div class="po1-route">
+  <h3 class="po1-label">Linear algebra for deep learning</h3>
+  <ol class="po1-agenda">
+   <li>Motivation<span>One linear layer for one block</span></li>
+   <li>LS<span>Norms, systems, and closest fit</span></li>
+   <li>Factorization<span>Cholesky, SVD, and low-rank approximation</span></li>
+   <li>Applications<span>Where the methods are used</span></li>
+   <li>ReplaceMe<span>Calibrate a transformer replacement</span></li>
+  </ol>
+  <p class="po1-note fragment" data-fragment-index="2">Start with the task.<br>Can one linear layer do the block’s job?</p>
+ </div>
+</div>
+<div class="la-source"><a href="https://arxiv.org/abs/1706.03762">Vaswani et al., 2017</a> · <a href="https://arxiv.org/abs/2302.13971">LLaMA, 2023, §2.2</a> · Generalized decoder-only diagram from Lecture 01 · Block replacement: <a href="https://arxiv.org/html/2405.12250v1#S5">Razzhigaev et al., 2024, §5</a></div>
+```
+
+::: {.notes lang="ru"}
+
+В схеме декодера из первой лекции выделен один из повторяющихся блоков. Его вход имеет вид $h\in\mathbb R^d$, а выход исходной модели обозначен через $F(h)\in\mathbb R^p$. Задача состоит в том, чтобы приблизить этот выход преобразованием $Wh+c$, где $W\in\mathbb R^{p\times d}$ и $c\in\mathbb R^p$. В нейросетях такое преобразование называют линейным слоем. При ненулевом смещении оно аффинное. При $p=d$ удалению целого блока соответствует частный случай $W=I_d$, $c=0$.
+
+Норма определяет величину ошибки. Ранг задаёт размерность пространства достижимых ответов, а метод наименьших квадратов находит ближайший к цели ответ. Разложения матриц позволяют решать нормальные уравнения и строить низкоранговые приближения.
+
+Основанием для такой замены служат наблюдения над уже обученными моделями. К конкретному способу подгонки и замены нескольких блоков лекция вернётся на примере ReplaceMe.
+
+:::
+
+## Successive layers are almost linear {#pre-02 .la-slide .pre-opening background-color="#ffffff"}
+
+```{=html}
+<div class="la-body">
+ <div class="po-evidence-tag">Reported linearity · Abstract / §3.1</div>
+ <div class="po-evidence">
+  <div class="po-stat"><strong>0.99</strong><span>Procrustes similarity<br>between successive layers</span><small>Transformer decoders</small></div>
+  <div class="po-paper-figure">
+   <svg viewBox="0 0 1360 1024" role="img" aria-label="Original Figure 1, left panel: across the tested transformer decoders, most intermediate layers have linearity scores close to one. Scores are less uniform near the beginning and end. Each curve represents one model."><defs><clipPath id="po02-left-panel"><rect width="1360" height="1024"/></clipPath></defs><image href="assets/preliminary_20261007/linearity-profiles-fig1.png" width="3102" height="1024" clip-path="url(#po02-left-panel)"/></svg>
+   <div class="po-figure-caption">Original Fig. 1 · left panel · each curve is one model</div>
+  </div>
+ </div>
+ <div class="po-evidence-result fragment fade-up" data-fragment-index="1">Removing or linearly approximating the most linear blocks barely changes loss.</div>
+</div>
+<div class="la-takeaway fragment" data-fragment-index="2">If a block is nearly linear, a linear layer can stand in for it.</div>
+<div class="la-source"><a href="https://arxiv.org/html/2405.12250v1#S1.F1">Razzhigaev et al., Your Transformer is Secretly Linear, 2024 · Abstract, §3.1, Fig. 1 (left panel)</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div>
+```
+
+::: {.notes lang="ru"}
+
+В аннотации работы Razzhigaev и соавторов приведена оценка линейности соседних представлений $0{,}99$. На графике показано, как эта оценка меняется с относительной глубиной декодера. В середине сети многие кривые близки к единице, а в начале и конце различия между моделями заметнее.
+
+Высокая оценка означает, что на исследованных данных представление после блока хорошо приближается линейным преобразованием представления до него. Это утверждение относится к наблюдаемым активациям. За их пределами поведение блока может быть другим.
+
+В отдельных опытах удаление или линейная замена блоков с высокими оценками мало меняли потери. Пригодность замены проверялась отдельно: оценка линейности измеряет соответствие между активациями, тогда как потери относятся к работе всей модели.
+
+:::
+
+## How linearity is measured {#sl-01 .la-slide .pre-opening background-color="#ffffff"}
+
+::: {.la-body .sl-stack}
+
+::: {.sl-row}
+::: {.sl-label}
+Data
+:::
+$X,\,Y\in\mathbb{R}^{n\times d}$, centered embeddings of two adjacent layers<br>$\tilde X=X/\lVert X\rVert_F,\quad\tilde Y=Y/\lVert Y\rVert_F$
+:::
+
+::: {.sl-row .fragment .fade-up data-fragment-index="1"}
+::: {.sl-label}
+Score
+:::
+$$\mathrm{linearity\_score}=1-\min_{A\in\mathbb{R}^{d\times d}}\lVert \tilde XA-\tilde Y\rVert_F^{2}\tag{1}$$
+:::
+
+::: {.sl-row .fragment .fade-up data-fragment-index="2"}
+::: {.sl-label}
+Procrustes
+:::
+$A$ orthogonal, $A^\top A=I_d$ $\;\to\;$ here $A$ is any linear map. The score lies in $[0,1]$.
+:::
+
+:::
+
+::: {.la-takeaway .fragment data-fragment-index="3"}
+The score is a least-squares problem.
+:::
+
+::: {.la-source}
+[Razzhigaev et al., Your Transformer is Secretly Linear, 2024 · §3.1, Eq. (linearity score)](https://arxiv.org/html/2405.12250v1#S3.SS1) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+:::
+
+::: {.notes lang="ru"}
+
+Строки двух матриц соответствуют одним и тем же $n$ токенам, а столбцы — $d$ координатам представления. После центрирования столбцов получаются $X,Y\in\mathbb R^{n\times d}$. При ненулевых нормах каждую матрицу делят на её собственную норму Фробениуса: $\tilde X=X/\|X\|_F$ и $\tilde Y=Y/\|Y\|_F$. Тем самым из сравнения исключаются сдвиг среднего и общий масштаб каждого представления.
+
+Оценка равна $1-\min_{A\in\mathbb R^{d\times d}}\|\tilde X A-\tilde Y\|_F^2$. Минимальная квадратичная ошибка неотрицательна и не превосходит единицы: при $A=0$ она равна $\|\tilde Y\|_F^2=1$. Оценка $1$ соответствует точному линейному совпадению на центрированных и нормированных данных.
+
+В ортогональной задаче Прокруста допустимые преобразования сохраняют длины и углы. Здесь ограничение $A^\top A=I_d$ снято, поэтому подгонка сводится к обычному методу наименьших квадратов. В частности, в качестве приближения допустимо тождественное отображение, что существенно для блока с остаточной связью.
+
+:::
+
+## Where the linearity comes from {#sl-02 .la-slide .pre-opening background-color="#ffffff"}
+
+```{=html}
+<div class="la-body sl-body">
+ <div class="sl-chart-key"><span class="math inline">\Delta H_\ell=H_{\ell+1}-H_\ell</span> · Tildes mean column-centered and Frobenius-normalized</div>
+ <div class="sl-pair">
+  <div class="sl-fig sl-fig-a">
+   <svg viewBox="1345 0 1235 1024" role="img" aria-label="Original Figure 1, right panel, linearity score without residuals against normalized depth. Scores fall to roughly 0.4 to 0.6 in the middle layers and rise toward one at the last layer; the curves are far less uniform than with residuals."><image href="assets/preliminary_20261007/linearity-profiles-fig1.png" width="3102" height="1024"/></svg>
+   <div class="sl-cap">Fig. 1, right panel · linearity score w/o residuals</div>
+   <div class="sl-chart-formula"><span class="math display">S_\ell=1-\min_A\lVert\widetilde H_\ell A-\widetilde{\Delta H_\ell}\rVert_F^2</span></div>
+  </div>
+  <div class="sl-fig sl-fig-b fragment fade-up" data-fragment-index="1">
+   <svg viewBox="0 0 1395 1002" role="img" aria-label="Original Figure 3: ratio of block output norm to residual stream norm against normalized depth, log scale. In the middle layers the ratio is mostly below one; it is large at the first and last layers."><image href="assets/secretly_linear_20261111/norms.png" width="1893" height="1002"/></svg>
+   <div class="sl-cap">Fig. 3 · block update / residual stream (log y-axis)</div>
+   <div class="sl-chart-formula"><span class="math display">R_\ell=\frac{\lVert\Delta H_\ell\rVert}{\lVert H_{\mathrm{stream}}\rVert}</span></div>
+  </div>
+ </div>
+ <div class="sl-claim fragment fade-up" data-fragment-index="2">A block adds little to the residual stream, so adjacent layers almost coincide.</div>
+</div>
+<div class="la-takeaway fragment" data-fragment-index="3">Part of the 0.99 is the residual stream itself.</div>
+<div class="la-source"><a href="https://arxiv.org/html/2405.12250v1#S3.SS1">Razzhigaev et al., Your Transformer is Secretly Linear, 2024 · §3.1, Fig. 1 (right panel), Fig. 3</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div>
+```
+
+::: {.notes lang="ru"}
+
+Если выход блока записать как $H_{\ell+1}=H_\ell+\Delta H_\ell$, ту же меру можно вычислить для отображения из входа $H_\ell$ в добавку $\Delta H_\ell$. Вход и добавку по отдельности центрируют по столбцам и нормируют по Фробениусу, затем вычисляют $S_\ell=1-\min_A\|\widetilde H_\ell A-\widetilde{\Delta H_\ell}\|_F^2$. Для многих моделей в середине сети оценки лежат в районе $0{,}4$–$0{,}6$, заметно ниже значений для полных выходов. К концу сети оценки снова растут.
+
+Другой график показывает отношение нормы добавки к норме остаточного потока. В средних слоях оно обычно меньше единицы, иногда порядка $0{,}1$ и ниже. Отношение показано на логарифмической шкале. Для этого графика статья не уточняет ни выбор нормы, ни способ объединения значений по токенам.
+
+Если добавка мала относительно остаточного потока, полный выход близок к самому входу $H_\ell$. Сопоставление графиков согласуется с этим объяснением высоких оценок для полных выходов. Из этих оценок нельзя заключить, что собственный вклад блока столь же хорошо описывается линейным отображением.
+
+:::
+
+## How linearity changes in training {#sl-03 .la-slide .pre-opening background-color="#ffffff"}
+
+```{=html}
+<div class="la-body sl-body">
+ <div class="sl-pair sl-pair-3">
+  <div class="sl-fig sl-fig-c">
+   <img src="assets/secretly_linear_20261111/mean_linearity.png" alt="Original Figure 2: mean linearity score without residuals against pretraining steps on a log axis, for nine open models. Most curves decline from roughly 0.8 to 0.9 toward 0.6 to 0.7 as pretraining proceeds.">
+   <div class="sl-cap">Fig. 2 · mean linearity (w/o residuals) vs. pretraining steps</div>
+  </div>
+  <div class="sl-table fragment fade-up" data-fragment-index="1">
+   <div class="sl-table-head">Table 1 · gain in linearity after fine-tuning</div>
+   <table>
+    <tr><th>Model</th><th>Task</th><th>Δ score</th></tr>
+    <tr><td>GPT2</td><td>CB</td><td>0.004 ± 0.003<span>min</span></td></tr>
+    <tr><td>Llama2-7B</td><td>Reward Modeling</td><td>0.194 ± 0.027</td></tr>
+    <tr><td>OPT-1.3B</td><td>BoolQ</td><td>0.382 ± 0.004<span>max</span></td></tr>
+   </table>
+   <div class="sl-table-note">All entries are positive: 7 models, 4 tasks.</div>
+  </div>
+ </div>
+</div>
+<div class="la-takeaway fragment" data-fragment-index="2">Pretraining lowers linearity. Fine-tuning raises it.</div>
+<div class="la-source"><a href="https://arxiv.org/html/2405.12250v1#S3.SS2">Razzhigaev et al., Your Transformer is Secretly Linear, 2024 · §3.2, Fig. 2, Table 1</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div>
+```
+
+::: {.notes lang="ru"}
+
+График показывает среднюю по слоям линейность добавки блока в зависимости от шага предобучения. Шкала шагов логарифмическая. У большинства из девяти моделей оценка снижается, в нескольких случаях примерно с $0{,}8$–$0{,}9$ до $0{,}6$–$0{,}7$. На отдельных участках некоторые кривые снова растут.
+
+В таблице сравниваются оценки до и после дообучения. Во всех 28 сочетаниях модели и задачи авторы получили положительную разность. Наименьший прирост составил $0{,}004\pm0{,}003$ у GPT2 на CB, наибольший — $0{,}382\pm0{,}004$ у OPT-1.3B на BoolQ. Для Llama2-7B в задаче моделирования вознаграждения он составил $0{,}194\pm0{,}027$.
+
+Предобучение и дообучение здесь исследованы в разных сериях опытов. Разнонаправленные тенденции показывают, что оценка линейности зависит от режима обучения. Влияние этой меры на качество модели остаётся отдельным вопросом.
+
+:::
+
+## The authors' regularizer {#sl-04 .la-slide .pre-opening background-color="#ffffff"}
+
+::: {.la-body .sl-body}
+
+::: {.sl-pair .sl-pair-4}
+
+::: {.sl-left}
+
+::: {.sl-formula}
+$$\mathcal{L}_{\cos}=\lambda\sum_i\bigl(1-\cos(\mathrm{emb}_i,\mathrm{emb}_{i-1})\bigr)\tag{1}$$
+:::
+
+```{=html}
+<div class="sl-table sl-table-nums fragment fade-up" data-fragment-index="2">
+ <div class="sl-table-head">Mistral, no reg. → + cosine (λ = 0.5)</div>
+ <table>
+  <tr><th></th><th>SuperGLUE</th><th>TinyStories</th></tr>
+  <tr><td>650M</td><td>43.33 → 46.06</td><td>5.39 → 6.08</td></tr>
+  <tr><td>150M</td><td>41.10 → 42.78</td><td>4.86 → 5.44</td></tr>
+ </table>
+ <div class="sl-table-note">Means; TinyStories scored by GPT-4.</div>
+</div>
+```
+
+:::
+
+```{=html}
+<div class="sl-fig sl-fig-d fragment fade-up" data-fragment-index="1">
+ <img src="assets/secretly_linear_20261111/lin_reg.png" alt="Original Figure 4: linearity score without residuals by layer for Mistral-650M with and without cosine regularization. The regularized model is lower at every layer.">
+ <div class="sl-cap">Fig. 4 · Mistral-650M, linearity w/o residuals by layer</div>
+</div>
+```
+
+:::
+
+:::
+
+::: {.la-takeaway .fragment data-fragment-index="3"}
+Pulling neighbouring layers together made them less linear and the model better.
+:::
+
+::: {.la-source}
+[Razzhigaev et al., Your Transformer is Secretly Linear, 2024 · §4, Fig. 4, Tables 2–3](https://arxiv.org/html/2405.12250v1#S4) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+:::
+
+::: {.notes lang="ru"}
+
+При обучении небольших моделей архитектуры Mistral с нуля авторы добавляют к функции потерь штраф $\lambda\sum_i(1-\cos(\mathrm{emb}_i,\mathrm{emb}_{i-1}))$. Он поощряет близость направлений соседних представлений целиком. В опыте с Mistral-650M при этом снижается линейность добавки блока, измеренная после вычитания остаточного входа. Штраф и оценка на графике относятся к разным объектам, поэтому эти наблюдения совместимы.
+
+При $\lambda=0{,}5$ у Mistral-650M средний результат SuperGLUE вырос с $43{,}33$ до $46{,}06$, а средняя оценка на TinyStories, выставленная GPT-4, — с $5{,}39$ до $6{,}08$. Для Mistral-150M средние выросли с $41{,}10$ до $42{,}78$ и с $4{,}86$ до $5{,}44$ соответственно, хотя по отдельным задачам SuperGLUE результаты снизились.
+
+В этих запусках изменение функции потерь сопровождалось и снижением линейности добавки, и ростом средних оценок. Опыт не устанавливает, что рост качества вызван именно снижением линейности.
+
+:::
+
+## Using linearity to shrink the model {#sl-05 .la-slide .pre-opening background-color="#ffffff"}
+
+```{=html}
+<div class="la-body sl-body">
+ <div class="sl-pair sl-pair-5">
+  <ol class="sl-steps">
+   <li class="fragment fade-up" data-fragment-index="1"><i class="sw sw-a"></i>Delete the most linear layers.</li>
+   <li class="fragment fade-up" data-fragment-index="2"><i class="sw sw-b"></i>Replace them by a linear approximation.</li>
+   <li class="fragment fade-up" data-fragment-index="3"><i class="sw sw-c"></i>Replace, then distil the replacement with a layerwise MSE loss.</li>
+  </ol>
+  <div class="sl-fig sl-fig-e">
+   <img src="assets/secretly_linear_20261111/llama_prune.png" alt="Original Figure 6: WikiText perplexity of Llama2-7B against the number of changed layers, 0 to 9. Perplexity rises fastest when layers are removed, more slowly with linear replacement, and slowest with linear replacement plus distillation.">
+   <div class="sl-cap">Fig. 6 · WikiText perplexity, Llama2-7B (lower is better)</div>
+  </div>
+ </div>
+</div>
+<div class="la-takeaway fragment" data-fragment-index="4">Replace, then distil: less damage than deleting.</div>
+<div class="la-source"><a href="https://arxiv.org/html/2405.12250v1#S5">Razzhigaev et al., Your Transformer is Secretly Linear, 2024 · §5, Fig. 6–8</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div>
+```
+
+::: {.notes lang="ru"}
+
+В опыте с Llama2-7B авторы изменяют до девяти из 32 блоков, начиная с блоков с наибольшей оценкой линейности. Три стратегии сравниваются по перплексии на WikiText при одинаковом числе изменённых блоков. Быстрее всего перплексия растёт при простом удалении, особенно начиная примерно с пяти блоков.
+
+Линейная аппроксимация сохраняет часть действия удалённого блока. В третьем варианте замену дополнительно обучают по квадратичной ошибке относительно выходов исходного блока. Для подгонки и дистилляции используют TinyStories. В показанном опыте вариант с дистилляцией даёт наименьшую перплексию среди трёх стратегий, хотя при росте числа замен перплексия остаётся выше исходной.
+
+Это пример замены из начальной постановки, но статья не уточняет построение начального приближения и наличие смещения. Кривые характеризуют качество всей изменённой модели. Ошибки аппроксимации на отдельных токенах дают другую информацию.
+
+:::
+
+## Limits: nearly linear is not linear {#sl-06 .la-slide .pre-opening background-color="#ffffff"}
+
+```{=html}
+<div class="la-body sl-body">
+ <div class="sl-pair sl-pair-6">
+  <div class="sl-fig sl-fig-f">
+   <img src="assets/secretly_linear_20261111/distribution.png" alt="Original Figure 9: histograms of the L2 error of the linear approximation for each of 24 layers of OPT-1.3B. Several layers, notably the first few and the last, have a long right tail.">
+   <div class="sl-cap">Fig. 9 · OPT-1.3B, L2 error of the linear approximation, one panel per layer</div>
+  </div>
+  <ul class="sl-points">
+   <li class="fragment fade-up" data-fragment-index="1">Rare tokens with strong non-linearity (feature triggering regime).</li>
+   <li class="fragment fade-up" data-fragment-index="2">A composition of near-linear blocks can be non-linear.</li>
+   <li class="fragment fade-up" data-fragment-index="3">Decoders only; limited models and conditions (§7).</li>
+  </ul>
+ </div>
+</div>
+<div class="la-takeaway fragment" data-fragment-index="4">Nearly linear on average. So fit the replacement on data, and check it.</div>
+<div class="la-source"><a href="https://arxiv.org/html/2405.12250v1#S3.SS1">Razzhigaev et al., Your Transformer is Secretly Linear, 2024 · §3.1, §7, App. A, Fig. 9</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div>
+```
+
+::: {.notes lang="ru"}
+
+На гистограммах для 24 слоёв OPT-1.3B показана евклидова норма ошибки линейной аппроксимации для отдельных токенов. У ряда слоёв, в том числе первых и последнего, распределение имеет длинный правый хвост: наряду с типичными ошибками встречаются гораздо более крупные. Горизонтальные шкалы различаются, поэтому между слоями здесь сравнима прежде всего форма распределений.
+
+По гипотезе авторов, хвост связан с сильной активацией редких признаков на отдельных токенах. При замене нескольких блоков добавляется другая трудность: ошибка ранней замены меняет входы следующих блоков, так что хорошее приближение каждого блока на исходных активациях само по себе не гарантирует хорошей композиции. В этих опытах использовались декодерные модели.
+
+Чтобы подогнать замену, нужно задать норму векторной ошибки. Чтобы оценить действие матрицы на возмущения входа, понадобится уже норма самого отображения. С этих двух способов измерения начинается постановка задачи наименьших квадратов.
+
+:::

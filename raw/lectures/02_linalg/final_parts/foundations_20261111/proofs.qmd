@@ -1,0 +1,100 @@
+## Why does the 1-norm pick a column? {#fa-proof-1 .la-slide .fa-proof-page}
+
+```{=html}
+<div class="fa-proof-kicker">LS · Optional derivation · 1-norm</div>
+<div class="fa-proof-content">
+ <div class="fa-proof-step">
+  <h3>Upper bound</h3>
+  <p>Expand <span class="math inline">Ax=\sum_j x_jAe_j</span> in the columns and use the vector triangle inequality.</p>
+  <span class="math display">\begin{aligned}\|Ax\|_1 &\le \sum_j |x_j|\|Ae_j\|_1\\ &\le \big(\max_j\|Ae_j\|_1\big)\|x\|_1.\end{aligned}</span>
+ </div>
+ <div class="fa-proof-step">
+  <h3>A unit input attains the bound</h3>
+  <p>Pick a column <span class="math inline">j_*</span> of largest absolute sum. The input <span class="math inline">e_{j_*}</span> has 1-norm one and selects that column exactly.</p>
+  <p>Second column: <span class="fa-proof-mark math inline">Ae_2=(-8,6)^\top</span> gives <span class="math inline">\|Ae_2\|_1=14</span>.</p>
+ </div>
+ <div class="fa-proof-step fa-proof-result"><span class="math inline">\displaystyle\|A\|_1=\max_j\|Ae_j\|_1=\max_j\sum_i|a_{ij}|.</span></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+
+В разложении $Ax=\sum_j x_jAe_j$ каждый вектор $Ae_j$ — столбец $A$. Неравенство треугольника и однородность дают
+$$
+\|Ax\|_1\le\sum_j |x_j|\,\|Ae_j\|_1
+\le\bigl(\max_j\|Ae_j\|_1\bigr)\|x\|_1.
+$$
+На единичных входах это верхняя граница для $\|Ax\|_1$.
+
+Если $j_*$ — индекс столбца с наибольшей $1$-нормой, то единичный вход $e_{j_*}$ даёт ровно этот столбец. Следовательно, граница достигается и $\|A\|_1=\max_j\sum_i|a_{ij}|$. В нашем примере второй столбец $Ae_2=(-8,6)^\top$ даёт $14$.
+
+:::
+
+## Why does the ∞-norm pick a row? {#fa-proof-infinity .la-slide .fa-proof-page}
+
+```{=html}
+<div class="fa-proof-kicker">LS · Optional derivation · ∞-norm</div>
+<div class="fa-proof-content">
+ <div class="fa-proof-step">
+  <h3>Upper bound</h3>
+  <span class="math display">\begin{aligned}|(Ax)_i|&\le\sum_j|a_{ij}||x_j|\\&\le\Big(\sum_j|a_{ij}|\Big)\|x\|_\infty.\end{aligned}</span>
+  <p>Take the maximum over rows.</p>
+ </div>
+ <div class="fa-proof-step">
+  <h3>Match the signs in the largest row</h3>
+  <p>In a maximizing row <span class="math inline">i_*</span>, set <span class="math inline">x_j=\operatorname{sign}(a_{i_*j})</span> for nonzero entries and <span class="math inline">x_j=1</span> otherwise. Then <span class="math inline">\|x\|_\infty=1</span> and <span class="math inline">(Ax)_{i_*}=\sum_j|a_{i_*j}|</span>.</p>
+  <p>First row: <span class="math inline">(3,-8)</span> has signs <span class="fa-proof-mark">+, −</span>. With <span class="math inline">x=(1,-1)^\top</span>, <span class="math inline">(Ax)_1=11</span>.</p>
+ </div>
+ <div class="fa-proof-step fa-proof-result"><span class="math inline">\displaystyle\|A\|_\infty=\max_i\sum_j|a_{ij}|.</span></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+
+Для каждой координаты выхода $|(Ax)_i|\le\sum_j|a_{ij}|\,|x_j|$. Поскольку $|x_j|\le\|x\|_\infty$, максимум по $i$ даёт верхнюю границу
+$$
+\|Ax\|_\infty\le\Bigl(\max_i\sum_j|a_{ij}|\Bigr)\|x\|_\infty.
+$$
+
+Пусть $i_*$ — индекс строки с наибольшей суммой модулей. Если $x_j$ совпадает со знаком $a_{i_*j}$ для ненулевых элементов строки, а на остальных позициях равен $1$, то $\|x\|_\infty=1$. Все слагаемые $a_{i_*j}x_j$ равны $|a_{i_*j}|$, так что координата $(Ax)_{i_*}$ достигает границы. Значит, $\|A\|_\infty=\max_i\sum_j|a_{ij}|$. В примере знаки первой строки $(3,-8)$ задают вход $(1,-1)^\top$, который даёт $11$ в первой координате.
+
+:::
+
+## Why does the 2-norm come from AᵀA? {#fa-proof-2 .la-slide .fa-proof-page}
+
+```{=html}
+<div class="fa-proof-kicker">LS · Optional derivation · 2-norm</div>
+<div class="fa-proof-content">
+ <div class="fa-proof-step">
+  <h3>Square the length</h3>
+  <p><span class="math inline">\|Ax\|_2^2=x^\top Gx</span> for <span class="math inline">G=A^\top A</span>. This continuous function has a maximum at some unit vector <span class="math inline">u</span>.</p>
+ </div>
+ <div class="fa-proof-step">
+  <h3>At the maximum</h3>
+  <p>For any <span class="math inline">z\perp u</span>, normalize <span class="math inline">u+tz</span> to unit length. The resulting value is</p>
+  <span class="math display">\begin{aligned}q(t)&=\frac{(u+tz)^\top G(u+tz)}{1+t^2\|z\|_2^2},\\q'(0)&=2z^\top Gu=0.\end{aligned}</span>
+  <p>Thus <span class="math inline">Gu=\lambda u</span>: the maximizer is an eigenvector.</p>
+ </div>
+ <div class="fa-proof-step">
+  <h3>Read the eigenvalue</h3>
+  <p>For any unit eigenvector, the quadratic form equals its eigenvalue. The maximum must therefore be the largest eigenvalue.</p>
+ </div>
+ <div class="fa-proof-step fa-proof-result"><span class="math inline">\|A\|_2=\sqrt{\lambda_{\max}(A^\top A)}.</span> The SVD will call this number <span class="math inline">\sigma_1(A)</span>.</div>
+</div>
+```
+
+::: {.notes lang="ru"}
+
+Квадрат евклидовой длины выхода равен $\|Ax\|_2^2=x^\top Gx$, где $G=A^\top A$ симметрична. Эта непрерывная квадратичная форма достигает максимума на единичной сфере. Пусть $u$ — единичный максимизатор. Для любого $z\perp u$ вектор $(u+tz)/\|u+tz\|_2$ остаётся на сфере при изменении $t$. Значение формы вдоль этой кривой равно
+$$
+q(t)=\frac{(u+tz)^\top G(u+tz)}{1+t^2\|z\|_2^2}.
+$$
+При $t=0$ у $q$ максимум, поэтому $q'(0)=2z^\top Gu=0$.
+
+Значит, $Gu$ ортогонален каждому $z\perp u$ и потому пропорционален $u$: $Gu=\lambda u$. Так максимум формы оказывается собственным значением $\lambda=u^\top Gu$. На любом другом единичном собственном векторе форма также равна соответствующему собственному значению, которое не может превышать максимум. Поэтому $\|A\|_2=\sqrt{\lambda_{\max}(A^\top A)}$. Эта величина совпадает с наибольшим сингулярным значением $\sigma_1(A)$.
+
+:::
+
+```{=html}
+<script src="assets/foundations_20261111/proofs.js"></script>
+```

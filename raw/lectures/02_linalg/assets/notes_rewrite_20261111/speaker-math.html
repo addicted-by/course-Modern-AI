@@ -1,0 +1,28 @@
+<script id="lecture02-speaker-math">
+(() => {
+  const stylesheet = document.getElementById("offline-katex-css");
+  if (!stylesheet) return;
+
+  // Reveal copies the notes markup into a separate document without the deck styles.
+  window.addEventListener("message", event => {
+    if (event.origin !== window.location.origin || typeof event.data !== "string") return;
+
+    let message;
+    try {
+      message = JSON.parse(event.data);
+    } catch {
+      return;
+    }
+    if (message?.namespace !== "reveal-notes" ||
+        (message.type !== "connected" && message.type !== "heartbeat")) return;
+
+    const speaker = event.source;
+    if (!speaker || speaker.opener !== window) return;
+    const target = speaker.document;
+    if (!target.querySelector(".speaker-controls-notes .value") ||
+        target.getElementById(stylesheet.id)) return;
+
+    target.head.append(target.importNode(stylesheet, true));
+  });
+})();
+</script>

@@ -88,20 +88,14 @@ lectures:
 
   - number: 10
     module: M2
-    title: "Linear Algebra & Decomposition & LoRA. Preliminaries"
-    source: null
-    html: null
+    title: "Decompositions & Applications"
+    source: raw/lectures/02_linalg/lecture02_final_v2.qmd
+    html: raw/lectures/02_linalg/lecture02_final_v2.html
     pdf: null
     pptx: null
+    resources:
+      - raw/lectures/02_linalg/notebooks/applications/**
 
-  - number: 11
-    module: M2
-    title: "Linear Algebra & Decomposition & LoRA. Decomposition applications"
-    source: null
-    html: null
-    pdf: null
-    pptx: null
-  
   - number: 12
     module: M2
     title: "Linear Algebra & Decomposition & LoRA. LoRA in details"

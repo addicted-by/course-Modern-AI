@@ -1,0 +1,173 @@
+/* Lecture 02: same course tokens, 52px inset and editorial type as Lecture 01 final. */
+.reveal .slides section.la-slide {box-sizing:border-box;height:880px;padding:0;text-align:left;color:var(--lecture-fg);}
+.reveal .la-slide>h2 {position:absolute;top:38px;left:52px;right:330px;margin:0;font-size:54px;font-weight:600;line-height:1.12;letter-spacing:-.035em;}
+.reveal .la-slide.la-long-title>h2 {font-size:51px;}
+.reveal .la-slide .la-body {position:absolute;left:52px;right:52px;top:170px;height:560px;font-size:28px;line-height:1.3;}
+.reveal .la-slide p {margin:0 0 18px;line-height:inherit;color:inherit;}
+.reveal .la-slide h3 {font-size:27px;line-height:1.3;font-weight:600;margin:0 0 26px;letter-spacing:-.02em;}
+.reveal .la-grid,.reveal .la-grid-wide,.reveal .la-three,.reveal .la-four {display:grid;gap:44px;align-items:start;}
+.reveal .la-grid {grid-template-columns:1fr 1fr;}
+.reveal .la-grid-wide {grid-template-columns:1.25fr 1fr;gap:32px;}
+.reveal .la-three {grid-template-columns:repeat(3,minmax(0,1fr));gap:38px;}
+.reveal .la-four {grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;}
+.reveal .la-panel {min-width:0;padding-top:0;border:0;}
+.reveal .la-panel>.la-panel {border-top:0;}
+.reveal .la-slide .katex-display {padding:0;border:0;background:transparent;box-shadow:none;margin:25px 0;color:inherit;font-size:1em;overflow:visible;}
+.reveal .la-slide .katex-display>.katex {text-align:left;white-space:nowrap;}
+.reveal .la-slide .la-equation {font-size:38px;}
+.reveal .la-equation .katex-display>.katex,.reveal .la-centered .katex-display>.katex {text-align:center;}
+.reveal .la-centered {text-align:center;}
+.reveal .la-slide .la-small {font-size:22px;line-height:1.5;color:var(--lecture-fg-soft);}
+.reveal .la-slide .la-small .katex-display {font-size:22px;}
+.reveal .la-takeaway {position:absolute;left:52px;right:52px;bottom:82px;font-size:32px;font-weight:500;line-height:1.2;}
+.reveal .la-source {position:absolute;left:52px;right:95px;bottom:24px;font-size:16px;line-height:1.3;color:var(--lecture-muted);}
+.reveal .la-source p {margin:0;}
+.reveal .la-source a {color:inherit;text-decoration:none;}
+.reveal .la-kicker,.reveal .la-condition {font:500 20px/1.4 var(--lecture-font-sans);color:var(--lecture-muted);letter-spacing:.025em;}
+.reveal .la-condition {display:block;text-align:center;margin-bottom:15px;}
+.reveal .la-widget {width:100%;height:470px;font:22px/1.35 var(--lecture-font-sans);box-sizing:border-box;}
+.reveal .la-wide-widget {height:465px;}
+.reveal .la-slide svg {max-width:100%;width:100%;display:block;font-family:var(--lecture-font-sans);font-size:27px;overflow:visible;}
+.reveal .la-slide svg .svg-small {font-size:21px;fill:var(--lecture-muted);}
+.reveal .la-slide button,.reveal .la-slide summary {font:500 18px/1.3 var(--lecture-font-sans);color:var(--lecture-fg);cursor:pointer;}
+.reveal .la-slide button {border:0;border-bottom:3px solid var(--lecture-pop-lime);background:transparent;padding:5px 1px;border-radius:0;}
+.reveal .la-slide button:hover {background:var(--lecture-pop-lime);}
+.reveal .la-slide button:focus-visible,.reveal .la-slide input:focus-visible,.reveal .la-slide summary:focus-visible {outline:3px solid var(--lecture-fg);outline-offset:3px;}
+.reveal .la-slide input[type=range] {accent-color:var(--lecture-fg);min-width:120px;}
+.reveal .la-slide details {font-size:22px;margin:12px 0;border-top:1px solid var(--lecture-border);padding-top:10px;}
+.reveal .la-slide details p {margin-top:12px;}
+.reveal .la-slide details .katex-display {margin:12px 0;font-size:23px;}
+.reveal .la-slide .la-opening-equation {font-size:115px;margin:40px 0 36px;}
+.reveal .la-opening-equation .katex-display>.katex {text-align:left;}
+.reveal .la-roadmap {display:grid;grid-template-columns:.85fr 1.4fr .65fr .75fr 1fr .95fr;gap:25px;margin-top:50px;}
+.reveal .la-roadmap>div {position:relative;padding-top:20px;border-top:2px solid var(--lecture-fg);font-size:31px;}
+.reveal .la-roadmap>div:after {content:'→';position:absolute;right:-25px;top:23px;color:var(--lecture-muted);font-size:25px;}
+.reveal .la-roadmap>div:last-child:after {content:none;}
+.reveal .la-roadmap small {display:block;font-size:20px;line-height:1.35;color:var(--lecture-muted);margin-top:22px;}
+.reveal .la-result {margin-top:45px;padding:16px 0;border:0;}
+.reveal .la-rule {border-top:1px solid var(--lecture-border);margin-top:30px;padding-top:18px;}
+.reveal .la-rule>.la-panel {border:0;}
+.reveal .la-projector-path {display:flex;gap:20px;align-items:center;justify-content:center;margin:23px 0 35px;font-size:35px;}
+.reveal .la-projector strong {background:var(--lecture-pop-lime);padding:12px 16px;font-weight:500;}
+.reveal .la-projector p {text-align:center;font-size:23px;color:var(--lecture-muted);}
+.reveal .la-emphasis {border:0;margin:32px 0;padding:12px 0;}
+.reveal .la-emphasis .katex-display {font-size:32px;}
+.reveal .la-inline-formulas {display:flex;align-items:center;justify-content:center;gap:42px;margin-top:30px;font-size:29px;}
+.reveal .la-factorization {display:flex;align-items:center;justify-content:center;gap:45px;margin:20px 0 35px;font-size:38px;}
+.reveal .la-matrix-block {position:relative;width:150px;height:150px;border:2px solid var(--lecture-fg);display:flex;align-items:center;justify-content:center;font-size:48px;}
+.reveal .la-matrix-block.tall {height:215px;}
+.reveal .la-matrix-block.blue {background:var(--lecture-pop-lime);color:var(--lecture-fg);}
+.reveal .la-matrix-block.triangular {background:linear-gradient(45deg,#fff 49%,#cbd5e1 50%,#f1f5f9 51%);}
+.reveal .la-matrix-block small {position:absolute;bottom:-31px;font-size:17px;white-space:nowrap;color:var(--lecture-muted);}
+.reveal .la-factor-caption {font-size:24px;line-height:1.8;margin-left:38px;}
+.reveal .la-algorithms {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:35px;}
+.reveal .la-algorithm {border:0;padding-top:20px;}
+.reveal .la-algorithm h3 {font-size:24px;height:60px;margin-bottom:10px;}
+.reveal .la-algorithm svg {height:195px;}
+.reveal .la-algorithm p {font-size:20px;min-height:59px;margin-bottom:15px;}
+.reveal .la-algorithm button {font-size:17px;}
+.reveal .la-four .la-panel h3 {font-size:23px;}
+.reveal .la-four .katex-display {font-size:24px;}
+@media print {.reveal .la-slide .fragment {opacity:1!important;visibility:visible!important;}.reveal .la-slide button {display:none;} .reveal .la-widget{break-inside:avoid;}}
+@media(prefers-reduced-motion:reduce){.reveal .la-slide *{animation:none!important;transition:none!important;}}
+
+/* Expand proofs upward within the content area, keeping slide navigation visible. */
+.reveal .la-slide .la-proof-overlay {position:absolute;left:0;right:0;bottom:4px;background:#fff;z-index:6;}
+.reveal .la-slide .la-proof-overlay[open] {padding:20px 24px;border:2px solid var(--lecture-border-dark);box-shadow:0 0 0 10px #fff;}
+.reveal .la-slide .la-proof-overlay[open] summary {margin-bottom:15px;}
+.reveal .la-grid-wide [data-geometry="search"],.reveal .la-grid-wide [data-geometry="projection"] {height:540px;}
+
+/* The Lecture 01 final editorial system: monochrome mechanisms, one lime focus. */
+.reveal .la-slide h3 {font-family:var(--lecture-font-heading);}
+.reveal .la-grid-wide>.la-panel {border-left:1px solid var(--lecture-border);padding-left:34px;padding-top:15px;}
+.reveal .la-three>.la-panel+.la-panel {border-left:1px solid var(--lecture-border);padding-left:32px;}
+.reveal .la-three h3 {font-size:24px;}
+.reveal .la-condition {text-align:left;border-left:4px solid var(--lecture-pop-lime);padding-left:12px;font-size:20px;line-height:1.4;}
+.reveal .la-rule {border:0;}
+.reveal .la-inline-formulas {gap:40px;font-size:31px;}
+.reveal .la-emphasis .katex-display {font-size:38px;}
+.reveal .la-emphasis .katex-display>.katex {display:inline-block;background:var(--lecture-pop-lime);padding:16px 18px;}
+.reveal .la-factorization {gap:50px;}
+.reveal .la-slide .la-result .katex-display>.katex {display:inline-block;background:var(--lecture-pop-lime);padding:13px 22px;}
+.reveal .la-result {text-align:center;}
+.reveal .la-proof-overlay summary {width:max-content;max-width:100%;border-bottom:3px solid var(--lecture-pop-lime);padding-bottom:5px;}
+.reveal .la-slide .la-proof-overlay {border:0;}
+.reveal .la-slide .la-proof-overlay[open] {border:1px solid var(--lecture-fg);}
+.reveal #la-03 .la-panel {padding-top:12px;}
+.reveal #la-03 .la-panel svg {margin:36px 0 24px;}
+.reveal #la-03 svg circle {fill:var(--lecture-pop-lime);stroke:var(--lecture-fg);stroke-width:2;}
+.reveal #la-05 .la-panel .la-equation {font-size:45px;}
+.reveal #la-06 .la-derivation {height:560px;}
+.reveal #la-06 .la-shared-equation {text-align:center;font-size:40px;margin-top:12px;}
+.reveal #la-06 .la-shared-equation .katex-display>.katex {text-align:center;}
+.reveal #la-06 .la-grid {margin-top:52px;gap:0;}
+.reveal #la-06 .la-panel {text-align:center;padding:0 20px;}
+.reveal #la-06 .la-panel+.la-panel {border-left:1px solid var(--lecture-border);}
+.reveal #la-06 .la-panel .katex-display>.katex {text-align:center;}
+.reveal #la-06 .la-panel h3 {font-size:30px;margin-bottom:18px;}
+.reveal #la-06 .la-result {font-size:42px;margin-top:34px;}
+.reveal #la-07 .la-body>.la-equation {font-size:50px;margin-top:32px;}
+.reveal #la-07 .la-rule {margin-top:38px;}
+.reveal #la-08 .la-column-scene {height:330px;}
+.reveal #la-08 .la-emphasis {font-size:39px;}
+.reveal #la-11 .la-matrix-block {width:165px;height:165px;}
+.reveal #la-11 .la-matrix-block.tall {height:235px;}
+.reveal #la-11 .la-body>.la-equation {text-align:center;font-size:40px;}
+.reveal #la-11 .la-body>.la-equation .katex {background:var(--lecture-pop-lime);padding:10px 20px;}
+.reveal #la-12 .la-algorithm+.la-algorithm {border-left:1px solid var(--lecture-border);padding-left:24px;}
+.reveal #la-12 .la-algorithms {margin-top:24px;}
+.reveal #la-14 .la-three {margin-top:65px!important;}
+.reveal #la-14 .la-body>.la-equation {text-align:center;margin-top:70px!important;font-size:38px!important;}
+.reveal #la-16 .la-four {gap:35px;}
+.reveal #la-16 .la-four .la-panel {position:relative;}
+.reveal #la-16 .la-four .la-panel:not(:last-child)::after {content:'→';position:absolute;top:69px;right:-30px;color:var(--lecture-muted);font-size:24px;}
+.reveal #la-16 .la-four h3 {font-size:24px;}
+.reveal #la-16 .la-four .katex-display {font-size:26px;}
+.reveal #la-16 .la-four svg {margin-top:24px;}
+.reveal #la-16 .la-takeaway,.reveal #la-19 .la-takeaway,.reveal #la-20 .la-takeaway {font-size:29px;}
+.reveal #la-17 .la-takeaway {font-size:30px;}
+.reveal #la-22 .la-grid>.la-panel {padding-top:16px;}
+.reveal #la-22 .la-grid>.la-panel+.la-panel {border-left:1px solid var(--lecture-border);padding-left:30px;}
+.reveal #la-22 h3 {font-size:26px;}
+
+/* Match the black minimal split cover of Lecture 01; retain the Ax=b narrative. */
+.reveal .slides section.la-cover {color:#f5f5f5;}
+.reveal .la-cover>h2 {display:none;}
+.reveal .la-cover .la-body.la-cover-grid {top:100px;bottom:84px;height:auto;display:grid;grid-template-columns:.92fr 1.08fr;gap:110px;align-items:center;}
+.reveal .la-cover .la-cover-main {align-self:center;}
+.reveal .la-cover-kicker {font-size:22px;color:#a1a1aa;margin-bottom:26px;}
+.reveal .la-cover-title {font-family:var(--lecture-font-heading);font-size:112px;font-weight:600;line-height:1.03;letter-spacing:-.05em;}
+.reveal .la-cover-subtitle {font-size:28px;font-weight:400;margin-top:34px;color:#d4d4d8;}
+.reveal .la-cover .la-opening-equation {font-size:84px;margin:12px 0 0;}
+.reveal .la-cover .la-opening-equation .katex-display {margin:0;}
+.reveal .la-cover-route-title {font-size:25px;font-weight:500;margin-bottom:24px;}
+.reveal .la-cover-roadmap>div.la-cover-step {display:grid;grid-template-columns:44px 245px 1fr;align-items:center;column-gap:12px;border-top:1px solid #3f3f46;padding:21px 0;color:#f5f5f5;font-size:28px;}
+.reveal .la-cover-roadmap>div.la-cover-step p {margin:0;}
+.reveal .la-cover-roadmap small {font-size:20px;line-height:1.35;color:#a1a1aa;}
+.reveal .la-cover-index {font:400 18px var(--lecture-font-mono);color:#a1a1aa;}
+.reveal .la-cover .la-source {color:#71717a;}
+.reveal #la-11 .la-body>.la-equation .katex-display>.katex {display:inline-block;width:auto;}
+.reveal .la-matrix-block.triangular {background:linear-gradient(45deg,#fff 49%,#d4d4d8 50%,#f4f4f5 51%);}
+.reveal #la-17 .la-body>.la-equation,.reveal #la-19 .la-body>.la-equation,.reveal #la-23 .la-body>.la-equation {position:absolute;left:0;right:0;bottom:48px;margin:0!important;}
+.reveal #la-17 .la-body>.la-small,.reveal #la-19 .la-body>.la-small,.reveal #la-23 .la-body>.la-small {position:absolute;left:0;right:0;bottom:0;margin:0;}
+.reveal #la-17 .la-body>.la-small p,.reveal #la-19 .la-body>.la-small p,.reveal #la-23 .la-body>.la-small p {margin:0;}
+.reveal #la-21 .la-body>.la-equation {position:absolute;left:0;right:0;bottom:0;margin:0!important;}
+.reveal #la-21 .la-body>.la-equation .katex-display {margin:0;}
+.reveal #la-08 .la-column-scene path:nth-of-type(1) {stroke:#a1a1aa;}
+.reveal #la-08 .la-column-scene path:nth-of-type(2) {stroke:#1a1a1a;}
+.reveal #la-08 .la-column-scene path:nth-of-type(3) {stroke:#bef264;stroke-width:8px;}
+
+/* KaTeX draws radicals, braces and tall delimiters with internal SVGs.
+   Diagram rules (especially #la-16 .la-four svg's 24px top margin) must not
+   move those glyphs outside KaTeX's clipping boxes. Keep diagram SVGs intact. */
+.reveal .la-slide .katex svg {
+  margin:0!important;
+  font-family:inherit;
+  font-size:inherit;
+  max-width:none;
+  overflow:hidden;
+}
+
+/* The expanded proof replaces the two error formulas; do not leave cropped
+   headings visible behind its opaque panel. Closing it restores the comparison. */
+.reveal #la-22 .la-body:has(>.la-proof-overlay[open])>.la-grid {visibility:hidden;}

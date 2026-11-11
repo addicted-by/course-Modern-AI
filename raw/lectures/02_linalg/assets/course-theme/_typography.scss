@@ -1,0 +1,363 @@
+/* ==========================================================================
+   Typography Hierarchy & Font Utilities (Swiss / Editorial Modernist)
+   ========================================================================== */
+
+.reveal {
+  font-family: var(--lecture-font-sans);
+  color: var(--lecture-fg);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings bound dynamically to active preset font */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal .slide-title {
+  font-family: var(--lecture-font-heading, var(--lecture-font-sans));
+  color: var(--lecture-fg);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  margin: 0 0 0.45em 0;
+  line-height: 1.15;
+}
+
+.reveal h1 {
+  font-size: 2.3em;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.038em;
+  color: var(--lecture-fg);
+}
+
+.reveal h2 {
+  font-size: 1.55em;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.028em;
+  color: var(--lecture-fg);
+}
+
+.reveal h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--lecture-fg-soft);
+}
+
+.reveal h4 {
+  font-size: 0.88em;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--lecture-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Overline Kicker Utility */
+.reveal .kicker,
+.reveal h4.kicker {
+  font-size: 0.72em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--lecture-accent);
+  margin-bottom: 0.35em;
+  display: block;
+}
+
+/* Subtitles & Lead Paragraphs */
+.reveal .subtitle,
+.reveal .slide-subtitle {
+  font-size: 1.2em;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--lecture-fg-soft);
+  margin-bottom: 1.2rem;
+}
+
+.reveal .lead {
+  font-size: 1.15em;
+  color: var(--lecture-fg-soft);
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+/* Paragraphs & Lists */
+.reveal p,
+.reveal li {
+  line-height: 1.6;
+  color: var(--lecture-fg-soft);
+}
+
+.reveal ul,
+.reveal ol {
+  margin-top: 0.4em;
+  margin-bottom: 0.65em;
+  padding-left: 1.3em;
+}
+
+.reveal li {
+  margin-bottom: 0.35em;
+}
+
+.reveal li::marker {
+  color: var(--lecture-accent);
+  font-weight: 700;
+}
+
+.reveal strong {
+  font-weight: 700;
+  color: var(--lecture-fg);
+}
+
+.reveal em {
+  font-style: italic;
+  color: var(--lecture-fg-soft);
+}
+
+/* Inline Code Utility */
+.reveal code {
+  font-family: var(--lecture-font-mono);
+  font-size: 0.84em;
+  background: var(--lecture-bg-subtle);
+  color: var(--lecture-fg);
+  padding: 0.15em 0.45em;
+  border-radius: var(--lecture-radius-xs);
+  border: 1px solid var(--lecture-border);
+  font-weight: 500;
+}
+
+/* Sizing and Text Modifiers */
+.reveal .muted {
+  color: var(--lecture-muted);
+}
+
+.reveal .muted-light {
+  color: var(--lecture-muted-light);
+}
+
+.reveal .accent {
+  color: var(--lecture-accent);
+  font-weight: 600;
+}
+
+.reveal .mono {
+  font-family: var(--lecture-font-mono);
+}
+
+.reveal .small {
+  font-size: 0.74em;
+}
+
+.reveal .smaller {
+  font-size: 0.62em;
+}
+
+/* Quarto Slide-Level .smaller Mode: scales font, cards, gaps and line-heights */
+.reveal .slides section.smaller,
+.reveal.smaller .slides section {
+  font-size: 0.82em;
+
+  .card,
+  .glass-card,
+  .formula-card,
+  .key-idea,
+  .definition,
+  .warning,
+  .info-box,
+  .insight-box,
+  .checkpoint-box,
+  .takeaway {
+    padding: 0.75rem 1rem;
+    margin: 0.45em 0;
+  }
+
+  .columns {
+    gap: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.35em;
+    margin-bottom: 0.3em;
+  }
+
+  h3, .card-title {
+    font-size: 1em;
+    margin-bottom: 0.35rem;
+  }
+
+  p, li {
+    line-height: 1.45;
+    margin-bottom: 0.25em;
+  }
+
+  ul, ol {
+    margin-top: 0.25em;
+    margin-bottom: 0.4em;
+  }
+
+  .katex-display {
+    margin: 0.35em 0 !important;
+    padding: 0.3rem 0.6rem !important;
+  }
+}
+
+.reveal .large {
+  font-size: 1.28em;
+  line-height: 1.3;
+}
+
+/* Gradient Text Utilities */
+.reveal .text-gradient,
+.reveal .gradient-text {
+  background: var(--lecture-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.reveal .gradient-text-gold {
+  background: var(--lecture-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.reveal .gradient-text-success {
+  background: var(--lecture-success-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.reveal .gradient-text-danger {
+  background: var(--lecture-danger-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.reveal .gradient-text-info {
+  background: var(--lecture-info-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.reveal .text-glow {
+  text-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
+}
+
+.reveal .text-glow-purple {
+  text-shadow: 0 0 20px rgba(124, 58, 237, 0.35);
+}
+
+/* Modality & Taxonomy Badges */
+.reveal .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.65em;
+  font-weight: 600;
+  padding: 0.25em 0.75em;
+  border-radius: var(--lecture-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--lecture-shadow-xs);
+  transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+.reveal .badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.reveal .badge-text {
+  background: var(--color-text-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-text-border);
+}
+
+.reveal .badge-image {
+  background: var(--color-image-bg);
+  color: var(--color-image);
+  border: 1px solid var(--color-image-border);
+}
+
+.reveal .badge-audio {
+  background: var(--color-audio-bg);
+  color: var(--color-audio);
+  border: 1px solid var(--color-audio-border);
+}
+
+.reveal .badge-video {
+  background: var(--color-video-bg);
+  color: var(--color-video);
+  border: 1px solid var(--color-video-border);
+}
+
+.reveal .badge-action {
+  background: var(--color-action-bg);
+  color: var(--color-action);
+  border: 1px solid var(--color-action-border);
+}
+
+.reveal .badge-unified {
+  background: var(--color-unified-bg);
+  color: var(--color-unified);
+  border: 1px solid var(--color-unified-border);
+}
+
+.reveal .badge-accent {
+  background: var(--lecture-accent-soft);
+  color: var(--lecture-accent);
+  border: 1px solid var(--lecture-accent-border);
+}
+
+.reveal .badge-glow {
+  background: var(--lecture-accent-gradient);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+}
+
+.reveal .badge-glow::before {
+  background: #ffffff;
+}
+
+.reveal .badge-success {
+  background: var(--lecture-success-soft);
+  color: var(--lecture-success);
+  border: 1px solid var(--lecture-success-border);
+}
+
+.reveal .badge-warning {
+  background: var(--lecture-warning-soft);
+  color: var(--lecture-warning);
+  border: 1px solid var(--lecture-warning-border);
+}
+
+.reveal .badge-danger {
+  background: var(--lecture-danger-soft);
+  color: var(--lecture-danger);
+  border: 1px solid var(--lecture-danger-border);
+}
+
+.reveal .badge-outline {
+  background: transparent;
+  color: var(--lecture-muted);
+  border: 1px solid var(--lecture-border);
+}

@@ -1,0 +1,29 @@
+/* Same course palette; one mathematical step per board, read left to right. */
+.reveal .tsvd-slide {
+  --tsvd-body: 30px;
+  --tsvd-math: 34px;
+  --tsvd-gap: 40px;
+}
+.reveal .tsvd-slide .la-body {font-size:var(--tsvd-body);line-height:1.3;}
+.reveal .tsvd-slide h3 {font-size:30px;margin:0 0 22px;}
+.reveal .tsvd-slide .tsvd-columns {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--tsvd-gap);}
+.reveal .tsvd-slide .tsvd-columns > div {min-width:0;border-top:2px solid var(--lecture-fg);padding-top:20px;}
+.reveal .tsvd-slide .katex-display {font-size:var(--tsvd-math);margin:16px 0;}
+.reveal .tsvd-slide .tsvd-condition {font-size:25px;margin-bottom:28px;color:var(--lecture-fg-soft);}
+.reveal .tsvd-slide .tsvd-board {border-block:1px solid var(--lecture-border);padding:12px 0;margin:20px 0;}
+.reveal .tsvd-slide .tsvd-board .katex-display > .katex {text-align:center;}
+.reveal .tsvd-slide .tsvd-result {border-left:5px solid var(--lecture-pop-lime);padding-left:20px;margin-top:18px;}
+.reveal .tsvd-slide .tsvd-result > p {margin-bottom:8px;}
+.reveal .tsvd-slide .tsvd-result .katex-display {margin:12px 0;}
+.reveal .tsvd-slide .tsvd-caption {font-size:26px;line-height:1.35;}
+.reveal .tsvd-slide .tsvd-spectrum {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin:28px 0;}
+.reveal .tsvd-slide .tsvd-spectrum > div {padding:20px 10px;border:1px solid var(--lecture-border);text-align:center;}
+.reveal .tsvd-slide .tsvd-spectrum .tsvd-kept {background:var(--lecture-pop-lime);}
+.reveal .tsvd-slide .tsvd-spectrum p {margin:0;}
+.reveal .tsvd-slide .tsvd-spectrum small {display:block;font-size:23px;margin-top:14px;}
+.reveal .tsvd-slide .tsvd-example {border-top:1px solid var(--lecture-border);padding-top:18px;margin-top:28px;}
+.reveal .tsvd-slide .tsvd-example p {margin-bottom:8px;}
+.reveal .tsvd-slide a:focus-visible {outline:3px solid var(--lecture-fg);outline-offset:4px;}
+@media (prefers-reduced-motion:reduce) {
+  .reveal .tsvd-slide .fragment {transition:none;}
+}

@@ -1,0 +1,85 @@
+/* pre-01…pre-05: one mechanism per slide; Lecture 01's editorial composition.
+   Scoped to .pre-opening: course tokens and all later slides remain untouched. */
+.reveal .pre-opening {
+  --po-ink: var(--lecture-fg);
+  --po-muted: var(--lecture-muted);
+  --po-accent: var(--lecture-pop-lime);
+  --po-label: 27px;
+  --po-symbol: 48px;
+}
+.reveal .pre-opening .po-canvas {width:100%;height:555px;display:block;overflow:visible;}
+.reveal .pre-opening svg {font-family:var(--lecture-font-sans);color:var(--po-ink);fill:var(--po-ink);}
+.reveal .pre-opening .po-line {stroke:var(--po-ink);stroke-width:2.5;fill:none;}
+.reveal .pre-opening .po-rule {stroke:var(--lecture-border-dark);stroke-width:1.5;fill:none;}
+.reveal .pre-opening .po-outline {stroke:var(--po-ink);stroke-width:2;fill:none;}
+.reveal .pre-opening .po-lime {fill:var(--po-accent);stroke:none;}
+.reveal .pre-opening .po-muted {fill:var(--po-muted);color:var(--po-muted);}
+.reveal .pre-opening .po-label {font-size:var(--po-label);}
+.reveal .pre-opening .po-symbol {font-size:var(--po-symbol);}
+.reveal .pre-opening .po-block-symbol {font-size:68px;font-weight:500;}
+.reveal .pre-opening .po-kicker {font-size:21px;letter-spacing:1.6px;fill:var(--po-muted);}
+.reveal .pre-opening .po-pair {font-size:41px;}
+.reveal .pre-opening .po-insight {font-size:32px;font-weight:600;}
+.reveal .pre-opening .po-tap,.reveal .pre-opening .po-dot {fill:var(--po-accent);stroke:var(--po-ink);stroke-width:2.5;}
+.reveal .pre-opening .po-original.visible {opacity:.14;}
+.reveal .pre-opening .po-evidence-tag {height:36px;text-align:right;font-size:21px;color:var(--po-muted);border-bottom:1px solid var(--lecture-border);}
+.reveal .pre-opening .po-evidence {display:grid;grid-template-columns:570px 1fr;gap:30px;align-items:center;height:458px;}
+.reveal .pre-opening .po-stat strong {display:block;font-size:184px;font-weight:600;letter-spacing:-.07em;line-height:1.05;}
+.reveal .pre-opening .po-stat span {display:block;font-size:31px;line-height:1.35;margin-top:18px;}
+.reveal .pre-opening .po-stat small {display:block;font-size:22px;color:var(--po-muted);margin-top:26px;}
+.reveal .pre-opening .po-paper-figure {height:448px;text-align:center;}
+.reveal .pre-opening .po-paper-figure svg {display:block;width:100%;height:413px;overflow:hidden;}
+.reveal .pre-opening .po-figure-caption {font-size:20px;color:var(--po-muted);margin-top:7px;}
+.reveal .pre-opening .po-evidence-result {border-top:1px solid var(--lecture-border);padding-top:19px;font-size:27px;}
+.reveal .pre-opening .po-equations {position:absolute;inset:0;text-align:center;font-size:49px;padding-top:15px;}
+.reveal .pre-opening .po-equations .katex-display>.katex {text-align:center;}
+.reveal .pre-opening .po-equations .katex-display {margin:19px 0;}
+.reveal .pre-opening .po-matrix-stage {position:absolute;inset:0 0 auto;height:420px;}
+.reveal .pre-opening .po-matrix-stage svg {width:100%;height:420px;}
+.reveal .pre-opening .po-matrix-name {font-size:64px;font-weight:600;}
+.reveal .pre-opening .po-matrix-entry {font-size:34px;}
+.reveal .pre-opening .po-dimension {font-size:26px;}
+.reveal .pre-opening .po-count {position:absolute;left:0;right:0;top:441px;text-align:center;font-size:35px;line-height:1.35;}
+.reveal .pre-opening .po-count>div:first-child>span {background:var(--po-accent);padding:4px 9px;}
+.reveal .pre-opening .po-count b {font-weight:400;padding:0 20px;}
+.reveal .pre-opening .po-more {font-size:30px;margin-top:16px;}
+.reveal .pre-opening .po-curve {fill:none;stroke:var(--po-ink);stroke-width:3;}
+.reveal .pre-opening .po-trial {fill:none;stroke:var(--po-ink);stroke-width:3;stroke-dasharray:12 8;}
+.reveal .pre-opening .po-gap {fill:none;stroke:var(--po-muted);stroke-width:2;}
+@media (prefers-reduced-motion:reduce) {
+ .reveal .pre-opening .fragment {transition:none!important;transform:none!important;}
+}
+/* Collapsed handout: show the matrix and the second trial, never stacked builds. */
+@media print {
+ .reveal .pre-opening .po-equations,.reveal .pre-opening .po-trial-a {display:none!important;}
+ .reveal .pre-opening .po-original {opacity:.14!important;}
+ .reveal .pre-opening .fragment {transform:none!important;}
+}
+
+/* pre-01 only: dark opening on Lecture 01's decoder-only map (drawn light directly, no invert filter). */
+.reveal .slides section#pre-01 {
+  --lecture-fg:#fafafa; --lecture-fg-soft:#cbd5e1; --lecture-muted:#a1a1aa;
+  --po-ink:#fafafa; --po-muted:#a1a1aa; color:#fafafa;
+}
+.reveal #pre-01 > h2 { display:none; }
+.reveal #pre-01 .po1-body {
+  position:absolute; top:100px; left:52px; width:1496px; height:704px;
+  display:grid; grid-template-columns:875px 1fr; gap:45px; align-items:center;
+}
+.reveal #pre-01 .po1-main { position:relative; height:100%; min-width:0; }
+.reveal #pre-01 .po1-title { position:absolute; top:8px; left:0; font:500 30px/1.2 var(--lecture-font-heading); }
+.reveal #pre-01 .po1-svg { position:absolute; top:56px; left:0; width:820px; height:620px; max-width:none; }
+.reveal #pre-01 .po1-route { min-width:0; }
+.reveal #pre-01 .po1-label { font:500 25px/1.2 var(--lecture-font-heading); margin:0 0 30px; }
+.reveal #pre-01 .po1-agenda { display:block; margin:0; padding-left:56px; list-style:decimal-leading-zero; }
+.reveal #pre-01 .po1-agenda li { margin:0; padding:20px 0 20px 14px; border-top:1px solid rgba(255,255,255,.2); font-size:29px; line-height:1.35; color:#cbd5e1; }
+.reveal #pre-01 .po1-agenda li::marker { color:#a1a1aa; font:400 20px var(--lecture-font-mono); }
+.reveal #pre-01 .po1-agenda li span { margin-left:16px; font-size:20px; color:#a1a1aa; white-space:nowrap; }
+.reveal #pre-01 .po1-note { margin:26px 0 0 70px; font-size:24px; line-height:1.4; color:#cbd5e1; }
+.reveal #pre-01 .po1-interior.visible { opacity:.16; }
+.reveal #pre-01 .po1-interior.visible .po1-nt { opacity:.35; }
+.reveal #pre-01 .la-source { color:#8b8b94; }
+@media print {
+ .reveal #pre-01 .po1-before { display:none!important; }
+ .reveal #pre-01 .po1-interior { opacity:.16!important; }
+}

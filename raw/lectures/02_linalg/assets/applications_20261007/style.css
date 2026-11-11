@@ -1,0 +1,81 @@
+/* Applications. Local additions to the shared course theme. */
+.reveal .slides section.app-slide {
+  --lecture-bg: #fff;
+  --lecture-fg: #18181b;
+  --lecture-fg-soft: #3f3f46;
+  --lecture-muted: #62626b;
+  --lecture-pop-lime: #bef264;
+  color: var(--lecture-fg);
+}
+.reveal .app-slide > h2 {
+  top: 38px;
+  right: 340px;
+  font-size: 46px;
+  line-height: 1.13;
+  letter-spacing: -.025em;
+}
+.reveal #app-d31 > h2 { text-wrap: balance; }
+.reveal .app-slide :is(.app-method, .app-number) {
+  position: absolute;
+  top: 108px;
+  right: 52px;
+  font: 500 18px/1.4 var(--lecture-font-mono, monospace);
+  color: var(--lecture-muted);
+}
+.reveal .app-slide .la-body {
+  top: 180px;
+  height: 540px;
+}
+.reveal .app-slide .app-lead {
+  margin: 0 0 14px;
+  font-size: 26px;
+  line-height: 1.3;
+}
+.reveal .app-slide .app-lead p { margin: 0; }
+.reveal .app-slide svg.app-diagram {
+  width: 100%;
+  height: 480px;
+  max-width: 100%;
+  margin: 0;
+  overflow: visible;
+  font-size: 27px;
+  font-family: var(--lecture-font-sans, sans-serif);
+}
+.reveal .app-slide .app-diagram .label { font-size: 27px; }
+.reveal .app-slide .app-diagram .small { font-size: 22px; }
+.reveal .app-slide .app-diagram .tiny { font-size: 19px; }
+.reveal .app-slide .app-diagram .big { font-size: 34px; }
+.reveal .app-slide .app-diagram .muted { fill: var(--lecture-muted); }
+.reveal .app-slide .app-diagram .box {
+  fill: #fff;
+}
+.reveal .app-slide .app-diagram .box:not([stroke]) { stroke: currentColor; }
+.reveal .app-slide .app-diagram .box:not([stroke-width]) { stroke-width: 2; }
+.reveal .app-slide .app-diagram .line {
+  fill: none;
+}
+.reveal .app-slide .app-diagram .line:not([stroke]) { stroke: currentColor; }
+.reveal .app-slide .app-diagram .line:not([stroke-width]) { stroke-width: 2; }
+.reveal .app-slide .app-diagram .soft { fill: #f4f4f5; }
+.reveal .app-slide .app-diagram .accent { fill: var(--lecture-pop-lime); }
+.reveal .app-slide .app-diagram .fragment { transition-duration: .35s; }
+.reveal .app-slide .la-takeaway {
+  bottom: 74px;
+  font-size: 29px;
+  line-height: 1.25;
+}
+.reveal .app-slide .la-source {
+  bottom: 22px;
+  right: 110px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+.reveal .app-slide .la-source a { text-decoration: underline; text-underline-offset: 3px; }
+@media print {
+  .reveal .app-slide .fragment.fade-out,
+  .reveal .app-slide .fragment.fade-in-then-out { display: none !important; }
+  .reveal .app-slide .fragment { opacity: 1 !important; visibility: visible !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal .app-slide .fragment { transition: none !important; }
+}

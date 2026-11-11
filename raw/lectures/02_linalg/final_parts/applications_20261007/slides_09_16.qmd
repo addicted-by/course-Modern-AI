@@ -1,0 +1,302 @@
+## How can SVD make blood flow easier to see in ultrasound? {#app-d09 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">SVD can suppress dominant tissue motion so blood flow is easier to see.</p>
+<figure class="app-simple-result a916-simple-ultrasound">
+  <div class="app-ultrasound-comparison">
+    <div class="a916-simple-power-pair">
+      <div>
+        <h3>Before SVD filtering</h3>
+        <img src="assets/visual_rollout_20261111/applications-09-16/power-1-12.png" alt="In the unfiltered synthetic power image, dark tissue bands obscure the vessel paths." width="72" height="23">
+      </div>
+      <div>
+        <h3>After SVD filtering</h3>
+        <img src="assets/visual_rollout_20261111/applications-09-16/power-3-12.png" alt="After leading modes are removed, two dark vessel paths stand out against the lighter background." width="72" height="23">
+      </div>
+    </div>
+    <p>Synthetic illustration · same display scale</p>
+  </div>
+  <div class="app-ultrasound-demo">
+    <div class="app-ultrasound-heading">
+      <h3>Ultrasound experiment · 5 s</h3>
+      <button type="button" class="app-ultrasound-reset" hidden>Show still</button>
+    </div>
+    <div class="app-ultrasound-player">
+      <img class="app-ultrasound-still" src="assets/aimet_convolution_20261111/ultrasound-poster.jpeg"
+          alt="Published ultrasound video still comparing B-mode, SVD clutter filtering, and the time-integrated signal with and without contrast agent.">
+      <button type="button" class="app-ultrasound-load" hidden
+          data-player-src="https://e.video-cdn.net/watch?video-id=AySzLC_K8ngN6EuE5jbmQx&amp;player-id=-qZL2aSgACrhe2fEUstC_v&amp;channel-id=86512">
+        <span class="app-ultrasound-action"><span aria-hidden="true">▶</span> Load video</span>
+      </button>
+    </div>
+    <p>Mouse experiment · Compare B-mode (left) and SVD filtering (middle) in the top row. Display scales differ.</p>
+  </div>
+</figure>
+
+```
+
+::::
+
+::: {.la-source}
+[Maeda et al., 2025 · Supplementary Movie 2 and still](https://www.nature.com/articles/s41598-025-27268-3#MOESM2) · [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) · Demené et al., 2015 · [Spatiotemporal Clutter Filtering](https://pubmed.ncbi.nlm.nih.gov/25955583/) · Open Ultrasound Lab · [Demo 06.6](https://openultrasoundlab.org/modules/06-eigendecomposition-and-svd/index.html)
+:::
+
+::: {.notes lang="ru"}
+В серии ультразвуковых кадров согласованное движение ткани может давать более сильный сигнал, чем кровоток. Если собрать кадры в столбцы матрицы, SVD разложит её на пары пространственных шаблонов и временных компонент. Подавление ведущих компонент, связанных с тканью, может сделать сосуды заметнее.
+
+В синтетическом примере 24 кадра размером $72\times23$ построены из ортонормированных пространственных шаблонов и временных мод дискретного косинусного преобразования. Мощность в пикселе после фильтрации равна сумме квадратов сохранённых пространственных вкладов, делённой на 24. Цветовая шкала отображает квадратный корень из этой мощности. На левой карте сохранены моды 1–12, на правой 3–12, обе карты используют одну шкалу. После удаления первых двух мод ветви потока видны лучше. Если сохранить только моды 4–5, исчезнет часть потока, заданная в модели третьей модой. Связь между номером моды и типом сигнала зависит от данных.
+
+Пятисекундное видео Maeda и соавторов показывает отдельный доклинический эксперимент на мышах. В верхнем ряду слева показан кадр в B-режиме, в центре результат SVD-фильтрации, справа сигнал, накопленный по времени. Шкалы панелей различаются, поэтому сравнение носит качественный характер. Фильтрация применяется к серии кадров до последующего анализа и визуализации.
+:::
+
+## How can one SVD describe both sides of a graph? {#app-d11 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">SVD gives both users and items coordinates based on the same links.</p>
+<figure class="app-simple-result">
+<svg viewBox="0 0 1240 390" role="img" aria-label="The original six links and one shared coordinate scale. Users u1, u2, u3 are at 0.71, minus 0.71, and 0.00; items i1 to i4 are at 0.41, minus 0.58, 0.58, and minus 0.41.">
+<text x="62" y="38" fill="#141414" font-size="32" font-weight="650" text-anchor="start">Who connects to what</text>
+<text x="95" y="80" fill="#141414" font-size="21" font-weight="500" text-anchor="start">Users</text>
+<text x="338" y="80" fill="#141414" font-size="21" font-weight="500" text-anchor="start">Items</text>
+<line x1="147" y1="133" x2="342" y2="106" stroke="#555555" stroke-width="2.4"/>
+<line x1="147" y1="133" x2="342" y2="266" stroke="#555555" stroke-width="2.4"/>
+<line x1="147" y1="229" x2="342" y2="186" stroke="#555555" stroke-width="2.4"/>
+<line x1="147" y1="229" x2="342" y2="346" stroke="#555555" stroke-width="2.4"/>
+<line x1="147" y1="325" x2="342" y2="106" stroke="#555555" stroke-width="2.4"/>
+<line x1="147" y1="325" x2="342" y2="346" stroke="#555555" stroke-width="2.4"/>
+<circle cx="147" cy="133" r="12" fill="#bef264" stroke="#141414" stroke-width="2"/><text x="115" y="141" fill="#141414" font-size="25" font-weight="650" text-anchor="end">u1</text>
+<circle cx="147" cy="229" r="12" fill="#bef264" stroke="#141414" stroke-width="2"/><text x="115" y="237" fill="#141414" font-size="25" font-weight="650" text-anchor="end">u2</text>
+<circle cx="147" cy="325" r="12" fill="#bef264" stroke="#141414" stroke-width="2"/><text x="115" y="333" fill="#141414" font-size="25" font-weight="650" text-anchor="end">u3</text>
+<rect x="331" y="95" width="22" height="22" fill="#f4f4f4" stroke="#141414" stroke-width="2"/><text x="366" y="114" fill="#141414" font-size="25" font-weight="650" text-anchor="start">i1</text>
+<rect x="331" y="175" width="22" height="22" fill="#f4f4f4" stroke="#141414" stroke-width="2"/><text x="366" y="194" fill="#141414" font-size="25" font-weight="650" text-anchor="start">i2</text>
+<rect x="331" y="255" width="22" height="22" fill="#f4f4f4" stroke="#141414" stroke-width="2"/><text x="366" y="274" fill="#141414" font-size="25" font-weight="650" text-anchor="start">i3</text>
+<rect x="331" y="335" width="22" height="22" fill="#f4f4f4" stroke="#141414" stroke-width="2"/><text x="366" y="354" fill="#141414" font-size="25" font-weight="650" text-anchor="start">i4</text>
+<line x1="454" y1="221" x2="526" y2="221" stroke="#141414" stroke-width="3"/><polyline points="515.469,226.753 526,221 515.469,215.247" fill="none" stroke="#141414" stroke-width="3"/>
+<text x="577" y="38" fill="#141414" font-size="32" font-weight="650" text-anchor="start">A shared map of users and items</text>
+<text x="577" y="153" fill="#141414" font-size="25" font-weight="650" text-anchor="start">Users</text>
+<line x1="719" y1="145" x2="1187" y2="145" stroke="#141414" stroke-width="2"/>
+<text x="577" y="303" fill="#141414" font-size="25" font-weight="650" text-anchor="start">Items</text>
+<line x1="719" y1="295" x2="1187" y2="295" stroke="#141414" stroke-width="2"/>
+<line x1="953" y1="103" x2="953" y2="333" stroke="#cacaca" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="719" y="368" fill="#555555" font-size="21" font-weight="500" text-anchor="middle">−0.9</text>
+<text x="953" y="368" fill="#555555" font-size="21" font-weight="500" text-anchor="middle">0</text>
+<text x="1187" y="368" fill="#555555" font-size="21" font-weight="500" text-anchor="middle">+0.9</text>
+<circle cx="1136.848" cy="145" r="12" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<text x="1136.848" y="113" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">u1</text>
+<circle cx="769.152" cy="145" r="12" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<text x="769.152" y="113" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">u2</text>
+<circle cx="953" cy="145" r="12" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<text x="953" y="113" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">u3</text>
+<rect x="1049.145" y="285" width="20" height="20" fill="#f4f4f4" stroke="#141414" stroke-width="2"/>
+<text x="1059.145" y="266" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">i1</text>
+<rect x="792.889" y="285" width="20" height="20" fill="#f4f4f4" stroke="#141414" stroke-width="2"/>
+<text x="802.889" y="266" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">i2</text>
+<rect x="1093.111" y="285" width="20" height="20" fill="#f4f4f4" stroke="#141414" stroke-width="2"/>
+<text x="1103.111" y="335" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">i3</text>
+<rect x="836.855" y="285" width="20" height="20" fill="#f4f4f4" stroke="#141414" stroke-width="2"/>
+<text x="846.855" y="335" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">i4</text>
+</svg>
+</figure>
+
+```
+
+::::
+
+::: {.la-source}
+scikit-learn · [Biclustering: spectral co-clustering](https://scikit-learn.org/stable/modules/biclustering.html) · Dhillon · [Bipartite spectral graph partitioning](https://bigdata.oden.utexas.edu/publication/co-clustering-documents-and-words-using-bipartite-spectral-graph-partitioning/)
+:::
+
+::: {.notes lang="ru"}
+Шесть рёбер двудольного графа образуют единицы бинарной матрицы $B$, где строки соответствуют пользователям, а столбцы объектам. Диагональные матрицы степеней $D_u$ и $D_i$ задают нормированную матрицу $D_u^{-1/2}BD_i^{-1/2}$. Для каждой пары сингулярных векторов левый вектор даёт координаты пользователей, правый даёт координаты объектов. Обе стороны карты получаются из одного набора связей.
+
+Первые сингулярные векторы пропорциональны квадратным корням из степеней вершин. У всех трёх пользователей степень одинакова, поэтому первая координата у них совпадает. На карте показана вторая пара векторов, которая размещает `u1` и `u2` по разные стороны от нуля. Одновременная смена знака обоих векторов отражает карту и сохраняет соответствующую компоненту матрицы. В следующем примере те же наблюдаемые пары получают численные оценки.
+:::
+
+## How does a recommender score an item with no rating? {#app-d12 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">A factor model learns user and item profiles from known ratings to score missing ones.</p>
+<figure class="app-simple-result">
+<svg viewBox="0 0 1240 355" role="img" aria-label="User 2 has not rated item 3. Their illustrative user and item profiles give a predicted score of 3.91.">
+<rect x="25" y="90" width="335" height="178" fill="#f4f4f4" stroke="#141414" stroke-width="2"/>
+<rect x="452" y="90" width="335" height="178" fill="white" stroke="#141414" stroke-width="2"/>
+<rect x="878" y="90" width="336" height="178" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<line x1="376" y1="180" x2="436" y2="180" stroke="#141414" stroke-width="3"/><polyline points="425.469,185.753 436,180 425.469,174.247" fill="none" stroke="#141414" stroke-width="3"/>
+<line x1="803" y1="180" x2="862" y2="180" stroke="#141414" stroke-width="3"/><polyline points="851.469,185.753 862,180 851.469,174.247" fill="none" stroke="#141414" stroke-width="3"/>
+<text x="192.5" y="144" fill="#141414" font-size="34" font-weight="650" text-anchor="middle">No rating</text>
+<text x="192.5" y="213" fill="#141414" font-size="27" font-weight="500" text-anchor="middle">User 2 × item 3</text>
+<text x="619.5" y="154" fill="#141414" font-size="34" font-weight="650" text-anchor="middle">User and item</text>
+<text x="619.5" y="203" fill="#141414" font-size="34" font-weight="650" text-anchor="middle">profiles</text>
+<text x="1046" y="140" fill="#141414" font-size="29" font-weight="650" text-anchor="middle">Predicted score</text>
+<text x="1046" y="223" fill="#141414" font-size="67" font-weight="650" text-anchor="middle">3.91</text>
+</svg>
+<figcaption>Illustrative profiles and biases · “SVD” is the model name in Surprise</figcaption>
+</figure>
+
+```
+
+::::
+
+::: {.la-source}
+Surprise · [Matrix Factorization-based Algorithms: SVD](https://surprise.readthedocs.io/en/stable/matrix_factorization.html)
+:::
+
+::: {.notes lang="ru"}
+В модели с низкоразмерными факторами прогноз рейтинга складывается из общего среднего, смещений пользователя и объекта и скалярного произведения их векторов. Формула определена и для ненаблюдаемой пары. В примере она даёт 3,91 для пользователя 2 и объекта 3 при заданных для иллюстрации факторах и смещениях.
+
+В Surprise эта модель называется SVD. Параметры подгоняются по известным рейтингам с регуляризацией. Для заданных параметров сумма квадратов невязок по шести наблюдаемым оценкам равна 2,457 без учёта штрафа. В задачах с неявной обратной связью роль пропусков зависит от функции потерь.
+:::
+
+## How does QR help align a camera with its observations? {#app-d15 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">QR uses pixel errors to adjust the camera so its projected points line up better.</p>
+<figure class="app-simple-result">
+<svg viewBox="0 0 1230 350" role="img" aria-label="The same three observed points appear in both pixel windows. Before alignment the projected crosses are well left of the observed dots; after one horizontal camera translation they almost coincide.">
+<text x="54" y="38" fill="#141414" font-size="31" font-weight="650" text-anchor="start">Before alignment</text>
+<rect x="54" y="63" width="522" height="216" fill="#f4f4f4" stroke="#cacaca" stroke-width="2"/>
+<line x1="90" y1="63" x2="90" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="90" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">260</text>
+<line x1="198" y1="63" x2="198" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="198" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">290</text>
+<line x1="306" y1="63" x2="306" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="306" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">320</text>
+<line x1="414" y1="63" x2="414" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="414" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">350</text>
+<line x1="522" y1="63" x2="522" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="522" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">380</text>
+<line x1="54" y1="91.8" x2="576" y2="91.8" stroke="#cacaca" stroke-width="1"/>
+<text x="44" y="97.8" fill="#555555" font-size="18" font-weight="500" text-anchor="end">215</text>
+<line x1="54" y1="163.8" x2="576" y2="163.8" stroke="#cacaca" stroke-width="1"/>
+<text x="44" y="169.8" fill="#555555" font-size="18" font-weight="500" text-anchor="end">235</text>
+<line x1="54" y1="235.8" x2="576" y2="235.8" stroke="#cacaca" stroke-width="1"/>
+<text x="44" y="241.8" fill="#555555" font-size="18" font-weight="500" text-anchor="end">255</text>
+<text x="613" y="305" fill="#141414" font-size="19" font-weight="500" text-anchor="end">u (px)</text>
+<text x="47" y="57" fill="#141414" font-size="19" font-weight="500" text-anchor="end">v (px)</text>
+<line x1="126" y1="253.8" x2="201.6" y2="250.2" stroke="#555555" stroke-width="3" stroke-dasharray="6 4"/>
+<circle cx="201.6" cy="250.2" r="7" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<line x1="120" y1="247.8" x2="132" y2="259.8" stroke="#141414" stroke-width="3"/><line x1="120" y1="259.8" x2="132" y2="247.8" stroke="#141414" stroke-width="3"/>
+<text x="216.6" y="241.2" fill="#141414" font-size="20" font-weight="650" text-anchor="start">P1</text>
+<line x1="421.2" y1="95.4" x2="471.6" y2="99" stroke="#555555" stroke-width="3" stroke-dasharray="6 4"/>
+<circle cx="471.6" cy="99" r="7" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<line x1="415.2" y1="89.4" x2="427.2" y2="101.4" stroke="#141414" stroke-width="3"/><line x1="415.2" y1="101.4" x2="427.2" y2="89.4" stroke="#141414" stroke-width="3"/>
+<text x="486.6" y="90" fill="#141414" font-size="20" font-weight="650" text-anchor="start">P2</text>
+<line x1="432" y1="244.8" x2="471.6" y2="244.8" stroke="#555555" stroke-width="3" stroke-dasharray="6 4"/>
+<circle cx="471.6" cy="244.8" r="7" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<line x1="426" y1="238.8" x2="438" y2="250.8" stroke="#141414" stroke-width="3"/><line x1="426" y1="250.8" x2="438" y2="238.8" stroke="#141414" stroke-width="3"/>
+<text x="486.6" y="235.8" fill="#141414" font-size="20" font-weight="650" text-anchor="start">P3</text>
+<text x="660" y="38" fill="#141414" font-size="31" font-weight="650" text-anchor="start">After alignment</text>
+<rect x="660" y="63" width="522" height="216" fill="#f4f4f4" stroke="#cacaca" stroke-width="2"/>
+<line x1="696" y1="63" x2="696" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="696" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">260</text>
+<line x1="804" y1="63" x2="804" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="804" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">290</text>
+<line x1="912" y1="63" x2="912" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="912" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">320</text>
+<line x1="1020" y1="63" x2="1020" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="1020" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">350</text>
+<line x1="1128" y1="63" x2="1128" y2="279" stroke="#cacaca" stroke-width="1"/>
+<text x="1128" y="304" fill="#555555" font-size="18" font-weight="500" text-anchor="middle">380</text>
+<line x1="660" y1="91.8" x2="1182" y2="91.8" stroke="#cacaca" stroke-width="1"/>
+<text x="650" y="97.8" fill="#555555" font-size="18" font-weight="500" text-anchor="end">215</text>
+<line x1="660" y1="163.8" x2="1182" y2="163.8" stroke="#cacaca" stroke-width="1"/>
+<text x="650" y="169.8" fill="#555555" font-size="18" font-weight="500" text-anchor="end">235</text>
+<line x1="660" y1="235.8" x2="1182" y2="235.8" stroke="#cacaca" stroke-width="1"/>
+<text x="650" y="241.8" fill="#555555" font-size="18" font-weight="500" text-anchor="end">255</text>
+<text x="1219" y="305" fill="#141414" font-size="19" font-weight="500" text-anchor="end">u (px)</text>
+<text x="653" y="57" fill="#141414" font-size="19" font-weight="500" text-anchor="end">v (px)</text>
+<line x1="803.81" y1="253.8" x2="807.6" y2="250.2" stroke="#555555" stroke-width="3" stroke-dasharray="6 4"/>
+<circle cx="807.6" cy="250.2" r="7" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<line x1="797.81" y1="247.8" x2="809.81" y2="259.8" stroke="#141414" stroke-width="3"/><line x1="797.81" y1="259.8" x2="809.81" y2="247.8" stroke="#141414" stroke-width="3"/>
+<text x="822.6" y="241.2" fill="#141414" font-size="20" font-weight="650" text-anchor="start">P1</text>
+<line x1="1084.648" y1="95.4" x2="1077.6" y2="99" stroke="#555555" stroke-width="3" stroke-dasharray="6 4"/>
+<circle cx="1077.6" cy="99" r="7" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<line x1="1078.648" y1="89.4" x2="1090.648" y2="101.4" stroke="#141414" stroke-width="3"/><line x1="1078.648" y1="101.4" x2="1090.648" y2="89.4" stroke="#141414" stroke-width="3"/>
+<text x="1092.6" y="90" fill="#141414" font-size="20" font-weight="650" text-anchor="start">P2</text>
+<line x1="1073.905" y1="244.8" x2="1077.6" y2="244.8" stroke="#555555" stroke-width="3" stroke-dasharray="6 4"/>
+<circle cx="1077.6" cy="244.8" r="7" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<line x1="1067.905" y1="238.8" x2="1079.905" y2="250.8" stroke="#141414" stroke-width="3"/><line x1="1067.905" y1="250.8" x2="1079.905" y2="238.8" stroke="#141414" stroke-width="3"/>
+<text x="1092.6" y="235.8" fill="#141414" font-size="20" font-weight="650" text-anchor="start">P3</text>
+<circle cx="468" cy="333" r="7" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<text x="486" y="340" fill="#141414" font-size="22" font-weight="500" text-anchor="start">Observed</text>
+<line x1="632" y1="326" x2="646" y2="340" stroke="#141414" stroke-width="3"/><line x1="632" y1="340" x2="646" y2="326" stroke="#141414" stroke-width="3"/>
+<text x="656" y="340" fill="#141414" font-size="22" font-weight="500" text-anchor="start">Projected</text>
+</svg>
+</figure>
+<div class="app-simple-metrics">
+<table><caption>Synthetic camera · one translation adjusted · 3 points</caption>
+<thead><tr><th scope="col">Camera estimate</th><th scope="col">Reprojection RMS (px)</th></tr></thead><tbody>
+<tr><th scope="row">Before</th><td>15.92</td></tr>
+<tr class="app-simple-highlight"><th scope="row">After QR update</th><td>1.63</td></tr>
+</tbody></table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+Ceres Solver · [DENSE_QR](https://ceres-solver.readthedocs.io/en/latest/nnls_solving.html) · OpenCV · [Camera calibration and reprojection](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)
+:::
+
+::: {.notes lang="ru"}
+При уточнении положения камеры невязка измеряется на изображении. Кружки отмечают наблюдения, кресты отмечают проекции известных 3D-точек. В синтетическом примере фокусное расстояние равно 400 пикселям, главная точка имеет координаты $(320,240)$, а единственный свободный параметр $t_x$ задаёт горизонтальный перенос. Наблюдения получены при $t_x=0{,}2$ м с добавками $(1,-1)$, $(-2,1)$ и $(1,0)$ пикселей для трёх точек.
+
+На каждую точку приходятся две строки в задаче МНК, по координатам $u$ и $v$. Для второй точки начальная невязка равна $(14,1)$ пикселю, а производные проекции по $t_x$ равны 80 и 0 пикселей на метр. Зависимость от $t_x$ здесь линейная, поэтому QR-разложение матрицы производных даёт поправку $\Delta t_x=0{,}19947$ м за один шаг. Среднеквадратичная длина двумерной невязки по тем же трём точкам снижается с 15,92 до 1,63 пикселя. При полной калибровке обычно оценивают больше параметров по нескольким видам и проверяют, позволяет ли геометрия наблюдений их определить.
+:::
+
+## How does QR help when the SVD input is too large? {#app-d16 .la-slide .app-slide .app-simple background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">QR builds a smaller space that captures the main patterns before SVD runs.</p>
+<figure class="app-simple-result">
+<svg viewBox="0 0 1240 367" role="img" aria-label="QR compresses a word-document matrix to a smaller basis. A subsequent SVD gives two coordinates per document; the ship query finds related context in document d2, boat and ocean.">
+<text x="195" y="48" fill="#141414" font-size="26" font-weight="650" text-anchor="middle">Word counts across documents</text>
+<text x="573" y="48" fill="#141414" font-size="30" font-weight="650" text-anchor="middle">Smaller QR basis</text>
+<text x="991" y="48" fill="#141414" font-size="30" font-weight="650" text-anchor="middle">Two-coordinate document map</text>
+<rect x="115" y="94" width="28" height="231" fill="#f4f4f4" stroke="#141414" stroke-width="1.5"/>
+<rect x="152" y="94" width="28" height="231" fill="#f4f4f4" stroke="#141414" stroke-width="1.5"/>
+<rect x="189" y="94" width="28" height="231" fill="#f4f4f4" stroke="#141414" stroke-width="1.5"/>
+<rect x="226" y="94" width="28" height="231" fill="#f4f4f4" stroke="#141414" stroke-width="1.5"/>
+<rect x="263" y="94" width="28" height="231" fill="#f4f4f4" stroke="#141414" stroke-width="1.5"/>
+<rect x="520" y="157" width="28" height="168" fill="#bef264" stroke="#141414" stroke-width="1.5"/>
+<rect x="560" y="157" width="28" height="168" fill="#bef264" stroke="#141414" stroke-width="1.5"/>
+<rect x="600" y="157" width="28" height="168" fill="#bef264" stroke="#141414" stroke-width="1.5"/>
+<line x1="315" y1="220" x2="487" y2="220" stroke="#141414" stroke-width="3"/><polyline points="476.469,225.753 487,220 476.469,214.247" fill="none" stroke="#141414" stroke-width="3"/>
+<line x1="658" y1="220" x2="771" y2="220" stroke="#141414" stroke-width="3"/><polyline points="760.469,225.753 771,220 760.469,214.247" fill="none" stroke="#141414" stroke-width="3"/>
+<text x="715" y="195" fill="#141414" font-size="25" font-weight="650" text-anchor="middle">SVD</text>
+<rect x="792" y="111" width="403" height="214" fill="#f4f4f4" stroke="#141414" stroke-width="2"/>
+<text x="827" y="161" fill="#141414" font-size="22" font-weight="500" text-anchor="start">Query</text>
+<text x="826" y="205" fill="#141414" font-size="34" font-weight="650" text-anchor="start">“ship”</text>
+<line x1="830" y1="225" x2="1156" y2="225" stroke="#cacaca" stroke-width="1.5"/>
+<rect x="825" y="250" width="58" height="47" fill="#bef264" stroke="#141414" stroke-width="2"/>
+<text x="854" y="282" fill="#141414" font-size="24" font-weight="650" text-anchor="middle">d2</text>
+<text x="902" y="281" fill="#141414" font-size="29" font-weight="650" text-anchor="start">boat · ocean</text>
+</svg>
+<figcaption>Same toy search example · schematic sizes</figcaption>
+</figure>
+
+```
+
+::::
+
+::: {.la-source}
+scikit-learn · [randomized_svd](https://scikit-learn.org/stable/modules/generated/sklearn.utils.extmath.randomized_svd.html) · Halko et al. · [Algorithms 4.1 and 5.1](https://www.cs.cornell.edu/courses/cs6241/2019sp/readings/Halko-2011-randomness.pdf) · Stanford · [§18.4 term frequencies](https://nlp.stanford.edu/IR-book/html/htmledition/latent-semantic-indexing-1.html)
+:::
+
+::: {.notes lang="ru"}
+В рандомизированном SVD матрица $Y=A\Omega$ содержит случайные линейные комбинации столбцов $A$. QR-разложение строит ортонормированный базис $Q$ для пространства этих комбинаций. SVD применяется к меньшей матрице $B=Q^\top A$. После усечения левые сингулярные направления возвращаются в исходное пространство умножением на $Q$.
+
+В примере используется та же матрица частот Stanford размера $5\times6$ и тот же запрос `ship`. Число случайных комбинаций меняли, беря разное число первых столбцов одной гауссовой матрицы $\Omega$ с начальным значением генератора 20261111. Целевой ранг оставался равным 2, степенные итерации отсутствовали. При двух комбинациях относительная ошибка проекции и ошибка конечного приближения в норме Фробениуса равны 75,07%. При пяти комбинациях базис охватывает всё пространство столбцов исходной матрицы, поэтому ошибка проекции равна нулю, а после усечения до ранга 2 остаётся ошибка 52,74%.
+
+При пяти комбинациях косинус для `d2` равен 0,937, как при точном LSA ранга 2. На этой малой матрице можно проследить вклад проекции на пространство столбцов $Q$ и вклад усечения внутри него. Для оценки ускорения понадобился бы отдельный опыт с большой матрицей.
+:::

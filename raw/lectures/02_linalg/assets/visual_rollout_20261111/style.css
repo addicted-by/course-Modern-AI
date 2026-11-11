@@ -1,0 +1,122 @@
+.reveal .vr-visual {
+  --vr-ink: var(--lecture-fg, #1a1a1a);
+  --vr-muted: var(--lecture-muted, #52525b);
+  --vr-line: var(--lecture-border, #c5c5c5);
+  --vr-accent: var(--lecture-pop-lime, #bef264);
+  --vr-wash: var(--lecture-bg-subtle, #f3f3f3);
+  --vr-ease: var(--la-motion-duration, 120ms) ease;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  color: var(--vr-ink);
+}
+
+.reveal .vr-visual > .vr-live { display: none; }
+
+@media screen {
+  html:not(.print-pdf, .reveal-print) .reveal .vr-visual[data-vr-ready="true"] > .vr-static { display: none; }
+  html:not(.print-pdf, .reveal-print) .reveal .vr-visual[data-vr-ready="true"] > .vr-live { display: block; }
+}
+.reveal .vr-visual :is(.vr-live, .vr-static, .vr-panel) { min-width: 0; }
+.reveal .vr-visual :is(svg, img) { max-width: 100%; }
+.reveal .vr-visual svg { vertical-align: middle; }
+
+.reveal .vr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+.reveal .vr-chart { display: block; width: 100%; }
+.reveal .vr-panel {
+  box-sizing: border-box;
+  padding: 14px 18px;
+  border: 1px solid var(--vr-line);
+}
+
+.reveal .vr-matrix {
+  width: auto;
+  margin: 0;
+  font-family: var(--lecture-font-mono, monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .vr-matrix :is(th, td) { padding: .16em .5em; text-align: center; }
+.reveal .vr-label { font-weight: 650; }
+.reveal .vr-muted { color: var(--vr-muted); }
+
+.reveal .vr-visual :is(.vr-controls, .vr-steps) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.reveal .vr-visual .vr-steps {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.reveal .vr-visual .vr-steps legend {
+  float: left;
+  margin-right: 4px;
+  font-weight: 650;
+}
+
+.reveal .vr-visual :is(.vr-control, .vr-controls, .vr-steps, .vr-status) {
+  font: 500 21px/1.25 var(--lecture-font-sans, sans-serif);
+}
+
+.reveal .vr-visual .vr-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reveal .vr-visual .vr-steps label { flex-direction: row-reverse; }
+.reveal .vr-visual input { accent-color: #456512; }
+.reveal .vr-visual input[type="range"] { width: 180px; }
+.reveal .vr-visual input[type="radio"] { width: 1em; height: 1em; }
+
+.reveal .vr-visual :is(button, select) {
+  min-height: 36px;
+  padding: 4px 10px;
+  border: 1px solid var(--vr-muted);
+  border-radius: 0;
+  background: white;
+  color: var(--vr-ink);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color var(--vr-ease), border-color var(--vr-ease);
+}
+
+.reveal .vr-visual button:is([aria-pressed="true"], [aria-selected="true"]) {
+  background: var(--vr-accent);
+  border-color: var(--vr-ink);
+}
+
+.reveal .vr-visual :focus-visible {
+  outline: 3px solid var(--vr-ink);
+  outline-offset: 3px;
+}
+
+.reveal .vr-visual :is(button, select):disabled { opacity: .55; cursor: default; }
+.reveal .vr-visual .vr-status { color: var(--vr-muted); font-variant-numeric: tabular-nums; }
+
+@media print {
+  .reveal .vr-visual { print-color-adjust: exact; }
+}
+
+.reveal .vr-visual :is(.vr-static, .vr-live)[hidden] { display: none !important; }
+
+@media print, (prefers-reduced-motion: reduce) {
+  .reveal .vr-visual *,
+  .reveal .vr-visual *::before,
+  .reveal .vr-visual *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

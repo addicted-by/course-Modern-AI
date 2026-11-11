@@ -1,0 +1,522 @@
+/* The revised lecture core uses the existing monochrome lecture tokens. */
+.reveal .pdf-core .pdf-layout {align-items:start;gap:38px;}
+.reveal .pdf-core .pdf-layout > .la-panel {padding-top:10px;}
+.reveal .pdf-core .pdf-layout h3 {margin:0 0 22px;}
+.reveal .pdf-core .pdf-intro {margin:0 0 25px;font-size:29px;}
+.reveal .pdf-core .pdf-intro p {margin:0;}
+.reveal .pdf-core .pdf-cases h3,.reveal .pdf-core .pdf-compact h3 {margin-bottom:12px;font-size:30px;}
+.reveal .pdf-core .pdf-cases .katex-display {min-height:112px;}
+.reveal .pdf-core .pdf-compact {gap:35px;}
+.reveal .pdf-core .pdf-compact .la-panel + .la-panel {border-left:1px solid var(--lecture-border);padding-left:30px;}
+.reveal .pdf-core .pdf-derive {text-align:center;}
+.reveal .pdf-core .pdf-derive .katex-display > .katex {text-align:center;}
+.reveal .pdf-core .pdf-derive .pdf-plot {height:230px;}
+.reveal .pdf-core .pdf-derive .la-equation p {margin:0 0 30px;}
+.reveal .pdf-core .pdf-pipeline {padding:34px 15px;margin:34px 0;border-block:1px solid var(--lecture-border);font-size:37px;}
+.reveal .pdf-core .pdf-pipeline p {margin:0;}
+.reveal .pdf-core .pdf-rule {border-top:1px solid var(--lecture-border);margin:40px auto 0;padding-top:25px;}
+.reveal .pdf-core .pdf-plot {height:362px;max-width:100%;margin-bottom:10px;}
+.reveal .pdf-core .pdf-cases .pdf-plot {height:230px;margin:0;}
+.reveal .pdf-core .pdf-compact .pdf-plot {height:334px;}
+.reveal .pdf-core .pdf-plot path {fill:none;stroke-linecap:round;}
+.reveal .pdf-core .pdf-plot-axis {stroke:var(--lecture-muted);stroke-width:1.5;}
+.reveal .pdf-core .pdf-plot-grid {stroke:var(--lecture-border);stroke-width:1;}
+.reveal .pdf-core .pdf-plot-line {stroke:var(--lecture-fg);stroke-width:3.5;}
+.reveal .pdf-core .pdf-plot-secondary {stroke:var(--lecture-muted);stroke-width:2.5;}
+.reveal .pdf-core .pdf-plot-dash {stroke:var(--lecture-fg);stroke-width:2.5;stroke-dasharray:6 7;}
+.reveal .pdf-core .pdf-plot-wide {stroke:var(--lecture-pop-lime);stroke-width:8;}
+.reveal .pdf-core .pdf-plot-highlight {stroke:var(--lecture-pop-lime);stroke-width:7;filter:drop-shadow(0 1px 0 var(--lecture-muted));}
+.reveal .pdf-core .pdf-plot-point {fill:var(--lecture-fg);}
+.reveal .pdf-core .pdf-plot-focus {fill:var(--lecture-pop-lime);stroke:var(--lecture-fg);stroke-width:2.5;}
+.reveal .pdf-core .pdf-plot-hollow {fill:var(--lecture-bg);stroke:var(--lecture-fg);stroke-width:2.5;}
+.reveal .pdf-core .pdf-plot-label {fill:var(--lecture-fg);font-size:20px;}
+.reveal .pdf-core .pdf-plot-matrix-label {fill:var(--lecture-fg);font-size:40px;font-weight:600;}
+.reveal .pdf-core .pdf-plot-fill {fill:var(--lecture-pop-lime);}
+.reveal .pdf-core .pdf-plot-box {fill:var(--lecture-surface);stroke:var(--lecture-fg);stroke-width:2;}
+.reveal .pdf-core .pdf-example > .katex-display {margin:34px 0;}
+.reveal .pdf-core .pdf-triangle {background:linear-gradient(45deg,var(--lecture-surface) 49.5%,var(--lecture-border) 50%,var(--lecture-pop-lime) 50.5%);}
+.reveal .pdf-core .pdf-triangle-lower {background:linear-gradient(45deg,var(--lecture-pop-lime) 49.5%,var(--lecture-border) 50%,var(--lecture-surface) 50.5%);}
+.reveal .pdf-core .pdf-channels {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:35px auto;}
+.reveal .pdf-core .pdf-channel {border:1px solid var(--lecture-border);padding:22px 8px 15px;text-align:center;}
+.reveal .pdf-core .pdf-channel h3 {margin:0 0 15px;}
+.reveal .pdf-core .pdf-shapes {margin:12px 0 29px;font-size:27px;}
+.reveal .pdf-core .pdf-shapes p {margin:0;}
+.reveal .pdf-core .pdf-widget-labels {margin-top:5px;text-align:center;}
+.reveal .pdf-core .pdf-widget-labels p {margin:6px 0;}
+.reveal .pdf-core .pdf-qr-factors .la-matrix-block {width:112px;height:112px;}
+.reveal .pdf-core .pdf-qr-factors .la-matrix-block.tall {height:155px;}
+.reveal .pdf-core .pdf-qr-factors {margin:16px 0 45px;gap:42px;}
+
+
+/* Least-squares slides share the same plot, argument and display-math scales. */
+.reveal .pdf-mnk {
+  --mnk-heading: 34px;
+  --mnk-formula: 36px;
+  --mnk-gap: 38px;
+}
+
+.reveal .pdf-mnk .la-body {
+  font-size: 32px;
+}
+
+.reveal .pdf-mnk .la-body h3 {
+  font-size: var(--mnk-heading);
+  margin: 0 0 20px;
+}
+
+.reveal .pdf-mnk .pdf-intro {
+  font-size: 32px;
+  margin-bottom: 26px;
+}
+
+.reveal .pdf-mnk .pdf-plot-label {
+  font-size: 23px;
+}
+
+.reveal .pdf-mnk .pdf-plot-axis {
+  stroke-width: 1.75;
+}
+
+.reveal .pdf-mnk .pdf-cases {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.reveal .pdf-mnk .pdf-cases > .la-panel {
+  padding: 0 12px;
+}
+
+.reveal .pdf-mnk .pdf-cases .pdf-plot {
+  height: 286px;
+}
+
+.reveal .pdf-mnk .pdf-cases .katex-display {
+  min-height: 138px;
+  margin: 12px 0 0;
+}
+
+.reveal .pdf-mnk .pdf-cases p {
+  margin: 12px 0 0;
+}
+
+.reveal .pdf-mnk .mnk-argument {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--mnk-gap);
+  align-items: center;
+}
+
+.reveal .pdf-mnk .mnk-argument > .la-panel {
+  border: 0;
+  padding: 0;
+}
+
+.reveal .pdf-mnk .mnk-argument .katex-display {
+  font-size: var(--mnk-formula);
+  margin: 28px 0;
+}
+
+.reveal .pdf-mnk .mnk-argument .pdf-plot {
+  height: 550px;
+  margin: 0;
+}
+
+.reveal #pre-07 .mnk-argument .pdf-plot {
+  height: 508px;
+}
+
+.reveal #pre-07 .mnk-argument > .la-panel:last-child p {
+  margin: 6px 0 0;
+  text-align: center;
+}
+
+.reveal .pdf-mnk .mnk-secondary {
+  margin-top: 33px;
+  padding-top: 19px;
+  border-top: 1px solid var(--lecture-border);
+}
+
+.reveal #pre-mnk-family .mnk-argument .katex-display {
+  font-size: 31px;
+}
+
+.reveal #pre-mnk-family .mnk-argument > .la-panel > .katex-display {
+  font-size: 39px;
+}
+
+.reveal .pdf-mnk .pdf-compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.reveal .pdf-mnk .pdf-compact .pdf-plot {
+  height: 395px;
+  margin: 0;
+}
+
+.reveal .pdf-mnk .pdf-compact p {
+  margin: 12px 0 0;
+  font-size: var(--mnk-formula);
+}
+
+.reveal .pdf-mnk .mnk-chain {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .5fr) minmax(0, 1fr)
+                         minmax(0, .5fr) minmax(0, 1.2fr);
+  gap: 12px;
+  align-items: end;
+  text-align: center;
+  border-block: 1px solid var(--lecture-border);
+  margin: 46px 0 41px;
+  padding: 35px 0;
+}
+
+.reveal .pdf-mnk .mnk-station,
+.reveal .pdf-mnk .mnk-identity {
+  position: relative;
+  min-width: 0;
+}
+
+.reveal .pdf-mnk .mnk-station p,
+.reveal .pdf-mnk .mnk-arrow p {
+  margin: 0;
+}
+
+.reveal .pdf-mnk .mnk-chain .mnk-station h3 {
+  font-size: 28px;
+  margin: 0 0 25px;
+}
+
+.reveal .pdf-mnk .mnk-pipeline {
+  font-size: 47px;
+}
+
+.reveal .pdf-mnk .mnk-pipeline .mnk-arrow {
+  font-size: 40px;
+  padding-bottom: 8px;
+}
+
+.reveal .pdf-mnk .mnk-pipeline .mnk-station:last-child p > .math {
+  background: var(--lecture-pop-lime);
+  padding: 4px 13px 7px;
+}
+
+.reveal #pre-20 .la-equation {
+  font-size: 45px;
+}
+
+.reveal #pre-20 .la-equation .katex-display,
+.reveal .pdf-mnk .mnk-inline-takeaway p {
+  margin: 0;
+}
+
+.reveal .pdf-mnk .mnk-inline-takeaway {
+  margin-top: 27px;
+}
+
+.reveal .pdf-mnk .mnk-projectors {
+  margin-top: 30px;
+  font-size: 35px;
+}
+
+.reveal .pdf-mnk .mnk-tests {
+  grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1.16fr)
+                         90px minmax(0, 1.1fr);
+  font-size: 32px;
+  margin-top: 70px;
+  padding: 56px 0 62px;
+}
+
+.reveal .pdf-mnk .mnk-tests .mnk-arrow {
+  font-size: 42px;
+  align-self: end;
+  display: grid;
+  align-items: center;
+  min-height: 64px;
+  line-height: 1.06;
+}
+
+.reveal .pdf-mnk .mnk-tests .mnk-station h3 {
+  margin-bottom: 34px;
+}
+
+.reveal .pdf-mnk .mnk-tests .mnk-station p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .22em;
+  min-height: 64px;
+}
+
+.reveal .pdf-mnk .mnk-tests .mnk-station > p:has(> .mnk-focus-cue) {
+  display: contents;
+}
+
+.reveal .pdf-mnk .mnk-tests .mnk-focus-cue.visible:not(.current-fragment) {
+  opacity: 0;
+}
+
+.reveal .pdf-mnk .mnk-tests + .pdf-rule {
+  border: 0;
+  font-size: 34px;
+}
+
+.reveal .pdf-mnk .mnk-focus-cue {
+  position: absolute;
+  top: -13px;
+  left: 25%;
+  right: 25%;
+  border-top: 5px solid var(--lecture-pop-lime);
+  pointer-events: none;
+}
+
+.reveal .pdf-mnk .mnk-identity .mnk-focus-cue {
+  top: auto;
+  bottom: -8px;
+  left: 37%;
+  right: 37%;
+}
+
+.reveal .pdf-mnk .mnk-temperature {
+  grid-template-columns: minmax(0, .41fr) minmax(0, .59fr);
+  gap: 25px;
+  align-items: center;
+}
+
+.reveal .pdf-mnk .mnk-temperature .pdf-plot {
+  height: 465px;
+  margin: 0;
+}
+
+.reveal .pdf-mnk .mnk-temperature table {
+  margin: 0;
+  font-size: 30px;
+}
+
+.reveal .pdf-mnk .mnk-temperature th,
+.reveal .pdf-mnk .mnk-temperature td {
+  padding: 12px 14px;
+}
+
+.reveal .pdf-mnk .mnk-temperature .katex-display {
+  margin: 34px 0;
+  font-size: 34px;
+}
+
+.reveal .pdf-mnk .mnk-temperature .la-panel:last-child p {
+  margin: 9px 0 0 55px;
+}
+
+.reveal #pre-10 table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 32px;
+}
+
+.reveal #pre-10 :is(th, td) {
+  padding: 17px 22px;
+  border-bottom: 1px solid var(--lecture-border);
+  vertical-align: middle;
+}
+
+.reveal #pre-10 th {
+  padding-block: 12px;
+  border-bottom: 4px solid var(--lecture-pop-lime);
+  font-size: 25px;
+}
+
+.reveal #pre-10 col:nth-child(1) {
+  width: 18% !important;
+}
+
+.reveal #pre-10 col:nth-child(2) {
+  width: 19% !important;
+}
+
+.reveal #pre-10 col:nth-child(3) {
+  width: 27% !important;
+}
+
+.reveal #pre-10 col:nth-child(4) {
+  width: 36% !important;
+}
+
+.reveal #pre-10 td:first-child {
+  font-weight: 650;
+}
+
+.reveal #pre-10 td:nth-child(2) .katex {
+  font-size: 1.18em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .pdf-mnk .fragment {
+    transition: none;
+  }
+}
+
+/* The same rank-one example links the six least-squares slides. */
+.reveal .ls-simple .ls-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  text-align: center;
+}
+
+.reveal .ls-simple .ls-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.4fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.reveal .ls-simple .ls-side {
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+}
+
+.reveal .ls-simple .ls-side :is(h3, p),
+.reveal .ls-simple .ls-centered p {
+  margin: 0;
+}
+
+.reveal .ls-simple .ls-side .katex-display,
+.reveal .ls-simple :is(.ls-objective, .ls-equation) .katex-display {
+  margin: 0;
+}
+
+.reveal .ls-simple .ls-side .katex-display > .katex {
+  text-align: left;
+}
+
+.reveal .ls-simple .ls-split .pdf-plot {
+  width: 100%;
+  height: 500px;
+  margin: 0;
+}
+
+.reveal .ls-simple .ls-observations {
+  width: min(1080px, 100%);
+  margin: 0;
+  font-size: 34px;
+}
+
+.reveal .ls-simple .ls-observations th,
+.reveal .ls-simple .ls-observations td {
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.reveal .ls-simple .ls-observations td:last-child {
+  background: var(--lecture-pop-lime);
+}
+
+.reveal .ls-simple .ls-side > .math {
+  font-size: 42px;
+}
+
+.reveal .ls-simple .ls-objective {
+  display: grid;
+  gap: 14px;
+  padding: 26px 60px 23px;
+  border-bottom: 5px solid var(--lecture-pop-lime);
+  background: var(--lecture-bg-subtle);
+}
+
+.reveal .ls-simple :is(.ls-objective, .ls-equation) > .math {
+  font-size: 57px;
+}
+
+.reveal .ls-simple .ls-result {
+  display: inline-block;
+  background: var(--lecture-pop-lime);
+  padding: 4px 13px 7px;
+}
+
+.reveal .ls-simple .ls-side .ls-result {
+  font-size: 43px;
+}
+
+.reveal .ls-simple .ls-chain {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  gap: 18px;
+  padding: 28px 0;
+  border-block: 1px solid var(--lecture-border);
+}
+
+.reveal .ls-simple .ls-chain {
+  grid-template-columns: minmax(0, 1fr) 155px minmax(0, 1.15fr) 215px minmax(0, 1.35fr);
+}
+
+.reveal .ls-simple .ls-station h3 {
+  margin: 0 0 18px;
+}
+
+.reveal .ls-simple .ls-station > .math {
+  font-size: 45px;
+}
+
+.reveal .ls-simple .ls-arrow {
+  display: grid;
+  gap: 3px;
+  color: var(--lecture-muted);
+  font-size: 24px;
+}
+
+.reveal .ls-simple .ls-arrow strong {
+  font-size: 42px;
+  line-height: 1;
+  color: var(--lecture-fg);
+}
+
+.reveal .ls-simple .ls-product {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 59px;
+}
+
+.reveal .ls-simple .ls-check > .math {
+  font-size: 43px;
+}
+
+.reveal .ls-simple .ls-normal h3 {
+  margin-bottom: 14px;
+}
+
+.reveal #pre-19 .ls-svd-intro {
+  display: grid;
+  gap: 7px;
+  font-size: 26px;
+}
+
+.reveal #pre-19 .ls-svd-intro h3 {
+  margin-bottom: 0;
+}
+
+.reveal #pre-19 .ls-svd-factors {
+  font-size: 43px;
+}
+
+.reveal #pre-19 .ls-chain {
+  grid-template-columns: minmax(0, 1fr) 85px minmax(0, 1.15fr) 85px minmax(0, 1fr);
+  padding-block: 18px;
+}
+
+.reveal #pre-19 .ls-station h3 {
+  display: grid;
+  min-height: 2.3em;
+  align-items: end;
+  font-size: 30px;
+  margin-bottom: 13px;
+}
+
+.reveal #pre-19 .ls-equation > .math {
+  font-size: 51px;
+}

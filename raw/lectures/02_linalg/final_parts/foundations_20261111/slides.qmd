@@ -1,0 +1,384 @@
+## What makes a length a norm? {#fa-vector-definition .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-vector-definition" aria-label="Head-to-tail vector addition alongside the three properties of a norm">
+<div class="vr-static fa-split">
+<svg class="fa-chart" viewBox="0 0 790 460" role="img" aria-label="On a common grid, u=(1,1) and v=(2,0) form a head-to-tail path, and u+v=(3,1) is the direct arrow.">
+ <defs><marker id="fa-add-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" class="fa-arrow"/></marker></defs>
+ <text x="22" y="45" font-size="26" font-weight="650">Head-to-tail addition</text>
+ <path class="fa-gridline" d="M86 108H743M86 211H743M86 314H743M86 417H743M133 86V436M266 86V436M399 86V436M532 86V436M665 86V436"/>
+ <path class="fa-axis" d="M86 314H757M133 436V82"/>
+ <text x="740" y="347" font-size="23">x₁</text><text x="100" y="97" font-size="23">x₂</text>
+ <path class="fa-stroke" marker-end="url(#fa-add-tip)" d="M133 314L261 215"/>
+ <path class="fa-stroke" marker-end="url(#fa-add-tip)" d="M266 211H526"/>
+ <text x="190" y="225" font-size="25">u</text><text x="386" y="192" font-size="25">v</text>
+ <path class="fa-stroke fa-dash" marker-end="url(#fa-add-tip)" d="M133 314L525 213"/>
+ <circle class="fa-lit" cx="532" cy="211" r="7"/>
+ <text x="392" y="302" font-size="29" font-weight="650">u + v</text>
+ <text x="122" y="346" font-size="22">0</text><text x="253" y="346" font-size="22">1</text><text x="385" y="346" font-size="22">2</text><text x="519" y="346" font-size="22">3</text>
+ <text x="100" y="217" font-size="22">1</text>
+</svg>
+<div class="fa-stack" data-fa-box>
+ <div class="fa-big fa-inline-formula"><span class="math inline">\|\cdot\|:\mathbb R^n\to[0,\infty)</span></div>
+ <div class="fa-rule fragment" data-fragment-index="0"><span class="fa-tag">Zero only at the origin</span><span class="math inline">\|x\|=0\iff x=0</span></div>
+ <div class="fa-rule fragment" data-fragment-index="1"><span class="fa-tag">Absolute homogeneity</span><span class="math inline">\|\alpha x\|=|\alpha|\|x\|</span></div>
+ <div class="fa-rule fa-emphasis fragment" data-fragment-index="2"><span class="fa-tag">Triangle inequality</span><span class="math inline">\|u+v\|\le\|u\|+\|v\|</span></div>
+</div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">A vector norm turns an input into a nonnegative length.</div>
+```
+
+::: {.notes lang="ru"}
+
+Норма сопоставляет каждому вектору $x$ неотрицательное число $\|x\|$, которое играет роль длины. Длина равна нулю ровно у нулевого вектора. При умножении $x$ на скаляр $\alpha$ длина умножается на $|\alpha|$. В частности, у $x$ и $-x$ длины одинаковы.
+
+Неравенство треугольника связывает длину с операцией сложения. На рисунке два последовательных перемещения, $u$ и $v$, приводят в ту же точку, что и перемещение $u+v$. Длина прямого перемещения $\|u+v\|$ не превосходит суммарной длины двух участков $\|u\|+\|v\|$. Этим трём условиям удовлетворяет евклидова длина, но они допускают и другие способы измерения.
+
+:::
+
+## How can we measure the same vector? {#fa-vector-norms .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-vector-norms" aria-label="Compare three equally scaled unit balls and compute three norms of x=(3,−4)">
+<div class="vr-static fa-board">
+<div class="fa-columns">
+ <div class="fa-unit" data-fa-box>
+  <span class="fa-tag">Sum of magnitudes</span><span class="math inline">\|x\|_1=\sum_i|x_i|</span>
+  <svg class="fa-chart" viewBox="0 0 420 278" role="img" aria-label="The 1-norm unit ball is a diamond. The point (3/7,−4/7) is on its boundary.">
+   <path class="fa-area" d="M210 29L315 134 210 239 105 134Z"/>
+   <path class="fa-axis" d="M61 134H364M210 259V11"/>
+   <text x="360" y="158" font-size="21">x₁</text><text x="169" y="25" font-size="21">x₂</text>
+   <text x="322" y="157" font-size="20">1</text><text x="222" y="26" font-size="20">1</text>
+   <g class="fragment" data-fragment-index="0"><path class="fa-stroke" d="M210 134L255 194"/><circle class="fa-lit" cx="255" cy="194" r="7"/><text x="276" y="210" font-size="23">x/7</text></g>
+  </svg>
+  <div class="fragment" data-fragment-index="0"><span class="fa-value"><span class="math inline">3+4=7</span></span></div>
+ </div>
+ <div class="fa-unit" data-fa-box>
+  <span class="fa-tag">Euclidean length</span><span class="math inline">\|x\|_2=(\sum_i x_i^2)^{1/2}</span>
+  <svg class="fa-chart" viewBox="0 0 420 278" role="img" aria-label="The 2-norm unit ball is a circle. The point (3/5,−4/5) is on its boundary.">
+   <circle class="fa-area" cx="210" cy="134" r="105"/>
+   <path class="fa-axis" d="M61 134H364M210 259V11"/>
+   <text x="360" y="158" font-size="21">x₁</text><text x="169" y="25" font-size="21">x₂</text>
+   <text x="322" y="157" font-size="20">1</text><text x="222" y="26" font-size="20">1</text>
+   <g class="fragment" data-fragment-index="0"><path class="fa-stroke" d="M210 134L273 218"/><circle class="fa-lit" cx="273" cy="218" r="7"/><text x="291" y="234" font-size="23">x/5</text></g>
+  </svg>
+  <div class="fragment" data-fragment-index="0"><span class="fa-value"><span class="math inline">\sqrt{3^2+4^2}=5</span></span></div>
+ </div>
+ <div class="fa-unit" data-fa-box>
+  <span class="fa-tag">Largest magnitude</span><span class="math inline">\|x\|_\infty=\max_i|x_i|</span>
+  <svg class="fa-chart" viewBox="0 0 420 278" role="img" aria-label="The infinity-norm unit ball is a square. The point (3/4,−1) is on its boundary.">
+   <path class="fa-area" d="M105 29H315V239H105Z"/>
+   <path class="fa-axis" d="M61 134H364M210 259V11"/>
+   <text x="360" y="158" font-size="21">x₁</text><text x="169" y="25" font-size="21">x₂</text>
+   <text x="322" y="157" font-size="20">1</text><text x="222" y="26" font-size="20">1</text>
+   <g class="fragment" data-fragment-index="0"><path class="fa-stroke" d="M210 134L288.75 239"/><circle class="fa-lit" cx="288.75" cy="239" r="7"/><text x="307" y="262" font-size="23">x/4</text></g>
+  </svg>
+  <div class="fragment" data-fragment-index="0"><span class="fa-value"><span class="math inline">\max(3,4)=4</span></span></div>
+ </div>
+</div>
+<div class="fa-strip fa-center fragment" data-fragment-index="0">Same vector <span class="math inline">x=(3,-4)^\top</span> · Divide by its norm to land on the matching unit boundary.</div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">Changing the norm changes the unit ball and what counts as a large error.</div>
+```
+
+::: {.notes lang="ru"}
+
+В $\mathbb R^2$ условие $\|x\|_p\le 1$ задаёт разные единичные шары в зависимости от нормы. Для суммы модулей $\|x\|_1=\sum_i |x_i|$ это ромб, для евклидовой нормы $\|x\|_2=(\sum_i x_i^2)^{1/2}$ — круг, а для максимального модуля координаты $\|x\|_\infty=\max_i |x_i|$ — квадрат.
+
+Отмеченные точки лежат на одном луче в направлении $x=(3,-4)^\top$. По однородности нормы точка $x/\|x\|_p$ лежит на границе соответствующего шара.
+
+Теперь зафиксируем норму и применим её к входу $x$ и выходу $Ax$. Наибольший коэффициент растяжения $\|Ax\|_p/\|x\|_p$ по ненулевым $x$ определяет подчинённую матричную норму.
+
+:::
+
+## How much can a matrix stretch a vector? {#fa-operator-norm .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-operator-norm" aria-label="A matrix maps a nonzero input vector to an output vector, and their two p-norms determine the gain">
+<div class="vr-static fa-board">
+<div class="fa-stage" data-fa-box>
+ <div class="fa-stage-node"><span class="fa-tag">Input</span><span class="fa-big math inline">x\in\mathbb R^n</span></div>
+ <div class="fa-stage-arrow" aria-hidden="true">→</div>
+ <div class="fa-stage-node fa-emphasis"><span class="fa-tag">Linear map</span><span class="fa-big math inline">A\in\mathbb R^{m\times n}</span></div>
+ <div class="fa-stage-arrow" aria-hidden="true">→</div>
+ <div class="fa-stage-node"><span class="fa-tag">Output</span><span class="fa-big math inline">Ax\in\mathbb R^m</span></div>
+</div>
+<div class="fa-rule">A vector norm measures one input or output. Use the same <span class="math inline">p</span> on both sides.</div>
+<div class="fa-strip fa-inline-formula fragment" data-fragment-index="0"><span class="fa-tag">Gain for a nonzero input</span><span class="math inline">\dfrac{\|Ax\|_p}{\|x\|_p}</span> <span class="fa-subtle">· Doubling the input doubles both lengths, so the ratio stays fixed.</span></div>
+<div class="fa-strip fa-emphasis fa-inline-formula fragment" data-fragment-index="1"><span class="fa-tag">Induced operator norm</span><span class="math inline">\displaystyle\|A\|_p=\max_{x\ne0}\frac{\|Ax\|_p}{\|x\|_p}=\max_{\|x\|_p=1}\|Ax\|_p</span></div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">An operator norm measures the largest amplification over all input directions.</div>
+```
+
+::: {.notes lang="ru"}
+
+Матрица $A\in\mathbb R^{m\times n}$ переводит вход $x\in\mathbb R^n$ в выход $Ax\in\mathbb R^m$. Для обоих векторов используется $\ell_p$ с одним и тем же $p$, хотя число координат может различаться. Отношение $\|Ax\|_p/\|x\|_p$ измеряет растяжение в направлении ненулевого $x$. Из линейности $A$ и однородности нормы следует, что при изменении масштаба входа числитель и знаменатель умножаются на один и тот же множитель.
+
+Поэтому достаточно рассматривать $\|Ax\|_p$ для входов с $\|x\|_p=1$. Эта непрерывная функция достигает максимума на компактной единичной сфере. Максимум и есть подчинённая матричная норма $\|A\|_p$. Таким образом, норма вектора измеряет длину конкретного входа или выхода, а подчинённая норма матрицы ограничивает растяжение во всех направлениях.
+
+:::
+
+## Which column or row determines the norm? {#fa-matrix-norms .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-matrix-norms" aria-label="For A with rows (3,−8) and (4,6), the maximum absolute column sum is 14 and the maximum absolute row sum is 11">
+<div class="vr-static fa-board">
+<div class="fa-rule fa-center fa-big">One signed matrix: <span class="math inline">A=\begin{pmatrix}3&-8\\4&6\end{pmatrix}</span></div>
+<div class="fa-columns fa-two fa-frame-columns">
+ <div class="fa-stack fragment" data-fragment-index="0" data-fa-box>
+  <div class="fa-rule fa-matrix-sums">
+   <div class="fa-matrix" aria-hidden="true"><span>3</span><span class="fa-col">−8</span><span>4</span><span class="fa-col">6</span></div>
+   <div><span class="fa-tag">Absolute column sums</span><span class="math inline">\|A\|_1=\max_j\sum_i|a_{ij}|</span><br><span class="fa-value"><span class="math inline">\max(7,14)=14</span></span></div>
+  </div>
+  <div class="fa-strip">Attained at <span class="math inline">x=e_2=(0,1)^\top</span>.</div>
+ </div>
+ <div class="fa-stack fragment" data-fragment-index="1" data-fa-box>
+  <div class="fa-rule fa-matrix-sums">
+   <div class="fa-matrix" aria-hidden="true"><span class="fa-row">3</span><span class="fa-row">−8</span><span>4</span><span>6</span></div>
+   <div><span class="fa-tag">Absolute row sums</span><span class="math inline">\|A\|_\infty=\max_i\sum_j|a_{ij}|</span><br><span class="fa-value"><span class="math inline">\max(11,10)=11</span></span></div>
+  </div>
+  <div class="fa-strip">Attained at <span class="math inline">x=(1,-1)^\top</span>: <span class="math inline">Ax=(11,-2)^\top</span>.</div>
+ </div>
+</div>
+<div class="fa-derivation-links fragment" data-fragment-index="1">
+ <button type="button" data-fa-proof="fa-proof-1" aria-haspopup="dialog" aria-controls="fa-proof-dialog">Derive the 1-norm</button>
+ <button type="button" data-fa-proof="fa-proof-infinity" aria-haspopup="dialog" aria-controls="fa-proof-dialog">Derive the ∞-norm</button>
+</div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">1-norm: largest absolute column sum. ∞-norm: largest absolute row sum.</div>
+```
+
+::: {.notes lang="ru"}
+
+Для $\ell_1$ произведение $Ax$ удобно рассматривать как линейную комбинацию столбцов. Неравенство треугольника ограничивает длину этой комбинации суммой длин столбцов с весами $|x_j|$. При $\|x\|_1=1$ сумма весов равна единице, поэтому выход не может быть длиннее самого длинного столбца. Здесь это второй столбец $(-8,6)^\top$, его $1$-норма равна $14$. Единичный вход $e_2=(0,1)^\top$ даёт именно этот столбец.
+
+Для $\ell_\infty$ длину выхода определяет его наибольшая по модулю координата. Каждая такая координата получается умножением строки на $x$. При $\|x\|_\infty=1$ все $|x_j|\le 1$, так что модуль результата ограничен суммой модулей в строке. Наибольшая сумма, $11$, получается в первой строке $(3,-8)$. Единичный вход $(1,-1)^\top$ согласован с её знаками, поэтому вклады в первую координату не сокращаются и граница достигается.
+
+:::
+
+## What is the greatest Euclidean stretch? {#fa-matrix-2 .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-matrix-2" aria-label="A maps a Euclidean unit circle into an ellipse whose orthogonal semiaxes have lengths 5 and 10">
+<div class="vr-static fa-split">
+<svg class="fa-chart" viewBox="0 0 800 505" role="img" aria-label="The unit circle, drawn at 92 pixels per input unit, maps to an ellipse drawn at 17 pixels per output unit. Input e₁ maps to (3,4) and e₂ maps to (−8,6).">
+ <defs><marker id="fa-spectral-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" class="fa-arrow"/></marker></defs>
+ <text x="142" y="57" text-anchor="middle" font-size="26" font-weight="650">Input · R²</text><text x="560" y="57" text-anchor="middle" font-size="26" font-weight="650">Output · R²</text>
+ <circle cx="142" cy="242" r="92" class="fa-area"/>
+ <path class="fa-axis" d="M20 242H267M142 373V115"/>
+ <text x="248" y="270" font-size="21">x₁</text><text x="115" y="125" font-size="21">x₂</text>
+ <text x="248" y="225" font-size="21">e₁</text><text x="153" y="143" font-size="21">e₂</text>
+ <path class="fa-stroke" marker-end="url(#fa-spectral-tip)" d="M142 242H229M142 242V155"/>
+ <path class="fa-stroke" marker-end="url(#fa-spectral-tip)" d="M288 242H362"/>
+ <text x="315" y="225" font-size="26">A</text>
+ <ellipse cx="560" cy="242" rx="85" ry="170" transform="rotate(-53.130102 560 242)" class="fa-area"/>
+ <path class="fa-axis" d="M385 242H756M560 429V83"/>
+ <text x="746" y="271" font-size="21">y₁</text><text x="570" y="96" font-size="21">y₂</text>
+ <path class="fa-stroke" marker-end="url(#fa-spectral-tip)" d="M560 242L608 178"/>
+ <text x="625" y="161" font-size="22">(3, 4)</text><text x="628" y="190" font-size="21">length 5</text>
+ <path class="fa-stroke fa-dash" marker-end="url(#fa-spectral-tip)" d="M560 242L429 143"/>
+ <circle cx="424" cy="140" r="8" class="fa-lit fragment" data-fragment-index="0"/>
+ <text x="382" y="112" font-size="22">(−8, 6)</text><text x="373" y="306" font-size="21">length 10</text>
+ <text x="142" y="434" text-anchor="middle" font-size="22">Unit circle</text><text x="560" y="434" text-anchor="middle" font-size="22">Input and output use different scales</text>
+</svg>
+<div class="fa-stack" data-fa-box>
+ <div class="fa-rule"><span class="fa-tag">Same matrix</span><span class="math inline">A=\begin{pmatrix}3&-8\\4&6\end{pmatrix}</span> has orthogonal columns.</div>
+ <div class="fa-strip fa-emphasis fragment" data-fragment-index="0"><span class="fa-tag">Spectral norm · stretch</span><span class="math inline">\|A\|_2=\max_{\|x\|_2=1}\|Ax\|_2=10</span><br><span class="fa-subtle">Attained at <span class="math inline">x=\pm e_2</span>.</span></div>
+ <div class="fa-strip fragment" data-fragment-index="1"><span class="fa-tag">Frobenius norm · all entries</span><span class="math inline">\|A\|_F=\sqrt{\sum_{i,j}a_{ij}^2}=5\sqrt5</span></div>
+ <div class="fa-derivation-links fragment" data-fragment-index="1"><button type="button" data-fa-proof="fa-proof-2" aria-haspopup="dialog" aria-controls="fa-proof-dialog">Derive the 2-norm</button></div>
+</div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">Spectral measures the greatest stretch; Frobenius measures the entries as one vector.</div>
+```
+
+::: {.notes lang="ru"}
+
+Та же матрица $A=\begin{pmatrix}3&-8\\4&6\end{pmatrix}$ переводит евклидову единичную окружность в границу эллипса. Образы базисных векторов $e_1$ и $e_2$ — столбцы $(3,4)^\top$ и $(-8,6)^\top$ длины $5$ и $10$. Их скалярное произведение равно нулю, поэтому они направлены вдоль полуосей эллипса. На рисунке вход и выход изображены в разных масштабах.
+
+Для любого единичного $x$ слагаемые $x_1Ae_1$ и $x_2Ae_2$ ортогональны. По теореме Пифагора
+$$
+\|Ax\|_2^2=25x_1^2+100x_2^2
+\le 100(x_1^2+x_2^2)=100.
+$$
+Равенство достигается при $x_1=0$, то есть при $x=\pm e_2$. Следовательно, спектральная норма $\|A\|_2=10$ равна длине большой полуоси.
+
+Норма Фробениуса измеряет евклидову длину всех элементов матрицы, собранных в один вектор. В этом примере квадрат нормы Фробениуса — сумма квадратов длин обеих полуосей, так что $\|A\|_F=\sqrt{5^2+10^2}=5\sqrt{5}$. Если столбцы не ортогональны, при вычислении $\|Ax\|_2^2$ возникают смешанные члены. В общем случае их учитывает матрица $A^\top A$, на которой основан дополнительный вывод спектральной нормы.
+
+:::
+
+## How do stretch bounds compose? {#fa-submultiplicativity .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-submultiplicativity" aria-label="Two compatible linear maps B then A, with separate gain bounds and their product">
+<div class="vr-static fa-board">
+<div class="fa-note fa-subtle">For matrices, <span class="math inline">\|M\|_p=\|M\|_{p\to p}</span> is the induced norm.</div>
+<div class="fa-stage" data-fa-box>
+ <div class="fa-stage-node"><span class="fa-tag">Input</span><span class="fa-big math inline">x\in\mathbb R^k</span></div>
+ <div class="fa-stage-arrow"><span class="math inline">B</span> →<span class="fa-subtle">Gain ≤ <span class="math inline">\|B\|_p</span></span></div>
+ <div class="fa-stage-node"><span class="fa-tag">Intermediate</span><span class="fa-big math inline">Bx\in\mathbb R^n</span></div>
+ <div class="fa-stage-arrow"><span class="math inline">A</span> →<span class="fa-subtle">Gain ≤ <span class="math inline">\|A\|_p</span></span></div>
+ <div class="fa-stage-node fa-emphasis"><span class="fa-tag">Output</span><span class="fa-big math inline">A(Bx)\in\mathbb R^m</span></div>
+</div>
+<div class="fa-strip fa-inline-formula fragment" data-fragment-index="0"><span class="fa-tag">Apply each bound in turn</span><span class="math inline">\|ABx\|_p\le\|A\|_p\|Bx\|_p\le\|A\|_p\|B\|_p\|x\|_p</span></div>
+<div class="fa-strip fa-emphasis fa-inline-formula fragment" data-fragment-index="1"><span class="fa-tag">Maximize over unit inputs</span><span class="math inline">\|AB\|_p\le\|A\|_p\|B\|_p</span></div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">Submultiplicativity: compatible dimensions and the same p throughout.</div>
+```
+
+::: {.notes lang="ru"}
+
+Пусть $B\in\mathbb R^{n\times k}$ переводит $x\in\mathbb R^k$ в $Bx\in\mathbb R^n$, а $A\in\mathbb R^{m\times n}$ переводит этот промежуточный вектор в $ABx\in\mathbb R^m$. Длины всех трёх векторов измеряются в $\ell_p$ при фиксированном $p$, где $1\le p\le\infty$. Для матриц $\|\cdot\|_{p\to p}$ обозначает подчинённую норму: супремум отношения длины выхода к длине ненулевого входа.
+
+Если $Bx\ne 0$, по определению $\|A(Bx)\|_p/\|Bx\|_p\le\|A\|_{p\to p}$. Отсюда $\|ABx\|_p\le\|A\|_{p\to p}\|Bx\|_p$. При $Bx=0$ обе стороны этой оценки равны нулю. Применяя то же свойство к $B$, получаем
+$$
+\|ABx\|_p\le\|A\|_{p\to p}\|Bx\|_p
+\le\|A\|_{p\to p}\|B\|_{p\to p}\|x\|_p.
+$$
+
+На единичных входах правая часть не зависит от $x$. Максимум левой части по этим входам равен $\|AB\|_{p\to p}$, поэтому $\|AB\|_{p\to p}\le\|A\|_{p\to p}\|B\|_{p\to p}$. Эта оценка называется субмультипликативностью.
+
+:::
+
+## Which inputs disappear under a matrix? {#fa-kernel .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-kernel" aria-label="The kernel of B is the line x₁+2x₂=0. A parallel line maps to the single output (1,1).">
+<div class="vr-static fa-board">
+<svg class="fa-chart" viewBox="0 0 1488 380" role="img" aria-label="The origin and (2,−1) in the input plane both map to zero. Points (1,0) and (−1,1) on a parallel input line both map to (1,1).">
+ <defs><marker id="fa-kernel-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" class="fa-arrow"/></marker></defs>
+ <text x="318" y="43" text-anchor="middle" font-size="28" font-weight="650">Input plane</text><text x="1176" y="43" text-anchor="middle" font-size="28" font-weight="650">Output plane</text>
+ <path d="M38 195H604M310 349V72M916 225H1446M1176 349V72" class="fa-axis"/>
+ <text x="578" y="223" font-size="21">x₁</text><text x="320" y="90" font-size="21">x₂</text><text x="1427" y="253" font-size="21">y₁</text><text x="1188" y="90" font-size="21">y₂</text>
+ <path d="M68 74L584 332" class="fa-stroke fa-dash"/>
+ <circle cx="310" cy="195" r="7" class="fa-dot"/><circle cx="470" cy="275" r="8" class="fa-lit"/>
+ <text x="439" y="345" font-size="24" font-weight="650">(2, −1)</text><text x="61" y="57" font-size="24">x₁ + 2x₂ = 0</text>
+ <rect x="650" y="134" width="195" height="120" class="fa-area"/>
+ <text x="747" y="172" text-anchor="middle" font-size="25" font-weight="650">B</text><text x="747" y="207" text-anchor="middle" font-size="26">[ 1  2 ]</text><text x="747" y="237" text-anchor="middle" font-size="26">[ 1  2 ]</text>
+ <path d="M862 216Q1019 252 1165 226" class="fa-stroke fa-dash" marker-end="url(#fa-kernel-tip)"/>
+ <circle cx="1176" cy="225" r="8" class="fa-lit"/>
+ <text x="1192" y="253" font-size="24" font-weight="650">(0, 0)</text>
+ <g class="fragment" data-fragment-index="1">
+  <path d="M136 68L590 295" class="fa-stroke"/>
+  <circle cx="390" cy="195" r="7" class="fa-dot"/><circle cx="230" cy="115" r="7" class="fa-dot"/>
+  <text x="397" y="177" font-size="24">(1, 0)</text><text x="239" y="109" font-size="24">(−1, 1)</text>
+  <circle cx="1256" cy="145" r="9" class="fa-lit"/><text x="1271" y="137" font-size="24" font-weight="650">(1, 1)</text>
+  <path d="M865 172Q1034 79 1244 143" class="fa-stroke" marker-end="url(#fa-kernel-tip)"/>
+ </g>
+</svg>
+<div class="fa-strip fa-inline-formula fragment" data-fragment-index="0"><span class="math inline">\ker B=\{x:Bx=0\}=\operatorname{span}\{(2,-1)^\top\}</span></div>
+<div class="fa-rule fragment" data-fragment-index="1">Here <span class="math inline">(1,0)^\top-(-1,1)^\top=(2,-1)^\top\in\ker B</span>, so the two inputs have the same output.</div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">Adding a kernel vector changes the input while preserving the output.</div>
+```
+
+::: {.notes lang="ru"}
+
+Ядро матрицы $B$ состоит из векторов $x$, для которых $Bx=0$. По линейности любая линейная комбинация таких векторов также принадлежит ядру. У матрицы на рисунке обе строки равны $(1,2)$, так что обе координаты $Bx$ равны $x_1+2x_2$. Её ядро — прямая $x_1+2x_2=0$, натянутая на вектор $(2,-1)^\top$.
+
+Из равенства $Bx=Bx'$ следует $B(x-x')=0$, и наоборот. Например, входы $(1,0)^\top$ и $(-1,1)^\top$ отличаются на вектор ядра и дают один выход $(1,1)^\top$. Все входы с таким выходом образуют параллельную ядру прямую $x_1+2x_2=1$.
+
+:::
+
+## How many independent output directions remain? {#fa-rank .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-rank" aria-label="The three columns of C lie in a plane, and the third is the sum of the first two">
+<div class="vr-static fa-split">
+<svg class="fa-chart" viewBox="0 0 800 515" role="img" aria-label="Projection of a plane in R³. Two independent vectors c₁ and c₂ form a parallelogram; their sum c₃ is its diagonal.">
+ <defs><marker id="fa-rank-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" class="fa-arrow"/></marker></defs>
+ <path d="M43 416L346 458 751 111 456 61Z" class="fa-area"/>
+ <text x="58" y="473" font-size="23">Output plane · schematic projection in R³</text>
+ <path d="M187 386L436 316 548 174 299 244Z" class="fa-gridline"/>
+ <path d="M187 386L430 317M187 386L296 249" class="fa-stroke" marker-end="url(#fa-rank-tip)"/>
+ <text x="456" y="330" font-size="26" font-weight="650">c₁</text><text x="309" y="230" font-size="26" font-weight="650">c₂</text>
+ <g class="fragment" data-fragment-index="0">
+  <path d="M187 386L544 176" class="fa-stroke fa-dash" marker-end="url(#fa-rank-tip)"/>
+  <circle cx="548" cy="174" r="8" class="fa-lit"/><text x="558" y="158" font-size="27" font-weight="650">c₃ = c₁ + c₂</text>
+ </g>
+</svg>
+<div class="fa-stack" data-fa-box>
+ <div class="fa-rule"><span class="fa-tag">Three columns</span><span class="math inline">C=\begin{pmatrix}1&0&1\\1&1&2\\1&2&3\end{pmatrix}</span></div>
+ <div class="fa-strip fa-emphasis fragment" data-fragment-index="0"><span class="fa-tag">Two independent directions</span><span class="math inline">\operatorname{Col}(C)=\operatorname{span}(c_1,c_2),\quad \operatorname{rank}(C)=2</span></div>
+ <div class="fa-strip fragment" data-fragment-index="1"><span class="fa-tag">One independent cancelling direction</span><span class="math inline">\ker C=\operatorname{span}\{(-1,-1,1)^\top\}</span></div>
+ <div class="fa-rule fragment" data-fragment-index="1"><span class="math inline">\operatorname{rank}(A)+\dim\ker A=n</span><br><span class="fa-subtle">n input coordinates</span></div>
+</div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">Rank is the image dimension: the maximum number of independent columns.</div>
+```
+
+::: {.notes lang="ru"}
+
+Любой выход $Cx$ есть линейная комбинация столбцов матрицы $C$. Их линейная оболочка называется образом матрицы. Ранг — размерность образа, то есть число столбцов в его базисе. В примере $c_1=(1,1,1)^\top$ и $c_2=(0,1,2)^\top$ независимы, а $c_3=c_1+c_2$. Поэтому образ — плоскость, натянутая на $c_1,c_2$, и ранг равен двум.
+
+Та же зависимость описывает, какие входы переходят в ноль. В равенстве $Cx=(x_1+x_3)c_1+(x_2+x_3)c_2=0$ оба коэффициента должны обращаться в ноль по независимости $c_1,c_2$. Значит, ядро состоит из кратных $(-1,-1,1)^\top$ и имеет размерность один. В общем случае для матрицы с $n$ входными координатами $\operatorname{rank}(C)+\dim\ker C=n$.
+
+:::
+
+## Can one affine rule match all three observations? {#fa-linear-system .la-slide .fa-slide}
+
+```{=html}
+<div class="la-body">
+<figure class="vr-visual" data-vr="fa-linear-system" aria-label="Three synthetic calibration observations form an inconsistent system in slope w and intercept c">
+<div class="vr-static fa-split">
+<svg class="fa-chart" viewBox="0 0 800 510" role="img" aria-label="Data points (0,1), (1,3) and (2,4). The line through the first two is z=2h+1 and predicts 5 at h=2, one above the observation.">
+ <text x="30" y="43" font-size="27" font-weight="650">Calibration observations</text>
+ <path d="M85 83H707M85 148H707M85 213H707M85 278H707M85 343H707M85 408H707M85 83V408M325 83V408M565 83V408" class="fa-gridline"/>
+ <path d="M72 408H731M85 426V65" class="fa-axis"/>
+ <text x="722" y="445" font-size="23">h</text><text x="57" y="67" font-size="23">z</text>
+ <text x="79" y="440" font-size="21">0</text><text x="319" y="440" font-size="21">1</text><text x="560" y="440" font-size="21">2</text>
+ <text x="54" y="350" font-size="21">1</text><text x="54" y="220" font-size="21">3</text><text x="54" y="155" font-size="21">4</text><text x="54" y="90" font-size="21">5</text>
+ <circle cx="85" cy="343" r="8" class="fa-dot"/><circle cx="325" cy="213" r="8" class="fa-dot"/><circle cx="565" cy="148" r="8" class="fa-dot"/>
+ <text x="102" y="376" font-size="23">(0, 1)</text><text x="341" y="244" font-size="23">(1, 3)</text><text x="582" y="175" font-size="23">(2, 4)</text>
+ <g class="fragment" data-fragment-index="1">
+  <path d="M85 343L617 55" class="fa-stroke"/><text x="371" y="97" font-size="25" font-weight="650">z = 2h + 1</text>
+  <path d="M565 85V140" class="fa-stroke fa-dash"/>
+  <circle cx="565" cy="83" r="8" class="fa-lit"/>
+  <text x="584" y="99" font-size="22">Prediction: 5</text><text x="582" y="127" font-size="22" font-weight="650">Gap: 1</text>
+ </g>
+</svg>
+<div class="fa-stack" data-fa-box>
+ <div class="fa-rule"><span class="fa-tag">One output coordinate</span>Find <span class="math inline">w,c</span> with <span class="math inline">wh_i+c=z_i</span> for all three observations.</div>
+ <div class="fa-strip fragment" data-fragment-index="0"><span class="fa-tag">A system in two unknowns</span><span class="math inline">X\theta=y:\qquad\begin{pmatrix}0&1\\1&1\\2&1\end{pmatrix}\begin{pmatrix}w\\c\end{pmatrix}=\begin{pmatrix}1\\3\\4\end{pmatrix}</span></div>
+ <div class="fa-strip fa-emphasis fragment" data-fragment-index="1"><span class="fa-tag">The first two equations fix the line</span><span class="math inline">c=1,\quad w=2,\quad 2w+c=5\ne4</span></div>
+ <div class="fa-rule fa-subtle fragment" data-fragment-index="1"><span class="math inline">\operatorname{rank}(X)=2,\ \ker X=\{0\}</span> · Yet no exact solution.</div>
+</div>
+</div>
+</figure>
+</div>
+<div class="la-takeaway">Can other exact systems have one solution or infinitely many?</div>
+<div class="la-source">Synthetic scalar example · One target value per calibration input</div>
+```
+
+::: {.notes lang="ru"}
+
+При замене блока на калибровочных данных известны входы $h_i$ и соответствующие ответы исходного блока $F(h_i)$. Значения выбранной координаты $F(h_i)$ образуют правую часть $y$, а строки матрицы $X$ имеют вид $[h_i^\top\;1]$. Единица в последнем столбце отвечает за свободный член.
+
+В примере и вход, и выход скалярные. Первые две точки, $(0,1)$ и $(1,3)$, однозначно задают прямую $z=2h+1$. При $h=2$ эта прямая даёт $5$, тогда как третье наблюдение равно $4$. Система $X\theta=y$, где $\theta=(w,c)^\top$, несовместна.
+
+Оба столбца $X$ независимы, поэтому $\ker X=\{0\}$ и при существовании решение было бы единственным. Но образ $X$ — лишь плоскость в $\mathbb R^3$, и вектор $y=(1,3,4)^\top$ на ней не лежит. Полный столбцовый ранг отвечает за единственность, а существование определяется принадлежностью $y$ образу $X$.
+
+:::

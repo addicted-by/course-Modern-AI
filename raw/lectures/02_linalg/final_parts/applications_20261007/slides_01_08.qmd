@@ -1,0 +1,478 @@
+## How does PCA reduce the features a model needs? {#app-d01 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">PCA replaces pixel features with a smaller set of shared directions.</p>
+<figure class="app-simple-result a18s-result a18s-feature-result">
+  <div class="a18s-digits" aria-label="Three example digit images, carried through both representations">
+    <img src="assets/applications_simple_20261111/applications-01-08/digit-0730.svg" alt="digit-0730">
+    <img src="assets/applications_simple_20261111/applications-01-08/digit-1590.svg" alt="digit-1590">
+    <img src="assets/applications_simple_20261111/applications-01-08/digit-0313.svg" alt="digit-0313">
+  </div>
+  <div class="a18s-feature-widths">
+    <div><strong>64 pixel features</strong><span class="a18s-bar" aria-hidden="true"></span></div>
+    <span class="a18s-arrow"><small>PCA</small><span aria-hidden="true">→</span></span>
+    <div><strong>32 features per digit</strong><span class="a18s-bar a18s-bar-half" aria-hidden="true"></span></div>
+  </div>
+  <figcaption>Same samples. Fewer features.</figcaption>
+</figure>
+<div class="app-simple-metrics">
+  <table>
+    <caption>Digits · 450 held-out test samples</caption>
+    <thead><tr><th scope="col">Representation</th><th scope="col">Features</th><th scope="col">Test accuracy</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Original pixels</th><td>64</td><td>97.8%</td></tr>
+      <tr><th scope="row">PCA</th><td>32</td><td>94.7%</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+[scikit-learn: PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) · [Digits notebook](notebooks/applications/01_pca_features.html)
+:::
+
+::: {.notes lang="ru"}
+PCA переводит те же изображения из пространства 64 пиксельных значений в 32 координаты вдоль ведущих компонент стандартизованных данных. Логистическая регрессия использует эти координаты как признаки. Число компонент выбрали на валидационной части обучающей выборки, после чего модели заново подогнали на всей обучающей выборке.
+
+На одних и тех же 450 отложенных цифрах точность составила 97,78% для исходных признаков и 94,67% после PCA. Дополнительные компоненты объясняют больше дисперсии, а их полезность для классификации зависит от того, какие направления разделяют классы.
+:::
+
+## How can PCA help us explore a dataset? {#app-d02 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">Two PCA coordinates turn many features into a map we can inspect.</p>
+<figure class="app-simple-result a18s-result a18s-full-figure">
+  <div class="a18s-figure-heading"><strong>1,347 digit images</strong><span>One point = one image</span></div>
+  <img src="assets/applications_simple_20261111/applications-01-08/digit-map.svg" alt="Two-coordinate PCA scatter of 1,347 digit images, with one point linked to its original image, digit-0730.">
+  <figcaption>Nearby on this map does not mean identical in all 64 features.</figcaption>
+</figure>
+```
+
+::::
+
+::: {.la-source}
+[scikit-learn: PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) · [Digit map notebook](notebooks/applications/02_pca_exploration.html)
+:::
+
+::: {.notes lang="ru"}
+Две главные компоненты задают плоскость, на которой каждое изображение представлено одной точкой. Направления найдены по 1347 стандартизованным обучающим изображениям без меток классов. Они объясняют 21,6% дисперсии. Выделенная точка соответствует изображению `digit-0730`.
+
+Квадрат расстояния после проекции учитывает только сохранённые координаты, поэтому порядок соседей может измениться. Для `digit-0730` пятёрка ближайших точек на карте и пятёрка ближайших по 64 стандартизованным признакам оказались непересекающимися. В среднем по 300 запросам из обучающей выборки доля совпадений в пятёрке составила 9,13%. Для каждого запроса искали соседей среди остальных обучающих изображений. Карта помогает просматривать данные, а близость в исходных признаках проверяется в полном пространстве.
+:::
+
+## How can search find a document without the exact word? {#app-d03 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">SVD finds shared patterns across documents so search can compare context.</p>
+<figure class="app-simple-result a18s-result a18s-search">
+  <div class="a18s-search-query"><span>Search query</span><strong>ship</strong></div>
+  <div class="a18s-search-results">
+    <div>
+      <h3>Exact word match</h3>
+      <p class="a18s-document">d2 · boat · ocean</p>
+      <p><strong>No match</strong><span>Cosine similarity 0.000</span></p>
+    </div>
+    <div>
+      <h3>LSA · rank 2</h3>
+      <p class="a18s-document">d2 · boat · ocean</p>
+      <p><strong><mark>Related context found</mark></strong><span>Cosine similarity 0.937</span></p>
+    </div>
+  </div>
+</figure>
+```
+
+::::
+
+::: {.la-source}
+[scikit-learn: TruncatedSVD](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html) · [Manning, Raghavan & Schütze · §18.4 worked example](https://nlp.stanford.edu/IR-book/html/htmledition/latent-semantic-indexing-1.html)
+:::
+
+::: {.notes lang="ru"}
+В частотной матрице каждый столбец описывает документ, а каждая строка соответствует слову. Запрос `ship` имеет нулевой косинус сходства с документом `d2`, в котором встречаются `boat` и `ocean`, поскольку их частотные векторы не имеют общих ненулевых координат. В других документах учебного корпуса `ocean` встречается вместе с `ship`. Ведущие направления SVD учитывают такие совместные появления слов.
+
+В латентно-семантическом анализе на слайде запрос и документы проецируются через $U_k^\top$, после чего сравниваются косинусы. В рисунке из учебника Stanford используется дополнительное масштабирование координат. При ранге 2 косинус для `d2` равен 0,937, а при ранге 3 равен −0,025. При ранге 2 до 0,494 растёт и сходство с `d5`, где встречается только `voyage`. Выбор ранга меняет порядок выдачи, а для оценки релевантности понадобилась бы независимая разметка. В русскоязычном примере из ноутбука используется другой корпус и признаки TF-IDF.
+:::
+
+## How can low rank make a convolution cheaper? {#app-d04 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">A low-rank factorization puts fewer channels between two convolutions.</p>
+<figure class="app-simple-result a18s-result">
+  <div class="conv-kernels">
+    <div class="conv-kernel">
+      <h3>Original</h3>
+      <div class="conv-grid" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <strong>3 × 3</strong>
+      <span>Input → output channels</span>
+    </div>
+    <span class="a18s-arrow" aria-hidden="true">→</span>
+    <div class="conv-factorization">
+      <h3>Low-rank channel factorization</h3>
+      <div class="conv-factors">
+        <div class="conv-kernel">
+          <div class="conv-grid" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <strong>3 × 3</strong>
+          <span>Input → <mark>r</mark> channels</span>
+        </div>
+        <span class="a18s-arrow" aria-hidden="true">→</span>
+        <div class="conv-kernel">
+          <div class="conv-grid conv-grid-point" aria-hidden="true"><span></span></div>
+          <strong>1 × 1</strong>
+          <span><mark>r</mark> → output channels</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figcaption>The 1 × 1 convolution combines the intermediate channels at each pixel.</figcaption>
+</figure>
+<div class="app-simple-metrics">
+  <table>
+    <caption>VGG-16 · ImageNet validation · one center crop per image</caption>
+    <thead><tr><th scope="col">Model</th><th scope="col">CPU time per image</th><th scope="col">Top-5 error ↓</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Original</th><td>3,287 ms</td><td>10.1%</td></tr>
+      <tr class="app-simple-highlight"><th scope="row">Factorized (12 of 13 convolutions)</th><td>875 ms</td><td>13.9%</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+[Zhang, Zou, He & Sun · Fig. 1 and §3](https://arxiv.org/pdf/1505.06798v2#page=3) · [VGG-16 results · Table 8, “our asym.”](https://arxiv.org/pdf/1505.06798v2#page=12)
+:::
+
+::: {.notes lang="ru"}
+Свёртка $3\times3$ преобразует окрестность каждого пикселя в вектор выходных каналов. При низкоранговой факторизации по каналам первая свёртка сохраняет окрестность $3\times3$ и выдаёт $r$ промежуточных каналов. Свёртка $1\times1$ в каждой точке восстанавливает исходную размерность выхода линейным смешиванием этих каналов. ReLU применяется после обеих операций. Промежуточную ширину $r$ выбирают отдельно для каждого слоя.
+
+В линейном случае низкоранговую структуру можно искать с помощью SVD центрированных откликов слоя. В работе Zhang и соавторов приближение подгоняют по откликам на обучающих изображениях с учётом ReLU, а обобщённое SVD используется в подзадаче регрессии пониженного ранга. При подгонке очередного слоя на вход поступают отклики уже сжатых предыдущих слоёв. Так метод учитывает накопленную ошибку.
+
+В варианте `our asym.` из таблицы 8 авторы заменили 12 из 13 свёрток VGG-16 без последующего сквозного дообучения. На валидационной выборке ImageNet использовали один центральный фрагмент $224\times224$ на изображение. Ошибка top-5 выросла с 10,1% до 13,9%. Это доля изображений, для которых верный класс не вошёл в первые пять предсказаний. В том же опубликованном сравнении время прогона модели на изображение сократилось с 3 287 до 875 мс на CPU в один поток с SSE и с 18,60 до 7,97 мс на GPU. Эти значения относятся к реализации авторов.
+:::
+
+## How does Qualcomm AIMET compress a convolution? {#app-aimet-convolution .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">Spatial SVD splits a 3 × 3 convolution into vertical and horizontal convolutions.</p>
+<figure class="app-simple-result a18s-result">
+  <div class="conv-kernels">
+    <div class="conv-kernel">
+      <h3>Original</h3>
+      <div class="conv-grid" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <strong>3 × 3</strong>
+      <span>512 → 512 channels</span>
+      <span>Total params: <strong>2,359,296</strong></span>
+    </div>
+    <span class="a18s-arrow" aria-hidden="true">→</span>
+    <div class="conv-factorization">
+      <h3>Spatial SVD · illustrative rank 128</h3>
+      <div class="conv-factors">
+        <div class="conv-kernel">
+          <div class="conv-grid conv-grid-vertical" aria-hidden="true"><span></span><span></span><span></span></div>
+          <strong>3 × 1</strong>
+          <span>512 → <mark>128</mark> channels</span>
+        </div>
+        <span class="a18s-arrow" aria-hidden="true">→</span>
+        <div class="conv-kernel">
+          <div class="conv-grid conv-grid-horizontal" aria-hidden="true"><span></span><span></span><span></span></div>
+          <strong>1 × 3</strong>
+          <span><mark>128</mark> → 512 channels</span>
+        </div>
+      </div>
+      <span>Total params: <strong>393,216</strong></span>
+    </div>
+  </div>
+  <figcaption>Kernel weights, excluding bias · In auto mode, AIMET measures the accuracy impact of compressing each layer.</figcaption>
+</figure>
+<div class="app-simple-metrics">
+  <table>
+    <caption>Qualcomm’s published ResNet18 benchmark · whole model</caption>
+    <thead><tr><th scope="col">Method</th><th scope="col">Model MACs retained</th><th scope="col">Top-1 accuracy</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Original</th><td>100%</td><td>69.76%</td></tr>
+      <tr class="app-simple-highlight"><th scope="row">Spatial SVD + channel pruning</th><td>50%</td><td>68.56%</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+[AIMET 2.43.0 · Spatial SVD](https://qualcomm.github.io/aimet-pages/releases/2.43.0/techniques/compression/spatial_svd.html) · [Qualcomm’s ResNet18 benchmark](https://github.com/qualcomm/aimet/blob/2.43.0/README.md#L184-L197)
+:::
+
+::: {.notes lang="ru"}
+В Spatial SVD AIMET тензор ядра преобразуется в матрицу, где индекс строки объединяет входной канал с высотой ядра, а индекс столбца объединяет выходной канал с шириной. Для ядра $3\times3$ с 512 входными и 512 выходными каналами получается матрица $(512\cdot3)\times(512\cdot3)$. Усечённое SVD даёт два фактора с общей размерностью $r$. В форме свёрток первый фактор действует по вертикали ядром $3\times1$ и выдаёт $r$ каналов, второй действует по горизонтали ядром $1\times3$ и возвращает 512 каналов. Между свёртками активация отсутствует. При иллюстративном ранге 128 число весов этого слоя уменьшается с 2 359 296 до 393 216 без учёта смещения.
+
+В автоматическом режиме AIMET использует заданный бюджет по числу операций MAC или объёму весов и функцию оценки, например точность на валидации. Для каждого подходящего слоя инструмент пробует несколько степеней сжатия по отдельности и оценивает модель целиком. Эти оценки позволяют подобрать сочетание сжатий под общий бюджет и сохранить больше каналов в чувствительных слоях. После замены слоёв модель можно дообучить.
+
+В опубликованном примере Qualcomm всю ResNet18 сжимали сочетанием Spatial SVD и удаления каналов. При сокращении числа MAC до 50% от исходного точность top-1 снизилась с 69,76% до 68,56%, на 1,20 процентного пункта. Эта доля относится к числу операций всей модели. Время исполнения зависит также от реализации свёрток и доступа к памяти.
+:::
+
+## How does SVD initialize a trainable adapter? {#app-pissa-init .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">PiSSA starts the adapter from the leading SVD components of the pretrained weight.</p>
+<figure class="app-simple-result a18s-result a18s-pissa">
+  <div class="a18s-pissa-paths">
+    <div><span>Leading components</span><span aria-hidden="true">→</span><strong>Trainable adapter</strong></div>
+    <div><span>Remaining components</span><span aria-hidden="true">→</span><strong>Frozen branch</strong></div>
+  </div>
+  <div class="a18s-pissa-merge"><span aria-hidden="true">→</span><strong>Same initial layer</strong></div>
+</figure>
+<div class="app-simple-metrics a18s-pissa-metrics">
+  <table aria-describedby="a18s-pissa-scope">
+    <caption>LLaMA 2-7B · 100k MetaMathQA examples · 1 epoch</caption>
+    <thead><tr><th scope="col">Adapter</th><th scope="col">GSM8K accuracy (%)</th><th scope="col">MATH accuracy (%)</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">LoRA (Gaussian)</th><td>42.85 ± 0.12</td><td>5.50 ± 0.33</td></tr>
+      <tr><th scope="row">LoRA (Kaiming)</th><td>43.23 ± 0.64</td><td>5.90 ± 0.16</td></tr>
+      <tr class="app-simple-highlight"><th scope="row">PiSSA (SVD)</th><td>53.22 ± 0.55</td><td>7.47 ± 0.34</td></tr>
+    </tbody>
+  </table>
+  <p id="a18s-pissa-scope">Published results · mean ± standard deviation over 3 runs</p>
+</div>
+```
+
+::::
+
+::: {.la-source}
+[Meng et al., NeurIPS 2024, §3, Eqs. 2–5](https://papers.nips.cc/paper_files/paper/2024/file/db36f4d603cc9e3a2a5e10b93e6428f2-Paper-Conference.pdf#page=4) · [NeurIPS Table 2](https://papers.nips.cc/paper_files/paper/2024/file/db36f4d603cc9e3a2a5e10b93e6428f2-Paper-Conference.pdf#page=7) · [LoRA, §4.1](https://arxiv.org/pdf/2106.09685#page=4) · [PEFT PiSSA](https://huggingface.co/docs/peft/main/en/package_reference/lora#pissa)
+:::
+
+::: {.notes lang="ru"}
+В LoRA предобученная матрица $W_0$ заморожена, а обучается добавка $sBA$ с положительным масштабом $s$. Матрица $A$ переводит вход в $r$ координат, а $B$ отображает их в пространство выходов слоя. При случайной инициализации $A$ и нулевой $B$ добавка равна нулю, поэтому начальный выход совпадает с выходом предобученного слоя. В этот момент градиент по $B$ может быть ненулевым, а градиент по $A$ равен нулю.
+
+В PiSSA приближение $W_r=U_r\Sigma_r V_r^\top$ из усечённого SVD матрицы $W_0$ задаёт начальные значения обучаемой ветви. При $B_0=U_r(\Sigma_r/s)^{1/2}$ и $A_0=(\Sigma_r/s)^{1/2}V_r^\top$ выполняется $sB_0A_0=W_r$. Замороженная ветвь содержит остаток $W_0-W_r$, поэтому сумма начальных весов по-прежнему равна $W_0$. Например, для $W_0=\operatorname{diag}(4,1)$, $x=(1,2)^\top$ и $r=s=1$ ветви дают $(0,2)^\top$ и $(4,0)^\top$. Если оставить в замороженной ветви весь $W_0$, то первая компонента учтётся дважды и получится $(8,2)^\top$ вместо $(4,2)^\top$.
+
+Равенство начальных функций относится к точной арифметике и ветви без dropout. В PiSSA оба фактора могут получать градиент уже на первом шаге, и при обучении их направления могут меняться. В таблице 2 Meng и соавторов для LLaMA 2-7B после одной эпохи на 100 тысячах примеров MetaMathQA средняя точность PiSSA составила 53,22% на GSM8K и 7,47% на MATH. У лучшего из показанных вариантов LoRA средние значения составили 43,23% и 5,90% соответственно. На GSM8K разница равна 9,99 процентного пункта. В таблице приведены средние и стандартные отклонения трёх запусков. Преимущество измерено в этом протоколе, а свойство усечённого SVD описывает только исходное приближение веса.
+:::
+
+## How did spectral normalization affect GAN training? {#app-spectral-normalization .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">Spectral normalization divides each discriminator weight matrix by its largest singular value.</p>
+<figure class="app-simple-result a18s-result sn-evidence">
+  <div class="sn-samples">
+    <h3>Generated CIFAR-10 samples</h3>
+    <div class="sn-grids">
+      <div><strong>WGAN-GP</strong><img src="assets/aimet_convolution_20261111/samples-wgan-gp.png" alt="Generated CIFAR-10 images with repeated bright magenta and red patterns."></div>
+      <div><strong>Weight norm</strong><img src="assets/aimet_convolution_20261111/samples-wn.png" alt="Generated CIFAR-10 images with muted, often indistinct objects."></div>
+      <div><strong>Spectral norm</strong><img src="assets/aimet_convolution_20261111/samples-sn.png" alt="Generated CIFAR-10 images with a variety of recognizable objects."></div>
+    </div>
+    <p>Same Adam setting E · WGAN-GP uses a different objective.</p>
+  </div>
+  <div class="sn-plots">
+    <div class="sn-plot-controls" role="group" aria-label="Published training plots" hidden>
+      <button type="button" aria-pressed="true" aria-controls="sn-fid-plot">FID across settings</button>
+      <button type="button" aria-pressed="false" aria-controls="sn-norm-plot">Weight norms</button>
+    </div>
+    <div class="sn-fid-plot" id="sn-fid-plot">
+      <img src="assets/aimet_convolution_20261111/fid-sweep.png" alt="Original Figure 2a, showing FID on a logarithmic scale for settings A through F. In setting E, spectral normalization gives a lower FID than WGAN-GP and GAN-GP.">
+      <p>FID (lower is better) · A–F identify Adam settings.</p>
+    </div>
+    <div class="sn-norm-plot" id="sn-norm-plot" hidden>
+      <img src="assets/aimet_convolution_20261111/weight-norms.png" alt="Original Figure 9, showing the spectral norms of seven normalized convolution weight matrices during training. The lines stay close to one after the initial updates.">
+      <p>Setting C · Seven normalized kernel matrices stayed near 1 after the initial updates.</p>
+    </div>
+  </div>
+</figure>
+<div class="app-simple-metrics">
+  <table>
+    <caption>CIFAR-10 · standard CNN · best reported setting for each method (Table 2)</caption>
+    <thead><tr><th scope="col">Discriminator weight normalization</th><th scope="col">Inception Score ↑</th><th scope="col">FID ↓</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Weight normalization</th><td>6.84 ± 0.07</td><td>34.7</td></tr>
+      <tr class="app-simple-highlight"><th scope="row">Spectral normalization</th><td>7.42 ± 0.08</td><td>29.3</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+[Miyato et al., ICLR 2018 · Fig. 2(a), Table 2](https://arxiv.org/pdf/1802.05957#page=8) · [Generated samples, Fig. 6(a)](https://arxiv.org/pdf/1802.05957#page=13) · [Weight norms, Fig. 9](https://arxiv.org/pdf/1802.05957#page=19)
+:::
+
+::: {.notes lang="ru"}
+У ненулевой матрицы $W$ спектральная норма равна старшему сингулярному числу $\sigma_1(W)$. Деление на это число сохраняет ранг и приводит максимальное евклидово растяжение к единице. В примере с эллипсом коэффициенты растяжения вдоль $e_1$ и $e_2$ были 5 и 10. После деления на 10 они равны 0,5 и 1. Такой линейный слой не увеличивает расстояния между входами, хотя его норма Фробениуса равна $\sqrt{1^2+0{,}5^2}>1$.
+
+В GAN дискриминатор отличает настоящие изображения от синтезированных и даёт сигнал для обучения генератора. Miyato и соавторы применили спектральную нормализацию к весам дискриминатора и проверили её на CIFAR-10. Три колонки с изображениями из рисунка 6(a) соответствуют одному режиму Adam, E, с шагом 0,001, $\beta_1=0{,}5$, $\beta_2=0{,}999$ и пятью обновлениями дискриминатора на одно обновление генератора. У WGAN-GP в этом режиме видны повторяющиеся яркие узоры, а при весовой и спектральной нормализации различимы разные объекты. Две нормализации сопоставлены при одинаковой архитектуре и стандартной функции потерь GAN. У WGAN-GP используется другая функция потерь.
+
+На рисунке 2(a) приведён FID в логарифмической шкале для шести режимов A–F. FID оценивает различие между средними и ковариациями признаков Inception у настоящих и сгенерированных изображений. Чем меньше FID, тем ближе эти распределения признаков по данной метрике. В режиме E у SN-GAN FID ниже, чем у WGAN-GP. В таблице 2 для стандартной CNN взята лучшая из испытанных настроек для каждого метода. FID у весовой нормализации равен 34,7, у спектральной — 29,3. Значения Inception Score составляют $6{,}84\pm0{,}07$ и $7{,}42\pm0{,}08$ соответственно. Эта метрика выше, когда классификатор увереннее в предсказаниях для отдельных изображений и его предсказания разнообразнее по всему набору. Для ортонормальной регуляризации в статье приведён FID 29,0.
+
+В реализации для свёрток пространственные координаты ядра и входные каналы объединяются в один индекс. Старшее сингулярное число полученной матрицы оценивают одним шагом степенного метода, начиная с вектора, сохранённого на предыдущем обновлении. При заниженной оценке спектральная норма после деления может превышать единицу. Рисунок 9 относится к режиму C. После начального переходного участка нормы семи развёрнутых матриц ядер держатся вблизи единицы. Это измерение относится к матрицам ядер. Для оценки растяжения всей свёртки или всего дискриминатора потребовалось бы учитывать соответствующие операторы целиком.
+:::
+
+## Why are some structures hard to recover from measurements? {#app-d05 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">SVD reveals directions that the measurements barely capture.</p>
+<figure class="app-simple-result a18s-result app-tomography">
+  <div class="app-tomography-frame">
+    <video controls playsinline preload="none" poster="assets/aimet_convolution_20261111/tomography-poster.png"
+        src="https://chanzuckerberg.github.io/cryoet-data-portal/stable/_static/img/combined.mp4"
+        aria-label="Limited-angle tomography simulation, 12 seconds, silent" aria-describedby="app-tomography-caption"></video>
+    <img class="app-tomography-still" src="assets/aimet_convolution_20261111/tomography-poster.png"
+        alt="The source simulation compares two reconstructions of the same volume. With a range of tilt angles missing, the fine structures on the right appear streaked.">
+  </div>
+  <figcaption id="app-tomography-caption">Simulation · Full-angle reconstruction (left) · Limited angles blur fine structures (right).</figcaption>
+</figure>
+```
+
+::::
+
+::: {.la-source}
+[CryoET Data Portal · Utz Ermel and Jonathan Schwartz](https://chanzuckerberg.github.io/cryoet-data-portal/stable/cryoet_ctf.html#tilt-angle-limitation-missing-wedge-problem) · [Direct video · 12 s](https://chanzuckerberg.github.io/cryoet-data-portal/stable/_static/img/combined.mp4) · [NumPy: numpy.linalg.pinv](https://numpy.org/doc/stable/reference/generated/numpy.linalg.pinv.html) · [Hansen · Regularization of discrete ill-posed problems](https://www.imm.dtu.dk/~pcha/Regularization/regu.html)
+:::
+
+::: {.notes lang="ru"}
+В 12-секундном ролике CryoET показаны две реконструкции одной смоделированной структуры. Слева доступны все углы наклона, справа часть углов отсутствует. При ограниченном обзоре тонкие детали выглядят размытыми и вытянутыми. Связь между потерей информации и усилением шума при восстановлении видна на отдельной двумерной модели.
+
+Пусть в сингулярных базисах $A=\operatorname{diag}(1,0{,}02)$. Единичное изменение вдоль второго входного направления даёт отклик 0,02. Для $x=(1,\,0{,}5)^\top$ чистое измерение равно $(1,\,0{,}01)^\top$, а добавка 0,03 во второй координате даёт $b=(1,\,0{,}04)^\top$. Обращение делит слабую координату на 0,02, усиливая шум в 50 раз. Оценка $(1,\,2)^\top$ имеет нулевую невязку и ошибку параметров 1,50. При отсечении слабой компоненты оценка $(1,\,0)^\top$ даёт невязку 0,04 и ошибку параметров 0,50. В этом примере отсечение уменьшает ошибку восстановления за счёт менее точного согласия с зашумлённым измерением.
+:::
+
+## How can image motion reveal a 3D shape? {#app-d06 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">SVD separates shared camera motion from the shape tracked across frames.</p>
+<figure class="app-simple-result a18s-result a18s-full-figure">
+  <img src="assets/applications_simple_20261111/applications-01-08/house.svg" alt="Tracked corners from three of five views feed into SVD, producing a wireframe house. Corner P1 is marked in each view and in the recovered shape.">
+  <figcaption>Synthetic orthographic example</figcaption>
+</figure>
+```
+
+::::
+
+::: {.la-source}
+[Tomasi–Kanade, 1992 · Shape and Motion from Image Streams under Orthography](https://link.springer.com/article/10.1007/BF00129684)
+:::
+
+::: {.notes lang="ru"}
+В пяти ортографических видах отслеживаются десять общих точек синтетического домика. Выделенный угол соответствует одной и той же точке во всех кадрах. В матрице наблюдений каждой точке соответствует столбец, а каждому кадру — две строки с координатами всех точек. Вычитание среднего по точкам в каждом кадре устраняет перенос на изображении.
+
+Оставшиеся координаты получаются линейной проекцией трёхмерной формы, поэтому центрированная матрица $10\times10$ имеет ранг не выше трёх. В этом примере ранг равен трём, и три компоненты SVD воспроизводят наблюдения с точностью до округления. В разложении $MS$ строки $M$ задают проекции для разных кадров, а столбцы $S$ содержат координаты точек. Пара $MH$ и $H^{-1}S$ даёт те же наблюдения при любой обратимой $H$. Для рисунка систему координат задаёт известный синтетический домик. При восстановлении метрической формы только по наблюдениям нужны дополнительные ограничения, например ортонормированность строк ортографических проекций.
+:::
+
+## How can two images constrain the same 3D scene? {#app-d07 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">SVD estimates the geometry linking matching points in two images.</p>
+<figure class="app-simple-result a18s-result a18s-cameras">
+  <div>
+    <h3>Match in image 1</h3>
+    <img src="assets/applications_simple_20261111/applications-01-08/image-1.svg" alt="Synthetic image 1 with feature pair 8 highlighted">
+  </div>
+  <div>
+    <h3>Where its partner can lie in image 2</h3>
+    <img src="assets/applications_simple_20261111/applications-01-08/image-2.svg" alt="Synthetic image 2, with the fitted epipolar line passing close to pair 8 after Hartley normalization">
+  </div>
+</figure>
+<div class="app-simple-metrics">
+  <table>
+    <caption>Synthetic scene · same 64 noisy fitting pairs · 240 clean test pairs</caption>
+    <thead><tr><th scope="col">Coordinate preparation</th><th scope="col">Held-out Sampson RMS (px)</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Raw pixels</th><td>24.04</td></tr>
+      <tr class="app-simple-highlight"><th scope="row">Hartley normalization</th><td>0.47</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+[Hartley, 1997 · In Defense of the Eight-Point Algorithm](https://www.computer.org/csdl/journal/tp/1997/06/i0580/13rRUyYjKbj) · [Two-view geometry notebook](notebooks/applications/07_two_view_geometry.html)
+:::
+
+::: {.notes lang="ru"}
+Для точки $x$ в первом изображении фундаментальная матрица $F$ задаёт эпиполярную прямую $Fx$ во втором. В идеальных данных соответствующая точка $x'$ лежит на этой прямой, то есть $x'^\top Fx=0$. На рисунке оценённая прямая проходит близко к наблюдаемой точке. Чтобы найти положение вдоль прямой, нужны дополнительные сведения о соответствии.
+
+Каждая пара даёт одно линейное ограничение на девять элементов $F$. Из SVD матрицы ограничений $A$ размера $64\times9$ берётся правое сингулярное направление, минимизирующее $\|Af\|_2$ при $\|f\|_2=1$. Для ровно восьми пар нужен полный правый базис, чтобы включить направление ядра матрицы $8\times9$. После преобразования $f$ в матрицу $3\times3$ второе SVD зануляет её наименьшее сингулярное число и задаёт оценку ранга 2. Нормализация Хартли центрирует координаты в каждом изображении и приводит среднее расстояние до центра к $\sqrt{2}$. После оценки матрицу возвращают в исходные пиксельные координаты.
+
+В синтетическом опыте обе оценки построены по одним и тем же 64 парам с шумом со стандартным отклонением в один пиксель. На независимых 240 чистых парах среднеквадратичная невязка Сэмпсона снизилась с 24,04 до 0,47 пикселя. Эта величина характеризует согласованность пар с эпиполярной геометрией в изображениях. Для ошибки восстановления 3D-координат нужна отдельная оценка.
+:::
+
+## How can SVD preserve a quiet signal in a noisy mixture? {#app-d08 .la-slide .app-slide .app-simple .app-simple-a18 background-color="#ffffff"}
+
+:::: {.la-body}
+
+```{=html}
+<p class="app-simple-concept">Keeping more than one singular component can preserve a quieter source.</p>
+<figure class="app-simple-result a18s-result a18s-audio">
+  <div class="a18s-spectrogram-pair">
+    <div>
+      <h3>Noisy mixture</h3>
+      <div class="a18s-spectrum">
+        <img src="assets/visual_rollout_20261111/applications-01-08/audio-noisy.webp" alt="Noisy mixture spectrogram from 0 to 4 seconds and 0 to 2 kHz.">
+      </div>
+    </div>
+    <div>
+      <h3>Rank 2 reconstruction</h3>
+      <div class="a18s-spectrum">
+        <img src="assets/visual_rollout_20261111/applications-01-08/audio-rank2.webp" alt="Rank 2 spectrogram from 0 to 4 seconds and 0 to 2 kHz. The dashed rectangle contains the quiet melody.">
+        <span class="a18s-melody">Quiet melody retained</span>
+      </div>
+    </div>
+  </div>
+  <figcaption>Shared scales · 0–4 s · 0–2 kHz · −65 to 0 dB</figcaption>
+  <div class="a18s-playback">
+    <label for="a18s-audio-choice">Listen</label>
+    <select id="a18s-audio-choice">
+      <option value="assets/visual_rollout_20261111/applications-01-08/audio-noisy.wav">Mixture</option>
+      <option value="assets/visual_rollout_20261111/applications-01-08/audio-rank1.wav">Rank 1</option>
+      <option value="assets/visual_rollout_20261111/applications-01-08/audio-rank2.wav" selected>Rank 2</option>
+    </select>
+    <audio controls preload="none" aria-label="Rank 2 recording" src="assets/visual_rollout_20261111/applications-01-08/audio-rank2.wav"></audio>
+  </div>
+</figure>
+<div class="app-simple-metrics">
+  <table>
+    <caption>Known clean reference · identical playback gain</caption>
+    <thead><tr><th scope="col">Synthetic channel 0</th><th scope="col">SNR (dB)</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Noisy mixture</th><td>3.13</td></tr>
+      <tr><th scope="row">Rank 1</th><td>6.64</td></tr>
+      <tr class="app-simple-highlight"><th scope="row">Rank 2</th><td>9.17</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+::::
+
+::: {.la-source}
+[Demené et al., 2015 · Spatiotemporal Clutter Filtering](https://pubmed.ncbi.nlm.nih.gov/25955583/) · [Synthetic audio notebook](notebooks/applications/08_audio_svd_denoising.html)
+:::
+
+::: {.notes lang="ru"}
+В синтетической смеси восемь каналов образуют строки матрицы, а столбцы соответствуют моментам времени. Усечённое SVD проецирует каждый отсчёт на подпространство ведущих пространственных направлений. При ранге 1 в смеси ослабевает шум и почти исчезает тихая высокая мелодия. При ранге 2 она сохраняется в выделенной полосе спектрограммы. Спектрограммы даны на одной шкале, а аудиозаписи имеют одинаковое усиление.
+
+На канале 0 отношение сигнал/шум относительно известного чистого эталона равно 3,13 дБ у исходной смеси, 6,64 дБ при ранге 1 и 9,17 дБ при ранге 2. Проекция сохраняет соответственно 0,007% и 99,993% квадрата нормы известного вектора, задающего вклад тихой мелодии в восемь каналов. Это свойство выбранных подпространств в данном синтетическом примере. В реальной записи отдельная сингулярная компонента может содержать вклад нескольких источников.
+:::

@@ -1,0 +1,108 @@
+.reveal .slides section.la-slide.app-simple {
+  --la-frame-body-top: 180px;
+  --la-frame-body-height: 632px;
+}
+
+.reveal .slides section.app-simple > .la-body {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: stretch;
+  row-gap: 12px;
+}
+
+.reveal .app-simple .app-simple-concept {
+  margin: 0;
+  color: var(--lecture-fg);
+  font: 550 30px/1.25 var(--lecture-font-sans);
+}
+
+.reveal .app-simple :is(.app-simple-concept, .app-simple-metrics) > p { margin: 0; }
+
+.reveal .app-simple .app-simple-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+}
+
+.reveal .app-simple .app-simple-result > :is(img, svg) {
+  display: block;
+  flex: 1 1 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  object-fit: contain;
+}
+
+.reveal .app-simple .app-simple-result > figcaption,
+.reveal .app-simple .app-simple-metrics > p,
+.reveal .app-simple .app-simple-metrics caption {
+  color: var(--lecture-muted);
+  font: 500 19px/1.26 var(--lecture-font-sans);
+}
+
+.reveal .app-simple .app-simple-result > figcaption {
+  flex: none;
+  margin: 0;
+  text-align: left;
+}
+
+.reveal .app-simple .app-simple-metrics table {
+  width: 100%;
+  margin: 0;
+  color: var(--lecture-fg);
+  font: 500 23px/1.2 var(--lecture-font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .app-simple .app-simple-metrics caption {
+  caption-side: top;
+  padding: 0 0 5px;
+  text-align: left;
+}
+
+.reveal .app-simple .app-simple-metrics :is(th, td) {
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--lecture-border);
+  text-align: left;
+}
+
+.reveal .app-simple .app-simple-metrics thead { background: var(--lecture-bg-subtle); }
+.reveal .app-simple .app-simple-metrics .app-simple-highlight { background: var(--lecture-pop-lime); }
+
+.reveal .app-simple .app-video {
+  position: static;
+  flex: none;
+  align-self: stretch;
+  gap: 14px;
+}
+
+.reveal .app-simple .app-video .app-video-link {
+  padding: 10px 15px;
+  background: var(--lecture-pop-lime);
+  font-size: 23px;
+  transition: background-color var(--la-motion-duration, 120ms) ease,
+              color var(--la-motion-duration, 120ms) ease;
+}
+
+.reveal .app-simple .app-video .app-video-link:is(:hover, :focus-visible) {
+  background: var(--lecture-fg);
+  color: #fff;
+}
+
+:is(.print-pdf, .reveal-print) .reveal .app-simple .app-video-source { display: inline-block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .app-simple .app-video .app-video-link { transition: none; }
+}
+
+:is(.print-pdf, .reveal-print) .reveal .app-simple audio { display: none; }
+
+@media print {
+  .reveal .app-simple .app-video-source { display: inline-block; }
+  .reveal .app-simple audio { display: none !important; }
+}

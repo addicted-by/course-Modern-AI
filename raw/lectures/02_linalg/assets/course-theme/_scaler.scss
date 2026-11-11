@@ -1,0 +1,166 @@
+/* ==========================================================================
+   Slide Scaler Engine: Interactive Zoom Controls & Auto-Fit UI
+   ========================================================================== */
+
+/* 1. Floating Frosted Glass Scaler Pill */
+.slide-scaler-pill {
+  position: fixed;
+  bottom: 22px !important;
+  left: 56px !important;
+  z-index: 32;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--lecture-surface-glass, rgba(255, 255, 255, 0.92));
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--lecture-border-glass, rgba(15, 23, 42, 0.15));
+  border-radius: var(--lecture-radius-pill, 9999px);
+  padding: 3px 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.1);
+  font-family: var(--lecture-font-mono, 'JetBrains Mono', monospace);
+  font-size: 13px;
+  font-weight: 600;
+  user-select: none;
+  transition: opacity 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.25s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  }
+}
+
+/* 2. Scaler Pill Buttons */
+.slide-scaler-pill .scaler-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--lecture-fg, #0f172a);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--lecture-accent-soft, rgba(56, 139, 253, 0.15));
+    color: var(--lecture-accent, #2563eb);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+
+  &.scaler-value {
+    min-width: 46px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.02em;
+    padding: 3px 4px;
+  }
+
+  &.scaler-fit {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: var(--lecture-radius-pill, 9999px);
+    border: 1px solid transparent;
+
+    &.active {
+      background: var(--lecture-accent, #2563eb);
+      color: #ffffff !important;
+      box-shadow: 0 1px 6px rgba(37, 99, 235, 0.35);
+    }
+  }
+}
+
+/* 3. Scaler Pill Divider */
+.slide-scaler-pill .scaler-sep {
+  width: 1px;
+  height: 14px;
+  background: var(--lecture-border-glass, rgba(15, 23, 42, 0.18));
+  margin: 0 2px;
+  opacity: 0.6;
+}
+
+/* 4. Contrast Adaptations for Light & Dark Slides */
+.reveal.has-light-background .slide-scaler-pill,
+.reveal .slide-scaler-pill.has-light-background {
+  color: var(--lecture-fg, #0f172a) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(15, 23, 42, 0.18) !important;
+}
+
+.reveal.has-dark-background .slide-scaler-pill,
+.reveal .slide-scaler-pill.has-dark-background,
+.reveal:has(section.present.has-dark-background) .slide-scaler-pill,
+.reveal:has(section.present[data-background-color^="#0"]) .slide-scaler-pill,
+.reveal:has(section.present[data-background-color^="#1"]) .slide-scaler-pill,
+.reveal:has(section.present[data-background-color^="#2"]) .slide-scaler-pill,
+.reveal:has(section.present[data-background-color^="#3"]) .slide-scaler-pill,
+.reveal:has(section.present .section-slide) .slide-scaler-pill {
+  color: #ffffff !important;
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5) !important;
+
+  .scaler-btn {
+    color: #ffffff !important;
+
+    &:hover {
+      background: var(--lecture-accent-soft, rgba(56, 139, 253, 0.25));
+      color: var(--lecture-accent, #58a6ff) !important;
+    }
+
+    &.scaler-fit.active {
+      background: var(--lecture-accent, #58a6ff);
+      color: #0b0f19 !important;
+    }
+  }
+
+  .scaler-sep {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* 5. Overflow & Custom Scrollbars for Scaled / Scrollable Slides */
+.reveal .slides section.slide-scrollable,
+.reveal .slides section.has-overflow {
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lecture-accent, #58a6ff) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--lecture-accent-soft, rgba(56, 139, 253, 0.4));
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--lecture-accent, #58a6ff);
+  }
+}
+
+/* 6. Print Mode Optimization */
+@media print {
+  .slide-scaler-pill {
+    display: none !important;
+  }
+}

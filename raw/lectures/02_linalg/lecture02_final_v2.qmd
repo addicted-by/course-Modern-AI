@@ -1,0 +1,56 @@
+---
+pagetitle: "Modern AI — Lecture 02 — Linear Algebra"
+lang: en
+filters:
+  - assets/arch_style_20261111/slide-metadata.lua
+  - assets/filters/offline-katex.lua
+offline-katex-dir: vendor/katex/dist
+format:
+  revealjs:
+    theme:
+      - default
+      - assets/arch_style_20261111/local-fonts.scss
+      - assets/course-theme/theme.scss
+    section-divs: false
+    pdf-separate-fragments: false
+    css:
+      - assets/lecture02_final/style.css
+      - assets/preliminary_20261007/style.css
+      - assets/preliminary_20261007/opening.css
+      - assets/preliminary_20261007/widgets.css
+      - assets/secretly_linear_20261111/style.css
+      - assets/pdf_narrative_20261111/style.css
+      - assets/pdf_narrative_20261111/decomp-visual.css
+      - assets/pdf_narrative_20261111/truncated-svd.css
+      - assets/return_20261105/style.css
+      - assets/applications_20261007/style.css
+      - assets/arch_style_20261111/style.css
+      - assets/arch_style_20261111/motion.css
+      - assets/visual_rollout_20261111/style.css
+      - assets/visual_rollout_20261111/factorization-core.css
+      - assets/visual_rollout_20261111/factorization-proofs.css
+      - assets/foundations_20261111/style.css
+      - assets/applications_media_20261111/style.css
+      - assets/applications_simple_20261111/style.css
+      - assets/applications_simple_20261111/applications-01-08.css
+      - assets/applications_simple_20261111/applications-09-16.css
+      - assets/aimet_convolution_20261111/style.css
+    include-after-body:
+      - assets/preliminary_20261007/runtime.html
+      - assets/applications_simple_20261111/runtime.html
+      - assets/applications_media_20261111/runtime.html
+      - assets/aimet_convolution_20261111/runtime.html
+      - assets/notes_rewrite_20261111/speaker-math.html
+    # KaTeX markup, runtime, and fonts are embedded by offline-katex.lua.
+    html-math-method: plain
+bibliography: assets/lecture02_final/sources.bib
+suppress-bibliography: true
+---
+
+{{< include lecture02_final_v2_preliminary.qmd >}}
+
+{{< include lecture02_final_v2_applications.qmd >}}
+
+{{< include final_parts/return_20261105/slides_r01_r08.qmd >}}
+
+{{< include final_parts/foundations_20261111/proofs.qmd >}}

@@ -1,0 +1,292 @@
+.reveal .slides section.pre-proof .pf-logic {
+  display: grid;
+  gap: 8px 36px;
+  margin: 12px 0 20px;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+.reveal .slides section.pre-proof .pf-logic.pf-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reveal .slides section.pre-proof .pf-logic p,
+.reveal .slides section.pre-proof .pf-note p {
+  margin: 0;
+}
+
+.reveal .slides section.pre-proof .pf-logic .katex-display {
+  margin: 3px 0 8px !important;
+}
+
+.reveal .slides section.pre-proof .pf-note {
+  font-size: 22px;
+  margin-top: 15px;
+}
+
+.reveal .slides section.pre-proof .pre-proof-condition {
+  margin-bottom: 11px;
+}
+
+.reveal .slides section.pre-proof .vr-visual {
+  margin: 0;
+}
+
+.reveal .pre-proof .vr-visual .pf-grid {
+  display: grid;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.reveal .pre-proof .vr-visual .pf-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reveal .pre-proof .vr-visual .pf-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.reveal .pre-proof .vr-visual .pf-four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.reveal .pre-proof .vr-visual .pf-unique {
+  grid-template-columns: 1fr 1fr 1.2fr;
+}
+
+.reveal .pre-proof .vr-visual .pf-mass {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: center;
+}
+
+.reveal .pre-proof .vr-visual .pf-panel {
+  min-width: 0;
+  border: 1px solid var(--vr-line, #c5c5c5);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.reveal .pre-proof .vr-visual .pf-panel h3,
+.reveal .pre-proof .vr-visual .pf-table caption {
+  font: 600 25px/1.14 var(--lecture-font-heading);
+  letter-spacing: -.025em;
+  margin: 0;
+  color: var(--vr-ink, #1a1a1a);
+  text-transform: none;
+}
+
+.reveal .pre-proof .vr-visual .pf-svg {
+  display: block;
+  width: 100%;
+  height: 190px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.reveal .pre-proof .vr-visual .pf-svg text {
+  fill: var(--vr-ink, #1a1a1a);
+  font: 500 18px/1 var(--lecture-font-sans);
+}
+
+.reveal .pre-proof .vr-visual .pf-caption {
+  font-size: 21px;
+  margin: 7px 0;
+  color: var(--vr-muted, #52525b);
+}
+
+.reveal .pre-proof .vr-visual .pf-result {
+  border-top: 1px solid var(--vr-line, #c5c5c5);
+  margin-top: auto;
+  padding-top: 7px;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.reveal .pre-proof .vr-visual :is(.pf-table, .pf-heat) {
+  width: 100%;
+  margin: 0;
+  font-size: 23px;
+}
+
+.reveal .pre-proof .vr-visual :is(.pf-table, .pf-heat) caption {
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+.reveal .pre-proof .vr-visual :is(.pf-table, .pf-heat) :is(td, th) {
+  padding: 5px 8px;
+  text-align: center;
+  border: 1px solid var(--vr-line, #c5c5c5);
+}
+
+.reveal .pre-proof .vr-visual .pf-table th {
+  background: var(--vr-wash, #f3f3f3);
+}
+
+.reveal .pre-proof .vr-visual .pf-heat {
+  table-layout: fixed;
+  background: var(--vr-wash, #f3f3f3);
+}
+
+.reveal .pre-proof .vr-visual .pf-heat caption {
+  font-size: 20px;
+}
+
+.reveal .pre-proof .vr-visual .pf-matrices,
+.reveal .pre-proof .vr-visual .pf-endpoints {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.reveal .pre-proof .vr-visual .pf-endpoints {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.reveal .pre-proof .vr-visual .pf-endpoints span {
+  border-left: 3px solid var(--vr-accent, #bef264);
+  padding-left: 10px;
+}
+
+.reveal .pre-proof .vr-visual .pf-active,
+.reveal .pre-proof .vr-visual .pf-fill {
+  background: var(--vr-accent, #bef264);
+  fill: var(--vr-accent, #bef264);
+  stroke: var(--vr-ink, #1a1a1a);
+}
+
+.reveal .pre-proof .vr-visual .pf-empty {
+  background: transparent;
+  fill: none;
+  border: 1px dashed var(--vr-ink, #1a1a1a);
+  stroke: var(--vr-ink, #1a1a1a);
+  stroke-dasharray: 5 3;
+}
+
+.reveal .pre-proof .vr-visual .pf-dark-fill,
+.reveal .pre-proof .vr-visual .pf-ink-dot {
+  background: var(--vr-ink, #1a1a1a);
+  fill: var(--vr-ink, #1a1a1a);
+}
+
+.reveal .pre-proof .vr-visual :is(.pf-outline, .pf-axis, .pf-guide, .pf-kernel) {
+  fill: none;
+  stroke: var(--vr-ink, #1a1a1a);
+  stroke-width: 1.4;
+}
+
+.reveal .pre-proof .vr-visual :is(.pf-axis, .pf-guide) {
+  stroke: var(--vr-muted, #52525b);
+  stroke-width: 1;
+}
+
+.reveal .pre-proof .vr-visual :is(.pf-guide, .pf-kernel) {
+  stroke-dasharray: 5 4;
+}
+
+.reveal .pre-proof .vr-visual .pf-kernel {
+  stroke-width: 2.2;
+}
+
+.reveal .pre-proof .vr-visual .pf-accent-vector {
+  fill: var(--vr-accent, #bef264);
+  stroke: var(--vr-ink, #1a1a1a);
+  stroke-width: 1.5;
+}
+
+.reveal .pre-proof .vr-visual path.pf-accent-vector {
+  stroke: var(--vr-accent, #bef264);
+  stroke-width: 6;
+}
+
+.reveal .pre-proof .vr-visual .pf-ink-vector {
+  fill: var(--vr-ink, #1a1a1a);
+  stroke: var(--vr-ink, #1a1a1a);
+  stroke-width: 2.2;
+}
+
+.reveal .pre-proof .vr-visual .pf-measure {
+  display: grid;
+  grid-template-columns: minmax(94px, auto) minmax(0, 1fr) 45px;
+  gap: 12px;
+  align-items: center;
+  font-size: 21px;
+  line-height: 1.15;
+  min-height: 32px;
+}
+
+.reveal .pre-proof .vr-visual .pf-measure strong {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .pre-proof .vr-visual .pf-track {
+  height: 15px;
+  background: var(--vr-wash, #f3f3f3);
+  border: 1px solid var(--vr-line, #c5c5c5);
+  display: block;
+}
+
+.reveal .pre-proof .vr-visual .pf-track > span {
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.reveal .pre-proof .vr-visual .pf-track > [style="width:0%"] {
+  border: 0;
+}
+
+.reveal .pre-proof .vr-visual .pf-sum {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 11px;
+  align-items: center;
+  margin-top: auto;
+  font-size: 23px;
+}
+
+.reveal .pre-proof .vr-visual .pf-sum b {
+  padding: 2px 9px;
+}
+
+.reveal .pre-proof .vr-visual .pf-controls {
+  margin: 0 0 10px;
+}
+
+.reveal .pre-proof .vr-visual .pf-checkpoints {
+  display: flex;
+  gap: 12px 26px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-size: 20px;
+}
+
+.reveal #pre-28 .vr-visual .pf-svg { height: 155px; }
+.reveal #pre-29 .vr-visual .pf-panel { min-height: 205px; }
+.reveal #pre-30 .vr-visual .pf-svg { height: 220px; }
+.reveal #pre-32 .vr-visual .pf-svg { height: 215px; }
+.reveal #pre-33 .vr-visual .pf-svg { height: 220px; }
+.reveal #pre-34 .vr-visual .pf-svg { height: 168px; }
+.reveal #pre-34 .vr-visual .pf-measure { min-height: 42px; }
+.reveal #pre-36 .vr-visual .pf-svg { height: 150px; }
+.reveal #pre-37 .vr-visual .pf-svg { height: 195px; }
+
+@media print {
+  .reveal .pre-proof .vr-visual {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+.reveal #pre-35 .vr-visual .pf-measure {
+  grid-template-columns: 147px minmax(0, 1fr) 45px;
+  min-height: 45px;
+}
+
+.reveal #pre-35 .vr-visual .pf-track { height: 21px; }
