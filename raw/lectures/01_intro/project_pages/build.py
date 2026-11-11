@@ -65,8 +65,8 @@ def main():
     images = []
     for manifest in sorted(ASSETS.glob("sources-*.json")):
         images.extend(json.loads(manifest.read_text(encoding="utf-8")))
-    if sorted(project["number"] for project in projects) != list(range(1, 11)):
-        raise ValueError("Expected projects 01 through 10 exactly once")
+    if sorted(project["number"] for project in projects) != list(range(1, len(projects) + 1)):
+        raise ValueError("Expected consecutive project numbers starting at 01 exactly once")
     projects.sort(key=lambda project: project["number"])
     for index, project in enumerate(projects):
         pictures = [image for image in images if image["project"] == project["number"]]
@@ -78,7 +78,9 @@ def main():
         values = {key: escape(value, quote=True) for key, value in project.items() if isinstance(value, str)}
         values["number"] = f"{project['number']:02d}"
         values["catalog"] = "capstone-projects-1" if project["number"] <= 6 else "capstone-projects-2"
-        values.update(registration_markup(registration, project["title"]))
+        values["total"] = str(len(projects))
+        values["catalog_url"] = escape(project.get("catalog_url", f'../course_structure.html#/{values["catalog"]}'), quote=True)
+        values.update(registration_markup(registration if project.get("registration_enabled", True) else None, project["title"]))
         resources = []
         for filename, label, download in [
             ("README.md", "Project README ↗", ""),

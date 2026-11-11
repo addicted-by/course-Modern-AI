@@ -25,7 +25,7 @@ README and notebook links appear only when the corresponding files exist under
 
 ## Project registration
 
-One Google Form serves all ten projects. Each generated page has an English
+One Google Form serves registered projects. Each enabled page has an English
 registration button and a form collapsed by default. Clicking **Sign up for this
 project** expands the form and scrolls to it. The **Project registration** heading
 also toggles the form. The expanded section includes the embedded form and a link
@@ -38,7 +38,7 @@ Prefilling does not lock the dropdown: students may change their selection.
 Create the form in the course owner's Google account:
 
 1. Name it **Modern AI — Project Registration**.
-2. Add four required questions: **Project** (dropdown with the ten project titles
+2. Add four required questions: **Project** (dropdown with the project titles
    from `projects.json`), **First name**, **Last name**, and **Telegram** (short answers).
    Add the hint `Example: @username` to Telegram.
 3. Under response settings, turn off email collection and the one-response limit.
@@ -80,7 +80,7 @@ python3 raw/lectures/01_intro/project_pages/build.py --require-registration
 quarto render
 ```
 
-Verify the form without Google sign-in, check the project selection on all ten
+Verify the form without Google sign-in, check the project selection on all enabled
 pages, and submit one clearly marked test application. Confirm it arrives in the
 private response sheet and that respondents cannot see others' answers. Check
 the embedded form and confirmation on both desktop and mobile. This version
@@ -89,3 +89,17 @@ collects applications; capacity and duplicate applications are reviewed manually
 Never put student responses, private spreadsheet links, credentials, or the form
 editor URL in this repository. Changes to Google questions, permissions, or form
 publication happen in Google Forms and are not controlled by Quarto.
+
+## Project 11
+
+YuE2 Instrument Stem Generation is linked from the website project catalog.
+Its brief describes separate instrument experts and sequential track generation:
+each expert conditions on the tracks already generated, and their sum is the final mix.
+The local SVG illustrates this proposed workflow, not the released YuE2 model.
+Project numbering and footer totals follow `projects.json` automatically.
+`catalog_url` optionally overrides the default lecture-catalog backlink.
+
+Project 11 sets `registration_enabled: false` until the exact title
+**YuE2 Instrument Stem Generation** is added to the Google Form's Project dropdown.
+After verifying prefill in the public form, set it to true and rebuild.
+Existing projects retain their registration settings.

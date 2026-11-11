@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="380" viewBox="0 0 1100 380" role="img" aria-labelledby="title desc">
+<title id="title">Sequential music generation with instrument experts</title>
+<desc id="desc">A shared text prompt guides separate drums, bass and piano experts. The bass expert uses drums as context; the piano expert uses drums and bass. Their separate tracks are summed into the final mix. This is an example order.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10" fill="#1a1a1a"/></marker></defs>
+<rect width="1100" height="380" fill="#fff"/>
+<g font-family="Arial, sans-serif" fill="#1a1a1a" text-anchor="middle">
+<text x="550" y="40" font-size="26" font-weight="bold">One expert per instrument · one track at a time</text>
+<g stroke="#1a1a1a" stroke-width="2"><rect x="35" y="100" width="270" height="120" rx="8" fill="#f4f4f5"/><rect x="415" y="100" width="270" height="120" rx="8" fill="#f4f4f5"/><rect x="795" y="100" width="270" height="120" rx="8" fill="#f4f4f5"/><rect x="350" y="292" width="400" height="64" rx="8" fill="#bef264"/></g>
+<g font-size="25" font-weight="bold"><text x="170" y="137">Drums expert</text><text x="550" y="137">Bass expert</text><text x="930" y="137">Piano expert</text></g>
+<g font-size="20"><text x="170" y="171">Text prompt</text><text x="550" y="171">Text + drums</text><text x="930" y="171">Text + drums + bass</text></g>
+<g font-size="21" font-weight="bold"><text x="170" y="204">→ Drum track</text><text x="550" y="204">→ Bass track</text><text x="930" y="204">→ Piano track</text></g>
+<g fill="none" stroke="#1a1a1a" stroke-width="2.5" marker-end="url(#arrow)"><path d="M305 155H400"/><path d="M685 155H780"/><path d="M170 220V260H550V285"/><path d="M550 220V285"/><path d="M930 220V260H550"/></g>
+<text x="550" y="332" font-size="24" font-weight="bold">Sum tracks → final mix</text>
+</g></svg>

@@ -1,0 +1,9 @@
+[
+  {
+    "project": 11,
+    "file": "p11-yue2-stems.svg",
+    "alt": "Text prompt to drums expert, then bass expert conditioned on drums, then piano expert conditioned on drums and bass. The separate generated tracks are summed into a final mix.",
+    "caption": "Separate instrument experts generate tracks in sequence, using the existing tracks as context. Example order: drums, bass, piano.",
+    "source_url": "../assets/projects/p11-yue2-stems.svg"
+  }
+]

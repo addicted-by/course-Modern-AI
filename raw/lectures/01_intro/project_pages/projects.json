@@ -284,5 +284,57 @@
       {"title": "P3M-10k dataset", "url": "https://github.com/JizhiziLi/P3M"}
     ],
     "context": "Portrait matting motivates careful treatment of soft boundaries. This course baseline approximates bokeh with a SAM 1 opacity mask and Gaussian blur; depth-aware optics and SAM 2 adaptation are optional extensions."
+  },
+  {
+    "id": "p11_yue2_stems",
+    "number": 11,
+    "title": "YuE2 Instrument Stem Generation",
+    "modality": "Audio · Music generation",
+    "summary": "Train separate instrument experts and generate their tracks one by one to build a complete music mix.",
+    "catalog_url": "../../../projects.html",
+    "registration_enabled": false,
+    "task": "Train an expert for each instrument, then generate a song sequentially: the first expert starts from a text prompt, and each next expert adds its own track using the previously generated tracks as context. Sum the aligned tracks into the final mix and export them separately for editing.",
+    "model": "YuE2 with a separate NAR LoRA adapter per instrument and an input projection for audio context; frozen AR branch and VAE.",
+    "context": "Each expert learns to generate one instrument from a partial mix. Start with a small set such as drums, bass and piano, then compare generation orders. These instrument experts are proposed adaptations of YuE2, not its existing AR/NAR experts. Use the model and datasets within their noncommercial research terms.",
+    "training_data": "RawStems and Slakh2100 multitracks with instrument labels. Train each expert on its target stem and a random subset of the other stems as context, including empty context. Encode each submix separately and split by artist or source composition.",
+    "evaluation_data": "Held-out multitracks and MoisesDB, plus sequentially generated songs with fixed prompts and seeds. Compare separate experts with one shared adapter and with full-mix generation followed by source separation.",
+    "metrics": [
+      {
+        "name": "Instrument purity ↑",
+        "meaning": "How well each track contains only its intended instrument."
+      },
+      {
+        "name": "Rhythm and harmony ↑",
+        "meaning": "Alignment of each new track with the previously generated accompaniment."
+      },
+      {
+        "name": "FAD ↓",
+        "meaning": "Audio quality of generated stems and final mixes relative to reference recordings, using a fixed embedding model."
+      },
+      {
+        "name": "Human preference ↑",
+        "meaning": "Blind listening comparisons of track quality, musical coherence and the final mix."
+      }
+    ],
+    "deliverables": [
+      "A set of instrument adapters with reproducible training configurations.",
+      "A sequential generation demo exporting separate tracks and their final mix.",
+      "A comparison against shared-adapter and source-separation baselines.",
+      "An analysis of generation order, instrument leakage and accumulated errors."
+    ],
+    "papers": [
+      {
+        "title": "YuE2",
+        "url": "https://arxiv.org/abs/2609.33757"
+      },
+      {
+        "title": "YuE2 model card",
+        "url": "https://huggingface.co/m-a-p/YuE2-3B"
+      },
+      {
+        "title": "LoRA",
+        "url": "https://arxiv.org/abs/2106.09685"
+      }
+    ]
   }
 ]

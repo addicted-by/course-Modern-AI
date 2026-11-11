@@ -172,6 +172,21 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p10_bokeh.html" aria-label="Open brief for Portrait Bokeh">Open brief →</a>
     </div>
   </article>
+  <article class="course-project-card" aria-labelledby="project-11-title">
+    <div class="course-project-card-meta">
+      <span class="course-project-number">11</span>
+      <span class="course-project-domain">Audio · Music Generation</span>
+    </div>
+    <h3 class="course-project-card-title unanchored" id="project-11-title">YuE2 Instrument Stem Generation</h3>
+    <p class="course-project-description">Train separate instrument experts, generate their tracks sequentially, and combine them into a complete music mix.</p>
+    <div class="course-project-card-footer">
+      <div class="course-project-research" aria-label="Research and resources">
+        <a href="https://huggingface.co/m-a-p/YuE2-3B">YuE2</a>
+        <a href="https://arxiv.org/abs/2106.09685">LoRA</a>
+      </div>
+      <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p11_yue2_stems.html" aria-label="Open brief for YuE2 Instrument Stem Generation">Open brief →</a>
+    </div>
+  </article>
 </div>
 ```
 
