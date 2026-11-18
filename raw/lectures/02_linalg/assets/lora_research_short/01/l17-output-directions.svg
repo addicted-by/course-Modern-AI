@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="400" viewBox="0 0 540 400" role="img">
+  <title>Changing A stretches the output while changing B can rotate it</title>
+  <defs>
+    <marker id="green" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8z" fill="#427325"/></marker>
+    <marker id="gray" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8z" fill="#48505a"/></marker>
+    <marker id="blue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8z" fill="#1e5a8a"/></marker>
+  </defs>
+  <style>
+    text{font:22px Inter,Arial,sans-serif;fill:#1b201c}
+    .label{font-weight:700}
+  </style>
+  <path d="M77 42v287h324M77 209h254M197 329V76M317 329V76M77 89h254" fill="none" stroke="#bcc5bc" stroke-width="2"/>
+  <text x="5" y="43">Output</text><text x="5" y="68">axis 2</text>
+  <text x="415" y="334">Axis 1</text>
+  <text x="193" y="362">1</text><text x="311" y="362">2</text>
+  <text x="55" y="216">1</text><text x="55" y="96">2</text>
+  <path d="M77 329 309 97" fill="none" stroke="#427325" stroke-width="5" marker-end="url(#green)"/>
+  <path d="M77 329 187 219" fill="none" stroke="#48505a" stroke-width="4" marker-end="url(#gray)"/>
+  <path d="M81 329h227" fill="none" stroke="#1e5a8a" stroke-width="5" marker-end="url(#blue)"/>
+  <text class="label" x="333" y="87">Change A</text>
+  <text x="333" y="115">(2, 2)</text>
+  <text class="label" x="215" y="210">Start (1, 1)</text>
+  <text class="label" x="285" y="291">Change B (2, 0)</text>
+</svg>

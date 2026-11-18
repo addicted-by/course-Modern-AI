@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 275" font-family="Inter, Arial, sans-serif" fill="#171717">
+<text x="153" y="39" font-size="27" font-weight="680" fill="#171717" text-anchor="middle">Original W₀</text>
+<text x="490" y="39" font-size="27" font-weight="680" fill="#171717" text-anchor="middle">Frozen W₀ − C</text>
+<text x="834" y="39" font-size="27" font-weight="680" fill="#171717" text-anchor="middle">Adapter C</text>
+<rect x="85" y="70" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="119.0" y="114.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">4</text>
+<rect x="153" y="70" width="68" height="68" fill="#e9f2fc" stroke="#949a9b" stroke-width="1.5"/>
+<text x="187.0" y="114.2" font-size="31" font-weight="680" fill="#496784" text-anchor="middle">2</text>
+<rect x="85" y="138" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="119.0" y="182.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">1</text>
+<rect x="153" y="138" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="187.0" y="182.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">3</text>
+<rect x="422" y="70" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="456.0" y="114.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">3</text>
+<rect x="490" y="70" width="68" height="68" fill="#e9f2fc" stroke="#949a9b" stroke-width="1.5"/>
+<text x="524.0" y="114.2" font-size="31" font-weight="680" fill="#496784" text-anchor="middle">3</text>
+<rect x="422" y="138" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="456.0" y="182.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">-1</text>
+<rect x="490" y="138" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="524.0" y="182.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">5</text>
+<rect x="766" y="70" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="800.0" y="114.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">1</text>
+<rect x="834" y="70" width="68" height="68" fill="#e8f7cd" stroke="#949a9b" stroke-width="1.5"/>
+<text x="868.0" y="114.2" font-size="31" font-weight="680" fill="#171717" text-anchor="middle">-1</text>
+<rect x="766" y="138" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="800.0" y="182.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">2</text>
+<rect x="834" y="138" width="68" height="68" fill="#eef0f1" stroke="#949a9b" stroke-width="1.5"/>
+<text x="868.0" y="182.2" font-size="31" font-weight="430" fill="#171717" text-anchor="middle">-2</text>
+<text x="321.5" y="151" font-size="38" font-weight="600" fill="#171717" text-anchor="middle">=</text>
+<text x="662.0" y="151" font-size="38" font-weight="600" fill="#171717" text-anchor="middle">+</text>
+<text x="500.0" y="255" font-size="30" font-weight="580" fill="#171717" text-anchor="middle">Tracked entry (1, 2):  2 = 3 + (−1)</text>
+</svg>

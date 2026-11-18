@@ -1,0 +1,7 @@
+title: "ReplaceMe: замена блоков ViT с помощью МНК"
+lang: ru
+format:
+  html:
+    css: ../../../styles/course-notebooks.css
+execute:
+  enabled: false

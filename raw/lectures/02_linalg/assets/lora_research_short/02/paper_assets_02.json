@@ -1,0 +1,674 @@
+{
+  "records": [
+    {
+      "slide_id": "L38",
+      "primary_source_version": "Zhang et al. · AdaLoRA · ICLR 2023 author PDF, arXiv:2303.10512v2",
+      "source_url": "https://arxiv.org/pdf/2303.10512v2",
+      "pdf_sha256": "7afe399a4d0c5cf37c956b0a8afb2294c2d2b289608162b4e49bddecc3b311ef",
+      "pdf_page_index": 1,
+      "printed_page": 2,
+      "source_item": "Fig. 1(b)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "Depth changes MultiNLI-m accuracy at fixed 0.28M trainable parameters.",
+      "reuse_license_or_terms": "Public author PDF. arXiv v2 is under its perpetual non-exclusive distribution license. Small credited figure excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l38-adalora-fig1b.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "All four ‘Selected layers’ bars and axes.",
+        "rect": [
+          322,
+          56,
+          457,
+          171
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "84bfb726e7a6934e02cc4dad6d3efd72a13279bbf16edab000654bd238baa3fc"
+    },
+    {
+      "slide_id": "L39",
+      "primary_source_version": "Hu et al. · LoRA · ICLR 2022 author PDF, arXiv:2106.09685v2",
+      "source_url": "https://arxiv.org/pdf/2106.09685v2",
+      "pdf_sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "pdf_page_index": 9,
+      "printed_page": 10,
+      "source_item": "§7.1, Table 5",
+      "material_format": "faithful_table_excerpt",
+      "evidence_kind": "empirical result",
+      "claims_supported": "Q+V and all projections report 73.7 vs 70.4 for Q alone at rank allocations 4, 2 and 8 respectively.",
+      "reuse_license_or_terms": "arXiv perpetual non-exclusive license. Factual cells and mathematical notation reproduced with attribution.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "WikiSQL and rank rows under Q, Q+V, and Q+K+V+O columns.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L41",
+      "primary_source_version": "Zhang et al. · AdaLoRA · ICLR 2023 author PDF, arXiv:2303.10512v2",
+      "source_url": "https://arxiv.org/pdf/2303.10512v2",
+      "pdf_sha256": "7afe399a4d0c5cf37c956b0a8afb2294c2d2b289608162b4e49bddecc3b311ef",
+      "pdf_page_index": 1,
+      "printed_page": 2,
+      "source_item": "Fig. 1(a)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "The two feed-forward weights each beat any single attention projection in this fixed-budget comparison.",
+      "reuse_license_or_terms": "Public author PDF. arXiv v2 is under its perpetual non-exclusive distribution license. Small credited figure excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l41-adalora-fig1a.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "All six ‘Selected weight matrix’ bars and axes.",
+        "rect": [
+          152,
+          56,
+          291,
+          171
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "4093a98993c47c71c273924713d99b5af1858219db6eabd0561a3fe40aad84b1"
+    },
+    {
+      "slide_id": "L48",
+      "primary_source_version": "Tian et al. · HydraLoRA · NeurIPS 2024 proceedings PDF",
+      "source_url": "https://papers.nips.cc/paper_files/paper/2024/file/123fd8a56501194823c8e0dca00733df-Paper-Conference.pdf",
+      "pdf_sha256": "71454640cfed1feb5dd5d80ff72b87d14ca9649991763365cfa4abead9b5d20f",
+      "pdf_page_index": 1,
+      "printed_page": 2,
+      "source_item": "Fig. 1(b–c)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "author methodology schematic",
+      "claims_supported": "The proposed asymmetric design shares A and trains a separate B per branch.",
+      "reuse_license_or_terms": "Public proceedings PDF. Separate figure reuse license not identified; small credited schematic excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l48-hydra-fig1bc.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Panels b and c only.",
+        "rect": [
+          234,
+          68,
+          445,
+          151
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "4b9b05a79d5ec7494ddbb8b9201a8ae7b2cd27b96c0d90a4ba735d1c0efa296f"
+    },
+    {
+      "slide_id": "L50",
+      "primary_source_version": "Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · NeurIPS 2025 proceedings PDF; author version arXiv:2410.21228v3",
+      "source_url": "https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf",
+      "pdf_sha256": "f899ad66465b92a28090bbef0a691ea73ecd60eaaf24bb35c9f52598310e9460",
+      "pdf_page_index": 22,
+      "printed_page": 23,
+      "source_item": "App. I, Fig. 14(a–b)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "At the same nominal capacity, different training multipliers yield distinct effective ranks in the learned update.",
+      "reuse_license_or_terms": "The corresponding author version is CC BY 4.0. Cropped only and attributed.",
+      "asset_path": "assets/lora_research_short/02/l50-shuttleworth-fig14-key.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "The two MLP1 subplots and common legend; axes preserved, adjacent MLP2 ticks removed.",
+        "rect": [
+          133,
+          74,
+          291,
+          89
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "8246436efae35a47bf6bfa3144ad521e508239370e411114baf52fd6a3e65952"
+    },
+    {
+      "slide_id": "L50",
+      "primary_source_version": "Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · NeurIPS 2025 proceedings PDF; author version arXiv:2410.21228v3",
+      "source_url": "https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf",
+      "pdf_sha256": "f899ad66465b92a28090bbef0a691ea73ecd60eaaf24bb35c9f52598310e9460",
+      "pdf_page_index": 22,
+      "printed_page": 23,
+      "source_item": "App. I, Fig. 14(a–b)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "At the same nominal capacity, different training multipliers yield distinct effective ranks in the learned update.",
+      "reuse_license_or_terms": "The corresponding author version is CC BY 4.0. Cropped only and attributed.",
+      "asset_path": "assets/lora_research_short/02/l50-shuttleworth-fig14a-mlp1.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "The two MLP1 subplots and common legend; axes preserved, adjacent MLP2 ticks removed.",
+        "rect": [
+          113,
+          233,
+          210,
+          311.5
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "9a557fe0557462ca7780323abd049cf394a62141641ef4fb13d237da8cd73ec5"
+    },
+    {
+      "slide_id": "L50",
+      "primary_source_version": "Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · NeurIPS 2025 proceedings PDF; author version arXiv:2410.21228v3",
+      "source_url": "https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf",
+      "pdf_sha256": "f899ad66465b92a28090bbef0a691ea73ecd60eaaf24bb35c9f52598310e9460",
+      "pdf_page_index": 22,
+      "printed_page": 23,
+      "source_item": "App. I, Fig. 14(a–b)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "At the same nominal capacity, different training multipliers yield distinct effective ranks in the learned update.",
+      "reuse_license_or_terms": "The corresponding author version is CC BY 4.0. Cropped only and attributed.",
+      "asset_path": "assets/lora_research_short/02/l50-shuttleworth-fig14b-mlp1.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "The two MLP1 subplots and common legend; axes preserved, adjacent MLP2 ticks removed.",
+        "rect": [
+          311,
+          231.5,
+          408,
+          311.5
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "bb06d75bcaa235875bf688ed3005573edc0a5c207227709133a83ccb896af21c"
+    },
+    {
+      "slide_id": "L51",
+      "primary_source_version": "Roy and Vetterli · The Effective Rank · EUSIPCO 2007 proceedings, pp. 606–610",
+      "source_url": "https://www.eurasip.org/Proceedings/Eusipco/Eusipco2007/Papers/a5p-h05.pdf",
+      "pdf_sha256": "6c8c6a03c61e7fbbcb291ec5737299313af1d259563a0ea2352b738427d289ab",
+      "pdf_page_index": 0,
+      "printed_page": 606,
+      "source_item": "§2.1, Eqs. (1)–(2), §2.2 Property 1",
+      "material_format": "faithful_equation",
+      "evidence_kind": "mathematical definition",
+      "claims_supported": "Entropy-based effective rank equals algebraic rank when the nonzero singular values are uniform.",
+      "reuse_license_or_terms": "© 2007 EURASIP, per the proceedings PDF; transcribes mathematical definitions only.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "Singular-value distribution, entropy, and effective rank; Property 1 appears on PDF p. 2 (printed 607).",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L53",
+      "primary_source_version": "Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · NeurIPS 2025 proceedings PDF; author version arXiv:2410.21228v3",
+      "source_url": "https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf",
+      "pdf_sha256": "f899ad66465b92a28090bbef0a691ea73ecd60eaaf24bb35c9f52598310e9460",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "§3, Fig. 3",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "The LoRA matrix has low-alignment columns amid its leading singular directions in this comparison.",
+      "reuse_license_or_terms": "The corresponding author version is CC BY 4.0. Cropped only and attributed.",
+      "asset_path": "assets/lora_research_short/02/l53-shuttleworth-fig3-mobile.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Both similarity heatmaps and their displayed scale; panels separated vertically on mobile.",
+        "rectangles_top_to_bottom": [
+          [
+            [
+              302,
+              102,
+              401,
+              208
+            ]
+          ],
+          [
+            [
+              402,
+              102,
+              507,
+              208
+            ]
+          ]
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rearranged vertically for mobile, with white spacing; source marks are retained.",
+      "asset_sha256": "c5adf725247dcf7b0824897c2a3b380854c5ceb1ad6451422d4e2f23f688fcba"
+    },
+    {
+      "slide_id": "L53",
+      "primary_source_version": "Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · NeurIPS 2025 proceedings PDF; author version arXiv:2410.21228v3",
+      "source_url": "https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf",
+      "pdf_sha256": "f899ad66465b92a28090bbef0a691ea73ecd60eaaf24bb35c9f52598310e9460",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "§3, Fig. 3",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "The LoRA matrix has low-alignment columns amid its leading singular directions in this comparison.",
+      "reuse_license_or_terms": "The corresponding author version is CC BY 4.0. Cropped only and attributed.",
+      "asset_path": "assets/lora_research_short/02/l53-shuttleworth-fig3.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Both similarity heatmaps and their displayed scale; panels separated vertically on mobile.",
+        "rect": [
+          302,
+          102,
+          507,
+          208
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "73ffe019a464c698f6cf448a789963c3fbac43a32d09c83430949a027c9e6278"
+    },
+    {
+      "slide_id": "L54",
+      "primary_source_version": "Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · NeurIPS 2025 proceedings PDF; author version arXiv:2410.21228v3",
+      "source_url": "https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf",
+      "pdf_sha256": "f899ad66465b92a28090bbef0a691ea73ecd60eaaf24bb35c9f52598310e9460",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "Definition 3.1 and Algorithm 1; Fig. 2(c) on PDF p. 2",
+      "material_format": "faithful_equation",
+      "evidence_kind": "mathematical criterion",
+      "claims_supported": "An intruder’s maximum absolute base similarity is below threshold.",
+      "reuse_license_or_terms": "The corresponding author version is CC BY 4.0. Cropped only and attributed.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "Maximum similarity threshold, top-k tuned candidates, all base vectors. Absolute cosine bars follow Figure 2(c) and the authors’ implementation.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L59",
+      "primary_source_version": "Hu et al. · LoRA · ICLR 2022 author PDF, arXiv:2106.09685v2",
+      "source_url": "https://arxiv.org/pdf/2106.09685v2",
+      "pdf_sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "§4.1 opening paragraph and Eq. (3)",
+      "material_format": "faithful_equation",
+      "evidence_kind": "factor shapes",
+      "claims_supported": "An added rank component costs d+k trainable scalars for one d by k projection.",
+      "reuse_license_or_terms": "arXiv perpetual non-exclusive license. Factual cells and mathematical notation reproduced with attribution.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "W0+BA and dimensions of B and A, followed by a clearly marked count of their entries.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L06",
+      "primary_source_version": "Paischer et al. · EVA · NeurIPS 2025 proceedings PDF",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/41d33bd41fd44bd9dba0e092047cf213-Paper-Conference.pdf",
+      "pdf_sha256": "ccbf05fe6eae0593b83f74dcccde21e0a344479ebc2a7d6be2e8560903a459c3",
+      "pdf_page_index": 1,
+      "printed_page": 2,
+      "source_item": "Fig. 1 left; §3.2 Theorem 3.1",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "author methodology schematic",
+      "claims_supported": "Leading right singular directions are estimated from the layer inputs.",
+      "reuse_license_or_terms": "Public proceedings PDF. Separate figure reuse license not identified; small credited schematic excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l06-eva-fig1-left.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Stage 1 only, incremental layer-wise activation SVD.",
+        "rect": [
+          106,
+          70,
+          284,
+          234
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "fc3a642951411cd9ba4778c846dcddded493c5cb678fb6f8a56a0ed4c53dc51e"
+    },
+    {
+      "slide_id": "L64",
+      "primary_source_version": "Paischer et al. · EVA · NeurIPS 2025 proceedings PDF",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/41d33bd41fd44bd9dba0e092047cf213-Paper-Conference.pdf",
+      "pdf_sha256": "ccbf05fe6eae0593b83f74dcccde21e0a344479ebc2a7d6be2e8560903a459c3",
+      "pdf_page_index": 1,
+      "printed_page": 2,
+      "source_item": "Fig. 1 center and right; §3.5",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "author methodology schematic",
+      "claims_supported": "Globally selected high-variance directions initialize A; B starts at zero.",
+      "reuse_license_or_terms": "Public proceedings PDF. Separate figure reuse license not identified; small credited schematic excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l64-eva-fig1-right.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Stages 2 and 3 only, rank distribution and initialization.",
+        "rect": [
+          286,
+          70,
+          506,
+          234
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "8fc3f7d7c7a90ddf0d651604bf408726ada96d65f2945c9805a2151381f6325f"
+    },
+    {
+      "slide_id": "L60",
+      "primary_source_version": "Zhang et al. · AdaLoRA · ICLR 2023 author PDF, arXiv:2303.10512v2",
+      "source_url": "https://arxiv.org/pdf/2303.10512v2",
+      "pdf_sha256": "7afe399a4d0c5cf37c956b0a8afb2294c2d2b289608162b4e49bddecc3b311ef",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "§3.1–3.2, Eqs. (3), (6)",
+      "material_format": "faithful_equation",
+      "evidence_kind": "algorithm",
+      "claims_supported": "AdaLoRA masks the diagonal coefficients while retaining the vector parameters.",
+      "reuse_license_or_terms": "Public author PDF. arXiv v2 is under its perpetual non-exclusive distribution license. Small credited figure excerpts for instruction.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "Source parameterization and elementwise top-budget mask. TopB is a compact notation for source prose inside the condition.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L61",
+      "primary_source_version": "Zhang et al. · AdaLoRA · ICLR 2023 author PDF, arXiv:2303.10512v2",
+      "source_url": "https://arxiv.org/pdf/2303.10512v2",
+      "pdf_sha256": "7afe399a4d0c5cf37c956b0a8afb2294c2d2b289608162b4e49bddecc3b311ef",
+      "pdf_page_index": 9,
+      "printed_page": 10,
+      "source_item": "§4, Fig. 3",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "AdaLoRA learns different ranks by matrix and block.",
+      "reuse_license_or_terms": "Public author PDF. arXiv v2 is under its perpetual non-exclusive distribution license. Small credited figure excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l61-adalora-fig3-mobile.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Full final-rank heatmap. On mobile, split after layer 6 and repeat the existing row labels and color key.",
+        "rectangles_top_to_bottom": [
+          [
+            [
+              125,
+              399,
+              281,
+              551
+            ],
+            [
+              423,
+              399,
+              467,
+              547
+            ]
+          ],
+          [
+            [
+              125,
+              399,
+              145,
+              547
+            ],
+            [
+              281,
+              399,
+              420,
+              551
+            ],
+            [
+              423,
+              399,
+              467,
+              547
+            ]
+          ]
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rearranged vertically for mobile, with white spacing; source marks are retained.",
+      "asset_sha256": "bcc91374e030f8e6f89eb04e7f4da8b8be0ee472f9f831bccf6e0ece632c9651"
+    },
+    {
+      "slide_id": "L61",
+      "primary_source_version": "Zhang et al. · AdaLoRA · ICLR 2023 author PDF, arXiv:2303.10512v2",
+      "source_url": "https://arxiv.org/pdf/2303.10512v2",
+      "pdf_sha256": "7afe399a4d0c5cf37c956b0a8afb2294c2d2b289608162b4e49bddecc3b311ef",
+      "pdf_page_index": 9,
+      "printed_page": 10,
+      "source_item": "§4, Fig. 3",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "AdaLoRA learns different ranks by matrix and block.",
+      "reuse_license_or_terms": "Public author PDF. arXiv v2 is under its perpetual non-exclusive distribution license. Small credited figure excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l61-adalora-fig3.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Full final-rank heatmap. On mobile, split after layer 6 and repeat the existing row labels and color key.",
+        "rect": [
+          125,
+          399,
+          467,
+          564
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "c68df9909ad0b4af17fffd8057ac94189cc7f99507a08c5f2ee0b75e6bd6c982"
+    },
+    {
+      "slide_id": "L66",
+      "primary_source_version": "Zhang et al. · AdaLoRA · ICLR 2023 author PDF, arXiv:2303.10512v2",
+      "source_url": "https://arxiv.org/pdf/2303.10512v2",
+      "pdf_sha256": "7afe399a4d0c5cf37c956b0a8afb2294c2d2b289608162b4e49bddecc3b311ef",
+      "pdf_page_index": 16,
+      "printed_page": 17,
+      "source_item": "App. H, Table 15",
+      "material_format": "faithful_table_excerpt",
+      "evidence_kind": "empirical result",
+      "claims_supported": "Similar training memory and longer epoch time under AdaLoRA at the same budget.",
+      "reuse_license_or_terms": "Public author PDF. arXiv v2 is under its perpetual non-exclusive distribution license. Small credited figure excerpts for instruction.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "MNLI rows for the 0.08% budget only; GPU memory and time per epoch.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L32",
+      "primary_source_version": "Biderman et al. · LoRA Learns Less and Forgets Less · TMLR 2024 author PDF, arXiv:2405.09673v2",
+      "source_url": "https://arxiv.org/pdf/2405.09673v2",
+      "pdf_sha256": "76c8a0a69a33a2255b3dbc64d36dbb9e7b96a17a87d7374656d41c0a6b8b3492",
+      "pdf_page_index": 4,
+      "printed_page": 5,
+      "source_item": "§4.1, Fig. 1(A)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "At 20 billion tokens LoRA rank 256 achieves lower HumanEval pass@1 than full fine-tuning.",
+      "reuse_license_or_terms": "CC BY 4.0, public author version.",
+      "asset_path": "assets/lora_research_short/02/l32-biderman-fig1a.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "First panel only, coding continued pretraining.",
+        "rect": [
+          105,
+          123,
+          311,
+          308
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "45ae255cc5ae47a95d3415582c99c3266f4bd3ba0fb56a035f1417e8b246d62c"
+    },
+    {
+      "slide_id": "L36",
+      "primary_source_version": "Chen, Villar and Hayou · Learning Rate Scaling · ICML 2026 proceedings PDF, PMLR 306, pp. 17039–17084",
+      "source_url": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26ei/chen26ei.pdf",
+      "pdf_sha256": "2ebaa88b9bcd9f9e4ca5510610250255a981890447d34bc0f2b239e3b6228251",
+      "pdf_page_index": 1,
+      "printed_page": 17040,
+      "source_item": "Fig. 2(a)",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "empirical result",
+      "claims_supported": "The lowest tried training loss occurs at lower learning rates as rank rises in this run.",
+      "reuse_license_or_terms": "Corresponding author version arXiv:2602.06204v1 is CC BY 4.0. Crop from final proceedings Figure 2 with original authoritative layout.",
+      "asset_path": "assets/lora_research_short/02/l36-chen-fig2a.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Init[A] with effective multiplier alpha=1, including FullFT and all five plotted ranks.",
+        "rect": [
+          55,
+          68,
+          214,
+          182
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "47306cd342cb956c26170d2b5e87fad7f2788a9ee28063635dbe523ff1510dba"
+    },
+    {
+      "slide_id": "L37",
+      "primary_source_version": "Hu et al. · LoRA · ICLR 2022 author PDF, arXiv:2106.09685v2",
+      "source_url": "https://arxiv.org/pdf/2106.09685v2",
+      "pdf_sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "pdf_page_index": 9,
+      "printed_page": 10,
+      "source_item": "§7.2, Table 6",
+      "material_format": "faithful_table_excerpt",
+      "evidence_kind": "empirical result",
+      "claims_supported": "Rank 1 on Q+V scores above all listed Q-only ranks.",
+      "reuse_license_or_terms": "arXiv perpetual non-exclusive license. Factual cells and mathematical notation reproduced with attribution.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "MultiNLI rows, Q and Q+V only, r=1,2,4,8,64.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L69",
+      "primary_source_version": "Yang et al. · Ortho-LoRA · arXiv:2601.09684v1",
+      "source_url": "https://arxiv.org/pdf/2601.09684v1",
+      "pdf_sha256": "37f6766fa01f358a7e7032a774dd099bf26aa65b1fb02725a7f08304ee469d26",
+      "pdf_page_index": 2,
+      "printed_page": 3,
+      "source_item": "§3.2, Eq. (2)",
+      "material_format": "faithful_equation",
+      "evidence_kind": "method definition",
+      "claims_supported": "All task losses use a single A and B pair in the joint objective.",
+      "reuse_license_or_terms": "Public author preprint. Factual performance cells and mathematical notation transcribed.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "Shared parameters theta and weighted joint objective.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L70",
+      "primary_source_version": "Yang et al. · Ortho-LoRA · arXiv:2601.09684v1",
+      "source_url": "https://arxiv.org/pdf/2601.09684v1",
+      "pdf_sha256": "37f6766fa01f358a7e7032a774dd099bf26aa65b1fb02725a7f08304ee469d26",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "§4.1–4.2, Table 1",
+      "material_format": "faithful_table_excerpt",
+      "evidence_kind": "empirical result",
+      "claims_supported": "The separate rank-8 adapters scored higher in all three task columns.",
+      "reuse_license_or_terms": "Public author preprint. Factual performance cells and mathematical notation transcribed.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "Single-Task LoRA and Joint-LoRA rows, MNLI accuracy, QQP F1, SST-2 accuracy.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L71",
+      "primary_source_version": "Raffel et al. · T5 · JMLR 21(140), 2020 author PDF",
+      "source_url": "https://jmlr.csail.mit.edu/papers/volume21/20-074/20-074.pdf",
+      "pdf_sha256": "66cf9f77e46691853703eb6982dea337a53361d509fb99be719b5410c5467e41",
+      "pdf_page_index": 31,
+      "printed_page": 32,
+      "source_item": "§3.5.2, Table 11",
+      "material_format": "faithful_table_excerpt",
+      "evidence_kind": "empirical result",
+      "claims_supported": "Temperature 2 scored higher than the other displayed methods.",
+      "reuse_license_or_terms": "The article PDF states CC BY 4.0. Factual cells transcribed.",
+      "asset_path": "lora_parts/expanded_02.qmd",
+      "crop_rectangle_pdf_points_or_exact_selected_items": "Equal and temperature 2, 4, 8 rows, GLUE and SuperGLUE columns.",
+      "editorial_modifications": "Transcribed selected source material; English framing and interpretation are editorial."
+    },
+    {
+      "slide_id": "L73",
+      "primary_source_version": "Yu et al. · Gradient Surgery · NeurIPS 2020 proceedings PDF",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf",
+      "pdf_sha256": "229c46e194927d3763495e03faf5d1dc5e16341b7e94e5103bcc4ba2f306a7bc",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "Fig. 2(a, d); Definition 1 on PDF p. 3",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "author methodology schematic",
+      "claims_supported": "Conflict corresponds to a positive directional derivative of one task along descent for the other.",
+      "reuse_license_or_terms": "Public proceedings PDF; arXiv v4 has its perpetual non-exclusive distribution license. Small credited schematic excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l73-yu-fig2a.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Two original gradient arrangements; the sign implication is a first-order consequence of Definition 1.",
+        "rect": [
+          305,
+          91,
+          353,
+          143
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "669b23ae18e1e063b8cc04e14f8b548e0f0d2497e666072b3adb4f00d43b55fd"
+    },
+    {
+      "slide_id": "L73",
+      "primary_source_version": "Yu et al. · Gradient Surgery · NeurIPS 2020 proceedings PDF",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf",
+      "pdf_sha256": "229c46e194927d3763495e03faf5d1dc5e16341b7e94e5103bcc4ba2f306a7bc",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "Fig. 2(a, d); Definition 1 on PDF p. 3",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "author methodology schematic",
+      "claims_supported": "Conflict corresponds to a positive directional derivative of one task along descent for the other.",
+      "reuse_license_or_terms": "Public proceedings PDF; arXiv v4 has its perpetual non-exclusive distribution license. Small credited schematic excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l73-yu-fig2d.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Two original gradient arrangements; the sign implication is a first-order consequence of Definition 1.",
+        "rect": [
+          466,
+          91,
+          507,
+          143
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "167bd8f34ab4c8c9bd5a01322c9f98d3fcc8763c71b9f9321cad5ec3ed8e9957"
+    },
+    {
+      "slide_id": "L74",
+      "primary_source_version": "Yu et al. · Gradient Surgery · NeurIPS 2020 proceedings PDF",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf",
+      "pdf_sha256": "229c46e194927d3763495e03faf5d1dc5e16341b7e94e5103bcc4ba2f306a7bc",
+      "pdf_page_index": 3,
+      "printed_page": 4,
+      "source_item": "§2.3, Fig. 2(b), Algorithm 1 lines 5–7",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "author methodology schematic and update rule",
+      "claims_supported": "One pairwise projection makes the corrected gradient orthogonal to the reference gradient.",
+      "reuse_license_or_terms": "Public proceedings PDF; arXiv v4 has its perpetual non-exclusive distribution license. Small credited schematic excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l74-yu-fig2b.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Panel (b), and projection assignment faithfully typeset from Algorithm 1.",
+        "rect": [
+          362,
+          91,
+          409,
+          143
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "1efe8ee6acca9ca0f8c344ab3999a2d5fe1f49ce34703f03ab0a0192fbb53a5d"
+    },
+    {
+      "slide_id": "L80",
+      "primary_source_version": "Tian et al. · HydraLoRA · NeurIPS 2024 proceedings PDF",
+      "source_url": "https://papers.nips.cc/paper_files/paper/2024/file/123fd8a56501194823c8e0dca00733df-Paper-Conference.pdf",
+      "pdf_sha256": "71454640cfed1feb5dd5d80ff72b87d14ca9649991763365cfa4abead9b5d20f",
+      "pdf_page_index": 4,
+      "printed_page": 5,
+      "source_item": "Fig. 4(B), Eqs. (3)–(4), §3.2.2",
+      "material_format": "paper_figure_crop",
+      "evidence_kind": "author methodology schematic and forward rule",
+      "claims_supported": "HydraLoRA inputs influence the routing weights and consequently the combined adapter.",
+      "reuse_license_or_terms": "Public proceedings PDF. Separate figure reuse license not identified; small credited schematic excerpts for instruction.",
+      "asset_path": "assets/lora_research_short/02/l80-hydra-fig4b.png",
+      "crop_rectangle_pdf_points_or_exact_selected_items": {
+        "selection": "Inference panel only and faithfully typeset Eq. (3).",
+        "rect": [
+          327,
+          75,
+          493,
+          203
+        ],
+        "raster_zoom": 6
+      },
+      "editorial_modifications": "Cropped and rasterized; source marks and labels are retained.",
+      "asset_sha256": "02faf88b0a8ff88e1f7e63f278c5432de9a577966424a3c5e93f2c4ddb5af12d"
+    }
+  ]
+}

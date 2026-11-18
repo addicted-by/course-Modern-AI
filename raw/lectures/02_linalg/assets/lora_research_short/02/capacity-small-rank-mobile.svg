@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="365" viewBox="0 0 432 365" font-family="Inter, Arial, sans-serif" role="img" aria-labelledby="chart-title chart-desc">
+<title id="chart-title">MultiNLI validation accuracy over configured rank</title>
+<desc id="chart-desc">Hu et al., Table 6. Q plus V accuracy: 91.3, 91.4, 91.3, 91.6 and 91.4 percent at ranks 1, 2, 4, 8 and 64. Q-only accuracy: 90.7, 90.9, 91.1, 90.7 and 90.7 percent.</desc>
+<rect width="432" height="365" fill="white"/>
+<text x="62.00" y="25.00" text-anchor="start" fill="#191919" font-size="19" font-weight="700">Validation accuracy (%)</text>
+<line x1="62.00" y1="225.00" x2="414.00" y2="225.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="51.00" y="231.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">90.5</text>
+<line x1="62.00" y1="189.00" x2="414.00" y2="189.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="51.00" y="195.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">90.75</text>
+<line x1="62.00" y1="153.00" x2="414.00" y2="153.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="51.00" y="159.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">91.0</text>
+<line x1="62.00" y1="117.00" x2="414.00" y2="117.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="51.00" y="123.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">91.25</text>
+<line x1="62.00" y1="81.00" x2="414.00" y2="81.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="51.00" y="87.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">91.5</text>
+<line x1="62.00" y1="45.00" x2="414.00" y2="45.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="51.00" y="51.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">91.75</text>
+<line x1="62.00" y1="225.00" x2="62.00" y2="231.00" stroke="#51515b" stroke-width="1"/>
+<text x="62.00" y="250.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">1</text>
+<line x1="120.67" y1="225.00" x2="120.67" y2="231.00" stroke="#51515b" stroke-width="1"/>
+<text x="120.67" y="250.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">2</text>
+<line x1="179.33" y1="225.00" x2="179.33" y2="231.00" stroke="#51515b" stroke-width="1"/>
+<text x="179.33" y="250.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">4</text>
+<line x1="238.00" y1="225.00" x2="238.00" y2="231.00" stroke="#51515b" stroke-width="1"/>
+<text x="238.00" y="250.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">8</text>
+<line x1="414.00" y1="225.00" x2="414.00" y2="231.00" stroke="#51515b" stroke-width="1"/>
+<text x="414.00" y="250.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">64</text>
+<line x1="62.00" y1="225.00" x2="414.00" y2="225.00" stroke="#51515b" stroke-width="1"/>
+<text x="238.00" y="277.00" text-anchor="middle" fill="#191919" font-size="17" font-weight="650">Rank per projection (log scale)</text>
+<polyline points="62.00,109.80 120.67,95.40 179.33,109.80 238.00,66.60 414.00,95.40" fill="none" stroke="#506c10" stroke-linejoin="round" stroke-width="3.1"/>
+<rect x="57.00" y="104.80" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="115.67" y="90.40" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="174.33" y="104.80" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="233.00" y="61.60" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="409.00" y="90.40" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<line x1="60.00" y1="304.00" x2="89.00" y2="304.00" stroke="#506c10" stroke-width="3.1"/>
+<rect x="69.00" y="299.00" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<text x="96.00" y="310.00" text-anchor="start" fill="#191919" font-size="17" font-weight="650">Q + V</text>
+<polyline points="62.00,196.20 120.67,167.40 179.33,138.60 238.00,196.20 414.00,196.20" fill="none" stroke="#1c6297" stroke-linejoin="round" stroke-width="3.1" stroke-dasharray="8 5"/>
+<circle cx="62.00" cy="196.20" r="5" fill="#1c6297" stroke="white" stroke-width="1"/>
+<circle cx="120.67" cy="167.40" r="5" fill="#1c6297" stroke="white" stroke-width="1"/>
+<circle cx="179.33" cy="138.60" r="5" fill="#1c6297" stroke="white" stroke-width="1"/>
+<circle cx="238.00" cy="196.20" r="5" fill="#1c6297" stroke="white" stroke-width="1"/>
+<circle cx="414.00" cy="196.20" r="5" fill="#1c6297" stroke="white" stroke-width="1"/>
+<line x1="228.00" y1="304.00" x2="257.00" y2="304.00" stroke="#1c6297" stroke-width="3.1" stroke-dasharray="8 5"/>
+<circle cx="242.00" cy="304.00" r="5" fill="#1c6297" stroke="white" stroke-width="1"/>
+<text x="264.00" y="310.00" text-anchor="start" fill="#191919" font-size="17" font-weight="650">Q alone</text>
+</svg>

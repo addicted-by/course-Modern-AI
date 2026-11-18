@@ -1,0 +1,436 @@
+.reveal .lora-slide .share-body {
+  --share-step: #476139;
+  gap: 18px;
+}
+
+.reveal .lora-slide .share-training {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 38px;
+}
+
+.reveal .lora-slide .share-training-lane {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.56fr);
+  grid-template-rows: auto 1fr;
+  align-items: stretch;
+  gap: .55em;
+  border-block: 1px solid var(--lora-line);
+  padding-block: .65em;
+}
+
+.reveal .lora-slide .share-lane-title {
+  grid-column: 1 / -1;
+  font-weight: 680;
+}
+
+.reveal .lora-slide :is(.share-gradient-stack, .share-adapter-stack) {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: .22em;
+  min-width: 0;
+  text-align: center;
+}
+
+.reveal .lora-slide :is(.share-gradient-stack, .share-adapter-stack) > span {
+  display: grid;
+  place-items: center;
+  min-height: 2.45em;
+  padding-inline: .22em;
+  border: 1px solid var(--lora-line);
+  font-weight: 550;
+}
+
+.reveal .lora-slide .share-gradient-stack > span {
+  background: var(--lora-surface);
+}
+
+.reveal .lora-slide .share-adapter-shared > span {
+  grid-row: 1 / -1;
+  border-color: var(--share-step);
+  background: var(--lora-accent-surface);
+  font-size: 1.2em;
+}
+
+.reveal .lora-slide .share-connector {
+  display: flex;
+  align-items: center;
+  gap: .08em;
+  color: var(--lora-muted);
+  font-size: 1.13em;
+  line-height: 2.34;
+}
+
+.reveal .lora-slide .share-join {
+  line-height: 1;
+}
+
+.reveal .lora-slide .share-equation {
+  padding-block: .56em;
+  text-align: center;
+  font-size: 1.15em;
+}
+
+.reveal .lora-slide .share-study {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 36px;
+}
+
+.reveal .lora-slide .share-dumbbells {
+  --share-task-width: 5.2em;
+  --share-gain-width: 2.6em;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .lora-slide .share-dumbbell-key {
+  display: flex;
+  gap: 1em;
+  margin-inline-start: var(--share-task-width);
+  color: var(--lora-muted);
+  font-size: .86em;
+}
+
+.reveal .lora-slide .share-dumbbell-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: .35em;
+}
+
+.reveal .lora-slide .share-dumbbell {
+  display: grid;
+  grid-template-columns: var(--share-task-width) minmax(0, 1fr) var(--share-gain-width);
+  align-items: center;
+  min-height: 3.5em;
+  border-bottom: 1px solid var(--lora-line);
+}
+
+.reveal .lora-slide .share-task {
+  font-weight: 650;
+}
+
+.reveal .lora-slide .share-task small {
+  display: block;
+  color: var(--lora-muted);
+  font-size: .77em;
+  font-weight: 450;
+}
+
+.reveal .lora-slide .share-dumbbell > strong {
+  justify-self: end;
+  color: var(--share-step);
+}
+
+.reveal .lora-slide .share-score-track {
+  position: relative;
+  height: 2px;
+  background: var(--lora-line);
+}
+
+.reveal .lora-slide .share-score-link {
+  position: absolute;
+  inset: -1px calc(100% - var(--separate)) -1px var(--joint);
+  background: var(--share-step);
+}
+
+.reveal .lora-slide :is(.share-score-joint, .share-score-separate) {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: .87em;
+  line-height: 1;
+}
+
+.reveal .lora-slide .share-score-joint {
+  inset: auto auto .55em var(--joint);
+}
+
+.reveal .lora-slide .share-score-separate {
+  inset: .56em auto auto var(--separate);
+  font-weight: 650;
+}
+
+.reveal .lora-slide .share-score-joint::after,
+.reveal .lora-slide .share-score-separate::before,
+.reveal .lora-slide :is(.share-joint-key, .share-separate-key) {
+  display: block;
+  box-sizing: border-box;
+  width: .44em;
+  height: .44em;
+  border-radius: 50%;
+  border: 2px solid var(--share-step);
+  background: var(--lora-white);
+  content: "";
+}
+
+.reveal .lora-slide .share-score-joint::after,
+.reveal .lora-slide .share-score-separate::before {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reveal .lora-slide .share-score-joint::after {
+  top: calc(100% + .31em);
+}
+
+.reveal .lora-slide .share-score-separate::before {
+  bottom: calc(100% + .31em);
+}
+
+.reveal .lora-slide .share-score-separate::before,
+.reveal .lora-slide .share-separate-key {
+  background: var(--share-step);
+}
+
+.reveal .lora-slide .share-dumbbell-axis {
+  display: flex;
+  justify-content: space-between;
+  margin: .32em calc(var(--share-gain-width) / .84) 0 calc(var(--share-task-width) / .84);
+  color: var(--lora-muted);
+  font-size: .84em;
+}
+
+.reveal .lora-slide .share-dumbbell-unit {
+  margin-top: .45em;
+  color: var(--share-step);
+  text-align: right;
+  font-size: .84em;
+}
+
+.reveal .lora-slide .share-budget {
+  display: grid;
+  gap: .6em;
+  padding-inline-start: 1em;
+  border-inline-start: 1px solid var(--lora-line);
+}
+
+.reveal .lora-slide .share-budget-caption {
+  color: var(--lora-muted);
+  font-size: .86em;
+}
+
+.reveal .lora-slide .share-budget > div:not(:first-child) {
+  display: flex;
+  align-items: center;
+  gap: .38em;
+}
+
+.reveal .lora-slide .share-budget span {
+  display: inline-flex;
+  gap: .15em;
+  width: 2.5em;
+}
+
+.reveal .lora-slide .share-budget i {
+  width: .68em;
+  height: .68em;
+  border: 1px solid var(--share-step);
+  background: var(--lora-accent-surface);
+}
+
+.reveal .lora-slide .share-odds {
+  display: grid;
+  gap: .42em;
+}
+
+.reveal .lora-slide .share-odds > div {
+  display: grid;
+  grid-template-columns: 8em minmax(0, 1fr) 2.7em;
+  gap: .55em;
+  align-items: center;
+  min-height: 1.7em;
+}
+
+.reveal .lora-slide .share-odds b {
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .lora-slide .share-odds-emphasis b {
+  color: var(--share-step);
+}
+
+.reveal .lora-slide .share-odds-bar {
+  height: .88em;
+  border: 1px solid var(--share-step);
+  background: linear-gradient(90deg, #53684a var(--large), white var(--large));
+}
+
+.reveal .lora-slide .share-odds-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25em .85em;
+  color: var(--lora-muted);
+  font-size: .8em;
+}
+
+.reveal .lora-slide .share-odds-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+}
+
+.reveal .lora-slide .share-odds-key i {
+  width: .6em;
+  height: .6em;
+  border: 1px solid var(--share-step);
+}
+
+.reveal .lora-slide .share-odds-key span:first-child i {
+  background: #53684a;
+}
+
+.reveal .lora-slide .share-sampling-rule {
+  font-size: .9em;
+}
+
+.reveal .lora-slide .share-t5-results {
+  display: grid;
+  grid-template-columns: 1fr .8fr 1fr;
+  gap: .75em;
+  align-items: center;
+  padding: .65em .85em;
+  border-top: 1px solid var(--share-step);
+  background: var(--lora-accent-surface);
+}
+
+.reveal .lora-slide .share-t5-results > div:not(:first-child) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .12em .5em;
+}
+
+.reveal .lora-slide .share-t5-results span {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .lora-slide .share-route-example table {
+  width: 100%;
+  margin-block: .65em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.23;
+}
+
+.reveal .lora-slide .share-route-example table :is(th, td) {
+  padding: .6em .62em;
+  border-bottom: 1px solid var(--lora-line);
+}
+
+.reveal .lora-slide .share-route-example table th {
+  text-align: left;
+}
+
+.reveal .lora-slide :is(.share-geometry, .share-routing) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 30px;
+}
+
+.reveal :is(#L73, #L74) .share-geometry .lora-figure img {
+  width: 100%;
+  max-height: 415px;
+}
+
+.reveal :is(#L73, #L74) .share-body {
+  gap: 18px;
+}
+
+.reveal .lora-slide .share-calculation {
+  padding-inline-start: .7em;
+  border-inline-start: 1px solid var(--lora-line);
+}
+
+.reveal .lora-slide .share-calculation p:has(strong):not(:first-child) {
+  margin-top: 1em;
+}
+
+.reveal .lora-slide .share-routing {
+  grid-template-columns: minmax(0, 1.13fr) minmax(0, 1fr);
+}
+
+.reveal .lora-slide .share-routing .lora-figure img {
+  max-height: 492px;
+}
+
+.reveal .lora-slide .share-route-example td strong {
+  padding: .06em .24em;
+  background: var(--lora-accent-surface);
+}
+
+@media (max-width: 650px) {
+  .reveal-viewport.reveal-scroll .lora-slide :is(.share-training, .share-geometry, .share-routing) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-training-lane {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.22fr);
+    gap: .35em;
+    padding-block: .4em;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide :is(.share-gradient-stack, .share-adapter-stack) > span {
+    min-height: 1.6em;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-connector {
+    line-height: 1.6;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-calculation {
+    padding-inline-start: 0;
+    padding-top: .45em;
+    border-inline-start: 0;
+    border-top: 1px solid var(--lora-line);
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-study {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-dumbbells {
+    --share-task-width: 3.8em;
+    --share-gain-width: 2.7em;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-budget {
+    grid-template-columns: 1fr 1fr;
+    gap: .25em .6em;
+    padding: .35em 0 0;
+    border-inline-start: 0;
+    border-top: 1px solid var(--lora-line);
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-budget-caption {
+    grid-column: 1 / -1;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-odds > div {
+    grid-template-columns: 7.4em minmax(0, 1fr) 2.4em;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-t5-results {
+    grid-template-columns: 1fr 1fr;
+    gap: .35em .65em;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-t5-results > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-route-example table {
+    font-size: .86em;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-route-example table :is(th, td) {
+    padding: .46em .27em;
+  }
+
+  .reveal-viewport.reveal-scroll .lora-slide .share-equation {
+    font-size: .96em;
+  }
+}

@@ -1,0 +1,1151 @@
+## Block depth changed accuracy at a fixed budget {#L38 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+DeBERTaV3-base / MNLI-matched validation accuracy / 0.28M trainable parameters
+:::
+
+::::: {.capacity-split .capacity-opening}
+
+::: {.capacity-main}
+~~~{=html}
+<div class="capacity-depth">
+<div class="capacity-depth-head"><span>Adapted blocks</span><span>Transformer depth →</span><span>Accuracy</span></div>
+<div class="capacity-depth-row"><span>Blocks 1–3</span><span class="capacity-blocks" aria-hidden="true"><i class="active"></i><i class="active"></i><i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b>77.87%</b></div>
+<div class="capacity-depth-row"><span>Blocks 4–6</span><span class="capacity-blocks" aria-hidden="true"><i></i><i></i><i></i><i class="active"></i><i class="active"></i><i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b>85.82%</b></div>
+<div class="capacity-depth-row"><span>Blocks 7–9</span><span class="capacity-blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i class="active"></i><i class="active"></i><i class="active"></i><i></i><i></i><i></i></span><b>88.15%</b></div>
+<div class="capacity-depth-row"><span>Blocks 10–12</span><span class="capacity-blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="active"></i><i class="active"></i><i class="active"></i></span><b>88.60%</b></div></div>
+~~~
+:::
+
+::: {.capacity-aside}
+~~~{=html}
+<div class="capacity-hero-metric"><span>Percentage points</span><strong>+10.73</strong><p>Final three blocks compared with the first three.</p></div>
+~~~
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+Each run trains Q, K, V, O and both feed-forward projections in three blocks. Moving this 0.28M budget to blocks 10–12 gained 10.73 points.
+:::
+
+::: {.lora-source}
+[Zhang et al. · AdaLoRA · Fig. 1(b)](https://arxiv.org/pdf/2303.10512v2#page=2)
+:::
+
+::: {.notes lang="en"}
+The authors adapt every weight matrix in each selected group of three transformer layers. They match the trainable parameter count across the four groups. This is evidence for testing depth as well as projection type.
+:::
+
+## Compare projection coverage at a fixed budget {#L39 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+GPT-3 175B / WikiSQL validation accuracy / 18M trainable parameters across 96 blocks
+:::
+
+~~~{=html}
+<div class="capacity-coverage">
+<div class="capacity-coverage-head"><span>Attention only · eight rank components per block</span><span>Accuracy</span></div>
+<div class="capacity-coverage-row"><div class="capacity-slots"><span class="capacity-slot q" style="grid-column:span 8">Q<small>8</small></span></div><strong>70.4%</strong></div>
+<div class="capacity-coverage-row"><div class="capacity-slots"><span class="capacity-slot q" style="grid-column:span 4">Q<small>4</small></span><span class="capacity-slot v" style="grid-column:span 4">V<small>4</small></span></div><strong>73.7%</strong></div>
+<div class="capacity-coverage-row"><div class="capacity-slots"><span class="capacity-slot q" style="grid-column:span 2">Q<small>2</small></span><span class="capacity-slot k" style="grid-column:span 2">K<small>2</small></span><span class="capacity-slot v" style="grid-column:span 2">V<small>2</small></span><span class="capacity-slot o" style="grid-column:span 2">O<small>2</small></span></div><strong>73.7%</strong></div></div>
+~~~
+
+::::
+
+::: {.lora-takeaway}
+At 18M parameters, Q + V and Q + K + V + O both reached 73.7%, up from 70.4% for Q alone.
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · §7.1, Table 5](https://arxiv.org/pdf/2106.09685v2#page=10)
+:::
+
+::: {.notes lang="en"}
+The exhibit shows three measured settings at the same parameter budget. Each uses eight total rank components per block across equal-width attention matrices. MLP weights stayed frozen. The reported WikiSQL standard deviation across seeds was about 0.5 percentage points.
+:::
+
+## Which projections earn their share of the budget? {#L41 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+DeBERTaV3-base / MNLI-matched validation accuracy / One projection type in all 12 blocks / 0.28M parameters
+:::
+
+::::: {.capacity-split}
+
+::: {.capacity-main}
+~~~{=html}
+<div class="capacity-dot-plot">
+<div class="capacity-dot-row"><b>Q</b><span class="capacity-track" aria-hidden="true" style="--point:5.333%"></span><strong>88.58%</strong></div>
+<div class="capacity-dot-row"><b>K</b><span class="capacity-track" aria-hidden="true" style="--point:32.000%"></span><strong>88.98%</strong></div>
+<div class="capacity-dot-row"><b>V</b><span class="capacity-track" aria-hidden="true" style="--point:57.333%"></span><strong>89.36%</strong></div>
+<div class="capacity-dot-row"><b>O</b><span class="capacity-track" aria-hidden="true" style="--point:52.000%"></span><strong>89.28%</strong></div>
+<div class="capacity-dot-row capacity-ffn"><b>FFN 1</b><span class="capacity-track" aria-hidden="true" style="--point:94.000%"></span><strong>89.91%</strong></div>
+<div class="capacity-dot-row capacity-ffn"><b>FFN 2</b><span class="capacity-track" aria-hidden="true" style="--point:99.333%"></span><strong>89.99%</strong></div>
+<div class="capacity-dot-ticks" aria-hidden="true"><span></span><span><small>88.50</small><small>89.25</small><small>90.00</small></span></div></div>
+~~~
+:::
+
+::: {.capacity-aside}
+**Llama-3.1-8B · Tulu3**
+
+MLP only, rank 128 · **0.24B** parameters
+
+Attention only, rank 256 · **0.25B** parameters
+
+With similar budgets, MLP-only LoRA reached lower test NLL.
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+With a fixed parameter budget, which attention and MLP projections should receive rank for this task?
+:::
+
+::: {.lora-source}
+[Zhang et al. · AdaLoRA · Fig. 1(a), App. F](https://arxiv.org/pdf/2303.10512v2#page=2) · [Thinking Machines Lab · LoRA Without Regret · Fig. 4](https://thinkingmachines.ai/blog/lora/#layers-where-lora-is-applied)
+:::
+
+::: {.notes lang="en"}
+Each dot represents a separate DeBERTa run. Q, K, V and O denote attention projections. FFN 1 expands the hidden representation and FFN 2 projects it back. The horizontal axis spans 88.5–90% to resolve the differences. NLL is negative log likelihood. In the separate Thinking Machines experiment, the MLP-only and attention-only runs used approximately matched parameter counts, as reported in the table below Figure 4. Each adapted its target projections across the Llama transformer blocks during supervised instruction tuning. The left panel reports Tulu3 test negative log likelihood. Adding attention to an MLP adapter gave similar loss in this sweep.
+:::
+
+## Multiple adapters can share the input factor {#L48 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+HydraLoRA / Architecture schematic / Three expert branches
+:::
+
+::::: {.capacity-split}
+
+::: {.capacity-main}
+~~~{=html}
+<figure data-lora-fit="true" class="capacity-media "><img src="assets/lora_research_short/02/l48-hydra-fig1bc.png" alt="HydraLoRA Figure 1b–c. Three independent A–B pairs versus a shared A feeding three B experts."></figure>
+~~~
+:::
+
+::: {.capacity-aside}
+**Factor parameters** · router excluded
+
+$\text{Separate} = 3r(k+d)$
+
+$\text{Shared }A = r(k+3d)$
+
+Sharing saves **$2rk$** entries across three experts.
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+With one shared $A$, the same low-rank input coordinates feed each $B_i$.
+:::
+
+::: {.lora-source}
+[Tian et al. · HydraLoRA · Fig. 1(b–c)](https://papers.nips.cc/paper_files/paper/2024/file/123fd8a56501194823c8e0dca00733df-Paper-Conference.pdf#page=2)
+:::
+
+::: {.notes lang="en"}
+The independent arrangement uses separate factor pairs. The proposed asymmetric arrangement trains one A for all inputs and one B per expert. This comparison is about factor sharing, so the figure does not establish a fused QKV implementation.
+
+The arithmetic assumes equal input width k, equal output width d, rank r for all branches, and excludes routing parameters.
+:::
+
+## Effective rank falls as the spectrum concentrates {#L51 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Worked examples / Singular values $\sigma_i$ of the nonzero update $\Delta W = W'-W_0$ / Both matrices have algebraic rank 4
+:::
+
+::: {.capacity-equation}
+$\displaystyle p_i=\frac{\sigma_i}{\sum_j\sigma_j}$ $\displaystyle H(p)=-\sum_i p_i\log p_i$ $\displaystyle \operatorname{erank}(\Delta W)=e^{H(p)}$
+:::
+
+~~~{=html}
+<div class="capacity-spectrum">
+<div class="capacity-spectrum-sample"><b>Even</b><span>σ = (1, 1, 1, 1)</span><div class="capacity-spectrum-bar" aria-label="Spectral shares 25, 25, 25, 25 percent"><i style="flex:25">25%</i><i style="flex:25">25%</i><i style="flex:25">25%</i><i style="flex:25">25%</i></div><strong>4.00</strong><small>Effective rank</small></div>
+<div class="capacity-spectrum-sample"><b>Concentrated</b><span>σ = (7, 1, 1, 1)</span><div class="capacity-spectrum-bar" aria-label="Spectral shares 70, 10, 10, 10 percent"><i style="flex:70">70%</i><i style="flex:10">10%</i><i style="flex:10">10%</i><i style="flex:10">10%</i></div><strong>2.56</strong><small>Effective rank</small></div></div>
+~~~
+
+::::
+
+::: {.lora-takeaway}
+Moving 70% of the singular-value mass onto one direction reduces effective rank from 4.00 to 2.56.
+:::
+
+::: {.lora-source}
+[Roy and Vetterli · The Effective Rank · §2.1, Eqs. (1)–(2), §2.2 Property 1](https://www.eurasip.org/Proceedings/Eusipco/Eusipco2007/Papers/a5p-h05.pdf#page=1)
+:::
+
+::: {.notes lang="en"}
+These weights normalize the singular values rather than their squares. The paper uses the natural logarithm and the continuous convention zero log zero equals zero. Its first property bounds effective rank above by algebraic rank, with equality for a uniform distribution over the nonzero values.
+
+The two constructed spectra give probabilities of (0.25, 0.25, 0.25, 0.25) and (0.70, 0.10, 0.10, 0.10). In the second example the entropy is about 0.9404, giving effective rank about 2.561.
+:::
+
+## LoRA scaling changes the learned effective rank {#L50 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+RoBERTa-base / MNLI / First feed-forward projection in each block / Effective rank of $\Delta W$
+:::
+
+::: {.capacity-definition}
+The plots show how broadly the learned update spreads its singular-value mass.
+:::
+
+~~~{=html}
+<div class="capacity-scale-key" data-lora-fit="true"><img src="assets/lora_research_short/02/l50-shuttleworth-fig14-key.png" alt="Configured ranks 8, 16, 64 and 768"><span>Vertical scales differ</span></div>
+<div class="capacity-scale-grid">
+  <figure data-lora-fit="true" class="capacity-media"><figcaption>s = 2 · α<sub>LoRA</sub> = 2r</figcaption><img src="assets/lora_research_short/02/l50-shuttleworth-fig14a-mlp1.png" alt="Effective rank of the update for s = 2 (α_LoRA = 2r). Rank 768 gives effective rank in the hundreds."></figure>
+  <figure data-lora-fit="true" class="capacity-media"><figcaption>s = 8/r · α<sub>LoRA</sub> = 8</figcaption><img src="assets/lora_research_short/02/l50-shuttleworth-fig14b-mlp1.png" alt="Effective rank of the update for s = 8/r (α_LoRA = 8). The effective rank for configured rank 768 is much lower, and this panel uses a smaller vertical scale."></figure>
+</div>
+~~~
+
+::::
+
+::: {.lora-takeaway}
+At rank 768, the update spectrum was more concentrated with $s=8/r$ than with $s=2$.
+:::
+
+::: {.lora-source}
+[Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · App. I, Fig. 14(a–b)](https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf#page=23)
+:::
+
+::: {.notes lang="en"}
+These are the MLP1 panels of Figure 14. The original panels use different y-axis limits. At zero-based block 0, read the rank-768 curve at about 360 on the left and 70 on the right. The appendix prose says that the fixed-alpha curve stays below 50, which conflicts with several points in the MLP1 panel. These readings follow the figure. The paper uses $s=\alpha_{\mathrm{LoRA}}/r$. Choosing $\alpha_{\mathrm{LoRA}}=2r$ gives $s=2$ at every rank. An effective rank below the factor width indicates a concentrated spectrum, even if the matrix has many nonzero singular values.
+:::
+
+## LoRA can introduce new leading singular directions {#L53 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Leading left singular vectors of the adapted weights $W'$ and pretrained weights $W_0$ / Absolute cosine similarity
+:::
+
+::::: {.capacity-split .capacity-figure-split}
+
+::: {.capacity-main}
+~~~{=html}
+<figure data-lora-fit="true" class="capacity-media capacity-heatmap"><picture><source media="(max-width: 650px)" srcset="assets/lora_research_short/02/l53-shuttleworth-fig3-mobile.png"><img src="assets/lora_research_short/02/l53-shuttleworth-fig3.png" alt="Measured alignments from Figure 3. Full fine-tuning shows near-diagonal alignment. Under rank-8 LoRA, tuned columns 1, 3 and 5 are outlined as intruders."></picture></figure>
+~~~
+:::
+
+::: {.capacity-aside}
+**Read down one column.**
+
+Each column is a direction of $W'$. Each row is a direction of $W_0$.
+
+Outlines mark indices **1, 3 and 5**, counting from zero.
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+The figure displays ten base directions. The implementation checks all left singular vectors returned by the reduced SVD of $W_0$.
+:::
+
+::: {.lora-source}
+[Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · §3, Fig. 3](https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf#page=4)
+:::
+
+::: {.notes lang="en"}
+Color represents the similarity in the source figure. Each column compares a tuned left singular vector with the displayed base vectors. The paper labels three columns as intruders and defines that term against all base singular vectors, beyond the ten rows visible here.
+:::
+
+## An intruder aligns weakly with every base axis {#L54 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Constructed 4D example / Candidate left singular directions of $W'$ compared with the left singular basis of $W_0$
+:::
+
+~~~{=html}
+<div class="capacity-projections" role="table" aria-label="Absolute cosine with each base axis for two candidate unit vectors">
+  <div class="capacity-projection-row capacity-projection-head" role="row">
+    <span role="columnheader">Base axis</span>
+    <div role="columnheader"><strong>Axis-aligned</strong><span>(1, 0, 0, 0)</span></div>
+    <div role="columnheader"><strong>Diagonal</strong><span>(½, ½, ½, ½)</span></div>
+  </div>
+  <div class="capacity-projection-row capacity-projection-scale" role="row">
+    <span role="rowheader">|cos|</span>
+    <div role="cell"><div class="capacity-projection-ruler"><span>0</span><b>ε = 0.60</b><span>1</span></div></div>
+    <div role="cell"><div class="capacity-projection-ruler"><span>0</span><b>ε = 0.60</b><span>1</span></div></div>
+  </div>
+  <div class="capacity-projection-row" role="row">
+    <span role="rowheader">x₁</span>
+    <div class="capacity-projection-cell" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:100%"></span><b>1.00</b></div>
+    <div class="capacity-projection-cell capacity-projection-diagonal" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:50%"></span><b>0.50</b></div>
+  </div>
+  <div class="capacity-projection-row" role="row">
+    <span role="rowheader">x₂</span>
+    <div class="capacity-projection-cell" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:0%"></span><b>0.00</b></div>
+    <div class="capacity-projection-cell capacity-projection-diagonal" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:50%"></span><b>0.50</b></div>
+  </div>
+  <div class="capacity-projection-row" role="row">
+    <span role="rowheader">x₃</span>
+    <div class="capacity-projection-cell" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:0%"></span><b>0.00</b></div>
+    <div class="capacity-projection-cell capacity-projection-diagonal" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:50%"></span><b>0.50</b></div>
+  </div>
+  <div class="capacity-projection-row" role="row">
+    <span role="rowheader">x₄</span>
+    <div class="capacity-projection-cell" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:0%"></span><b>0.00</b></div>
+    <div class="capacity-projection-cell capacity-projection-diagonal" role="cell"><span class="capacity-projection-meter" aria-hidden="true" style="--projection:50%"></span><b>0.50</b></div>
+  </div>
+  <div class="capacity-projection-row capacity-projection-results" role="row">
+    <span role="rowheader">Max</span>
+    <div role="cell"><b>1.00 ≥ 0.60</b><span>Matches an axis</span></div>
+    <div role="cell"><b>0.50 &lt; 0.60</b><span>Intruder</span></div>
+  </div>
+</div>
+~~~
+
+::: {.capacity-projection-rule}
+Test each of the top $k$ tuned directions $y_j$. It is an intruder if $\max_i |\cos(y_j,x_i)| < \epsilon$ over all base directions returned by the reduced SVD.
+:::
+
+::::
+
+::: {.lora-takeaway}
+These four axes span the whole example space. The diagonal is an intruder because its absolute cosine with each axis is only 0.50.
+:::
+
+::: {.lora-source}
+[Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · §3, Fig. 2(c), Definition 3.1](https://proceedings.nips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf#page=4) · [Authors’ implementation](https://github.com/reeceshuttle/intruder-dimensions/blob/9b83bf208a124eb9d33f7a680d7924f1f1700953/find_intruder_dimensions.py#L10-L15)
+:::
+
+::: {.notes lang="en"}
+The four orthogonal base axes are the standard axes of the example. Each bar shows the length of the projection of the candidate unit vector onto the named axis, which is the absolute cosine with that axis. For the diagonal direction, four squared projection lengths sum to one. Its angle to each axis is 60 degrees. The value 0.60 is an illustrative cosine threshold, distinct from the angle.
+
+Figure 2(c) and the authors’ implementation use absolute cosine. The printed Definition 3.1 omits the absolute-value bars. Taking the absolute value makes the test invariant to sign flips of either vector. For a weight with shape $m\times n$, the authors’ implementation checks each of the top $k$ tuned directions against all $\min(m,n)$ columns of the base left factor from a reduced SVD. These columns span the full output space in this square example. For $m>n$ they span an $n$-dimensional subspace. When singular values are close, the corresponding subspace can be more stable than the individual axes.
+:::
+
+## How many parameters does one rank slot cost? {#L59 .lora-slide .lora-evidence}
+
+:::: {.lora-body}
+
+::: {.lora-caption}
+Worked example · four rank components split between two projections
+:::
+
+::: {.lora-figure .lora-compact .short02-budget-figure data-lora-fit="true"}
+<picture>
+<source media="(max-width: 650px)" srcset="assets/lora_research_short/02/l59-parameter-budget-mobile.svg">
+<img src="assets/lora_research_short/02/l59-parameter-budget.svg" alt="The 1024 by 1024 projection costs 2,048 parameters per component, and the 4096 by 1024 projection costs 5,120. Three narrow and one wide component cost 11,264 parameters. Reversing the split costs 17,408.">
+</picture>
+:::
+
+::: {.lora-formula data-lora-fit="true"}
+$P=\sum_\ell r_\ell(d_{\mathrm{in},\ell}+d_{\mathrm{out},\ell})$
+:::
+
+::::
+
+::: {.lora-takeaway}
+Both allocations use four rank slots. A slot in the wider projection costs 5,120 scalars, compared with 2,048 in the narrower one.
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · §4.1, factor shapes](https://arxiv.org/pdf/2106.09685v2#page=4) · Constructed example
+:::
+
+::: {.notes lang="en"}
+Each component adds one row of $A$ and one column of $B$. The two splits have the same sum of factor widths. Moving two components from narrow to wide adds $2(5120-2048)=6144$ scalars. The actual algebraic rank may be smaller than the factor width. Next, consider what suggests an uneven allocation in the first place.
+:::
+
+## EVA finds the principal axes of layer inputs {#L06 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+EVA authors’ schematic / Input activations gathered on downstream training data
+:::
+
+::::: {.capacity-split .capacity-figure-split}
+
+::: {.capacity-main}
+~~~{=html}
+<figure data-lora-fit="true" class="capacity-media "><img src="assets/lora_research_short/02/l06-eva-fig1-left.png" alt="EVA Figure 1 left panel, showing mini-batches used for layer-specific incremental SVD of input activations."></figure>
+~~~
+:::
+
+::: {.capacity-aside}
+**The layer input determines the basis.**
+
+Stack the centered input vectors as rows of $X_\ell$. Keep the $r_\ell$ right singular directions that minimize the squared projection error.
+
+::: {.capacity-equation}
+$\displaystyle \lVert X_\ell-X_\ell V_{r_\ell}V_{r_\ell}^\top\rVert_F^2$
+:::
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+Once a layer has $r_\ell$ slots, its leading $r_\ell$ right singular vectors capture the most input variance.
+:::
+
+::: {.lora-source}
+[Paischer et al. · EVA · Fig. 1, left panel, §3.2](https://proceedings.neurips.cc/paper_files/paper/2025/file/41d33bd41fd44bd9dba0e092047cf213-Paper-Conference.pdf#page=2)
+:::
+
+::: {.notes lang="en"}
+Data batches pass through the pretrained model. The activation dimensionality remains layer-specific. Theorem 3.1 states the corresponding Frobenius projection optimum. Algorithm 2 tracks the running feature mean across batches. Centering makes the squared singular values proportional to explained variances. The next stage reallocates the available rank to selected directions across layers.
+:::
+
+## EVA redistributes rank before fine-tuning {#L64 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Worked example · two layers / Uniform starting rank $r=2$ / Four slots in total / Per-layer cap $r_\ell\leq\rho r=3$ with $\rho=1.5$
+:::
+
+~~~{=html}
+<div class="capacity-queue-title">Highest explained-variance score first</div>
+<div class="capacity-queue"><div class="kept"><span>Layer A · 1</span><strong>0.58</strong></div><div class="kept"><span>Layer B · 1</span><strong>0.34</strong></div><div class="kept"><span>Layer B · 2</span><strong>0.25</strong></div><div class="kept"><span>Layer B · 3</span><strong>0.20</strong></div><div class="excluded"><span>Layer A · 2</span><strong>0.18</strong></div><div class="excluded"><span>Layer A · 3</span><strong>0.14</strong></div></div>
+<div class="capacity-queue-results"><div><b>Layer A → rank 1</b><span>One row in the input factor.</span></div><div><b>Layer B → rank 3</b><span>Three rows in the input factor.</span></div></div>
+~~~
+
+::::
+
+::: {.lora-takeaway}
+EVA preserves total rank slots ($1+3=2+2$). The parameter count $P$ can change when the target matrices have different shapes.
+:::
+
+::: {.lora-source}
+[Paischer et al. · EVA · §3.5, Algorithm 1](https://proceedings.neurips.cc/paper_files/paper/2025/file/41d33bd41fd44bd9dba0e092047cf213-Paper-Conference.pdf#page=6)
+:::
+
+::: {.notes lang="en"}
+EVA computes candidate directions by incremental SVD on each layer’s input. Equation (6) normalizes the variance score before cross-layer comparison. The procedure constrains total rank and caps a layer at rho times the uniform starting rank. For $N$ targets with uniform initial rank $r$, EVA keeps $Nr$ slots. A slot costs $d_{\mathrm{in},\ell}+d_{\mathrm{out},\ell}$ parameters in target $\ell$. EVA sets the rows of the input factor to the chosen right singular vectors and initializes the output factor to zero.
+
+The six scores are constructed values illustrating the global ordering. With uniform starting rank 2 over two layers and rho = 1.5, the per-layer cap is 3, so the top four selected slots satisfy the cap.
+:::
+
+## AdaLoRA masks a component by zeroing its coefficient {#L60 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+AdaLoRA / Constructed triplets with a global budget of two
+:::
+
+::::: {.capacity-split .capacity-balanced}
+
+::: {.capacity-main}
+::: {.capacity-equation}
+$\displaystyle W'=W_0+sP\Lambda Q$
+:::
+
+Each triplet contributes $s\lambda_i p_i q_i^\top$. The mask keeps $\lambda_i$ if its score is in the global top budget and sets it to zero otherwise.
+:::
+
+::: {.capacity-aside}
+~~~{=html}
+<div class="capacity-mask">
+<div><span>Triplet</span><span>Score</span><span>Coefficient after mask</span></div>
+<div><b>1</b><span>0.82</span><strong>λ₁</strong></div>
+<div><b>2</b><span>0.21</span><strong class="masked">0</strong></div>
+<div><b>3</b><span>0.63</span><strong>λ₃</strong></div>
+</div>
+~~~
+:::
+
+:::::
+
+::: {.capacity-projection-rule}
+**Training schedule** · Warm up above the target budget → reduce the budget on a cubic schedule → train with the final allocation fixed.
+:::
+
+::::
+
+::: {.lora-takeaway}
+During mask-based training, zeroing a coefficient leaves its row of $Q$ and column of $P$ allocated.
+:::
+
+::: {.lora-source}
+[Zhang et al. · AdaLoRA · §3.1–3.3, App. A](https://arxiv.org/pdf/2303.10512v2#page=4)
+:::
+
+::: {.notes lang="en"}
+Equation (3) writes the unscaled triplet parameterization. The paper’s experimental implementation also uses the usual LoRA multiplier $s$ (§4). The display expands the elementwise mask using the paper’s top-budget notation. In the AdaLoRA paper’s notation, P is a factor matrix and the diagonal entries of Λ are triplet coefficients. The earlier scalar parameter count and the later task-mixture coefficients describe different quantities. A triplet consists of one coefficient, one column of P and one row of Q. An orthogonality penalty stabilizes the SVD-like factors. The budget counts retained triplets across all matrices. During the budget-reduction phase, the authors apply the mask every $\Delta T$ steps, so a masked coefficient can recover between pruning steps. The authors start above the target, for example at $1.5$ times the target, and keep the allocation fixed during the final training phase.
+:::
+
+## Where does AdaLoRA allocate its final rank budget? {#L61 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+DeBERTaV3-base / MNLI / Final rank by projection type and transformer block
+:::
+
+::::: {.capacity-split .capacity-figure-split}
+
+::: {.capacity-main}
+~~~{=html}
+<figure data-lora-fit="true" class="capacity-media capacity-heatmap"><picture><source media="(max-width: 650px)" srcset="assets/lora_research_short/02/l61-adalora-fig3-mobile.png"><img src="assets/lora_research_short/02/l61-adalora-fig3.png" alt="AdaLoRA Figure 3. Final ranks vary across projection and block. The first feed-forward projection has rank 12 in blocks 7–11 and rank 2 in block 12."></picture></figure>
+~~~
+:::
+
+::: {.capacity-aside}
+~~~{=html}
+<div class="capacity-hero-metric"><span>First feed-forward projection</span><strong>12 → 2</strong><p>Rank 12 in blocks 7–11. Rank 2 in block 12.</p></div>
+~~~
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+At the end of the schedule, the same projection receives different ranks across blocks.
+:::
+
+::: {.lora-source}
+[Zhang et al. · AdaLoRA · §4, Fig. 3](https://arxiv.org/pdf/2303.10512v2#page=10)
+:::
+
+::: {.notes lang="en"}
+The authors score each triplet by combining estimated loss sensitivities of the diagonal coefficient with the means for its two vectors. The training mask keeps the highest-scoring triplets across matrices as the total budget declines. This is the learned distribution for one setup.
+:::
+
+## What does a final rank budget tell us about training cost? {#L66 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+DeBERTaV3-base / MNLI / One NVIDIA V100 / 0.08% trainable-parameter budget
+:::
+
+~~~{=html}
+<div class="capacity-cost">
+<div><b>GPU memory</b><dl><div><dt>LoRA</dt><dd>11.094 GB</dd></div><div><dt>AdaLoRA</dt><dd>11.104 GB</dd></div></dl><span>+0.010 GB</span></div>
+<div><b>Time per epoch</b><dl><div><dt>LoRA</dt><dd>105 min</dd></div><div><dt>AdaLoRA</dt><dd>116 min</dd></div></dl><span>+11 min</span></div>
+</div>
+~~~
+
+::::
+
+::: {.lora-takeaway}
+At the same reported final budget, AdaLoRA used 0.010 GB more memory and 11 more minutes per epoch on this run.
+:::
+
+::: {.lora-source}
+[Zhang et al. · AdaLoRA · App. H, Table 15](https://arxiv.org/pdf/2303.10512v2#page=17)
+:::
+
+::: {.notes lang="en"}
+The excerpt uses the MNLI rows at a budget of 0.08 percent. The authors measured training only on a single NVIDIA V100. GPU memory and elapsed time cover the full training procedure, including the initially larger factors and the work of maintaining importance scores and masks.
+:::
+
+## Conclusions · Capacity {#H12 .lora-slide .lora-conclusion}
+
+::::: {.lora-body .conclusion-body}
+:::: {.conclusion-spread}
+::: {.conclusion-argument}
+<span class="conclusion-number">18M</span>
+
+**trainable parameters in every run**
+
+The same budget buys rank 8 in one projection, rank 4 in two, or rank 2 in four.
+:::
+
+::: {.conclusion-detail data-lora-fit="true"}
+**Where did that budget pay off?**  
+GPT-3 175B · validation accuracy (%)
+
+| Adapted projections | WikiSQL | MultiNLI |
+|:--|--:|--:|
+| Q · rank 8 | 70.4 | 91.0 |
+| Q + V · rank 4 | **73.7** | 91.3 |
+| Q + K + V + O · rank 2 | **73.7** | **91.7** |
+:::
+::::
+:::::
+
+::: {.lora-takeaway}
+At a fixed budget, search over layers and projections as well as rank. Choose using held-out performance on the intended task.
+:::
+
+::: {.lora-source}
+[Hu et al. · Table 5](https://arxiv.org/pdf/2106.09685v2#page=10) · [Zhang et al. · Fig. 1](https://arxiv.org/pdf/2303.10512v2#page=2)
+:::
+
+::: {.notes lang="en"}
+Table 5 varies the attention projections covered in all 96 layers. Typical reported standard deviations were about 0.5 percentage points on WikiSQL and 0.1 on MultiNLI. The conclusion is limited to the shown settings. Depth is another choice, as the DeBERTa study illustrated. The effective rank of a trained update describes its spectrum and can help explain a result. It cannot select the best deployment configuration on its own.
+:::
+
+## Full fine-tuning led from 0.25B to 20B code tokens {#L32 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Llama-2-7B / Continued pretraining on StarCoder-Python / HumanEval pass@1
+:::
+
+::::: {.capacity-split .capacity-figure-split}
+
+::: {.capacity-main}
+~~~{=html}
+<figure data-lora-fit="true" class="capacity-media"><picture><source media="(max-width: 650px)" srcset="assets/lora_research_short/02/capacity-code-scaling-mobile.svg"><img src="assets/lora_research_short/02/capacity-code-scaling.svg" alt="HumanEval pass@1 versus training tokens. At 20 billion tokens, full fine-tuning scores 0.263 and ranks 256, 64 and 16 score 0.224, 0.196 and 0.162 respectively."></picture></figure>
+~~~
+:::
+
+::: {.capacity-aside}
+~~~{=html}
+<div class="capacity-hero-metric"><span>Pass@1 gap at 20B tokens</span><strong>0.039</strong></div>
+~~~
+
+Full fine-tuning scored **0.263** and rank 256 scored **0.224**.
+
+LoRA covered Q, K, V, O and the MLP gate, up and down projections. All ranks used $s=\alpha_{\mathrm{LoRA}}/r=2$. The authors swept LR by method and used $10^{-5}$ for full tuning and every LoRA rank.
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+At 20B tokens, rank 256 roughly matched full fine-tuning at 4B (0.218). What happened to the base model’s original abilities?
+:::
+
+::: {.lora-source}
+[Biderman et al. · LoRA Learns Less and Forgets Less · §§4.1, 4.7, Fig. 1(A), App. A and Table S1](https://arxiv.org/pdf/2405.09673v2#page=5)
+:::
+
+::: {.notes lang="en"}
+These are Llama-2-7B code continued-pretraining results. The chart redraws the authors’ Table S1 at sampling temperature 0.2 and top-p 0.95. Read pass@1 as the expected success probability for one generated solution. Each of the eight token budgets ends with its own learning-rate cooldown. The authors used LionW and a global batch of 192 sequences of length 4,096. All seven named projections were adapted in every transformer block. Setting the ordinary LoRA numerator to twice the rank keeps the multiplier at two across ranks.
+
+At the same 20B-token budget, the absolute difference is 0.039, or 3.9 percentage points. The full-tuning lead over rank 256 peaks at 0.059 at 4B tokens and narrows to 0.039 at 20B. The 20B-token rank-256 result is close to the 4B-token full-tuning result. Section 4.1 reports separate sweeps for the two methods. Appendix A lists a common code-CPT rate for all LoRA ranks. The next figure measures what else changed during these runs.
+:::
+
+## What did the model learn, and what did it retain? {#L203 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Llama-2-7B / Up = better target score / Right = higher mean accuracy on HellaSwag, ARC-Challenge and WinoGrande
+:::
+
+~~~{=html}
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px">
+  <figure class="capacity-media" data-lora-fit="true"><figcaption><strong>A · Code pretraining</strong></figcaption><img src="assets/lora_research_short/02/l203-biderman-fig3a.webp" alt="Figure 3A. HumanEval pass@1 against retention on StarCoder-Python. The black full fine-tuning curve reaches higher pass@1 and lower retention than LoRA."></figure>
+  <figure class="capacity-media" data-lora-fit="true"><figcaption><strong>B · Code instruction tuning</strong></figcaption><img src="assets/lora_research_short/02/l203-biderman-fig3b.webp" alt="Figure 3B. On Magicoder, the rank-256 LoRA and full fine-tuning curves reach similar peak HumanEval pass@1, with higher retention for LoRA."></figure>
+  <figure class="capacity-media" data-lora-fit="true"><figcaption><strong>C · Math pretraining</strong></figcaption><img src="assets/lora_research_short/02/l203-biderman-fig3c.webp" alt="Figure 3C. GSM8K strict match against retention on OpenWebMath. Full fine-tuning reaches a higher math score than all three ranks."></figure>
+  <figure class="capacity-media" data-lora-fit="true"><figcaption><strong>D · Math instruction tuning</strong></figcaption><img src="assets/lora_research_short/02/l203-biderman-fig3d.webp" alt="Figure 3D. On MetaMathQA, full fine-tuning and higher-rank LoRA trace neighboring curves. Longer runs can fall below their peak target score."></figure>
+</div>
+~~~
+
+::: {.capacity-context}
+Color shows LoRA rank (16, 64, 256). Black is full fine-tuning. Larger dots mean longer training (0.25–20B tokens or 1–16 epochs).
+:::
+
+::::
+
+::: {.lora-takeaway}
+Higher rank or longer training often traded retention for target accuracy. To interpret a change in the singular directions of $W'$, test both behaviors.
+:::
+
+::: {.lora-source}
+[Biderman et al. · §§4.2–4.3, Fig. 3 (four original panels), Tables S1–S8](https://arxiv.org/pdf/2405.09673v2#page=8)
+:::
+
+::: {.notes lang="en"}
+At 20B code tokens, rank 256 retained 0.617 mean accuracy while full fine-tuning retained 0.545 (Table S2). Show how to read the upper-right corner. Moving up improves HumanEval pass@1 for code or GSM8K strict match for math. Moving right preserves more performance on the average of the three original-capability probes. Each marker is an independently evaluated model at a training duration. Marker size measures duration and color identifies the rank. Some instruction-tuning runs overshoot their best task score. In panel B, rank 256 peaks at 0.498 HumanEval after four epochs, with retention 0.631. Full tuning peaks at 0.497 after eight epochs, with retention 0.446. At four epochs full tuning scored 0.470 on HumanEval and 0.512 on retention (Tables S5–S6). In panel C full fine-tuning reaches math scores that the plotted adapters do not attain.
+
+Connect this observation to the singular directions of the adapted weights on the earlier spectrum slides. Biderman et al. measured behavior here. In a separate intervention, Shuttleworth et al. scaled down the intruder with the largest singular value in each adapted matrix where they found one and observed less forgetting with little change in target score for several tested settings. A spectral change suggests a behavioral test. Measure both axes before attributing a performance change to it. [Shuttleworth et al. · LoRA vs Full Fine-tuning: An Illusion of Equivalence · §5, Fig. 8](https://proceedings.neurips.cc/paper_files/paper/2025/file/ff541950d1e885af90f523571564a401-Paper-Conference.pdf#page=8)
+:::
+
+## How does scaling change the best learning rate? {#L36 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Llama-3.2-1B / Tulu3 / Both panels initialize $A$ randomly and $B=0$. The paper calls the full update multiplier $s$ “$\alpha$”.
+:::
+
+~~~{=html}
+<div class="capacity-scale-grid">
+  <figure data-lora-fit="true" class="capacity-media"><figcaption>Fixed multiplier · higher ranks favor lower rates</figcaption><img style="max-height:330px" src="assets/lora_research_short/02/l36-chen-fig2a.png" alt="Chen et al. Figure 2(a). With s equal to one, the large markers for higher ranks shift toward smaller learning rates."></figure>
+  <figure data-lora-fit="true" class="capacity-media"><figcaption>Inverse-rank multiplier · the best rates cluster</figcaption><img style="max-height:330px" src="assets/lora_research_short/02/l36-chen-fig2b.webp" alt="Chen et al. Figure 2(b). With s equal to one over rank, the best rates cluster at log base two learning rates near minus nine to minus eight."></figure>
+</div>
+~~~
+
+::: {.capacity-context}
+Each large marker gives the best tested peak LR for its rank by final training loss. Red dashes mark the full-tuning optimum.
+:::
+
+::::
+
+::: {.lora-takeaway}
+With random $A$, the optimal LR fell with rank at $s=1$ and stayed roughly constant at $s=1/r$. The LR rule depends on both scaling and initialization.
+:::
+
+::: {.lora-source}
+[Chen, Villar and Hayou · Learning Rate Scaling across LoRA Ranks and Transfer to Full Finetuning · §§3.1, 5.2, Fig. 2(a–b)](https://raw.githubusercontent.com/mlresearch/v306/main/assets/chen26ei/chen26ei.pdf#page=2)
+:::
+
+::: {.notes lang="en"}
+The vertical axis is the EMA-smoothed final training loss with the original clipped range. The horizontal axis is log base two of the learning rate, with different spans in (a) and (b). Read the minimum of each colored curve on its own axis. Both panels use the same initialization. Changing only the multiplier alters the relationship between rank and the best rate. In panel (b) rates just above the best value can diverge.
+
+Section 3.1 defines the paper’s alpha as the complete multiplier of BA. In the conventional LoRA notation used in this lecture, setting its numerator to one gives s=1/r. To see an initialization effect in the same paper, compare panels (a) and (c) at s=1. Starting with B random and A zero instead makes the optimum approximately rank-invariant and close to the full fine-tuning optimum. Tune each method independently and use a held-out score for the downstream comparison.
+:::
+
+## Small ranks can already score competitively {#L37 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+GPT-3 175B / MultiNLI validation accuracy (%) / Rank per adapted projection
+:::
+
+::::: {.capacity-split .capacity-figure-split}
+
+::: {.capacity-main}
+~~~{=html}
+<figure data-lora-fit="true" class="capacity-media "><picture><source media="(max-width: 650px)" srcset="assets/lora_research_short/02/capacity-small-rank-mobile.svg"><img src="assets/lora_research_short/02/capacity-small-rank.svg" alt="Table 6 compares rank 1, 2, 4, 8 and 64. Q plus V scores 91.3, 91.4, 91.3, 91.6 and 91.4 percent. Q alone scores 90.7, 90.9, 91.1, 90.7 and 90.7 percent."></picture></figure>
+~~~
+:::
+
+::: {.capacity-aside}
+~~~{=html}
+<div class="capacity-hero-metric"><span>Q + V at rank 1</span><strong>91.3%</strong><p>The best Q-only setting reached 91.1% at rank 4.</p></div>
+~~~
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+In this sweep, rank 1 on Q + V already outscored each tested rank on Q alone.
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · §7.2, Table 6, MultiNLI rows](https://arxiv.org/pdf/2106.09685v2#page=10)
+:::
+
+::: {.notes lang="en"}
+These are MultiNLI results from Hu et al., separate from the learning-rate sweeps of Chen, Villar and Hayou. At equal rank per projection, adapting Q and V uses twice the adapter parameters of adapting Q alone. The authors report about 0.1 percentage point of across-seed variation for MultiNLI. A doubling in rank need not improve validation. Choose a rank against the target task and its deployment budget rather than assuming a universal optimum.
+:::
+
+## When does LoRA match full fine-tuning? {#L204 .lora-slide .lora-evidence}
+
+:::: {.lora-body .capacity-body}
+
+::: {.capacity-context}
+Biderman et al. / Llama-2-7B / Each table entry lists LoRA first and full fine-tuning second.
+:::
+
+::::: {.capacity-split .capacity-figure-split}
+
+::: {.lora-table .lora-compact data-lora-fit="true"}
+
+| Condition | Code continued pretraining | Mixed instruction tuning |
+|:--|:--|:--|
+| Data | StarCoder-Python, 20B tokens | Tülu-v2, 326K examples × 4 epochs |
+| Adapter | $r=256$, attention + MLP | $r=256$, attention + MLP |
+| Global batch | 192 sequences | 192 sequences |
+| Selected LR | $10^{-5}$ for both | $10^{-4}$ / $5\times10^{-6}$ |
+| Measured outcome | **0.224 / 0.263** HumanEval pass@1 ↑ | **5.834 / 5.838** MT-Bench score ↑ |
+
+:::
+
+::: {.capacity-aside}
+~~~{=html}
+<figure data-lora-fit="true" class="capacity-media"><img style="max-height:300px" src="assets/lora_research_short/02/l204-tml-fig3b.svg" alt="Thinking Machines Lab Figure 3, right panel. With batch sizes 32, 64 and 128, final test log loss rises more at batch 128 for ranks 128 and 256 than for full fine-tuning."><figcaption>Final test log loss ↓ · Llama-3.1-8B<br>10K OpenThoughts3 examples</figcaption></figure>
+~~~
+
+The loss gap grew when batch size rose from 32 to 128, even at rank 256.
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+Match data and tokens. Tune each method’s LR. Report target quality, retention, peak memory and wall-clock training time.
+:::
+
+::: {.lora-source}
+[Biderman et al. · §§4.1, 4.4, 4.7, Apps. A, C and D, Tables S1 and S10](https://arxiv.org/pdf/2405.09673v2#page=24) · [Thinking Machines Lab · LoRA Without Regret · Fig. 3, right panel](https://thinkingmachines.ai/blog/lora/#fig:bs-sweep)
+:::
+
+::: {.notes lang="en"}
+Both table columns use the same checkpoint family, LoRA rank and global batch. Their targets cover Q, K, V and O in attention, plus gate, up and down in the MLP. The two methods see the same training budget within each column. The Tülu results come from four-epoch checkpoints of six-epoch runs without a cooldown at epoch four. Their reported scores use different units across columns. MT-Bench is a GPT-4-judged score over 80 two-turn questions, with considerable variance. In Tülu-v2, the rank-16, 64 and 256 results all fell within one standard error of the full-tuning chat score, while the ordering varied on GSM8K and MMLU. For comparison, in the code instruction-tuning experiment the rank-256 and full-tuning peak HumanEval pass@1 values (0.498 and 0.497) occurred at four and eight epochs, respectively. Those two peaks compare different token budgets.
+
+On the right, the lab’s primary research report compares batches of 32, 64 and 128 on 10,000 OpenThoughts3 examples. Rank 128 and rank 256 both show a larger loss penalty than full fine-tuning at batch 128. The lab swept the constant LR for each condition. Its separate Tulu3 supervised sweeps found similar high-rank and full-tuning log loss, while a target-module ablation favored including the MLP (Figures 1 and 4). Test log loss, HumanEval pass@1 and MT-Bench score answer different questions. A comparison protocol should also hold model, splits, evaluation generation settings and hardware fixed, and record the coverage, batch, rank and stopping rule for every run.
+:::
+
+## How can one backbone serve several tasks? {#L205 .lora-slide .lora-evidence}
+
+:::: {.lora-body .share-body}
+
+::: {.lora-label}
+Four multi-task LoRA setups · one frozen backbone
+:::
+
+::: {.lora-table .lora-compact}
+~~~{=html}
+<table>
+<thead><tr><th scope="col">Decision</th><th scope="col">Shared</th><th scope="col">Separate</th><th scope="col">Merged</th><th scope="col">Routed (HydraLoRA)</th></tr></thead>
+<tbody>
+<tr><th scope="row">Training data</th><td>Mix all task datasets</td><td>One dataset per specialist</td><td>Train on each task, then merge weights. CAT fits coefficients on a small data mixture.</td><td>Train experts and router on mixed data</td></tr>
+<tr><th scope="row">Stored for serving</th><td>One adapter</td><td>One adapter per task</td><td>One combined adapter</td><td>Shared A, several B experts and a router</td></tr>
+<tr><th scope="row">Who selects the update?</th><td>Same adapter for all</td><td>Caller selects by task</td><td>Merge coefficients set before serving</td><td>Router weights the experts</td></tr>
+<tr><th scope="row">Does ΔW vary with the token?</th><td>No</td><td>Fixed within a task</td><td>No</td><td>Yes</td></tr>
+<tr><th scope="row">Task ID to select the adapter?</th><td>No</td><td>Yes</td><td>No</td><td>No</td></tr>
+</tbody>
+</table>
+~~~
+:::
+
+::::
+
+::: {.lora-takeaway}
+A task ID can select a specialist for a whole request. A learned router can change the mixture at every token.
+:::
+
+::: {.lora-source}
+[Ortho-LoRA · §3.2](https://arxiv.org/pdf/2601.09684v1#page=3) · [LoRA Soups · §3.1](https://aclanthology.org/2025.coling-industry.55.pdf#page=4) · [HydraLoRA · §3.2](https://papers.nips.cc/paper_files/paper/2024/file/123fd8a56501194823c8e0dca00733df-Paper-Conference.pdf#page=5)
+:::
+
+::: {.notes lang="en"}
+The table counts deployed adapter artifacts on a common checkpoint. The training archive can also retain the original specialists. A combined adapter can have greater rank and occupy more bytes than any one specialist. A fixed arithmetic merge needs only trained weights in its second stage. LoRA Soups also studies CAT, which fits coefficients on a small mixture of examples. For separate serving, the caller supplies the task ID explicitly or uses a task-specific endpoint. The last row concerns adapter selection. The prediction head or permitted label set can still require task information. HydraLoRA illustrates one learned, token-dependent routing scheme. Which of these four setups would you choose if a request arrived with no task ID and the relevant skill changed within a sentence?
+:::
+
+## How do several tasks train one shared LoRA adapter? {#L69 .lora-slide .lora-evidence}
+
+:::: {.lora-body .share-body}
+
+::::: {.lora-grid-2}
+
+~~~{=html}
+<div class="share-training-lane">
+  <div class="share-lane-title">Joint training on one frozen backbone</div>
+  <div class="share-gradient-stack">
+    <span>MNLI</span><span>QQP</span><span>SST-2</span>
+  </div>
+  <div class="share-connector" aria-hidden="true">
+    <span class="share-join">⎫<br>⎬<br>⎭</span><span>→</span>
+  </div>
+  <div class="share-adapter-stack share-adapter-shared"><span>Shared A, B</span></div>
+</div>
+~~~
+
+::: {.lora-panel data-lora-fit="true"}
+**What should the adapter minimize?**
+
+$\mathcal L_{\mathrm{joint}}(A,B)=\sum_t w_t\,\mathcal L_t(A,B)$
+
+$D_t$ is the dataset for task $t$, and $\mathcal L_t$ is its mean loss. Its objective weight is $w_t$, with $\sum_t w_t=1$.
+:::
+
+:::::
+
+::: {.lora-plain data-lora-fit="true"}
+**What does the sampler draw?** Choose task $t$ with probability $p_t$, then draw a batch from $D_t$. When $p_t=w_t$, the expected batch gradient equals the joint gradient.
+:::
+
+::::
+
+::: {.lora-takeaway}
+Choose $p_t>0$ for every task with $w_t>0$. Weight its sampled loss by $w_t/p_t$ to preserve the joint objective.
+:::
+
+::: {.lora-source}
+[Yang et al. · Ortho-LoRA · §3.2, Eq. (2)](https://arxiv.org/pdf/2601.09684v1#page=3)
+:::
+
+::: {.notes lang="en"}
+The paper writes a weighted joint objective for a shared adapter. Here the weights are nonnegative and normalized. The sampler is an implementation example. Conditional on task t, assume the batch gradient is unbiased for its mean loss. Then the expected gradient is the sum over tasks of p_t times their gradients. Multiplying each sampled loss by w_t/p_t recovers the target weighting, provided every task with positive objective weight has positive sampling probability. For example, with a uniform sampler over two tasks and objective weights 0.75 and 0.25, multiply the sampled loss by 1.5 and 0.5 respectively. The next slide compares a shared adapter with three specialists.
+:::
+
+## Three specialists scored higher than one shared adapter {#L70 .lora-slide .lora-evidence}
+
+:::: {.lora-body .share-body}
+
+::: {.lora-label}
+Reported GLUE validation · RoBERTa-base · query and value projections
+:::
+
+::: {.lora-subhead}
+Equal rank per adapter ($r=8$), different total budgets
+:::
+
+~~~{=html}
+<div class="share-study">
+  <div class="share-dumbbells">
+    <div class="share-dumbbell-key"><span><i class="share-joint-key"></i> Shared</span><span><i class="share-separate-key"></i> Separate · selected by task ID</span></div>
+    <div class="share-dumbbell">
+      <div class="share-task">MNLI <small>accuracy</small></div>
+      <div class="share-score-track" style="--joint:17.27%;--separate:30.91%" role="img" aria-label="Shared 85.9, separate 87.4">
+        <i class="share-score-link"></i><span class="share-score-joint">85.9</span><span class="share-score-separate">87.4</span>
+      </div>
+      <strong>+1.5</strong>
+    </div>
+    <div class="share-dumbbell">
+      <div class="share-task">QQP <small>F1</small></div>
+      <div class="share-score-track" style="--joint:22.73%;--separate:37.27%" role="img" aria-label="Shared 86.5, separate 88.1">
+        <i class="share-score-link"></i><span class="share-score-joint">86.5</span><span class="share-score-separate">88.1</span>
+      </div>
+      <strong>+1.6</strong>
+    </div>
+    <div class="share-dumbbell">
+      <div class="share-task">SST-2 <small>accuracy</small></div>
+      <div class="share-score-track" style="--joint:80%;--separate:92.73%" role="img" aria-label="Shared 92.8, separate 94.2">
+        <i class="share-score-link"></i><span class="share-score-joint">92.8</span><span class="share-score-separate">94.2</span>
+      </div>
+      <strong>+1.4</strong>
+    </div>
+    <div class="share-dumbbell-axis"><span>84</span><span>Validation score</span><span>95</span></div>
+    <div class="share-dumbbell-unit">Gain from separate training, in points</div>
+  </div>
+  <div class="share-budget">
+    <div class="share-budget-caption">Adapter storage on the same frozen backbone</div>
+    <div><span aria-hidden="true"><i></i></span><strong>1×</strong> shared</div>
+    <div><span aria-hidden="true"><i></i><i></i><i></i></span><strong>3×</strong> separate</div>
+  </div>
+</div>
+~~~
+
+::::
+
+::: {.lora-takeaway}
+At equal rank per adapter, the specialists gained 1.4–1.6 points per task and used three times the adapter storage.
+:::
+
+::: {.lora-source}
+[Yang et al. · Ortho-LoRA · §4.1–4.2, Table 1](https://arxiv.org/pdf/2601.09684v1#page=4)
+:::
+
+::: {.notes lang="en"}
+The plot excerpts the Joint-LoRA and Single-Task LoRA baselines from the preprint. All tracks use the same score range, 84 to 95. The gain is the specialist score minus the corresponding shared score. The setup adapts Q and V at $r=8$ with $\alpha_{\mathrm{LoRA}}=16$ (so $s=2$), dropout 0.1, AdamW, 10 epochs and a batch size of 32 per task. Each single-task adapter has the same configured width as the joint adapter, so the set of three specialists requires three such adapter allocations. Evaluation uses the known task identity to choose its independently trained specialist. This comparison reports a quality versus adapter-storage trade-off. Estimating the effect of sharing under a fixed total parameter budget would require another comparison.
+:::
+
+## Temperature changes how often each task is sampled {#L71 .lora-slide .lora-evidence}
+
+:::: {.lora-body .share-body}
+
+::: {.lora-label}
+Illustration from multi-task T5 · worked sampling odds for a 16:1 size ratio
+:::
+
+~~~{=html}
+<div class="share-odds">
+  <div><strong>By dataset size</strong><span aria-hidden="true" class="share-odds-bar" style="--large:94.12%"></span><b>16:1</b></div>
+  <div class="share-odds-emphasis"><strong>Temperature 2</strong><span aria-hidden="true" class="share-odds-bar" style="--large:80%"></span><b>4:1</b></div>
+  <div><strong>Equal sampling</strong><span aria-hidden="true" class="share-odds-bar" style="--large:50%"></span><b>1:1</b></div>
+</div>
+<div class="share-odds-key"><span><i></i>Larger dataset</span><span><i></i>Smaller dataset</span><span>Ratio of sampling probabilities</span></div>
+~~~
+
+::: {.share-sampling-rule data-lora-fit="true"}
+At temperature 2, take the square root of each capped dataset size, then normalize.
+:::
+
+~~~{=html}
+<div class="share-t5-results">
+  <div class="lora-label">T5 multi-task training · equal sampling → temperature 2</div>
+  <div><strong>GLUE</strong><span>76.13 → <b>81.90</b></span></div>
+  <div><strong>SuperGLUE</strong><span>63.37 → <b>69.92</b></span></div>
+</div>
+~~~
+
+::::
+
+::: {.lora-takeaway}
+For a multi-task LoRA comparison, fix and report the sampling distribution. In T5, changing it moved both benchmark scores.
+:::
+
+::: {.lora-source}
+[Raffel et al. · T5 · §3.5.2, Table 11](https://jmlr.csail.mit.edu/papers/volume21/20-074/20-074.pdf#page=32)
+:::
+
+::: {.notes lang="en"}
+This was a T5 multi-task experiment. For temperature scaling, the authors first cap task example counts at 2 to the power 21, then raise the resulting proportions to 1 over T and renormalize. In the constructed two-dataset example, both counts are below the cap and only their ratio matters: 16 to 1 becomes 4 to 1 at temperature 2, or 80% versus 20% of the sample probability. Relative to equal sampling, temperature 2 gained 5.77 GLUE and 6.55 SuperGLUE points. The reported benchmark scores come from 786,432 steps on a mixture that also includes unsupervised denoising. The authors sample a task per example and allow checkpoint selection by task. Temperature 4 scored 80.56 on GLUE and 69.54 on SuperGLUE. Temperature 8 scored 77.21 and 66.07. Examples-proportional runs and the other evaluation metrics are in the full table. The next slide inspects what can happen when different tasks update shared parameters.
+:::
+
+## A step for one task can raise another task’s loss {#L73 .lora-slide .lora-evidence}
+
+:::: {.lora-body .share-body}
+
+::: {.lora-label}
+First-order approximation · $g_t=\nabla_\theta\mathcal L_t$, where $\theta$ contains the shared LoRA factors $A,B$
+:::
+
+::::: {.share-geometry}
+
+::: {.lora-figure data-lora-fit="true"}
+<img src="assets/lora_research_short/02/share-conflict.svg" alt="Task i gradient runs from the origin to (−2, 1). Task j gradient runs to (1, 0), making an obtuse angle. Reversing task j’s gradient gives a leftward descent direction forming an acute angle with task i’s gradient.">
+:::
+
+::: {.share-calculation}
+**Worked example in two adapter coordinates**
+
+$g_i\cdot g_j=(-2)(1)+(1)(0)=-2$
+
+**Step downhill on task $j$**
+
+At $\eta=0.1$, take $\Delta\theta=(-0.1,0)$.
+
+$\Delta\mathcal L_i\approx g_i\cdot\Delta\theta=+0.20$
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+At an obtuse angle, descending one task’s loss increases the other’s to first order.
+:::
+
+::: {.lora-source}
+[Yu et al. · Gradient Surgery · Fig. 2(a), §2.2, Definition 1](https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf#page=4)
+:::
+
+::: {.notes lang="en"}
+The paper defines conflict using negative cosine similarity. For nonzero gradients this has the same sign as their dot product. The directional derivative of task i along the negative task j gradient is the sign check shown. The diagram is a constructed coordinate example based on Fig. 2(a). It draws the direction −g_j at unit length, and the calculation uses the actual step −0.1g_j. High curvature can change finite-step outcomes. The arrows show geometry rather than measured loss trajectories.
+:::
+
+## PCGrad removes the component along the other gradient {#L74 .lora-slide .lora-evidence}
+
+:::: {.lora-body .share-body}
+
+::: {.lora-label}
+One pairwise PCGrad operation · project only if $g_i^\top g_j<0$
+:::
+
+::::: {.share-geometry}
+
+::: {.lora-figure data-lora-fit="true"}
+<img src="assets/lora_research_short/02/share-projection.svg" alt="Task i’s original gradient ends at (−2, 1). Its horizontal projection ends at (−2, 0). Subtracting that component leaves a vertical gradient ending at (0, 1), perpendicular to task j’s horizontal gradient.">
+:::
+
+::: {.share-calculation}
+**Subtract the horizontal projection**
+
+$g_i'=g_i-\dfrac{g_i^\top g_j}{\|g_j\|^2}\,g_j$
+
+$\phantom{g_i'}=(-2,1)-(-2,0)=(0,1)$
+
+**Check the right angle**
+
+$g_i'\cdot g_j=(0)(1)+(1)(0)=0$
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+Ortho-LoRA applies this conflict test and projection separately to the gradients of $A$ and $B$.
+:::
+
+::: {.lora-source}
+[Yu et al. · PCGrad · §2.3, Algorithm 1](https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf#page=4) · [Yang et al. · Ortho-LoRA · §3.3, Eqs. (5)–(6)](https://arxiv.org/pdf/2601.09684v1#page=3)
+:::
+
+::: {.notes lang="en"}
+The constructed diagram uses the same starting gradients as the preceding slide and redraws the operation in Fig. 2(b). Here the projection coefficient is (g_i · g_j) / ||g_j||² = −2. Algorithm 1 starts with g_i^{PC} equal to g_i and projects only when the current dot product is negative. It checks other tasks in random order, then sums the transformed gradients. A step along the negative corrected vector here has zero first-order effect on task j. A subsequent projection can change an earlier alignment. In Ortho-LoRA, a conflict present in the B gradient can trigger a B projection even if the full gradient dot product is positive. Yang et al. Table 1 reports 89.6 as the average for their factor-specific method and 88.4 for Joint-LoRA. This paper does not report a PCGrad row. The worked vector example here is an illustration of the PCGrad operation. Pairwise orthogonality is a local first-order statement, and it does not imply finite-step loss preservation or general convergence.
+:::
+
+## HydraLoRA changes the expert mix for each input {#L80 .lora-slide .lora-evidence}
+
+:::: {.lora-body .share-body}
+
+::::: {.share-routing}
+
+::: {.lora-figure data-lora-fit="true"}
+<img src="assets/lora_research_short/02/l80-hydra-fig4b.png" alt="HydraLoRA Figure 4B. The input goes to the frozen backbone, the shared A factor, and the router. The router weights the B experts. The weighted adapter outputs and the backbone output are summed.">
+:::
+
+::: {.share-route-example data-lora-fit="true"}
+<div class="lora-label">Two jointly trained experts · illustrative router weights</div>
+
+$\Delta W(x)=s\sum_{k=1}^{2}\omega_k(x) B_k A$
+
+Each token sets its own mixture. In general, no single constant matrix reproduces this update for all inputs.
+
+| Router output | Expert 1 | Expert 2 |
+| :--- | ---: | ---: |
+| Token $x_a$ | **0.80** | 0.20 |
+| Token $x_b$ | 0.15 | **0.85** |
+
+The router uses softmax. The layer applies $y=W_0x+\Delta W(x)x$.
+:::
+
+:::::
+
+::::
+
+::: {.lora-takeaway}
+A static merge fixes its coefficients before serving. Can it preserve the skills of independently trained specialists?
+:::
+
+::: {.lora-source}
+[Tian et al. · HydraLoRA · Fig. 4(B), Eqs. (3)–(4), §3.2.2](https://papers.nips.cc/paper_files/paper/2024/file/123fd8a56501194823c8e0dca00733df-Paper-Conference.pdf#page=5)
+:::
+
+::: {.notes lang="en"}
+The router uses a softmax of a learned transform of the token representation. The input determines the weights for the expert matrices. The two pairs of weights are constructed, and the figure is the source paper's inference schematic. The figure labels the output experts B_i. Equation (3) denotes them by E_i and writes no separate multiplier. Setting s=1 gives the paper’s forward equation with E_i=B_i. Constant routing weights or identical expert updates are special cases that permit a fixed matrix. The paper computes the weighted expert matrix first, then applies it after the shared A. In contrast with this routed computation, a standard LoRA branch can be merged into the base before serving. This figure depicts the method, not an inference benchmark. The next section starts from separately trained adapters and asks when their updates can share a coordinate system and be combined.
+:::
+
+## Conclusions · Shared adapters {#H13 .lora-slide .lora-conclusion}
+
+::::: {.lora-body .conclusion-body}
+<div class="conclusion-lead">Which task pays for sharing?</div>
+
+:::: {.conclusion-decisions}
+::: {}
+**Measure each task**
+
+At rank 8, three RoBERTa specialists used three times the adapter storage. Each scored 1.4–1.6 points above the shared adapter on its task.
+:::
+::: {}
+**Investigate a weak task**
+
+Check how often it was sampled. If gradients conflict, a small step that helps one task can raise another task’s loss.
+:::
+::: {}
+**Choose the training setup**
+
+Compare a shared adapter with task specialists. If tasks need different updates, test a router and measure its cost.
+:::
+::::
+:::::
+
+::: {.lora-takeaway}
+Choose sharing only if the shared model meets each task’s quality target within the storage budget.
+:::
+
+::: {.lora-source}
+[Yang et al. · Table 1](https://arxiv.org/pdf/2601.09684v1#page=4) · [Yu et al. · §2.2](https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf#page=4) · [Tian et al. · Fig. 4](https://papers.nips.cc/paper_files/paper/2024/file/123fd8a56501194823c8e0dca00733df-Paper-Conference.pdf#page=5)
+:::
+
+::: {.notes lang="en"}
+The storage comparison counts adapter parameters only, on the same backbone. MNLI and SST-2 use accuracy and QQP uses F1. The measured gaps do not identify gradient interference as their cause. PCGrad removes one conflicting component in a local, pairwise update. HydraLoRA illustrates a different option, input-dependent routing. The next chapter starts with specialists that have already been trained separately.
+:::

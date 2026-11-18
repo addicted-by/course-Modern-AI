@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 412" width="1320" height="412" font-family="Inter, Arial, sans-serif"><title>Parameter count after swapping ranks</title>
+<defs><pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V14" stroke="#c5c5c5" stroke-width="3"/></pattern></defs>
+<rect x="26" y="18" width="27" height="27" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="66" y="41" fill="#1a1a1a" text-anchor="start" font-size="25" font-weight="500">N · 1024 × 1024 · 2,048 parameters per component</text>
+<rect x="714" y="18" width="27" height="27" fill="#effbd9" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="754" y="41" fill="#1a1a1a" text-anchor="start" font-size="25" font-weight="500">W · 4096 × 1024 · 5,120 per component</text>
+<path d="M274.0 94L274.0 335" fill="none" stroke="#c5c5c5" stroke-width="2" stroke-dasharray=""/>
+<text x="274.0" y="369" fill="#52525b" text-anchor="middle" font-size="23" font-weight="500">0</text>
+<path d="M519.0 94L519.0 335" fill="none" stroke="#c5c5c5" stroke-width="2" stroke-dasharray=""/>
+<text x="519.0" y="369" fill="#52525b" text-anchor="middle" font-size="23" font-weight="500">5,000</text>
+<path d="M764.0 94L764.0 335" fill="none" stroke="#c5c5c5" stroke-width="2" stroke-dasharray=""/>
+<text x="764.0" y="369" fill="#52525b" text-anchor="middle" font-size="23" font-weight="500">10,000</text>
+<path d="M1009.0 94L1009.0 335" fill="none" stroke="#c5c5c5" stroke-width="2" stroke-dasharray=""/>
+<text x="1009.0" y="369" fill="#52525b" text-anchor="middle" font-size="23" font-weight="500">15,000</text>
+<text x="26" y="141" fill="#1a1a1a" text-anchor="start" font-size="30" font-weight="700">N × 3, W × 1</text>
+<text x="26" y="175" fill="#52525b" text-anchor="start" font-size="25" font-weight="500">4 components</text>
+<rect x="274" y="105" width="100.352" height="86" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="324.176" y="158" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">N</text>
+<rect x="374.352" y="105" width="100.352" height="86" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="424.52799999999996" y="158" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">N</text>
+<rect x="474.70399999999995" y="105" width="100.352" height="86" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="524.88" y="158" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">N</text>
+<rect x="575.0559999999999" y="105" width="250.88" height="86" fill="#effbd9" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="700.4959999999999" y="158" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">W</text>
+<text x="841.9359999999999" y="158" fill="#1a1a1a" text-anchor="start" font-size="35" font-weight="700">11,264</text>
+<text x="26" y="273" fill="#1a1a1a" text-anchor="start" font-size="30" font-weight="700">N × 1, W × 3</text>
+<text x="26" y="307" fill="#52525b" text-anchor="start" font-size="25" font-weight="500">4 components</text>
+<rect x="274" y="237" width="100.352" height="86" fill="#f3f3f3" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="324.176" y="290" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">N</text>
+<rect x="374.352" y="237" width="250.88" height="86" fill="#effbd9" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="499.792" y="290" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">W</text>
+<rect x="625.232" y="237" width="250.88" height="86" fill="#effbd9" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="750.672" y="290" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">W</text>
+<rect x="876.112" y="237" width="250.88" height="86" fill="#effbd9" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="1001.5519999999999" y="290" fill="#1a1a1a" text-anchor="middle" font-size="31" font-weight="700">W</text>
+<text x="1142.992" y="290" fill="#1a1a1a" text-anchor="start" font-size="35" font-weight="700">17,408</text>
+<path d="M274 335L1174 335" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-dasharray=""/>
+<text x="1300" y="403" fill="#52525b" text-anchor="end" font-size="24" font-weight="500">parameters in A and B</text>
+</svg>

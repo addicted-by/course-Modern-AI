@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="340" viewBox="0 0 560 340" role="img">
+  <title>LoRA-GA selects one right and one left singular direction</title>
+  <style>
+    text{font:22px Inter,Arial,sans-serif;fill:#1b201c}
+    .label{font-weight:650}
+    .number{font-size:43px;font-weight:650}
+    .muted{fill:#596154}
+  </style>
+  <text class="label" x="191" y="31" text-anchor="middle">First right direction</text>
+  <text x="191" y="65" text-anchor="middle">A₀ selects column 1</text>
+  <path d="M190 82v37m-7-8 7 8 7-8" fill="none" stroke="#536d2a" stroke-width="3"/>
+  <rect x="131" y="129" width="119" height="190" fill="#e9f8cc"/>
+  <rect x="131" y="224" width="238" height="95" fill="#e4effa" fill-opacity=".8"/>
+  <path d="M131 129h238v190H131zM250 129v190M131 224h238" fill="none" stroke="#66716a" stroke-width="2"/>
+  <g text-anchor="middle">
+    <text class="number" x="190" y="190">6</text>
+    <text class="muted" x="310" y="185">0</text>
+    <text class="muted" x="190" y="280">0</text>
+    <text class="number" x="310" y="287">2</text>
+  </g>
+  <path d="M389 265h34m-26-7-8 7 8 7" fill="none" stroke="#355e85" stroke-width="3"/>
+  <text class="label" x="427" y="238">Second left</text>
+  <text class="label" x="427" y="264">direction</text>
+  <text x="427" y="300">B₀ selects</text>
+  <text x="427" y="326">row 2</text>
+</svg>

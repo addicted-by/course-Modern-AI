@@ -1,0 +1,20 @@
+/* Keep wide equations scrollable within the notebook content column. */
+.content .math.display {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Inline API names may wrap; executable code blocks keep their own scroll. */
+.content :not(pre) > code {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+@media (max-width: 600px) {
+  .content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}

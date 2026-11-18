@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 290" width="560" height="290">
+  <title>WikiSQL validation accuracy at five tested Q and V ranks</title>
+  <desc>Ranks 1, 2, 4, 8, and 64 score 73.4, 73.3, 73.7, 73.8, and 73.5 percent. Rank marks are spaced logarithmically.</desc>
+  <g font-family="Arial,sans-serif" fill="#1a1a1a">
+    <text x="59" y="23" font-size="23" font-weight="bold">Accuracy (%)</text>
+    <path d="M60 61H535 M60 130H535 M60 199H535" stroke="#d1d1d1"/>
+    <path d="M60 61V199H535" fill="none" stroke="#52525b" stroke-width="1.5"/>
+    <g text-anchor="end" font-size="23" fill="#52525b">
+      <text x="51" y="69">74</text>
+      <text x="51" y="138">73.5</text>
+      <text x="51" y="207">73</text>
+    </g>
+    <path d="M76 144L150 158 223 102 297 89 518 130" fill="none" stroke="#52525b" stroke-width="2" stroke-dasharray="4 4"/>
+    <g fill="#bef264" stroke="#1a1a1a" stroke-width="2">
+      <circle cx="76" cy="144" r="7"/>
+      <circle cx="150" cy="158" r="7"/>
+      <circle cx="223" cy="102" r="7"/>
+      <circle cx="297" cy="89" r="7"/>
+      <circle cx="518" cy="130" r="7"/>
+    </g>
+    <g text-anchor="middle" font-size="23" font-weight="bold">
+      <text x="76" y="128">73.4</text>
+      <text x="150" y="142">73.3</text>
+      <text x="223" y="86">73.7</text>
+      <text x="297" y="73">73.8</text>
+      <text x="518" y="114">73.5</text>
+    </g>
+    <g text-anchor="middle" font-size="23">
+      <text x="76" y="228">1</text>
+      <text x="150" y="228">2</text>
+      <text x="223" y="228">4</text>
+      <text x="297" y="228">8</text>
+      <text x="518" y="228">64</text>
+      <text x="295" y="271">Rank per matrix (log scale)</text>
+    </g>
+  </g>
+</svg>

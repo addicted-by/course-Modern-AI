@@ -1,0 +1,7 @@
+title: "Семинар: от CPU и GPU к сингулярному разложению"
+lang: ru
+format:
+  html:
+    css: ../../../styles/course-notebooks.css
+execute:
+  enabled: false

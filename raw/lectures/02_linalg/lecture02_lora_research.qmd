@@ -1,0 +1,56 @@
+---
+pagetitle: "Modern AI — LoRA Research"
+lang: en
+filters:
+  - assets/lora_research_short/slide-navigation.lua
+  - assets/filters/offline-katex.lua
+offline-katex-dir: vendor/katex/dist
+format:
+  revealjs:
+    theme:
+      - default
+      - assets/lora_research_short/local-fonts.scss
+      - assets/course-theme/theme.scss
+    width: 1600
+    height: 900
+    margin: 0.05
+    center: false
+    auto-stretch: false
+    hash: true
+    slide-level: 2
+    slide-number: c/t
+    section-divs: false
+    transition: none
+    background-transition: none
+    navigation-mode: linear
+    view: slide
+    scroll-activation-width: 650
+    scroll-layout: full
+    scroll-snap: false
+    scroll-progress: false
+    pdf-max-pages-per-slide: 1
+    pdf-separate-fragments: false
+    css:
+      - assets/lora_research_short/style.css
+      - assets/lora_research_short/01/chapter.css
+      - assets/lora_research_short/02/chapter.css
+      - assets/lora_research_short/03/chapter.css
+      - assets/lora_research_short/02/capacity.css
+      - assets/lora_research_short/02/share.css
+      - assets/lora_research_short/03/merge.css
+      - assets/lora_research_short/03/deploy.css
+      - assets/lora_research_short/conclusions.css
+      - assets/lora_research_short/03/deployment-decisions.css
+    include-in-header: assets/lora_research_short/initial-slide.html
+    include-after-body: assets/lora_research_short/runtime.html
+    html-math-method: plain
+suppress-bibliography: true
+---
+
+{{< include lora_parts/expanded_01.qmd >}}
+
+{{< include lora_parts/expanded_02.qmd >}}
+
+{{< include lora_parts/expanded_03.qmd >}}
+
+{{< include lora_parts/appendix.qmd >}}

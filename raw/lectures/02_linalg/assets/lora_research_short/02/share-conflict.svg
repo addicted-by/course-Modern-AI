@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 386"
+     font-family="Inter, Arial, sans-serif" fill="#1a1a1a">
+  <defs>
+    <pattern id="grid" width="65" height="65" x="10" y="0" patternUnits="userSpaceOnUse">
+      <path d="M 65 0 H 0 V 65" fill="none" stroke="#e7e8e2" stroke-width="2"/>
+    </pattern>
+    <marker id="graphite" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#41632b"/>
+    </marker>
+    <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#9d3529"/>
+    </marker>
+  </defs>
+  <rect x="10" y="2" width="740" height="382" fill="#fafbf7"/>
+  <rect x="10" y="2" width="740" height="382" fill="url(#grid)"/>
+  <path d="M32 260 H728 M465 26 V354" fill="none" stroke="#adb0a6" stroke-width="2.2"/>
+  <text x="724" y="302" text-anchor="end" font-size="26" fill="#52525b">coordinate 1</text>
+  <text x="481" y="40" font-size="26" fill="#52525b">coordinate 2</text>
+  <path d="M545 260 A80 80 0 0 0 393 224 L465 260 Z" fill="#f5e2d9"/>
+  <path d="M545 260 A80 80 0 0 0 393 224" fill="none" stroke="#9d3529" stroke-width="3"/>
+  <path d="M465 260 L205 130" stroke="#1a1a1a" stroke-width="5" marker-end="url(#graphite)"/>
+  <path d="M465 260 H595" stroke="#41632b" stroke-width="5" marker-end="url(#green)"/>
+  <path d="M465 260 H335" stroke="#9d3529" stroke-width="5" stroke-dasharray="10 5" marker-end="url(#orange)"/>
+  <circle cx="465" cy="260" r="6"/>
+  <text x="189" y="99" text-anchor="middle" font-size="35" font-weight="700">gᵢ = (−2, 1)</text>
+  <text x="629" y="228" text-anchor="middle" font-size="32" font-weight="700" fill="#31511c">gⱼ = (1, 0)</text>
+  <text x="315" y="307" text-anchor="end" font-size="32" font-weight="700" fill="#883025">−gⱼ</text>
+  <text x="315" y="340" text-anchor="end" font-size="28" fill="#883025">descent direction</text>
+  <text x="494" y="168" text-anchor="middle" font-size="30" font-weight="650" fill="#883025">153°</text>
+</svg>

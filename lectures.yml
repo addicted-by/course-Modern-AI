@@ -99,7 +99,7 @@ lectures:
   - number: 12
     module: M2
     title: "Linear Algebra & Decomposition & LoRA. LoRA in details"
-    source: null
-    html: null
+    source: raw/lectures/02_linalg/lecture02_lora_research.qmd
+    html: raw/lectures/02_linalg/lecture02_lora_research.html
     pdf: null
     pptx: null

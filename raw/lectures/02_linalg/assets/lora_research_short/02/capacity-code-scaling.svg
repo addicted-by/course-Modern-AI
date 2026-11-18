@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="365" viewBox="0 0 680 365" font-family="Inter, Arial, sans-serif" role="img" aria-labelledby="chart-title chart-desc">
+<title id="chart-title">HumanEval pass@1 over coding tokens</title>
+<desc id="chart-desc">Llama-2-7B continued pretraining on StarCoder-Python. At 20B tokens, the measured scores were full fine-tuning 0.263, LoRA rank 256 0.224, rank 64 0.196, rank 16 0.162. Biderman et al., Table S1.</desc>
+<rect width="680" height="365" fill="white"/>
+<text x="64.00" y="25.00" text-anchor="start" fill="#191919" font-size="19" font-weight="700">HumanEval pass@1</text>
+<line x1="64.00" y1="220.00" x2="652.00" y2="220.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="53.00" y="226.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">0.15</text>
+<line x1="64.00" y1="185.00" x2="652.00" y2="185.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="53.00" y="191.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">0.175</text>
+<line x1="64.00" y1="150.00" x2="652.00" y2="150.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="53.00" y="156.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">0.20</text>
+<line x1="64.00" y1="115.00" x2="652.00" y2="115.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="53.00" y="121.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">0.225</text>
+<line x1="64.00" y1="80.00" x2="652.00" y2="80.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="53.00" y="86.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">0.25</text>
+<line x1="64.00" y1="45.00" x2="652.00" y2="45.00" stroke="#c5c5c5" stroke-width="1"/>
+<text x="53.00" y="51.00" text-anchor="end" fill="#51515b" font-size="17" font-weight="450">0.275</text>
+<line x1="64.00" y1="255.00" x2="64.00" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="64.00" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">0.25</text>
+<line x1="157.01" y1="255.00" x2="157.01" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="157.01" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">0.5</text>
+<line x1="250.02" y1="255.00" x2="250.02" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="250.02" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">1</text>
+<line x1="343.03" y1="255.00" x2="343.03" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="343.03" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">2</text>
+<line x1="436.04" y1="255.00" x2="436.04" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="436.04" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">4</text>
+<line x1="529.05" y1="255.00" x2="529.05" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="529.05" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">8</text>
+<line x1="622.06" y1="255.00" x2="622.06" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="622.06" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">16</text>
+<line x1="652.00" y1="255.00" x2="652.00" y2="261.00" stroke="#51515b" stroke-width="1"/>
+<text x="652.00" y="280.00" text-anchor="middle" fill="#51515b" font-size="17" font-weight="450">20</text>
+<line x1="64.00" y1="255.00" x2="652.00" y2="255.00" stroke="#51515b" stroke-width="1"/>
+<text x="358.00" y="307.00" text-anchor="middle" fill="#191919" font-size="17" font-weight="650">Training tokens (billions, log scale)</text>
+<polyline points="64.00,217.20 157.01,215.80 250.02,189.20 343.03,176.60 436.04,124.80 529.05,68.80 622.06,73.00 652.00,61.80" fill="none" stroke="#191919" stroke-linejoin="round" stroke-width="3.1"/>
+<circle cx="64.00" cy="217.20" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<circle cx="157.01" cy="215.80" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<circle cx="250.02" cy="189.20" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<circle cx="343.03" cy="176.60" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<circle cx="436.04" cy="124.80" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<circle cx="529.05" cy="68.80" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<circle cx="622.06" cy="73.00" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<circle cx="652.00" cy="61.80" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<line x1="66.00" y1="340.00" x2="95.00" y2="340.00" stroke="#191919" stroke-width="3.1"/>
+<circle cx="80.00" cy="340.00" r="5" fill="#191919" stroke="white" stroke-width="1"/>
+<text x="102.00" y="346.00" text-anchor="start" fill="#191919" font-size="17" font-weight="650">Full fine-tuning</text>
+<polyline points="64.00,228.40 157.01,231.20 250.02,229.80 343.03,207.40 436.04,207.40 529.05,138.80 622.06,134.60 652.00,116.40" fill="none" stroke="#506c10" stroke-linejoin="round" stroke-width="3.1" stroke-dasharray="10 5"/>
+<rect x="59.00" y="223.40" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="152.01" y="226.20" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="245.02" y="224.80" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="338.03" y="202.40" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="431.04" y="202.40" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="524.05" y="133.80" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="617.06" y="129.60" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<rect x="647.00" y="111.40" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<line x1="261.00" y1="340.00" x2="290.00" y2="340.00" stroke="#506c10" stroke-width="3.1" stroke-dasharray="10 5"/>
+<rect x="270.00" y="335.00" width="10" height="10" fill="#506c10" stroke="white" stroke-width="1"/>
+<text x="297.00" y="346.00" text-anchor="start" fill="#191919" font-size="17" font-weight="650">Rank 256</text>
+<polyline points="64.00,231.20 157.01,225.60 250.02,232.60 343.03,215.80 436.04,210.20 529.05,183.60 622.06,158.40 652.00,155.60" fill="none" stroke="#1c6297" stroke-linejoin="round" stroke-width="3.1" stroke-dasharray="3 5"/>
+<path d="M 64.00,225.20 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<path d="M 157.01,219.60 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<path d="M 250.02,226.60 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<path d="M 343.03,209.80 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<path d="M 436.04,204.20 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<path d="M 529.05,177.60 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<path d="M 622.06,152.40 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<path d="M 652.00,149.60 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<line x1="398.00" y1="340.00" x2="427.00" y2="340.00" stroke="#1c6297" stroke-width="3.1" stroke-dasharray="3 5"/>
+<path d="M 412.00,334.00 l 6, 6 l -6, 6 l -6, -6 Z" fill="#1c6297" stroke="white" stroke-width="1"/>
+<text x="434.00" y="346.00" text-anchor="start" fill="#191919" font-size="17" font-weight="650">Rank 64</text>
+<polyline points="64.00,229.80 157.01,228.40 250.02,232.60 343.03,232.60 436.04,214.40 529.05,207.40 622.06,203.20 652.00,203.20" fill="none" stroke="#974818" stroke-linejoin="round" stroke-width="3.1" stroke-dasharray="10 4 2 4"/>
+<path d="M 64.00,223.80 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<path d="M 157.01,222.40 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<path d="M 250.02,226.60 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<path d="M 343.03,226.60 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<path d="M 436.04,208.40 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<path d="M 529.05,201.40 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<path d="M 622.06,197.20 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<path d="M 652.00,197.20 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<line x1="527.00" y1="340.00" x2="556.00" y2="340.00" stroke="#974818" stroke-width="3.1" stroke-dasharray="10 4 2 4"/>
+<path d="M 541.00,334.00 l 6, 10 h -12 Z" fill="#974818" stroke="white" stroke-width="1"/>
+<text x="563.00" y="346.00" text-anchor="start" fill="#191919" font-size="17" font-weight="650">Rank 16</text>
+</svg>

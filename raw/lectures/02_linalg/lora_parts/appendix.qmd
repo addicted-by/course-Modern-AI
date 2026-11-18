@@ -1,0 +1,162 @@
+## Appendix · Tokenizer transplantation and row IDs {#L92 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+```{=html}
+<div class="merge-remap" aria-label="The Qwen embedding for dog moves from row 18457 to NeMo row 63524. Paris moves from row 59604 to NeMo row 42572.">
+  <div class="merge-remap-side">
+    <strong>Qwen 2.5 · base rows</strong>
+    <div><code>dog</code><span>18457</span></div>
+    <div><code>Paris</code><span>59604</span></div>
+  </div>
+  <div class="merge-remap-wires" aria-hidden="true"><span></span><span></span></div>
+  <div class="merge-remap-side">
+    <strong>NeMo · new row order</strong>
+    <div><code>Paris</code><span>42572</span></div>
+    <div><code>dog</code><span>63524</span></div>
+  </div>
+</div>
+```
+
+::: {.merge-remap-collision}
+**What would direct indexing copy?** In Qwen, row `63524` contains the embedding of `/filter`.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Row remapping preserves shared token identities. Merging arbitrary backbones also requires alignment of their internal parameters.
+:::
+
+::: {.lora-source}
+[Tokenizer Transplantation · §3.1](https://arxiv.org/pdf/2506.06607v1#page=3) · [Table 4](https://arxiv.org/pdf/2506.06607v1#page=9) · [Qwen vocabulary](https://huggingface.co/Qwen/Qwen2.5-7B/blob/d149729398750b98c0af14eb82c78cfe92750796/tokenizer.json) · [NeMo vocabulary](https://huggingface.co/mistralai/Mistral-Nemo-Base-2407/blob/a4477a2f977929a969745b69bbd62e03043551a5/tokenizer.json)
+:::
+
+::: {.notes lang="en"}
+The paper transplants the Mistral NeMo tokenizer into Qwen 2.5 7B in its numerical-tokenization control. These are exact vocabulary entries read from the pinned releases. Each shown token is literal and has no leading whitespace marker. Copy Qwen row 18457 into new row 63524, where the NeMo tokenizer expects dog. A direct copy at index 63524 would put the Qwen vector for /filter there. The second wire shows the same operation for Paris in the opposite direction. Both new vectors remain in the Qwen embedding space. The paper estimates unseen-token embeddings separately with a sparse combination of shared embeddings. This procedure changes the tokenizer of one model. It does not align hidden units, layer semantics or independently trained backbone parameters.
+:::
+
+## Appendix · Full-model compression at 40% {#L97 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+::: {.deploy-example}
+SVD-LLM compresses the full layer weights $W$. LoRA-Squeeze compresses the adapter update $\Delta W$.
+:::
+
+::: {.deploy-perplexity}
+
+```{=html}
+<div class="deploy-ppl-chart" role="img" aria-label="At 40 percent compression, ASVD has perplexity 1,407, SVD-LLM with only sequential updates 19.28, whitening only 13.11, and with both 9.27. Lower is better. The horizontal scale is logarithmic.">
+  <div class="deploy-ppl-row" aria-hidden="true"><span>ASVD</span><div style="--point:95.22%"><i></i></div><strong>1,407</strong></div>
+  <div class="deploy-ppl-row" aria-hidden="true"><span>Sequential update only</span><div style="--point:20.37%"><i></i></div><strong>19.28</strong></div>
+  <div class="deploy-ppl-row" aria-hidden="true"><span>Whitening only</span><div style="--point:13.64%"><i></i></div><strong>13.11</strong></div>
+  <div class="deploy-ppl-row deploy-ppl-best" aria-hidden="true"><span>Both in SVD-LLM</span><div style="--point:7.59%"><i></i></div><strong>9.27</strong></div>
+  <div class="deploy-ppl-row deploy-ppl-axis" aria-hidden="true"><span>Lower is better</span><div><span style="--point:8.91%">10</span><span style="--point:49.09%">100</span><span style="--point:89.27%">1,000</span></div><span>Log scale</span></div>
+</div>
+```
+
+:::
+
+:::::
+
+::: {.lora-takeaway}
+On LLaMA-7B, whitening plus sequential updates gave the lowest WikiText-2 perplexity in this 40% compression ablation.
+:::
+
+::: {.lora-source}
+[Wang et al. · SVD-LLM · Table 4, 40% compression column](https://arxiv.org/pdf/2403.07378v5#page=9)
+:::
+
+::: {.notes lang="en"}
+This ablation compares compression of full LLaMA-7B weights. It provides evidence for the activation-aware design in this setup. The W variant includes truncation-aware whitening only. The U variant uses sequential parameter updates only. Full SVD-LLM combines the two. ASVD is a separate baseline. At 20% compression these four perplexities are 11.14, 10.12, 7.94, and 7.73 in the displayed order. The next slide shows why whitening makes the approximation depend on observed layer inputs.
+:::
+
+## Appendix · Full-model compression weighted by layer inputs {#L98 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body .deploy-operator}
+
+::: {.deploy-example}
+Full layer $W=\operatorname{diag}(3,2)$, inputs $X=[e_1,3e_2]$. The dashed ellipse shows the unit disk mapped by $WX$.
+:::
+
+:::: {.deploy-map-pair}
+
+::: {.deploy-map}
+**Weight SVD**
+
+<picture data-lora-fit><img src="assets/lora_research_short/03/deploy-map-weight.svg" alt="Against the calibrated ellipse of radii 3 and 6, the weight-only choice is a horizontal segment of half-length 3. It drops the vertical direction of radius 6."></picture>
+
+Drops vertical · output error **6**
+:::
+
+::: {.deploy-map}
+**Calibrated SVD**
+
+<picture data-lora-fit><img src="assets/lora_research_short/03/deploy-map-output.svg" alt="Against the same calibrated ellipse, the calibration-aware choice is a vertical segment of half-length 6. It drops the horizontal direction of radius 3."></picture>
+
+Drops horizontal · output error **3**
+:::
+
+::::
+
+::: {.deploy-math-line}
+For $S=X=\operatorname{diag}(1,3)$, truncate $WS$ and multiply by $S^{-1}$. The rank-one result is $\widehat W=\operatorname{diag}(0,2)$.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Weight SVD minimizes $\|W-\widehat W\|_F$. With these inputs, minimizing $\|(W-\widehat W)X\|_F$ preserves the other direction.
+:::
+
+::: {.lora-source}
+[Wang et al. · SVD-LLM · §3.1, Theorem 3.2 and Corollary 3.3](https://arxiv.org/pdf/2403.07378v5#page=4)
+:::
+
+::: {.notes lang="en"}
+The paper uses Cholesky whitening of the input Gram matrix. When the transform is invertible, the whitened inputs have identity Gram matrix, so the Frobenius error on layer outputs is the Frobenius residual of the truncated SVD of WS. The guarantee is local to the recorded inputs. For a fixed base and an adapter update, the same output-error expression applies to the change contributed by the adapter. Here S satisfies SS-transpose equals XX-transpose. The displayed disk lives in coefficient space. The two coordinate unit vectors in this space pick out the two columns of X, namely the two recorded calibration inputs. The faint ellipse is their full map applied to the coefficient disk. The dashed diameter marks the dropped output direction. Its half-length equals the Frobenius error on these two calibration inputs.
+:::
+
+## Appendix · Distilling five video specialists into one adapter {#L100 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+:::: {.deploy-split .deploy-distill}
+::: {.deploy-figure .deploy-film}
+<div class="deploy-time" aria-label="Selected positions in the generated video"><span>5%</span><span>45%</span><span>85%</span></div>
+<div class="deploy-label">Base Wan2.1</div>
+<picture data-lora-fit>
+<img src="assets/lora_research_short/03/deploy-thermotics-base.png" alt="Three ordered frames from Base Wan2.1 show a cheese block retaining its shape as it heats.">
+</picture>
+
+<div class="deploy-label">Grouped LoRA</div>
+<picture data-lora-fit>
+<img src="assets/lora_research_short/03/deploy-thermotics-grouped.png" alt="Three ordered frames from Grouped LoRA show a cheese block softening and slumping as it heats.">
+</picture>
+
+Thermotics example · Base vs grouped LoRA, before distillation
+:::
+
+::: {.deploy-reading}
+**From weight merging to student training**
+
+Average five rank-8 updates by group size. The sum fits at rank 40. Train this student to match the relevant expert’s denoising velocity on student-generated states.
+
+<div class="deploy-score"><span>Quick VBench2.0 · multi-view consistency</span><dl><div><dt>Group expert</dt><dd>73.56%</dd></div><div><dt>Merged</dt><dd>51.95%</dd></div><div><dt>Distilled</dt><dd>60.02%</dd></div></dl></div>
+:::
+::::
+
+:::::
+
+::: {.lora-takeaway}
+Further training raised multi-view consistency from 51.95% to 60.02%. The student stayed at rank 40.
+:::
+
+::: {.lora-source}
+[Song et al. · G³-LoRA · Fig. 4](https://arxiv.org/pdf/2609.35189v1#page=8) · [Fig. 1, stages 3–4](https://arxiv.org/pdf/2609.35189v1#page=3) · [§2.2, Eq. (6)](https://arxiv.org/html/2609.35189v1#S2.E6) · [Appendix F, merge](https://arxiv.org/html/2609.35189v1#A6) · [Appendix D, Table 8](https://arxiv.org/html/2609.35189v1#A4.T8)
+:::
+
+::: {.notes lang="en"}
+In Figure 1, stage 3 trains separate experts. Stage 4 consolidates them by merging and then distilling. Appendix F shows that the weighted sum of five rank-eight updates fits exactly at rank 40 up to numerical error. The drop in the multi-view score occurs even when the merged adapter reproduces this weighted sum. Distillation updates the student at the same rank. At a student-generated state, the group expert supplies a target velocity. The paper’s objective uses the frozen initial merged predictor as a lower-weight anchor at the same sampled states. The thermotics frames illustrate a qualitative difference between the base and the grouped adapter before distillation. Table 8 reports 73.56% for the designated group expert, an oracle diagnostic with the correct group known. The numerical scores use a different VBench2.0 dimension, multi-view consistency, to show how distillation repaired part of a group-specific capability.
+:::

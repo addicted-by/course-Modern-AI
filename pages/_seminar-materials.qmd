@@ -13,5 +13,32 @@
       <span class="course-material-unavailable">Materials: TBA</span>
     </div>
   </li>
+  <li class="course-material-item">
+    <div class="course-material-index">
+      <span class="course-material-number">02</span>
+      <span class="course-material-module">M2</span>
+    </div>
+    <div class="course-material-content">
+      <h3 class="course-material-title">CPU/GPU Computing &amp; SVD</h3>
+    </div>
+    <div class="course-material-actions course-material-actions-seminar">
+      <a class="course-button course-button-primary course-material-link" href="/raw/seminars/01_svd/seminar01-svd.html">HTML ↗</a>
+      <a class="course-button course-button-secondary course-material-link" href="/raw/seminars/01_svd/seminar01-svd.ipynb" download data-noresolveinput="true">IPYNB ↓</a>
+    </div>
+  </li>
+  <li class="course-material-item">
+    <div class="course-material-index">
+      <span class="course-material-number">03</span>
+      <span class="course-material-module">M2</span>
+    </div>
+    <div class="course-material-content">
+      <h3 class="course-material-title">ReplaceMe: ViT Block Replacement with Least Squares</h3>
+    </div>
+    <div class="course-material-actions">
+      <a class="course-button course-button-primary course-material-link" href="/raw/seminars/02_replaceme/seminar_replaceme_clean.html">HTML ↗</a>
+      <a class="course-button course-button-secondary course-material-link" href="/raw/seminars/02_replaceme/seminar_replaceme_clean.ipynb" download data-noresolveinput="true">IPYNB ↓</a>
+      <a class="course-button course-button-secondary course-material-link" href="/raw/seminars/02_replaceme/seminar_replaceme_clean.zip" download aria-label="Download ReplaceMe notebook with results and dependencies">ZIP ↓</a>
+    </div>
+  </li>
 </ol>
 ```

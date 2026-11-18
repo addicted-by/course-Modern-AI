@@ -1,0 +1,985 @@
+## What do two task updates share? {#L91 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+:::: {.merge-origin}
+
+::: {.merge-base}
+**Llama‑7B**
+
+Shared pretrained checkpoint $W_0$
+:::
+
+::: {.merge-training}
+**MetaMathQA** → math adapter
+
+**CodeAlpaca** → code adapter
+:::
+
+::::
+
+::: {.merge-equation}
+At each ordinary LoRA layer, $\Delta W_t=W_t-W_0=s_t B_t A_t$ includes the adapter's scale.
+:::
+
+::: {.merge-trace-footer}
+**Before merging** · Map each target module to its base layer. Match matrix shapes and axis order. Check token IDs for embeddings and output heads. Include any trained biases, heads or other saved weights.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+A weighted sum $\sum_t\lambda_t\Delta W_t$ combines changes measured from the same checkpoint in the same coordinates.
+:::
+
+::: {.lora-source}
+[Ilharco et al. · Task Arithmetic · §2](https://arxiv.org/pdf/2212.04089v1#page=2) · [Prabhakar et al. · LoRA Soups · §§3–4](https://arxiv.org/html/2410.13025v2#S3) · [PEFT · Model merging](https://huggingface.co/docs/peft/main/developer_guides/model_merging) · [Appendix · Token mapping](#L92)
+:::
+
+::: {.notes lang="en"}
+Task arithmetic starts from a parameter difference. The ordinary LoRA example assumes zero effective update at initialization and frozen base weights. Each layer's scale may differ across specialists. If a method compensates a nonzero initial product in the base, compute the actual effective difference from the shared original checkpoint. Map both adapters to corresponding base modules and treat an unadapted module as a zero update when combining disjoint target sets. Check saved modules and tied embeddings explicitly. Given compatible parameters, the next decision is which behavior the evaluation should reward.
+:::
+
+## Should the merge retain each skill or combine them? {#L206 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+:::: {.lora-grid-2}
+
+::: {.lora-panel}
+### Retain both skills
+
+Proposed tests: **GSM8K** answer accuracy and **HumanEval** pass@1. Set a tolerated drop from each specialist before testing.
+:::
+
+::: {.lora-panel}
+### Compose math and code
+
+On **GSM-Hard**, execute a Python solution for each word problem. Compare the fraction returning the correct answer with each specialist’s score.
+:::
+
+::::
+
+::: {.merge-trace-footer}
+**Who chooses the mixture?** Preset $\lambda_t$ → CAT learns one $\lambda_{\ell t}$ per layer and task → a router chooses $\omega_t(x)$ for each input.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Separate test sets measure retention. A program that solves a new math problem exercises both skills on one example.
+:::
+
+::: {.lora-source}
+[LoRA Soups · §§3.1–3.2, §5.1 and Table 1](https://arxiv.org/html/2410.13025v2#S3.SS1) · [Chen et al. · HumanEval](https://arxiv.org/abs/2107.03374)
+:::
+
+::: {.notes lang="en"}
+The retention tests illustrate a proposed evaluation. For HumanEval, score the first generated Python completion for each problem against its tests, then average across problems. Before merging, define acceptable drops relative to the corresponding math and code specialists and fix decoding and tests across models. The paper's composition evaluation asks its Llama-7B models for Python solutions on 1,319 GSM-Hard problems. A valid program must also return the reference answer. Evaluate both specialists under this same compositional prompt to distinguish new gains from pre-existing capability. The three weighting choices are alternative ways to combine specialists. CAT's learned coefficients stay fixed at inference. Conditional routing requires a forward-time choice.
+:::
+
+## Can opposite LoRA factors produce the same update? {#L81 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+::: {.merge-label}
+Constructed rank-one adapters · $\Delta W_t=s_t B_t A_t$ · $s_1=s_2=1$ · $x=(3,1)^\top$
+:::
+
+```{=html}
+<div class="merge-trace">
+  <div class="merge-trace-lane">
+    <strong>Adapter 1</strong>
+    <span>(1, 0) · x <b>= 3</b></span>
+    <span class="merge-trace-arrow" aria-hidden="true">→</span>
+    <span>(0, 2)ᵀ × 3 <b>= (0, 6)ᵀ</b></span>
+  </div>
+  <div class="merge-trace-lane">
+    <strong>Adapter 2</strong>
+    <span>(−1, 0) · x <b>= −3</b></span>
+    <span class="merge-trace-arrow" aria-hidden="true">→</span>
+    <span>(0, −2)ᵀ × (−3) <b>= (0, 6)ᵀ</b></span>
+  </div>
+</div>
+```
+
+::: {.merge-trace-footer}
+**Average the updates** · $\Delta W_{\rm mix}=\sum_t\lambda_t\Delta W_t$, with $\lambda_1=\lambda_2=1/2$.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Flipping both signs preserves the product $(-B_1)(-A_1)=B_1A_1$. The average preserves its action on every input.
+:::
+
+::: {.lora-source}
+[Prabhakar et al. · LoRA Soups · §3.2, concatenation of LoRAs](https://arxiv.org/html/2410.13025v2#S3.SS2)
+:::
+
+::: {.notes lang="en"}
+Here A₁ = (1, 0) is a row and B₁ = (0, 2)ᵀ is a column. The second adapter flips both signs. Each B follows the A learned with it, even though the intermediate scalar changes sign. This constructed example illustrates factor nonuniqueness independently of the trained weights in LoRA Soups. Equal merge coefficients retain the common map. The next slide keeps these coefficients, factors and input and changes which tensors are averaged.
+:::
+
+## Can factor-wise linear merging erase a shared update? {#L84 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+:::: {.merge-erase}
+
+::: {.merge-erase-steps}
+**Average the factors** · $\lambda_1=\lambda_2=1/2$, $s_1=s_2=1$.
+
+$$
+\begin{aligned}
+\bar A&=(A_1+A_2)/2=0,\\
+\bar B&=(B_1+B_2)/2=0.
+\end{aligned}
+$$
+:::
+
+::: {.merge-erase-result}
+$\bar B\bar A x$
+
+**$(0,0)^\top$**
+
+Averaging the updates gave $(0,6)^\top$.
+:::
+
+::::
+
+::: {.merge-equation}
+$$
+\begin{aligned}
+4\bar B\bar A &= B_1A_1 + B_2A_2\\
+&\quad + \underbrace{B_1A_2+B_2A_1}_{\text{cross terms}}.
+\end{aligned}
+$$
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Factor averaging mixes the pairs. Update averaging keeps them intact. Test both operators on the target tasks.
+:::
+
+::: {.lora-source}
+[Prabhakar et al. · LoRA Soups · §3.2, linear merging of LoRAs](https://arxiv.org/html/2410.13025v2#S3.SS2)
+:::
+
+::: {.notes lang="en"}
+LoRA Soups applies the same coefficient to each of a skill’s two factors. Consequently its own paired product carries the squared coefficient, and each cross product carries the product of the two coefficients. Here all four terms have weight 1/4, while update averaging assigns each paired product 1/2. Both source scales are one. The second adapter negates each factor of the first. The two cross terms B₁A₂ and B₂A₁ each equal −B₁A₁, cancelling the two paired terms. This calculation establishes that the two operators can differ on the same inputs. Task performance for a particular merge requires a separate measurement. The following block product reproduces the weighted sum without forming a dense update.
+:::
+
+## How can concatenation preserve the update sum? {#L82 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+```{=html}
+<div class="merge-block-equation">
+  <div class="merge-block-term">
+    <span class="merge-block-label">Place output factors side by side</span>
+    <span class="merge-blocks"><span>λ₁s₁B₁</span><span>λ₂s₂B₂</span></span>
+    <span class="merge-factor-width">r₁ columns + r₂ columns</span>
+  </div>
+  <span class="merge-operator">×</span>
+  <div class="merge-block-term">
+    <span class="merge-block-label">Stack input factors</span>
+    <span class="merge-blocks merge-blocks-transposed"><span>A₁</span><span>A₂</span></span>
+    <span class="merge-factor-width">r₁ rows + r₂ rows</span>
+  </div>
+</div>
+```
+
+::: {.merge-equation}
+$$
+B_{\rm cat} A_{\rm cat}=\lambda_1\Delta W_1+\lambda_2\Delta W_2.
+$$
+
+**Fixed coefficients here.** LoRA Soups' CAT freezes both adapters and learns the coefficients per layer on a small mixture of their training data.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+The concatenation has width $r_1+r_2$. Its product recovers the requested sum exactly, even when the two ranks differ.
+:::
+
+::: {.lora-source}
+[Prabhakar et al. · LoRA Soups · §§3.2–4](https://arxiv.org/html/2410.13025v2#S3.SS2)
+:::
+
+::: {.notes lang="en"}
+The outer factor includes both the source adapter multiplier s and the merge weight λ. The new product uses a combined adapter multiplier of one. Multiplying the blocks pairs each output factor only with its own input factor. The actual matrix rank can be lower than the summed width if the updates share directions or cancel. For the previous example, width two still represents a rank-one matrix. For CAT, the authors first freeze the trained modules, then fit layer-specific coefficients for one epoch using a small mixture sampled from the two skill datasets.
+:::
+
+## How often do adapter updates disagree after trimming? {#L85 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+:::: {.merge-evidence .merge-conflicts}
+
+<figure class="merge-source-figure" data-lora-fit>
+  <img src="assets/lora_research_short/03/l85-ties-fig4.png" alt="TIES Figure 4. The fraction of (IA)³ adapter coordinates with a sign conflict grows from about 0.02 for two tasks to about 0.30 for eleven.">
+</figure>
+
+::: {.merge-reading}
+**≈2% → ≈30%**
+
+of (IA)³ adapter coordinates have opposing nonzero signs as the merge grows from 2 to 11 tasks.
+:::
+
+::::
+
+:::::
+
+::: {.lora-takeaway}
+The TIES experiment retained the largest 20% of parameter changes by magnitude in each (IA)³ adapter.
+:::
+
+::: {.lora-source}
+[Yadav et al. · TIES-Merging · Fig. 4](https://arxiv.org/pdf/2306.01708v2#page=4) · [Appendix C.3 · Experimental setup](https://arxiv.org/pdf/2306.01708v2#page=21)
+:::
+
+::: {.notes lang="en"}
+These percentages are approximate readings of the published bars. Figures 3 and 4 use (IA)³ adapter parameters. After trimming each adapter task vector by magnitude, the authors vary the number of merged models and count adapter coordinates with opposing nonzero signs. The 20% is per task vector. Different tasks can retain different coordinates. The same kind of sign interference can occur when adding effective LoRA updates.
+:::
+
+## Which sign wins when tasks disagree? {#L86 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+::: {.merge-label}
+**Constructed full weight updates $\Delta W_t$.** Trim each task vector to 20% density by magnitude. Inspect one coordinate across six tasks.
+:::
+
+```{=html}
+<div class="merge-vote">
+  <div class="merge-vote-stage">
+    <strong>Trim</strong>
+    <div class="merge-vote-values">
+      <span class="merge-vote-neg">−6</span><span class="merge-vote-neg">−3</span>
+      <span class="merge-vote-pos">+3</span><span class="merge-vote-pos">+2</span>
+      <span class="merge-vote-pos">+1</span><span class="merge-vote-drop"><s>+0.2</s> → 0</span>
+    </div>
+  </div>
+  <div class="merge-vote-stage">
+    <strong>Elect</strong>
+    <div><span class="merge-vote-math">−6 − 3 + 3 + 2 + 1 = −3</span><span class="merge-vote-result">Negative wins</span></div>
+  </div>
+  <div class="merge-vote-stage">
+    <strong>Merge</strong>
+    <div><span class="merge-vote-math">(−6 − 3) / 2 =</span> <strong class="merge-vote-answer">−4.5</strong></div>
+  </div>
+</div>
+```
+
+:::::
+
+::: {.lora-takeaway}
+The sign of the signed sum wins. Three positive entries total +6, two negative entries total −9. Only the negatives enter the mean.
+:::
+
+::: {.lora-source}
+[Yadav et al. · TIES-Merging · Algorithm 1](https://arxiv.org/pdf/2306.01708v2#page=4) · [§4.2](https://arxiv.org/pdf/2306.01708v2#page=5)
+:::
+
+::: {.notes lang="en"}
+The example uses the same 20% density as the previous figure. The retained fraction is evaluated across all coordinates of each task separately. Assume the per-task magnitude masks keep the first five entries but discard the sixth. TIES determines each mask across the entire task vector, then elects a sign at each coordinate. Three positive updates survive here, but their total magnitude is six versus nine for the two negative updates. The elected sign is the sign of the sum, negative in this example. The disjoint mean averages only nonzero entries with that sign. The full method scales the merged task vector and adds it to the original parameters.
+:::
+
+## What does DARE preserve when it drops updates? {#L207 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+:::: {.lora-flow}
+::: {.lora-node}
+**Drop**
+
+Keep each task-vector entry independently with probability $q$.
+:::
+
+::: {.lora-arrow}
+→
+:::
+
+::: {.lora-node}
+**Rescale**
+
+Divide each surviving entry by $q$. The rest stay zero.
+:::
+
+::: {.lora-arrow}
+→
+:::
+
+::: {.lora-node .lora-emphasis}
+**Merge**
+
+For DARE-TIES, elect signs and average the entries that agree.
+:::
+::::
+
+::: {.merge-equation}
+$$
+\widetilde{\Delta W}=M\odot \Delta W/q.
+$$
+
+$M_{ij}\sim\mathrm{Bernoulli}(q)$. At $q=1/2$, an entry of $4$ becomes $0$ or $8$ with equal probability.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Across masks, $\mathbb E[\widetilde{\Delta W}]=\Delta W$. Task accuracy after a particular mask and merge still needs measuring.
+:::
+
+::: {.lora-source}
+[Yu et al. · Language Models are Super Mario · §3.1](https://proceedings.mlr.press/v235/yu24p.html) · [Stoica et al. · KnOTS · §5.1, DARE-TIES](https://arxiv.org/html/2410.19735v1#S5.SS1)
+:::
+
+::: {.notes lang="en"}
+The DARE paper writes the drop probability as p. Here q = 1 − p, with 0 < q ≤ 1. Draw a fresh Bernoulli keep mask independently for each task, then run the chosen merge on the sparsified changes. For any fixed entry d, the expectation is (1−q)·0 + q·d/q = d. Sign election and downstream predictions are nonlinear. The identity supplies no guarantee about an individual merged model's accuracy. The DARE-TIES variant in the upcoming KnOTS table combines random pruning and rescaling with sign resolution. Its KnOTS counterpart operates in the aligned coordinates.
+:::
+
+## How much does alignment change with KnOTS? {#L88 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+:::: {.merge-evidence .merge-heatmaps}
+
+<figure class="merge-source-figure">
+  <picture data-lora-fit>
+    <source media="(max-width: 650px)" srcset="assets/lora_research_short/03/l88-knots-fig2bc-mobile.png">
+    <img src="assets/lora_research_short/03/l88-knots-fig2bc.png" alt="Published KnOTS heatmaps. Comparisons between different tasks range from 0.14 to 0.30 in update outputs and 0.44 to 0.57 in aligned coefficient outputs. Rows and columns follow the same task order.">
+  </picture>
+</figure>
+
+::: {.merge-reading}
+**0.22 → 0.48**
+
+Top-right cell · Cars × SVHN
+
+Before (b) · full update $\Delta W_t X$
+
+After (c) · aligned coefficients $V_t^\top X$
+:::
+
+::::
+
+:::::
+
+::: {.lora-takeaway}
+Centered kernel alignment (CKA) diagnoses how similarly two tasks represent the same inputs. Predictive accuracy requires a separate test.
+:::
+
+::: {.lora-source}
+[Stoica et al. · KnOTS · Fig. 2(b,c), §3.1 and Appendix B](https://arxiv.org/pdf/2410.19735v1#page=5)
+:::
+
+::: {.notes lang="en"}
+The number pair highlights the Cars and SVHN cell in the two published heatmaps. The rightmost column is SVHN and the top row is Cars. Both matrices use the same unlabeled held-out images and average pairwise centered kernel alignment across corresponding query, key, value and output projections. X denotes the inputs reaching a given layer in a model. Each model supplies its own intermediate activations on those images. Panel b compares the outputs of the full LoRA updates. Panel c compares the outputs of their aligned right-singular coefficient blocks. These are comparisons of different representations. Task accuracy is measured separately.
+:::
+
+## What changes when both LoRAs use one output basis? {#L89 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+::: {.merge-label}
+Repeat for each merged layer. In this constructed example, two rank-one $2\times2$ task updates form a $2\times4$ matrix.
+:::
+
+:::: {.merge-joint}
+
+::: {.merge-joint-input}
+**Join the task updates**
+
+$$
+\left[\begin{array}{rr|rr}
+2&0&0&1\\
+2&0&0&-1
+\end{array}\right]
+$$
+:::
+
+::: {.merge-joint-arrow}
+→
+:::
+
+::: {.merge-joint-output}
+**Shared map × task coefficients**
+
+$$
+\underbrace{\begin{bmatrix}2&1\\2&-1\end{bmatrix}}_{U\Sigma\;(2\times2)}
+\underbrace{\left[\begin{array}{cc|cc}
+1&0&0&0\\
+0&0&0&1
+\end{array}\right]}_{[V_1^\top\,|\,V_2^\top]\;(2\times4)}
+$$
+:::
+
+::::
+
+::: {.merge-joint-rule}
+**KnOTS-TIES** uses $\Sigma V_t^\top$ to select the trimming masks. It masks $V_t^\top$, elects signs, averages and maps back through $U\Sigma$.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+The two rows of each coefficient block now refer to the same directions, $(1,1)^\top$ and $(1,-1)^\top$.
+:::
+
+::: {.lora-source}
+[Adapted from Stoica et al. · KnOTS · Fig. 1, §4 and §5.1](https://arxiv.org/pdf/2410.19735v1#page=2)
+:::
+
+::: {.notes lang="en"}
+In a compact SVD with k nonzero singular values, U is d_out by k, Σ is k by k, and every task coefficient block V_tᵀ is k by d_in. The constructed layer uses one task update with a nonzero first column (2, 2)ᵀ and another with a nonzero second column (1, −1)ᵀ. The nonzero columns are orthogonal and have unequal lengths 2√2 and √2, so the displayed UΣ and right blocks are a valid joint SVD. U has normalized versions of those two directions. The vertical line marks a split at the original input width, not a split into separate SVDs. Each task uses the same UΣ map with its own coefficient block. The coefficient merge rule determines which movements combine in the shared coordinates. For KnOTS-TIES, magnitude trimming uses singular-value-scaled coefficients to compute the masks, then those masks apply to the unscaled coefficients before sign election and disjoint averaging.
+:::
+
+## What does knowing the dataset change? {#L208 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+::: {.merge-label}
+Consider a SUN397 image labeled **islet**. RESISC45 has a related class, **island**.
+:::
+
+:::: {.lora-grid-2}
+::: {.lora-panel}
+### Per-task evaluation
+
+The evaluator knows the image is from SUN397 and scores its labels only. The RESISC45 label **island** is outside this candidate set.
+:::
+
+::: {.lora-panel .lora-emphasis}
+### Joint-task evaluation
+
+Pool images from both datasets and score their combined label set for every image. Now **islet** and **island** can compete.
+:::
+::::
+
+::: {.merge-trace-footer}
+**Skill composition needs a different test.** Ask for a single output that uses both skills, such as a program that returns the answer to a math problem.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+The following KnOTS table uses joint-task evaluation across eight vision datasets. Every image faces the same label set.
+:::
+
+::: {.lora-source}
+[Stoica et al. · KnOTS · §§5.2–5.3, Tables 1 and 4](https://arxiv.org/html/2410.19735v1#S5.SS3) · [Prabhakar et al. · LoRA Soups · §3.1](https://arxiv.org/html/2410.13025v2#S3.SS1)
+:::
+
+::: {.notes lang="en"}
+Known task identity may select a prediction head or restrict the list of possible answers outside the model. Here the restricted list itself supplies information. The authors identify islet and island as actual labels in these two datasets. This slide describes the candidate labels, not a published prediction for a specific photograph. In the eight-dataset experiment, identical label names were deduplicated, including digit labels shared by MNIST and SVHN. A joint classifier assigns one image one label. A composition test asks whether multiple skills can work together on the same instance.
+:::
+
+## How often does the merge pick the right label out of 748? {#L93 .lora-slide .lora-evidence}
+
+::::: {.lora-body .merge-body}
+
+::: {.merge-label}
+**Joint-task evaluation** · pooled images from eight vision datasets · 748 unique classes · no task ID. [Evaluation protocol](#L208)
+:::
+
+::: {.lora-table data-lora-fit="true"}
+
+| ViT-B/32 (%) | Hits@1 | Hits@3 | Hits@5 |
+|:----------------|-----------:|-----------:|-----------:|
+| Ensemble        | 40.7 | 63.1 | 72.6 |
+| Task arithmetic | 43.6 | 65.3 | 74.0 |
+| TIES            | 43.6 | 65.3 | 73.9 |
+| DARE-TIES       | 44.0 | 66.4 | 75.1 |
+| **KnOTS-TIES**  | **46.8** | **68.1** | **76.3** |
+| KnOTS-DARE-TIES | 45.2 | 66.9 | 75.3 |
+
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Hits@1 rose from 43.6% for TIES to 46.8% for KnOTS-TIES. The correct label appeared among its first five guesses on 76.3% of images.
+:::
+
+::: {.lora-source}
+[Stoica et al. · KnOTS · §5.3 and Table 4](https://arxiv.org/html/2410.19735v1#S5.T4)
+:::
+
+::: {.notes lang="en"}
+Every image competes against the same deduplicated union of labels. Hits@k is the fraction of images whose correct label appears among the k highest-scoring predictions. These percentages cover all images and label candidates, not “islet” and “island” alone. The table transposes the paper's Table 4. Appendix F, Table A2 lists 43.5 and 65.2 for Task Arithmetic Hits@1 and Hits@3, whereas Table 4 reports 43.6 and 65.3. The authors selected the best of three seeds for DARE experiments (§5.1). The ensemble is a prediction-time baseline, while the five remaining rows compare weight-merging methods. KnOTS-TIES showed the highest Hits@1, Hits@3 and Hits@5 in this experiment. The normalized per-task accuracies in the paper's Table 1 use a different protocol and denominator.
+:::
+
+## How would we compare all four adapter strategies? {#L209 .lora-slide .lora-evidence}
+
+::::: {.lora-body}
+
+**Common setup** · Checkpoint, datasets, splits, target modules and training-token budget.
+
+:::: {.lora-grid-2}
+::: {.lora-plain}
+**Series A · Equal storage budget**
+
+Match total adapter and router parameters across tasks. Count shared factors once.
+:::
+::: {.lora-plain}
+**Series B · Equal inference budget**
+
+Match compute per request, including routing. Fix batch size and sequence length.
+:::
+::::
+
+::: {.lora-table .lora-compact}
+| Strategy | Math accuracy | Code pass@1 | Macro mean | Worst relative drop | Peak memory | p95 latency |
+|:---|---:|---:|---:|---:|---:|---:|
+| Shared | — | — | — | — | — | — |
+| Separate | — | — | — | — | — | — |
+| Merged | — | — | — | — | — | — |
+| Routed | — | — | — | — | — | — |
+:::
+:::::
+
+::: {.lora-takeaway}
+For each series, record task-ID access, data used for merging, and the cost of training experts, router and merge weights.
+:::
+
+::: {.lora-source}
+Proposed experiment, informed by [LoRA Soups · DATA-MIX and CAT](https://aclanthology.org/2025.coling-industry.55/) · [KnOTS · §5](https://proceedings.iclr.cc/paper_files/paper/2025/file/0d4f8a5109c5083b5307fcd0bddae7a7-Paper-Conference.pdf#page=7) · [HydraLoRA · §4](https://proceedings.neurips.cc/paper_files/paper/2024/hash/123fd8a56501194823c8e0dca00733df-Abstract.html)
+:::
+
+::: {.notes lang="en"}
+Use the same held-out math and coding prompts, generation settings, hardware, concurrency and request mix. In the storage-matched series, LoRA Soups provides a reference design: for k specialists of rank r on identical target modules, its DATA-MIX baseline trains a single adapter of rank kr. Include any extra trained coefficients when matching the budgets here. Compute the macro mean of the two success rates on the same 0–1 scale. For positive specialist scores, define the worst relative drop as $\max_t \max(0, (S_t^{\mathrm{specialist}}-S_t)/S_t^{\mathrm{specialist}})$. If a specialist scores zero, report an absolute gap for that task separately. Mark oracle specialist selection as task-ID access. A task-blind selector needs its own measured cost and score. For a folded model, report the number of full model copies and the bytes actually resident in serving. For a dense router count every active branch. If merging uses independent training runs or an extra calibration pass, include both and report how the common training-token allowance was divided. Use validation for coefficients and hyperparameters, then run the locked comparison on the test split. The table is an experimental design with blank measurements.
+:::
+
+## Conclusions · Merging adapters {#H14 .lora-slide .lora-conclusion}
+
+::::: {.lora-body .conclusion-body}
+<div class="conclusion-lead">What survives the merge?</div>
+
+:::: {.conclusion-merge}
+::: {}
+**In the weights**
+
+Measure each task’s change from the same checkpoint. Align parameter coordinates, then combine the scaled updates.
+
+$\Delta W_{\rm mix}=\sum_t\lambda_t\,\Delta W_t$
+:::
+
+::: {}
+**In the predictions**
+
+Merging eight ViT-B/32 adapters gave one classifier over **748 pooled labels**. With no task ID, TIES ranked the correct label first on **43.6%** of images. KnOTS-TIES reached **46.8%**.
+
+A shared basis changed where TIES trimmed and combined coefficients.
+:::
+::::
+:::::
+
+::: {.lora-takeaway}
+Check both the algebra of the weight update and the merged model’s performance with the information it will have at inference.
+:::
+
+::: {.lora-source}
+[Ilharco et al. · §2](https://arxiv.org/pdf/2212.04089v1#page=2) · [Stoica et al. · §4 and Table 4](https://arxiv.org/pdf/2410.19735v1#page=8)
+:::
+
+::: {.notes lang="en"}
+The equation describes a weighted sum of effective task updates relative to the common pretrained checkpoint. With compensated initialization the effective change may involve a difference of two factor products. Plain addition in a full shared basis gives the same reconstructed weighted sum. The coordinate-wise masking and sign rules in a method such as TIES can give a different result in the new basis. The joint-label experiment used eight ViT-B/32 adapters. Review task-specific scores as well as the joint result before compressing the merge.
+:::
+
+## What does a rank-1 squeeze remove? {#L94 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body .deploy-operator}
+
+::: {.deploy-example}
+Apply $\Delta W=\operatorname{diag}(3,2)$ to the unit disk. The ellipse’s semiaxes give the singular values.
+:::
+
+:::: {.deploy-map-pair}
+
+::: {.deploy-map}
+**Trained update**
+
+<picture data-lora-fit><img src="assets/lora_research_short/03/deploy-map-base.svg" alt="The trained update maps the unit disk to a filled ellipse with horizontal radius 3 and vertical radius 2."></picture>
+
+Ellipse with semiaxes **3** and **2**
+:::
+
+::: {.deploy-map}
+**Rank-1 truncation**
+
+<picture data-lora-fit><img src="assets/lora_research_short/03/deploy-map-rank1.svg" alt="Rank-1 truncation collapses the ellipse to the horizontal segment from minus 3 to plus 3. The dashed ellipse and dashed radius of length 2 show the original range and the dropped vertical direction."></picture>
+
+Horizontal segment · vertical direction dropped
+:::
+
+::::
+
+::: {.deploy-math-line}
+$\Delta W_1=3e_1e_1^\top$ · $\|\Delta W-\Delta W_1\|_F=2$
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Exact truncated SVD minimizes Frobenius reconstruction error at the target rank. Check task quality on held-out examples.
+:::
+
+::: {.lora-source}
+[Vulić et al. · LoRA-Squeeze · §3.1, rank truncation](https://arxiv.org/pdf/2602.10993v2#page=4) · [Appendix · layer outputs under calibration](#L98)
+:::
+
+::: {.notes lang="en"}
+Section 3.1 describes computing a low-rank approximation of the trained effective update and splitting the retained singular values into two factors. The best-in-Frobenius-norm claim is for exact truncated SVD. Its randomized implementation targets that approximation at lower computation cost. Frobenius error concerns weights, so check task metrics separately. In the illustrative diagonal example the unit vectors are already the singular vectors. The diagram maps the unit disk, whose boundary is the unit circle. The ellipse’s half-width and half-height are the output lengths of the unit inputs e₁ and e₂. Rank one collapses the disk to a segment with half-length three, and the output for e₂ becomes zero. The appendix revisits this diagonal matrix as a full layer weight and changes the calibration inputs.
+:::
+
+## Where is the small SVD hiding? {#L137 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body .deploy-factorization}
+
+::: {.deploy-example}
+Example layer with a $4096\times4096$ update and factor width $r=128$
+:::
+
+::: {.deploy-qr-stage}
+
+```{=html}
+<div class="deploy-qr-geometry" role="img" aria-label="The update factors into an output basis, a small square core of 128 by 128, and a transposed input basis. Only the core enters the SVD.">
+  <div class="deploy-qr-basis"><span class="deploy-qr-shape deploy-qr-tall"></span><strong>Q<sub>B</sub></strong><span>4096 × 128</span></div>
+  <div class="deploy-qr-middle"><span class="deploy-qr-target">SVD here</span><span class="deploy-qr-shape deploy-qr-square"></span><strong>M</strong><span>128 × 128</span></div>
+  <div class="deploy-qr-basis"><span class="deploy-qr-shape deploy-qr-wide"></span><strong>Q<sub>A</sub><sup>⊤</sup></strong><span>128 × 4096</span></div>
+</div>
+```
+
+:::
+
+::: {.deploy-math-line}
+$B=Q_BR_B,\quad A^\top=Q_AR_A$
+:::
+
+::: {.deploy-math-line}
+$\Delta W=sBA=sQ_B\underbrace{(R_BR_A^\top)}_{M}Q_A^\top$
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Compute the SVD of the 128 × 128 core. The two outer bases map its singular vectors back to the layer.
+:::
+
+::: {.lora-source}
+[Vulić et al. · LoRA-Squeeze · Appendix D, Eqs. (1)–(9)](https://arxiv.org/pdf/2602.10993v2#page=19)
+:::
+
+::: {.notes lang="en"}
+The source calls the left factor A and the right factor B. For thin QR under the stated factor shapes, both Q matrices have orthonormal columns. The singular values of the effective update are those of the core multiplied by the absolute value of the update scale s. The paper’s factor names are translated into the BA convention used throughout this lecture. The reduction is exact. The implementation may use a randomized approximation for the subsequent truncated core decomposition. The schematic exaggerates the widths of the thin axes for readability. In the illustrative 4096 × 4096 layer, the SVD input has 1/1024 as many entries as the dense update. After truncating the core, multiply its singular vectors by the outer bases to get layer-space factors.
+:::
+
+## Can training at rank 128 help a rank-8 adapter? {#L96 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+:::: {.deploy-split .deploy-benchmark}
+
+::: {.deploy-reading}
+**Gemma 3 4B IT**
+
+<div class="deploy-number">+0.33</div>
+
+points averaged over 13 text tasks for **128 → 8** versus direct rank-8 training
+:::
+
+::: {.deploy-gains}
+<div class="deploy-label">Score difference from direct rank-8 LoRA</div>
+<table aria-label="Post-Squeeze score differences for adapters all deployed at rank 8">
+<thead><tr><th scope="col">Train rank</th><th scope="col">Difference, points</th></tr></thead>
+<tbody>
+<tr><th scope="row">128</th><td class="deploy-gain"><div class="deploy-gain-track"><i aria-hidden="true" style="--value: 82.5%"></i></div><strong>+0.33</strong></td></tr>
+<tr><th scope="row">64</th><td class="deploy-gain"><div class="deploy-gain-track"><i aria-hidden="true" style="--value: 65%"></i></div><span>+0.26</span></td></tr>
+<tr><th scope="row">32</th><td class="deploy-gain"><div class="deploy-gain-track"><i aria-hidden="true" style="--value: 37.5%"></i></div><span>+0.15</span></td></tr>
+<tr><th scope="row">16</th><td class="deploy-gain"><div class="deploy-gain-track"><i aria-hidden="true" style="--value: 15%"></i></div><span>+0.06</span></td></tr>
+<tr><th scope="row">8</th><td class="deploy-gain"><div class="deploy-gain-track"><i aria-hidden="true" class="deploy-negative" style="--value: 2.5%"></i></div><span>−0.01</span></td></tr>
+</tbody>
+</table>
+:::
+
+::::
+
+:::::
+
+::: {.lora-takeaway}
+Every adapter deploys at rank 8. Training at rank 128 uses 16 times as many adapter parameters as training at rank 8.
+:::
+
+::: {.lora-source}
+[Vulić et al. · LoRA-Squeeze · Fig. 4(a), target-rank-8 column and §5](https://arxiv.org/pdf/2602.10993v2#page=8) · [Appendix · full-model compression](#L97)
+:::
+
+::: {.notes lang="en"}
+This is the target-rank-eight column of the original heatmap, including the reported diagonal entry. The compared models use the same deployed rank and target layers. The same deployed rank conceals differences in training rank, optimizer state and adapter compute. The 16× ratio is a count of adapter parameters for identical target modules. End-to-end training time also includes the backbone. The study selects learning rates by rank. Gains are specific to the reported model and task average.
+:::
+
+## Which PEFT merge preserves both tasks? {#L210 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+::: {.deploy-label}
+Two synthetic regressions · same base and target layer · rank 1 per specialist · PEFT 0.21.3 / PyTorch 2.14.0 · FP32 SVD
+:::
+
+:::: {.deploy-split}
+
+::: {}
+```{=html}
+<pre style="font-size: max(.8em, 13px); background: var(--lora-surface);"><code style="font-size: 1em; line-height: 1.3; color: var(--lora-ink); padding: .15em .65em .7em;">h, v = "horizontal", "vertical"
+m = PeftModel.from_pretrained(
+    base, h, adapter_name=h)
+m.load_adapter(v, adapter_name=v)
+w = [1.0, 0.75]
+add = m.add_weighted_adapter
+add([h, v], w, "cat",
+    combination_type="cat")
+add([h, v], w, "svd1",
+    combination_type="svd", svd_rank=1)</code></pre>
+```
+:::
+
+::: {.lora-table .lora-compact}
+**Evaluate both tasks for each adapter.**
+
+`m.set_adapter(name)` · `m.eval()`
+
+Held-out mean absolute error ↓
+
+| Adapter | Horizontal | Vertical |
+|:--|--:|--:|
+| Own specialist | 0.000 | 0.000 |
+| Cat · rank 2 | 0.000 | 0.125 |
+| SVD · rank 1 | 0.000 | 0.500 |
+:::
+
+::::
+
+::: {.deploy-math-line}
+Cat has width $1+1=2$ and reproduces $\Delta W_1+0.75\Delta W_2$. Rank-one SVD drops the vertical correction.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Keep cat for these two tasks. Save the adapter, or fold it into the base and check the outputs.
+:::
+
+::: {.lora-source}
+[Run the CPU example](assets/lora_research_short/03/peft_merge_practice.py){.practice-download} [Course file · peft_merge_practice.py]{.practice-print} · [PEFT 0.21.3 · merging guide](https://github.com/huggingface/peft/blob/v0.21.3/docs/source/developer_guides/model_merging.md) · [weighted-adapter implementation](https://github.com/huggingface/peft/blob/v0.21.3/src/peft/tuners/lora/model.py#L853-L999) · [LoRA-Squeeze · Appendix D](https://arxiv.org/pdf/2602.10993v2#page=19)
+:::
+
+::: {.notes lang="en"}
+The linked script fits two rank-one specialists by least squares on a frozen linear map with three inputs and two outputs, saves them locally, and loads them with PeftModel.from_pretrained and load_adapter. Both target the same linear layer. Each specialist corrects the slope on a different axis, and a third feature contributes through the shared base. The training inputs on the task axis are ±1 and ±2. The held-out inputs are ±0.5 and ±1.5. Each score averages absolute error over four inputs and both outputs. The specialist row uses the matching specialist for each task. All scores are rounded to three decimal places.
+
+The slide uses h and v as the names and local directories of the adapters. The adapter scales are 2 and 3. The two merge weights are 1 and 0.75. In PEFT 0.21.3, cat multiplies one factor by the weight and adapter scale. The SVD path takes the weighted sum of get_delta_weight outputs, each of which already includes its scale. The script checks the concatenated update against the weighted sum of the individually scaled products. Its A and B shapes are (2, 3) and (2, 2). Weighting retains three quarters of the vertical specialist's unit correction before compression. The rank-one candidate keeps the stronger horizontal correction, and its factors have shapes (1, 3) and (2, 1). The script checks its product against a direct truncated SVD, then calls set_adapter, switches to evaluation mode and scores both tasks for each candidate.
+
+This CPU run uses Python 3.14.7, PyTorch 2.14.0, PEFT 0.21.3, Transformers 5.17.0 and Accelerate 1.16.0. The SVD runs in float32. Installation and invocation are in the script header. After selecting cat, save_pretrained with selected_adapters saves a separate artifact for use with the original base. Alternatively, merge_and_unload folds the active adapter into the base. The example reloads the saved adapter on a fresh base, then compares the folded outputs with the active adapter branch on both held-out sets and 32 seeded random probes. With rtol=1e-5 and atol=1e-6, the largest absolute difference in this run was 4.77e-7. These results describe the constructed regressions.
+:::
+
+## How precise is folding an adapter into the base? {#L104 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+:::: {.deploy-api-pair}
+::: {}
+**Combine specialists**
+
+`add_weighted_adapter` creates a named adapter. The base and the new factors can be saved separately.
+:::
+
+::: {}
+**Fold into the base**
+
+`merge_and_unload` returns a standalone model with $W'=W_0+sBA$ in each adapted layer.
+:::
+::::
+
+::: {.deploy-example}
+**FP16 round-trip** $2048+1\to2048$ after rounding. Subtracting $1$ then gives $2047$.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Compare logits on the same inputs before and after folding with a dtype-appropriate tolerance. Keep the original checkpoint for exact recovery.
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · §4.1](https://arxiv.org/pdf/2106.09685v2#page=4) · [PEFT v0.21.0 · combining and folding adapters](https://huggingface.co/docs/peft/v0.21.0/package_reference/lora#merge-lora-weights-into-the-base-model)
+:::
+
+::: {.notes lang="en"}
+For ordinary LoRA in evaluation mode, the explicit branch computes the base output plus the scaled adapter output. Folding forms the equivalent matrix in exact arithmetic. Floating-point operation order changes the result. At 2048 the spacing above is 2, so 2049 rounds to 2048 under ties-to-even. The predecessor is 2047. The scalar example illustrates rounding only. For a deployment check, save logits on fixed input IDs with the intended adapter active, model.eval(), no sampling and no reused KV cache. Then evaluate the standalone model returned by merge_and_unload on the same inputs, and use torch.testing.assert_close with explicit rtol and atol suited to the deployed dtype and application. Compare task scores as well. PEFT unloads the adapter structure after folding. Keep the original checkpoint and the combined adapter for independent reuse.
+:::
+
+## How can one GPU batch serve two named adapters? {#L105 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+:::: {.deploy-split .deploy-batch}
+
+::: {.deploy-figure}
+<picture data-lora-fit>
+<source media="(max-width: 650px)" srcset="assets/lora_research_short/03/deploy-paging-mobile.png">
+<img src="assets/lora_research_short/03/deploy-paging-desktop.png" alt="S-LoRA Figure 2 shows adapters 2 and 5 moving from host memory to a GPU pool shared with the KV cache. The base weights occupy a separate region.">
+</picture>
+
+S-LoRA pages the requested adapters into the GPU pool alongside the KV cache.
+:::
+
+::: {.deploy-batch-math}
+**SQL request → adapter 2**  
+`model="sql"` $W_0 x_2+\Delta W_2 x_2$
+
+**Code request → adapter 5**  
+`model="code"` $W_0 x_5+\Delta W_5 x_5$
+
+The vLLM client names a registered adapter per request. S-LoRA batches the base-model multiply across both requests.
+:::
+
+::::
+
+:::::
+
+::: {.lora-takeaway}
+Here the client picks a specialist. A learned router computes the mixture from the input. A static merge uses the same mixture for every request.
+:::
+
+::: {.lora-source}
+[Sheng et al. · S-LoRA · Figs. 1–2 and §§4.1, 5.1](https://arxiv.org/pdf/2311.03285v3#page=3) · [vLLM v0.34.0 · serving LoRA adapters](https://docs.vllm.ai/en/v0.34.0/features/lora/#serving-lora-adapters)
+:::
+
+::: {.notes lang="en"}
+The diagram is from S-LoRA. Its host catalog supplies the adapters needed by the current batch to the device’s unified paging pool. Base weights and temporary tensors have separate allocations. Request names sql and code are examples mapped here to the figure’s adapter IDs 2 and 5. In the vLLM OpenAI-compatible server, register the names with --enable-lora and --lora-modules and select the adapter using the model field. Configure enough simultaneous LoRAs for a mixed batch. In the paper the shared base computes both columns together, and the adapter kernels add the appropriate correction to each. Ranks can differ and pages can be non-contiguous. Benchmark throughput, first-token latency and peak device memory using realistic request concurrency and the expected adapter popularity.
+:::
+
+## How many requests meet the first-token deadline? {#L99 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+:::: {.deploy-split .deploy-release}
+
+::: {.deploy-figure}
+<div class="deploy-label">Same request trace · S-LoRA and two ablations</div>
+<picture data-lora-fit>
+<source media="(max-width: 650px)" srcset="assets/lora_research_short/03/deploy-slora-fig7-mobile.png">
+<img src="assets/lora_research_short/03/deploy-slora-fig7.png" alt="On a rescaled Chatbot Arena trace, S-LoRA delivered higher throughput and better first-token service-level attainment than its ablations at the highest tested request rate. S-LoRA itself met the six-second target for only about half of requests at four requests per second.">
+</picture>
+
+Chatbot Arena replay · model IDs as adapter proxies · Llama-7B on an A10G (24 GB)
+:::
+
+::: {.deploy-release-criteria}
+**Held-out quality** How much rank and which layers does the task need?
+
+**Serving budget** Measure throughput, first-token latency and peak GPU memory for the expected adapter mix.
+
+<div class="deploy-evidence-callout">At 4 req/s, only about half of S-LoRA requests met the 6 s target in this test.</div>
+:::
+
+::::
+
+:::::
+
+::: {.lora-takeaway}
+At a fixed latency target, the fraction of requests served on time falls as arrivals increase.
+:::
+
+::: {.lora-source}
+[Sheng et al. · S-LoRA · Fig. 7 and §7.3, real workload traces](https://arxiv.org/pdf/2311.03285v3#page=9)
+:::
+
+::: {.notes lang="en"}
+The left panel reports requests per second and the right panel reports attainment of the service-level objective, measured as the fraction of requests receiving a first token within six seconds. The trace is sampled and rescaled to different request rates using the paper’s S2 model configuration on one 24 GB A10G. The Chatbot Arena trace has model IDs, which the paper uses as a proxy for adapter IDs. The sample includes about 26 simulated adapters. The paper’s serving comparison holds adapter workloads fixed and varies the implementation. A release decision additionally needs quality evaluation for the selected adapter or compressed model. Report task quality and serving results under their own stated protocols.
+:::
+
+## Optional · When can aLoRA reuse the base model’s KV cache? {#L211 .lora-slide .lora-evidence}
+
+::::: {.lora-body .deploy-body}
+
+::: {.deploy-example}
+A base model drafts an answer. A trained aLoRA adapter checks that answer using the same conversation.
+:::
+
+:::: {.deploy-invocation}
+::: {}
+**Shared prefix**
+
+Conversation and draft answer
+
+$W_0$ · reuse base keys and values
+:::
+
+::: {}
+**Invocation begins**
+
+First token of the matched marker
+
+$W_0+sBA$ takes effect here
+:::
+
+::: {}
+**Adapted suffix**
+
+Check the answer and generate a verdict
+
+New keys and values belong to this adapter
+:::
+::::
+
+::: {.deploy-config}
+Set `alora_invocation_tokens` to the marker’s token IDs. Include the same marker in training and inference prompts.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Causal attention gives identical prefix keys and values before activation. Folding the adapter into every token would also change the prefix.
+:::
+
+::: {.lora-source}
+[Greenewald et al. · Activated LoRA · §2 Eq. (6) and §2.1](https://arxiv.org/html/2504.12397v4#S2.E6) · [PEFT v0.21.0 · invocation and cache reuse](https://huggingface.co/docs/peft/v0.21.0/package_reference/lora#activated-lora-alora)
+:::
+
+::: {.notes lang="en"}
+A causal model cannot see the future invocation while computing an earlier token. With identical base weights, inputs, position IDs and inference settings, its pre-invocation keys and values are therefore reusable. PEFT finds the last occurrence of the configured token sequence and activates the adapter starting at its first token. The marker and generated suffix have adapter-specific cache entries. Preserve a copy of the original prefix cache if another branch needs it. Build the token list with the base tokenizer using add_special_tokens=False and check that the marker tokenizes the same way inside the prompt. Train the adapter with this activation rule and prompt format. A conventional LoRA trained on the full sequence and subsequently enabled late has a different training objective. A single globally folded matrix cannot implement both weight choices.
+:::
+
+## Which adapter strategy fits the deployment? {#H15 .lora-slide .lora-conclusion}
+
+::::: {.lora-body .deploy-body}
+
+```{=html}
+<table class="deploy-strategy-matrix" data-lora-fit aria-label="Four adapter strategies compared by available data, task quality checks and inference cost.">
+<thead><tr><th scope="col">Strategy</th><th scope="col">What you have</th><th scope="col">Quality to check</th><th scope="col">Inference cost</th></tr></thead>
+<tbody>
+<tr><th scope="row">Shared</th><td data-label="What you have">Pooled examples for joint training</td><td data-label="Quality to check">Per-task scores under the chosen data mix</td><td data-label="Inference cost">One adapter, foldable</td></tr>
+<tr><th scope="row">Merged</th><td data-label="What you have">Compatible specialists, tuning data for learned weights</td><td data-label="Quality to check">Skill loss vs. each specialist, composition if needed</td><td data-label="Inference cost">One fixed update, foldable</td></tr>
+<tr><th scope="row">Routed</th><td data-label="What you have">Examples to train an input-dependent mixture</td><td data-label="Quality to check">Per-task scores with live routing</td><td data-label="Inference cost">Router and active expert branches</td></tr>
+<tr><th scope="row">Separate + serving</th><td data-label="What you have">Per-task specialists and a request-level adapter ID</td><td data-label="Quality to check">Each specialist on its assigned requests</td><td data-label="Inference cost">One base plus resident or paged adapters</td></tr>
+</tbody>
+</table>
+```
+
+:::::
+
+::: {.lora-takeaway}
+Choose the smallest configuration that clears every task’s quality threshold and the latency and memory limits under expected traffic.
+:::
+
+::: {.lora-source}
+[HydraLoRA · routing](https://papers.nips.cc/paper_files/paper/2024/file/123fd8a56501194823c8e0dca00733df-Paper-Conference.pdf#page=5) · [LoRA Soups · merging](https://arxiv.org/pdf/2410.13025v2#page=5) · [S-LoRA · serving](https://arxiv.org/pdf/2311.03285v3#page=9) · [Appendix · video distillation](#L100)
+:::
+
+::: {.notes lang="en"}
+This decision table is a synthesis. Start from the resources available and what the workload can identify at inference. A fixed sum of compatible specialists may use hand-set coefficients with no merge-training examples. A learned merge needs a fitting split, and all candidates need held-out evaluation. For separate serving, supervised experts need per-task training data if they do not already exist. If the client cannot supply a reliable ID, include the selector's errors and runtime. Return to the opening WikiSQL Q + V sweep. For a teaching target of 73.7% validation accuracy, rank 4 was the smallest tested candidate that reached the target. Accuracies at ranks 1, 2, 4, 8 and 64 were 73.4%, 73.3%, 73.7%, 73.8% and 73.5%. Typical seed variation was about 0.5 percentage points, so repeat the quality test and benchmark the deployed artifact. S-LoRA provides an independent example of how to measure latency under load. The appendix shows how a video student can undergo further training after its specialists are merged. [Hu et al., Table 6](https://arxiv.org/pdf/2106.09685v2#page=10)
+:::

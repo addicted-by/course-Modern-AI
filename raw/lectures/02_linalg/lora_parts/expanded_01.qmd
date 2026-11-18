@@ -1,0 +1,754 @@
+## LoRA {#H01 .lora-slide .opening-chapter background-color="#0a0a0a"}
+
+:::::: {.lora-body .opening-hero}
+
+::: {.opening-hero-copy}
+Low-Rank Adaptation
+
+$$
+W'=W_0+sBA
+$$
+
+Freeze $W_0$ and train $A,B$. The multiplier $s$ is $\alpha_{\mathrm{LoRA}}/r$ for LoRA and $\alpha_{\mathrm{LoRA}}/\sqrt{r}$ for rsLoRA. When merging, $\lambda_t$ weights the update for task $t$.
+:::
+
+:::: {.opening-factorization}
+```{=html}
+<div class="opening-matrix-art" role="img" aria-label="A tall thin matrix B times a short wide matrix A produces a full-size matrix BA. Multiplying by the scale s gives the update Delta W. The inner dimension r limits the rank.">
+  <span class="opening-matrix opening-matrix-b"><b>B</b></span>
+  <span class="opening-matrix-op" aria-hidden="true">×</span>
+  <span class="opening-matrix opening-matrix-a"><b>A</b></span>
+  <span class="opening-matrix-op" aria-hidden="true">=</span>
+  <span class="opening-matrix opening-matrix-product"><b>BA</b></span>
+</div>
+```
+
+$$
+s\,\underbrace{B}_{d_{\rm out}\times r}\quad
+\underbrace{A}_{r\times d_{\rm in}}
+=\underbrace{\Delta W}_{d_{\rm out}\times d_{\rm in}}
+$$
+::::
+
+::::::
+
+::: {.lora-takeaway}
+The update $\Delta W=sBA$ has rank at most $r$. How much freedom does a task need?
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · §4.1](https://arxiv.org/pdf/2106.09685v2#page=4) · [Kalajdzievski · rsLoRA · §3](https://arxiv.org/html/2312.03732v1#S3)
+:::
+
+::: {.notes lang="en"}
+The adapted layer maps $x$ to $W'x=W_0x+sB(Ax)$. The rank bound applies to the task update because every output change belongs to the column span of $B$. Here $\alpha_{\mathrm{LoRA}}$ is a scaling hyperparameter and $s$ is the complete multiplier. Later, $\lambda_t$ weights the already-scaled update from task $t$ when merging. Whether rank $r$ suffices for a task is an empirical question.
+:::
+
+## 37,000× fewer trainable parameters on WikiSQL {#H02 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .opening-wikisql}
+
+::: {.opening-setup}
+GPT-3 175B · WikiSQL validation · logical-form accuracy
+:::
+
+:::: {.opening-wikisql-grid}
+::: {.opening-wikisql-parameters .opening-ledger data-lora-fit="true"}
+### Trainable parameters
+
+| Method | Millions |
+|:--|--:|
+| Full fine-tuning | 175,255.8 |
+| LoRA | **4.7** |
+:::
+
+::: {.opening-wikisql-accuracy}
+### Validation accuracy
+
+<div class="opening-accuracy-values">
+<div><span>Full fine-tuning</span><strong>73.8%</strong></div>
+<div><span>LoRA</span><strong>73.4%</strong></div>
+</div>
+:::
+
+::: {.opening-wikisql-sweep}
+### Separate Q + V rank sweep
+
+<div class="lora-figure" data-lora-fit="true">
+<img src="assets/lora_research_short/01/h02-rank-sweep.svg" alt="At Q plus V ranks 1, 2, 4, 8 and 64, WikiSQL validation accuracy is 73.4%, 73.3%, 73.7%, 73.8% and 73.5%, respectively.">
+</div>
+
+Across seeds, the typical standard deviation was 0.5 points.
+:::
+::::
+
+:::::
+
+::: {.lora-takeaway}
+LoRA reached within 0.4 percentage points of full fine-tuning. In a separate Q + V sweep, rank 1 already reached 73.4%.
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · Table 4](https://arxiv.org/pdf/2106.09685v2#page=8) · [Table 6](https://arxiv.org/pdf/2106.09685v2#page=10)
+:::
+
+::: {.notes lang="en"}
+The title uses the rounded ratio $175{,}255.8/4.7\approx37{,}288$ from the two Table 4 rows. The count is for trainable parameters, not total weights, memory, or elapsed time. Table 4 compares methods at reported budgets. Table 6 varies rank within each projection choice. Both tables report 73.4% at the small LoRA budget. WikiSQL measures logical-form accuracy. Table 6 varies Q and V rank jointly; its Q-only series behaves differently.
+:::
+
+## A leading direction recurs at ranks 8 and 64 {#H03 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .short-hu-overlap .opening-split}
+
+::: {.lora-figure data-lora-fit="true"}
+<div class="short-overlap-plot">
+<span class="short-overlap-i" aria-hidden="true">i</span>
+<div class="short-overlap-axis" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+<img src="assets/lora_research_short/01/h03-v-overlap.png" alt="Normalized subspace overlap for the V projection. The first cell is brighter than later diagonal cells. Diagonal overlap falls as more directions are added. The gray upper triangle is omitted.">
+</div>
+:::
+
+:::: {.opening-reading}
+### V projection · GPT-3 block 48 of 96
+**Rows $i$** and **columns $j$** count leading right singular vectors of the rank-8 and rank-64 $A$ factors, respectively.
+
+$$
+\phi(i,j)=\frac{\lVert U_{8,i}^\top U_{64,j}\rVert_F^2}{\min(i,j)}
+$$
+
+The outlined $(1,1)$ cell gives the squared cosine between the two leading directions, about 0.43 on the color scale. Gray cells are omitted.
+::::
+
+:::::
+
+::: {.lora-takeaway}
+The leading input directions of the two learned $A$ factors partially align. Along the diagonal, overlap drops as both subspaces grow.
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · §7.2, Fig. 3 and Eq. (4)](https://arxiv.org/pdf/2106.09685v2#page=11)
+:::
+
+::: {.notes lang="en"}
+The crop shows the original V zoom from Figure 3. $U_{8,i}$ and $U_{64,j}$ contain the first $i$ and $j$ right singular vectors as orthonormal columns. The diagonal goes from about 0.43 to 0.15 by the plotted color scale. The paragraph below Figure 3 describes the leading similarity as greater than 0.5, which disagrees with the displayed V panel. The slide follows the figure. A score of one means the smaller space is contained in the larger one; zero means they are orthogonal. The figure compares the input subspaces of the learned $A$ factors, so it does not establish that a direction is necessary for the task. The spectrum of a realized weight update comes up on [L50](#/L50).
+:::
+
+## Initialize the two factors asymmetrically {#L01 .lora-slide .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-mechanism}
+
+::: {.lora-figure .opening-paper data-lora-fit="true"}
+<img src="assets/lora_research_short/01/paper-l01-hu-fig1.png" alt="Hu et al. Figure 1, showing a frozen pretrained branch in blue and the parallel adaptation branch with a Gaussian A and zero B.">
+:::
+
+:::: {.opening-reading}
+### Gaussian $A_0$, zero $B_0$
+
+For $W'=W_0+sBA$, the initial update is zero. Write $G=\nabla_{W'}\mathcal L$ for the dense weight gradient.
+
+::: {.opening-ledger}
+| Factor | Gradient at initialization |
+|:--|:--|
+| $A$ | $sB_0^\top G=0$ |
+| $B$ | $sGA_0^\top$, generally nonzero |
+:::
+::::
+
+:::::
+
+::: {.lora-takeaway}
+The layer starts at the pretrained function. The first loss gradient can move $B$, while $A$ has zero loss gradient.
+:::
+
+::: {.lora-source}
+[Hu et al. · LoRA · Fig. 1 and §4.1](https://arxiv.org/pdf/2106.09685v2#page=1) · [Chen et al. · Learning Rate Scaling · §3.1](https://arxiv.org/html/2602.06204v1#S3.SS1)
+:::
+
+::: {.notes lang="en"}
+Starting from $W'=W_0+sBA$, apply the chain rule to get the two displayed gradients. The gradient of $B$ can also vanish if $GA_0^\top=0$. An optimizer with weight decay can move $A$ even when its loss gradient vanishes. We use plain gradient descent when discussing a first step.
+:::
+
+## Both factors at zero means neither can move {#L27 .lora-slide .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-gradient-flow}
+
+::: {.opening-reading}
+### The loss wants a larger weight
+
+For $w=ba$ and $\mathcal L(w)=\tfrac12(w-2)^2$, the dense slope at $w=0$ is **$g_w=-2$**. Each factor receives that slope through the other factor.
+
+The paths show the first step at SGD rate $1/4$.
+:::
+
+:::: {.opening-flow-diagram}
+::: {.opening-flow-row}
+**Both factors start at zero**
+
+```{=html}
+<div class="opening-flow-edge">
+  <span>dense slope −2</span><span>× a₀ = 0</span><strong>∂ℒ/∂b = 0</strong>
+</div>
+<div class="opening-flow-edge">
+  <span>dense slope −2</span><span>× b₀ = 0</span><strong>∂ℒ/∂a = 0</strong>
+</div>
+```
+
+$w_1=0$ · loss stays at **2**.
+:::
+
+::: {.opening-flow-row}
+**Only $b$ starts at zero**
+
+```{=html}
+<div class="opening-flow-edge opening-flow-active">
+  <span>dense slope −2</span><span>× a₀ = 1</span><strong>∂ℒ/∂b = −2</strong>
+</div>
+<div class="opening-flow-edge">
+  <span>dense slope −2</span><span>× b₀ = 0</span><strong>∂ℒ/∂a = 0</strong>
+</div>
+```
+
+$w_1=0.5$ · loss falls to **1.125**.
+:::
+::::
+
+:::::
+
+::: {.lora-takeaway}
+Both starts give $w_0=0$. The nonzero $a_0$ lets the first gradient reach $b$.
+:::
+
+::: {.lora-source}
+[Mu and Klabjan · arXiv v1 · Eq. (7) and §4](https://arxiv.org/html/2512.18248v1#S3.SS2) · constructed scalar example
+:::
+
+::: {.notes lang="en"}
+The scalar partial gradients are $(w-2)b$ and $(w-2)a$. At the origin of the factors they vanish even though the dense derivative $\partial_w\mathcal L=-2$. In the paper, the same phenomenon follows by writing the product via a stacked matrix $V$ and observing that Eq. (7) has a rightmost factor of $V$. For the live start the new loss is $(0.5-2)^2/2=1.125$.
+:::
+
+## Keep the initial function when both factors are nonzero {#L02 .lora-slide .opening-chapter}
+
+::::: {.lora-body .opening-compensation-visual}
+
+::: {.opening-setup}
+Set $C=sB_0A_0$ with both factors nonzero. Track entry $(1,2)$ before and after moving $C$ into the adapter.
+:::
+
+::: {.lora-figure .opening-wide-figure data-lora-fit="true"}
+```{=html}
+<picture>
+  <source media="(max-width: 650px)" srcset="assets/lora_research_short/01/feedback-l02-mobile.svg">
+  <img src="assets/lora_research_short/01/feedback-l02.svg" alt="A worked example splits the original 2 by 2 matrix into a frozen residual and a rank-one adapter contribution. The top-right entry is 2 in the original, 3 in the frozen residual, and minus 1 in the adapter. Their sum is the original matrix.">
+</picture>
+```
+:::
+
+:::::
+
+::: {.lora-takeaway}
+LoRA-GA subtracts the initial adapter before freezing the residual. Adding it back restores the original forward map at initialization.
+:::
+
+::: {.lora-source}
+[Wang et al. · LoRA-GA · §3.4, Algorithm 1](https://proceedings.neurips.cc/paper_files/paper/2024/file/62c4718cc334f6a0a62fb81c4a2095a1-Paper-Conference.pdf#page=6) · constructed entry example
+:::
+
+::: {.notes lang="en"}
+Algorithm 1 freezes $W_{\mathrm{res}}=W_0-sB_0A_0$. During training, $W'=W_{\mathrm{res}}+sBA$, so its effective change from the checkpoint is $s(BA-B_0A_0)$. This is exact in real arithmetic for a linear branch with adapter dropout inactive. The frozen parameter tensor now holds a residual. As the factors learn, their product changes and adds to that fixed residual.
+:::
+
+## PiSSA starts from the weight’s leading singular components {#L03 .lora-slide .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-mechanism}
+
+:::: {.opening-reading}
+### PiSSA decomposes the pretrained weight $W_0$
+
+At $s=1$ and $r=1$, if $W_0=\operatorname{diag}(9,4)$, train the factors for the leading component and freeze the rest.
+
+$$
+\underbrace{\begin{bmatrix}3\\0\end{bmatrix}}_{B_0}
+\underbrace{\begin{bmatrix}3&0\end{bmatrix}}_{A_0}
++\underbrace{\begin{bmatrix}0&0\\0&4\end{bmatrix}}_{\text{frozen}}
+=\begin{bmatrix}9&0\\0&4\end{bmatrix}
+$$
+::::
+
+::: {.lora-figure .opening-paper data-lora-fit="true"}
+<img src="assets/lora_research_short/01/l03-pissa-ba.svg" alt="The input x goes through A and then B. The parallel frozen residual is added to this output. A and B are initialized with the leading singular vectors and the square roots of the retained singular values.">
+:::
+
+:::::
+
+::: {.lora-takeaway}
+Both branches initially sum to $W_0$. Fine-tuning changes the factors while the residual stays frozen.
+:::
+
+::: {.lora-source}
+[Meng et al. · PiSSA · Fig. 1(c)](https://arxiv.org/pdf/2404.02948v4#page=2) · [§3, Eqs. (2)–(5)](https://arxiv.org/pdf/2404.02948v4#page=4) · diagram adapted to column-vector notation
+:::
+
+::: {.notes lang="en"}
+Transposing the source’s row-vector convention gives this diagram. For the column-vector weight $W_0=U\Sigma V^\top$, put $B_0=U_r\Sigma_r^{1/2}$ and $A_0=\Sigma_r^{1/2}V_r^\top$ at unit scale. The truncated SVD gives a closest rank-at-most-$r$ approximation in Frobenius norm. Here the original matrix is diagonal with positive entries, so the coordinate directions are its singular directions. Both factors can change during fine-tuning. See [L104](#/L104) for deployment implications.
+:::
+
+## PiSSA reduced training loss faster early in the run {#L04 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-outcome}
+
+::: {.lora-figure .opening-paper data-lora-fit="true"}
+<img src="assets/lora_research_short/01/paper-l04-pissa-fig4a.png" alt="First 100 steps inset of Figure 4a. PiSSA training loss decreases more rapidly than LoRA, following the trajectory of full fine-tuning more closely.">
+:::
+
+:::: {.opening-reading}
+### Llama 2-7B · MetaMathQA-395K
+
+At step 40, the plot shows losses of about 0.45 for PiSSA (orange), 0.55 for full fine-tuning (red) and 0.7 for LoRA (blue).
+::::
+
+:::::
+
+::: {.lora-takeaway}
+The early loss curves separate within the first 100 training steps.
+:::
+
+::: {.lora-source}
+[Meng et al. · PiSSA · §5.2 Fig. 4(a)](https://arxiv.org/pdf/2404.02948v4#page=7)
+:::
+
+::: {.notes lang="en"}
+The source inset reproduces the first 100 steps of the authors’ three-epoch run on the full MetaMathQA-395K dataset. The plotted metric is training loss. The paper separately reports held-out GSM8K (Fig. 4c). Initialization cost is outside the x-axis of Fig. 4a.
+:::
+
+## LoRA-GA initializes both factors from the gradient {#L10 .lora-slide .opening-chapter}
+
+:::::: {.lora-body .opening-split .opening-direction-layout}
+
+::: {.opening-reading}
+### LoRA-GA decomposes the dense gradient $G$
+
+Use the same batch for calibration and the first SGD step. Take $G=\operatorname{diag}(6,2)$, $r=1$ and unit factor scales.
+
+1. Put the **first right direction** in $A_0$. Its projector selects the first column of $G$.
+2. Put the **second left direction** in $B_0$. Its projector selects the second row of $G$.
+:::
+
+:::: {.opening-axis-exhibit}
+::: {.lora-figure .opening-axis-figure data-lora-fit="true"}
+<img src="assets/lora_research_short/01/l10-axis-split.svg" alt="In the singular-vector coordinates of the diagonal gradient, a shaded vertical band selects the first column and a shaded horizontal band selects the second row. The retained entries 6 and 2 occupy different diagonal positions; their first-order sum has rank two.">
+:::
+
+The retained entries $6$ and $2$ occupy different diagonal positions. Scale the resulting matrix by $-\eta s^2$ for the first-order step.
+::::
+
+::::::
+
+::: {.lora-takeaway}
+Each $BA$ has rank at most $r$. With compensation, the effective step $s(B_1A_1-B_0A_0)$ can reach rank $2r$.
+:::
+
+::: {.lora-source}
+[Wang et al. · LoRA-GA · §3.2, Theorem 3.1](https://proceedings.neurips.cc/paper_files/paper/2024/file/62c4718cc334f6a0a62fb81c4a2095a1-Paper-Conference.pdf#page=5) · [Algorithm 1](https://proceedings.neurips.cc/paper_files/paper/2024/file/62c4718cc334f6a0a62fb81c4a2095a1-Paper-Conference.pdf#page=6) · constructed rank-one example
+:::
+
+::: {.notes lang="en"}
+Here $A_0=[1,0]$ and $B_0=[0,1]^\top$. With adapter multiplier $s$ and plain SGD rate $\eta$, the first-order effective weight change is $-\eta s^2(GA_0^\top A_0+B_0B_0^\top G)$. The product expansion also includes $s\,\delta B\delta A$, which is second order in the SGD rate. In this example the exact step is upper triangular, with diagonal $-6\eta s^2,-2\eta s^2$ and upper-right entry $12\eta^2s^3$. It has rank two whenever $\eta s\ne0$. Algorithm 1 takes the first $r$ right and next $r$ left singular directions of the dense gradient with a common scaling; its recipe requires $2r\le\min(d_{\rm in},d_{\rm out})$.
+:::
+
+## Gradient agreement peaked at batch 256, GSM8K at 64 {#L08 .lora-slide .lora-evidence .opening-chapter}
+
+:::::: {.lora-body .opening-split .opening-calibration}
+
+:::: {.opening-reading}
+### Llama 2-7B · MetaMathQA subset
+A **2,048-example** batch serves as the gradient reference. Smaller batches estimate the starting direction.
+
+The agreement metrics compare gradients at initialization. GSM8K accuracy tests the model after fine-tuning.
+::::
+
+:::: {.opening-calibration-grid}
+::: {.opening-ledger}
+| Batch | Sign match | Magnitude match | GSM8K |
+|--:|--:|--:|--:|
+| 8 | 74.3% | 87.8% | 52.79% |
+| 16 | 79.0% | 90.8% | 52.99% |
+| 32 | 83.8% | 93.3% | 52.91% |
+| 64 | 87.5% | 95.0% | **53.56%** |
+| 128 | 90.3% | 96.2% | 52.57% |
+| 256 | **92.5%** | **97.1%** | 53.22% |
+:::
+::::
+
+::::::
+
+::: {.lora-takeaway}
+Batch 256 agreed best with the reference gradient. Batch 64 scored highest on GSM8K in this sweep.
+:::
+
+::: {.lora-source}
+[Wang et al. · LoRA-GA · NeurIPS 2024 §4.6, Table 7](https://proceedings.neurips.cc/paper_files/paper/2024/file/62c4718cc334f6a0a62fb81c4a2095a1-Paper-Conference.pdf#page=10)
+:::
+
+::: {.notes lang="en"}
+Sign match is the fraction of gradient entries sharing a sign. Magnitude match is the fraction whose absolute values are within a factor of ten. The published table reports both similarities as fractions. The slide expresses them as percentages. The 0.34 percentage-point GSM8K difference between batches 64 and 256 is descriptive. Table 7 gives no uncertainty for this comparison. The batch of 2,048 is a reference, not the full-dataset gradient. LoRA-GA uses a backward pass on the calibration examples to estimate this layer’s dense gradient.
+:::
+
+## The adapter scale acts twice on the first SGD step {#L14 .lora-slide .opening-chapter}
+
+:::::: {.lora-body .opening-case}
+
+::: {.opening-setup}
+**Analytical example for SGD.** Start with $B_0=0$ and $W'=W_0+sBA$. Let $G=\nabla_{W'}\mathcal L$ at initialization and use learning rate $\eta$.
+:::
+
+::::: {.opening-case-pair}
+::: {.opening-case-lane}
+### Backward through the adapter
+
+$$
+\nabla_B\mathcal L=sGA_0^\top
+$$
+
+The gradient of $B$ picks up one $s$. The step leaves $A$ fixed.
+:::
+
+::: {.opening-case-lane .opening-live}
+### Forward with the new factors
+
+$$
+\delta W=-\eta\,s\,(sGA_0^\top)A_0
+$$
+
+The outer $s$ comes from the forward map. The inner $s$ came from the gradient.
+:::
+:::::
+
+::: {.opening-entry}
+With the same gradient and initialization, doubling $s$ makes the first weight step **four times as large**.
+:::
+
+::::::
+
+::: {.lora-takeaway}
+The first effective weight step scales quadratically with the adapter multiplier under plain SGD.
+:::
+
+::: {.lora-source}
+[Kalajdzievski · rsLoRA · Appendix A Eqs. (6), (8)](https://arxiv.org/pdf/2312.03732v1#page=8)
+:::
+
+::: {.notes lang="en"}
+At initialization, the pretrained forward map means $G$ is unchanged by $s$ under the assumptions. The first step has $A_1=A_0$ and $B_1=-\eta sGA_0^\top$. These give the exact displayed first-step formula. The paper then studies the dependence on rank under its initialization assumptions. AdamW uses a different update rule.
+:::
+
+## rsLoRA kept initial gradient norms aligned across ranks {#L15 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-wide-plot}
+
+::: {.lora-figure .opening-paper data-lora-fit="true"}
+<img src="assets/lora_research_short/01/paper-l15-rslora-fig3.png" alt="Original rsLoRA Figure 3. Average parameter gradient norms measured over training steps for ranks 4 to 2048. LoRA curves begin in widely separated bands; rsLoRA curves begin at similar levels.">
+:::
+
+:::: {.opening-reading}
+### AdamW experiment · Llama 2 on OpenOrca
+
+| Adapter | Multiplier $s$ |
+|:--|--:|
+| LoRA | $\alpha_{\mathrm{LoRA}}/r$ |
+| rsLoRA | $\alpha_{\mathrm{LoRA}}/\sqrt{r}$ |
+
+The chart tracks average **parameter-gradient norms** on a log scale past training step 600, for ranks 4 to 2,048.
+::::
+
+:::::
+
+::: {.lora-takeaway}
+LoRA’s initial gradient norm dropped as rank increased in this run. The rsLoRA curves started at similar levels.
+:::
+
+::: {.lora-source}
+[Kalajdzievski · rsLoRA · §3, §4 Fig. 3](https://arxiv.org/pdf/2312.03732v1#page=5)
+:::
+
+::: {.notes lang="en"}
+This is the authors’ empirical AdamW experiment. The earlier first-step derivation uses plain SGD in effective weight space. Under centered, independent initialization with fixed entry variance, $\mathbb E[A_0^\top A_0]$ is proportional to $rI$, so the leading mean step coefficient is proportional to $rs^2$ (Appendix A, Eq. 9). This motivates comparing $\alpha_{\mathrm{LoRA}}/r$ and $\alpha_{\mathrm{LoRA}}/\sqrt{r}$.
+:::
+
+## At rank 2,048, scaling changed the learning curve {#L16 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-wide-plot}
+
+:::: {.opening-reading}
+### AdamW experiment · Llama 2
+
+20,000 OpenOrca examples. Both runs used the same initialization rule (random $A$, zero $B$) and a constant learning rate of $5\times10^{-5}$.
+
+At rank 2,048, the curve with square-root scaling falls sooner and reaches lower fine-tuning perplexity.
+::::
+
+::: {.lora-figure .opening-paper data-lora-fit="true"}
+<img src="assets/lora_research_short/01/l16-perplexity.svg" alt="Two rank 2048 series extracted from rsLoRA Figure 2. The rsLoRA curve reaches lower training perplexity than the LoRA curve by the end of the run.">
+:::
+
+:::::
+
+::: {.lora-takeaway}
+With this initialization and learning rate, square-root scaling lowered training perplexity sooner. Comparing tuned methods requires a separate learning-rate sweep for each.
+:::
+
+::: {.lora-source}
+[Kalajdzievski · rsLoRA · §4 Fig. 2](https://arxiv.org/pdf/2312.03732v1#page=4) · rank-2,048 traces replotted
+:::
+
+::: {.notes lang="en"}
+The chart isolates the two rank-2,048 series from the source figure. Both methods target all attention and MLP linear projections. The full source panel also shows ranks 4, 8, 32, 128, and 512. This is perplexity during fine-tuning, so it does not measure generalization on held-out examples.
+:::
+
+## LoRA+ gives the two factors separate learning rates {#L17 .lora-slide .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-rate-directions}
+
+::: {.lora-figure .opening-rate-figure data-lora-fit="true"}
+<img src="assets/lora_research_short/01/l17-output-directions.svg" alt="Three output arrows in a two-dimensional coordinate plane. The starting output is at 1,1. Changing A alone extends it in the same direction to 2,2. Changing B alone gives the longer horizontal output 2,0.">
+:::
+
+::: {.opening-reading}
+### Rank-one adapter · $BAx$
+
+$A$ projects the input into $r$ dimensions. $B$ maps those coordinates into the output space. Here $Ax=1$ and $B=(1,1)^\top$.
+
+**Step in $A$ at rate $\eta_A$.** Doubling $Ax$ stretches the output along the same line.
+
+**Step in $B$ at rate $\eta_B$.** Changing $B$ to $(2,0)^\top$ changes both direction and length.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+LoRA+ gives the two updates different rates. The authors choose a ratio $\eta_B/\eta_A$ and tune the overall rate.
+:::
+
+::: {.lora-source}
+[Hayou, Ghosh and Yu · LoRA+ · §§4, 5.3](https://arxiv.org/html/2402.12354v2#S4) · constructed feature example
+:::
+
+::: {.notes lang="en"}
+The three arrow endpoints isolate the two effects through illustrative perturbations. The changes are chosen for geometric clarity and do not come from a particular loss gradient. The two first-order feature-change terms in §4 hold either factor fixed. The exact feature change also includes their interaction. The authors’ infinite-width analysis assumes an isolated layer with a fixed input and a suitably processed gradient. In the experiments, the best rate ratio depends on the task and model.
+:::
+
+## Unequal rates added 1.3 points on MMLU {#L18 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-heatmap}
+
+::: {.lora-figure .opening-paper data-lora-fit="true"}
+<img src="assets/lora_research_short/01/paper-l18-loraplus-fig5-left.png" alt="MMLU accuracy across A and B learning rates. The original paper labels 42.7% at equal rates and 44.0% when B has four times the rate of A.">
+:::
+
+:::: {.opening-reading}
+### Llama-7B · Flan-v2 · rank 64
+
+<div class="opening-stat-pair">
+  <div><span>Best equal rates</span><strong>42.7%</strong></div>
+  <div><span>Best grid point</span><strong>44.0%</strong></div>
+</div>
+
+Equal rates lie on the diagonal. The best point uses $\eta_B=4\eta_A$.
+::::
+
+:::::
+
+::: {.lora-takeaway}
+The best off-diagonal point outperformed the best equal-rate point in this MMLU sweep.
+:::
+
+::: {.lora-source}
+[Hayou, Ghosh and Yu · LoRA+ · §5.2, Fig. 5, left](https://arxiv.org/html/2402.12354v2#S5.F5)
+:::
+
+::: {.notes lang="en"}
+Llama-7B trains for one epoch on 100,000 Flan-v2 examples and is evaluated on MMLU. Figure 5 averages two runs. The best annotated diagonal result is 42.7% at $10^{-4}$ for both rates. The best annotated off-diagonal cell shows 44.0% at $\eta_A=5\cdot10^{-5}$ and $\eta_B=2\cdot10^{-4}$.
+:::
+
+## On MNLI, equal rates were already close to the best pair {#L19 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .opening-split .opening-heatmap}
+
+:::: {.opening-reading}
+### Llama-7B · MNLI · rank 8
+
+<div class="opening-stat-pair">
+  <div><span>Best equal rates</span><strong>90.1%</strong></div>
+  <div><span>Best with η<sub>B</sub> ≥ η<sub>A</sub></span><strong>90.2%</strong></div>
+</div>
+
+Rows use $\eta_B$ and columns use $\eta_A$. The highlighted 90.2% cell uses $\eta_B=5\eta_A$.
+::::
+
+::: {.lora-figure .opening-paper data-lora-fit="true"}
+<img src="assets/lora_research_short/01/paper-l19-loraplus-fig5-right.png" alt="MNLI test accuracy across A and B learning rates. The best annotated equal-rate result is 90.1%, and the best cell reports 90.2% with B at five times the rate of A.">
+:::
+
+:::::
+
+::: {.lora-takeaway}
+The gain here was 0.1 pp, versus 1.3 pp on MMLU. Tune both the overall learning rate and the ratio $\eta_B/\eta_A$ for each setup.
+:::
+
+::: {.lora-source}
+[Hayou, Ghosh and Yu · LoRA+ · §5.2, Fig. 5, right, §5.3](https://arxiv.org/html/2402.12354v2#S5.F5)
+:::
+
+::: {.notes lang="en"}
+MNLI tests natural language inference. The authors trained for one epoch with a constant learning rate and sequence length 128. The panel reports test accuracy of the selected checkpoint, averaged across two runs. The diagonal 90.1% cell uses $\eta_A=\eta_B=10^{-5}$. The 90.2% cell uses $\eta_A=10^{-5}$ and $\eta_B=5\cdot10^{-5}$. Both task and rank change from the MMLU experiment, so these panels cannot isolate the effect of task alone.
+:::
+
+## The same product can lead to a different SGD step {#L23 .lora-slide .opening-chapter}
+
+:::::: {.lora-body .opening-gauge}
+
+::: {.opening-setup}
+For any invertible $r\times r$ matrix $R$, **$BA=(BR)(R^{-1}A)$**.
+
+In one dimension, start with $w=ba=1$, dense slope $-1$ and SGD rate $0.01$.
+:::
+
+::::: {.opening-gauge-grid}
+::: {.opening-gauge-data .opening-ledger}
+### Different factor gradients
+
+| Start $(a,b)$ | Step $\delta a=0.01b$ | Step $\delta b=0.01a$ |
+|:--|--:|--:|
+| $(1,1)$ | $+0.01$ | $+0.01$ |
+| $(10,0.1)$ | $+0.001$ | **$+0.1$** |
+:::
+
+:::: {.opening-gauge-result}
+### Effective weight after one step
+
+<div class="lora-figure opening-gauge-figure" data-lora-fit="true">
+<img src="assets/lora_research_short/01/l23-product-steps.svg" alt="Two tracks on the same linear product axis start at w equals 1. The balanced start moves a short distance to 1.0201, while the rescaled start moves to 2.0002.">
+</div>
+::::
+:::::
+
+::::::
+
+::: {.lora-takeaway}
+How does parameterization affect optimization?
+:::
+
+::: {.lora-source}
+[Yen et al. · LoRA-RITE · §§2.1–2.2, Eqs. (5)–(6)](https://arxiv.org/html/2410.20625v2#S2.SS2) · constructed scalar example
+:::
+
+::: {.notes lang="en"}
+For $\mathcal L(w)=\tfrac12(w-2)^2$, the slope is $-1$ at $w_0=1$. The simultaneous increments in $(a,b)$ are $(0.01b,0.01a)$. The two new products are $1.01^2=1.0201$ and $10.001\times0.2=2.0002$. In the matrix case $A$ represents hidden coordinates whose basis can change via $R$. LoRA-RITE asks whether the optimizer induces the same weight update under such a reparameterization. [DoRA](#/L201) asks a different question about parameterizing a weight vector by its magnitude and direction.
+:::
+
+## DoRA learns each weight vector’s length and direction {#L201 .lora-slide .opening-chapter}
+
+::::: {.lora-body .opening-split}
+
+::: {.lora-figure .opening-rate-figure data-lora-fit="true"}
+<img src="assets/lora_research_short/01/l201-dora-column.svg" alt="One pretrained weight column has length 3 and points horizontally. Rotating it keeps length 3. Increasing its learned magnitude to 5 moves its tip farther along the new direction.">
+:::
+
+::: {.opening-reading}
+### Normalize each column in the paper’s layout
+
+$$
+W'=m\odot\frac{W_0+sBA}{\lVert W_0+sBA\rVert_c}
+$$
+
+$\lVert V\rVert_c$ gives one Euclidean norm per column. PEFT stores an `nn.Linear` weight transposed and normalizes each output row.
+
+**Train** $m,A,B$. **Freeze** $W_0$. Initialize $m_j$ to the norm of pretrained column $j$ and $B$ to zero.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+The directional correction $sBA$ has rank at most $r$. Column rescaling can make $\operatorname{rank}(W'-W_0)>r$.
+:::
+
+::: {.lora-source}
+[Liu et al. · DoRA · Fig. 1, §3.2 and Eq. (5)](https://arxiv.org/html/2402.09353v5#S4.SS1) · [PEFT v0.21.0 · normalization axis](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/dora.py#L85-L91) · constructed vector example
+:::
+
+::: {.notes lang="en"}
+Start at $(3,0)$ and follow the dashed arc to the open circle at $(1.8,2.4)$. Both points have length 3. Continue along the green ray to $(3,4)$. The direction stays $(3/5,4/5)$ as the magnitude grows to 5. In the paper’s convention, $\lVert V\rVert_c[j]=(\sum_i V_{ij}^2)^{1/2}$. For an out-by-in PyTorch linear weight, the displayed matrix corresponds to its transpose. PEFT takes the norm over the input dimension, yielding one magnitude per output. With unrestricted scalar parameters the length is $|m_j|$. To see the rank distinction, take $r=1$, $W_0=I_2$, $BA=0$ and $m=(2,2)$. Then $W'-W_0=I_2$ has rank two.
+:::
+
+## What does DoRA cost? {#L202 .lora-slide .lora-evidence .opening-chapter}
+
+::::: {.lora-body .opening-split}
+
+::: {.opening-ledger data-lora-fit="true"}
+### Supplementary · one adapted layer
+
+| | LoRA | DoRA |
+|:--|:--|:--|
+| Trainable weights | $A,B$ | $A,B$ + one $m_j$ per output |
+| Weight-vector norms | None | Recompute each training forward pass |
+| Training work | Low-rank branch | Branch + norms and rescaling |
+| Fold for inference | Store $W_0+sBA$ | Store normalized, rescaled $W'$ |
+:::
+
+::: {.opening-reading}
+### LLaMA-7B · 8 commonsense tasks
+
+| Mean accuracy | LoRA | DoRA |
+|:--|--:|--:|
+| Rank 32 | 74.7% | **78.4%** |
+
+The authors detach the norm denominator from the gradient graph. It still updates on each forward pass.
+:::
+
+:::::
+
+::: {.lora-takeaway}
+DoRA spends extra work on column norms during training. Both methods can serve a single folded weight matrix.
+:::
+
+::: {.lora-source}
+[Liu et al. · DoRA · §4.3](https://arxiv.org/html/2402.09353v5#S4.SS3) · [Table 1](https://arxiv.org/html/2402.09353v5#S5.T1) · [Appendix A.2, Table 7](https://arxiv.org/html/2402.09353v5#A1.T7) · [PEFT v0.21.0 · linear weights](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/dora.py#L140-L153)
+:::
+
+::: {.notes lang="en"}
+For a $d\times k$ matrix in the paper’s column convention, LoRA trains $r(d+k)$ weights and DoRA trains $r(d+k)+k$. In PEFT’s transposed linear-layer layout, $k$ is the number of output rows. Table 1 gives 0.83% versus 0.84% trainable parameters on LLaMA-7B. The eight datasets are BoolQ, PIQA, SocialIQA, HellaSwag, WinoGrande, ARC-Easy, ARC-Challenge and OpenBookQA. The LoRA row comes from the baseline cited by the authors. Appendix A.2 measures a separate implementation ablation within DoRA at batch size 16 with four gradient accumulation steps. Detaching the norm reduced reported GPU memory from 37.3 GB to 28.2 GB on LLaMA-7B. At inference, compute the complete DoRA expression once and store it as the layer weight.
+:::
+
+## Conclusions · LoRA and scaling {#H11 .lora-slide .lora-conclusion}
+
+::::: {.lora-body .conclusion-body}
+:::: {.conclusion-spread}
+::: {.conclusion-argument}
+**The starting weights determine which factor can move first.**
+
+With random $A$ and zero $B$, the first loss gradient can move $B$. With the same initialization and SGD rate, doubling the scale makes the first weight step **four times larger**.
+:::
+
+::: {.conclusion-detail data-lora-fit="true"}
+**How much does tuning the two rates buy?**
+
+| Llama-7B setup | Gain over equal rates |
+|:--|--:|
+| MMLU after Flan-v2 tuning · $r=64$ | **+1.3 pp** |
+| MNLI · $r=8$, tested $\eta_B \ge \eta_A$ | **+0.1 pp** |
+
+The two experiments had different ranks and tasks.
+:::
+::::
+:::::
+
+::: {.lora-takeaway}
+When comparing ranks, record the initialization and scale, and tune the learning rate for each candidate.
+:::
+
+::: {.lora-source}
+[Hu et al. · §4.1](https://arxiv.org/pdf/2106.09685v2#page=4) · [Kalajdzievski · §3](https://arxiv.org/pdf/2312.03732v1#page=4) · [Hayou et al. · Fig. 5](https://arxiv.org/html/2402.12354v2#S5.F5)
+:::
+
+::: {.notes lang="en"}
+In ordinary LoRA, $r$ bounds the rank of $\Delta W=sBA$. In DoRA this bound applies to the directional correction. The factorization also changes optimization. For the standard initialization, the loss gradient in $A$ vanishes and the gradient in $B$ can be nonzero. Under plain SGD, the first effective weight step contains the square of the branch multiplier. The LoRA+ comparisons are 44.0% versus 42.7% and 90.2% versus 90.1% in their respective grids. They motivate tuning the two rates without selecting a universal ratio. Next, keep the parameter budget fixed and change which weights receive it.
+:::

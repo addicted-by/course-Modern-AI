@@ -1,0 +1,214 @@
+<script id="lecture02-speaker-math">
+(() => {
+  const stylesheet = document.getElementById("offline-katex-css");
+  if (!stylesheet) return;
+
+  // Reveal copies the notes markup into a separate document without the deck styles.
+  window.addEventListener("message", event => {
+    if (event.origin !== window.location.origin || typeof event.data !== "string") return;
+
+    let message;
+    try {
+      message = JSON.parse(event.data);
+    } catch {
+      return;
+    }
+    if (message?.namespace !== "reveal-notes" ||
+        (message.type !== "connected" && message.type !== "heartbeat")) return;
+
+    const speaker = event.source;
+    if (!speaker || speaker.opener !== window) return;
+    const target = speaker.document;
+    if (!target.querySelector(".speaker-controls-notes .value") ||
+        target.getElementById(stylesheet.id)) return;
+
+    target.head.append(target.importNode(stylesheet, true));
+  });
+})();
+</script>
+<script>
+(() => {
+  const requestedSlide = window.loraInitialSlide;
+  const deck = window.Reveal;
+  const scrollPage = slideId => document.getElementById(slideId)?.closest(".scroll-page");
+
+  // Chromium can export links to DOM IDs as PDF page destinations.
+  if (new URLSearchParams(window.location.search).has("print-pdf")) {
+    for (const link of document.querySelectorAll('a[href^="#/"]')) {
+      const id = link.getAttribute("href").slice(2);
+      if (document.getElementById(id)) link.setAttribute("href", "#" + id);
+    }
+  }
+
+  function showScrollPage(page) {
+    page.scrollIntoView({block: "start"});
+    const viewport = deck.getViewportElement();
+    const bottom = viewport.scrollHeight - viewport.clientHeight;
+    // Reveal can round the last page's range end just below 1.
+    // Stay one pixel inside it, with the final heading still in view.
+    if (bottom > 0 && viewport.scrollTop >= bottom) viewport.scrollTop = bottom - 1;
+  }
+
+  if (requestedSlide && deck) {
+    deck.on("ready", () => requestAnimationFrame(() => {
+      const initialPage = scrollPage(requestedSlide);
+      if (!initialPage) return;
+      window.history.replaceState(null, "", "#/" + requestedSlide);
+      showScrollPage(initialPage);
+    }));
+  }
+
+  const mobileViewport = window.matchMedia("(max-width: 650px)");
+  const exhibitTypes = [
+    [".lora-body img[alt]:not([alt='']), .lora-body svg:not(.katex svg)", "Figure"],
+    [".lora-body table", "Table"],
+    [".lora-body .math.display, .lora-body .math.inline", "Equation"],
+  ];
+
+  function enableNarrowExhibits() {
+    if (!mobileViewport.matches || !deck?.getViewportElement().matches(".reveal-scroll")) return;
+    const textWidths = [];
+    for (const [selector, kind] of exhibitTypes) {
+      for (const exhibit of document.querySelectorAll(selector)) {
+        if (exhibit.closest(".lora-pan, [data-lora-fit]") || exhibit.parentElement.closest("svg")) continue;
+        const parent = exhibit.parentElement;
+        if (exhibit.matches(".math.inline") && exhibit.getBoundingClientRect().width <= parent.clientWidth + 2) continue;
+        if (exhibit.matches(".math.inline") && !parent.clientWidth) continue;
+
+        const region = document.createElement("span");
+        region.className = "lora-pan";
+        region.tabIndex = 0;
+        region.setAttribute("role", "region");
+        region.setAttribute("aria-label", kind + " (scroll horizontally)");
+        const hint = document.createElement("span");
+        hint.className = "lora-pan-cue";
+        hint.textContent = "Scroll horizontally →";
+        exhibit.before(hint, region);
+        region.append(exhibit);
+        if (kind !== "Figure") textWidths.push([region, hint]);
+      }
+    }
+
+    for (const [region, hint] of textWidths) {
+      if (region.scrollWidth > region.clientWidth + 2) continue;
+      region.removeAttribute("tabindex");
+      region.removeAttribute("role");
+      region.removeAttribute("aria-label");
+      hint.hidden = true;
+    }
+  }
+
+  function updateContinuation(slide, more) {
+    const hasMore = slide.scrollTop + slide.clientHeight + 12 < slide.scrollHeight;
+    if (!hasMore && document.activeElement === more) slide.focus({preventScroll: true});
+    more.hidden = !hasMore;
+  }
+
+  function reconcileLongCard(slide) {
+    const controls = slide.nextElementSibling;
+    if (controls?.matches(".lora-mobile-card-controls")) {
+      updateContinuation(slide, controls.querySelector("button"));
+      return;
+    }
+
+    const bottomPadding = Number.parseFloat(getComputedStyle(slide).paddingBottom);
+    if (slide.scrollHeight - bottomPadding <= slide.clientHeight) return;
+    slide.setAttribute("data-lora-inner-scroll", "");
+    slide.tabIndex = 0;
+    slide.setAttribute("aria-label", slide.querySelector("h2").textContent.trim());
+
+    const strip = document.createElement("div");
+    strip.className = "lora-mobile-card-controls";
+    const more = document.createElement("button");
+    more.className = "lora-mobile-more";
+    more.type = "button";
+    more.textContent = "Continue reading ↓";
+    more.setAttribute("aria-controls", slide.id);
+    more.addEventListener("click", () => slide.scrollBy(0, slide.clientHeight * .72));
+    strip.append(more);
+    slide.after(strip);
+
+    slide.addEventListener("scroll", () => updateContinuation(slide, more), {passive: true});
+    updateContinuation(slide, more);
+  }
+
+  // A late image or responsive picture swap can change a card's scroll
+  // height after Reveal and the fonts are ready.
+  document.addEventListener("load", event => {
+    if (!(event.target instanceof HTMLImageElement) || !mobileViewport.matches ||
+        !deck?.getViewportElement().matches(".reveal-scroll")) return;
+    const slide = event.target.closest(".scroll-page section.lora-slide");
+    if (slide) reconcileLongCard(slide);
+  }, true);
+
+  function enableNarrowLayout() {
+    if (!mobileViewport.matches || !deck?.getViewportElement().matches(".reveal-scroll")) return;
+    // A narrow card is read from top to bottom. Keep all authored stages in
+    // order and let desktop Reveal restore the original fragment markup.
+    const stages = document.querySelectorAll(".scroll-page .lora-slide .fragment");
+    for (const stage of stages) {
+      stage.classList.remove("fragment", "visible", "current-fragment");
+      stage.removeAttribute("aria-hidden");
+    }
+    if (stages.length) deck.layout();
+    enableNarrowExhibits();
+    for (const slide of document.querySelectorAll(".scroll-page section.lora-slide")) {
+      reconcileLongCard(slide);
+    }
+  }
+
+  deck?.on("ready", () => {
+    const menu = deck.getRevealElement().querySelector(".slide-menu-button > a");
+    menu?.setAttribute("aria-label", "Open slide menu");
+    enableNarrowLayout();
+  });
+  document.fonts.ready.then(enableNarrowLayout);
+  window.addEventListener("resize", () => requestAnimationFrame(enableNarrowLayout));
+
+  window.addEventListener("keydown", event => {
+    if (event.target.matches?.(".lora-mobile-more") && [" ", "Enter"].includes(event.key)) {
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    if (event.target.matches?.(".lora-pan[tabindex]") &&
+        (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
+      event.target.scrollLeft += event.key === "ArrowLeft" ? -64 : 64;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    if (event.target.matches?.("section[data-lora-inner-scroll]") &&
+        ["ArrowUp", "ArrowDown", "PageUp", "PageDown"].includes(event.key)) {
+      const direction = event.key.endsWith("Up") ? -1 : 1;
+      const amount = event.key.startsWith("Page") ? event.target.clientHeight * .72 : 64;
+      event.target.scrollBy(0, direction * amount);
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
+  }, true);
+
+  // Reveal's scroll controller maps native link jumps by progression.
+  // Land at the label of the actual page in the narrow reflow.
+  document.addEventListener("click", event => {
+    const link = event.target.closest?.('a[href^="#/"]');
+    const target = link?.getAttribute("href").slice(2);
+    const targetPage = target && scrollPage(target);
+    if (!targetPage || !deck?.getViewportElement().matches(".reveal-scroll")) return;
+    event.preventDefault();
+    const menu = link.closest("details");
+    if (menu) menu.open = false;
+    window.history.pushState(null, "", "#/" + target);
+    showScrollPage(targetPage);
+  });
+
+  window.addEventListener("hashchange", () => {
+    const target = window.location.hash.match(/^#\/?([HL]\d{2,3})$/)?.[1];
+    if (!target || !deck?.getViewportElement().matches(".reveal-scroll")) return;
+    const page = scrollPage(target);
+    if (page) showScrollPage(page);
+  });
+})();
+</script>

@@ -7,12 +7,16 @@ project:
     - raw/modules.qmd
     - raw/lectures.qmd
     - raw/seminars.qmd
+    - raw/seminars/01_svd/seminar01-svd.ipynb
+    - raw/seminars/02_replaceme/seminar_replaceme_clean.ipynb
     - raw/quizzes.qmd
     - raw/quizzes/*/index.qmd
     - raw/homeworks.qmd
     - raw/projects.qmd
   resources:
     - "assets/**"
+    - "raw/seminars/01_svd/**"
+    - "raw/seminars/02_replaceme/**"
 
 metadata-files:
   - lectures.yml

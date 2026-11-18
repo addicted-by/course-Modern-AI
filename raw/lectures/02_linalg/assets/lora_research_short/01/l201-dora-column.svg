@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="388" viewBox="0 0 560 388" role="img" aria-labelledby="title desc">
+  <title id="title">Length and direction of one weight column</title>
+  <desc id="desc">The original vector (3,0) has length 3. A dashed arc rotates it to (1.8,2.4) at the same radius. The ray through this point extends to (3,4), where its length is 5.</desc>
+  <defs>
+    <marker id="start" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0 6 3 0 6z" fill="#48505a"/></marker>
+    <marker id="changed" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0 6 3 0 6z" fill="#3d6f2a"/></marker>
+  </defs>
+  <style>
+    text { font: 23px Inter, Arial, sans-serif; fill: #1b201c }
+    .label { font-weight: 700 }
+    .coords { font-size: 21px; fill: #48505a }
+  </style>
+  <path d="M55 36V327h446" fill="none" stroke="#c1c9bd" stroke-width="2"/>
+  <path d="M235 327A180 180 0 0 0 163 183" fill="none" stroke="#6c8394" stroke-width="3" stroke-dasharray="7 9"/>
+  <path d="M55 327H231" fill="none" stroke="#48505a" stroke-width="4.5" marker-end="url(#start)"/>
+  <path d="M55 327 232.6 90.2" fill="none" stroke="#3d6f2a" stroke-width="5" marker-end="url(#changed)"/>
+  <circle cx="55" cy="327" r="5" fill="#48505a"/>
+  <circle cx="163" cy="183" r="7" fill="#fff" stroke="#3d6f2a" stroke-width="3.5"/>
+  <path d="M174 183h36m30-96h14" fill="none" stroke="#98a993" stroke-width="2"/>
+  <text x="265" y="83" class="label">Learned length 5</text>
+  <text x="265" y="111" class="coords">(3, 4)</text>
+  <text x="220" y="180" class="label">New direction, length 3</text>
+  <text x="220" y="208" class="coords">(1.8, 2.4)</text>
+  <text x="250" y="315" class="label">Pretrained column</text>
+  <text x="250" y="346" class="coords">(3, 0) · length 3</text>
+  <text x="35" y="353" class="coords">0</text>
+</svg>

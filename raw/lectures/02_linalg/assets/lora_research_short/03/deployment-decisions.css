@@ -1,0 +1,135 @@
+/* Deployment comparisons and the token boundary in Activated LoRA. */
+.reveal .deploy-api-pair,
+.reveal .deploy-invocation {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reveal .deploy-api-pair > div,
+.reveal .deploy-invocation > div {
+  border-block-start: 3px solid var(--lora-ink);
+  padding-block: .5em;
+}
+
+.reveal .deploy-api-pair > div:last-child {
+  border-color: var(--lora-accent);
+}
+
+.reveal .deploy-invocation {
+  grid-template-columns: 1.16fr 1fr 1fr;
+  gap: 0;
+  border-block-end: 1px solid var(--lora-line);
+}
+
+.reveal .deploy-invocation > div {
+  padding: .55em .65em;
+}
+
+.reveal .deploy-invocation > div:nth-child(2) {
+  border-inline-start: 3px solid var(--lora-ink);
+  border-block-start-color: var(--lora-accent);
+  background: var(--lora-accent-surface);
+}
+
+.reveal .deploy-invocation > div:last-child {
+  border-block-start-color: var(--lora-accent);
+}
+
+.reveal .deploy-invocation > div p:last-child,
+.reveal .deploy-config {
+  font-size: .87em;
+}
+
+.reveal .lora-slide .deploy-strategy-matrix {
+  width: 100%;
+  table-layout: fixed;
+  font-size: .92em;
+  line-height: 1.25;
+}
+
+.reveal .deploy-strategy-matrix :is(th, td) {
+  padding: .54em .62em;
+  vertical-align: top;
+  text-align: left;
+  border-bottom: 1px solid var(--lora-line);
+}
+
+.reveal .deploy-strategy-matrix thead th {
+  background: var(--lora-ink);
+  color: var(--lora-white);
+  font-weight: 650;
+}
+
+.reveal .deploy-strategy-matrix thead th:first-child { width: 15%; }
+.reveal .deploy-strategy-matrix thead th:nth-child(2) { width: 29%; }
+.reveal .deploy-strategy-matrix thead th:nth-child(3) { width: 32%; }
+
+.reveal .deploy-strategy-matrix tbody th {
+  background: var(--lora-accent-surface);
+  color: var(--lora-ink);
+  font-weight: 680;
+}
+
+@media (max-width: 650px) {
+  .reveal-viewport.reveal-scroll .deploy-api-pair,
+  .reveal-viewport.reveal-scroll .deploy-invocation {
+    grid-template-columns: 1fr;
+    gap: .25em;
+  }
+
+  .reveal-viewport.reveal-scroll .deploy-invocation > div {
+    padding: .35em .6em;
+  }
+
+  .reveal-viewport.reveal-scroll .deploy-invocation > div:nth-child(2) {
+    border-inline-start: 0;
+    border-block-start-color: var(--lora-ink);
+  }
+
+  .reveal-viewport.reveal-scroll .deploy-strategy-matrix,
+  .reveal-viewport.reveal-scroll .deploy-strategy-matrix tbody,
+  .reveal-viewport.reveal-scroll .deploy-strategy-matrix tr {
+    display: block;
+  }
+
+  .reveal-viewport.reveal-scroll .deploy-strategy-matrix thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+    overflow: hidden;
+  }
+
+  .reveal-viewport.reveal-scroll .deploy-strategy-matrix tbody th {
+    display: block;
+    margin-block-start: .65em;
+    border-top: 2px solid var(--lora-ink);
+  }
+
+  .reveal-viewport.reveal-scroll .deploy-strategy-matrix td {
+    display: grid;
+    grid-template-columns: 6.2em minmax(0,1fr);
+    gap: .4em;
+  }
+
+  .reveal-viewport.reveal-scroll .deploy-strategy-matrix td::before {
+    content: attr(data-label);
+    color: var(--lora-muted);
+    font-weight: 600;
+  }
+}
+
+.reveal .practice-print {
+  display: none;
+}
+
+@media print {
+  .reveal .practice-download {
+    display: none;
+  }
+
+  .reveal .practice-print {
+    display: inline;
+  }
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="550" height="430" viewBox="0 0 550 430" role="img" aria-labelledby="title desc">
+  <title id="title">PiSSA in column-vector notation</title>
+  <desc id="desc">Input x passes through A then B on the trainable branch. A frozen residual transforms the same input. The branches add at the output y.</desc>
+  <defs>
+    <marker id="head" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8z" fill="#495348"/></marker>
+  </defs>
+  <style>
+    text { font: 22px Inter, Arial, sans-serif; fill: #19231b; text-anchor: middle }
+    .heading { font-weight: 700 }
+    .math { font: italic 30px Georgia, serif }
+    .arrow { fill: none; stroke: #495348; stroke-width: 3; marker-end: url(#head) }
+  </style>
+  <path class="arrow" d="M276 373H126v-56"/>
+  <path class="arrow" d="M276 373H397v-41"/>
+  <path class="arrow" d="M397 246v-32"/>
+  <path class="arrow" d="M126 133V86h119"/>
+  <path class="arrow" d="M397 133V86H308"/>
+  <path class="arrow" d="M276 62V40"/>
+  <rect x="22" y="135" width="208" height="177" rx="4" fill="#deebf2" stroke="#496784" stroke-width="2.5"/>
+  <text x="126" y="218" class="heading">Frozen residual</text>
+  <text x="126" y="266" class="math">W₀ − B₀A₀</text>
+  <path d="M278 135h238l-40 74H318z" fill="#edf6df" stroke="#648346" stroke-width="2.5"/>
+  <text x="397" y="182" class="math">B₀ = Uᵣ Σᵣ<tspan baseline-shift="super" font-size="17">½</tspan></text>
+  <path d="M318 245h158l40 80H278z" fill="#edf6df" stroke="#648346" stroke-width="2.5"/>
+  <text x="397" y="297" class="math">A₀ = Σᵣ<tspan baseline-shift="super" font-size="17">½</tspan> Vᵣ<tspan baseline-shift="super" font-size="17">T</tspan></text>
+  <circle cx="276" cy="86" r="21" fill="#f7faf4" stroke="#495348" stroke-width="2.5"/>
+  <text x="276" y="96" style="font-size:34px">+</text>
+  <text x="276" y="28" class="math">y</text>
+  <circle cx="276" cy="373" r="5" fill="#495348"/>
+  <text x="276" y="405" class="math">x</text>
+</svg>

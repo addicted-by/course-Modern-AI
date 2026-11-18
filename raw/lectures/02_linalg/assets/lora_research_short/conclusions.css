@@ -1,0 +1,135 @@
+/* Section conclusions share the course frame. The last spread recalls the opener. */
+.reveal .lora-conclusion > .conclusion-body {
+  gap: 38px;
+}
+.reveal .lora-conclusion .conclusion-spread,
+.reveal .lora-conclusion .conclusion-merge,
+.reveal .lora-conclusion .conclusion-finale {
+  display: grid;
+  grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+  align-items: center;
+  gap: 70px;
+}
+.reveal .lora-conclusion .conclusion-argument {
+  border-inline-start: 8px solid var(--lora-accent);
+  padding-inline-start: 32px;
+}
+.reveal .lora-conclusion .conclusion-argument > p,
+.reveal .lora-conclusion .conclusion-detail > p,
+.reveal .lora-conclusion .conclusion-choice > p {
+  margin: .5em 0;
+}
+.reveal .lora-conclusion .conclusion-argument > p > strong:only-child,
+.reveal .lora-conclusion .conclusion-choice .conclusion-eyebrow + p > strong {
+  font: 600 1.62em/1.08 var(--lecture-font-heading);
+  letter-spacing: -.035em;
+}
+.reveal .lora-conclusion .conclusion-number {
+  font: 650 3.8em/.95 var(--lecture-font-heading);
+  letter-spacing: -.06em;
+}
+.reveal .lora-conclusion .conclusion-detail {
+  border-block: 2px solid var(--lora-line);
+  padding-block: 12px;
+}
+.reveal .lora-conclusion .conclusion-detail table,
+.reveal .lora-conclusion .conclusion-ranks {
+  margin: .5em 0;
+  font-size: .95em;
+  width: 100%;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.reveal .lora-conclusion .conclusion-detail table :is(td,th) {
+  padding: .36em .45em;
+  border-bottom: 1px solid var(--lora-line);
+}
+.reveal .lora-conclusion .conclusion-detail table :is(td,th):not(:first-child) {
+  text-align: right;
+}
+.reveal .lora-conclusion .conclusion-lead {
+  font: 620 2.45em/1.04 var(--lecture-font-heading);
+  letter-spacing: -.045em;
+}
+.reveal .lora-conclusion .conclusion-decisions {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 40px;
+}
+.reveal .lora-conclusion .conclusion-decisions > div,
+.reveal .lora-conclusion .conclusion-merge > div {
+  align-self: stretch;
+  border-top: 3px solid var(--lora-ink);
+  padding-top: .55em;
+}
+.reveal .lora-conclusion .conclusion-decisions > div:last-child,
+.reveal .lora-conclusion .conclusion-merge > div:last-child {
+  border-color: #639928;
+}
+.reveal .lora-conclusion .conclusion-merge .math.inline {
+  font-size: 1.16em;
+}
+.reveal .lora-conclusion .conclusion-finale {
+  background: #101210;
+  color: #f5f6ef;
+  padding: 44px 52px;
+  grid-template-columns: 1.18fr .82fr;
+}
+.reveal .lora-conclusion .conclusion-finale .conclusion-eyebrow {
+  margin-bottom: .65em;
+  color: #d3e3c6;
+  font-size: .78em;
+  font-weight: 580;
+}
+.reveal .lora-conclusion .conclusion-finale strong {
+  color: var(--lora-accent);
+}
+.reveal .lora-conclusion .conclusion-finale .conclusion-choice .conclusion-eyebrow + p > strong {
+  font-size: 2em;
+}
+.reveal .lora-conclusion .conclusion-ranks :is(td,th) {
+  border: 0;
+  border-bottom: 1px solid #52594c;
+  background: transparent;
+  color: #f5f6ef;
+  padding: .28em .55em;
+}
+.reveal .lora-conclusion .conclusion-ranks :is(td,th):last-child {
+  text-align: right;
+}
+.reveal .lora-conclusion .conclusion-ranks .conclusion-picked > * {
+  background: var(--lora-accent);
+  color: #14200d;
+  font-weight: 730;
+}
+@media (max-width: 650px) {
+  .reveal-viewport.reveal-scroll .lora-conclusion > .conclusion-body {
+    gap: 18px;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion :is(.conclusion-spread,.conclusion-merge,.conclusion-decisions,.conclusion-finale) {
+    grid-template-columns: minmax(0,1fr);
+    gap: 15px;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion .conclusion-argument {
+    padding-inline-start: 12px;
+    border-inline-start-width: 4px;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion .conclusion-lead {
+    font-size: 1.75em;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion .conclusion-number {
+    font-size: 2.3em;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion .conclusion-detail {
+    padding-block: 4px;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion .conclusion-finale {
+    padding: 18px;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion .conclusion-finale .conclusion-choice .conclusion-eyebrow + p > strong {
+    font-size: 1.55em;
+  }
+  .reveal-viewport.reveal-scroll .lora-conclusion :is(.conclusion-merge,.conclusion-decisions) > div {
+    padding-top: 3px;
+  }
+}

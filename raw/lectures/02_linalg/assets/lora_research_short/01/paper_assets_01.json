@@ -1,0 +1,397 @@
+{
+  "slides": [
+    {
+      "id": "H01",
+      "title": "Hu et al. · LoRA",
+      "version": "arXiv:2106.09685v2",
+      "source_url": "https://arxiv.org/pdf/2106.09685v2",
+      "locator": "§1 and §4.1, Eq. (3)",
+      "pdf_pages": [
+        2,
+        4
+      ],
+      "material_format": "faithful equation typesetting",
+      "evidence_type": "parameterization and hypothesis",
+      "claim": "Train a low-rank update with the pretrained weight frozen. The utility of low intrinsic rank is a hypothesis about the needed update.",
+      "license_status": "arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": []
+    },
+    {
+      "id": "H02",
+      "title": "Hu et al. · LoRA",
+      "version": "arXiv:2106.09685v2",
+      "source_url": "https://arxiv.org/pdf/2106.09685v2",
+      "locator": "Tables 4 and 6, WikiSQL columns",
+      "pdf_pages": [
+        8,
+        10
+      ],
+      "material_format": "selected source table data, transcribed",
+      "evidence_type": "published benchmark",
+      "claim": "LoRA and full fine-tuning have similar reported WikiSQL validation scores at very different trainable counts. The separate Q+V rank sweep varies little.",
+      "license_status": "arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": []
+    },
+    {
+      "id": "H03",
+      "title": "Hu et al. · LoRA",
+      "version": "arXiv:2106.09685v2",
+      "source_url": "https://arxiv.org/pdf/2106.09685v2",
+      "locator": "Fig. 3, V-projection zoom, and Eq. (4)",
+      "pdf_pages": [
+        11
+      ],
+      "material_format": "original PDF crop, editorial row axis and first-cell outline",
+      "evidence_type": "published subspace comparison",
+      "claim": "The learned A factors for the V projection overlap in their leading directions.",
+      "license_status": "arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": [
+        "assets/lora_research_short/01/h03-v-overlap.png"
+      ],
+      "pdf_sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "crop": {
+        "pdf_page_index": 10,
+        "rect_points": [
+          386.5,
+          285,
+          500,
+          390.5
+        ],
+        "render_scale": 8
+      },
+      "asset_sha256": "b5fce6572ab3e592ee9ea9f64429aeaffeb2b19b1ac91832ca1b457209e02386"
+    },
+    {
+      "id": "L01",
+      "title": "Hu et al. · LoRA",
+      "version": "arXiv:2106.09685v2",
+      "source_url": "https://arxiv.org/pdf/2106.09685v2",
+      "locator": "Fig. 1 and §4.1 Eq. (3)",
+      "pdf_pages": [
+        1,
+        4
+      ],
+      "material_format": "original PDF crop with separately typeset condition",
+      "evidence_type": "initialization schematic",
+      "claim": "Gaussian A and zero B preserve the initial map. The A gradient vanishes initially and B can receive a gradient.",
+      "license_status": "arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l01-hu-fig1.png"
+      ],
+      "pdf_sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "crop": {
+        "pdf_page_index": 0,
+        "rect_points": [
+          388,
+          525,
+          505,
+          630
+        ],
+        "render_scale": 8
+      },
+      "asset_sha256": "eeb8f8f549b4bed677ff72fd540aadd9047deb4f4e67aa90fdf60b1055f06646"
+    },
+    {
+      "id": "L27",
+      "title": "Mu and Klabjan · On the Convergence Rate of LoRA Gradient Descent",
+      "version": "arXiv:2512.18248v1",
+      "source_url": "https://arxiv.org/html/2512.18248v1",
+      "locator": "§3.2 Eq. (7) and §4",
+      "pdf_pages": [
+        4,
+        6
+      ],
+      "material_format": "faithful equation typesetting",
+      "evidence_type": "published convergence analysis",
+      "claim": "The factor origin is stationary for gradient descent regardless of the original loss gradient.",
+      "license_status": "CC BY 4.0",
+      "asset_paths": []
+    },
+    {
+      "id": "L02",
+      "title": "Wang et al. · LoRA-GA",
+      "version": "arXiv:2407.05000v2",
+      "source_url": "https://arxiv.org/pdf/2407.05000v2",
+      "locator": "Algorithm 1, line 10",
+      "pdf_pages": [
+        5
+      ],
+      "material_format": "faithful algorithm step typesetting",
+      "evidence_type": "published initialization algorithm",
+      "claim": "Subtract the starting scaled adapter contribution from the frozen base to preserve its original forward map.",
+      "license_status": "CC BY-NC-SA 4.0",
+      "asset_paths": []
+    },
+    {
+      "id": "L03",
+      "title": "Meng et al. · PiSSA",
+      "version": "arXiv:2404.02948v4",
+      "source_url": "https://arxiv.org/pdf/2404.02948v4",
+      "locator": "Fig. 1(c), §3 Eq. (2)–(5)",
+      "pdf_pages": [
+        2,
+        3
+      ],
+      "material_format": "original PDF panel crop",
+      "evidence_type": "published architecture diagram",
+      "claim": "PiSSA trains the leading singular components and freezes the rest. Initially both add up to the pretrained weights.",
+      "license_status": "CC BY 4.0",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l03-pissa-fig1c.png"
+      ],
+      "pdf_sha256": "472e7951326f498d1d85a5ec956fb248918d12e56dbdb74e721a851724ad1da4",
+      "crop": {
+        "pdf_page_index": 1,
+        "rect_points": [
+          364,
+          70,
+          505,
+          228
+        ],
+        "render_scale": 8
+      },
+      "asset_sha256": "c2264c75a734d0bc2a051b0c4c275842236510d9682194b879848623eda2c702"
+    },
+    {
+      "id": "L04",
+      "title": "Meng et al. · PiSSA",
+      "version": "arXiv:2404.02948v4",
+      "source_url": "https://arxiv.org/pdf/2404.02948v4",
+      "locator": "§5.2, Fig. 4(a), first 100 steps inset",
+      "pdf_pages": [
+        7
+      ],
+      "material_format": "original PDF inset crop; unrelated trace masked outside inset",
+      "evidence_type": "published training result",
+      "claim": "PiSSA reduced training loss faster early in the reported Llama-2-7B / full MetaMathQA run.",
+      "license_status": "CC BY 4.0",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l04-pissa-fig4a.png"
+      ],
+      "pdf_sha256": "472e7951326f498d1d85a5ec956fb248918d12e56dbdb74e721a851724ad1da4",
+      "crop": {
+        "pdf_page_index": 6,
+        "rect_points": [
+          129.7,
+          542.9,
+          203.08,
+          592.8
+        ],
+        "render_scale": 12,
+        "editorial_mask_pixels": [
+          0,
+          410,
+          38,
+          600
+        ]
+      },
+      "asset_sha256": "cacb8472e9d69dbd9272f93018bd4a703b80fbbca5e14321ab43cdea97ca6986"
+    },
+    {
+      "id": "L08",
+      "title": "Wang et al. · LoRA-GA",
+      "version": "NeurIPS 2024 proceedings",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/62c4718cc334f6a0a62fb81c4a2095a1-Paper-Conference.pdf",
+      "locator": "§4.6, Table 7",
+      "pdf_pages": [
+        10
+      ],
+      "material_format": "source table data transcribed, transposed for narrower layout",
+      "evidence_type": "published ablation",
+      "claim": "Larger sampled batches matched the reference gradient more closely in sign and magnitude. GSM8K did not improve monotonically.",
+      "license_status": "Authors retain copyright under NeurIPS proceedings policy. Slide transcribes factual table entries.",
+      "asset_paths": []
+    },
+    {
+      "id": "L10",
+      "title": "Wang et al. · LoRA-GA",
+      "version": "arXiv:2407.05000v2",
+      "source_url": "https://arxiv.org/pdf/2407.05000v2",
+      "locator": "Theorem 3.1 and Algorithm 1, lines 5–9",
+      "pdf_pages": [
+        5
+      ],
+      "material_format": "original PDF excerpt, contiguous left column",
+      "evidence_type": "published initialization algorithm",
+      "claim": "Disjoint leading singular directions seed A and B. Their two first-order terms can span up to 2r directions.",
+      "license_status": "CC BY-NC-SA 4.0",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l10-loraga-alg1.png"
+      ],
+      "pdf_sha256": "eebc441dda1c7ec61e2995b67f1dce007982966670d9cab29db211b55617288f",
+      "crop": {
+        "pdf_page_index": 4,
+        "rect_points": [
+          108,
+          167,
+          263,
+          224
+        ],
+        "render_scale": 10
+      },
+      "asset_sha256": "5ab85364e42e712351a545ae82c5f64ee0691bfed20cfc6cf7290f4630f250a1"
+    },
+    {
+      "id": "L14",
+      "title": "Kalajdzievski · rsLoRA",
+      "version": "arXiv:2312.03732v1",
+      "source_url": "https://arxiv.org/pdf/2312.03732v1",
+      "locator": "Appendix A, Eq. (6) and Eq. (8)",
+      "pdf_pages": [
+        8
+      ],
+      "material_format": "faithful equation typesetting, first-step specialization of Eqs. 6 and 8",
+      "evidence_type": "published scaling derivation",
+      "claim": "The adapter scale appears in the gradient and in the resulting effective weight, so the first step under plain SGD carries its square.",
+      "license_status": "Copyright 2023 Tenyx. arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": []
+    },
+    {
+      "id": "L15",
+      "title": "Kalajdzievski · rsLoRA",
+      "version": "arXiv:2312.03732v1",
+      "source_url": "https://arxiv.org/pdf/2312.03732v1",
+      "locator": "§3 and §4, Fig. 3",
+      "pdf_pages": [
+        5
+      ],
+      "material_format": "original PDF figure crop",
+      "evidence_type": "published gradient norm comparison",
+      "claim": "At training onset rsLoRA showed similar average parameter-gradient norms across the tested ranks.",
+      "license_status": "Copyright 2023 Tenyx. arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l15-rslora-fig3.png"
+      ],
+      "pdf_sha256": "8d45b0bc98bf5d0b4e6d63a297a5c4709935e2912c94a11471eadf14a9a1e80e",
+      "crop": {
+        "pdf_page_index": 4,
+        "rect_points": [
+          151,
+          198,
+          442,
+          375
+        ],
+        "render_scale": 8
+      },
+      "asset_sha256": "09a4eed2b070861fa0db14d021dae8e795090031ddd3d37045586219d283b4c6"
+    },
+    {
+      "id": "L16",
+      "title": "Kalajdzievski · rsLoRA",
+      "version": "arXiv:2312.03732v1",
+      "source_url": "https://arxiv.org/pdf/2312.03732v1",
+      "locator": "§4, Fig. 2",
+      "pdf_pages": [
+        4
+      ],
+      "material_format": "original PDF figure crop",
+      "evidence_type": "published fine-tuning perplexity comparison",
+      "claim": "Higher-rank rsLoRA runs achieved lower fine-tuning perplexity in the OpenOrca run.",
+      "license_status": "Copyright 2023 Tenyx. arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l16-rslora-fig2.png"
+      ],
+      "pdf_sha256": "8d45b0bc98bf5d0b4e6d63a297a5c4709935e2912c94a11471eadf14a9a1e80e",
+      "crop": {
+        "pdf_page_index": 3,
+        "rect_points": [
+          164,
+          370,
+          410,
+          558
+        ],
+        "render_scale": 8
+      },
+      "asset_sha256": "66458e6057fdea69c254fcb16004c1119a9f88bb67e62ff0c55143eddfe4862f"
+    },
+    {
+      "id": "L17",
+      "title": "Hayou et al. · LoRA+",
+      "version": "arXiv:2402.12354v2",
+      "source_url": "https://arxiv.org/pdf/2402.12354v2",
+      "locator": "§4 factor updates and feature decomposition, §5.3 ratio selection",
+      "pdf_pages": [
+        7,
+        9
+      ],
+      "material_format": "faithful equation typesetting",
+      "evidence_type": "published method and feature analysis",
+      "claim": "Use independent optimizer rates for A and B. Each affects a different contribution to the LoRA feature update.",
+      "license_status": "CC BY 4.0",
+      "asset_paths": []
+    },
+    {
+      "id": "L18",
+      "title": "Hayou et al. · LoRA+",
+      "version": "arXiv:2402.12354v2",
+      "source_url": "https://arxiv.org/pdf/2402.12354v2",
+      "locator": "§5.2, Fig. 5 left",
+      "pdf_pages": [
+        9
+      ],
+      "material_format": "original PDF panel crop",
+      "evidence_type": "published MMLU accuracy comparisons",
+      "claim": "The best marked off-diagonal pair improves reported MMLU accuracy from 42.7% to 44.0%.",
+      "license_status": "CC BY 4.0",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l18-loraplus-fig5-left.png"
+      ],
+      "pdf_sha256": "ee93deb531da2dc2fcc4db5aa7ff6f26c08c9e8a77853afe68d1940bb0b1d301",
+      "crop": {
+        "pdf_page_index": 8,
+        "rect_points": [
+          62,
+          128,
+          174,
+          238
+        ],
+        "render_scale": 12
+      },
+      "asset_sha256": "bde67ec434f0d9418b7c1c81df2d17f8a60b78af5948668260731b6f66f1d2a4"
+    },
+    {
+      "id": "L19",
+      "title": "Hayou et al. · LoRA+",
+      "version": "arXiv:2402.12354v2",
+      "source_url": "https://arxiv.org/pdf/2402.12354v2",
+      "locator": "§5.2, Fig. 5 right",
+      "pdf_pages": [
+        9
+      ],
+      "material_format": "original PDF panel crop",
+      "evidence_type": "published MNLI accuracy comparisons",
+      "claim": "Among the reported tested pairs with eta_B at least eta_A, the best gain over equal rates is 0.1 pp.",
+      "license_status": "CC BY 4.0",
+      "asset_paths": [
+        "assets/lora_research_short/01/paper-l19-loraplus-fig5-right.png"
+      ],
+      "pdf_sha256": "ee93deb531da2dc2fcc4db5aa7ff6f26c08c9e8a77853afe68d1940bb0b1d301",
+      "crop": {
+        "pdf_page_index": 8,
+        "rect_points": [
+          174,
+          128,
+          284,
+          238
+        ],
+        "render_scale": 12
+      },
+      "asset_sha256": "ad006131f881ade08016db32601f8582fb2a68683ce8a8000cb6feddd7c90d8e"
+    },
+    {
+      "id": "L23",
+      "title": "Yen et al. · LoRA-RITE",
+      "version": "arXiv:2410.20625v2",
+      "source_url": "https://arxiv.org/html/2410.20625v2",
+      "locator": "§2.2, Eqs. (5)–(6) and immediate post-equation display",
+      "pdf_pages": [
+        3
+      ],
+      "material_format": "faithful equation typesetting",
+      "evidence_type": "published invariance analysis",
+      "claim": "Reciprocal factor rescaling preserves the product while changing each first-order gradient descent contribution.",
+      "license_status": "arXiv perpetual non-exclusive license, no public CC license indicated",
+      "asset_paths": []
+    }
+  ]
+}
