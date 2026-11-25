@@ -1,0 +1,20 @@
+---
+title: "Linear Algebra & Low-Rank Adaptation"
+subtitle: "Quiz 02 · Modern AI · M2"
+lang: ru
+format: html
+toc: false
+resources:
+  - student_test.md
+---
+
+[← Все квизы](/raw/quizzes.qmd)
+
+[Скачать вопросы без ответов](student_test.md){.course-button download="student_test.md"}
+
+{{< include student_test.md >}}
+
+## Материалы для повторения
+
+- [Линейная алгебра, матричные разложения и их применения](/raw/lectures/02_linalg/lecture02_final_v2.html)
+- [LoRA и инициализация низкоранговых адаптеров](/raw/lectures/02_linalg/lecture02_lora_research.html)

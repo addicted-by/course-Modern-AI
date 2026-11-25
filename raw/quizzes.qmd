@@ -15,3 +15,11 @@ MoE, GQA and KV cache, prefill/decode, sparse attention, Mamba, DINO, CLIP, resi
 Choose one answer per question. All 15 questions are required; there is no automatic timer.
 
 [Open quiz ↗](quizzes/lecture01_arch/index.qmd){.course-button}
+
+## 02 · Linear Algebra & Low-Rank Adaptation
+
+**Module M2 · 15 questions · 20 points · 20–25 minutes · Русский**
+
+Fit a model with least squares, interpret singular values, score a film recommendation, and trace how ReplaceMe and LoRA change a model.
+
+[Open quiz ↗](quizzes/lecture02_linalg/index.qmd){.course-button}

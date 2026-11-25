@@ -16,6 +16,14 @@ record are local instructor files excluded by `.gitignore`. Do not add the
 quiz directory as a wildcard resource: that would publish the answer keys.
 The original instructor package remains available in the source course folder.
 
+## Second quiz
+
+`lecture02_linalg` covers the Linear Algebra and LoRA Research decks in
+`raw/lectures/02_linalg/`. Its 15 single-choice questions are worth 20 points.
+The student page includes the downloadable Russian worksheet directly. The
+local instructor package contains the answer key, slide references and a
+standalone Apps Script for creating a separate Google Forms draft.
+
 ## Google Form
 
 Run the local `Code.gs` in Google Apps Script using `createQuiz`. It creates
@@ -28,8 +36,9 @@ the student page. Use a descriptive iframe title and keep a separate link.
 
 Run `quarto render`, then `python3 scripts/check-quiz-publication.py`.
 With the private instructor package present, also run
-`node scripts/check-quiz-source.cjs` to check question sync and the Apps Script
-logic using simulated Google services.
+`node scripts/check-quiz-source.cjs` for the first quiz and
+`node scripts/check-quiz-source.cjs lecture02_linalg` for the second. Both
+commands check question sync and the Apps Script logic using simulated Google services.
 Serve `_site` over HTTP and check the hub and quiz page on desktop and mobile.
 For a live form, check a correct attempt (20/20), an attempt with only A02
 wrong (18/20), required questions, and access without the owner's session.

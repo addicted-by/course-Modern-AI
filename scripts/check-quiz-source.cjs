@@ -1,5 +1,6 @@
 const fs=require('node:fs'), vm=require('node:vm'), assert=require('node:assert/strict');
-const dir=process.cwd()+'/raw/quizzes/lecture01_arch/';
+const quiz = process.argv[2] || 'lecture01_arch';
+const dir = process.cwd() + '/raw/quizzes/' + quiz + '/';
 const bank=JSON.parse(fs.readFileSync(dir+'questions.json','utf8'));
 const code=fs.readFileSync(dir+'Code.gs','utf8');
 const student=fs.readFileSync(dir+'student_test.md','utf8').replace(/\s+/g,' ');
@@ -23,16 +24,22 @@ const questions=items.filter(i=>i.type==='MultipleChoice');assert.equal(question
 questions.forEach((item,i)=>{const q=bank.questions[i];assert.equal(item.Required,true);assert.equal(item.Points,q.points);assert.equal(item.Choices.filter(c=>c.correct).length,1);assert.equal(item.Choices.findIndex(c=>c.correct),q.correct_index);assert.equal(item.FeedbackForCorrect.text,q.explanation);assert.equal(item.FeedbackForIncorrect.text,q.explanation);});
 assert.equal(questions.reduce((s,q)=>s+q.Points,0),20);
 const grade=answers=>questions.reduce((s,q,i)=>s+(q.Choices[answers[i]].correct?q.Points:0),0);
-const right=bank.questions.map(q=>q.correct_index);assert.equal(grade(right),20);const wrongA02=[...right];wrongA02[1]=(wrongA02[1]+1)%4;assert.equal(grade(wrongA02),18);
+const right=bank.questions.map(q=>q.correct_index);assert.equal(grade(right),20);
+for (const [i, q] of bank.questions.entries()) {
+ const withOneError = [...right];
+ withOneError[i] = (right[i] + 1) % q.options.length;
+ assert.equal(grade(withOneError), bank.total_points - q.points, q.id);
+}
 assert.equal(items.filter(i=>i.type==='PageBreak').length,3);assert.equal(form.IsQuiz,true);assert.equal(form.CollectEmail,false);assert.equal(form.LimitOneResponsePerUser,false);
 assert.equal(items.find(i=>i.type==='Text').Required,false);
 assert.ok(links.embedHtml.includes('embedded=true'));assert.ok(!links.embedHtml.includes('/edit'));
 const count=items.length;sandbox.createQuiz();assert.equal(creates,1);assert.equal(items.length,count);assert.equal(releases,2);
 sandbox.FormApp.ItemType={TEXT:'Text'};form.getItems=()=>items;form.getTitle=()=>bank.title;form.getResponses=()=>[];
 for(const i of items){i.getType=()=>i.type;i.getTitle=()=>i.Title;}
-props.set('MODAI_ARCH_12_FORM_STATUS','building');assert.throws(()=>sandbox.createQuiz(),/not the expected empty quiz/);assert.equal(releases,3);
-assert.equal(2*16*4096*8*128*2/2**20,256);
+const statusKey = vm.runInContext('FORM_STATUS_KEY',sandbox);
+props.set(statusKey,'building');assert.throws(()=>sandbox.createQuiz(),/not the expected empty quiz/);assert.equal(releases,3);
+if (quiz === 'lecture01_arch') assert.equal(2*16*4096*8*128*2/2**20,256);
 console.log('PASS: bank/student text sync; 15 required questions, 4 sections, correct keys and feedback; grading 20/20 and 18/20; unpublished draft, no duplicate creation, interrupted-build protection, lock release. Google services simulated; no live submission performed.');
 assert.throws(()=>sandbox.resumeEmptyDraft(),/not the expected empty quiz/);
-items.splice(1);sandbox.resumeEmptyDraft();assert.equal(props.get('MODAI_ARCH_12_FORM_STATUS'),'complete');assert.equal(items.filter(i=>i.type==='MultipleChoice').length,15);const afterRepair=items.length;sandbox.resumeEmptyDraft();assert.equal(items.length,afterRepair);assert.equal(creates,1);
+items.splice(1);sandbox.resumeEmptyDraft();assert.equal(props.get(statusKey),'complete');assert.equal(items.filter(i=>i.type==='MultipleChoice').length,15);const afterRepair=items.length;sandbox.resumeEmptyDraft();assert.equal(items.length,afterRepair);assert.equal(creates,1);
 console.log('PASS: repair refuses populated drafts, resumes the known empty draft without creating a new form, and is idempotent.');
