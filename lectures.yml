@@ -20,16 +20,16 @@ lectures:
     title: "From single modality to multi-modal models."
     source: raw/lectures/01_intro/lecture_01_final_part1.qmd
     html: raw/lectures/01_intro/lecture_01_final_part1.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture_01_final_part1.pdf
+    pptx: raw/lectures/01_intro/lecture_01_final_part1.pptx
 
   - number: 3
     module: M1
     title: "There is no single trick. Architecture"
     source: raw/lectures/01_intro/lecture01_part2_final_v3_arch.qmd
     html: raw/lectures/01_intro/lecture01_part2_final_v3_arch.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture01_part2_final_v3_arch.pdf
+    pptx: raw/lectures/01_intro/lecture01_part2_final_v3_arch.pptx
     resources:
       - raw/lectures/01_intro/final_parts/arch_20261007/details.js
 
@@ -38,16 +38,16 @@ lectures:
     title: "There is no single trick. Data"
     source: raw/lectures/01_intro/lecture01_part2_final_v3_data.qmd
     html: raw/lectures/01_intro/lecture01_part2_final_v3_data.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture01_part2_final_v3_data.pdf
+    pptx: raw/lectures/01_intro/lecture01_part2_final_v3_data.pptx
 
   - number: 5
     module: M1
     title: "There is no single trick. Training"
     source: raw/lectures/01_intro/lecture01_part2_final_v3_training.qmd
     html: raw/lectures/01_intro/lecture01_part2_final_v3_training.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture01_part2_final_v3_training.pdf
+    pptx: raw/lectures/01_intro/lecture01_part2_final_v3_training.pptx
     resources:
       - raw/lectures/01_intro/final_parts/training_20261007/*.css
 
@@ -56,8 +56,8 @@ lectures:
     title: "There is no single trick. Inference"
     source: raw/lectures/01_intro/lecture01_part2_final_v3_inference.qmd
     html: raw/lectures/01_intro/lecture01_part2_final_v3_inference.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture01_part2_final_v3_inference.pdf
+    pptx: raw/lectures/01_intro/lecture01_part2_final_v3_inference.pptx
     resources:
       - raw/lectures/01_intro/final_parts/inference_narrative_20261007/*.css
       - raw/lectures/01_intro/final_parts/inference_evidence_20261007/*.css
@@ -67,8 +67,8 @@ lectures:
     title: "There is no single trick. Tools"
     source: raw/lectures/01_intro/lecture01_part2_final_v3_tools.qmd
     html: raw/lectures/01_intro/lecture01_part2_final_v3_tools.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture01_part2_final_v3_tools.pdf
+    pptx: raw/lectures/01_intro/lecture01_part2_final_v3_tools.pptx
 
   - number: 8
     module: M1
@@ -83,8 +83,8 @@ lectures:
     title: "Model Showcase: Model Cards & Results"
     source: raw/lectures/01_intro/lecture01_part2_final_v3_showcase.qmd
     html: raw/lectures/01_intro/lecture01_part2_final_v3_showcase.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture01_part2_final_v3_showcase.pdf
+    pptx: raw/lectures/01_intro/lecture01_part2_final_v3_showcase.pptx
     resources:
       - raw/lectures/01_intro/final_parts/showcase_20261021/*.css
       - raw/lectures/01_intro/final_parts/showcase_all_20261021/*.css
@@ -96,8 +96,8 @@ lectures:
     title: "Tools Showcase"
     source: raw/lectures/01_intro/lecture01_tools_showcase.qmd
     html: raw/lectures/01_intro/lecture01_tools_showcase.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/01_intro/lecture01_tools_showcase.pdf
+    pptx: raw/lectures/01_intro/lecture01_tools_showcase.pptx
     resources:
       - raw/lectures/01_intro/assets/tools_showcase/**
 
@@ -114,8 +114,8 @@ lectures:
     title: "Decompositions & Applications"
     source: raw/lectures/02_linalg/lecture02_final_v2.qmd
     html: raw/lectures/02_linalg/lecture02_final_v2.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/02_linalg/lecture02_final_v2.pdf
+    pptx: raw/lectures/02_linalg/lecture02_final_v2.pptx
     resources:
       - raw/lectures/02_linalg/notebooks/applications/**
 
@@ -124,5 +124,5 @@ lectures:
     title: "Linear Algebra & Decomposition & LoRA. LoRA in details"
     source: raw/lectures/02_linalg/lecture02_lora_research.qmd
     html: raw/lectures/02_linalg/lecture02_lora_research.html
-    pdf: null
-    pptx: null
+    pdf: raw/lectures/02_linalg/lecture02_lora_research.pdf
+    pptx: raw/lectures/02_linalg/lecture02_lora_research.pptx

@@ -107,6 +107,7 @@ Seminar materials will be uploaded to the website within 1–2 days after each s
   <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p08_lyrics.html"><span class="course-home-project-number">08</span><span class="course-home-project-name">Lyrics Transcription</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
   <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p09_hair.html"><span class="course-home-project-number">09</span><span class="course-home-project-name">Hair Segmentation &amp; Sharpening</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
   <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p10_bokeh.html"><span class="course-home-project-number">10</span><span class="course-home-project-name">Portrait Bokeh</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
+  <li><a class="course-home-project-link" href="raw/lectures/01_intro/project_pages/p11_yue2_stems.html"><span class="course-home-project-number">11</span><span class="course-home-project-name">YuE2 Instrument Stem Generation</span><span class="course-home-project-arrow" aria-hidden="true">↗</span></a></li>
 </ol>
 ```
 

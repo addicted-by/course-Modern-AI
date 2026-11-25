@@ -14,6 +14,8 @@ The interactive lecture slides are built with Quarto and Reveal.js. Use arrow ke
 
 ## Lecture Schedule & Materials
 
+PDF and PPTX are static copies of the slides. PPTX preserves the layout as images; individual text and diagrams are not separately editable. Use HTML for interactive content.
+
 {{< include ../pages/_lecture-materials.qmd >}}
 
 ---
