@@ -1,0 +1,40 @@
+## Change the outfit, preserve the portrait {#sc-t2i-gpt-image-25-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 32 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-gpt-image-25">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="openai">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="OpenAI" class="sc-company" role="img"><img alt="OpenAI" src="assets/showcase_identity_20261021/openai.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>GPT Image 2.5</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Flare latency vs Images 2.0</p><p class="sr-metric-value">Up to −50%</p><p class="sr-metric-note">Vendor claim; workload and sample count not published. <a class="" href="https://openai.com/index/introducing-chatgpt-images-2-5/" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">API quality levels</p><p class="sr-metric-value">5 levels</p><p class="sr-metric-note">Configuration options; not a quality score. <a class="" href="https://developers.openai.com/api/reference/resources/images/methods/generate" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">API output maximum</p><p class="sr-metric-value">3840 × 2160</p><p class="sr-metric-note">Above 2560 × 1440 is experimental. <a class="" href="https://developers.openai.com/api/reference/resources/images/methods/generate" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-gallery"><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-gpt-image-25-portrait-input.jpg" alt="Input: printed studio portrait."><figcaption>Input · studio portrait</figcaption></figure><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-gpt-image-25-portrait-tuxedo-output.webp" alt="ChatGPT Images 2.5: ivory tuxedo edit."><figcaption>Edit · ivory tuxedo</figcaption></figure></div><p class="sr-caption">The edit replaces the red shirt with a tuxedo. Compare the child’s pose, the blue backdrop and the edges of the photographed print.</p></div></div>
+<div class="fv-takeaway">OpenAI identifies the output as ChatGPT Images 2.5. Its gallery leaves the API variant unspecified.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://openai.com/index/introducing-chatgpt-images-2-5/" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+An official reference-photo edit changes a child’s clothing while retaining the pose and blue studio background.
+
+
+
+- **Generation latency: Up to 50% lower **. Compared with Images 2.0; launch does not publish workload, sample count or latency distribution. Attribution: vendor_performance_claim. [Source](https://openai.com/index/introducing-chatgpt-images-2-5/).
+
+- **API quality levels: 5 explicit levels **. low, medium, high, xhigh, max; not a quality score. Attribution: output_characteristic. [Source](https://developers.openai.com/api/reference/resources/images/methods/generate).
+
+- **Maximum supported image size: 3840 × 2160 **. API limits apply; above 2560 × 1440 described as experimental. Attribution: output_characteristic. [Source](https://developers.openai.com/api/reference/resources/images/methods/generate).
+
+
+
+**Example provenance and limitations.**
+
+Launch dated 2026-09-08; output explicitly labelled ChatGPT Images 2.5 and original labelled Input. Direct links confirmed by parent research at launch-page links 103/104.
+
+ChatGPT showcase does not identify Flare versus Sunburst or a pinned API snapshot. Label the example ChatGPT Images 2.5.
+
+The transparency cookbook uses updated 2.5 code but explicitly retains GPT Image 2 media; it is not evidence of 2.5 outputs.
+
+[Published media/source](https://images.ctfassets.net/kftzwdyauwt9/32SMucJsSrwGCjHrGx4wkb/34dc5553df131fac17423e84177ce002/baby-portrait-before.jpeg): Input: printed studio portrait.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+
+[Published media/source](https://images.ctfassets.net/kftzwdyauwt9/31fyboLGIlu5roN22tlEHK/9be57d84b3b7bbf22e7aa7f74b5af102/baby-portrait-after.webp): ChatGPT Images 2.5: ivory tuxedo edit.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+:::

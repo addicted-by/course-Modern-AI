@@ -1,0 +1,19 @@
+## MiniMax Music 3.0: Features {#sc-music-minimax-music-30-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 90 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-minimax-music-30">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="minimax">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="MiniMax" class="sc-company" role="img"><img alt="MiniMax" src="assets/showcase_identity_20261021/minimax.svg"/></div></div><div class="sr-model"><p>RESULTS · Music</p><h3>MiniMax Music 3.0</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">SongBench average</p><p class="sr-metric-value">6.2830</p><p class="sr-metric-note">YuE-author evaluation · 192 prompts · 2-candidate selection <a class="" href="https://map-yue2.github.io/data/benchmark-results.csv?v=20260912-suno-v6" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Phoneme error rate</p><p class="sr-metric-value">6.27%</p><p class="sr-metric-note">Same competitor-authored evaluation; lower is better <a class="" href="https://map-yue2.github.io/data/benchmark-results.csv?v=20260912-suno-v6" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Low-memory configuration</p><p class="sr-metric-value">8 GB VRAM</p><p class="sr-metric-note">Vendor claim: CPU offload + layer streaming; slower <a class="" href="https://huggingface.co/MiniMaxAI/MiniMax-Music3#low-vram" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-audio sr-music">
+<div><p class="sr-audio-label">MiniMax · Music 3 official demo</p><h3>Features</h3></div>
+<div><p class="sr-audio-label">Structured caption</p><p class="sr-audio-prompt">The brief calls for an 88 BPM pop-soul song, a warm alto, clean electric guitar and a fuller chorus.</p></div>
+<div><p class="sr-audio-label">Excerpt · 0:28–0:46 in the recording</p><audio controls preload="none" aria-label="Features · MiniMax · Music 3 official demo" src="assets/showcase_results_20261021/music/minimax-music3-features.mp3"></audio></div></div><p class="sr-caption">Follow the voice and backing across this passage. Which aspect of the structured caption would you score separately from tempo?</p></div></div>
+<div class="fv-takeaway">A structured caption gives listeners separate checks for rhythm, instrumentation and vocal delivery.</div>
+<div class="fv-source">Audio · MiniMax · Music 3 official demo · <a href="https://minimax-ai.github.io/music3-demo/#track-c1fb1f4e01203314">Published example</a> · <a href="https://minimax-ai.github.io/music3-demo/assets/audio/tracks/c1fb1f4e01203314c9af20e1ac6a3e3c23ce1ff763a03ff09eb38b7f7ecc902c.mp3">Original recording</a></div>
+```
+
+::: {.notes}
+The publisher’s Music 3 demo includes this recording with a structured caption specifying BPM, key, vocal character, instruments and song sections. The generated song can deviate from these instructions. The competing YuE2 team evaluated its own samples on 192 WildSongBench prompts.
+
+This slide plays 0:28–0:46 of the published recording. The local copy is an 18-second stereo MP3 with a brief fade at each cut. [Publisher](https://minimax-ai.github.io/music3-demo/#track-c1fb1f4e01203314) · [Original recording](https://minimax-ai.github.io/music3-demo/assets/audio/tracks/c1fb1f4e01203314c9af20e1ac6a3e3c23ce1ff763a03ff09eb38b7f7ecc902c.mp3).
+:::

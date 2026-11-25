@@ -1,0 +1,39 @@
+## Suno v6: full songs, undisclosed generator {#sc-music-suno-v6 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 83 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-suno-v6-results">Results →</a></div>
+<div class="sc-body bn-body bn-w2" data-company="suno"><div class="bn-id"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_results_20261021/music/suno-v6-listeners.svg" alt="Blind experts preferred Suno v6 in 59.3% of overall-quality judgments, YuE2 best-of-8 in 31.6%, and tied in about 9.1%."></figure></div><div class="bn-model"><p class="bn-kicker">Music · Suno</p><h3>Suno v6</h3><p class="bn-ids"><code>v6 · v6-wild</code><code>v6-mini</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">09.09.2026</b></p><p><span>Access</span><b>Service</b></p><p><span>Weights</span><b class="bn-shut">closed</b></p></div></div></div><div class="bn-pub"><div class="bn-tile bn-p bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-stat"><p class="bn-num">8<small>minutes</small></p><p class="bn-cap">per generation · all three variants</p></div><div class="bn-stat bn-rule"><p class="bn-num">$8 / $24</p><p class="bn-cap">Pro / Premier per month · annual billing</p></div><div class="bn-rule"><p class="bn-item"><i class="sc-pip k"></i>Uploads: Free 8 min; paid 30 min</p><p class="bn-item"><i class="sc-pip k"></i>Free: mini · paid: v6 / wild</p></div><p class="bn-gap">No seed, codec or sampler settings</p></div><div class="bn-tile bn-p bn-b"><div class="bn-head"><h4>Data</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Developed with WMG, BMG and Believe</p><p class="bn-item"><i class="sc-pip p"></i>Previous-model YouTube reports do not establish the v6 corpus</p><p class="bn-gap">No corpus size, source mix or filtering recipe</p></div><div class="bn-tile bn-p bn-c"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip k"></i>Edit one section or lyric line; mashups and stems</p><p class="bn-item"><i class="sc-pip k"></i>Suno Studio on Premier</p><p class="bn-gap">No public API or local runtime found</p></div></div><div class="bn-strip"><div class="bn-strip-label"><span>Not disclosed</span><b>2<small>of 5</small></b></div><div class="bn-cell"><h4><i class="sc-pip n"></i>Architecture</h4><p>Generator, parameter count, codec and audio latents</p></div><div class="bn-cell"><h4><i class="sc-pip n"></i>Training</h4><p>Stages, losses, RL, distillation and compute</p></div></div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3 4">
+<caption>Automatic scores on 192 music prompts</caption>
+<thead><tr><th scope="col">Model</th><th scope="col">Candidates</th><th scope="col">SongBench avg ↑</th><th scope="col">Phoneme error ↓</th></tr></thead>
+<tbody>
+<tr><th scope="row">Suno v6</th><td>2</td><td>6.5562</td><td>7.58%</td></tr>
+<tr><th scope="row">Suno v6 Wild</th><td>2</td><td>6.4195</td><td>7.45%</td></tr>
+<tr><th scope="row">YuE2</th><td>8</td><td>6.9632</td><td>9.79%</td></tr>
+</tbody></table>
+<p class="sc-study-source"><a href="https://arxiv.org/html/2609.33757v1#S4.T1">Yuan et al. · Table 1</a> · WildSongBench</p>
+</div>
+<div class="fv-takeaway">Suno v6 won more expert votes even though YuE2 best-of-8 scored higher on automated SongBench.</div>
+<div class="fv-source"><a href="https://suno.com/v6">Suno · v6 release</a> · <a href="https://help.suno.com/en/articles/13924929">Song length</a> · <a href="https://arxiv.org/html/2609.33757v1#S4.F7">YuE2 · Fig. 7</a></div>
+```
+
+::: {.notes}
+Table 1 reports automated measurements from the YuE2 team. SongBench averages seven quality dimensions. Phoneme error rate compares an automatic transcription of the sung words with the target lyrics. Fractions in the paper are expressed as percentages here. Both Suno rows select the lower-error output of two candidates, with four speech-recognition transcriptions per candidate. YuE2 best-of-8 selects first for musicality, then prompt adherence, then phoneme error. This gives a different ordering from the overall expert preference in the chart. [Yuan et al. · Table 1](https://arxiv.org/html/2609.33757v1#S4.T1).
+
+Yuan et al. report this overall-quality comparison in §4.1 and Figure 7. The YuE2 team collected blinded expert judgments. Shares exclude unable-to-judge answers and retain ties (tie share shown by subtraction of rounded values). YuE2 selected from eight generations, while Suno v6 used the lower-phoneme-error output from two candidates. On the separate automatic SongBench evaluation, YuE2 best-of-8 scored 6.96 and Suno v6 scored 6.56. The listening panel used benchmark prompts and did not rate the linked creator song.
+
+Scope is the v6 family: v6, v6-wild and v6-mini, released in the vendor’s 9 September blog (rows 6–10). The flagship and wild variants are paid; mini is the Free option. “Faster and more efficient” is the vendor’s description, not a published parameter count.
+
+The input set is text, audio, images and video; output is a song with vocals and lyrics (row 7). The workbook still scores Architecture as Not disclosed because the generator type, backbone, codec and latent representation are not described. The inference summary is Partial even though the product limits are Known: eight minutes per generation, audio uploads of eight minutes on Free and thirty on paid plans, and the listed annual-billing prices (rows 27–33). These are the audit-date terms, not current price certification.
+
+The data wording is deliberately narrow. The official blog names Warner Music Group, BMG and Believe as industry partners; it does not enumerate the training corpus (row 14). The claim that v6 does not use earlier-model data comes via TechCrunch. The YouTube admission reported by Music Business Worldwide concerns previous models and must not be transferred to v6 (row 15). Sources, hours, filtering and licence details remain unreported in the audit (rows 16–17).
+
+Tools include section-level edits, one-line lyric replacement, mashups, stems and Premier’s Studio (rows 37–40). The absence of a public official API in the audited sources is why this card says “no public API found,” not “API impossible” (rows 41–42). The workbook describes planned watermarking through press coverage only; it does not establish a shipped v6 watermark (row 44). Commercial-use terms and download limits are recorded in rows 31 and 43; those are scoped to plans and downloaded songs, not blanket ownership claims.
+
+Snapshot provenance: Music_v1.0.xlsx, sheet “Suno v6”, audit 19.10.2026. The five category statuses reproduce the workbook’s summary judgment; they are not a majority vote over detail rows or a quality ranking. This card converts the supplied audit and does not certify the sources afresh. “Not disclosed” means not found in that audit’s accessible materials, not proof that the capability is absent.
+
+**Source rows:** 6, 7, 8, 9, 10, 14, 15, 16, 17, 21, 22, 23, 27, 28, 29, 30, 31, 32, 33, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46.
+
+**Primary sources:** [v6 launch](https://suno.com/blog/introducing-v6), [Song length](https://help.suno.com/en/articles/13924929), [Plans](https://suno.com/pricing).
+:::

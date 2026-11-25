@@ -1,7 +1,15 @@
 project:
   type: website
   output-dir: _site
-  pre-render: scripts/prepare-lectures.lua
+  pre-render:
+    - scripts/prepare-lectures.lua
+    - python3 scripts/sync-models.py
+    - python3 scripts/build-showcase.py --no-sync
+    - python3 scripts/sync-tools.py
+    - python3 scripts/build-tools-showcase.py --no-sync
+  post-render:
+    - python3 scripts/check-model-publication.py
+    - python3 scripts/check-model-publication.py --catalog tools
   render:
     - index.qmd
     - raw/modules.qmd
@@ -13,6 +21,10 @@ project:
     - raw/quizzes/*/index.qmd
     - raw/homeworks.qmd
     - raw/projects.qmd
+    - raw/showcase.qmd
+    - raw/showcase/*.qmd
+    - raw/tools-showcase.qmd
+    - raw/tools-showcase/*.qmd
   resources:
     - "assets/**"
     - "raw/seminars/01_svd/**"
@@ -28,6 +40,7 @@ filters:
 website:
   title: "MAI"
   navbar:
+    collapse-below: xl
     logo: assets/logos/partners-dark.svg
     logo-alt: "Modern AI home — course partners"
     left:
@@ -39,6 +52,10 @@ website:
         text: "Modules"
       - href: raw/lectures.qmd
         text: "Lectures"
+      - href: raw/showcase.qmd
+        text: "Model Showcase"
+      - href: raw/tools-showcase.qmd
+        text: "Tools Showcase"
       - href: raw/seminars.qmd
         text: "Seminars"
       - href: raw/quizzes.qmd

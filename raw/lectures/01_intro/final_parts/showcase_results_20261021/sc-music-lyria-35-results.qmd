@@ -1,0 +1,19 @@
+## Lyria 3.5: Feels Like Sympathy {#sc-music-lyria-35-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 88 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-lyria-35">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="google-deepmind">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Google DeepMind" class="sc-company" role="img"><img alt="Google DeepMind" src="assets/showcase_identity_20261021/google-deepmind.svg"/></div></div><div class="sr-model"><p>RESULTS · Music</p><h3>Lyria 3.5</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Song duration</p><p class="sr-metric-value">Up to 3 min</p><p class="sr-metric-note">Capability, not quality or the selected demo’s duration <a class="" href="https://deepmind.google/models/lyria/" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Audio format</p><p class="sr-metric-value">44.1 kHz stereo</p><p class="sr-metric-note">API capability; no numeric quality score published <a class="" href="https://ai.google.dev/gemini-api/docs/music-generation" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-audio sr-music">
+<div><p class="sr-audio-label">Google DeepMind · Lyria 3.5 demo</p><h3>Feels Like Sympathy</h3></div>
+<div><p class="sr-audio-label">Style brief</p><p class="sr-audio-prompt">A 95 BPM funk-pop track with electronic production, female vocals, electric guitar and funk bass.</p></div>
+<div><p class="sr-audio-label">Excerpt · 0:12–0:30 in the recording</p><audio controls preload="none" aria-label="Feels Like Sympathy · Google DeepMind · Lyria 3.5 demo" src="assets/showcase_results_20261021/music/lyria-35-feels-like-sympathy.mp3"></audio></div></div><p class="sr-caption">Listen for how the bass and guitar divide the beat. Do they produce the funk groove called for in the brief?</p></div></div>
+<div class="fv-takeaway">The requested tempo and instrumentation give the class two concrete listening checks.</div>
+<div class="fv-source">Audio · Google DeepMind · Lyria 3.5 demo · <a href="https://deepmind.google/models/lyria/#lyria-35">Published example</a> · <a href="https://storage.googleapis.com/gdm-deepmind-com-prod-public/media/rC8sZkug1fhkL2as/lyria-3-5__track__feels-like-sympathy__1-1.webm">Original recording</a></div>
+```
+
+::: {.notes}
+The track and prompt appear in the Lyria 3.5 carousel. The audio was extracted from the publisher’s WebM, which runs 2 minutes 36 seconds. The reported 44.1 kHz stereo format is for the generation API. It is separate from the WebM audio encoding.
+
+This slide plays 0:12–0:30 of the published recording. The local copy is an 18-second stereo MP3 with a brief fade at each cut. [Publisher](https://deepmind.google/models/lyria/#lyria-35) · [Original recording](https://storage.googleapis.com/gdm-deepmind-com-prod-public/media/rC8sZkug1fhkL2as/lyria-3-5__track__feels-like-sympathy__1-1.webm).
+:::

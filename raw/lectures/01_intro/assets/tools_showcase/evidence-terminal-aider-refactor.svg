@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="392" viewBox="0 0 1000 392" role="img" aria-labelledby="title desc">
+  <title id="title">Aider Python refactoring benchmark pass rates by edit format</title>
+  <desc id="desc">Horizontal bars on a 0 to 100 percent scale. Search and replace blocks pass 20 percent. Adapted unified diffs pass 61 percent. Both bars use GPT-4-1106-preview on the same 89-task suite.</desc>
+  <rect x="3" y="3" width="994" height="386" fill="#fff" stroke="#d5ddd3" stroke-width="2"/>
+  <g font-family="Inter, system-ui, sans-serif" fill="#162015">
+    <text x="34" y="59" font-size="32" font-weight="700">Python refactoring tasks passed</text>
+    <text x="35" y="91" font-size="22" fill="#4a5948">gpt-4-1106-preview · 89 tasks per condition</text>
+    <g stroke="#d9e0d7" stroke-width="2">
+      <path d="M285 119v184 M445 119v184 M605 119v184 M765 119v184 M925 119v184"/>
+    </g>
+    <g font-size="24" font-weight="600">
+      <text x="35" y="163">SEARCH/REPLACE</text>
+      <text x="35" y="190">blocks</text>
+      <text x="35" y="253">Adapted unified diff</text>
+    </g>
+    <rect x="285" y="137" width="128" height="58" fill="#546554"/>
+    <rect x="285" y="215" width="390.4" height="58" fill="#168014"/>
+    <g font-size="31" font-weight="700">
+      <text x="428" y="177">20%</text>
+      <text x="691" y="255">61%</text>
+    </g>
+    <path d="M285 119v184h640" fill="none" stroke="#70816e" stroke-width="2"/>
+    <g font-size="21" text-anchor="middle">
+      <text x="285" y="335">0%</text>
+      <text x="445" y="335">25%</text>
+      <text x="605" y="335">50%</text>
+      <text x="765" y="335">75%</text>
+      <text x="925" y="335">100%</text>
+    </g>
+  </g>
+</svg>

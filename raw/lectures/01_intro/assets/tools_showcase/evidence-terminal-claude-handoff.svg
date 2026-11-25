@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="370" viewBox="0 0 1000 370" role="img" aria-labelledby="title desc">
+  <title id="title">Repository handoff across Claude Agent SDK context resets</title>
+  <desc id="desc">An initializer writes setup files and an initial commit. The repository retains the startup script, feature list, progress file, and Git history across resets. A fresh coding session reads the handoff, checks the baseline, verifies one feature, and writes back a commit and progress update.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0L9 5L0 10z" fill="#914c35"/>
+    </marker>
+  </defs>
+  <rect x="3" y="3" width="994" height="364" fill="#fff" stroke="#e4d5cf" stroke-width="2"/>
+  <g font-family="Inter, system-ui, sans-serif" fill="#261b17">
+    <text x="32" y="56" font-size="32" font-weight="700">Repository state survives the context reset</text>
+    <g stroke="#cfb9af" stroke-width="2">
+      <rect x="32" y="90" width="242" height="165" fill="#fcf5f1"/>
+      <rect x="320" y="90" width="360" height="165" fill="#f5e0d6"/>
+      <rect x="726" y="90" width="242" height="165" fill="#fcf5f1"/>
+    </g>
+    <g text-anchor="middle">
+      <g font-size="25" font-weight="700">
+        <text x="153" y="134">Initializer</text>
+        <text x="500" y="134">Repository handoff</text>
+        <text x="847" y="134">Fresh session</text>
+      </g>
+      <g font-size="22">
+        <text x="153" y="177">Write setup files</text>
+        <text x="153" y="210">Make initial commit</text>
+        <text x="500" y="177">Startup script + feature list</text>
+        <text x="500" y="210">Progress notes + Git history</text>
+        <text x="847" y="177">Read state, test baseline</text>
+        <text x="847" y="210">Verify one feature</text>
+      </g>
+    </g>
+    <g fill="none" stroke="#914c35" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M277 172h39"/>
+      <path d="M683 172h39"/>
+      <path d="M847 260v43H500v-43"/>
+    </g>
+    <text x="675" y="338" font-size="22" font-weight="600" text-anchor="middle" fill="#673f30">Write a commit and progress update</text>
+  </g>
+</svg>

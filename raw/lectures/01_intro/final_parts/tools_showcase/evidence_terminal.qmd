@@ -1,0 +1,56 @@
+## How did edit formats affect Aider’s refactoring score? {#ts-evidence-terminal-aider .ts-slide .ts-aider .ts-evidence}
+
+```{=html}
+<div class="ts-card ts-evidence-layout">
+  <figure class="ts-evidence-figure">
+    <img src="assets/tools_showcase/evidence-terminal-aider-refactor.svg" alt="Across 89 Python refactoring tasks, GPT-4-1106-preview passed 20% with SEARCH/REPLACE blocks and 61% with adapted unified diffs. Both bars use a 0 to 100% scale.">
+    <figcaption>Chart redrawn from <a href="https://aider.chat/2023/12/21/unified-diffs.html">Paul Gauthier, “Unified diffs make GPT-4 Turbo 3X less lazy”</a> · December 21, 2023.</figcaption>
+  </figure>
+  <div class="ts-evidence-facts" role="group" aria-labelledby="ts-aider-evidence-method">
+    <h3 id="ts-aider-evidence-method">What Aider measured</h3>
+    <dl>
+      <dt>Pass rate</dt><dd>20% with blocks and 61% with adapted diffs</dd>
+      <dt>Suite</dt><dd>89 Python refactors drawn from nine open-source repositories</dd>
+      <dt>Pass check</dt><dd>Valid Python and the expected abstract syntax tree structure after extracting a method</dd>
+      <dt>Harness change</dt><dd>New diff syntax, hunk prompting, and flexible patch application</dd>
+      <dt>Placeholder comments</dt><dd>Observed on 12 tasks with blocks and 4 with adapted diffs</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="#/ts-aider">Back to Aider</a><a href="https://aider.chat/2023/12/21/unified-diffs.html#refactoring-benchmark">Benchmark protocol</a><a href="assets/tools_showcase/evidence-terminal-aider-refactor.svg">Open full-size chart</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Первичный отчёт Пола Готье от 21 декабря 2023 года сравнивает два способа передачи и применения правок на одном снимке модели <code>gpt-4-1106-preview</code>. На графике приведены опубликованные 20% и 61% с общей шкалой от 0 до 100%. Знаменатель для каждой доли — 89 задач. Абсолютные числа прошедших задач не восстанавливаются из округлённых процентов.
+
+В задачах метод переносили из класса на уровень модуля. Тесты смотрели, разбирается ли Python, существует ли функция на верхнем уровне и близки ли размеры нужных участков AST к исходным. Это проверка структуры, поэтому из неё нельзя вывести эквивалентность поведения. Отдельный индикатор отчёта — задачи с комментариями-заглушками, 12 против 4, в том же порядке. Вместе с форматированием менялись указания о размере фрагментов и правила их применения, поэтому измерялся эффект конфигурации целиком.
+:::
+
+## How did Anthropic carry coding state across context resets? {#ts-evidence-terminal-claude-code .ts-slide .ts-claude-code .ts-evidence}
+
+```{=html}
+<div class="ts-card ts-evidence-layout">
+  <figure class="ts-evidence-figure">
+    <img src="assets/tools_showcase/evidence-terminal-claude-handoff.svg" alt="An initializer writes setup files and an initial commit. A fresh coding session reads the startup script, feature list, progress notes and Git history, checks the baseline, verifies one feature, then returns a commit and progress update to the repository.">
+    <figcaption>Diagram adapted from <a href="https://www.anthropic.com/research/effective-harnesses-for-long-running-agents">Justin Young, “Effective harnesses for long-running agents,” failure modes and solutions table</a> · November 26, 2025.</figcaption>
+  </figure>
+  <div class="ts-evidence-facts" role="group" aria-labelledby="ts-claude-evidence-method">
+    <h3 id="ts-claude-evidence-method">Claude Agent SDK experiment</h3>
+    <dl>
+      <dt>Durable artifacts</dt><dd><code>init.sh</code>, <code>feature_list.json</code>, <code>claude-progress.txt</code> and commits</dd>
+      <dt>Startup check</dt><dd>Run a basic end-to-end test before editing</dd>
+      <dt>Progress check</dt><dd>Update a feature’s status after verification</dd>
+      <dt>Two prompts</dt><dd>Initializer and coding sessions share the system prompt and tools</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="#/ts-claude-code">Back to Claude Code</a><a href="https://www.anthropic.com/research/effective-harnesses-for-long-running-agents#getting-up-to-speed">Session startup sequence</a><a href="assets/tools_showcase/evidence-terminal-claude-handoff.svg">Open full-size diagram</a><a href="https://assets.claude.com/45cde22d0d024defb3e6276ade31d5bc1bf9834c.png">Anthropic’s /compact vs. /clear figure</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Схема адаптирует таблицу «Agent failure modes and solutions» и раздел «Getting up to speed» из отчёта Джастина Янга, опубликованного инженерной командой Anthropic 26 ноября 2025 года. Это исторический эксперимент с Claude Agent SDK для длительной разработки веб-приложений. Начальная сессия готовит структуру проекта. В последующих сессиях новый контекст восстанавливается из файлов и Git, а результаты проверки и коммит передаются следующей сессии.
+
+В статье различие между двумя ролями задаётся первым пользовательским сообщением. Системная инструкция, набор инструментов и общая архитектура запуска совпадают. Последующие сессии выбирают одну незавершённую функцию. Перед правками они проверяют исходное состояние, а после реализации меняют флаг прохождения при подтверждённом результате. Авторы описывают наблюдения в прототипе. На схеме показана организация передачи состояния, а численной оценки выигрыша в отчёте для этой схемы нет.
+
+Для сопоставления с обычной работой в Claude Code откройте оригинальную схему из статьи Тарика Шихипара от 15 апреля 2026 года. Она показывает, как <code>/compact</code> продолжает сессию с резюме модели, а <code>/clear</code> начинает новую сессию, которой можно передать явно составленный бриф. Эту тему также разбирает открытый урок Anthropic. [Статья и схема](https://claude.com/resources/articles/using-claude-code-session-management-and-1m-context#compacting-vs-launching-a-fresh-session) · [Context Management in Claude Code](https://www.youtube.com/watch?v=eW3oTyfeWZ0).
+:::

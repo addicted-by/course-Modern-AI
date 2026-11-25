@@ -1,0 +1,86 @@
+## Thinking improves infographic factuality in Nano Banana 2.1 {#sc-t2i-nano-banana-21 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 35 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-nano-banana-21-results">Results →</a></div>
+<div class="sc-body bn-body bn-w2" data-company="google-deepmind"><div class="bn-id"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_evidence_20261124/t2i/nano-banana-21.svg" alt="DeepMind reports infographic factuality scores of 0.179 for Nano Banana 2 Thinking, 0.328 for 2.1 without Thinking and 0.521 for 2.1 Thinking."></figure></div><div class="bn-model"><p class="bn-kicker">Text-to-image</p><h3>Nano Banana 2.1</h3><p class="bn-ids"><code>gemini-nano-banana-2.1</code></p><div class="bn-facts"><p><span>Card date</span><b class="bn-date">06.10.2026*</b></p><p><span>Access</span><b>Gemini API</b></p><p><span>Weights</span><b class="bn-shut">not found</b></p></div></div></div><div class="bn-pub">
+<div class="bn-tile bn-p bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-stat"><p class="bn-num">1K–4K</p><p class="bn-cap">14 aspect ratios; 1K default</p></div><div class="bn-stat bn-rule"><p class="bn-num">$0.0336</p><p class="bn-cap">per 1K output image · Standard USD</p></div><p class="bn-item"><i class="sc-pip k"></i>14 refs: up to 4 characters + 10 objects</p><p class="bn-item"><i class="sc-pip p"></i>API limits differ from the model card</p><p class="bn-gap">No reproducible latency, steps or CFG</p></div>
+<div class="bn-tile bn-p bn-b"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-items2"><p class="bn-item"><i class="sc-pip k"></i>Interactions API; multi-turn edits</p><p class="bn-item"><i class="sc-pip k"></i>Web / Image Search grounding</p><p class="bn-item"><i class="sc-pip k"></i>Batch API; SynthID</p><p class="bn-item"><i class="sc-pip p"></i>Cloud access; weights not found</p></div></div>
+<div class="bn-tile bn-p bn-c"><div class="bn-head"><h4>Architecture</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-items2"><p class="bn-item"><i class="sc-pip k"></i>Based on Gemini 3.6 Flash</p><p class="bn-item"><i class="sc-pip p"></i>MoE appears only in linked Gemini 3 Pro context</p></div><p class="bn-gap">Exact image component and size absent</p></div></div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Not disclosed</span><b>2<small>of 5</small></b></div><div class="bn-cell"><h4><i class="sc-pip n"></i>Data</h4><p>No corpus disclosure for exact 2.1</p></div><div class="bn-cell"><h4><i class="sc-pip n"></i>Training</h4><p>No image recipe or compute for 2.1</p></div></div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+  <caption>How Thinking changes editing preference</caption>
+  <thead><tr><th scope="col">Editing task</th><th scope="col">No Thinking</th><th scope="col">Thinking</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">General editing</th><td>980 ± 15</td><td>1026 ± 12</td></tr>
+  <tr><th scope="row">Single character</th><td>1021 ± 14</td><td>1028 ± 14</td></tr>
+  <tr><th scope="row">Multiple characters</th><td>1068 ± 14</td><td>1106 ± 14</td></tr>
+  <tr><th scope="row">Product identity</th><td>981 ± 18</td><td>1024 ± 18</td></tr>
+  </tbody>
+</table>
+<p class="sc-study-source"><a href="https://deepmind.google/models/model-cards/nano-banana-2-1/">DeepMind · Editing results</a> · Preference rating ↑ · Oct. 2026</p>
+</div>
+<div class="fv-takeaway">A linked family card provides context, not the exact image model’s recipe.</div>
+<div class="fv-source"><a href="https://deepmind.google/models/model-cards/nano-banana-2-1/">DeepMind · evaluation results</a> · T2I_v1.1.xlsx · Nano Banana 2.1 · audit 18–19.10.2026 · <a href="https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1">API card</a> · <a href="https://deepmind.google/models/model-cards/nano-banana-2-1/">Model card</a> · <a href="https://ai.google.dev/gemini-api/docs/pricing">Pricing</a></div>
+```
+
+::: {.notes}
+**Table evidence.** The four selected rows are General Editing, Single-Character Consistency, Multi-Character Consistency, and Product Consistency. Both columns are for Nano Banana 2.1. Plus/minus intervals are reproduced as reported. The editing preference scores are on a different scale from infographic factuality in the figure. Numerical differences in point estimates do not establish statistical significance. [DeepMind · Editing results](https://deepmind.google/models/model-cards/nano-banana-2-1/).
+
+**Figure evidence.** The text-to-image results table reports infographic factuality separately from the design-preference rating. Here all bars are the factuality score. Relative to 2.1 without Thinking, 2.1 with Thinking gains 0.193 on this measure. The poster gallery illustrates graphic design and was not scored for the lecture. [Primary source](https://deepmind.google/models/model-cards/nano-banana-2-1/).
+
+**Historical audit.** This is a faithful conversion of the supplied T2I_v1.1.xlsx audit snapshot, checked by its author on 18 October 2026 and refined on 19 October 2026. It is not a fresh verification of these linked sources. “Not disclosed” means absent from the materials covered by that audit, not that the capability cannot exist. Known/Partial/Not disclosed measure disclosure, not model quality or full reproducibility. Prices, endpoints and limits are preserved as dated audit claims.
+
+The visible asterisk marks the 6 October documentation date. Although some rows contain family-level evidence, the supplied summary explicitly rates exact-version Data and Training as not disclosed. Preserve that expert judgment rather than counting partial rows.
+
+**Exact scope and category provenance:** sheet `Nano Banana 2.1`, identity row 2; `Сводка` row 6. Architecture / Data / Training / Inference / Tools = Partial / Not disclosed / Not disclosed / Partial / Partial.
+
+**Row provenance and caveats (model-sheet row numbers):**
+
+- Row 2: The date is the model-card/API-document date, not an independently established launch date.
+- Row 6: Stable API ID gemini-nano-banana-2.1.
+- Row 7: Native multimodal image generation/editing also returns text.
+- Row 8: The “based on” chain is 2.1 → Gemini 3.6 Flash → 3.5 Flash → 3 Flash → 3 Pro.
+- Row 9: Sparse MoE Transformer is described at Gemini 3 Pro; the exact 2.1 image component is not independently specified.
+- Row 10: Parameter and expert counts are absent.
+- Row 11: Encoders, VAE and latents are absent.
+- Row 15: Gemini 3 Pro lists web text, code, images, audio and video; this is not an exact 2.1 corpus disclosure.
+- Row 16: Open, crawled, licensed, user, internal and synthetic source categories belong to Gemini 3 Pro context.
+- Row 17: 2.1 corpus size and proportions are absent.
+- Row 18: Related cards discuss deduplication, robots.txt, quality and safety filters; exact 2.1 procedures and thresholds are absent.
+- Row 19: 2.1 training pairs, captions and masks are absent.
+- Row 20: Gemini 3 Pro mentions commercial licences, but the exact 2.1 dataset/licence list is absent.
+- Row 21: Gemini 3.6 Flash cutoff dates do not establish an image-data cutoff for 2.1.
+- Row 25: SFT and RL are described for Gemini 3 Pro, without exact 2.1 post-training confirmation.
+- Row 26: Image loss and distillation recipe are absent.
+- Row 27: TPU, JAX and ML Pathways come from related Gemini cards, not a confirmed 2.1 configuration.
+- Row 28: 2.1 FLOPs, duration and cost are absent.
+- Row 32: 1K/2K/4K outputs, default 1K.
+- Row 33: Fourteen aspect ratios include extreme 1:8 and 8:1.
+- Row 34: Up to 14 references: four characters and ten objects.
+- Row 35: Thinking levels minimal/medium/high; default medium. Thinking is not a diffusion-step count.
+- Row 36: API limits are 131072 input and 32768 output tokens.
+- Row 37: Model card instead gives up to 1M context and 64K text output; the workbook prioritizes API limits for integration.
+- Row 38: Flash-speed is not a reproducible latency or SLA.
+- Row 39: Diffusion steps, sampler and CFG are undisclosed.
+- Row 40: Standard USD output prices: 1K 0.0336, 2K 0.0504, 4K 0.113. Input $1.50/1M and text/thinking $7.50/1M are separate.
+- Row 41: Guide says 2520 tokens for 4K; Pricing says 3780. The workbook uses the published 4K price rather than calculating from disputed token counts.
+- Row 42: The card notes small-text, identity, spatial and masked/doodle-edit errors.
+- Row 46: Interactions API has official Python, JavaScript, Java, Go and REST examples.
+- Row 48: Multi-turn uses previous_interaction_id; local edits use semantic masking.
+- Row 49: Search grounding excludes web photos of real people for image-grounding.
+- Row 50: Batch API supported.
+- Row 51: No weight download offered; cloud use is governed by Gemini API Terms.
+- Row 52: Generated images contain SynthID.
+
+**Source URLs preserved from workbook HYPERLINK formulas:**
+
+- [Source 1](https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1)
+- [Source 2](https://deepmind.google/models/model-cards/nano-banana-2-1/)
+- [Source 3](https://deepmind.google/models/model-cards/gemini-3-6-flash/)
+- [Source 4](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf)
+- [Source 5](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Flash-Model-Card.pdf)
+- [Source 6](https://ai.google.dev/gemini-api/docs/image-generation)
+- [Source 7](https://ai.google.dev/gemini-api/docs/pricing)
+- [Source 8](https://ai.google.dev/gemini-api/terms)
+:::

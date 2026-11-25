@@ -1,0 +1,41 @@
+## How do keyframes guide a FLUX 3 shot? {#sc-t2v-flux-3-video .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 59 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-flux-3-video-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="black-forest-labs"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="Black Forest Labs" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div><p class="ds-kicker">video 04.08.2026</p><p class="ds-kicker ds-r">API preview</p><h3 class="ds-name">FLUX 3 Video</h3><p class="ds-lic">No public weights found</p></div><div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-part ds-w2"><span class="ds-k">Family description</span><b class="ds-v">Multimodal flow matching</b></div><div class="ds-spec ds-gap"><span class="ds-k">Not disclosed</span><b class="ds-v">Size, encoders, VAE</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-part ds-w2"><span class="ds-k">Modalities</span><b class="ds-v">Image + video + audio</b></div><div class="ds-spec ds-gap"><span class="ds-k">Not disclosed</span><b class="ds-v">Corpora, licences</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead ds-part"><span class="ds-k">Named approach</span><b class="ds-v">Self-Flow</b></div><div class="ds-spec ds-gap ds-w2"><span class="ds-k">Not disclosed</span><b class="ds-v">Production recipe, compute, optimizer</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">T2V / I2V output</span><b class="ds-v">5–20 s · 24 fps</b></div><div class="ds-spec "><span class="ds-k">Larger outputs</span><b class="ds-v">Upsampled FHD–4K</b></div><div class="ds-spec "><span class="ds-k">Audio</span><b class="ds-v">Joint generation</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Workflow</span><b class="ds-v">Draft → enhance</b></div><div class="ds-spec "><span class="ds-k">Keyframe control</span><b class="ds-v">Up to 10 images</b></div><div class="ds-spec "><span class="ds-k">Separate endpoint</span><b class="ds-v">Video Edit [fast]</b></div></div></div></div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_video_evidence/flux-3-video.svg" alt="Four real source keyframes in BFL’s first interpolation example, pinned at 0, 3, 7 and 10 seconds. Time labels specify anchors; spacing is schematic."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2">
+<caption>Which clips did BFL’s raters prefer?</caption>
+<thead><tr><th scope="col">Opponent</th><th scope="col">FLUX 3 preferred</th></tr></thead>
+<tbody>
+<tr><th scope="row">Seedance 2.0</th><td>52%</td></tr>
+<tr><th scope="row">HappyHorse 1.1</th><td>57%</td></tr>
+<tr><th scope="row">Kling v3 Pro</th><td>60%</td></tr>
+<tr><th scope="row">Runway Gen-4.5</th><td>77%</td></tr>
+<tr><th scope="row">Luma Ray 3.2</th><td>93%</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://bfl.ai/blog/flux-3">BFL · Early Evaluations, Video</a> · 10 s, 720p, with audio</p>
+</div>
+<div class="fv-takeaway">Video generation, continuation and editing have distinct controls and availability.</div>
+<div class="fv-source"><a href="https://docs.bfl.ai/flux_3/flux3_video#keyframes">Figure · keyframes, example 1</a> · <a href="https://docs.bfl.ai/flux_3/flux3_video">Video docs</a> · <a href="https://bfl.ai/blog/flux-3">FLUX 3 launch</a> · <a href="https://docs.bfl.ml/release-notes">Release notes</a> · T2V_v1.0.xlsx · FLUX 3 Video · audit 19.10.2026</div>
+```
+
+::: {.notes}
+Selected rows reconstructed from BFL’s 23 July preliminary text-to-video comparison. Each row compares early FLUX 3 with a different opponent. BFL does not give the prompt count, uncertainty intervals or treatment of ties in this report. These figures describe generated video from text, while the adjacent four-image example uses keyframe conditioning. [BFL · Early Evaluations, Video](https://bfl.ai/blog/flux-3).
+
+The four supplied images in BFL’s FLUX 3 Video documentation, Keyframes, Example 1, are reproduced in their original order. The labels give the actual keyframe times. The spacings are schematic. The results slide plays the output paired with these images.
+
+The specification table follows the 19 October 2026 workbook. Its scope is hosted FLUX 3 Video in preview plus the separately named Video Edit tool. Image and Action products are not evidence about the video model's dimensions or weight availability.
+
+The source describes a shared multimodal flow-matching backbone based on Self-Flow and joint image/video/audio training. It does not disclose the production video's parameter count, encoders, VAE, corpus composition, licences, full training recipe or compute. The architecture, data and training summary statuses therefore remain partial.
+
+The displayed 5–20-second range applies to text-to-video and image-to-video. Video continuation is limited to 5–15 seconds; it should not be presented as arbitrary video-reference editing. Outputs use 24 fps with optional jointly generated audio. FHD, QHD and UHD are upsampled from the HD generation, not separately established native generation resolutions. The documented UHD 16:9 canvas is 3840×2176, not exactly 3840×2160. Draft mode produces an HD preview and a cache for enhancing the selected result.
+
+Image-to-video accepts up to 10 timestamped keyframes. FLUX Video Edit [fast] is a separate endpoint; its detailed limits in the workbook rely on aggregators, and a dated BFL release entry was not found. Omni Reference was still marked coming soon. Public video weights were not found; private weight access and plans for FLUX 3 Dev are not a public checkpoint release.
+
+**Sheet-row provenance:** scope/architecture 6–9; data 13–14; training 18–19; dates and inference 23–29; tools 36–42; access/weights 43. **Status provenance:** `Сводка`, row 7, columns B–F.
+
+**Workbook sources:** [Video docs](https://docs.bfl.ai/flux_3/flux3_video), [FLUX 3 launch](https://bfl.ai/blog/flux-3), [Release notes](https://docs.bfl.ml/release-notes).
+:::

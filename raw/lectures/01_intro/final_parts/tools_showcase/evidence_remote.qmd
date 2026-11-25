@@ -1,0 +1,28 @@
+## OpenHands · The action–observation loop {#ts-evidence-remote-openhands .ts-slide .ts-evidence .ts-openhands}
+
+```{=html}
+<div class="ts-card ts-evidence-layout">
+  <figure class="ts-evidence-figure">
+    <img src="assets/tools_showcase/evidence-openhands-2025-fig2.png" width="2030" height="1121" alt="The agent reads the event history and emits an action. The Docker runtime executes actions through IPython, Bash or a browser and returns observations to the event stream. The published trace shows a local web page being created, served and opened.">
+    <figcaption><a href="https://arxiv.org/html/2407.16741v3#S2.F2">Wang et al. · Figure 2 · arXiv v3, April 2025</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption>
+  </figure>
+  <div class="ts-evidence-facts" role="group" aria-labelledby="ts-openhands-event-loop">
+    <h3 id="ts-openhands-event-loop">Read the loop</h3>
+    <dl>
+      <dt>Agent</dt><dd>Reads the history and proposes the next action.</dd>
+      <dt>Event stream</dt><dd>Records user messages, actions and observations in order.</dd>
+      <dt>Runtime</dt><dd>Executes actions and returns observations to the stream.</dd>
+      <dt>Agent Canvas today</dt><dd>The browser client connects to the selected backend. Agent Server runs the conversation and tools.</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="#/ts-openhands">Back to OpenHands</a> · <a href="assets/tools_showcase/evidence-openhands-2025-fig2.png" download>Download full-size figure</a> · <a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/a4b6ad6b48850c0c331d1259fc66a69c-Abstract-Conference.html">ICLR 2025 proceedings</a> · <a href="https://docs.openhands.dev/openhands/usage/agent-canvas/architecture">Current Agent Canvas architecture</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+На рисунке из исторической статьи OpenHands показана работа со средой через поток событий. Агент получает историю, содержащую сообщения пользователя, действия и наблюдения, и формирует следующее действие. Среда исполнения принимает действие и возвращает результат в поток. Цветные блоки в центре показывают последовательность событий в опубликованном примере. Синий обозначает действия агента, оранжевый — ответы среды. [Wang и соавторы, рисунок 2 и раздел 2](https://arxiv.org/html/2407.16741v3#S2.F2).
+
+В описанной реализации Docker-контейнер предоставляет IPython, Bash и браузер. На стороне современного Agent Canvas взаимодействие начинается в браузерном клиенте. Выбранный бэкенд определяет, где Agent Server ведёт сессию и запускает инструменты. Исторический рисунок объясняет обмен действиями и наблюдениями, а текущая документация описывает сервисы и варианты их размещения. [Архитектура Agent Canvas](https://docs.openhands.dev/openhands/usage/agent-canvas/architecture).
+
+Первый препринт вышел в июле 2024 года. Здесь использован оригинальный файл рисунка 2 из третьей редакции от 18 апреля 2025 года. Изображение перенесено без изменений с атрибуцией по CC BY 4.0. [Версия статьи и лицензия](https://arxiv.org/abs/2407.16741v3).
+:::

@@ -1,0 +1,22 @@
+## Seedance 2.5 follows a singer from backstage to the arena {#sc-t2v-seedance-2-5-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 66 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-seedance-2-5">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="bytedance-seed">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="ByteDance Seed" class="sc-company" role="img"><img alt="ByteDance Seed" src="assets/showcase_identity_20261021/bytedance-seed.svg"/><span class="sc-company-caption">Seed</span></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>Dreamina Seedance 2.5</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2V preference Elo</p><p class="sr-metric-value">1159 Elo</p><p class="sr-metric-note">95% CI 1143–1175; n=5,761; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/text-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">I2V preference Elo</p><p class="sr-metric-value">1138 Elo</p><p class="sr-metric-note">95% CI 1121–1155; n=3,688; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/image-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Editing preference Elo</p><p class="sr-metric-value">1155 Elo</p><p class="sr-metric-note">95% CI 1143–1167; n=5,616; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/video-editing" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/seedance-2-5-poster.webp" alt="Watch the camera retreat through the curtains, track the microphone handoff and swing behind the singer as the crowd comes into view."><video controls playsinline preload="none" src="assets/showcase_video_evidence/seedance-2-5.mp4" poster="assets/showcase_video_evidence/seedance-2-5-poster.webp" aria-label="Seedance 2.5 follows a singer from backstage to the arena" aria-describedby="seedance-2-5-caption"></video></div><p class="sr-caption" id="seedance-2-5-caption">Watch the camera retreat through the curtains, track the microphone handoff and swing behind the singer as the crowd comes into view.</p></div></div>
+<div class="fv-takeaway">A single tracking shot has to keep the performer, the handoff and the direction of travel coherent.</div>
+<div class="fv-source"><a href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5">ByteDance Seed · singer one-take example</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+ByteDance presents this complete 30-second sequence in the one-take section of the Seedance 2.5 announcement alongside its full text prompt. The deck contains a scaled local copy with the soundtrack. The Artificial Analysis entries name the Dreamina deployment of Seedance 2.5.
+
+- **T2V preference Elo: 1159 Elo**. Text prompt; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/text-to-video).
+
+- **I2V preference Elo: 1138 Elo**. Source image; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/image-to-video).
+
+- **Editing preference Elo: 1155 Elo**. Instruction-based video editing; audio kept. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/video-editing).
+
+[Published example](https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5) · [Original media](https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/4xfa4ms8egv8p.mp4)
+:::

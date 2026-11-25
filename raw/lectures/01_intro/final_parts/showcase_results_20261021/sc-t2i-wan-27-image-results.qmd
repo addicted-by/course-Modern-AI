@@ -1,0 +1,40 @@
+## Character variety and palette control {#sc-t2i-wan-27-image-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 50 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-wan-27-image">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="alibaba">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Alibaba / Wan" class="sc-company" role="img"><img alt="Alibaba" src="assets/showcase_identity_20261021/alibaba.svg"/><span class="sc-company-caption">Wan</span></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>Wan2.7 Image</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Text input at launch</p><p class="sr-metric-value">3,000 tokens</p><p class="sr-metric-note">Launch claim. The API reference separately limits prompts to 5,000 characters. <a class="" href="https://www.alibabacloud.com/en/press-room/alibaba-unveils-wan2-7-redefining-personalized-and" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Rendering languages</p><p class="sr-metric-value">12</p><p class="sr-metric-note">Vendor supported-language count. <a class="" href="https://www.alibabacloud.com/en/press-room/alibaba-unveils-wan2-7-redefining-personalized-and" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">References / batch</p><p class="sr-metric-value">9 / up to 12</p><p class="sr-metric-note">Published input-reference and output-batch maxima. <a class="" href="https://www.alibabacloud.com/en/press-room/alibaba-unveils-wan2-7-redefining-personalized-and" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-gallery"><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-wan-27-image-character-personalisation.png" alt="Wan2.7-Image: character-personalisation examples."><figcaption>Character attributes across a series</figcaption></figure><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-wan-27-image-colour-palette.png" alt="Wan2.7-Image: colour-palette examples."><figcaption>Reference → color codes → output</figcaption></figure></div><p class="sr-caption">The first grid changes facial attributes. The second places source art, palette swatches and a generated composition side by side.</p></div></div>
+<div class="fv-takeaway">Alibaba labels these examples Wan2.7-Image. The 4K option belongs to the Pro text-to-image endpoint.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://www.alibabacloud.com/en/press-room/alibaba-unveils-wan2-7-redefining-personalized-and" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+Alibaba’s release illustrates personalised characters and prompt-directed colour palettes.
+
+
+
+- **Text input: Up to 3,000 tokens **. Press-release capability claim; not text-accuracy measurement. Attribution: output_characteristic. [Source](https://www.alibabacloud.com/en/press-room/alibaba-unveils-wan2-7-redefining-personalized-and).
+
+- **Text rendering languages: 12 **. Supported-language count in release; no per-language accuracy values transcribed. Attribution: output_characteristic. [Source](https://www.alibabacloud.com/en/press-room/alibaba-unveils-wan2-7-redefining-personalized-and).
+
+- **References / output batch: 9 / up to 12 **. Published maxima for reference inputs and generated images per request. Attribution: output_characteristic. [Source](https://www.alibabacloud.com/en/press-room/alibaba-unveils-wan2-7-redefining-personalized-and).
+
+
+
+**Example provenance and limitations.**
+
+April 1 release captions these examples Wan2.7-Image. Pro is announced separately; these assets are not labelled Pro.
+
+Release includes a vendor blind-preference chart, but its numerical values and evaluation protocol were not verified here; do not invent a score.
+
+Pro-specific 4K output does not establish that these standard Image examples came from Pro.
+
+[Published media/source](https://img.alicdn.com/imgextra/i1/O1CN01SeSfox1YxIpxzLwNK_!!6000000003125-2-tps-1378-729.png): Wan2.7-Image: character-personalisation examples.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+
+[Published media/source](https://img.alicdn.com/imgextra/i2/O1CN01aNXCjR1rlpcIET8Vy_!!6000000005672-2-tps-1380-920.png): Wan2.7-Image: colour-palette examples.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+:::

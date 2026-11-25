@@ -1,0 +1,22 @@
+## MiniMax H3 cuts from the fleet to its captain {#sc-t2v-minimax-h3-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 58 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-minimax-h3">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="minimax">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="MiniMax" class="sc-company" role="img"><img alt="MiniMax" src="assets/showcase_identity_20261021/minimax.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>MiniMax H3</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2V preference Elo</p><p class="sr-metric-value">1158 Elo</p><p class="sr-metric-note">95% CI 1142–1174; n=5,781; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/text-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">I2V preference Elo</p><p class="sr-metric-value">1140 Elo</p><p class="sr-metric-note">95% CI 1124–1156; n=4,209; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/image-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Editing preference Elo</p><p class="sr-metric-value">1125 Elo</p><p class="sr-metric-note">95% CI 1114–1136; n=7,457; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/video-editing" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/minimax-h3-poster.webp" alt="Watch the cut from the bridge to the captain. The published prompt cues it at 4.5 s and asks for a flash and an impact sound."><video controls playsinline preload="none" src="assets/showcase_video_evidence/minimax-h3.mp4" poster="assets/showcase_video_evidence/minimax-h3-poster.webp" aria-label="MiniMax H3 cuts from the fleet to its captain" aria-describedby="minimax-h3-caption"></video></div><p class="sr-caption" id="minimax-h3-caption">Watch the cut from the bridge to the captain. The published prompt cues it at 4.5 s and asks for a flash and an impact sound.</p></div></div>
+<div class="fv-takeaway">The request gives a specific cut time, sound cue and seed for checking the generated sequence.</div>
+<div class="fv-source"><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">MiniMax · H3 reproducible 768p cases</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+The sample is t2va.mp4 in MiniMax’s reproducible 768p cases. The request script specifies seed 0, a 768-pixel short edge, a target of 10 seconds and no input assets. It gives the cut time in the input text. The local file preserves the published audiovisual streams.
+
+- **T2V preference Elo: 1158 Elo**. Text prompt; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/text-to-video).
+
+- **I2V preference Elo: 1140 Elo**. Source image; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/image-to-video).
+
+- **Editing preference Elo: 1125 Elo**. Instruction-based video editing; audio kept. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/video-editing).
+
+[Published example](https://huggingface.co/MiniMaxAI/MiniMax-H3) · [Original media](https://huggingface.co/MiniMaxAI/MiniMax-H3/resolve/main/assets/t2va.mp4) · [Full prompt and seed](https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-t2va-request.sh)
+:::

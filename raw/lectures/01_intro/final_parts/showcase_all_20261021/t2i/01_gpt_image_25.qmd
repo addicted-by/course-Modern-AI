@@ -1,0 +1,79 @@
+## GPT Image 2.5 routes requests through image safety checks {#sc-t2i-gpt-image-25 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 31 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-gpt-image-25-results">Results →</a></div>
+<div class="sc-body bn-body bn-w2" data-company="openai"><div class="bn-id"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_evidence_20261124/t2i/gpt-image-25.svg" alt="On adversarial prompts, unsafe outputs shown were 1.64% for Images 2.0, 1.41% for Flare and 1.09% for Sunburst. Differences versus 2.0 were statistically inconclusive."></figure></div><div class="bn-model"><p class="bn-kicker">Text-to-image</p><h3>GPT Image 2.5</h3><p class="bn-ids"><code>gpt-image-2.5-flare</code><code>gpt-image-2.5-sunburst</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">08.09.2026</b></p><p><span>Access</span><b>API · ChatGPT</b></p><p><span>Weights</span><b class="bn-shut">not found</b></p></div></div></div><div class="bn-pub">
+<div class="bn-tile bn-p bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-stat"><p class="bn-num">3840<small>px</small></p><p class="bn-cap">max side · multiple of 16 · ratio up to 3:1</p></div><div class="bn-stat bn-rule"><p class="bn-num">$30</p><p class="bn-cap">per 1M image output tokens</p></div><p class="bn-item"><i class="sc-pip p"></i>Flare: vendor claims up to 50% lower latency than GPT Image 2</p><p class="bn-gap">Streaming sources disagree</p></div>
+<div class="bn-tile bn-p bn-b"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-items2"><p class="bn-item"><i class="sc-pip k"></i>Generate and edit; up to 16 reference images</p><p class="bn-item"><i class="sc-pip k"></i>C2PA and SynthID provenance</p><p class="bn-item"><i class="sc-pip k"></i>Fine-tuning: unsupported</p><p class="bn-item"><i class="sc-pip p"></i>Masks guide edits; edges not guaranteed</p></div></div>
+<div class="bn-tile bn-p bn-c"><div class="bn-head"><h4>Data</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-items2"><p class="bn-item"><i class="sc-pip p"></i>Public web, partners and user / trainer / researcher data</p><p class="bn-item"><i class="sc-pip p"></i>Personal-data filters and safety classifiers</p></div><p class="bn-gap">No corpus size, dataset list or proportions</p></div></div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Not disclosed</span><b>2<small>of 5</small></b></div><div class="bn-cell"><h4><i class="sc-pip n"></i>Architecture</h4><p>Generator, encoders and parameter counts</p></div><div class="bn-cell"><h4><i class="sc-pip n"></i>Training</h4><p>Stages, loss, RL, distillation and compute</p></div></div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+  <caption>What happens to adversarial requests?</caption>
+  <thead><tr><th scope="col">Model</th><th scope="col">Safe image</th><th scope="col">Unsafe image blocked</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">Images 2.0</th><td>75.2%</td><td>23.1%</td></tr>
+  <tr><th scope="row">2.5 Flare</th><td>79.4%</td><td>19.2%</td></tr>
+  <tr><th scope="row">2.5 Sunburst</th><td>77.0%</td><td>21.9%</td></tr>
+  </tbody>
+</table>
+<p class="sc-study-source"><a href="https://deploymentsafety.openai.com/chatgpt-images-2-5/chatgpt-images-2-5.pdf#page=4">OpenAI · table 1</a> · Share of all test prompts</p>
+</div>
+<div class="fv-takeaway">The API is detailed; the generator and its training recipe remain undisclosed.</div>
+<div class="fv-source"><a href="https://deploymentsafety.openai.com/chatgpt-images-2-5/chatgpt-images-2-5.pdf">System card · table 1</a> · T2I_v1.1.xlsx · GPT Image 2.5 · audit 18–19.10.2026 · <a href="https://developers.openai.com/api/docs/models/gpt-image-2.5-flare">Flare</a> · <a href="https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst">Sunburst</a> · <a href="https://deploymentsafety.openai.com/chatgpt-images-2-5/chatgpt-images-2-5.pdf">System card</a></div>
+```
+
+::: {.notes}
+**Table evidence.** OpenAI’s fixed adversarial set has three mutually exclusive outcomes. This table gives the first two for each release. The figure supplies the third, unsafe images shown. Percentages use all tested prompts for that model. The source reports significant differences versus Images 2.0 for safe-image and unsafe-blocked shares in both 2.5 variants. The experiment measures the complete safety stack, with automated policy labels. [OpenAI · table 1](https://deploymentsafety.openai.com/chatgpt-images-2-5/chatgpt-images-2-5.pdf#page=4).
+
+**Figure evidence.** OpenAI evaluated the complete deployment stack on a fixed adversarial prompt set with automated grading. Bars use a 0–2% scale and show the unsafe-presented column of table 1. No reduction in that column was significant against Images 2.0 under the report’s test. These rates apply to the challenge set. [Primary source](https://deploymentsafety.openai.com/chatgpt-images-2-5/chatgpt-images-2-5.pdf).
+
+**Historical audit.** This is a faithful conversion of the supplied T2I_v1.1.xlsx audit snapshot, checked by its author on 18 October 2026 and refined on 19 October 2026. It is not a fresh verification of these linked sources. “Not disclosed” means absent from the materials covered by that audit, not that the capability cannot exist. Known/Partial/Not disclosed measure disclosure, not model quality or full reproducibility. Prices, endpoints and limits are preserved as dated audit claims.
+
+Treat Flare and Sunburst as separately identified API variants, not downloadable checkpoints. This card retains the supplied audit’s category judgments: the mere presence of names and sizes such as “small” does not make Architecture disclosed. Runtime safety and product features do not fill training gaps.
+
+**Exact scope and category provenance:** sheet `GPT Image 2.5`, identity row 2; `Сводка` row 4. Architecture / Data / Training / Inference / Tools = Not disclosed / Partial / Not disclosed / Partial / Partial.
+
+**Row provenance and caveats (model-sheet row numbers):**
+
+- Row 6: The two API IDs have separate snapshots ending in -2026-09-08.
+- Row 8: Flare is described as small and Sunburst as base, without parameter counts.
+- Row 9: Backbone, dense/MoE and autoregressive/diffusion/hybrid design are not disclosed.
+- Row 10: Encoders, VAE, image tokenizer and latent dimensions are not disclosed.
+- Row 14: Published source categories include public web, partners and user/trainer/researcher data; proportions are absent.
+- Row 15: Corpus image/pair/token counts are absent.
+- Row 16: Named datasets and per-source licences are absent.
+- Row 17: Personal-data filtering and safety classifiers are described; thresholds and removal shares are absent.
+- Row 18: Synthetic share, captioning, deduplication and language mixture are absent.
+- Row 22: Pretraining/post-training stages and generator loss are absent.
+- Row 23: Generator RL/RLHF, preference optimization, teachers and distillation are absent.
+- Row 24: Optimizer, learning rate, batch size and training steps are absent.
+- Row 25: Accelerator counts, FLOPs, hours and training duration are absent.
+- Row 29: Sides are multiples of 16 and at most 3840 px; aspect ratio at most 3:1; area 655360–8294400 px. Above 3686400 px is experimental.
+- Row 32: Images edits accepts up to 16 inputs, using file_id or image_url including base64 data URLs.
+- Row 35: Seed, CFG, sampler and step control are absent from the reviewed API; internal steps are undisclosed.
+- Row 36: The 50% lower Flare latency is a vendor comparison, without absolute p50/p95 or reproducible protocol; Sunburst is slower than Flare.
+- Row 37: Standard USD rates per 1M tokens: image input 8, cached 2, output 30; text input 5, cached 1.25. Both variants share rates.
+- Row 38: Guide/API documents streaming and 0–3 partial images, while both model cards say Streaming: Not supported. Exact mode support remains unresolved.
+- Row 42: Generation and editing use the Images API endpoints; both API variants released on 8 September 2026.
+- Row 44: The mask directs editing of the first input, but exact boundary adherence is not guaranteed.
+- Row 46: Public weights and a local runtime were not found in the reviewed cards.
+- Row 47: Both cards explicitly say fine-tuning is unsupported.
+- Row 48: The system card describes C2PA commitments and SynthID in ChatGPT, Codex and the OpenAI API.
+- Row 49: The workbook lists ChatGPT, ChatGPT Work and Codex product integrations.
+- Row 50: Cached-input pricing applies only through the Images tool in Responses, not direct Images API; usage omits cache-hit counts.
+- Row 51: Batch output pricing is $15 per 1M image output tokens, distinct from Standard $30.
+
+**Source URLs preserved from workbook HYPERLINK formulas:**
+
+- [Source 1](https://developers.openai.com/api/docs/models/gpt-image-2.5-flare)
+- [Source 2](https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst)
+- [Source 3](https://developers.openai.com/api/docs/guides/image-prompting)
+- [Source 4](https://deploymentsafety.openai.com/chatgpt-images-2-5/chatgpt-images-2-5.pdf)
+- [Source 5](https://developers.openai.com/api/reference/resources/images/methods/edit)
+- [Source 6](https://developers.openai.com/api/reference/resources/images/methods/generate)
+- [Source 7](https://openai.com/index/introducing-chatgpt-images-2-5/)
+- [Source 8](https://developers.openai.com/api/docs/pricing)
+- [Source 9](https://developers.openai.com/api/docs/guides/image-generation)
+- [Source 10](https://developers.openai.com/api/docs/changelog)
+:::

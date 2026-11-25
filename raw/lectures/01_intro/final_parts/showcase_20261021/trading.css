@@ -1,0 +1,99 @@
+/* trading design — owned by its design agent. Selectors must stay inside the .tc- prefix (or .sc-trading slide class). */
+/* Trading cards: two game cards with identical anatomy around a shared "tale of the tape" spine.
+   The spine names each row once; every stat row says in words how many audited items were published. */
+.reveal .fv-slide .tc-body {
+  --tc-card: 596px; --tc-off: 8px; --tc-r: 18px;
+  /* Shared vertical tracks: cards and spine use the same heights, so rows line up across the slide. */
+  --tc-top: 16px; --tc-head: 62px; --tc-frame: 94px; --tc-row: 52px; --tc-moves: 76px; --tc-weak: 36px;
+  --tc-gap-ink: var(--sc-gap-ink, #8a8a8a);
+  display: grid; grid-template-columns: 604px 1fr 604px; align-items: start;
+}
+
+/* Card stock: ink outline, rounded corners, a second card peeking out behind (lime = open weights, grey = closed). */
+.reveal .fv-slide .tc-card {
+  width: var(--tc-card); height: calc(590px - var(--tc-off));
+  display: flex; flex-direction: column;
+  padding: 14px 22px 0;
+  background: #fff; border: 2px solid var(--fv-ink); border-radius: var(--tc-r);
+  box-shadow: var(--tc-off) var(--tc-off) 0 0 #dedede, var(--tc-off) var(--tc-off) 0 2px var(--fv-ink);
+}
+.reveal .fv-slide .tc-card.tc-open { box-shadow: var(--tc-off) var(--tc-off) 0 0 var(--fv-lime), var(--tc-off) var(--tc-off) 0 2px var(--fv-ink); }
+
+/* Name + "HP" corner (parameter count). */
+.reveal .fv-slide .tc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; height: var(--tc-head); }
+.reveal .fv-slide .tc-head h3 { margin-top: -6px; font: 700 40px/1.12 var(--lecture-font-heading); letter-spacing: -.035em; white-space: nowrap; }
+.reveal .fv-slide .tc-type { margin-top: 1px; font-size: 20px; line-height: 1.2; color: var(--fv-muted); letter-spacing: 0; white-space: nowrap; }
+.reveal .fv-slide .tc-hp {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 14px;
+  border: 2px solid var(--fv-ink); border-radius: 10px; background: var(--fv-lime);
+}
+.reveal .fv-slide .tc-hp small { margin-top: 3px; font: 600 15px/1 var(--lecture-font-mono); text-transform: uppercase; letter-spacing: .06em; }
+.reveal .fv-slide .tc-hp b { font: 700 30px/1.15 var(--lecture-font-heading); letter-spacing: -.02em; }
+.reveal .fv-slide .tc-hp.tc-hidden { background: #fff; border: 2px dashed var(--tc-gap-ink); color: var(--fv-muted); }
+.reveal .fv-slide .tc-hp.tc-hidden b { min-width: 22px; text-align: center; }
+
+/* Art window (a hint of the mechanism) + licence strip, framed like the picture box of a game card. */
+.reveal .fv-slide .tc-frame { flex: 0 0 auto; height: var(--tc-frame); margin-top: 10px; border: 2px solid var(--fv-ink); border-radius: 10px; overflow: hidden; }
+.reveal .fv-slide .tc-art { display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 12px; background: var(--fv-soft); white-space: nowrap; }
+.reveal .fv-slide .tc-node {
+  position: relative; display: inline-flex; align-items: center; height: 36px; padding: 0 10px;
+  border: 2px solid var(--fv-ink); border-radius: 7px; background: #fff; font-size: 20px; line-height: 1;
+}
+.reveal .fv-slide .tc-node.k { background: var(--fv-lime); }
+.reveal .fv-slide .tc-node.p { padding-left: 24px; }
+.reveal .fv-slide .tc-node.p::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 13px; border-right: 2px solid var(--fv-ink); background: var(--sc-hatch); border-radius: 5px 0 0 5px; }
+.reveal .fv-slide .tc-node.n { border-style: dashed; border-color: var(--tc-gap-ink); color: var(--fv-muted); }
+.reveal .fv-slide .tc-node.n b { margin-right: 6px; font: 700 22px/1.2 var(--lecture-font-heading); }
+.reveal .fv-slide .tc-to { flex: 0 0 auto; font-style: normal; font-size: 20px; color: var(--fv-muted); }
+.reveal .fv-slide .tc-to::before { content: "→"; }
+.reveal .fv-slide .tc-wave { flex: 1 1 auto; min-width: 54px; height: 36px; }
+.reveal .fv-slide .tc-wave rect { fill: var(--fv-ink); }
+.reveal .fv-slide .tc-badge {
+  display: flex; align-items: center; gap: .3em; height: 34px; padding: 0 12px;
+  border-top: 2px solid var(--fv-ink); font-size: 20px; line-height: 1; white-space: nowrap;
+}
+
+/* Stat rows: the words carry the meaning ("9 of 20 published · 8 partial"); squares repeat it, one per audited item. */
+.reveal .fv-slide .tc-stats { flex: 0 0 auto; margin-top: 12px; border-bottom: 1px solid var(--fv-line); }
+.reveal .fv-slide .tc-stat { height: var(--tc-row); padding-top: 4px; border-top: 1px solid var(--fv-line); }
+.reveal .fv-slide .tc-count { height: 26px; font-size: 21px; line-height: 26px; white-space: nowrap; }
+.reveal .fv-slide .tc-count b { font: 700 24px/26px var(--lecture-font-heading); letter-spacing: -.01em; }
+.reveal .fv-slide .tc-count .tc-part { color: var(--fv-ink); }
+.reveal .fv-slide .tc-cells { display: flex; gap: 3px; height: 17px; margin-top: 3px; }
+.reveal .fv-slide .tc-cells i, .reveal .fv-slide .tc-key i {
+  flex: 0 0 17px; width: 17px; height: 17px; border: 1.5px solid var(--fv-ink); border-radius: 3px; background: #fff;
+}
+.reveal .fv-slide :is(.tc-cells, .tc-key) .k { background: var(--fv-lime); }
+.reveal .fv-slide :is(.tc-cells, .tc-key) .p { background: var(--sc-hatch); }
+.reveal .fv-slide :is(.tc-cells, .tc-key) .n { border-style: dashed; border-color: var(--tc-gap-ink); }
+/* The left card mirrors its stats toward the spine, so each row reads: left value · feature · right value. */
+.reveal .fv-slide .tc-left .tc-stat { text-align: right; }
+.reveal .fv-slide .tc-left .tc-cells { flex-direction: row-reverse; }
+
+/* Moves (signature abilities) and weakness. */
+.reveal .fv-slide .tc-moves { flex: 0 0 auto; height: var(--tc-moves); margin-top: 8px; }
+.reveal .fv-slide .tc-moves p { height: calc(var(--tc-moves) / 2); display: flex; align-items: center; gap: .45em; font-size: 20px; line-height: 1.2; white-space: nowrap; }
+.reveal .fv-slide .tc-moves b { font: 700 21px/1.2 var(--lecture-font-heading); letter-spacing: -.01em; }
+.reveal .fv-slide .tc-weak { flex: 0 0 auto; height: var(--tc-weak); display: flex; align-items: center; border-top: 1px solid var(--fv-line); font-size: 20px; line-height: 1.2; white-space: nowrap; }
+.reveal .fv-slide .tc-weak .sc-pip { width: 16px; height: 16px; }
+
+/* Spine: VS, the key, then one label per row on the same tracks as the cards. */
+.reveal .fv-slide .tc-spine { display: flex; flex-direction: column; align-items: stretch; height: 590px; padding: var(--tc-top) 18px 0 10px; text-align: center; }
+.reveal .fv-slide .tc-top { height: calc(var(--tc-head) + 10px + var(--tc-frame) + 12px); display: flex; flex-direction: column; align-items: center; }
+.reveal .fv-slide .tc-vs {
+  display: flex; align-items: center; justify-content: center; width: 62px; height: 62px; flex: 0 0 auto;
+  border-radius: 50%; background: var(--fv-ink); color: var(--fv-lime);
+  font: 700 26px/1 var(--lecture-font-heading); letter-spacing: .02em;
+}
+.reveal .fv-slide .tc-key { margin-top: 12px; text-align: left; }
+.reveal .fv-slide .tc-key p { display: flex; align-items: center; gap: 10px; height: 25px; font-size: 20px; line-height: 1; white-space: nowrap; }
+.reveal .fv-slide .tc-key i { flex-basis: 18px; width: 18px; height: 18px; border-width: 2px; }
+.reveal .fv-slide .tc-key .tc-key-note { margin-top: 2px; font-size: 18px; color: var(--fv-muted); }
+.reveal .fv-slide .tc-labels { border-bottom: 1px solid var(--fv-line); }
+.reveal .fv-slide .tc-labels p {
+  height: var(--tc-row); display: flex; align-items: center; justify-content: center;
+  border-top: 1px solid var(--fv-line); font: 600 23px/1 var(--lecture-font-heading); letter-spacing: -.015em; white-space: nowrap;
+}
+.reveal .fv-slide .tc-sec { display: flex; align-items: center; justify-content: center; font: 600 16px/1.2 var(--lecture-font-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--fv-muted); }
+.reveal .fv-slide .tc-sec.tc-sec-moves { height: var(--tc-moves); margin-top: 8px; }
+.reveal .fv-slide .tc-sec.tc-sec-weak { height: var(--tc-weak); border-top: 1px solid var(--fv-line); }

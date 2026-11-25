@@ -1,0 +1,50 @@
+<script>
+(() => {
+  const alignScrollSlide = (hash) => {
+    if (!Reveal.isScrollView() || !hash.startsWith('#/ts-')) return;
+    document.getElementById(hash.slice(2))?.scrollIntoView({ block: 'start' });
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Let the visible percent name the control. The title supplies its purpose.
+    document.querySelector('.scaler-value')?.removeAttribute('aria-label');
+
+    // Read the initial link in paged mode before Reveal activates mobile scroll.
+    const enableScroll = () => {
+      const hash = location.hash;
+      Reveal.configure({ scrollActivationWidth: 650 });
+      const viewport = Reveal.getViewportElement();
+      viewport.addEventListener('scroll', () => {
+        if (!Reveal.isScrollView()) return;
+        // Reveal can round the final slide's scroll range to slightly below 100%.
+        const end = viewport.scrollHeight - viewport.clientHeight;
+        if (end > 0 && viewport.scrollTop >= end) viewport.scrollTop = end - 1;
+      }, { passive: true });
+      if (!Reveal.isScrollView()) return;
+      alignScrollSlide(hash);
+      if (hash !== location.hash) history.replaceState(history.state, '', hash);
+    };
+    if (Reveal.isReady()) enableScroll();
+    else Reveal.on('ready', enableScroll);
+  }, { once: true });
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('.ts-slide a[href^="#/ts-"]');
+    if (!link || !event.defaultPrevented) return;
+    // Reveal intercepts these links but does not update the hash in scroll view.
+    if (Reveal.isScrollView()) {
+      alignScrollSlide(link.hash);
+      if (link.hash !== location.hash) history.pushState(history.state, '', link.hash);
+    }
+    const useLink = link.classList.contains('ts-use-link');
+    if (event.detail === 0 && (useLink || link.closest('.ts-category-nav'))) {
+      const slide = document.getElementById(link.hash.slice(2));
+      const destination = useLink ? 'a.ts-use-link' : 'a[aria-current]';
+      slide?.querySelector('.ts-category-nav ' + destination)?.focus({ preventScroll: true });
+    }
+  });
+
+  // Let Reveal handle browser history first, then align the actual slide.
+  window.addEventListener('hashchange', () => requestAnimationFrame(() => alignScrollSlide(location.hash)));
+})();
+</script>

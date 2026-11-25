@@ -1,0 +1,81 @@
+## FLUX 3 Image Klein on a GPU and through the API {#sc-t2i-flux3-klein .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 43 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-flux3-klein-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="black-forest-labs"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="Black Forest Labs" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div><p class="ds-kicker">released 15.10.2026</p><p class="ds-kicker ds-r">Open weights + API</p><h3 class="ds-name">FLUX 3 Image Klein</h3><p class="ds-lic">FLUX Kommunity License v1.0</p></div>
+<div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Image transformer</span><b class="ds-v">5.6B</b></div><div class="ds-spec"><span class="ds-k">Text encoder</span><b class="ds-v">Qwen3-VL-4B</b></div><div class="ds-spec"><span class="ds-k">One image token</span><b class="ds-v">16×16 px</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Caption format</span><b class="ds-v">Whole-scene captions</b></div><div class="ds-spec ds-part"><span class="ds-k">Family knowledge</span><b class="ds-v">Image · video · audio</b></div><div class="ds-spec ds-gap"><span class="ds-k">Dataset / size / licences</span><b class="ds-v">Not disclosed</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Released checkpoints</span><b class="ds-v">Base + Distilled</b></div><div class="ds-spec"><span class="ds-k">Hardware</span><b class="ds-v">GB200 NVL72</b></div><div class="ds-spec ds-gap"><span class="ds-k">Recipe / compute</span><b class="ds-v">Not disclosed</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Distilled sampling</span><b class="ds-v">16 steps · no CFG</b></div><div class="ds-spec"><span class="ds-k">Base sampling</span><b class="ds-v">50 steps · CFG 3.5</b></div><div class="ds-spec"><span class="ds-k">Per image at 1K</span><b class="ds-v">US$0.009</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">One checkpoint</span><b class="ds-v">T2I + editing</b></div><div class="ds-spec"><span class="ds-k">Fine-tuning</span><b class="ds-v">LoRA on Base</b></div><div class="ds-spec ds-part"><span class="ds-k">Pixel restoration</span><b class="ds-v">Hosted API claim</b></div></div></div></div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_evidence_20261124/t2i/flux3-klein.svg" alt="At 1 MP, the quickest NVIDIA GB300 build takes 0.55 s on the GPU for a distilled generation. BFL reports a separate median API time of 4.54 s for text-to-image."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+  <caption>Generation and editing on the same GPU</caption>
+  <thead><tr><th scope="col">GPU · INT8</th><th scope="col">Generate (s)</th><th scope="col">Edit (s)</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">RTX 5090</th><td>4.1</td><td>7.2</td></tr>
+  <tr><th scope="row">RTX 5070</th><td>7.7</td><td>17.3</td></tr>
+  <tr><th scope="row">RTX 4070</th><td>8.9</td><td>18.9</td></tr>
+  </tbody>
+</table>
+<p class="sc-study-source"><a href="https://bfl.ai/blog/flux-3-image-klein">BFL / NVIDIA · 16-step GPU chart</a> · 1024 × 1024 · ComfyUI</p>
+</div>
+<div class="fv-takeaway">Core model and sampling specs are documented; data and training remain partial.</div>
+<div class="fv-source"><a href="https://bfl.ai/blog/flux-3-image-klein">Klein report · GPU &amp; API timing</a> · T2I_v1.1.xlsx · FLUX 3 Image Klein · audit 18–19.10.2026 · <a href="https://huggingface.co/black-forest-labs/flux-3-image-klein">Model card</a> · <a href="https://bfl.ai/blog/flux-3-image-klein">Launch post</a> · <a href="https://huggingface.co/black-forest-labs/flux-3-image-klein/blob/main/LICENSE.md">Weights licence</a></div>
+```
+
+::: {.notes}
+**Table evidence.** The source chart headed “Four configurations, fastest build per GPU” reports one image per run using the step-distilled checkpoint. Here all three RTX devices use their fastest listed INT8 configuration through ComfyUI and all images are 1024×1024. These are GPU generation times, separate from hosted queueing and network time. [BFL / NVIDIA · 16-step GPU chart](https://bfl.ai/blog/flux-3-image-klein).
+
+**Figure evidence.** Black Forest Labs, generation time by GPU (16-step chart) and Elo versus median API latency. The 0.55 s measurement is generation time on a GB300 at 1024×1024. The 4.54 s BFL API median includes queueing and prompt upsampling. BFL does not identify the server hardware of this API measurement, so the difference cannot be interpreted as measured network overhead. [Primary source](https://bfl.ai/blog/flux-3-image-klein).
+
+**Historical audit.** This is a faithful conversion of the supplied T2I_v1.1.xlsx audit snapshot, checked by its author on 18 October 2026 and refined on 19 October 2026. It is not a fresh verification of these linked sources. “Not disclosed” means absent from the materials covered by that audit, not that the capability cannot exist. Known/Partial/Not disclosed measure disclosure, not model quality or full reproducibility. Prices, endpoints and limits are preserved as dated audit claims.
+
+The existing slide identity is preserved. Open weights does not imply an unrestricted licence. Keep open-checkpoint behavior, auxiliary upsampler behavior and hosted pixel restoration separate. The workbook links architecture implementation detail to a Hugging Face partner article as well as the model card; that is provenance, not a new independent verification.
+
+**Exact scope and category provenance:** sheet `FLUX 3 Image Klein`, identity row 2; `Сводка` row 10. Architecture / Data / Training / Inference / Tools = Known / Partial / Partial / Known / Partial.
+
+**Row provenance and caveats (model-sheet row numbers):**
+
+- Row 2: 5.6B image transformer; both Base and Distilled published; hosted API is flux-3-image-klein.
+- Row 6: 5.6B excludes the separate text encoder and prompt upsampler.
+- Row 7: Encoder is Qwen3-VL-4B-Instruct.
+- Row 8: Latent flow model; VAE downsamples 8× per side with 32 channels; 2×2 packing yields one token per 16×16 image pixels.
+- Row 9: Diffusers implementation has five per-stream blocks then 28 joint blocks, width 3072.
+- Row 10: Eight Qwen3-VL hidden states give 8×2560=20480 features, projected to 3072.
+- Row 14: BFL connects Klein to FLUX 3 image/video/audio knowledge; exact Klein mixture is absent.
+- Row 15: Training uses detailed whole-scene captions; a separate upsampler expands short edit requests.
+- Row 16: Dataset list, example count, synthetic fraction and full-corpus licences are absent.
+- Row 20: Undistilled Base and step-distilled Distilled are both published; Distilled backs BFL API.
+- Row 21: Launch post names NVIDIA GB200 NVL72 training hardware.
+- Row 22: Pretraining filters and targeted safety post-training are described.
+- Row 23: Optimizer, base-training steps, loss weights, exact FLOPs and data volume are absent.
+- Row 27: Distilled: 16 steps without CFG. Base: 50 steps, CFG 3.5 per BFL.
+- Row 28: Up to 4K class; API dimensions 64–6256, at most 16822272 pixels.
+- Row 29: Explicit width+height override resolution/aspect ratio; otherwise editing inherits first-reference size.
+- Row 30: Up to ten references; seed 0–4294967295; API steps 1–16, default 16.
+- Row 31: API outputs JPEG by default or PNG.
+- Row 32: BF16 weights plus FP8/NVFP4; NVIDIA/ComfyUI also provide an INT8 build.
+- Row 33: Less than 0.6 s at 1 MP on GB300/NVFP4 is vendor GPU time, not end-to-end API latency.
+- Row 34: API USD per result: 1K .009, 2K .014, 4K .036, same for T2I and editing.
+- Row 38: Single checkpoint handles T2I, single-reference editing and multi-reference composition.
+- Row 39: Separate 9B flux-3-image-klein-pup is called by reference CLI but not automatically by Diffusers.
+- Row 40: Boxes influence position/size, are not hard masks, and edits can affect pixels outside them.
+- Row 41: Pixel restoration is a hosted API claim, not guaranteed behavior of the open weights alone.
+- Row 42: No grounding field in the reviewed Klein API; full Image grounding must not be transferred.
+- Row 43: Fine-tuning recommended on Base; LoRA can be used with Distilled; Diffusers/AI Toolkit recipes exist.
+- Row 44: ComfyUI, Diffusers, TensorRT-LLM, SGLang Diffusion and vLLM-Omni are listed.
+- Row 45: FLUX Kommunity License v1.0 permits qualifying commercial generation/output use below US$5M revenue including affiliates, subject to terms; this is not blanket permission for commercial fine-tuning or redistribution.
+
+**Source URLs preserved from workbook HYPERLINK formulas:**
+
+- [Source 1](https://huggingface.co/black-forest-labs/flux-3-image-klein)
+- [Source 2](https://huggingface.co/blog/flux-3)
+- [Source 3](https://bfl.ai/blog/flux-3-image-klein)
+- [Source 4](https://docs.bfl.ai/flux_3/flux3_image_klein)
+- [Source 5](https://docs.bfl.ai/api-reference/utility/generate-an-image-with-flux-3-klein)
+- [Source 6](https://docs.bfl.ai/quick_start/pricing)
+- [Source 7](https://docs.bfl.ai/api-reference/utility/generate-an-image-with-flux-3)
+- [Source 8](https://huggingface.co/black-forest-labs/flux-3-image-klein/blob/main/LICENSE.md)
+:::

@@ -1,0 +1,27 @@
+## Design a Melbourne radio voice {#sc-tts-gemini-38-flash-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 78 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-tts-gemini-38-flash">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="google">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Google" class="sc-company" role="img"><img alt="Google" src="assets/showcase_identity_20261021/google.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-speech</p><h3>Gemini 3.8 Flash TTS</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">English voice design</p><p class="sr-metric-value">71.4</p><p class="sr-metric-note">Hume composite score reported in the model evaluation. <a class="" href="https://storage.googleapis.com/deepmind-media/gemini/gemini_3-8_tts_model_evaluation.pdf" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Accent identification</p><p class="sr-metric-value">60.8%</p><p class="sr-metric-note">Pooled accuracy across six Hume accent tasks. <a class="" href="https://storage.googleapis.com/deepmind-media/gemini/gemini_3-8_tts_model_evaluation.pdf" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example">
+  <div class="sr-stage sr-audio">
+    <div><p class="sr-audio-label">Google · Gemini 3.8 Flash TTS</p><h3>A Melbourne DJ takes the mic</h3></div>
+<p class="sr-audio-prompt"><strong>Opening line.</strong> “Alright, Melbourne. So good to have you with us tonight.”</p>
+    <div><img src="assets/showcase_results_20261021/tts/gemini-38-melbourne-wave.svg" alt="Waveform of the example, with time in seconds." style="display:block;width:100%;height:108px;object-fit:contain"></div>
+    <audio controls preload="none" src="assets/showcase_results_20261021/tts/gemini-38-melbourne.m4a" aria-label="Play Google · Gemini 3.8 Flash TTS speech example">Audio playback requires an HTML5 browser.</audio>
+  </div>
+  <p class="sr-caption">Google identifies the DJ as a voice designed from a description. Listen for changes of pace and emphasis.</p>
+</div>
+</div>
+<div class="fv-takeaway">The voice brief specifies the persona and accent. The performance also varies emphasis within each line.</div>
+<div class="fv-source"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/" target="_blank" rel="noopener">DJ voice-design demonstration</a> · <a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_3-8_tts_model_evaluation.pdf" target="_blank" rel="noopener">Evaluation report</a> · <a href="https://www.hume.ai/blog/introducing-the-hume-voice-controllability-leaderboard" target="_blank" rel="noopener">Hume protocol</a></div>
+```
+
+::: {.notes}
+The adjacent carousel caption assigns this exact Melbourne DJ clip to Gemini 3.8 Flash TTS. The local M4A retains the AAC audio track from Google’s waveform video. The DJ welcomes the Melbourne audience and builds anticipation for a new dance track. The clip illustrates voice design. Google reports Hume’s English overall and accent values in its model evaluation; Hume’s methodology defines the accent figure as pooled identification accuracy. [Hume discloses a non-exclusive licensing agreement with Google](https://www.hume.ai/blog/newly-released-google-s-gemini-3-8-flash-tts-tops-hume-s-real-world-voiceeq-leaderboard).
+
+The waveform shows peak absolute amplitude within equally spaced intervals of the playable course copy. Its time scale is in seconds.
+
+[Original demonstration](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/) · [Vendor media file](https://storage.googleapis.com/gweb-uniblog-publish-prod/original_videos/AudioWaveform-Blue_HighEnergyDJ.mp4)
+:::

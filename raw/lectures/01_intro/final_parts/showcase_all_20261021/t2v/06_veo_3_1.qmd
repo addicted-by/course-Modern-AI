@@ -1,0 +1,39 @@
+## How often did raters prefer Veo 3.1 over Veo 3? {#sc-t2v-veo-3-1 .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 63 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-veo-3-1-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="google-deepmind"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="Google DeepMind" role="img"><img src="assets/showcase_identity_20261021/google-deepmind.svg" alt="Google DeepMind"></div><p class="ds-kicker">released 15.10.2025</p><p class="ds-kicker ds-r">API preview</p><h3 class="ds-name">Veo 3.1</h3><p class="ds-lic">3.1 · Fast · Lite</p></div><div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead ds-part"><span class="ds-k">Veo 3 family context</span><b class="ds-v">Latent diffusion</b></div><div class="ds-spec ds-gap ds-w2"><span class="ds-k">Not disclosed for 3.1</span><b class="ds-v">Parameters, encoders, VAE</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-part ds-w2"><span class="ds-k">Veo 3 family context</span><b class="ds-v">Captioning + filtering</b></div><div class="ds-spec ds-gap"><span class="ds-k">Not disclosed</span><b class="ds-v">Sizes, source licences</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-part ds-w2"><span class="ds-k">Veo 3 family context</span><b class="ds-v">TPU · JAX · Pathways</b></div><div class="ds-spec ds-gap"><span class="ds-k">3.1 recipe</span><b class="ds-v">Not disclosed</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Generation</span><b class="ds-v">4 / 6 / 8 s</b></div><div class="ds-spec "><span class="ds-k">Output</span><b class="ds-v">24 fps + audio</b></div><div class="ds-spec "><span class="ds-k">4K</span><b class="ds-v">8 s · not Lite</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Gemini API</span><b class="ds-v">T2V + I2V</b></div><div class="ds-spec "><span class="ds-k">Veo 3.1</span><b class="ds-v">≤3 reference images</b></div><div class="ds-spec "><span class="ds-k">3.1 / Fast</span><b class="ds-v">Video extension</b></div></div></div></div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_video_evidence/veo-3-1.svg" alt="54.5% preferred Veo 3.1, 11.6% tied and 33.9% preferred Veo 3. T2V overall preference, MovieGenBench, Google DeepMind October 2025."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Can the last frame hide an incorrect process?</caption>
+<thead><tr><th scope="col">Metric</th><th scope="col">Veo 3.1</th><th scope="col">Sora 2</th></tr></thead>
+<tbody>
+<tr><th scope="row">Final-frame accuracy</th><td>66%</td><td>70%</td></tr>
+<tr><th scope="row">Full-process accuracy</th><td>30%</td><td>24%</td></tr>
+<tr><th scope="row">Accuracy gap</th><td>36 pp</td><td>46 pp</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://aclanthology.org/2026.acl-long.934.pdf#page=2">VIPER · Table 1</a> · 50 diagnostic tasks · one video per task</p>
+</div>
+<div class="fv-takeaway">Family-level model-card details and variant-specific API features need separate labels.</div>
+<div class="fv-source"><a href="https://deepmind.google/models/veo/">Figure · T2V preference</a> · <a href="https://ai.google.dev/gemini-api/docs/veo">Gemini API</a> · <a href="https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf">Veo 3 card</a> · <a href="https://deepmind.google/models/model-cards/veo-3-1-lite/">Lite card</a> · T2V_v1.0.xlsx · Veo 3.1 · audit 19.10.2026</div>
+```
+
+::: {.notes}
+The VIPER authors selected 50 process-sensitive examples, such as math problems and trajectory tracking, for this separate diagnostic set. They sampled one video per model per task and measured accuracy from the last frame and accuracy over the entire process. Their outcome-hacking rate is the difference in percentage points. This diagnostic sample is smaller than the 309-item VIPER benchmark. [VIPER · Table 1](https://aclanthology.org/2026.acl-long.934.pdf#page=2).
+
+The bar redraws the Veo 3 column of Google DeepMind’s October 2025 chart T2V Overall preference in the Veo 3.1 Performance section. Raters compared paired outputs on 1,003 MovieGenBench prompts. Wins, ties and losses are relative to Veo 3.1. This is a vendor study. Other comparison models and tasks have different percentages.
+
+The specification table follows the 19 October 2026 workbook. Veo 3.1 and Fast were announced on 15 October 2025; Lite has a separate 8 April 2026 model card. All three were treated as preview variants in the workbook's scope.
+
+The architecture, data and training details are explicitly family context from the Veo 3 model card, which says it covers Veo 3 and subsequent versions; the Lite card points back to it. The workbook did not find a standalone 3.1 architecture disclosure. Latent diffusion operates over temporal audio and spatiotemporal video latents. The family data account includes Gemini-generated captions, filtering and semantic deduplication, while sizes and source licences remain absent. TPU, JAX and Pathways describe the Veo 3 training account, not independently confirmed 3.1 infrastructure.
+
+Generation supports 4, 6 or 8 seconds at 24 fps, with native audio always enabled. Higher-resolution 1080p/4K outputs require 8 seconds; 4K is unavailable in Lite. References and extension also have 8-second request requirements. Text and first-frame generation span the variants, but do not assume every advanced control does: the workbook lists up to three reference images for 3.1, no reference images for Lite, and extension for 3.1/Fast but not Lite. Extension adds seven seconds per step and is not a single 148-second generation.
+
+Flow's Insert and broader editing claims are platform-specific, while the read Gemini API documentation establishes extension. They are not presented here as a uniform model editing API. The workbook reports no public weights.
+
+**Sheet-row provenance:** scope/architecture 6–8; family data 12–13; training 17–18; dates/inference 22–26; tools and provenance 37–42; access/weights 44. **Status provenance:** `Сводка`, row 9, columns B–F.
+
+**Workbook sources:** [Gemini API](https://ai.google.dev/gemini-api/docs/veo), [Veo 3 card](https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf), [Lite card](https://deepmind.google/models/model-cards/veo-3-1-lite/).
+:::

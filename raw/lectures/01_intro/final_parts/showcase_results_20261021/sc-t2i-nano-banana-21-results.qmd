@@ -1,0 +1,38 @@
+## Design briefs become finished posters {#sc-t2i-nano-banana-21-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 36 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-nano-banana-21">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="google-deepmind">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Google DeepMind" class="sc-company" role="img"><img alt="Google DeepMind" src="assets/showcase_identity_20261021/google-deepmind.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>Nano Banana 2.1</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2I preference</p><p class="sr-metric-value">1050 ± 14 Elo</p><p class="sr-metric-note">Thinking; Google SxS human evaluation, Oct 2026. <a class="" href="https://deepmind.google/models/model-cards/nano-banana-2-1/" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Infographic design</p><p class="sr-metric-value">1048 ± 17 Elo</p><p class="sr-metric-note">Thinking; vendor evaluation, comparison-pool specific. <a class="" href="https://deepmind.google/models/model-cards/nano-banana-2-1/" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">General editing</p><p class="sr-metric-value">1026 ± 12 Elo</p><p class="sr-metric-note">Thinking; Google human evaluation, Oct 2026. <a class="" href="https://deepmind.google/models/model-cards/nano-banana-2-1/" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img src="assets/showcase_results_20261021/t2i/sc-t2i-nano-banana-21-desert-horizon-posters.jpg" alt="A paired outdoor-sports and coastal-travel poster showcase demonstrates composition and typography."></div><p class="sr-caption">Compare the split word DESERT with the title HORIZON. In each poster, the lettering shares the composition with the photograph.</p></div></div>
+<div class="fv-takeaway">The posters illustrate layout. DeepMind evaluated the Thinking configuration separately for the scores at left.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://deepmind.google/models/gemini-image/flash/" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+A paired outdoor-sports and coastal-travel poster showcase demonstrates composition and typography.
+
+
+
+- **T2I overall preference: 1050 ± 14 Elo **. October 2026; side-by-side human evaluation. Elo is specific to this comparison pool. Attribution: vendor_internal_evaluation. [Source](https://deepmind.google/models/model-cards/nano-banana-2-1/).
+
+- **Infographic design: 1048 ± 17 Elo **. Same model-card human evaluation; not a universal cross-vendor score. Attribution: vendor_internal_evaluation. [Source](https://deepmind.google/models/model-cards/nano-banana-2-1/).
+
+- **General editing: 1026 ± 12 Elo **. October 2026 model-card editing evaluation. Attribution: vendor_internal_evaluation. [Source](https://deepmind.google/models/model-cards/nano-banana-2-1/).
+
+
+
+**Example provenance and limitations.**
+
+Selected image is slide 1 under the dedicated Introducing Nano Banana 2.1 section, not the older Nano Banana 2 hero or performance section.
+
+Showcase does not disclose Thinking setting for these specific images. Metrics refer to the Thinking configuration.
+
+The generic product page still contains Gemini 3.1 Flash Image / Nano Banana 2 charts; those are excluded.
+
+[Published media/source](https://lh3.googleusercontent.com/qYB1K6_eqd8ofMr69hQFbUgdUbVn7me2LIjpxGrdznoZyVH1QLUhOD8W-mOAVpLp9I8PwNwk7YF-0wByFpySk1AomfAIrTIXzehj4cpbr3F1jaQvOg=w1440-h810-n-nu): Nano Banana 2.1: DESERT and HORIZON poster examples.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+:::

@@ -1,0 +1,20 @@
+## Kling 3.0 Omni turns a ribbon of color into lipstick {#sc-t2v-kling-3-omni-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 62 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-kling-3-omni">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="kling">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Kling AI / Kuaishou" class="sc-company" role="img"><img alt="Kling AI / Kuaishou" src="assets/showcase_identity_20261021/kling.svg"/><span class="sc-company-caption">Kuaishou</span></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>Kling 3.0 Omni</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2V preference Elo</p><p class="sr-metric-value">1020 Elo</p><p class="sr-metric-note">95% CI 1003–1037; n=3,378; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/text-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">I2V preference Elo</p><p class="sr-metric-value">1004 Elo</p><p class="sr-metric-note">95% CI 987–1021; n=3,077; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/image-to-video" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/kling-3-omni-poster.webp" alt="The color flows across black, forms a pattern and gathers into a lipstick. Compare the final product with the reference on the model card."><video controls playsinline preload="none" src="assets/showcase_video_evidence/kling-3-omni.mp4" poster="assets/showcase_video_evidence/kling-3-omni-poster.webp" aria-label="Kling 3.0 Omni turns a ribbon of color into lipstick" aria-describedby="kling-3-omni-caption"></video></div><p class="sr-caption" id="kling-3-omni-caption">The color flows across black, forms a pattern and gathers into a lipstick. Compare the final product with the reference on the model card.</p></div></div>
+<div class="fv-takeaway">The product reference controls what appears. The prompt describes how it should emerge.</div>
+<div class="fv-source"><a href="https://kling.ai/quickstart/klingai-video-3-omni-model-user-guide">Kling AI · Omni guide, lipstick example</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+Kling’s guide pairs the selected product and pattern references with this video output. The complete eight-second clip comes from the first example in All-in-One Reference 3.0. The Artificial Analysis scores belong to the 1080p Pro entry and are separate from this curated guide example.
+
+- **T2V preference Elo: 1020 Elo**. Text prompt; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/text-to-video).
+
+- **I2V preference Elo: 1004 Elo**. Source image; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/image-to-video).
+
+[Published example](https://kling.ai/quickstart/klingai-video-3-omni-model-user-guide) · [Original media](https://static-70.klingai-cdn-aws.com/kling-blog/presigned_url/1b7f8cfb-19a0-420f-afdb-44ca2b9e1a15_kling_20260204_作品_纯黑背景_黑暗中划出_3872_0.mp4)
+:::

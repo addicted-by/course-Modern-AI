@@ -1,0 +1,19 @@
+## Suno v6: Closer Tonight {#sc-music-suno-v6-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 84 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-suno-v6">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="suno">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Suno" class="sc-company" role="img"><img alt="Suno" src="assets/showcase_identity_20261021/suno.svg"/></div></div><div class="sr-model"><p>RESULTS · Music</p><h3>Suno v6</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">SongBench average</p><p class="sr-metric-value">6.5562</p><p class="sr-metric-note">YuE-author evaluation · 192 prompts · 2-candidate selection <a class="" href="https://map-yue2.github.io/data/benchmark-results.csv?v=20260912-suno-v6" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Phoneme error rate</p><p class="sr-metric-value">7.58%</p><p class="sr-metric-note">Same competitor-authored evaluation; lower is better <a class="" href="https://map-yue2.github.io/data/benchmark-results.csv?v=20260912-suno-v6" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Generation length</p><p class="sr-metric-value">Up to 8 min</p><p class="sr-metric-note">v6-family capability; not quality or measured latency <a class="" href="https://help.suno.com/en/articles/13924929" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-audio sr-music">
+<div><p class="sr-audio-label">yismeily · Suno v6</p><h3>Closer Tonight</h3></div>
+<div><p class="sr-audio-label">Style brief</p><p class="sr-audio-prompt">Midtempo pop with a close male tenor, doubled acoustic guitar and a restrained drum groove.</p></div>
+<div><p class="sr-audio-label">Excerpt · 0:20–0:38 in the recording</p><audio controls preload="none" aria-label="Closer Tonight · yismeily · Suno v6" src="assets/showcase_results_20261021/music/suno-v6-closer-tonight.mp3"></audio></div></div><p class="sr-caption">Listen for the distance between the lead voice and its layered doubles. How much space does the rhythm section leave for them?</p></div></div>
+<div class="fv-takeaway">The creator’s song illustrates vocal layering. The scores at left summarize a separate 192-prompt evaluation.</div>
+<div class="fv-source">Audio · yismeily · Suno v6 · <a href="https://suno.com/song/271f2deb-6ae7-4730-9e66-2588b7a3ed51">Published example</a> · <a href="https://cdn1.suno.ai/271f2deb-6ae7-4730-9e66-2588b7a3ed51.mp4">Original recording</a></div>
+```
+
+::: {.notes}
+Suno credits yismeily and identifies this song as V6. The playback excerpt comes from the official song video’s audio stream. The separate WildSongBench scores come from the YuE2 authors, who selected the lower-PER candidate from two using four ASR passes per candidate.
+
+This slide plays 0:20–0:38 of the published recording. The local copy is an 18-second stereo MP3 with a brief fade at each cut. [Publisher](https://suno.com/song/271f2deb-6ae7-4730-9e66-2588b7a3ed51) · [Original recording](https://cdn1.suno.ai/271f2deb-6ae7-4730-9e66-2588b7a3ed51.mp4).
+:::

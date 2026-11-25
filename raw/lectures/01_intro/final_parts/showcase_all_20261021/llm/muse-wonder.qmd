@@ -1,0 +1,51 @@
+## Muse Wonder: agent behavior is the public interface {#sc-llm-muse-wonder .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 12 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-muse-wonder-results">Results →</a></div>
+<div class="sc-body bn-body bn-w1" data-company="meta"><div class="bn-id" style="--bn-brand:#0866ff"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_llm_evidence/muse-wonder.svg" alt="Active Memory retrieves earlier details across conversations. Active Focus revises a plan using feedback and continues toward the goal."></figure></div>
+<div class="bn-model"><p class="bn-kicker">LLM · Meta</p><h3>Muse Wonder</h3><p class="bn-ids"><code>muse-wonder-1.0</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">12.10.2026</b></p><p><span>Access</span><b>API</b></p><p><span>Weights</span><b class="bn-shut">closed</b></p></div>
+</div></div>
+<div class="bn-pub"><div class="bn-tile bn-k bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+<div class="bn-stat"><p class="bn-num">1M<small>tokens</small></p><p class="bn-cap">context for Wonder and Wonder Full</p></div>
+<div class="bn-stat bn-rule"><p class="bn-num">$4 / $20</p><p class="bn-cap">API input / output per 1M tokens</p></div>
+<div class="bn-rule"><p class="bn-item"><i class="sc-pip k"></i>Text, image, video and audio input. Text output.</p><p class="bn-item"><i class="sc-pip k"></i>Active Memory carries context across conversations.</p></div>
+</div>
+<div class="bn-tile bn-k bn-b"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div><p class="bn-item"><i class="sc-pip k"></i>Subagents and parallel tool calls with error recovery.</p><p class="bn-item"><i class="sc-pip k"></i>Computer use across browser, desktop and mobile apps.</p><p class="bn-item"><i class="sc-pip k"></i>OpenAI SDK-compatible API and orchestration cookbooks.</p></div>
+<div class="bn-tile bn-p bn-c"><div class="bn-head"><h4>Data</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Multilingual pretraining data.</p><p class="bn-gap">Sources and volume undisclosed.</p></div>
+<div class="bn-tile bn-p bn-d"><div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Scaled pretraining and RL relative to Muse Spark.</p><p class="bn-item"><i class="sc-pip p"></i>Training on long coding tasks.</p></div>
+</div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Undisclosed</span><b>1<small>of 5</small></b></div>
+<div class="bn-cell"><h4><i class="sc-pip n"></i>Architecture</h4><p>Larger base models than Muse Spark is a vendor description. Parameter count and dense or MoE topology remain undisclosed.</p></div>
+</div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>What changes in the Full serving tier?</caption>
+<thead><tr><th scope="col">Benchmark score (%)</th><th scope="col">Wonder</th><th scope="col">Wonder Full</th></tr></thead>
+<tbody>
+<tr><th scope="row">OSWorld V2.1 · partial</th><td>72.6</td><td>78.4</td></tr>
+<tr><th scope="row">OSWorld V2.1 · binary</th><td>34.3</td><td>39.4</td></tr>
+<tr><th scope="row">AutomationBench-AA</th><td>39.1</td><td>45.4</td></tr>
+<tr><th scope="row">MemoryBench</th><td>85.6</td><td>85.5</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://research.meta.ai/static/muse-wonder-model-card#page=3">Meta · Model Card, §3, p. 3</a> · Both tiers at max effort</p>
+</div>
+<div class="fv-takeaway">Wonder’s API and agent workflow are described more fully than its model or training recipe.</div>
+<div class="fv-source">LLM_v1.0.xlsx · Muse Wonder · audit 18.10.2026 · <a href="https://research.meta.ai/static/muse-wonder-model-card">Model card</a> · <a href="https://research.meta.ai/blog/muse-wonder">Meta blog</a> · <a href="https://dev.meta.ai/models/muse-wonder">Developer page</a> · <a href="https://research.meta.ai/blog/muse-wonder">Figure source</a></div>
+```
+
+::: {.notes}
+**Table.** Values are selected from the table on p. 3, transcribed from the standard Wonder and Wonder Full columns. OSWorld partial gives graded progress, while binary counts fully successful tasks. Meta reports AutomationBench-AA strict pass@1 using Artificial Analysis, and MemoryBench is Meta’s internal context-recall evaluation. Section 3, pp. 4–6, describes the underlying metrics. [Meta · Model Card, §3, p. 3](https://research.meta.ai/static/muse-wonder-model-card#page=3).
+
+**Figure.** Meta, “Active Memory” and “Active Focus”. The diagram interprets the published product behaviors. It does not propose an internal architecture. [Primary source](https://research.meta.ai/blog/muse-wonder).
+
+Keep the variants separate. Muse Wonder is muse-wonder-1.0 through the API, while Muse Wonder Full is muse-wonder-full-1.0 and is available only through a Muse Code subscription in this snapshot. Both have a 1M inference context. The displayed price applies to the Wonder API, not a separate Full API. The claimed scale increase over Muse Spark does not identify the architecture.
+
+Meta describes multilingual data, larger pretraining and RL runs, long coding tasks and safety post-training, but the workbook marks these categories Partial. It does not list corpus sources, volume or an optimization recipe. Active Memory, Active Focus and subagent orchestration describe system behavior and product integration rather than additional model layers. The model card recommends a human checkpoint for irreversible actions in agent workflows. The API’s support for several input modalities does not mean it generates audio or images.
+
+**Snapshot and provenance.** LLM_v1.0.xlsx, sheet “Muse Wonder”, audit dated 18.10.2026. Category statuses follow “Сводка”: Architecture: Not disclosed; Data: Partial; Training: Partial; Inference: Known; Tools: Known. Known means a model-specific fact is disclosed, not that the whole category is complete. These slides summarize the supplied audit and do not constitute a fresh independent verification. Prices, limits and availability refer to that snapshot.
+
+**Source rows:** 1, 2, 6, 7, 11, 12, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 34, 35, 36, 37, 38.
+
+**Sources:** [Model card](https://research.meta.ai/static/muse-wonder-model-card), [Meta blog](https://research.meta.ai/blog/muse-wonder), [Developer page](https://dev.meta.ai/models/muse-wonder).
+:::

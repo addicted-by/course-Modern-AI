@@ -1,0 +1,42 @@
+## Which speech model gives the control your script needs? {#sc-compare-speech-controls .fv-slide .sc-slide .sc-compare background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 81 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a></div>
+<div class="sc-body cmp-body cmp-rows-5">
+<p class="cmp-intro">Compare voice direction, speaker count and delivery mode on the exact product variant</p>
+<table class="cmp-table" aria-label="Which speech model gives the control your script needs?"><colgroup><col style="width:22%"><col style="width:27%"><col style="width:26%"><col style="width:25%"></colgroup><thead><tr><th scope="col">Model</th><th scope="col">Voice direction</th><th scope="col">Speakers / languages</th><th scope="col">Delivery constraint</th></tr></thead><tbody><tr><th scope="row"><a href="#sc-tts-eleven-v4">Eleven v4</a></th><td>Audio tags; instant and<br>professional voice clones.</td><td><span class="cmp-primary">Multi-speaker dialogue API</span><span class="cmp-detail">90+ languages claimed; lists differ</span></td><td>No SSML / speed slider.<br>Check v4 vs Turbo latency.</td></tr><tr><th scope="row"><a href="#sc-tts-sonic-36">Sonic 3.6</a></th><td>Speed 0.6–1.5×; volume;<br>SSML breaks; timestamps.</td><td><span class="cmp-primary">44 languages · 61 locales</span><span class="cmp-detail">500+ preset voices</span></td><td>WebSocket / SSE.<br>PVC: no speed control.</td></tr><tr><th scope="row"><a href="#sc-tts-qwen-audio-31">Qwen Audio 3.1</a></th><td>Flash: SSML, clone, design.<br>Next: speech + effects.</td><td><span class="cmp-primary">Next: ≤3 speakers · ZH/EN</span><span class="cmp-detail">Flash: 68 presets; region-dependent</span></td><td>Flash streams; Next: file.<br>Next ≤120 s; podcast ≤240 s.</td></tr><tr><th scope="row"><a href="#sc-tts-gemini-38-flash">Gemini 3.8 Flash</a></th><td>Natural-language style;<br>audio tags; voice design.</td><td><span class="cmp-primary">≤2 speakers, prebuilt only</span><span class="cmp-detail">130 languages · 30 prebuilt voices</span></td><td>24 kHz mono PCM stream.<br>SSML / timestamps undisclosed.</td></tr><tr><th scope="row"><a href="#sc-tts-heygen-voice">HeyGen Voice</a></th><td>Speed + pitch for both tiers.<br>Instant: expressiveness boost.</td><td><span class="cmp-primary">One voice_id per request</span><span class="cmp-detail">39 base language codes</span></td><td>Turbo: instant voices only.<br>10,000 characters · SSE · 44.1 kHz.</td></tr></tbody></table>
+<p class="cmp-caveat">Language counts are documentation coverage, not equal-quality guarantees. A feature of one voice type or endpoint may be absent in another.</p>
+</div>
+<div class="fv-takeaway">Precise speed and timestamps point to Sonic; multi-speaker scripts need a dialogue-capable mode.</div>
+<div class="fv-source">October 2026 audit · <a href="https://developers.heygen.com/docs/voices/heygen-voice-speech">HeyGen speech API, Nov 24</a> · cards: <a href="#/sc-tts-eleven-v4">1</a> · <a href="#/sc-tts-sonic-36">2</a> · <a href="#/sc-tts-qwen-audio-31">3</a> · <a href="#/sc-tts-gemini-38-flash">4</a> · <a href="#/sc-tts-heygen-voice">5</a> · linked cards retain original sources and conditions</div>
+```
+
+::: {.notes}
+Вместо количества раскрытых пунктов — конкретные требования сценария. Для субтитров нужны timestamps, для постановочной реплики — управление интонацией, для разговора — поддержка нескольких говорящих. У Sonic есть word/phoneme timestamps и speed, но PVC не даёт регулировки скорости. У Eleven есть audio tags и dialogue API без SSML и speed sliders. Qwen Flash и Next следует читать как разные продукты: streaming против файла, а у Next ещё эффекты и ambience. Число языков не измеряет качество русского произношения. Сравнивать его можно только после прослушивания одинакового корпуса.
+
+**Evidence scope.** Comparison of the deck's supplied audit and results snapshots. No fresh model execution or current-price verification. Arithmetic and task implications are editorial derivations, not additional benchmark measurements.
+
+**Source cards:**
+- `final_parts/showcase_all_20261021/tts/eleven_v4.qmd`
+- `final_parts/showcase_all_20261021/tts/sonic_36.qmd`
+- `final_parts/showcase_all_20261021/tts/qwen_audio_31.qmd`
+- `final_parts/showcase_all_20261021/tts/gemini_38_flash_tts.qmd`
+- `final_parts/showcase_all_20261021/tts/heygen_voice.qmd`
+
+**Original links retained from those cards:**
+- [Eleven v4 docs](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4)
+- [Launch blog](https://elevenlabs.io/blog/eleven-v4)
+- [API pricing](https://elevenlabs.io/pricing/api)
+- [TTS models](https://docs.cartesia.ai/build-with-cartesia/tts-models)
+- [Sonic 3.6 launch](https://www.cartesia.ai/blog/sonic-3.6)
+- [Changelog](https://docs.cartesia.ai/changelog)
+- [TTS Flash](https://help.aliyun.com/en/model-studio/qwen-audio-3-1-tts-flash)
+- [TTS Next](https://help.aliyun.com/en/model-studio/qwen-audio-3-1-tts-next)
+- [Audio generation API](https://help.aliyun.com/en/model-studio/audio-generation-api)
+- [Flash TTS model](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash-tts)
+- [Speech generation](https://ai.google.dev/gemini-api/docs/speech-generation)
+- [Audio model card](https://deepmind.google/models/model-cards/gemini-3-8-audio/)
+- [HeyGen Voice TTS](https://developers.heygen.com/docs/voices/heygen-voice-speech)
+- [Model overview](https://developers.heygen.com/docs/models/heygen-voice)
+- [Professional clones](https://developers.heygen.com/docs/voices/professional-voice-clone)
+:::

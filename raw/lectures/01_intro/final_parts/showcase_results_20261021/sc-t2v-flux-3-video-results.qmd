@@ -1,0 +1,22 @@
+## FLUX 3 animates four underwater keyframes {#sc-t2v-flux-3-video-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 60 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-flux-3-video">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="black-forest-labs">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Black Forest Labs" class="sc-company" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>FLUX 3 Video</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2V preference Elo</p><p class="sr-metric-value">1145 Elo</p><p class="sr-metric-note">95% CI 1129–1161; n=4,864; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/text-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">I2V preference Elo</p><p class="sr-metric-value">1086 Elo</p><p class="sr-metric-note">95% CI 1070–1102; n=4,170; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/image-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Preference over Kling v3 Pro</p><p class="sr-metric-value">60%</p><p class="sr-metric-note">Vendor early eval: 10 s, 720p, audio; sample count undisclosed <a class="" href="https://bfl.ai/blog/flux-3" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/flux-3-video-poster.webp" alt="Four supplied views anchor the diver at 0, 3, 7 and 10 seconds. Watch the camera travel between those views."><video controls playsinline preload="none" src="assets/showcase_video_evidence/flux-3-video.mp4" poster="assets/showcase_video_evidence/flux-3-video-poster.webp" aria-label="FLUX 3 animates four underwater keyframes" aria-describedby="flux-3-video-caption"></video></div><p class="sr-caption" id="flux-3-video-caption">Four supplied views anchor the diver at 0, 3, 7 and 10 seconds. Watch the camera travel between those views.</p></div></div>
+<div class="fv-takeaway">Timed keyframes specify compositions. The model supplies the motion between them.</div>
+<div class="fv-source"><a href="https://docs.bfl.ai/flux_3/flux3_video#keyframes">Black Forest Labs · keyframes, example 1</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+The FLUX 3 Video documentation pairs these four keyframes with the video source labelled Keyframes interpolation: example 1. The slide plays the full published example. BFL does not specify a pinned model version or seed for this clip. The October 2026 Artificial Analysis entries are for FLUX 3 and the 60% figure is a separate preliminary vendor T2V comparison.
+
+- **T2V preference Elo: 1145 Elo**. Text prompt; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/text-to-video).
+
+- **I2V preference Elo: 1086 Elo**. Source image; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/image-to-video).
+
+- **Preference over Kling v3 Pro: 60 percent**. 10-second 720p T2V clips with audio. Preliminary vendor evaluation. [Source](https://bfl.ai/blog/flux-3).
+
+[Published example](https://docs.bfl.ai/flux_3/flux3_video#keyframes) · [Original media](https://cdn.sanity.io/files/2gpum2i6/production/afc86a790f1a835db3cff62e58dd658c3d47fc59.mp4)
+:::

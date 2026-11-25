@@ -1,0 +1,42 @@
+## The same design at three step budgets {#sc-t2i-flux-2-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 38 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-flux-2">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="black-forest-labs">
+<div class="sr-sidebar" role="group" aria-label="Model and magnified image details"><div class="sr-brand"><div aria-label="Black Forest Labs" class="sc-company" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>FLUX.2</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Sampling steps, left to right</p><p class="sr-metric-value">6 / 20 / 50</p><p class="sr-metric-note">FLUX.2 [flex] · two published trials</p></div><div class="sr-metric"><p class="sr-metric-label" style="font-weight:600;margin-bottom:8px">6 steps · subtitle detail</p><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The beginning of the subtitle contains distorted letters at six steps." width="100%" height="72" viewBox="270 193 245 58" preserveAspectRatio="xMinYMid meet" style="display:block;overflow:hidden"><title>The beginning of the subtitle contains distorted letters at six steps.</title><image href="assets/showcase_results_20261021/t2i/sc-t2i-flux-2-flex-design-step-comparison.jpg" width="3626" height="704"/></svg></div><div class="sr-metric"><p class="sr-metric-label" style="font-weight:600;margin-bottom:8px">50 steps · subtitle detail</p><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="At fifty steps the same subtitle starts with the legible words Browse curated." width="100%" height="72" viewBox="2738 167 245 58" preserveAspectRatio="xMinYMid meet" style="display:block;overflow:hidden"><title>At fifty steps the same subtitle starts with the legible words Browse curated.</title><image href="assets/showcase_results_20261021/t2i/sc-t2i-flux-2-flex-design-step-comparison.jpg" width="3626" height="704"/></svg></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-gallery sr-gallery-stacked"><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-flux-2-flex-design-step-comparison.jpg" alt="FLUX.2 [flex] design: 6, 20, 50 steps from left to right."><figcaption>Typography · 6, 20, 50 steps from left</figcaption></figure><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-flux-2-flex-detail-step-comparison.jpg" alt="FLUX.2 [flex] detail: 6, 20, 50 steps from left to right."><figcaption>Scene detail · 6, 20, 50 steps from left</figcaption></figure></div><p class="sr-caption">The enlarged subtitle resolves into “Browse curated” at 50 steps. In the lower series, compare the balance of rider, horse and sphere.</p></div></div>
+<div class="fv-takeaway">Black Forest Labs varied the step count on FLUX.2 [flex].</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://bfl.ai/blog/flux-2" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+The insets magnify the beginning of the site subtitle in the first and third panels of BFL’s published design comparison. Each inset uses the same 245 × 58 pixel viewport of the original local JPEG. The source gallery identifies 6, 20 and 50 steps, and supplies no paired latency measurements.
+
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+Official FLUX.2 [flex] examples show how inference steps affect text and image detail.
+
+
+
+- **Shown step budgets: 6 / 20 / 50 **. Left-to-right settings in the official demonstration; no timings supplied. Attribution: example_configuration. [Source](https://bfl.ai/blog/flux-2).
+
+- **Output / editing: Up to 4 MP **. Published family capability, not a measured accuracy score. Attribution: output_characteristic. [Source](https://bfl.ai/blog/flux-2).
+
+- **Reference inputs: Up to 10 **. Published multi-reference limit; endpoint-specific details may differ. Attribution: output_characteristic. [Source](https://bfl.ai/blog/flux-2).
+
+
+
+**Example provenance and limitations.**
+
+The captions explicitly attribute both step-series images to FLUX.2 [flex], which is included in this model-family card.
+
+These are [flex] outputs; do not attribute them to [dev], [pro] or [max].
+
+No numeric quality metric was extracted from the launch prose; the demonstration is vendor curated.
+
+[Published media/source](https://cdn.sanity.io/images/2gpum2i6/production/3e6970864309fcba9e66a189f9a4e2d1edb25922-3626x704.jpg): FLUX.2 [flex] design: 6, 20, 50 steps from left to right.. Rights: Public BFL showcase; page footer reserves rights. No separate demo-image licence identified. Attribute Black Forest Labs; model-weight licences are distinct.
+
+[Published media/source](https://cdn.sanity.io/images/2gpum2i6/production/2952776af632e4c98278d36c19dd82fb7a88e16c-3840x768.jpg): FLUX.2 [flex] detail: 6, 20, 50 steps from left to right.. Rights: Public BFL showcase; page footer reserves rights. No separate demo-image licence identified. Attribute Black Forest Labs; model-weight licences are distinct.
+:::

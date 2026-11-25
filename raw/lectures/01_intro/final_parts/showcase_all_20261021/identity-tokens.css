@@ -1,0 +1,24 @@
+/* Shared company accents. Source and fallback policy: assets/showcase_identity_20261021/brand_map.json. */
+.reveal .sc-slide .sc-body[data-company="anthropic"] { --sc-brand: #d97757; }
+.reveal .sc-slide .sc-body[data-company="openai"] { --sc-brand: #000; }
+.reveal .sc-slide .sc-body[data-company="meta"] { --sc-brand: #0866ff; }
+.reveal .sc-slide .sc-body[data-company="google-deepmind"] { --sc-brand: #4285F4; }
+.reveal .sc-slide .sc-body[data-company="xai"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="alibaba"] { --sc-brand: #FF6003; }
+.reveal .sc-slide .sc-body[data-company="moonshot"] { --sc-brand: #16191E; }
+.reveal .sc-slide .sc-body[data-company="deepseek"] { --sc-brand: #4D6BFE; }
+.reveal .sc-slide .sc-body[data-company="zai"] { --sc-brand: #000; }
+.reveal .sc-slide .sc-body[data-company="black-forest-labs"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="krea"] { --sc-brand: #000; }
+.reveal .sc-slide .sc-body[data-company="utopai"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="minimax"] { --sc-brand: #F23F5D; }
+.reveal .sc-slide .sc-body[data-company="kling"] { --sc-brand: #000; }
+.reveal .sc-slide .sc-body[data-company="bytedance-seed"] { --sc-brand: #325AB4; }
+.reveal .sc-slide .sc-body[data-company="runway"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="elevenlabs"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="cartesia"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="google"] { --sc-brand: #4285F4; }
+.reveal .sc-slide .sc-body[data-company="heygen"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="suno"] { --sc-brand: #000; }
+.reveal .sc-slide .sc-body[data-company="mureka"] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company="yue2"] { --sc-brand: #141414; }

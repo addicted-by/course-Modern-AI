@@ -1,0 +1,40 @@
+## Typography across two visual styles {#sc-t2i-flux-3-image-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 42 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-flux-3-image">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="black-forest-labs">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Black Forest Labs" class="sc-company" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>FLUX 3 Image</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Native sample size</p><p class="sr-metric-value">16.8 MP</p><p class="sr-metric-note">5456 × 3072 Soba-shop sample; separate from selected tiles. <a class="" href="https://bfl.ai/models/flux-3-image" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Reference images</p><p class="sr-metric-value">Up to 10</p><p class="sr-metric-note">Product-page capability; no quality benchmark given. <a class="" href="https://bfl.ai/models/flux-3-image" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-gallery"><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-flux-3-image-sprinter-stamp.jpg" alt="FLUX 3 Image: vintage sprinter stamp."><figcaption>Vintage sprinter postage stamp</figcaption></figure><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-flux-3-image-seed-parade-poster.jpg" alt="FLUX 3 Image: The Seed Parade poster."><figcaption>The Seed Parade poster</figcaption></figure></div><p class="sr-caption">Read the stamp at the center of its green surround, then compare the tall type and restricted palette of the seed poster.</p></div></div>
+<div class="fv-takeaway">Both designs come from the full FLUX 3 Image gallery.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://bfl.ai/models/flux-3-image" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+Official examples contrast a vintage sports stamp with a colourful seed-parade poster.
+
+
+
+- **Native-resolution showcase: 5456 × 3072 / 16.8 MP **. Separate Soba shop example on the same page; not the resolution of these selected web assets. Attribution: output_characteristic. [Source](https://bfl.ai/models/flux-3-image).
+
+- **Reference inputs: Up to 10 **. Product-page multi-reference capability. Attribution: output_characteristic. [Source](https://bfl.ai/models/flux-3-image).
+
+
+
+**Example provenance and limitations.**
+
+Both assets appear in the full FLUX 3 Image product showcase, separate from the Klein launch page.
+
+Hosted model version is named, but the displayed gallery does not identify a dated API snapshot.
+
+No image-quality score or timed test is published in the checked product-page prose.
+
+The July multimodal FLUX 3 blog reports video preference results; those are not image-model metrics.
+
+[Published media/source](https://cdn.sanity.io/images/2gpum2i6/production/96f1f4a6928343cb30d483f57ff25ccaf52ac956-1600x1600.webp): FLUX 3 Image: vintage sprinter stamp.. Rights: Public BFL showcase; page footer reserves rights. No separate demo-image licence identified. Attribute Black Forest Labs; model-weight licences are distinct.
+
+[Published media/source](https://cdn.sanity.io/images/2gpum2i6/production/3e32b49291adc2702caf3be25aba17a1662fc907-1060x1600.webp): FLUX 3 Image: The Seed Parade poster.. Rights: Public BFL showcase; page footer reserves rights. No separate demo-image licence identified. Attribute Black Forest Labs; model-weight licences are distinct.
+:::

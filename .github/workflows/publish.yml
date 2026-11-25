@@ -36,6 +36,9 @@ jobs:
       - name: Build project pages
         run: python3 raw/lectures/01_intro/project_pages/build.py
 
+      - name: Check model database pipeline
+        run: python3 -m unittest discover -s tests -v
+
       - name: Render Quarto Website
         uses: quarto-dev/quarto-actions/render@v2
 

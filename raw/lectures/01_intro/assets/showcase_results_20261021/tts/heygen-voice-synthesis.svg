@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326 208" font-family="Arial, Helvetica, sans-serif">
+<title>Scene-conditioned synthesis</title>
+<desc>An image, captions, voice reference and script condition an autoregressive Transformer. A flow decoder synthesizes a 44.1 kHz waveform.</desc>
+<text x="6" y="24" font-size="21" font-weight="700" fill="#132a2a" text-anchor="start">Scene-conditioned synthesis</text>
+<text x="6" y="46" font-size="16" font-weight="400" fill="#425351" text-anchor="start">HeyGen Voice · model design, §2</text>
+<rect x="6" y="60" width="314" height="34" fill="#e4eeeb"/>
+<text x="163" y="83" font-size="17" font-weight="600" fill="#132a2a" text-anchor="middle">Image, captions, voice, script</text>
+<path d="M163 96v12m-4 -4 4 4 4 -4" fill="none" stroke="#425351" stroke-width="1.7"/>
+<rect x="6" y="114" width="314" height="34" fill="#186763"/>
+<text x="163" y="137" font-size="17" font-weight="600" fill="#fff" text-anchor="middle">AR Transformer → acoustic codes</text>
+<path d="M163 150v12m-4 -4 4 4 4 -4" fill="none" stroke="#425351" stroke-width="1.7"/>
+<rect x="6" y="168" width="314" height="34" fill="#e4eeeb"/>
+<text x="163" y="191" font-size="17" font-weight="600" fill="#132a2a" text-anchor="middle">Flow decoder → 44.1 kHz audio</text>
+</svg>

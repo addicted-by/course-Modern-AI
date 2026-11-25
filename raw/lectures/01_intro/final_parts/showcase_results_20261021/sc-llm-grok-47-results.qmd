@@ -1,0 +1,16 @@
+## How much reasoning does a short support ticket need? {#sc-llm-grok-47-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 17 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-grok-47">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="xai">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="xAI" class="sc-company" role="img"><img alt="xAI" src="assets/showcase_identity_20261021/xai.svg"/></div></div><div class="sr-model"><p>RESULTS · LLM</p><h3>Grok 4.7</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">CursorBench 4.0</p><p class="sr-metric-value">46.3%</p><p class="sr-metric-note">xhigh; vendor-reported <a class="" href="https://x.ai/news/grok-4-7" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">DeepSWE v1.1</p><p class="sr-metric-value">71.0%</p><p class="sr-metric-note">high; vendor-reported <a class="" href="https://x.ai/news/grok-4-7" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">EEBench</p><p class="sr-metric-value">64.0%</p><p class="sr-metric-note">xhigh; vendor-reported <a class="" href="https://x.ai/news/grok-4-7" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_llm_evidence/grok-support.webp" alt="xAI’s dashboard streams support-ticket replies, then grades them across four Grok 4.7 reasoning settings."><video controls playsinline preload="none" src="assets/showcase_llm_evidence/grok-support.mp4" poster="assets/showcase_llm_evidence/grok-support.webp" aria-label="xAI’s dashboard streams support-ticket replies, then grades them across four Grok 4.7 reasoning settings."></video></div><p class="sr-caption">For a duplicate charge, the test expects the category “billing” and a high priority. The dashboard checks those fields before a judge grades the written reply.<span class="sr-caveat">Complete 20-second recording from xAI’s reasoning-effort cookbook.</span></p></div></div>
+<div class="fv-takeaway">Across this 30-ticket sample the four settings scored 87–93%. Low effort used roughly half the cost per answer.</div>
+<div class="fv-source"><a href="https://docs.x.ai/cookbook/examples/reasoning-effort-evals">xAI · Reasoning Effort Evals</a> · Benchmark sources beside each score</div>
+```
+
+::: {.notes}
+The live-mode cookbook uses grok-4.7 at low, medium, high and xhigh effort. The duplicate-charge case is a paraphrase of the published sample with its reference labels, separate from the outputs visible in the dashboard recording. The authors report approximately 140 reasoning tokens per low-effort answer versus approximately 600 at the higher settings. Their batch example uses a different model and is excluded.
+
+[xAI · Reasoning Effort Evals](https://docs.x.ai/cookbook/examples/reasoning-effort-evals).
+:::

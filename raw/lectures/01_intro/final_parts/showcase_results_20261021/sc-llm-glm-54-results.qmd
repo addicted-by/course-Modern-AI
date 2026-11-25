@@ -1,0 +1,33 @@
+## A six-axis robot arm modeled in FreeCAD {#sc-llm-glm-54-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 27 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-glm-54">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="zai">
+  <div class="sr-sidebar" role="group" aria-label="Z.ai’s reported GLM-5.4 results against GLM-5.3">
+    <div class="sr-brand"><div aria-label="Z.ai / Zhipu" class="sc-company" role="img"><img alt="Z.ai" src="assets/showcase_identity_20261021/zai.svg"><span class="sc-company-caption">Zhipu</span></div></div>
+    <div class="sr-model"><p>Z.AI COMPARISON</p><h3>GLM-5.4 vs 5.3</h3></div>
+    <div class="sr-metrics">
+      <div class="sr-metric"><p class="sr-metric-label">GLM-5.4 wins</p><p class="sr-metric-value">51.1%</p></div>
+      <div class="sr-metric"><p class="sr-metric-label">Ties</p><p class="sr-metric-value">25.7%</p></div>
+      <div class="sr-metric"><p class="sr-metric-label">GLM-5.3 wins</p><p class="sr-metric-value">23.1%</p><p class="sr-metric-note">The chart omits the task set and judging method. <a href="https://cdn.bigmodel.cn/markdown/feishu-77ddd119d9-1.jpg" aria-label="Original comparison chart">↗</a></p></div>
+    </div>
+  </div>
+  <div class="sr-example">
+    <div class="sr-stage">
+      <img class="sr-video-print" src="assets/showcase_results_20261021/llm/glm-54-freecad-poster.webp" alt="An orange articulated arm and gripper mounted on a metal pedestal in Z.ai’s FreeCAD demonstration.">
+      <video controls muted playsinline preload="metadata" src="assets/showcase_results_20261021/llm/glm-54-freecad-excerpt.mp4" poster="assets/showcase_results_20261021/llm/glm-54-freecad-poster.webp" aria-label="Eight-second silent excerpt from Z.ai’s GLM-5.4 FreeCAD demonstration. The linkage and gripper assemble and rotate."></video>
+    </div>
+    <p class="sr-caption">Z.ai credits GLM-5.4 with the FreeCAD model. Watch the links and gripper come together and rotate.<span class="sr-caveat">Vendor demonstration · 8-second silent excerpt</span></p>
+  </div>
+</div>
+<div class="fv-takeaway">The animation shows joint motion. Load capacity and manufacturing tolerances need separate tests.</div>
+<div class="fv-source">Z.ai · checked 24.11.2026 · <a href="https://docs.z.ai/guides/llm/glm-5.4">Model guide</a> · <a href="https://cdn.bigmodel.cn/static/platform/videos/glm-5.4/3.mp4">Original CAD video</a> · <a href="https://cdn.bigmodel.cn/markdown/feishu-77ddd119d9-1.jpg">Head-to-head chart</a></div>
+```
+
+::: {.notes}
+Z.ai’s “Scaling Coding to Engineering” example attributes the six-axis digital assembly to GLM-5.4 using FreeCAD. The vendor shows a rendered sequence. The publication does not give a CAD project, a full prompt, a tool-call transcript, mechanical specifications or evidence of fabrication. Ask students which additional artifact would let them check dimensions or joint constraints. An editable, dimensioned CAD model would make those checks possible.
+
+The local clip shows 00:01–00:09 of Z.ai’s original 21.5-second video, at normal speed, with its audio removed. The poster is a frame at 00:08.875 from the same source. Both assets play or display offline. The version is identified by the model guide’s caption and by the GLM-5.4 credit inside the video. [Model guide, “Generalized Coding”](https://docs.z.ai/guides/llm/glm-5.4) · [Original video](https://cdn.bigmodel.cn/static/platform/videos/glm-5.4/3.mp4).
+
+The sidebar reads the first row of Z.ai’s separate GLM-5.4 win-rate chart. The three outcomes are 51.1% wins, 25.7% ties and 23.1% losses for GLM-5.4 against GLM-5.3. The labels total 99.9% after rounding. Z.ai does not identify the sample size, prompts or judge alongside the chart. The comparison does not measure this CAD task. [Original chart](https://cdn.bigmodel.cn/markdown/feishu-77ddd119d9-1.jpg).
+:::

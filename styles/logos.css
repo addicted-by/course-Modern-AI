@@ -1,4 +1,5 @@
-body.course-site .navbar-brand-container { display: flex; align-items: center; }
+body.course-site .navbar-brand-container { display: flex; align-items: center; flex-shrink: 0; max-width: none; }
+body.course-site .navbar-brand { flex-shrink: 0; overflow: visible; }
 body.course-site .navbar-brand-logo {
   display: inline-flex;
   align-items: center;

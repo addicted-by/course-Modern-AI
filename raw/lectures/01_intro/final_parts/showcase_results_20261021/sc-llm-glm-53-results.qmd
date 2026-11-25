@@ -1,0 +1,16 @@
+## What controls did GLM-5.3 put on a watch movement? {#sc-llm-glm-53-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 25 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-glm-53">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="zai">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Z.ai / Zhipu" class="sc-company" role="img"><img alt="Z.ai" src="assets/showcase_identity_20261021/zai.svg"/><span class="sc-company-caption">Zhipu</span></div></div><div class="sr-model"><p>RESULTS · LLM</p><h3>GLM-5.3</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">DeepSWE v1.1</p><p class="sr-metric-value">66.9%</p><p class="sr-metric-note">mini-swe-agent; 400K; 6h <a class="" href="https://huggingface.co/zai-org/GLM-5.3" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Terminal-Bench 3.0</p><p class="sr-metric-value">28.3%</p><p class="sr-metric-note">avg@3; Claude Code; max; 10h <a class="" href="https://huggingface.co/zai-org/GLM-5.3" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Toolathlon Verified</p><p class="sr-metric-value">73.0%</p><p class="sr-metric-note">pass@1; average of 3 runs <a class="" href="https://huggingface.co/zai-org/GLM-5.3" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img src="assets/showcase_llm_evidence/glm-watch.webp" alt="Sulat’s rendered 3D mechanical watch, with an escapement, a gear train and controls for winding and tempo."></div><p class="sr-caption">Sulat asked for a mechanical watch movement. The generated interface lets the viewer step through a beat, wind the spring and inspect the gear train.<span class="sr-caveat">Sulat’s published screenshot from its GLM-5.3 one-shot series.</span></p></div></div>
+<div class="fv-takeaway">A single generated interface exposes both a moving mechanism and controls for examining its parts.</div>
+<div class="fv-source"><a href="https://glm-5-3.demos.sulat.com/">Sulat · model attribution</a> · <a href="https://3d-watch-movement.glm-5-3.demos.sulat.com/">Original watch simulation</a> · Benchmark sources beside each score</div>
+```
+
+::: {.notes}
+The model attribution comes from Sulat’s own GLM-5.3 catalog, not an independent reproduction or a Z.ai demonstration. The catalog includes a matching thumbnail and a working artifact with a Swiss lever escapement, winding, selectable tempo, views and an exploded layout. The screenshot is Sulat’s published thumbnail; the separate benchmark figures are from Z.ai’s model card.
+
+[Sulat · model attribution](https://glm-5-3.demos.sulat.com/). [Original watch simulation](https://3d-watch-movement.glm-5-3.demos.sulat.com/).
+:::

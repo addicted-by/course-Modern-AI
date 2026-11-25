@@ -1,0 +1,27 @@
+## Two voices on a rainy platform {#sc-tts-qwen-audio-31-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 76 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-tts-qwen-audio-31">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="alibaba">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Alibaba / Qwen" class="sc-company" role="img"><img alt="Alibaba" src="assets/showcase_identity_20261021/alibaba.svg"/><span class="sc-company-caption">Qwen</span></div></div><div class="sr-model"><p>RESULTS · Text-to-speech</p><h3>Qwen Audio 3.1</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Next output limit</p><p class="sr-metric-value">120 / 240 s</p><p class="sr-metric-note">Maximum output per request for scenes / podcasts. <a class="" href="https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-next" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Next input limit</p><p class="sr-metric-value">3,000 chars</p><p class="sr-metric-note">Maximum text length in the prompt guide. <a class="" href="https://www.alibabacloud.com/help/en/model-studio/audio-generation" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Next service quota</p><p class="sr-metric-value">180 req/min</p><p class="sr-metric-note">Published quota in Beijing and Singapore. <a class="" href="https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-next" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example">
+  <div class="sr-stage sr-audio">
+    <div><p class="sr-audio-label">Alibaba Cloud · Qwen Audio 3.1 TTS Next</p><h3>A farewell at the station</h3></div>
+<p class="sr-audio-prompt"><strong>Opening exchange.</strong> Owen: “You didn’t have to come.”   Ruth: “You left your scarf.”</p>
+    <div><img src="assets/showcase_results_20261021/tts/qwen-31-railway-wave.svg" alt="Waveform of the example, with time in seconds." style="display:block;width:100%;height:108px;object-fit:contain"></div>
+    <audio controls preload="none" src="assets/showcase_results_20261021/tts/qwen-31-railway.mp3" aria-label="Play Alibaba Cloud · Qwen Audio 3.1 TTS Next speech example">Audio playback requires an HTML5 browser.</audio>
+  </div>
+  <p class="sr-caption">Two siblings part at a railway station. Listen for the rain continuing through the changes of speaker.</p>
+</div>
+</div>
+<div class="fv-takeaway">One scene description sets the two voices, the weather and the train sounds.</div>
+<div class="fv-source"><a href="https://www.alibabacloud.com/help/en/model-studio/audio-generation" target="_blank" rel="noopener">Film dialogue example</a> · <a href="https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-next" target="_blank" rel="noopener">Next API limits</a></div>
+```
+
+::: {.notes}
+The English prompt guide attaches this WAV to the Film dialogue row, and its supported-model table lists qwen-audio-3.1-tts-next. A brother and sister trade short lines at a rainy station. They discuss his scarf and when he will call. The prompt specifies a whistle and departing footsteps. The course copy retains the complete 23-second stereo clip as a 160 kb/s MP3. The limits shown describe the service, independent of the clip.
+
+The waveform shows peak absolute amplitude within equally spaced intervals of the playable course copy. Its time scale is in seconds.
+
+[Original demonstration](https://www.alibabacloud.com/help/en/model-studio/audio-generation) · [Vendor media file](https://g-adoc.alcasset.com/media/maas_docs/sfm-cn/en/audios/6a4b3c2d1e0f92c0.wav)
+:::

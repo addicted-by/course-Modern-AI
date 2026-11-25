@@ -1,0 +1,29 @@
+## A cloned voice in a treated studio {#sc-tts-heygen-voice-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 80 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-tts-heygen-voice">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="heygen">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="HeyGen" class="sc-company" role="img"><span class="sc-company-name">HeyGen</span></div></div><div class="sr-model"><p>RESULTS · Text-to-speech</p><h3>HeyGen Voice</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Own-voice selection</p><p class="sr-metric-value">41.7%</p><p class="sr-metric-note">6,153 three-way votes from users choosing their own voice. <a class="" href="https://dynamic.heygen.ai/www/research/introducing-heygen-voice/heygen-voice-scene-aware-voice-cloning-for-talking-videos.pdf" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Narrator choice vs. Eleven v4</p><p class="sr-metric-value">61.5%</p><p class="sr-metric-note">Decided narrator-choice votes across 245 scripts in 5 languages. <a class="" href="https://dynamic.heygen.ai/www/research/introducing-heygen-voice/heygen-voice-scene-aware-voice-cloning-for-talking-videos.pdf" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example">
+  <div class="sr-stage sr-audio">
+    <div style="display:grid;grid-template-columns:1fr 0.95fr;gap:26px;align-items:center">
+  <div><p class="sr-audio-label">HeyGen · HeyGen Voice</p><h3>Adam in the recording studio</h3><p class="sr-audio-prompt" style="margin-top:18px"><strong>Spoken line.</strong> “Same voice, different scene. Listen to how it changes. Still sounds like me, right?”</p></div>
+  <img src="assets/showcase_results_20261021/tts/heygen-voice-studio.webp" alt="Adam records at a microphone in a foam-treated studio." style="width:100%;height:auto;display:block">
+</div>
+    <div><img src="assets/showcase_results_20261021/tts/heygen-voice-studio-wave.svg" alt="Waveform of the example, with time in seconds." style="display:block;width:100%;height:108px;object-fit:contain"></div>
+    <audio controls preload="none" src="assets/showcase_results_20261021/tts/heygen-voice-studio.m4a" aria-label="Play HeyGen · HeyGen Voice speech example">Audio playback requires an HTML5 browser.</audio>
+  </div>
+  <p class="sr-caption">The published studio example places Adam’s cloned voice in a treated room. Listen for the close, dry sound of the voice.</p>
+</div>
+</div>
+<div class="fv-takeaway">The reference voice identifies Adam. The scene determines the acoustics around him.</div>
+<div class="fv-source"><a href="https://www.heygen.com/models/heygen-voice-1" target="_blank" rel="noopener">Studio demonstration</a> · <a href="https://dynamic.heygen.ai/www/research/introducing-heygen-voice/heygen-voice-scene-aware-voice-cloning-for-talking-videos.pdf" target="_blank" rel="noopener">Research report, §5</a></div>
+```
+
+::: {.notes}
+The Studio result is one of the generated scenes in HeyGen’s demonstration with Adam. The vendor labels it HeyGen Voice and leaves the specific serving checkpoint unspecified. The M4A retains the original AAC track. The image is a frame from the same video. The two preference figures answer different questions and have different denominators.
+
+The waveform shows peak absolute amplitude within equally spaced intervals of the playable course copy. Its time scale is in seconds.
+
+[Original demonstration](https://www.heygen.com/models/heygen-voice-1) · [Vendor media file](https://dynamic.heygen.ai/www/heygen-voice/flagship-studio-v2.mp4)
+:::

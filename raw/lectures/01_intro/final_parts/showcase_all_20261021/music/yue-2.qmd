@@ -1,0 +1,50 @@
+## YuE 2: plan the score, then render the song {#sc-music-yue-2 .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 91 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-yue-2-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="yue2"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="HKUST / M-A-P" role="img"><span class="sc-company-name">HKUST<small>M-A-P</small></span></div><p class="ds-kicker">arXiv 27.09.2026</p><p class="ds-kicker ds-r">Open weights</p><h3 class="ds-name">YuE 2 · YuE2-3B</h3><p class="ds-lic">CC BY-NC 4.0</p></div>
+<div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">AR–NAR Transformer</span><div class="ds-line"><b class="ds-v">3.58B</b><span class="ds-n">28 layers</span></div></div><div class="ds-spec "><span class="ds-k">Song plan</span><b class="ds-v">ABC melody + chords</b></div><div class="ds-spec "><span class="ds-k">Audio stage</span><b class="ds-v">Flow matching</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Music corpus</span><b class="ds-v">346K hours</b></div><div class="ds-spec ds-part"><span class="ds-k">Annotations</span><b class="ds-v">SheetSage2 · MERT2</b></div><div class="ds-spec ds-part"><span class="ds-k">Main sources</span><b class="ds-v">CC0 + synthetic music</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Song context</span><div class="ds-line"><b class="ds-v">24,576</b><span class="ds-n">positions</span></div></div><div class="ds-spec "><span class="ds-k">Joint objective</span><b class="ds-v">0.25 × AR + FM</b></div><div class="ds-spec"><span class="ds-k">Training hardware</span><b class="ds-v">64 × H800 GPUs</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">RTX 4090 example</span><b class="ds-v">215 s in 71 s</b></div><div class="ds-spec "><span class="ds-k">Audio</span><b class="ds-v">48 kHz stereo</b></div><div class="ds-spec "><span class="ds-k">Measured peak</span><b class="ds-v">≈11 GiB</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Local runtime</span><b class="ds-v">yue2_infer</b></div><div class="ds-spec "><span class="ds-k">Controls</span><b class="ds-v">ABC edits · covers</b></div><div class="ds-spec "><span class="ds-k">Code / model weights</span><b class="ds-v">Apache 2.0 / BY-NC</b></div></div>
+</div></div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_results_20261021/music/yue2-planning.svg" alt="Same-checkpoint listening experiment, 211 overall-quality judgments. 49.3% preferred a score, 16.1% tied, and 34.6% preferred generation without a score."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="3 4">
+<caption>What changes after a local score edit?</caption>
+<thead><tr><th scope="col">Edit</th><th scope="col">Target metric</th><th scope="col">Target hit</th><th scope="col">Harmony kept¹</th></tr></thead>
+<tbody>
+<tr><th scope="row">Melody</th><td>Exact pitch</td><td>84.17%</td><td>94.05%</td></tr>
+<tr><th scope="row">Harmony</th><td>Chord match</td><td>79.54%</td><td>90.16%</td></tr>
+<tr><th scope="row">Rhythm</th><td>Relative onset</td><td>73.43%</td><td>93.08%</td></tr>
+</tbody></table>
+<p class="sc-study-source"><a href="https://arxiv.org/html/2609.33757v1#S5.T4">Yuan et al. · Table 4a–b</a> · ¹ Agreement with unedited harmony</p>
+</div>
+<div class="fv-takeaway">Holding the checkpoint and candidate budget fixed, the expert panel preferred songs generated with a score.</div>
+<div class="fv-source"><a href="https://arxiv.org/html/2609.33757v1#A3">YuE2 · Appendix C</a> · <a href="https://huggingface.co/m-a-p/YuE2-3B#speed-and-resources">Model card · runtime</a> · <a href="https://arxiv.org/html/2609.33757v1#S4.F8">YuE2 · Fig. 8</a></div>
+```
+
+::: {.notes}
+Table 4a measures whether the recording follows each requested change. Table 4b measures agreement with unchanged material. Here both are reported on the authors’ 0–100 scale as percentages. For melody, the target is exact edited pitch. For harmony, it is duration-weighted root-and-triad agreement. For rhythm, it is the relative timing of adjacent onsets. Appendix D.2 gives 190, 181 and 107 eligible scores respectively from 192 prompts, with two seeds per condition. The model regenerates complete songs with fixed lyrics, style, decoder and sampling settings. Experts reviewed the automatic transcriptions used for scoring. [Yuan et al. · Table 4a–b](https://arxiv.org/html/2609.33757v1#S5.T4).
+
+In §4.2, the authors held the prompts, lyrics, checkpoint and waveform decoder fixed. For each setting they generated two songs and selected the one with lower phoneme error. Experts heard anonymized pairs in randomized order. The chart reports 211 judged responses for overall quality, including ties. It isolates score planning from differences in model size and candidate count.
+
+Scope is YuE2-3B with YuE2-Vae; SheetSage2 and MERT2 are companion models. The release date follows arXiv v1, 27 September 2026, although the README benchmark is dated 12 September. The paper reports approximately 3.58B parameters, the hub metadata says 4B, and the repository name says 3B. This card uses the paper’s main-model figure (row 7).
+
+The shared 28-layer AR–NAR Mixture-of-Transformers has shared attention with separate normalization, projections and MLP experts for the two streams (row 6). First, autoregression predicts an ABC melody/chord score and semantic tokens; then flow matching predicts acoustic latents conditioned on the text, score and semantics. The joint loss is 0.25 times autoregressive loss plus flow-matching loss (rows 8–9). MERT2 semantic tokens run at 25 Hz with a 32,768-code vocabulary, 375 bit/s. The Oobleck audio VAE uses 48 kHz stereo, 1,920-fold compression and 64-dimensional latents at 25 Hz (row 10). YuE2-Vae is the default decoder; YuE2-Vae-legacy reproduces paper benchmarks (row 11).
+
+The paper states roughly 346,000 hours of music (row 15). SheetSage2 transcribes scores and MERT2 supplies semantic tokens; this is only partial annotation provenance. Chinese/English demos and benchmark prompts do not establish the training-language mix (rows 17–18). Appendix C reports primarily CC0 and synthetic music. Tokenwave.AI supplied most synthetic data under licence. Table 15 lists 60,000 autoregressive updates, 40,000 joint updates and 6,000 annealing updates. The authors used Adam, BF16, global batch 256 and 64 H800 GPUs.
+
+Training packs complete songs into 24,576 positions, with four conditioning modes and text/lyric dropout for classifier-free guidance (row 22). MERT2’s four-stage training is a companion-model recipe, not proof of all YuE2 training stages (row 23). RL/DPO is not mentioned in the extracted text (row 24).
+
+The 4090 figure is a reported full-CoT HF-pipeline example: 214.85 seconds of audio in about 71 seconds, around 139 LM tokens/s. Peak memory is about 11.0–11.2 GiB, rising to 14.08 GiB at maximum context; the documented requirement is a 24 GB BF16 GPU plus 24 GB RAM. These are distinct measures (rows 30–31). H800 and vLLM results use different setups; do not mix them with the 4090 claim. Maximum duration is not specified: a five-minute demo is not an upper bound (row 32). WildSongBench scores and expert preferences are author-reported, and include Suno v6 in Table 1 and Figure 7.
+
+The local package exposes planning, semantic generation, synthesis and decoding, plus yue2 generate/batch CLI commands (row 40). Covers use external transcription and recommended melody mode; agentic ABC editing uses an external language model (rows 41–42). Code, skill and documentation are Apache 2.0, while weights are CC BY-NC 4.0 (row 39). No YuE2 fine-tuning/LoRA workflow is documented in the audited README; YuE v1’s LoRA is not transferable evidence (row 44).
+
+The initial October workbook snapshot was supplemented with Appendix C and the expert listening study from arXiv v1.
+
+**Source rows:** 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 22, 23, 24, 25, 29, 30, 31, 32, 33, 34, 38, 39, 40, 41, 42, 43, 44.
+
+**Primary sources:** [Paper](https://arxiv.org/html/2609.33757v1), [Model card](https://huggingface.co/m-a-p/YuE2-3B), [Code](https://github.com/multimodal-art-projection/YuE).
+:::

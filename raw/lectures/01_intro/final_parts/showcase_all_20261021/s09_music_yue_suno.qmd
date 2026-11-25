@@ -1,0 +1,34 @@
+## YuE 2 vs Suno v6: what can the author actually change? {#sc-music-yue-suno .fv-slide .sc-slide .sc-compare background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 94 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a></div>
+<div class="sc-body cmp-body cmp-rows-5">
+<p class="cmp-intro">Compare one concrete revision: keep the lyrics, change the melody and regenerate the song</p>
+<table class="cmp-table" aria-label="YuE 2 vs Suno v6: what can the author actually change?"><colgroup><col style="width:22%"><col style="width:39%"><col style="width:39%"></colgroup><thead><tr><th scope="col">Criterion</th><th scope="col">YuE 2</th><th scope="col">Suno v6</th></tr></thead><tbody><tr><th scope="row">Intermediate representation</th><td><span class="cmp-primary">ABC melody + chords are editable</span><span class="cmp-detail">3.58B AR–NAR model → flow-matching audio.</span></td><td><span class="cmp-primary">Generator representation undisclosed</span><span class="cmp-detail">Service accepts prompts and media inputs.</span></td></tr><tr><th scope="row">Revision unit</th><td><span class="cmp-primary">Edit the symbolic plan; synthesize again</span><span class="cmp-detail">Covers and local pipeline are documented.</span></td><td><span class="cmp-primary">Rewrite one section or lyric line</span><span class="cmp-detail">Stems and mashups are product tools.</span></td></tr><tr><th scope="row">Runtime / duration</th><td><span class="cmp-primary">214.85 s audio in 71.04 s</span><span class="cmp-detail">RTX 4090; 32 warm requests; author report.</span></td><td><span class="cmp-primary">Up to 8 min per generation</span><span class="cmp-detail">No comparable generation-time measurement here.</span></td></tr><tr><th scope="row">Resources / access</th><td><span class="cmp-primary">11.18 GiB measured peak in that run</span><span class="cmp-detail">Documented setup: 24 GB GPU + 24 GB RAM.</span></td><td><span class="cmp-primary">Hosted service</span><span class="cmp-detail">No local runtime or public API found in audit.</span></td></tr><tr><th scope="row">Weight terms / price</th><td><span class="cmp-primary">CC BY-NC 4.0 weights; Apache code</span><span class="cmp-detail">Local compute cost is not included.</span></td><td><span class="cmp-primary">Pro $8 / Premier $24 per month</span><span class="cmp-detail">Annual-billing prices; not a per-song compute cost.</span></td></tr></tbody></table>
+<p class="cmp-caveat">YuE timing uses the default VAE; its quality benchmark uses the legacy VAE. This is a control comparison, not proof of superior sound.</p>
+</div>
+<div class="fv-takeaway">YuE exposes a melody plan to edit; Suno exposes section-level edits inside the service.</div>
+<div class="fv-source">Audit snapshot 18–19.10.2026 · reported results 21.10.2026 · source cards: <a href="#/sc-music-yue-2">1</a> · <a href="#/sc-music-yue-2-results">2</a> · <a href="#/sc-music-suno-v6">3</a> · <a href="#/sc-music-suno-v6-results">4</a> · linked cards retain original sources and conditions</div>
+```
+
+::: {.notes}
+Вместо «шесть из шести раскрыто» задаём музыкальную правку: поменять мелодию, сохранив текст. YuE открывает символический ABC-план, Suno — высокоуровневые правки секции и строки. Это разные единицы контроля; они не гарантируют одинаковую точность. 71,04 секунды относятся к генерации 214,85 секунды аудио на конкретном RTX 4090, среднее 32 прогретых запросов, без начальной подготовки и сохранения файла. Пик 11,18 GiB не означает, что любой режим помещается в 12 GB. Для Suno в этом наборе нет сопоставимого runtime. Стоимость подписки не равна цене одного вычислительного запуска.
+
+**Evidence scope.** Comparison of the deck's supplied audit and results snapshots. No fresh model execution or current-price verification. Arithmetic and task implications are editorial derivations, not additional benchmark measurements.
+
+**Source cards:**
+- `final_parts/showcase_all_20261021/music/yue-2.qmd`
+- `final_parts/showcase_results_20261021/sc-music-yue-2-results.qmd`
+- `final_parts/showcase_all_20261021/music/suno-v6.qmd`
+- `final_parts/showcase_results_20261021/sc-music-suno-v6-results.qmd`
+
+**Original links retained from those cards:**
+- [Paper](https://arxiv.org/html/2609.33757v1)
+- [Model card](https://huggingface.co/m-a-p/YuE2-3B)
+- [Code](https://github.com/multimodal-art-projection/YuE)
+- [Example source](https://huggingface.co/m-a-p/YuE2-3B#text-to-music)
+- [v6 launch](https://suno.com/blog/introducing-v6)
+- [Song length](https://help.suno.com/en/articles/13924929)
+- [Plans](https://suno.com/pricing)
+- [Example source](https://suno.com/song/271f2deb-6ae7-4730-9e66-2588b7a3ed51)
+:::

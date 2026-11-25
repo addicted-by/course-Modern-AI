@@ -1,0 +1,37 @@
+## Are you generating a shot or editing existing footage? {#sc-compare-video-workflow .fv-slide .sc-slide .sc-compare background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 70 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a></div>
+<div class="sc-body cmp-body cmp-rows-4">
+<p class="cmp-intro">The required input and deployment path separate models that otherwise look similar in a demo reel</p>
+<table class="cmp-table" aria-label="Are you generating a shot or editing existing footage?"><colgroup><col style="width:22%"><col style="width:29%"><col style="width:22%"><col style="width:27%"></colgroup><thead><tr><th scope="col">Model</th><th scope="col">Documented operation</th><th scope="col">Concrete limits</th><th scope="col">Deployment / boundary</th></tr></thead><tbody><tr><th scope="row"><a href="#sc-t2v-minimax-h3">MiniMax H3</a></th><td>Generate from first/last frames<br>or reference inputs; joint audio.</td><td><span class="cmp-primary">4–15 s · 768p local</span><span class="cmp-detail">32 kHz stereo audio</span></td><td><span class="cmp-primary">Open 33B + 32B encoder</span><span class="cmp-detail">Community License; 2K regeneration is API-only.</span></td></tr><tr><th scope="row"><a href="#sc-t2v-utopai-x">Utopai X</a></th><td>Text → video inside PAI;<br>compare takes and keep versions.</td><td><span class="cmp-primary">Resolution / duration</span><span class="cmp-detail">not disclosed in this audit</span></td><td><span class="cmp-primary">H3-based post-training</span><span class="cmp-detail">No public weights or model API found; no inherited H3 limits.</span></td></tr><tr><th scope="row"><a href="#sc-t2v-aleph-2">Aleph 2.0</a></th><td>Edit an existing clip:<br>relight, restyle, change objects.</td><td><span class="cmp-primary">≤30 s · up to 1080p</span><span class="cmp-detail">Replicate: 1–5 image anchors</span></td><td><span class="cmp-primary">Studio / partner API</span><span class="cmp-detail">Text-to-video from scratch is not claimed.</span></td></tr><tr><th scope="row"><a href="#sc-t2v-kling-3-omni">Kling 3.0 Omni</a></th><td>Generate shots and edit video;<br>elements control identity / motion.</td><td><span class="cmp-primary">Generation: 3–15 s</span><span class="cmp-detail">720p / 1080p</span></td><td><span class="cmp-primary">Web / API, closed</span><span class="cmp-detail">Editing can retain original audio; generation modes differ.</span></td></tr></tbody></table>
+<p class="cmp-caveat">Local H3 is a reproducible deployment artifact, not the published recipe for Utopai X. The base model’s licence and limits do not carry over.</p>
+</div>
+<div class="fv-takeaway">“Relight this clip” and “create a new shot” require different inputs and endpoints.</div>
+<div class="fv-source">Audit snapshot 18–19.10.2026 · reported results 21.10.2026 · source cards: <a href="#/sc-t2v-minimax-h3">1</a> · <a href="#/sc-t2v-utopai-x">2</a> · <a href="#/sc-t2v-aleph-2">3</a> · <a href="#/sc-t2v-kling-3-omni">4</a> · linked cards retain original sources and conditions</div>
+```
+
+::: {.notes}
+Сравните два задания: сохранить тайминг готовой сцены и изменить свет либо снять новую сцену по тексту. Aleph документирует первое; в этой версии ему нельзя приписывать T2V из ничего. MiniMax H3 даёт открытые checkpoints FL2VA и Ref2VA и локальное исполнение. Utopai использует H3 как основу, но не наследует автоматически опубликованные размеры, лимиты и лицензию H3. У Kling есть и генерация, и редактирование, однако числа в строке относятся к генерации. Тем самым сравниваются операции, а не рекламные названия систем.
+
+**Evidence scope.** Comparison of the deck's supplied audit and results snapshots. No fresh model execution or current-price verification. Arithmetic and task implications are editorial derivations, not additional benchmark measurements.
+
+**Source cards:**
+- `final_parts/showcase_all_20261021/t2v/03_minimax_h3.qmd`
+- `final_parts/showcase_all_20261021/t2v/02_utopai_x.qmd`
+- `final_parts/showcase_all_20261021/t2v/08_aleph_2.qmd`
+- `final_parts/showcase_all_20261021/t2v/05_kling_3_omni.qmd`
+
+**Original links retained from those cards:**
+- [H3 blog](https://www.minimax.io/blog/minimax-h3)
+- [Model card](https://huggingface.co/MiniMaxAI/MiniMax-H3)
+- [Licence](https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE)
+- [PAI launch](https://www.utopaistudios.com/en/blog/introducing-the-all-new-pai-and-utopai-x)
+- [Utopai X page](https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking)
+- [Runway launch](https://runway.com/news/introducing-aleph-2-and-edit-studio)
+- [Provider API](https://replicate.com/runwayml/aleph-2)
+- [Runware docs](https://runware.ai/docs/models/runway-aleph-2-0)
+- [Omni guide](https://kling.ai/quickstart/klingai-video-3-omni-model-user-guide)
+- [Provider API](https://replicate.com/kwaivgi/kling-v3-omni-video)
+- [Family launch](https://finance.yahoo.com/news/kling-ai-launches-3-0-080000425.html)
+:::

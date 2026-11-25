@@ -1,0 +1,70 @@
+## Kimi K3: preserved thinking is part of deployment {#sc-llm-kimi-k3 .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 20 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-kimi-k3-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="moonshot"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="Moonshot AI" role="img"><img src="assets/showcase_identity_20261021/moonshot.svg" alt="Moonshot AI"></div><p class="ds-kicker">released 16.07.2026</p><p class="ds-kicker ds-r">Open weights</p><h3 class="ds-name">Kimi K3</h3><p class="ds-lic">Kimi K3 License</p></div>
+<div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div>
+<div class="ds-spec ds-lead"><span class="ds-k">Total / active</span><div class="ds-line"><b class="ds-v">2.8T / 104B</b></div>
+</div>
+<div class="ds-spec "><span class="ds-k">93 layers</span><b class="ds-v">69 KDA + 24 MLA</b></div>
+<div class="ds-spec "><span class="ds-k">Vision encoder</span><b class="ds-v">MoonViT-V2</b></div>
+</div>
+<div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div>
+<div class="ds-spec ds-lead"><span class="ds-k">Report description</span><div class="ds-line"><b class="ds-v">Refined recipe</b></div>
+</div>
+<div class="ds-spec ds-gap ds-w2"><span class="ds-k">Not disclosed</span><b class="ds-v">Sources, tokens, cutoff</b></div>
+</div>
+<div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div>
+<div class="ds-spec ds-lead"><span class="ds-k">QAT from SFT</span><div class="ds-line"><b class="ds-v">MXFP4</b><span class="ds-n">weights</span></div>
+</div>
+<div class="ds-spec "><span class="ds-k">Activations</span><b class="ds-v">MXFP8</b></div>
+<div class="ds-spec "><span class="ds-k">Optimization</span><b class="ds-v">Per-Head Muon</b></div>
+</div>
+<div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div>
+<div class="ds-spec ds-lead"><span class="ds-k">Context</span><div class="ds-line"><b class="ds-v">1,048,576</b><span class="ds-n">tokens</span></div>
+</div>
+<div class="ds-spec "><span class="ds-k">Thinking history</span><b class="ds-v">Must be preserved</b></div>
+<div class="ds-spec "><span class="ds-k">Effort</span><b class="ds-v">low · high · max</b></div>
+</div>
+<div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div>
+<div class="ds-spec ds-lead"><span class="ds-k">Recommended harness</span><div class="ds-line"><b class="ds-v">Kimi Code CLI</b></div>
+</div>
+<div class="ds-spec "><span class="ds-k">Compatible APIs</span><b class="ds-v">OpenAI + Anthropic</b></div>
+<div class="ds-spec "><span class="ds-k">Quickstart</span><b class="ds-v">Dynamic tools</b></div>
+</div></div>
+</div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_llm_evidence/kimi-k3.svg" alt="How sparse is Kimi K3?. Model summary · per-token routing. EXPERT POOL 896 routed experts 2 additional shared experts; ROUTING 16 selected per token About 1.8% of the routed pool; PARAMETERS 104B active / 2.8T Includes more than routed experts."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Visual reasoning with a Python tool</caption>
+<thead><tr><th scope="col">Benchmark score (%)</th><th scope="col">No tool</th><th scope="col">With Python</th></tr></thead>
+<tbody>
+<tr><th scope="row">MMMU-Pro</th><td>81.6</td><td>83.4</td></tr>
+<tr><th scope="row">CharXiv · reasoning</th><td>84.8</td><td>91.3</td></tr>
+<tr><th scope="row">Math-Vision</th><td>94.3</td><td>97.8</td></tr>
+<tr><th scope="row">ZeroBench-main · pass@5</th><td>23.0</td><td>41.0</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://arxiv.org/pdf/2607.24653v2#page=27">Kimi K3 Technical Report · Table 2</a> · Max effort, temperature 1.0</p>
+</div>
+<div class="fv-takeaway">The public checkpoint is detailed, and multi-turn quality depends on retaining the full thinking history.</div>
+<div class="fv-source">LLM_v1.0.xlsx · Kimi K3 · audit 18.10.2026 · <a href="https://huggingface.co/moonshotai/Kimi-K3">Model card</a> · <a href="https://www.kimi.ai/blog/kimi-k3">Technical blog</a> · <a href="https://platform.kimi.ai/docs/guide/kimi-k3-quickstart">API quickstart</a> · <a href="https://huggingface.co/moonshotai/Kimi-K3">Figure source</a></div>
+```
+
+::: {.notes}
+**Table.** Table 2, p. 27, reports without-tool and with-Python values together in each K3 cell. The slide separates those two conditions into columns. CharXiv RQ is the reasoning-query subset. ZeroBench-main reports pass@5. All four selected rows are from the same K3 model at maximum effort. [Kimi K3 Technical Report · Table 2](https://arxiv.org/pdf/2607.24653v2#page=27).
+
+**Figure.** Moonshot AI, Kimi K3 model card, “Model Summary”. 16 / 896 = 1.79% of routed experts. Parameter activation includes shared and non-expert components and has a different denominator. [Primary source](https://huggingface.co/moonshotai/Kimi-K3).
+
+The snapshot covers Kimi K3, launched on 16 July with weights released on 27 July 2026. The model combines 69 Kimi Delta Attention layers and 24 Gated MLA layers across 93 layers, with one dense layer. Its MoE has 896 routed experts, 16 selected per token and two shared experts. Attention Residuals select representations across depth. The vision encoder is MoonViT-V2 with 401M parameters; the model table lists text and images, while the introduction also mentions video.
+
+Quantization-aware training starts at supervised fine-tuning, with MXFP4 weights and MXFP8 activations. Quantile Balancing, Per-Head Muon and balanced expert parallelism are disclosed. The data recipe remains Partial because corpus sources, token counts and cutoff are absent. The full technical report was not directly opened in the supplied audit: the refined-data claim in row 20 and detailed RL-domain claims in row 31 were not rechecked.
+
+For multi-turn use, return the entire assistant message including reasoning_content and tool_calls. Dropping reasoning history or switching the model within a session can destabilize quality. Thinking is always on; low and high effort were added after the initial max-only release. Kimi Code CLI is the recommended tested harness. The OpenAI- and Anthropic-compatible API, dynamic tool loading and structured output are deployment interfaces. Kimi Work research-agent examples are a separate product workflow, not a parameter-count claim.
+
+**Snapshot and provenance.** LLM_v1.0.xlsx, sheet “Kimi K3”, audit dated 18.10.2026. Category statuses follow “Сводка”: Architecture: Known; Data: Partial; Training: Known; Inference: Known; Tools: Known. Known means a model-specific fact is disclosed, not that the whole category is complete. These slides summarize the supplied audit and do not constitute a fresh independent verification. Prices, limits and availability refer to that snapshot.
+
+**Source rows:** 1, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20, 21, 25, 26, 27, 28, 29, 30, 31, 35, 36, 37, 38, 39, 41, 43, 44, 48, 49, 50, 51, 52.
+
+**Sources:** [Model card](https://huggingface.co/moonshotai/Kimi-K3), [Technical blog](https://www.kimi.ai/blog/kimi-k3), [API quickstart](https://platform.kimi.ai/docs/guide/kimi-k3-quickstart).
+:::

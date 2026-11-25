@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326 208" font-family="Arial, Helvetica, sans-serif">
+<title>Expressiveness votes</title>
+<desc>Share won by Eleven v4 · blind pairs. vs. Sonic 3.6 81%, vs. Inworld TTS-2 81%, vs. Gemini 3.8 Flash-Lite 72%, vs. Gemini 3.8 Flash 65%</desc>
+<text x="6" y="24" font-size="21" font-weight="700" fill="#132a2a" text-anchor="start">Expressiveness votes</text>
+<text x="6" y="46" font-size="16" font-weight="400" fill="#425351" text-anchor="start">Share won by Eleven v4 · blind pairs</text>
+<text x="6" y="67" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">vs. Sonic 3.6</text>
+<text x="320" y="67" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">81%</text>
+<rect x="6" y="71" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="71" width="254.34" height="6" fill="#186763"/>
+<text x="6" y="99" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">vs. Inworld TTS-2</text>
+<text x="320" y="99" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">81%</text>
+<rect x="6" y="103" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="103" width="254.34" height="6" fill="#186763"/>
+<text x="6" y="131" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">vs. Gemini 3.8 Flash-Lite</text>
+<text x="320" y="131" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">72%</text>
+<rect x="6" y="135" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="135" width="226.08" height="6" fill="#186763"/>
+<text x="6" y="163" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">vs. Gemini 3.8 Flash</text>
+<text x="320" y="163" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">65%</text>
+<rect x="6" y="167" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="167" width="204.10" height="6" fill="#186763"/>
+<text x="6" y="202" font-size="15" font-weight="400" fill="#425351" text-anchor="start">0</text>
+<text x="320" y="202" font-size="15" font-weight="400" fill="#425351" text-anchor="end">100%</text>
+</svg>

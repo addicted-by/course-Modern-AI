@@ -1,0 +1,27 @@
+## Context changes the delivery {#sc-tts-sonic-36-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 74 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-tts-sonic-36">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="cartesia">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Cartesia" class="sc-company" role="img"><span class="sc-company-name">Cartesia</span></div></div><div class="sr-model"><p>RESULTS · Text-to-speech</p><h3>Sonic 3.6</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">US-English preference</p><p class="sr-metric-value">92%</p><p class="sr-metric-note">Blind Cartesia test against Eleven v3 in matched voices. <a class="" href="https://www.cartesia.ai/blog/sonic-3.6" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Response latency</p><p class="sr-metric-value">&lt;90 ms</p><p class="sr-metric-note">Launch figure with unspecified timing boundaries. <a class="" href="https://www.cartesia.ai/blog/sonic-3.6" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Generation throughput</p><p class="sr-metric-value">132 characters/s</p><p class="sr-metric-note">Cartesia figure. Hardware and concurrency unspecified. <a class="" href="https://www.cartesia.ai/blog/sonic-3.6" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example">
+  <div class="sr-stage sr-audio">
+    <div><p class="sr-audio-label">Cartesia · Sonic 3.6</p><h3>A lower monthly payment</h3></div>
+<p class="sr-audio-prompt"><strong>Opening line.</strong> “I understand things are difficult right now.”</p>
+    <div><img src="assets/showcase_results_20261021/tts/sonic-36-support-wave.svg" alt="Waveform of the example, with time in seconds." style="display:block;width:100%;height:108px;object-fit:contain"></div>
+    <audio controls preload="none" src="assets/showcase_results_20261021/tts/sonic-36-support.mp3" aria-label="Play Cartesia · Sonic 3.6 speech example">Audio playback requires an HTML5 browser.</audio>
+  </div>
+  <p class="sr-caption">The speaker proposes a smaller monthly payment and reassures the listener. Listen for the pause before the amount.</p>
+</div>
+</div>
+<div class="fv-takeaway">The same script and comparable voices let a listener focus on phrasing and intonation.</div>
+<div class="fv-source"><a href="https://www.cartesia.ai/blog/sonic-3.6" target="_blank" rel="noopener">US-English paired example</a></div>
+```
+
+::: {.notes}
+Cartesia identifies this MP3 as Sonic-3.6 in the English-US pair next to the support script. Its other player contains Eleven v3. The two models read identical words. The local file is the original MP3. The sample is US English. The 92% value describes the full US-English panel, not this individual recording.
+
+The waveform shows peak absolute amplitude within equally spaced intervals of the playable course copy. Its time scale is in seconds.
+
+[Original demonstration](https://www.cartesia.ai/blog/sonic-3.6) · [Vendor media file](https://www.cartesia.ai/_astro/en-us-demo-sonic.DsEXoOz4.mp3)
+:::

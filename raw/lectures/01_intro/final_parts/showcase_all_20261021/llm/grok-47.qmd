@@ -1,0 +1,50 @@
+## Grok 4.7: clear API limits, partial training disclosure {#sc-llm-grok-47 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 16 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-grok-47-results">Results →</a></div>
+<div class="sc-body bn-body bn-w1" data-company="xai"><div class="bn-id" style="--bn-brand:#141414"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_llm_evidence/grok-47.svg" alt="Reasoning effort. Reasoning tokens per ticket. Low ~140, Medium / high / xhigh ~600."></figure></div>
+<div class="bn-model"><p class="bn-kicker">LLM · xAI</p><h3>Grok 4.7</h3><p class="bn-ids"><code>grok-4.7</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">21.09.2026</b></p><p><span>Access</span><b>API</b></p><p><span>Weights</span><b class="bn-shut">closed</b></p></div>
+</div></div>
+<div class="bn-pub"><div class="bn-tile bn-k bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+<div class="bn-stat"><p class="bn-num">500K<small>tokens</small></p><p class="bn-cap">context window</p></div>
+<div class="bn-stat bn-rule"><p class="bn-num">$2 / $6</p><p class="bn-cap">input / output per 1M tokens below 200K</p></div>
+<div class="bn-rule"><p class="bn-item"><i class="sc-pip k"></i>Always-on reasoning. Default effort: high.</p><p class="bn-item"><i class="sc-pip k"></i>Text and image input. No Batch API.</p></div>
+</div>
+<div class="bn-tile bn-k bn-b"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div><p class="bn-item"><i class="sc-pip k"></i>Function calling and structured outputs.</p><p class="bn-item"><i class="sc-pip k"></i>Platform tools: Web Search, X Search, code execution, Collections Search and Remote MCP.</p></div>
+<div class="bn-tile bn-p bn-c"><div class="bn-head"><h4>Architecture</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Vendor reports a new, larger base model.</p><p class="bn-gap">No size or dense / MoE detail.</p></div>
+<div class="bn-tile bn-p bn-d"><div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Longer RL on harder, multi-hour tasks.</p><p class="bn-item"><i class="sc-pip p"></i>Native Grok Bot harness training.</p></div>
+</div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Undisclosed</span><b>1<small>of 5</small></b></div>
+<div class="bn-cell"><h4><i class="sc-pip n"></i>Data</h4><p>Pretraining corpus is undisclosed. The documented May 2026 knowledge cutoff does not identify the corpus.</p></div>
+</div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Software engineering at matched effort</caption>
+<thead><tr><th scope="col">Benchmark · effort</th><th scope="col">Grok 4.6</th><th scope="col">Grok 4.7</th></tr></thead>
+<tbody>
+<tr><th scope="row">DeepSWE v1.1 · high</th><td>65.2%</td><td>71.0%</td></tr>
+<tr><th scope="row">FrontierSWE V2 · xhigh</th><td>25.3%</td><td>29.0%</td></tr>
+<tr><th scope="row">SWE-Marathon v1.1 · high</th><td>31.9%</td><td>46.0%</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://media.x.ai/v1/website/card4p7-3a96f40b.pdf#page=8">Grok 4.7 Model Card · §§2.2, 2.4–2.5</a> · Published evaluator scores</p>
+</div>
+<div class="fv-takeaway">The model’s API contract is explicit, while corpus and topology remain unspecified.</div>
+<div class="fv-source">LLM_v1.0.xlsx · Grok 4.7 · audit 18.10.2026 · <a href="https://x.ai/news/grok-4-7">xAI announcement</a> · <a href="https://docs.x.ai/developers/models/grok-4.7">Model documentation</a> · <a href="https://docs.x.ai/developers/tools/overview">Platform tools</a> · <a href="https://docs.x.ai/cookbook/examples/reasoning-effort-evals">Figure source</a></div>
+```
+
+::: {.notes}
+**Table.** This selection transcribes three figures in the model card rather than a single numbered table. Both generations use the effort stated on each row. Datacurve measures DeepSWE pass@1 in mini-swe-agent. Proximal reports FrontierSWE V2 mean@5 partial credit using its Proximus harness. Abundant AI reports SWE-Marathon resolution in native agent harnesses. The protocols and denominators differ between rows. [Grok 4.7 Model Card · §§2.2, 2.4–2.5](https://media.x.ai/v1/website/card4p7-3a96f40b.pdf#page=8).
+
+**Figure.** xAI, “Reasoning Effort Evals”, sample task with 30 short fictional support tickets. These are approximate mean reasoning-token counts per answer. The three higher efforts each used about 600 tokens. Bar scale runs from 0 to 600 tokens. [Primary source](https://docs.x.ai/cookbook/examples/reasoning-effort-evals).
+
+Architecture is Partial because xAI describes a new, larger base model, without specifying parameter count or dense versus MoE topology. The approximately 2.1T estimate is a rumor and is omitted. Data is Not disclosed in the summary even though a May 2026 cutoff is documented: a cutoff is not a corpus description. Alleged SpaceX data are also labeled a rumor in the workbook.
+
+The API supports 500,000 context tokens and low, medium, high and xhigh effort, with high as default and no reasoning-off mode. Base pricing is $2 input and $6 output per million tokens, with $0.50 cached input; requests above 200K context cost more. The platform tools in the card are hosted integrations, not architectural components of the checkpoint. The longer RL run, harder task mixture and Grok Bot familiarity remain vendor-level training descriptions, so Training stays Partial. The multi-agent and compaction documentation does not establish a reproducible native multi-agent training recipe.
+
+**Snapshot and provenance.** LLM_v1.0.xlsx, sheet “Grok 4.7”, audit dated 18.10.2026. Category statuses follow “Сводка”: Architecture: Partial; Data: Not disclosed; Training: Partial; Inference: Known; Tools: Known. Known means a model-specific fact is disclosed, not that the whole category is complete. These slides summarize the supplied audit and do not constitute a fresh independent verification. Prices, limits and availability refer to that snapshot.
+
+**Source rows:** 1, 2, 6, 7, 11, 12, 13, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 31, 38, 39, 40, 41.
+
+**Sources:** [xAI announcement](https://x.ai/news/grok-4-7), [Model documentation](https://docs.x.ai/developers/models/grok-4.7), [Platform tools](https://docs.x.ai/developers/tools/overview).
+:::

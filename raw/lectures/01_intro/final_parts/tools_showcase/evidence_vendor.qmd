@@ -1,0 +1,53 @@
+## How does Kiro’s team screen harness changes? {#ts-evidence-ide-kiro .ts-slide .ts-evidence .ts-kiro}
+
+```{=html}
+<div class="ts-card ts-evidence-layout">
+  <figure class="ts-evidence-figure">
+    <a href="assets/tools_showcase/evidence-kiro-three-stage-gate.png" download title="Download full-size figure"><img src="assets/tools_showcase/evidence-kiro-three-stage-gate.png" alt="Three sequential Kiro engineering checks. On target failures, the candidate must pass 10 of 10 runs and the control at most 4 of 10. A permanent regression suite must pass every assertion. Final offline confirmation uses 89 tasks, five runs per arm per task. Failures reject a candidate. A human makes the final merge decision."></a>
+    <figcaption>Original figure · <a href="https://kiro.dev/blog/how-kiro-fixes-itself/#decide-on-the-delta-through-checks-the-model-cannot-reach">How Kiro fixes itself, and how we keep the fixes honest</a> · Myeongsoo Kim et al., Kiro · 20 Oct 2026</figcaption>
+  </figure>
+  <div class="ts-evidence-facts" role="group" aria-labelledby="ts-evidence-kiro-facts">
+    <h3 id="ts-evidence-kiro-facts">Internal evaluation</h3>
+    <dl>
+      <dt>Control</dt><dd>Same Kiro with the candidate change off and on</dd>
+      <dt>Full confirmation</dt><dd>89 tasks · 5 runs per task per arm · ≈890 runs</dd>
+      <dt>First week</dt><dd>7 of 8 opened PRs merged</dd>
+      <dt>Release decision</dt><dd>Checks followed by human review</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="#/ts-kiro">Back to Kiro ↑</a><a href="https://kiro.dev/blog/how-kiro-fixes-itself/">Engineering report</a><a href="https://kiro.dev/images/blogs/how-kiro-fixes-itself/three-stage-gate.png?h=a263c631">Original figure</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Это оригинальная схема команды Kiro от 20 октября 2026 года. Она описывает внутренний процесс проверки изменений в агентном рантайме Kiro. Кандидата сравнивают с повторным контрольным прогоном того же агента при выключенном изменении. На стартовом отборе проверяют целевые сбои. Кандидат должен пройти 10 из 10 запусков, контроль — не более 4 из 10. Затем постоянный набор регрессионных проверок должен пройти целиком. Финальная проверка охватывает 89 задач, по пять запусков с изменением и без него на задачу. Авторы проверяют улучшение на целевых и отложенных задачах и допускают только заранее ограниченное ухудшение на остальных.
+
+В первую неделю система открыла восемь PR. Семь приняли, ещё один закрыли по другой причине. Это число относится к конкретной неделе. После автоматических проверок решение о слиянии принимает человек. [Инженерный отчёт Kiro](https://kiro.dev/blog/how-kiro-fixes-itself/). [Оригинал рисунка](https://kiro.dev/images/blogs/how-kiro-fixes-itself/three-stage-gate.png?h=a263c631).
+:::
+
+## How does the Codex App Server reach a core thread? {#ts-evidence-remote-codex .ts-slide .ts-evidence .ts-codex}
+
+```{=html}
+<div class="ts-card ts-evidence-layout">
+  <figure class="ts-evidence-figure">
+    <a href="assets/tools_showcase/evidence-codex-app-server.svg" target="_blank" rel="noopener" title="Open full-size figure"><img src="assets/tools_showcase/evidence-codex-app-server.svg" alt="The Codex App Server receives JSON-RPC from a client through a stdio reader. The message processor looks up a thread handle with the thread manager and forwards the request to the core thread. Core events return via the processor and reader to the client as JSON-RPC messages."></a>
+    <figcaption>Original figure · <a href="https://openai.com/index/unlocking-the-codex-harness/#inside-the-codex-harness">Unlocking the Codex harness: how we built the App Server</a> · Celia Chen, OpenAI Engineering · 4 Feb 2026</figcaption>
+  </figure>
+  <div class="ts-evidence-facts" role="group" aria-labelledby="ts-evidence-codex-facts">
+    <h3 id="ts-evidence-codex-facts">Protocol and runtime</h3>
+    <dl>
+      <dt>Transport</dt><dd>Bidirectional JSON-RPC over stdio (JSONL)</dd>
+      <dt>Thread manager</dt><dd>Starts a Codex core session per thread</dd>
+      <dt>Event stream</dt><dd>One request can produce multiple UI updates</dd>
+      <dt>Approval</dt><dd>The server can pause a turn and ask the client for input</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="#/ts-codex">Back to Codex ↑</a><a href="https://openai.com/index/unlocking-the-codex-harness/">Engineering report</a><a href="https://images.ctfassets.net/kftzwdyauwt9/eErxEn4okb3oc65EvHHBM/b20e2d68b33dd7eb2fab590683bf5d09/OAI_Unlocking_the_Codex_harness_App_server_process_flow_desktop-light.svg">Original figure</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Это оригинальная схема процесса App Server из инженерной статьи Селии Чэнь от 4 февраля 2026 года. Проследите сплошные стрелки от клиентского запроса JSON-RPC через stdio reader к обработчику. Обработчик находит сеанс через менеджер потоков и направляет запрос в Codex core. Пунктирные стрелки показывают обратный путь событий и ответов. Обработчик преобразует внутренние события в стабильные уведомления, из которых клиент строит интерфейс.
+
+JSON-RPC здесь двусторонний. Когда действию нужно подтверждение, сервер запрашивает его у клиента и приостанавливает ход до ответа. Схема фиксирует архитектуру App Server на дату публикации. В этой же статье переход терминального клиента на App Server описан как запланированный. [Инженерный отчёт OpenAI](https://openai.com/index/unlocking-the-codex-harness/). [Оригинал рисунка](https://images.ctfassets.net/kftzwdyauwt9/eErxEn4okb3oc65EvHHBM/b20e2d68b33dd7eb2fab590683bf5d09/OAI_Unlocking_the_Codex_harness_App_server_process_flow_desktop-light.svg).
+:::

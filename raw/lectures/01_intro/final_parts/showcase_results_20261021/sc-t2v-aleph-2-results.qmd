@@ -1,0 +1,22 @@
+## Aleph 2.0 changes a white sneaker to red {#sc-t2v-aleph-2-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 68 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-aleph-2">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="runway">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Runway" class="sc-company" role="img"><img alt="Runway" src="assets/showcase_identity_20261021/runway.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>Aleph 2.0</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Editing preference Elo</p><p class="sr-metric-value">1014 Elo</p><p class="sr-metric-note">95% CI 1006–1022; n=20,816; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/video-editing" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Maximum editable duration</p><p class="sr-metric-value">30 s</p><p class="sr-metric-note">Vendor capability limit; not a quality benchmark <a class="" href="https://runway.com/news/introducing-aleph-2-and-edit-studio" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Supported edit resolution</p><p class="sr-metric-value">1080p</p><p class="sr-metric-note">Vendor capability limit; not a quality benchmark <a class="" href="https://runway.com/news/introducing-aleph-2-and-edit-studio" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/aleph-2-poster.webp" alt="The wipe reveals the edited shoe. Follow its outline and the presenter’s fingers as the shoe turns."><video controls playsinline preload="none" src="assets/showcase_video_evidence/aleph-2.mp4" poster="assets/showcase_video_evidence/aleph-2-poster.webp" aria-label="Aleph 2.0 changes a white sneaker to red" aria-describedby="aleph-2-caption"></video></div><p class="sr-caption" id="aleph-2-caption">The wipe reveals the edited shoe. Follow its outline and the presenter’s fingers as the shoe turns.</p></div></div>
+<div class="fv-takeaway">Check whether the fingers, camera motion and room survive the color change.</div>
+<div class="fv-source"><a href="https://runway.com/product/aleph-2">Runway · Same video, new product</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+Runway’s Aleph 2 product page pairs its sneaker-color instruction with replacement-wipe.mp4. The local copy remuxes the complete five-second 720p presentation stream from Runway’s Mux player. The moving wipe is part of the vendor comparison. The 1080p figure on the slide is the published editing ceiling.
+
+- **Editing preference Elo: 1014 Elo**. Instruction-based video editing; audio kept. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/video-editing).
+
+- **Maximum editable duration: 30 seconds**. Maximum supported clip length. Attribution: Vendor-published capability limit, not a benchmark.. [Source](https://runway.com/news/introducing-aleph-2-and-edit-studio).
+
+- **Supported edit resolution: 1080 vertical pixels**. Published release capability. Attribution: Vendor-published capability limit, not a quality score.. [Source](https://runway.com/news/introducing-aleph-2-and-edit-studio).
+
+[Published example](https://runway.com/product/aleph-2) · [Original media](https://stream.mux.com/UiL4i02FjzFOn8ejIyaQOZUEnjjNkd9PzwAcodcB33SA.m3u8)
+:::

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 694 302" role="img" aria-labelledby="title desc">
+<title id="title">AlphaMini Go demo position</title>
+<desc id="desc">The nine-by-nine position transcribed from the Google Antigravity demo poster. The on-screen score was 26 for the human playing Black and 37.5 for the network playing White. The interface displayed a 35 percent estimate for Black at checkpoint 2180.</desc>
+<rect width="694" height="302" fill="#f5f8fc"/>
+<rect x="18" y="18" width="267" height="266" rx="4" fill="#f2cb8e" stroke="#805d33" stroke-width="2"/>
+<g stroke="#65451d" stroke-width="1.45">
+<path d="M39 39V263 M39 39H263"/>
+<path d="M67 39V263 M39 67H263"/>
+<path d="M95 39V263 M39 95H263"/>
+<path d="M123 39V263 M39 123H263"/>
+<path d="M151 39V263 M39 151H263"/>
+<path d="M179 39V263 M39 179H263"/>
+<path d="M207 39V263 M39 207H263"/>
+<path d="M235 39V263 M39 235H263"/>
+<path d="M263 39V263 M39 263H263"/>
+</g>
+<circle cx="67" cy="39" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="95" cy="39" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="123" cy="39" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="207" cy="39" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="39" cy="67" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="67" cy="67" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="123" cy="67" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="151" cy="67" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="179" cy="67" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="207" cy="67" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="235" cy="67" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="263" cy="67" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="39" cy="95" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="67" cy="95" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="95" cy="95" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="123" cy="95" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="151" cy="95" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="235" cy="95" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="39" cy="123" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="67" cy="123" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="95" cy="123" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="123" cy="123" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="179" cy="123" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="235" cy="123" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="263" cy="123" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="151" cy="151" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="179" cy="151" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="207" cy="151" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="235" cy="151" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="263" cy="151" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="39" cy="179" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="67" cy="179" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="95" cy="179" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="151" cy="179" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="179" cy="179" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="207" cy="179" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="39" cy="207" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="67" cy="207" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="95" cy="207" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="123" cy="207" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="151" cy="207" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="179" cy="207" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="207" cy="207" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="235" cy="207" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="39" cy="235" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="95" cy="235" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="123" cy="235" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="179" cy="235" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="207" cy="235" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="235" cy="235" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="235" cy="263" r="12" fill="#161719" stroke="#080808"/>
+<circle cx="263" cy="263" r="12" fill="#fffdf8" stroke="#76613f"/>
+<circle cx="95" cy="39" r="7" fill="none" stroke="#fafafa" stroke-width="1.8"/>
+<g font-family="system-ui, sans-serif" fill="#172536">
+<text x="317" y="52" font-size="27" font-weight="700">AlphaMini Go</text>
+<text x="317" y="83" font-size="18">Demo screen · 9×9 · checkpoint step 2180</text>
+<path d="M317 102H668 M317 179H668" stroke="#9daebf"/>
+<text x="317" y="133" font-size="19" font-weight="650">Black · Human</text>
+<text x="654" y="133" font-size="22" text-anchor="end">26</text>
+<text x="317" y="162" font-size="19" font-weight="650">White · Neural network</text>
+<text x="654" y="162" font-size="22" text-anchor="end">37.5</text>
+<text x="317" y="223" font-size="32" font-weight="750">35%</text>
+<text x="317" y="249" font-size="19">Black win estimate on this screen</text>
+</g>
+</svg>

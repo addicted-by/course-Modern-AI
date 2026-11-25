@@ -1,0 +1,38 @@
+## A compact model, a range of styles {#sc-t2i-flux-2-klein-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 40 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-flux-2-klein">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="black-forest-labs">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Black Forest Labs" class="sc-company" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>FLUX.2 [klein]</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">FP8 speedup</p><p class="sr-metric-value">Up to 1.6×</p><p class="sr-metric-note">RTX 5080/5090, 1024 × 1024; vendor claim. <a class="" href="https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">NVFP4 speedup</p><p class="sr-metric-value">Up to 2.7×</p><p class="sr-metric-note">RTX 5080/5090, 1024 × 1024; vendor claim. <a class="" href="https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">4B memory</p><p class="sr-metric-value">≈13 GB VRAM</p><p class="sr-metric-note">Consumer-GPU capability; configuration not fully specified. <a class="" href="https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img src="assets/showcase_results_20261021/t2i/sc-t2i-flux-2-klein-text-to-image-collage.jpg" alt="The official text-to-image collage presents the klein family’s output range."></div><p class="sr-caption">Follow the change from photographic portraits to illustration and landscape. Each tile is a separate published generation.</p></div></div>
+<div class="fv-takeaway">Black Forest Labs attributes this collage to the [klein] family. The release leaves the individual checkpoints unspecified.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+The official text-to-image collage presents the klein family’s output range.
+
+
+
+- **FP8 speedup: Up to 1.6× **. RTX 5080/5090, 1024 × 1024 T2I; article does not fully specify each baseline/configuration. Attribution: vendor_performance_claim. [Source](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence).
+
+- **NVFP4 speedup: Up to 2.7× **. Same published GPU/output conditions; an upper bound, not all workloads. Attribution: vendor_performance_claim. [Source](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence).
+
+- **4B memory footprint: About 13 GB VRAM **. Consumer-GPU capability claim; hardware/software configuration not fully enumerated. Attribution: vendor_resource_claim. [Source](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence).
+
+
+
+**Example provenance and limitations.**
+
+Launch caption names FLUX.2 [klein]; the collage does not pin 4B versus 9B or Base versus distilled.
+
+Do not infer the collage checkpoint from its placement on a family launch page.
+
+Quantization figures and image selection concern different variants; keep labels visible.
+
+[Published media/source](https://cdn.sanity.io/images/2gpum2i6/production/41055678178f6fe75ca618b854b195e48dfc55ed-2127x1400.jpg): FLUX.2 [klein]: official text-to-image collage.. Rights: Public BFL showcase; page footer reserves rights. No separate demo-image licence identified. Attribute Black Forest Labs; model-weight licences are distinct.
+:::

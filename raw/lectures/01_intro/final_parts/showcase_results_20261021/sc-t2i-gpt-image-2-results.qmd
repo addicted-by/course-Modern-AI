@@ -1,0 +1,40 @@
+## Transparent products, delicate edges {#sc-t2i-gpt-image-2-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 34 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-gpt-image-2">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="openai">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="OpenAI" class="sc-company" role="img"><img alt="OpenAI" src="assets/showcase_identity_20261021/openai.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>GPT Image 2</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Example size</p><p class="sr-metric-value">1024 × 1536</p><p class="sr-metric-note">Product recipe; displayed assets remain GPT Image 2. <a class="" href="https://developers.openai.com/cookbook/examples/multimodal/transparent-image-assets-for-campaigns-and-presentations" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Background</p><p class="sr-metric-value">Alpha PNG</p><p class="sr-metric-note">Original transparent assets; not a measured benchmark. <a class="" href="https://developers.openai.com/cookbook/examples/multimodal/transparent-image-assets-for-campaigns-and-presentations" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-gallery"><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-gpt-image-2-amber-perfume-transparent.png" alt="GPT Image 2: amber-glass perfume bottle."><figcaption>Amber perfume bottle</figcaption></figure><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-gpt-image-2-reed-diffuser-transparent.png" alt="GPT Image 2: reeds and fine pampas fibres."><figcaption>Reed diffuser</figcaption></figure></div><p class="sr-caption">Both products have transparent backgrounds. Inspect the glass reflections and the thin fibers extending beyond the diffuser.</p></div></div>
+<div class="fv-takeaway">The Cookbook identifies these original PNGs as GPT Image 2 outputs.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://developers.openai.com/cookbook/examples/multimodal/transparent-image-assets-for-campaigns-and-presentations" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+Two original transparent product assets demonstrate glass, fine fibres and isolated alpha backgrounds.
+
+
+
+- **Example output: 1024 × 1536 PNG **. Product-generation recipe; current code model name was migrated to 2.5. Attribution: output_characteristic. [Source](https://developers.openai.com/cookbook/examples/multimodal/transparent-image-assets-for-campaigns-and-presentations).
+
+- **Background: Transparent alpha **. Source identifies original unchanged transparent PNGs; not a segmentation benchmark. Attribution: output_characteristic. [Source](https://developers.openai.com/cookbook/examples/multimodal/transparent-image-assets-for-campaigns-and-presentations).
+
+
+
+**Example provenance and limitations.**
+
+The setup note explicitly says the displayed images are retained from the original GPT Image 2 cookbook and are not measured GPT Image 2.5 results.
+
+No numerical quality/preference score or timed evaluation is published for this example.
+
+Original exact dated API snapshot is not stated. Do not label these assets 2.5.
+
+The fictional product captions are not real product claims.
+
+[Published media/source](https://developers.openai.com/cookbook/assets/examples/multimodal/images/transparent-image-assets/amber-parfum.png): GPT Image 2: amber-glass perfume bottle.. Rights: Official OpenAI Cookbook example. Repository LICENSE is MIT (https://github.com/openai/openai-cookbook/blob/main/LICENSE); retain copyright and licence notice for redistributed documentation/assets. No separate image-specific licence statement was found on the page.
+
+[Published media/source](https://developers.openai.com/cookbook/assets/examples/multimodal/images/transparent-image-assets/reed-diffuser.png): GPT Image 2: reeds and fine pampas fibres.. Rights: Official OpenAI Cookbook example. Repository LICENSE is MIT (https://github.com/openai/openai-cookbook/blob/main/LICENSE); retain copyright and licence notice for redistributed documentation/assets. No separate image-specific licence statement was found on the page.
+:::

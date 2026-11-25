@@ -1,0 +1,80 @@
+/* Comparison matrices reuse the course's type, colour and 1600 × 900 grid. */
+.reveal .sc-compare .cmp-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.reveal .sc-compare .cmp-intro {
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--fv-muted);
+}
+.reveal .sc-compare .cmp-table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 24px;
+  line-height: 1.22;
+  border-top: 2px solid var(--fv-ink);
+}
+.reveal .sc-compare .cmp-table thead th {
+  background: var(--fv-ink);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 12px 16px;
+}
+.reveal .sc-compare .cmp-table tbody th {
+  font-weight: 600;
+  background: var(--fv-soft);
+}
+.reveal .sc-compare .cmp-table :is(td, tbody th) {
+  padding: 13px 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--fv-line);
+}
+.reveal .sc-compare .cmp-table .cmp-primary {
+  display: block;
+  font-weight: 600;
+}
+.reveal .sc-compare .cmp-table .cmp-detail {
+  display: block;
+  margin-top: 4px;
+  color: var(--fv-muted);
+  font-size: 20px;
+  line-height: 1.2;
+}
+.reveal .sc-compare .cmp-table strong {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 30px;
+  font-variant-numeric: tabular-nums;
+  background: var(--fv-lime);
+}
+.reveal .sc-compare .cmp-caveat {
+  margin-top: auto;
+  border-left: 3px solid var(--fv-line);
+  padding-left: 14px;
+  font-size: 21px;
+  line-height: 1.25;
+  color: var(--fv-muted);
+}
+.reveal .sc-compare .cmp-rows-6 .cmp-table :is(td, tbody th) {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.reveal .sc-compare .cmp-rows-5 .cmp-table :is(td, tbody th) {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.reveal .sc-compare .cmp-rows-4 .cmp-table :is(td, tbody th) {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+@media print {
+  .reveal .sc-compare .cmp-body { display: flex !important; }
+  .reveal .sc-compare .cmp-table { display: table !important; }
+}
+
+.reveal .sc-compare .cmp-rows-7 { gap: 9px; }
+.reveal .sc-compare .cmp-rows-7 .cmp-table :is(td, tbody th) { padding: 5px 12px; }
+.reveal .sc-compare .cmp-rows-7 .cmp-detail { margin-top: 2px; }

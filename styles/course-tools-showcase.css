@@ -1,0 +1,143 @@
+/* Responsive reading layout for the Tools Showcase lecture fragments. */
+.tools-showcase-catalog .showcase-preview .showcase-brand img {
+  max-width: 12rem;
+  max-height: 5rem;
+}
+.tools-showcase-tool .showcase-card-meta { align-items: baseline; }
+.tools-showcase-tool .showcase-card-meta span:last-child { text-align: right; }
+.tools-showcase-source {
+  --ts-ink: #1a1a1a;
+  --ts-muted: #52525b;
+  --ts-paper: #fff;
+  --ts-soft: #f4f4f5;
+  --ts-line: #d4d4d8;
+  --ts-lime: #bef264;
+  --ts-head: var(--course-font-heading, sans-serif);
+  --ts-sans: var(--course-font-body, sans-serif);
+  --ts-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--ts-ink);
+}
+.tools-showcase-source.ts-kiro { --ts-brand: #9046ff; }
+.tools-showcase-source.ts-codex { --ts-brand: #3024ff; }
+.tools-showcase-source.ts-aider { --ts-brand: #14b014; }
+.tools-showcase-source.ts-claude-code { --ts-brand: #d97757; }
+.tools-showcase-source.ts-gemini-cli { --ts-brand: #406afb; }
+.tools-showcase-source.ts-opencode { --ts-brand: #141414; }
+.tools-showcase-source.ts-cursor { --ts-brand: #14120b; }
+.tools-showcase-source.ts-copilot { --ts-brand: #8534f3; }
+.tools-showcase-source.ts-junie { --ts-brand: #48e054; }
+.tools-showcase-source.ts-cline { --ts-brand: #9147bf; }
+.tools-showcase-source.ts-antigravity { --ts-brand: #3087fb; }
+.tools-showcase-source.ts-windsurf { --ts-brand: #0b100f; }
+.tools-showcase-source.ts-openhands { --ts-brand: #dfdc52; }
+.tools-showcase-source :is(h3, h4, p, figure, figcaption, dl, ol, ul) { margin-top: 0; }
+.tools-showcase-source :is(h3, h4) { font-family: var(--ts-head); letter-spacing: -.025em; }
+.tools-showcase-source h3 { font-size: clamp(1.25rem, 2vw, 1.65rem); }
+.tools-showcase-source h4 { font-size: 1rem; }
+.tools-showcase-source code { font-family: var(--ts-mono); }
+.tools-showcase-source a { overflow-wrap: anywhere; }
+.tools-showcase-source .ts-card { min-width: 0; display: grid; gap: 1.25rem; }
+.tools-showcase-source .ts-product-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .65rem;
+  grid-column: 1 / -1;
+  padding: .8rem 1rem;
+  border-left: 4px solid var(--ts-brand, var(--ts-ink));
+  background: var(--ts-soft);
+}
+.tools-showcase-source .ts-logo { display: block; width: auto; max-width: 10rem; max-height: 2.5rem; object-fit: contain; }
+.tools-showcase-source .ts-name { font-family: var(--ts-head); font-size: 1.3rem; }
+.tools-showcase-source .ts-surface { color: var(--ts-muted); font-size: .85rem; }
+.tools-showcase-source .ts-chart {
+  display: grid;
+  align-content: start;
+  gap: 1.2rem;
+  min-width: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid var(--ts-line);
+  border-top: 3px solid var(--ts-ink);
+  background: color-mix(in srgb, var(--ts-brand, var(--ts-lime)) 5%, #fff);
+}
+.tools-showcase-source .ts-chart > figcaption:first-child { font: 600 clamp(1.15rem, 2vw, 1.5rem)/1.2 var(--ts-head); padding-bottom: .7rem; border-bottom: 1px solid var(--ts-line); }
+.tools-showcase-source .ts-chart figcaption p { font: 400 .85rem/1.4 var(--ts-sans); color: var(--ts-muted); margin-top: .35rem; }
+.tools-showcase-source .ts-diagram { min-width: 0; }
+.tools-showcase-source .ts-node {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  min-width: 0;
+  padding: .85rem 1rem;
+  border: 1px solid var(--ts-line);
+  border-left: 4px solid color-mix(in srgb, var(--ts-brand, var(--ts-ink)) 60%, var(--ts-ink));
+  background: #fff;
+  font-size: .88rem;
+  overflow-wrap: anywhere;
+}
+.tools-showcase-source .ts-node strong { font: 600 1rem/1.25 var(--ts-head); }
+.tools-showcase-source .ts-node-accent, .tools-showcase-source .ts-hub { background: var(--ts-ink); border-color: var(--ts-ink); border-left-color: var(--ts-brand, var(--ts-lime)); color: #fff; }
+.tools-showcase-source :is(.ts-node-accent, .ts-hub) :is(h3, h4, p, li, code, strong, b, span, small, a) { color: #fff; }
+.tools-showcase-source .ts-flow { display: flex; align-items: stretch; flex-wrap: wrap; gap: .65rem; }
+.tools-showcase-source .ts-flow > .ts-node { flex: 1 1 12rem; }
+.tools-showcase-source .ts-edge { align-self: center; font-size: 1.25rem; color: var(--ts-muted); }
+.tools-showcase-source .ts-branches { display: grid; grid-template-columns: minmax(8rem, .45fr) minmax(0, 1.55fr); gap: 1rem; }
+.tools-showcase-source .ts-branch-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+.tools-showcase-source .ts-stack { display: grid; gap: .65rem; }
+.tools-showcase-source .ts-feature-band { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .5rem 1.5rem; padding: .85rem 1rem; border-left: 4px solid var(--ts-brand, var(--ts-ink)); background: #fff; font-size: .88rem; }
+.tools-showcase-source .ts-feature-band ul { margin-bottom: 0; padding-left: 1.2rem; }
+.tools-showcase-source .ts-secondary { min-width: 0; padding-top: 1rem; border-top: 1px solid var(--ts-line); }
+.tools-showcase-source .ts-secondary :is(h3, h4) { margin-bottom: .5rem; font-size: 1rem; }
+.tools-showcase-source :is(.ts-matrix, .ts-mini-table) { display: table; width: 100%; border-collapse: collapse; font-size: .8rem; }
+.tools-showcase-source :is(.ts-matrix, .ts-mini-table) :is(th, td) { padding: .65rem; border: 1px solid var(--ts-line); }
+.tools-showcase-source :is(.ts-matrix, .ts-mini-table) thead { background: var(--ts-soft); }
+.tools-showcase-source .ts-mini-map, .tools-showcase-source .ts-mini-split { display: flex; flex-wrap: wrap; align-items: stretch; gap: .5rem; }
+.tools-showcase-source .ts-mini-node { flex: 1 1 8rem; padding: .65rem; border: 1px solid var(--ts-line); background: #fff; font-size: .78rem; }
+.tools-showcase-source .ts-mini-edge { align-self: center; color: var(--ts-muted); }
+.tools-showcase-source .ts-mini-branches { display: flex; flex: 2 1 18rem; flex-wrap: wrap; gap: .5rem; }
+.tools-showcase-source .ts-mini-branches .ts-mini-node { flex-basis: 9rem; }
+.tools-showcase-source .ts-facts, .tools-showcase-source .ts-evidence-facts { min-width: 0; padding: 1.2rem; border: 1px solid var(--ts-line); background: var(--ts-soft); }
+.tools-showcase-source .ts-facts h3, .tools-showcase-source .ts-evidence-facts h3 { margin: 0 0 1rem; font-size: 1.2rem; }
+.tools-showcase-source :is(.ts-facts, .ts-evidence-facts) dt { font-size: .82rem; font-weight: 700; }
+.tools-showcase-source :is(.ts-facts, .ts-evidence-facts) dd { margin: .2rem 0 .85rem; font-size: .88rem; }
+.tools-showcase-source :is(.ts-facts, .ts-evidence-facts) :is(ul, ol) { padding-left: 1.2rem; font-size: .88rem; }
+.tools-showcase-source .ts-sources { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; padding-top: .8rem; border-top: 1px solid var(--ts-line); font-size: .8rem; color: var(--ts-muted); }
+.tools-showcase-source .ts-evidence-link { font-weight: 700; }
+.tools-showcase-source .ts-evidence-layout { grid-template-columns: minmax(0, 1.4fr) minmax(16rem, .85fr); }
+.tools-showcase-source .ts-evidence-figure { min-width: 0; padding: 1rem; border: 1px solid var(--ts-line); background: #fff; }
+.tools-showcase-source .ts-evidence-figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 35rem; margin: auto; object-fit: contain; }
+.tools-showcase-source .ts-evidence-figure figcaption { margin-top: .75rem; color: var(--ts-muted); font-size: .78rem; }
+.tools-showcase-source .ts-evidence-figure .showcase-figure-link { display: inline-block; margin-top: .75rem; }
+.tools-showcase-source .ts-use-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tools-showcase-source .ts-use-case { display: flex; flex-direction: column; min-width: 0; padding: 1.2rem; border: 1px solid var(--ts-line); background: #fff; }
+.tools-showcase-source .ts-use-case > h3 { margin: 0 0 .8rem; }
+.tools-showcase-source .ts-use-provenance { color: var(--ts-muted); font-size: .75rem; }
+.tools-showcase-source .ts-use-flow { display: grid; gap: .5rem; padding: 0; list-style: none; }
+.tools-showcase-source .ts-use-step { padding: .8rem; border: 1px solid var(--ts-line); background: var(--ts-soft); }
+.tools-showcase-source .ts-use-step:last-child { border-color: var(--ts-ink); background: var(--ts-ink); color: #fff; }
+.tools-showcase-source .ts-use-step:last-child :is(h4, p, li, code, strong, b, span, small, a) { color: #fff; }
+.tools-showcase-source .ts-use-step h4 { margin: 0 0 .3rem; font-size: .85rem; }
+.tools-showcase-source .ts-use-step p { margin: 0; font-size: .83rem; }
+.tools-showcase-source .ts-use-artifact { margin: .85rem 0; padding: .8rem; background: var(--ts-soft); border: 1px solid var(--ts-line); }
+.tools-showcase-source .ts-use-artifact img { display: block; width: auto; max-width: 100%; max-height: 20rem; height: auto; margin: auto; object-fit: contain; }
+.tools-showcase-source .ts-use-artifact figcaption { margin-top: .5rem; font-size: .75rem; color: var(--ts-muted); }
+.tools-showcase-source .ts-use-artifact :is(pre, blockquote) { max-width: 100%; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .8rem; }
+.tools-showcase-source .ts-use-artifact pre { overflow-x: auto; white-space: pre; }
+.tools-showcase-source .ts-use-source { margin: auto 0 0; padding-top: .8rem; font-size: .8rem; }
+@media (min-width: 900px) {
+  .tools-showcase-source .ts-card:has(> .ts-chart) { grid-template-columns: minmax(0, 1.7fr) minmax(15rem, .75fr); }
+}
+@media (max-width: 899px) {
+  .tools-showcase-source .ts-evidence-layout, .tools-showcase-source .ts-use-layout { grid-template-columns: 1fr; }
+  .tools-showcase-source .ts-card:has(> .ts-chart) { grid-template-columns: 1fr; }
+}
+@media (max-width: 650px) {
+  .tools-showcase-source .ts-branches { grid-template-columns: 1fr; }
+  .tools-showcase-source .ts-branch-list { grid-template-columns: 1fr; }
+  .tools-showcase-source .ts-flow { flex-direction: column; }
+  .tools-showcase-source .ts-flow > .ts-node { flex-basis: auto; }
+  .tools-showcase-source .ts-edge { align-self: flex-start; transform: rotate(90deg); }
+  .tools-showcase-source :is(.ts-matrix, .ts-mini-table) { display: block; max-width: 100%; overflow-x: auto; }
+  .tools-showcase-source :is(.ts-matrix, .ts-mini-table) :is(th, td) { min-width: 8rem; }
+  .tools-showcase-source .ts-use-case { padding: .9rem; }
+}

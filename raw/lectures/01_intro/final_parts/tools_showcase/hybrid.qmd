@@ -1,0 +1,292 @@
+## Google Antigravity {#ts-antigravity .ts-slide .ts-antigravity .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line"><img class="ts-logo" src="assets/tools_showcase/antigravity-logo.png" alt=""><strong class="ts-name">Antigravity</strong><span class="ts-surface">Google · Desktop agent app</span></div>
+  <div class="ts-chart" role="group" aria-labelledby="ts-antigravity-chart">
+    <h3 id="ts-antigravity-chart">From project to evidence</h3>
+    <div class="ts-diagram ts-flow">
+      <div class="ts-node"><strong>Project</strong><span>Workspace and agent conversations</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node"><strong>Plan</strong><span><code>/plan</code> · Inline feedback and approval</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node"><strong>Implement</strong><span>Edit files, run commands and use the browser when available</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node ts-node-accent"><strong>Review</strong><span>Git diff, walkthrough and optional browser evidence</span></div>
+    </div>
+    <div class="ts-secondary">
+      <h3 id="ts-antigravity-worktrees">Git worktree choices in Coding layout</h3>
+      <table class="ts-mini-table" aria-labelledby="ts-antigravity-worktrees">
+        <thead><tr><th scope="col">Session mode</th><th scope="col">Agent edits in</th><th scope="col">Parallel sessions</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Local mode</th><td>Active Git checkout</td><td>Share the same files</td></tr>
+          <tr><th scope="row">New worktree</th><td>New Git worktree per session</td><td>Keep Git edits separate</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="ts-facts" role="group" aria-labelledby="ts-antigravity-facts">
+    <h3 id="ts-antigravity-facts">Platform features</h3>
+    <dl>
+      <dt>Parallel work</dt><dd>Multiple agent conversations per project</dd>
+      <dt>Subagents</dt><dd>Background runs with separate conversation context</dd>
+      <dt>Diff review</dt><dd>Compare one turn, comment, stage or commit</dd>
+      <dt>Approvals</dt><dd>Configurable artifact review policy</dd>
+      <dt>Browser tools</dt><dd>Inspect pages and console errors, capture screenshots</dd>
+      <dt>Other surfaces</dt><dd>IDE, CLI, extensions and SDK</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="https://antigravity.google/product">Product surfaces</a> · <a href="https://antigravity.google/docs/plan/">Planning</a> · <a href="https://antigravity.google/docs/artifacts/">Artifacts</a> · <a href="https://antigravity.google/docs/browser">Browser use</a> · <a href="https://antigravity.google/docs/projects">Git worktrees</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+На схеме показана работа с командой `/plan` в отдельном приложении Antigravity. Проект объединяет рабочие папки и переписки с агентами. Команда формирует план реализации. По умолчанию агент ждёт подтверждения перед правками, если пользователь прямо не попросил продолжить сразу. План можно прокомментировать до начала правок. Политика просмотра артефактов определяет, когда агент запрашивает подтверждение в других сценариях. [Планирование](https://antigravity.google/docs/plan/), [политика просмотра артефактов](https://antigravity.google/docs/artifact-review).
+
+Diff показывает изменения исходников, а walkthrough собирает сведения о выполненной работе. Браузер может дополнить отчёт снимком страницы или записью действий. Возможности управления браузером зависят от версии приложения, аккаунта и среды. [Артефакты](https://antigravity.google/docs/artifacts/), [использование браузера](https://antigravity.google/docs/browser).
+
+Таблица показывает, где окажутся правки Git при параллельных сессиях в интерфейсе Coding. Отдельные рабочие деревья разделяют правки репозиториев. Папки без Git используются на прежнем месте. У фоновых субагентов отдельный контекст переписки. В Review можно открыть изменения за один ход, оставить комментарий к строке, проиндексировать файлы и сделать коммит. [Проекты](https://antigravity.google/docs/projects), [субагенты](https://antigravity.google/docs/subagents), [просмотр изменений](https://antigravity.google/docs/review-changes).
+
+Знак из [пресс-материалов Google Antigravity](https://antigravity.google/press) перенесён из архива курса в исходном виде.
+:::
+
+## Antigravity 2.0 · An operating system and a Go player {#ts-antigravity-uses .ts-slide .ts-antigravity .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>A small OS for FreeDoom</h3>
+    <p class="ts-use-provenance">Antigravity 2.0 · Google experiment</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Build an operating system that can run FreeDoom.</p></li>
+      <li class="ts-use-step"><h4>How the tool was used</h4><p>Parallel agents implemented the kernel, filesystem and input and display drivers.</p></li>
+      <li class="ts-use-step"><h4>Public evidence</h4><p>Google reports that FreeDoom ran on the prototype OS.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <table aria-label="Google’s reported resource use for the operating-system run">
+        <tbody>
+          <tr><th scope="row">Subagents</th><td>93</td></tr>
+          <tr><th scope="row">Model calls</th><td>15,314</td></tr>
+          <tr><th scope="row">Input tokens</th><td>Over 339 million</td></tr>
+        </tbody>
+      </table>
+      <figcaption>Reported run totals · <a href="https://youtu.be/JZ5DlYJ5t2M">Google’s agent-team recording</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://antigravity.google/blog/google-antigravity-built-an-os#the-operating-system">Google · Operating-system experiment</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>An AlphaZero-style Go player</h3>
+    <p class="ts-use-provenance">Antigravity 2.0 · Google experiment</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Recreate a lightweight AlphaZero system for 9×9 Go.</p></li>
+      <li class="ts-use-step"><h4>How the tool was used</h4><p>Agents built the training pipeline in JAX and Flax, then connected the model to the app.</p></li>
+      <li class="ts-use-step"><h4>Public evidence</h4><p>Google shows a playable Go app backed by the trained model.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://img.youtube.com/vi/RoltpP9kjeY/maxresdefault.jpg"><img src="assets/tools_showcase/case-antigravity-alpha-go.svg" width="694" height="302" alt="Transcribed 9×9 AlphaMini Go position. At checkpoint 2180, the demo showed scores of 26 for Black and 37.5 for White and a 35 percent Black win estimate."></a>
+      <figcaption>Position and values redrawn from Google’s demo poster · <a href="https://youtu.be/RoltpP9kjeY">Watch the resulting Go app</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://antigravity.google/blog/google-antigravity-built-an-os#-and-more">Google · AlphaZero experiment</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Оба эксперимента описала команда Google Antigravity. Для задачи с FreeDoom команда использовала Antigravity 2.0 и Gemini 3.5 Flash. Google сообщает об успешном запуске игры на экспериментальной ОС и перечисляет отсутствующие возможности, включая многопоточность общего назначения и аппаратное ускорение. В первой попытке агенты нашли историю предыдущих запусков. Отчёт отдельно описывает повторный запуск после очистки истории.
+
+В опыте с го агенты реализовали упрощённую систему по мотивам AlphaZero, обучили ResNet на партиях с самим собой и сделали приложение для игры с моделью. Схема воссоздаёт положение камней и показатели на опубликованном кадре AlphaMini Go. 35% — оценка шансов чёрных в показанной позиции. [Кадр демонстрации](https://img.youtube.com/vi/RoltpP9kjeY/maxresdefault.jpg), [отчёт команды Antigravity, 19 мая 2026 года](https://antigravity.google/blog/google-antigravity-built-an-os).
+:::
+
+## Windsurf · Now Devin Desktop {#ts-windsurf .ts-slide .ts-windsurf .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line"><img class="ts-logo" src="assets/tools_showcase/windsurf-logo.svg" alt=""><strong class="ts-name">Windsurf</strong><span class="ts-surface">Cognition · IDE and agent command center</span></div>
+  <div class="ts-chart">
+    <h3 id="ts-windsurf-chart">Selected Devin Local modes</h3>
+    <table class="ts-matrix" aria-labelledby="ts-windsurf-chart">
+      <thead><tr><th scope="col">Mode</th><th scope="col">Edits repo files</th><th scope="col">Behavior</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Ask</th><td>No</td><td>Explore code and answer questions</td></tr>
+        <tr><th scope="row">Plan</th><td>No</td><td>Propose a plan for approval</td></tr>
+        <tr><th scope="row">Code</th><td>Yes</td><td>Workspace edits pre-approved by default</td></tr>
+        <tr><th scope="row">Smart</th><td>Yes</td><td>Can also approve actions it judges safe</td></tr>
+      </tbody>
+    </table>
+    <div class="ts-secondary">
+      <h3 id="ts-windsurf-sessions">Sessions in Devin Desktop</h3>
+      <div class="ts-mini-map ts-mini-split" role="group" aria-labelledby="ts-windsurf-sessions">
+        <div class="ts-mini-node ts-mini-hub"><strong>Agent Command Center</strong><span>Launch and track sessions</span></div>
+        <div class="ts-mini-branches">
+          <div class="ts-mini-node"><strong>Devin Local</strong><span>Your machine</span></div>
+          <div class="ts-mini-node"><strong>Devin Cloud</strong><span>Managed environment</span></div>
+          <div class="ts-mini-node"><strong>ACP agent</strong><span>Third-party integration · preview</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ts-facts" role="group" aria-labelledby="ts-windsurf-facts">
+    <h3 id="ts-windsurf-facts">Desktop features</h3>
+    <dl>
+      <dt>Session views</dt><dd>Spaces and a Kanban board</dd>
+      <dt>Code review</dt><dd>Quick Review for local changes</dd>
+      <dt>Local execution</dt><dd>Separate Git worktrees · optional OS sandboxing</dd>
+      <dt>Reusable plans</dt><dd><code>@</code>-mention a saved Markdown plan</dd>
+      <dt>Permission rules</dt><dd>Allow, ask or deny tool actions</dd>
+      <dt>Agent configuration</dt><dd>Rules, skills, hooks, plugins and MCP</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="https://devin.ai/desktop">Devin Desktop FAQ</a> · <a href="https://docs.devin.ai/desktop/devin-local/overview">Devin Local</a> · <a href="https://docs.devin.ai/desktop/devin-local/modes">Mode reference</a> · <a href="https://docs.devin.ai/desktop/quick-review">Quick Review</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Devin Desktop — текущее название редактора Windsurf. Командный центр объединяет сессии Devin Local, облачного Devin и сторонних агентов, подключённых по Agent Client Protocol. Поддержка сторонних ACP-агентов описана как предварительная версия. Cascade относится к прежней версии продукта. В текущем Devin Desktop новые сессии Cascade недоступны. [Devin Desktop](https://docs.devin.ai/desktop/introducing-devin-desktop), [Cascade](https://docs.devin.ai/desktop/cascade).
+
+В таблице четыре режима из документации Devin Local. Ask читает код и отвечает. Plan исследует репозиторий без правок и сохраняет проект плана вне рабочего репозитория. Code по умолчанию автоматически разрешает правки внутри рабочей области, а отдельные команды могут потребовать подтверждения. Smart добавляет автоматические разрешения на действия, которые дополнительная модель считает безопасными. Доступность Smart зависит от этапа внедрения. Организационные правила имеют приоритет. При включённой изоляции документация описывает отдельный режим Autonomous. [Режимы Devin Local](https://docs.devin.ai/desktop/devin-local/modes).
+
+Ранее сохранённый план можно подключить через меню упоминаний в новой сессии. Правила разрешений настраиваются для проекта, пользователя или организации и применяются к конкретным инструментам и действиям. [Разрешения Devin Local](https://docs.devin.ai/desktop/devin-local/permissions), [настройки агента](https://docs.devin.ai/desktop/devin-local/overview).
+
+Прежний знак используется рядом с прежним названием. [Исходный favicon Windsurf](https://windsurf.com/favicon.svg).
+:::
+
+## Windsurf and Devin Desktop · Build failures and game edits {#ts-windsurf-uses .ts-slide .ts-windsurf .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Fix a failing CircleCI build</h3>
+    <p class="ts-use-provenance">Devin Desktop · CircleCI walkthrough</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Diagnose six failing phone-validator tests in <code>dataforge-demo</code>.</p></li>
+      <li class="ts-use-step"><h4>How the tool was used</h4><p>Devin Local read CircleCI results via MCP and corrected an inverted check in <code>phone.js</code>.</p></li>
+      <li class="ts-use-step"><h4>Public evidence</h4><p>CircleCI shows the failed run and the green pipeline after the fix.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <table aria-label="CircleCI pipeline results transcribed from the published screenshots">
+        <thead><tr><th scope="col">Pipeline</th><th scope="col">Result</th><th scope="col">Run detail</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">3</th><td>Failed</td><td>6 tests failed</td></tr>
+          <tr><th scope="row">4</th><td>Success</td><td>Build, lint, test, coverage</td></tr>
+        </tbody>
+      </table>
+      <figcaption>Values transcribed from <a href="https://images.ctfassets.net/il1yandlcjgk/5MfSirgHaSSg5QN2I9rW7y/e04935e9cc05bbfa03f6473f1ecf6ad6/circleci-pipeline-green-after-devin-desktop-fix.png">CircleCI’s pipeline screenshot</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://circleci.com/blog/getting-started-with-devin-desktop-and-circleci/#figuring-out-why-builds-fail">CircleCI · Diagnosis and repair walkthrough</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Change food values in a browser game</h3>
+    <p class="ts-use-provenance">Windsurf Cascade · Historical publisher demo</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Vary food-cell values and make each cell’s size reflect its value.</p></li>
+      <li class="ts-use-step"><h4>How the tool was used</h4><p>Cascade searched the existing game code and proposed coordinated edits across files.</p></li>
+      <li class="ts-use-step"><h4>Public evidence</h4><p>The archived demo links its source code and a video walkthrough of the changes.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <pre><code>Analyzed renderer.js:(1-100)
+Analyzed config.js:(1-100)
+Analyzed gameState.js:(1-100)
+Searched codebase          73 results</code></pre>
+      <figcaption>Cascade activity transcribed from the <a href="https://img.youtube.com/vi/dsB3hHz-Nfw/maxresdefault.jpg">official demo poster</a> · <a href="https://youtu.be/dsB3hHz-Nfw">Watch the edit</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://github.com/Exafunction/windsurf-demo#tasks-to-understand-cascade">Windsurf · Demo repository and recording</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+В примере CircleCI автор намеренно оставил неверную проверку длины телефонного номера. На снимке Devin Local перечисляет шесть упавших тестов и указывает на `phone.js`. Следующий снимок показывает успешный прогон после исправления. В описанном процессе пользователь подтверждает коммит и отправку изменений. [Руководство CircleCI](https://circleci.com/blog/getting-started-with-devin-desktop-and-circleci/#figuring-out-why-builds-fail), [учебный репозиторий dataforge-demo](https://github.com/CIRCLECI-GWP/dataforge-demo).
+
+Вторая демонстрация записана для прежнего Windsurf и агента Cascade. В задаче про размеры и значения еды важна согласованность изменений в нескольких файлах игры. По ссылке доступны исходники и запись демонстрации. Актуальный Devin Desktop использует Devin Local для новых локальных сессий. [Архивная демонстрация Windsurf](https://github.com/Exafunction/windsurf-demo#tasks-to-understand-cascade), [статус Cascade](https://docs.devin.ai/desktop/cascade).
+:::
+
+## OpenHands {#ts-openhands .ts-slide .ts-openhands .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line"><img class="ts-logo" src="assets/tools_showcase/openhands-logo.png" alt=""><strong class="ts-name">OpenHands</strong><span class="ts-surface">Agent Canvas · Software Agent SDK</span></div>
+  <div class="ts-chart" role="group" aria-labelledby="ts-openhands-chart">
+    <h3 id="ts-openhands-chart">Where the agent runs</h3>
+    <div class="ts-diagram ts-branches">
+      <div class="ts-node ts-hub ts-node-accent"><strong>Agent Canvas</strong><span>Browser client for conversations, files and terminals</span></div>
+      <div class="ts-branch-list">
+        <div class="ts-node"><strong>Local process</strong><span>Agent server on your machine</span></div>
+        <div class="ts-node"><strong>Docker</strong><span>Self-hosted backend with mounted directories</span></div>
+        <div class="ts-node"><strong>OpenHands Cloud</strong><span>Managed cloud sandbox</span></div>
+      </div>
+    </div>
+    <div class="ts-secondary">
+      <h3 id="ts-openhands-connections">Tool calls and model requests</h3>
+      <div class="ts-mini-map ts-mini-split" role="group" aria-labelledby="ts-openhands-connections">
+        <div class="ts-mini-node ts-mini-hub"><strong>Agent Server</strong><span>Runs the built-in OpenHands agent</span></div>
+        <div class="ts-mini-branches">
+          <div class="ts-mini-node"><strong>Tool calls</strong><span>Workspace files and shell under runtime permissions</span></div>
+          <div class="ts-mini-node"><strong>Model requests</strong><span>Local endpoint or hosted provider API</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ts-facts" role="group" aria-labelledby="ts-openhands-facts">
+    <h3 id="ts-openhands-facts">Configurable components</h3>
+    <dl>
+      <dt>Workspace</dt><dd>Project folder, repository or container mount</dd>
+      <dt>Conversation state</dt><dd>Agent Server stores history and profiles</dd>
+      <dt>Agent profiles</dt><dd>Choose tools and MCP servers</dd>
+      <dt>Per-session Docker</dt><dd>One container per conversation, when enabled</dd>
+      <dt>Software Agent SDK</dt><dd>Python and REST APIs</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a class="ts-evidence-link" href="#/ts-evidence-remote-openhands">Technical figure</a><a href="https://docs.openhands.dev/openhands/usage/agent-canvas/architecture">Agent Canvas architecture</a> · <a href="https://docs.openhands.dev/openhands/usage/agent-canvas/backend-setup/docker-execution">Docker execution</a> · <a href="https://docs.openhands.dev/openhands/usage/agent-canvas/agent-profiles">Agent Profiles</a> · <a href="https://docs.openhands.dev/sdk">Software Agent SDK</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Браузерный клиент Agent Canvas подключается к серверу, который запускает агента и его инструменты. Три ветви показывают типичные виды размещения сервера. Документация также описывает собственную виртуальную машину и другие варианты. Прежний CLI остался в документации для существующих пользователей, а для новых локальных установок предлагается Agent Canvas. [OpenHands CLI](https://docs.openhands.dev/openhands/usage/cli/installation).
+
+Рабочая область указывает папку проекта. Доступ инструментов к файлам зависит от разрешений среды исполнения и от смонтированных папок при работе в Docker. Место исполнения инструментов и место обработки запросов модели выбираются отдельно. При подключении модели через API запросы обрабатывает её провайдер. Разработчики могут собирать собственных агентов на OpenHands Software Agent SDK. [Устройство Agent Canvas](https://docs.openhands.dev/openhands/usage/agent-canvas/overview), [OpenHands SDK](https://docs.openhands.dev/sdk).
+
+При запуске всего приложения в Docker сервер и инструменты работают в общем контейнере. В другом режиме внешний Agent Server остаётся на хосте и создаёт отдельный контейнер для каждой переписки. Профиль встроенного агента может выбирать инструменты и серверы MCP и ссылаться на отдельный профиль модели. У внешнего агента ACP свой способ выбора модели и аутентификации. [Бэкенд Docker](https://docs.openhands.dev/openhands/usage/agent-canvas/backend-setup/docker), [изоляция сессий](https://docs.openhands.dev/openhands/usage/agent-canvas/backend-setup/docker-execution), [профили агента](https://docs.openhands.dev/openhands/usage/agent-canvas/agent-profiles).
+
+Знак перенесён из архива курса без изменений. [Исходный favicon документации OpenHands](https://docs.openhands.dev/mintlify-assets/_mintlify/favicons/allhandsai/NJyVpY-OoVetrcKF/_generated/favicon/android-chrome-192x192.png).
+:::
+
+## OpenHands · Internal tooling and PR review {#ts-openhands-uses .ts-slide .ts-openhands .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>US Mobile’s migration tool</h3>
+    <p class="ts-use-provenance">Customer case reported by OpenHands</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Add self-service infrastructure migration to an internal developer platform.</p></li>
+      <li class="ts-use-step"><h4>How the tool was used</h4><p>OpenHands implemented front-end and back-end changes from the engineer’s feature spec.</p></li>
+      <li class="ts-use-step"><h4>Public evidence</h4><p>The engineer reports a pushed branch and follow-up fixes for edge cases.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <blockquote cite="https://hub.openhands.dev/blog/case-study-how-us-mobile-supercharges-software-engineering-with-openhands">“It took an 8 pointer story down to a 2 pointer.”</blockquote>
+      <figcaption>Engineer’s story-point estimate · <a href="https://hub.openhands.dev/blog/case-study-how-us-mobile-supercharges-software-engineering-with-openhands#results">Published US Mobile interview</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://hub.openhands.dev/blog/case-study-how-us-mobile-supercharges-software-engineering-with-openhands">OpenHands · US Mobile case study</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Automate reviews on the SDK repository</h3>
+    <p class="ts-use-provenance">OpenHands team · Reported production use</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Give contributors early feedback on changes to <code>software-agent-sdk</code>.</p></li>
+      <li class="ts-use-step"><h4>How the tool was used</h4><p>An OpenHands review plugin applied repository-specific checks to pull-request diffs.</p></li>
+      <li class="ts-use-step"><h4>Public evidence</h4><p>The team reports 1,000+ reviews across 900+ pull requests in six months.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <blockquote cite="https://github.com/OpenHands/software-agent-sdk/pull/3802#pullrequestreview-4533022438">“The <code>claude-4.6-opus</code> regression caught by the earlier QA review has been fixed in this commit (<code>97451661</code>)”</blockquote>
+      <figcaption>Excerpt from the OpenHands bot’s <a href="https://github.com/OpenHands/software-agent-sdk/pull/3802#pullrequestreview-4533022438">published review of SDK PR #3802</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://www.openhands.dev/blog/20260506-the-verification-stack">OpenHands · The Verification Stack</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+В начале работы над инструментом миграции инженер US Mobile передал агенту уже подготовленную спецификацию. Согласно опубликованному кейсу, OpenHands подготовил изменения для клиентской и серверной частей внутренней платформы в фоне. После отправки ветки инженер проверил результат и внёс правки для пограничных случаев. Публикация описывает внутренний проект по словам инженера. [Кейс US Mobile, сентябрь 2025 года](https://hub.openhands.dev/blog/case-study-how-us-mobile-supercharges-software-engineering-with-openhands).
+
+Во втором кейсе команда OpenHands использовала плагин для проверки изменений своего открытого SDK. Агент читает diff и учитывает инструкции репозитория. В показанном отзыве на PR №3802 бот сообщает о проверке исправления регрессии разрешения идентификатора модели и указывает коммит. Числа отражают количество опубликованных проверок и охваченных pull request за шесть месяцев. Качество рекомендаций авторы оценивают отдельной методикой. [Отзыв на PR №3802](https://github.com/OpenHands/software-agent-sdk/pull/3802#pullrequestreview-4533022438), [отчёт команды OpenHands](https://www.openhands.dev/blog/20260506-the-verification-stack).
+:::

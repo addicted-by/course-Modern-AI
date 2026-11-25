@@ -1,0 +1,369 @@
+## How does Aider use your Git repository? {#ts-aider .ts-slide .ts-aider .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/aider-logo.svg" alt="Aider">
+    <span class="ts-surface">Terminal pair programming</span>
+  </div>
+  <figure class="ts-chart">
+    <h3>Files in, commits out</h3>
+    <div class="ts-diagram ts-flow">
+      <div class="ts-node"><strong>Repository context</strong><span>Full files via <code>/add</code> or <code>/read-only</code>, plus a ranked map of symbols and signatures</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node ts-node-accent"><strong>Aider edits</strong><span>Applies model-proposed changes to editable files</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node"><strong>Git history</strong><span>Automatic commits record Aider’s edits by default</span></div>
+    </div>
+    <div class="ts-secondary">
+      <h3>What each chat mode produces</h3>
+      <table class="ts-mini-table" aria-label="Aider chat modes and file edits">
+        <thead><tr><th scope="col">Mode</th><th scope="col">Model output</th><th scope="col">Edits files</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><code>/ask</code></th><td>Discussion and suggestions</td><td>No</td></tr>
+          <tr><th scope="row"><code>/code</code></th><td>Main model generates edit instructions</td><td>Yes</td></tr>
+          <tr><th scope="row"><code>/architect</code></th><td>Proposal passed to editor for edit instructions</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="Aider capabilities">
+    <h3>Controls</h3>
+    <dl>
+      <dt>Model providers</dt><dd>Hosted APIs or compatible local models</dd>
+      <dt>Inspect edits</dt><dd><code>/diff</code> shows changes since your last message</dd>
+      <dt>Reverse edits</dt><dd><code>/undo</code> targets the latest commit if Aider made it</dd>
+      <dt>Run checks</dt><dd><code>/test</code> can feed failing command output back into the chat</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a class="ts-evidence-link" href="#/ts-evidence-terminal-aider">Technical figure</a><a href="https://aider.chat/docs/repomap.html">Repository map</a><a href="https://aider.chat/docs/llms.html">Models</a><a href="https://aider.chat/docs/git.html">Git integration</a><a href="https://aider.chat/docs/usage/commands.html">Commands</a><a href="https://aider.chat/docs/usage/modes.html">Chat modes</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Aider отправляет запрос пользователя вместе с содержимым выбранных файлов и компактной картой репозитория. Карта отбирает важные определения и сигнатуры в пределах бюджета контекста. Она помогает найти модуль для последующего чтения полного текста. Для справочных материалов есть отдельный режим добавления файлов только для чтения.
+
+В режиме Architect два обращения к модели разделяют предложение решения и подготовку конкретных правок. В обеих ролях можно использовать одну и ту же модель или назначить редактору другую через <code>--editor-model</code>.
+
+При стандартных настройках Aider коммитит свои правки. Перед изменением уже модифицированного файла он может отдельно закоммитить существующие правки. Команда /undo предназначена для последнего коммита, сделанного Aider. От модели и провайдера зависит, куда отправляется контекст. [Логотип Aider](https://aider.chat/assets/logo.svg).
+:::
+
+## How has Aider written tests and updated docs? {#ts-aider-uses .ts-slide .ts-aider .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Test Aider’s file-add command</h3>
+    <p class="ts-use-provenance">Recorded Aider transcript</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Write a black-box test for <code>cmd_add()</code> in <code>tests/test_commands.py</code>.</p></li>
+      <li class="ts-use-step"><h4>How Aider was used</h4><p>Aider used a repository map, wrote the test, then read the first <code>pytest</code> failure and corrected its argument type.</p></li>
+      <li class="ts-use-step"><h4>Recorded result</h4><p>The test passed on the second run with a string argument.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <pre><code>AttributeError: 'list' object has no attribute 'split'
+1 failed in 0.34s
+…
+1 passed in 0.38s</code></pre>
+      <figcaption><a href="https://aider.chat/examples/add-test.html">Aider transcript excerpts from both pytest runs</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://aider.chat/examples/add-test.html">Aider · Create a black-box test case</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Sync the README with new CLI flags</h3>
+    <p class="ts-use-provenance">Recorded Aider transcript</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Update usage docs after the arguments in <code>main()</code> changed.</p></li>
+      <li class="ts-use-step"><h4>How Aider was used</h4><p>The author put <code>aider/main.py</code> and <code>README.md</code> in the chat so Aider could compare implementation and docs.</p></li>
+      <li class="ts-use-step"><h4>Recorded result</h4><p>Aider applied and committed the README edit.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <pre><code>Applied edit to README.md
+Commit 024f45e aider: Updated command line arguments in main() …</code></pre>
+      <figcaption><a href="https://aider.chat/examples/update-docs.html">Aider transcript excerpt showing the commit</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://aider.chat/examples/update-docs.html">Aider · Automatically update docs</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Обе панели описывают опубликованные сеансы Aider. В первом автор ограничил контекст структурной картой репозитория. Тест вызывал <code>cmd_add()</code> и проверял появление двух файлов во временном каталоге. Первый запуск выявил ошибку теста: реализация принимала строку имён, а тест передавал список. После правки в записи видно прохождение одного теста. Это наблюдение из конкретного сеанса с исторической версией Aider.
+
+Во втором сеансе автор заранее добавил файл реализации и README. Транскрипт показывает правку списка параметров и идентификатор коммита. При разборе удобно сверить, какие утверждения можно подтвердить по diff, а какие потребовали бы сравнения с фактическим выводом команды справки.
+:::
+
+## How does Claude Code act on a repository? {#ts-claude-code .ts-slide .ts-claude-code .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/claude-code-logo.svg" alt="">
+    <strong class="ts-name">Claude Code</strong><span class="ts-surface">Anthropic · Terminal agent</span>
+  </div>
+  <figure class="ts-chart">
+    <h3>Agent loop</h3>
+    <div class="ts-diagram ts-flow">
+      <div class="ts-node"><strong>Gather context</strong><span>Search files, read code and inspect Git state</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node ts-node-accent"><strong>Act</strong><span>Edit files or run commands under tool permissions</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node"><strong>Verify</strong><span>Use diffs, builds and tests to check results</span></div>
+    </div>
+    <div class="ts-secondary">
+      <h3>When extensions load or run</h3>
+      <table class="ts-mini-table" aria-label="Claude Code extension timing by default">
+        <thead><tr><th scope="col">Extension</th><th scope="col">At session start</th><th scope="col">On demand or event</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Skills</th><td>Descriptions</td><td>Full content loads when used</td></tr>
+          <tr><th scope="row">MCP servers</th><td>Tool names and server instructions</td><td>Tool schemas load as needed</td></tr>
+          <tr><th scope="row">Hooks</th><td><code>SessionStart</code> hooks can run</td><td>Configured actions run on matching events</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption><span aria-hidden="true">↶</span> Verification results feed back into context for the next pass.</figcaption>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="Claude Code capabilities">
+    <h3>Session configuration</h3>
+    <dl>
+      <dt>Plan Mode</dt><dd>Explore and propose a plan before approving implementation</dd>
+      <dt>Permissions</dt><dd>Allow, ask or deny actions according to the active rules</dd>
+      <dt>Instructions</dt><dd><code>CLAUDE.md</code> supplies repository conventions</dd>
+      <dt>Subagents</dt><dd>Delegate tasks in separate context windows</dd>
+      <dt>Git worktrees</dt><dd><code>--worktree</code> gives sessions separate checkouts</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a class="ts-evidence-link" href="#/ts-evidence-terminal-claude-code">Technical figure</a><a href="https://code.claude.com/docs/en/how-claude-code-works">Agent loop</a><a href="https://code.claude.com/docs/en/common-workflows#plan-before-editing">Plan Mode</a><a href="https://code.claude.com/docs/en/permissions">Permissions</a><a href="https://code.claude.com/docs/en/features-overview">Extensions</a><a href="https://code.claude.com/docs/en/worktrees">Worktrees</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Anthropic описывает три фазы, границы которых могут пересекаться: сбор контекста, действие и проверка. Результат инструмента возвращается модели и влияет на её следующий шаг. Запрос на объяснение кода может потребовать только чтения. Для задачи с правками цикл может повторяться несколько раз. Пользователь может прервать работу и уточнить направление.
+
+Plan Mode включают по необходимости. В нём Claude Code читает файлы и предлагает план проекта перед переходом к реализации. <code>CLAUDE.md</code> задаёт соглашения для модели, а права на действия задаются правилами инструментов. [Фирменный знак Claude](https://platform.claude.com/docs/en/manage-claude/oauth-apps/linked-billing/link-button#logo-file).
+
+Таблица показывает стандартное поведение. Для навыков, которые запускает только пользователь, содержимое и описание подгружаются при вызове. Схемы инструментов MCP могут загружаться заранее при отключённом поиске инструментов.
+:::
+
+## How have Anthropic teams used Claude Code? {#ts-claude-code-uses .ts-slide .ts-claude-code .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Write test logic in Rust</h3>
+    <p class="ts-use-provenance">Anthropic Inference team interview</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Test behavior in a component written in a language unfamiliar to the engineer.</p></li>
+      <li class="ts-use-step"><h4>How Claude Code was used</h4><p>Engineers described the behavior to check and asked Claude Code to express it in the codebase’s language.</p></li>
+      <li class="ts-use-step"><h4>Reported artifact</h4><p>The team describes generated test logic in Rust.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <blockquote>“Claude writes the logic in the required language (like Rust)”</blockquote>
+      <figcaption><a href="https://assets.claude.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf#page=9">Anthropic Inference interview report, p. 9</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://assets.claude.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf#page=9">Anthropic · How teams use Claude Code, p. 9</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Build reusable model-analysis dashboards</h3>
+    <p class="ts-use-provenance">Anthropic Data Science and ML Engineering interviews</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Visualize reinforcement-learning model performance and training data.</p></li>
+      <li class="ts-use-step"><h4>How Claude Code was used</h4><p>Data scientists asked Claude Code to build React tooling from scratch in a sandbox.</p></li>
+      <li class="ts-use-step"><h4>Reported artifact</h4><p>The report describes reusable React dashboards and a TypeScript app of about 5,000 lines.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <blockquote>“permanent React dashboards that can be reused across future model evaluations”</blockquote>
+      <figcaption><a href="https://assets.claude.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf#page=11">Anthropic Data Science and ML Engineering interview report, p. 11</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://assets.claude.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf#page=11">Anthropic · How teams use Claude Code, p. 11</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Это внутренние истории, опубликованные Anthropic по итогам интервью с сотрудниками. В первом случае исходным материалом служило описание ожидаемого поведения, которое затем выражалось в тесте на языке репозитория. Отчёт приводит Rust как пример и не публикует конкретный исходник или журнал запуска тестов.
+
+Во втором случае команда использовала Claude Code для визуализации данных обучения и оценки моделей. В статье Anthropic уточняется, что команда запускала такие попытки в песочнице. Упомянутый размер TypeScript-приложения характеризует один разработанный артефакт. [Дополнительное описание подхода](https://claude.com/resources/articles/how-anthropic-teams-use-claude-code).
+:::
+
+## How does Gemini CLI load project instructions? {#ts-gemini-cli .ts-slide .ts-gemini-cli .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/gemini-cli-logo.svg" alt="">
+    <strong class="ts-name">Gemini CLI</strong><span class="ts-surface">Google · Open-source terminal agent</span>
+  </div>
+  <figure class="ts-chart">
+    <h3>Instruction loading order</h3>
+    <ol class="ts-diagram ts-stack">
+      <li class="ts-node"><strong>Global defaults</strong><code>~/.gemini/GEMINI.md</code></li>
+      <li class="ts-node"><strong>Workspace instructions</strong><span><code>GEMINI.md</code> in workspace directories and their parents</span></li>
+      <li class="ts-node ts-node-accent"><strong>Component instructions</strong><span>Discovered when a tool accesses a path, up to a trusted root</span></li>
+    </ol>
+    <div class="ts-secondary">
+      <h3>How Markdown imports reach the model</h3>
+      <div class="ts-mini-map">
+        <div class="ts-mini-node"><strong>Context file</strong><span><code>GEMINI.md</code> by default</span></div>
+        <span class="ts-mini-edge" aria-hidden="true">→</span>
+        <div class="ts-mini-node"><strong>Expand <code>@path</code></strong><span>Include the referenced Markdown</span></div>
+        <span class="ts-mini-edge" aria-hidden="true">→</span>
+        <div class="ts-mini-node"><strong>Combined instructions</strong><span>Attach to each prompt</span></div>
+      </div>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="Gemini CLI capabilities">
+    <h3>Session tools and access</h3>
+    <dl>
+      <dt>Inspect or rescan</dt><dd><code>/memory show</code> or <code>/memory reload</code></dd>
+      <dt>Context filenames</dt><dd><code>context.fileName</code> accepts a name or list</dd>
+      <dt>Interact with the project</dt><dd>Search, edit and run shell commands under tool policies</dd>
+      <dt>Authentication</dt><dd>Gemini API key and Vertex AI are documented routes</dd>
+      <dt>Consumer access</dt><dd>Code Assist consumer sign-in ended June 18, 2026</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="https://geminicli.com/docs/cli/gemini-md/">Instruction hierarchy</a><a href="https://geminicli.com/docs/get-started/">CLI overview</a><a href="https://geminicli.com/docs/get-started/authentication/">Authentication</a><a href="https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals">Consumer access change</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Gemini CLI объединяет содержимое найденных файлов. Порядок на схеме описывает загрузку, без гарантии приоритета одной конфликтующей инструкции над другой. При первом обращении к компоненту могут добавиться указания из его каталога и предков до доверенного корня. /memory show выводит всё объединённое содержимое, загруженное к моменту вызова. Правила для инструментов задаются отдельно.
+
+С 18 июня 2026 года прекращён доступ к Gemini CLI через Gemini Code Assist for individuals, Google AI Pro и Google AI Ultra. Google направляет пользователей этих подписок в семейство Antigravity. Для Code Assist Standard и Enterprise действует отдельный график вывода из эксплуатации. [Объявление команды Gemini CLI](https://github.com/google-gemini/gemini-cli/discussions/28017) · [Фирменный знак Gemini CLI](https://geminicli.com/brand-kit/).
+:::
+
+## What did Google’s Gemini CLI workshop produce? {#ts-gemini-cli-uses .ts-slide .ts-gemini-cli .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Save a news brief to a local file</h3>
+    <p class="ts-use-provenance">Google Codelab with sample terminal output</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Gather finance headlines and save them as <code>finance-news-today.txt</code>.</p></li>
+      <li class="ts-use-step"><h4>How Gemini CLI was used</h4><p>The CLI called Google Search, requested approval to write the file, and reopened it via an <code>@file</code> reference.</p></li>
+      <li class="ts-use-step"><h4>Recorded result</h4><p>The lab prints a save confirmation and a read-back excerpt from the generated text file.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <pre><code>✦ I have saved the latest finance news to finance-news-today.txt.</code></pre>
+      <figcaption><a href="https://codelabs.developers.google.com/gemini-cli-hands-on#6">Google Codelab terminal output excerpt</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://codelabs.developers.google.com/gemini-cli-hands-on#6">Google Codelabs · Built-in tools, step 7</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Build a searchable conference agenda</h3>
+    <p class="ts-use-provenance">Google Codelab with a sample screenshot</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Build a one-day schedule with six talks and a category filter.</p></li>
+      <li class="ts-use-step"><h4>How Gemini CLI was used</h4><p>The workshop author reviewed a plan for an Express server, a JSON data file, and a browser frontend.</p></li>
+      <li class="ts-use-step"><h4>Recorded result</h4><p>The codelab shows the generated schedule page and explains how to try the filter locally.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://codelabs.developers.google.com/static/gemini-cli-hands-on/img/12664933302b3867.png"><img src="assets/tools_showcase/case-gemini-cli-event-agenda.png" alt="Google’s generated Tech Talks 2026 event page showing the category search field and the first scheduled talk."></a>
+      <figcaption><a href="https://codelabs.developers.google.com/gemini-cli-hands-on#9">Cropped screenshot of the workshop author’s run</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://codelabs.developers.google.com/gemini-cli-hands-on#9">Google Codelabs · Use cases, step 10</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Лабораторная Google публикует конкретный вывод инструментов и снимок созданной страницы. В первом упражнении пользователь отдельным сообщением попросил повторно прочитать файл через @-ссылку. Это проверяет наличие файла и его содержимое. Новостные утверждения требуют собственной проверки источников, а результат повторного запуска будет зависеть от даты.
+
+Во втором упражнении пользователь задаёт параметры однодневной программы и сначала просит план. Затем на опубликованном снимке можно увидеть интерфейс приложения. Фильтр предлагается проверить в локальном браузере, отдельного протокола тестирования в источнике нет. При повторении ориентируйтесь на действующие способы аутентификации на предыдущем слайде.
+:::
+
+## How do OpenCode agents divide responsibility? {#ts-opencode .ts-slide .ts-opencode .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/opencode-logo.svg" alt="">
+    <strong class="ts-name">OpenCode</strong><span class="ts-surface">V2 · Terminal interface</span>
+  </div>
+  <figure class="ts-chart">
+    <h3>Built-in agent profiles</h3>
+    <table class="ts-matrix" aria-label="OpenCode V2 built-in agents by mode and role">
+      <thead><tr><th scope="col">Agent</th><th scope="col">Mode</th><th scope="col">Role</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Build</th><td>Primary</td><td>Implement changes with broad tool access</td></tr>
+        <tr><th scope="row">Plan</th><td>Primary</td><td>Investigate without editing project files. Can write plan files.</td></tr>
+        <tr><th scope="row">General</th><td>Subagent</td><td>Research and complete delegated multi-step tasks</td></tr>
+        <tr><th scope="row">Explore</th><td>Subagent</td><td>Search and read without editing files</td></tr>
+      </tbody>
+    </table>
+    <div class="ts-secondary">
+      <h3>How parent permissions gate subagent launches</h3>
+      <div class="ts-mini-map ts-mini-split">
+        <div class="ts-mini-node ts-mini-hub"><strong>Match parent rule</strong><span><code>subagent</code> action + agent ID</span></div>
+        <div class="ts-mini-branches">
+          <div class="ts-mini-node"><strong>Allow</strong><span>Launch with fresh context and child rules</span></div>
+          <div class="ts-mini-node"><strong>Ask</strong><span>Wait for approval</span></div>
+          <div class="ts-mini-node"><strong>Deny</strong><span>Block the launch</span></div>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="OpenCode capabilities">
+    <h3>Independent controls</h3>
+    <dl>
+      <dt>Provider and model</dt><dd><code>/connect</code> authenticates. <code>/models</code> selects the session model.</dd>
+      <dt>Primary agent</dt><dd><code>/agents</code> switches profiles. Model selection is separate.</dd>
+      <dt>Project agent files</dt><dd><code>.opencode/agents/</code> stores reusable Markdown profiles</dd>
+      <dt>Subagent model</dt><dd>Uses its configured model or inherits the parent’s</dd>
+      <dt>Step budget</dt><dd><code>steps</code> caps model steps per user turn</dd>
+      <dt>Permission rules</dt><dd>Last match wins. Plan shell calls follow these rules.</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="https://opencode.ai/docs/agents/#built-ins">Agent profiles</a><a href="https://opencode.ai/docs/tools/#subagent">Subagent tool</a><a href="https://opencode.ai/docs/permissions/#rules">Permission rules</a><a href="https://opencode.ai/docs/cli/tui/#models">Terminal controls</a><a href="https://opencode.ai/docs/cli/providers/">Providers and models</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Слайд описывает OpenCode V2. Основной агент ведёт сессию, а подагент получает отдельный контекст для поручения. General не может запускать вложенных подагентов. Plan не редактирует обычные проектные файлы, но может записать файл плана по запросу. Запуск команд оболочки определяется правилами разрешений. У Build широкие разрешения по умолчанию, в том числе доступ за пределы рабочего пространства, а чтение чувствительных файлов окружения требует подтверждения.
+
+У сессии своя выбранная модель. Переключение основного агента по ID её не меняет. Для подагента можно задать конкретную модель, иначе он наследует модель родителя. В списке правил разрешения V2 срабатывает последнее совпавшее правило. [Фирменный знак OpenCode](https://opencode.ai/brand).
+:::
+
+## How can teams reuse prompts and run reviews in OpenCode? {#ts-opencode-uses .ts-slide .ts-opencode .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Template a React component request</h3>
+    <p class="ts-use-provenance">OpenCode V2 documentation example</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Make a recurring typed React component request available as <code>/component</code>.</p></li>
+      <li class="ts-use-step"><h4>How OpenCode is used</h4><p>Store the prompt in <code>.opencode/commands/component.md</code> with a <code>$ARGUMENTS</code> placeholder.</p></li>
+      <li class="ts-use-step"><h4>Documented behavior</h4><p><code>/component Account Settings</code> expands the placeholder to <code>Account Settings</code> in the submitted prompt.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <pre><code>Create a typed React component named $ARGUMENTS.
+/component Account Settings</code></pre>
+      <figcaption><a href="https://opencode.ai/docs/commands/#arguments">OpenCode documentation’s template and invocation</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://opencode.ai/docs/commands/#arguments">OpenCode · Commands and arguments</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Review a pull-request checkout in CI</h3>
+    <p class="ts-use-provenance">OpenCode V2 GitHub Actions recipe</p>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Review the checked-out repository for correctness when a pull request triggers a CI job.</p></li>
+      <li class="ts-use-step"><h4>How OpenCode is used</h4><p>The published GitHub Actions job runs <code>opencode run --standalone</code> with a repository review prompt.</p></li>
+      <li class="ts-use-step"><h4>Expected artifact</h4><p>The command prints the review summary to the job log.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <pre><code>name: OpenCode review
+on: [pull_request]
+…
+- run: opencode run --standalone --model anthropic/claude-sonnet-5-5 …</code></pre>
+      <figcaption><a href="https://opencode.ai/docs/cli/commands#ci">Excerpt from the published CI recipe</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://opencode.ai/docs/cli/commands#ci">OpenCode · CLI commands, CI</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Обе панели показывают опубликованные примеры OpenCode V2. В первой шаблон команды подставляет имя компонента с пробелом и передаёт развёрнутый запрос. Документация фиксирует подстановку, исходник компонента в примере не приведён. Во второй GitHub Actions получает рабочую копию для pull request и запускает OpenCode на отдельном локальном сервере через `--standalone`. Команда печатает ответ в CI, а опубликованный YAML показывает настройку задания. Сами замечания из конкретного запуска в документации не приведены.
+:::

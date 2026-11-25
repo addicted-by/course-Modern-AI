@@ -1,0 +1,21 @@
+## YuE 2: Cyber Metal {#sc-music-yue-2-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 92 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-yue-2">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="yue2">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="HKUST / M-A-P" class="sc-company" role="img"><span class="sc-company-name">HKUST<small>M-A-P</small></span></div></div><div class="sr-model"><p>RESULTS · Music</p><h3>YuE 2</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">SongBench average</p><p class="sr-metric-value">6.73 / 6.96</p><p class="sr-metric-note">2 / 8 candidates · different selection rules · legacy VAE <a class="" href="https://map-yue2.github.io/data/benchmark-results.csv?v=20260912-suno-v6" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Time for 214.85 s audio</p><p class="sr-metric-value">71.04 s</p><p class="sr-metric-note">RTX 4090 · full CoT · mean of 32 warm requests <a class="" href="https://huggingface.co/m-a-p/YuE2-3B" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Peak VRAM</p><p class="sr-metric-value">11.18 GiB</p><p class="sr-metric-note">Same 4090 run · default YuE2-Vae · NVML peak <a class="" href="https://huggingface.co/m-a-p/YuE2-3B" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-audio sr-music">
+<div><p class="sr-audio-label">YuE2 project · two renderings</p><h3>Cyber Metal</h3></div>
+<div><p class="sr-audio-label">Score preview · 0:30–0:48</p><audio controls preload="none" aria-label="Cyber Metal · score preview" src="assets/showcase_results_20261021/music/yue2-cyber-metal-score.mp3"></audio></div>
+<div><p class="sr-audio-label">Generated full mix · 0:30–0:48</p><audio controls preload="none" aria-label="Cyber Metal · generated music" src="assets/showcase_results_20261021/music/yue2-cyber-metal.mp3"></audio></div></div><p class="sr-caption">Trace the melody in the score preview, then listen for it inside the produced arrangement.</p></div></div>
+<div class="fv-takeaway">The score specifies the composition. The audio renderer adds the voice, instrumentation and production.</div>
+<div class="fv-source">Audio · YuE2 project · two renderings · <a href="https://map-yue2.github.io/#abc-cot-gen">Published example</a> · <a href="https://map-yue2.github.io/assets/genre/00f67ea44e1161d257030ba1/00f67ea44e1161d257030ba1_music.mp3">Original recording</a></div>
+```
+
+::: {.notes}
+The YuE2 project publishes both the score preview and full mix for case 00f67ea44e1161d257030ba1 in its genre collection. The case metadata names this English song Cyber Metal, labels its mode “planned”, and supplies the ABC score, preview and mix. Several project examples share that title. The pair on this slide comes from this single case, distinct from the five-minute song in the Hugging Face card. The decoder for this particular demo is unspecified.
+
+This slide plays 0:30–0:48 of the published recording. The local copy is an 18-second stereo MP3 with a brief fade at each cut. [Publisher](https://map-yue2.github.io/#abc-cot-gen) · [Original recording](https://map-yue2.github.io/assets/genre/00f67ea44e1161d257030ba1/00f67ea44e1161d257030ba1_music.mp3). The [score preview](https://map-yue2.github.io/assets/genre/00f67ea44e1161d257030ba1/00f67ea44e1161d257030ba1_score.mp3) covers the same interval. [Case metadata](https://map-yue2.github.io/data/cases.js?v=20260913-interstellar).
+
+The reported accuracy scores used the legacy VAE and 192 prompts. The two-candidate setting selects the lower phoneme-error rate. Best-of-eight selects by musicality, then prompt adherence, then phoneme error. The runtime figure uses the default VAE and 32 warm full-planning requests on a 24 GB RTX 4090, excluding file saving.
+:::

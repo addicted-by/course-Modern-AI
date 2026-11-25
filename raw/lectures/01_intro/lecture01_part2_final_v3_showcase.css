@@ -1,0 +1,86 @@
+@import url("final_parts/showcase_results_20261021/results.css");
+/* Showcase deck: shared card tokens plus one stylesheet per design. Course geometry, fonts and tokens come from v3.css. */
+@import url("final_parts/showcase_20261021/common.css");
+@import url("final_parts/showcase_20261021/toc.css");
+@import url("final_parts/showcase_20261021/datasheet.css");
+@import url("final_parts/showcase_20261021/bento.css");
+@import url("final_parts/showcase_20261021/trading.css");
+@import url("final_parts/showcase_all_20261021/identity.css");
+@import url("final_parts/showcase_all_20261021/identity-tokens.css");
+@import url("final_parts/showcase_comparisons_20261021/comparisons.css");
+@import url("final_parts/showcase_all_20261021/studies.css");
+
+/* The full catalogue is navigable in both directions with mouse or keyboard. */
+.reveal .sc-slide .fv-meta { width: 1200px; }
+.reveal .sc-slide .fv-meta .sc-back {
+  margin-left: 12px;
+  color: var(--fv-ink);
+  font-size: 18px;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.reveal .sc-slide a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+.reveal #sc-toc .sc-toc-note a {
+  color: var(--fv-lime);
+  font-size: 18px;
+}
+
+/* Reveal 5.1 keeps neighbouring slides transparent but keyboard-focusable.
+   Hide their descendants in paged mode; preserve overview, scroll and print. */
+@media screen {
+  html:not(.reveal-print) .reveal-viewport:not(.reveal-scroll)
+  .reveal:not(.overview) .slides section.sc-slide[aria-hidden="true"] {
+    visibility: hidden;
+  }
+}
+
+/* Source diagrams replace the large identity plate or run below an open model's specifications. */
+.reveal .sc-slide figure.sc-evidence {
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+  color: var(--fv-ink);
+}
+.reveal .sc-slide .sc-evidence > :is(img, svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: 0;
+}
+.reveal .sc-slide .bn-plate:has(> .sc-evidence) {
+  flex-basis: 224px;
+  padding: 8px;
+}
+.reveal .sc-slide .bn-plate > .sc-evidence {
+  width: 100%;
+  height: 208px;
+}
+.reveal .sc-slide .bn-id:has(.sc-evidence) .bn-model { padding: 16px 20px; }
+.reveal .sc-slide .bn-id:has(.sc-evidence) .bn-model h3 { font-size: 40px; }
+.reveal .sc-slide .bn-id:has(.sc-evidence) .bn-ids { margin-top: 9px; gap: 4px; }
+.reveal .sc-slide .bn-id:has(.sc-evidence) .bn-facts p { min-height: 35px; }
+.reveal .sc-slide:has(> .sc-evidence-strip) .ds-body {
+  height: 454px;
+  --ds-head-h: 78px;
+}
+.reveal .sc-slide:has(> .sc-evidence-strip) .ds-spec { gap: 0; }
+.reveal .sc-slide:has(> .sc-evidence-strip) .ds-v { line-height: 1.12; }
+.reveal .sc-slide:has(> .sc-evidence-strip) .ds-feat { gap: 3px; }
+.reveal .sc-slide > .sc-evidence-strip {
+  position: absolute;
+  top: 608px;
+  left: 56px;
+  width: 1488px;
+  height: 128px;
+  padding: 8px 16px;
+  background: var(--fv-soft);
+}
+/* A following sentence already separates a chip group from the footer note. */
+.reveal .sc-slide .bn-tile:has(> .bn-chips + .bn-item) > .bn-chips { margin-top: 3px; }

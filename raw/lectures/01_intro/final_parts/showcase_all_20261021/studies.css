@@ -1,0 +1,182 @@
+/* Align each source table with its model specification on the 1600 × 900 canvas. */
+.reveal section.sc-slide:has(> .sc-study) {
+  --sc-spec-w: 794px;
+  --sc-study-w: 674px;
+  --sc-study-gap: 20px;
+  --sc-body-y: 137px;
+  --sc-body-h: 604px;
+  --sc-identity-h: 216px;
+  --sc-rule: var(--fv-line);
+
+  & > .sc-body {
+    top: var(--sc-body-y);
+    height: var(--sc-body-h);
+  }
+  & > .sc-study {
+    position: absolute;
+    left: calc(56px + var(--sc-spec-w) + var(--sc-study-gap));
+    top: var(--sc-body-y);
+    width: var(--sc-study-w);
+    color: var(--fv-ink);
+    text-align: left;
+  }
+  &.sc-bento > .sc-study {
+    top: calc(var(--sc-body-y) + var(--sc-identity-h) + 12px);
+  }
+  & .sc-study-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    margin: 0;
+    border: 0;
+    font: 500 22px/1.16 var(--lecture-font-sans);
+    letter-spacing: -.01em;
+    font-variant-numeric: tabular-nums;
+    color: var(--fv-ink);
+  }
+  & .sc-study-table caption {
+    caption-side: top;
+    padding: 8px 0 10px;
+    border-top: 3px solid var(--fv-ink);
+    font: 600 27px/1.12 var(--lecture-font-heading);
+    color: var(--fv-ink);
+    text-align: left;
+    letter-spacing: -.025em;
+  }
+  & .sc-study-table :is(th, td) {
+    border: 0;
+    border-bottom: 1px solid var(--sc-rule);
+    padding: 9px 10px;
+    vertical-align: middle;
+    text-align: left;
+    overflow-wrap: break-word;
+    text-transform: none;
+  }
+  & .sc-study-table thead th {
+    padding-block: 9px;
+    background: var(--sc-dark);
+    color: white;
+    font: 600 20px/1.13 var(--lecture-font-heading);
+  }
+  & .sc-study-table tbody th {
+    font-weight: 600;
+    background: var(--fv-soft);
+  }
+  & .sc-study-source {
+    margin: 8px 0 0;
+    color: var(--fv-muted);
+    font: 450 18px/1.2 var(--lecture-font-sans);
+  }
+  & .sc-study-source a { color: var(--fv-ink); }
+  & .bn-body {
+    display: grid;
+    grid-template-columns: var(--sc-spec-w) var(--sc-study-w);
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 10px var(--sc-study-gap);
+  }
+  & .bn-id {
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 328px minmax(0, 1fr);
+    height: var(--sc-identity-h);
+    border: 0;
+  }
+  & .bn-id .bn-plate {
+    padding: 3px 0;
+    border: 1px solid var(--sc-rule);
+    border-top: 3px solid var(--fv-ink);
+    background: white;
+  }
+  & .bn-id .bn-plate > .sc-evidence { height: 208px; width: 326px; }
+  & .bn-id .bn-model { padding: 8px 14px; }
+  & .bn-id .bn-kicker { font-size: 17px; line-height: 1.1; }
+  & .bn-id .bn-model h3 {
+    margin: 4px 0 5px;
+    padding: 0;
+    font-size: 29px;
+    line-height: 1;
+  }
+  & .bn-id .bn-ids { margin: 0; flex-direction: row; flex-wrap: wrap; gap: 3px 5px; }
+  & .bn-id .bn-ids code {
+    padding: 1px 4px;
+    font-size: 16px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  & .bn-id .bn-facts { margin-top: auto; }
+  & .bn-id .bn-facts p { min-height: 25px; line-height: 1.05; font-size: 17px; }
+  & .bn-id .bn-facts .bn-shut { border: 0; padding: 0; }
+  & .bn-pub { grid-column: 1; grid-row: 1; gap: 9px; }
+  & .bn-w1 .bn-pub {
+    grid-template-columns: minmax(0, 1.08fr) repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+  & .bn-w2 .bn-pub { grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr); }
+  & .bn-w3 .bn-pub { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  & .bn-tile { padding: 12px; }
+  & .bn-head { gap: 5px; margin: 0 0 8px; flex-wrap: wrap; }
+  & .bn-head h4 { font-size: 26px; }
+  & .bn-head .sc-status { font-size: 14px; }
+  & .bn-head .sc-pip { width: 12px; height: 12px; margin-right: 4px; }
+  & .bn-tile .bn-num { font-size: 43px; line-height: 1.14; white-space: normal; margin: 0; }
+  & .bn-tile .bn-num small { margin-left: 3px; font-size: 21px; }
+  & .bn-tile .bn-cap, & .bn-tile .bn-item { font-size: 19px; line-height: 1.17; }
+  & .bn-tile .bn-item { padding-left: 19px; }
+  & .bn-tile .bn-item + .bn-item { margin-top: 5px; }
+  & .bn-tile .bn-item .sc-pip { width: 12px; height: 12px; top: 4px; }
+  & .bn-tile .bn-rule { padding-top: 6px; margin-top: 7px; }
+  & .bn-tile .bn-gap { padding: 4px 7px; min-height: 29px; font-size: 18px; line-height: 1.16; }
+  & .bn-tile .bn-chips { gap: 4px; margin-top: 4px; }
+  & .bn-tile .bn-chips span { font-size: 17px; height: auto; padding: 3px 6px; }
+  & .bn-tile .bn-chips + .bn-item { margin-top: 5px; }
+  & .bn-tile .bn-hero { gap: 8px; }
+  & .bn-tile .bn-split { gap: 10px; grid-template-columns: minmax(0, .78fr) minmax(0, 1fr); }
+  & .bn-tile .bn-items2, & .bn-tile .bn-stats { gap: 8px; }
+  & .bn-strip { grid-column: 1; grid-row: 2; min-height: 68px; }
+  & .bn-strip-label { display: none; }
+  & .bn-cell { padding: 6px 9px; gap: 2px; }
+  & .bn-cell:nth-child(2) { border-left: 0; }
+  & .bn-cell h4 { font-size: 20px; }
+  & .bn-cell h4 .sc-pip { width: 13px; height: 13px; margin-right: 5px; }
+  & .bn-cell p { font-size: 18px; line-height: 1.15; }
+  &.sc-datasheet .ds-body {
+    width: var(--sc-spec-w);
+    height: 468px;
+    --ds-head-h: 64px;
+    --ds-feat-w: 128px;
+  }
+  &.sc-datasheet .sc-study-table { font-size: 23px; }
+  &.sc-datasheet .sc-study-table tbody :is(th, td) { padding-block: 12px; }
+  &.sc-datasheet .sc-study-table:not(:has(tbody tr:nth-child(5))) tbody :is(th, td) { padding-block: 16px; }
+  & .ds-head:has(.sc-company) {
+    grid-template-columns: 100px minmax(0, 1fr) auto;
+    column-gap: 9px;
+    padding-right: 10px;
+  }
+  & .ds-head > .sc-company { height: var(--ds-head-h); padding: 2px 6px; gap: 1px; border-top-width: 4px; }
+  & .ds-head .sc-company-name { font-size: 18px; white-space: normal; }
+  & .ds-head .sc-company-name small, & .ds-head .sc-company-caption { font-size: 13px; }
+  & .ds-head .sc-company img { height: 22px; }
+  & .ds-head .ds-kicker { font-size: 15px; }
+  & .ds-head .ds-name { font-size: 29px; }
+  & .ds-head .ds-lic { font-size: 18px; }
+  & .ds-row { grid-template-columns: var(--ds-feat-w) minmax(0, 1.16fr) repeat(2, minmax(0, 1fr)); }
+  & .ds-feat { padding: 0 6px; }
+  & .ds-feat h4 { font-size: 18px; white-space: normal; }
+  & .ds-feat .ds-st { font-size: 15px; line-height: 1.05; }
+  & .ds-st .sc-pip { width: 12px; height: 12px; margin-right: 4px; }
+  & .ds-spec { padding: 3px 6px 3px 10px; }
+  & .ds-spec .ds-k { font-size: 17px; line-height: 1.04; white-space: normal; }
+  & .ds-spec .ds-line { flex-wrap: wrap; gap: 0 5px; white-space: normal; line-height: 1; }
+  & .ds-spec .ds-v { font-size: 21px; line-height: 1.1; white-space: normal; overflow-wrap: anywhere; }
+  & .ds-spec .ds-n { font-size: 16px; line-height: 1; white-space: normal; }
+  & .ds-spec.ds-part::before { width: 4px; left: 1px; top: 6px; bottom: 6px; }
+  & .ds-spec.ds-gap::before { inset: 4px 1px; border-width: 1px; }
+  & > .sc-evidence-strip { top: 613px; }
+}
+
+/* Align comparable reported values and their headers on the same edge. */
+.reveal .sc-study .sc-study-table[data-numeric~="2"] tr > :nth-child(2),
+.reveal .sc-study .sc-study-table[data-numeric~="3"] tr > :nth-child(3),
+.reveal .sc-study .sc-study-table[data-numeric~="4"] tr > :nth-child(4) { text-align: right; }

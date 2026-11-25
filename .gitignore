@@ -43,3 +43,8 @@ node_modules/
 /raw/quizzes/*/test_with_answers.md
 /raw/quizzes/*/README.md
 /raw/quizzes/*/validation.txt
+
+# SQLite catalogue is source data; ignore only transient journal files.
+/data/models.sqlite3-*
+
+/data/tools.sqlite3-*

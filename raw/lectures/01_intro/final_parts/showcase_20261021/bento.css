@@ -1,0 +1,139 @@
+/* Bento: template for closed models. Selectors stay inside the .bn- prefix.
+   Three zones inside .sc-body (1488 x 590):
+     .bn-id    identity column: logo slot, model name, product IDs, release, access. Only place for --bn-brand.
+     .bn-pub   published features. Tile size follows what was published; the richest tile is .bn-a.
+     .bn-strip withheld features, collapsed into dashed grey cells that list what is missing.
+   Layout variant = number of withheld features, set on .bn-body:
+     .bn-w1 -> 4 published tiles (a tall, b wide, c + d small)
+     .bn-w2 -> 3 published tiles (a tall, b + c wide)
+     .bn-w3 -> 2 published tiles (a + b tall)
+   Tile status: .bn-k known (soft fill), .bn-p partial (white, outlined). Per-line status uses .sc-pip. */
+.reveal .fv-slide .bn-body {
+  --bn-gap: 16px;
+  --bn-on-dark: #b4b4b4;
+  --bn-dash: 1.5px dashed var(--sc-gap-ink);
+  display: grid; gap: var(--bn-gap);
+  grid-template-columns: 344px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 120px;
+}
+
+/* ---------- Identity zone ---------- */
+.reveal .fv-slide .bn-id {
+  --bn-brand: var(--fv-ink);
+  grid-column: 1; grid-row: 1 / 3; min-height: 0;
+  display: flex; flex-direction: column;
+  border-top: 10px solid var(--bn-brand);
+}
+/* Logo plate: white so single-colour (black) vendor SVGs stay readable. Fixed height in both states. */
+.reveal .fv-slide .bn-plate {
+  flex: 0 0 112px; display: flex; align-items: center; justify-content: center;
+  padding: 0 28px; background: #fff;
+  border: 1.5px solid var(--fv-ink); border-top: 0; border-bottom: 0;
+}
+.reveal .fv-slide .bn-logo {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 60px; margin: 0; overflow: hidden;
+}
+/* Fallback while the SVG is missing: a neutral typeset wordmark, not an imitation of the logo. */
+.reveal .fv-slide .bn-wordmark {
+  font: 600 38px/1.2 var(--lecture-font-heading); letter-spacing: -.025em;
+  color: var(--fv-ink); white-space: nowrap;
+}
+.reveal .fv-slide .bn-model {
+  flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
+  padding: 26px 26px 24px; background: var(--sc-dark); color: #fff;
+}
+.reveal .fv-slide .bn-kicker { font-size: 20px; line-height: 1.3; color: var(--bn-on-dark); }
+.reveal .fv-slide .bn-model h3 {
+  margin-top: 4px; padding-bottom: 4px; font: 600 48px/1.12 var(--lecture-font-heading); letter-spacing: -.035em; color: #fff;
+}
+.reveal .fv-slide .bn-ids { margin-top: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.reveal .fv-slide .bn-ids code {
+  display: inline-block; padding: 5px 10px; border: 1px solid #4a4a4a;
+  font: 500 19px/1.25 var(--lecture-font-mono); letter-spacing: -.02em; color: #ececec; white-space: nowrap;
+}
+.reveal .fv-slide .bn-facts { margin-top: auto; border-top: 1px solid #3c3c3c; }
+.reveal .fv-slide .bn-facts p {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 46px; border-bottom: 1px solid #3c3c3c; font-size: 20px; line-height: 1.2;
+}
+.reveal .fv-slide .bn-facts span { color: var(--bn-on-dark); }
+.reveal .fv-slide .bn-facts b { font-weight: 600; color: #fff; text-align: right; }
+.reveal .fv-slide .bn-facts .bn-date { font-family: var(--lecture-font-mono); font-weight: 500; letter-spacing: -.02em; }
+/* Weights withheld: same dashed grey as every gap on the card. */
+.reveal .fv-slide .bn-facts .bn-shut { padding: 3px 10px; border: var(--bn-dash); color: var(--bn-on-dark); font-weight: 500; }
+
+/* ---------- Published tiles ---------- */
+.reveal .fv-slide .bn-pub { grid-column: 2; grid-row: 1; min-width: 0; min-height: 0; display: grid; gap: var(--bn-gap); }
+.reveal .fv-slide .bn-w1 .bn-pub { grid-template-columns: 408px repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.reveal .fv-slide .bn-w1 .bn-a { grid-column: 1; grid-row: 1 / 3; }
+.reveal .fv-slide .bn-w1 .bn-b { grid-column: 2 / 4; grid-row: 1; }
+.reveal .fv-slide .bn-w1 .bn-c { grid-column: 2; grid-row: 2; }
+.reveal .fv-slide .bn-w1 .bn-d { grid-column: 3; grid-row: 2; }
+.reveal .fv-slide .bn-w2 .bn-pub { grid-template-columns: 408px minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.reveal .fv-slide .bn-w2 .bn-a { grid-column: 1; grid-row: 1 / 3; }
+.reveal .fv-slide .bn-w2 .bn-b { grid-column: 2; grid-row: 1; }
+.reveal .fv-slide .bn-w2 .bn-c { grid-column: 2; grid-row: 2; }
+.reveal .fv-slide .bn-w3 .bn-pub { grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+
+.reveal .fv-slide .bn-tile { position: relative; min-width: 0; min-height: 0; display: flex; flex-direction: column; padding: 20px 24px 20px; }
+.reveal .fv-slide .bn-k { background: var(--fv-soft); }
+.reveal .fv-slide .bn-p { background: #fff; border: 1.5px solid var(--fv-line); padding: 18.5px 22.5px; }
+
+/* Tile header: feature name left, summary status right. */
+.reveal .fv-slide .bn-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.reveal .fv-slide .bn-head h4 { font: 600 28px/1.15 var(--lecture-font-heading); letter-spacing: -.02em; }
+.reveal .fv-slide .bn-head .sc-status { font-size: 17px; font-weight: 600; letter-spacing: .07em; color: var(--fv-ink); }
+
+/* Keynote numbers. */
+.reveal .fv-slide .bn-stat { display: flex; flex-direction: column; gap: 2px; }
+.reveal .fv-slide .bn-num { margin: -6px 0 -4px; font: 600 66px/1.2 var(--lecture-font-heading); letter-spacing: -.045em; white-space: nowrap; }
+.reveal .fv-slide .bn-num small {
+  display: inline; vertical-align: baseline; margin-left: 8px;
+  font-size: 26px; line-height: 1; letter-spacing: -.01em;
+}
+.reveal .fv-slide .bn-cap { font-size: 20px; line-height: 1.26; color: var(--fv-muted); }
+.reveal .fv-slide .bn-cap b { color: var(--fv-ink); font-weight: 600; }
+.reveal .fv-slide .bn-stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 20px; }
+.reveal .fv-slide .bn-rule { border-top: 1px solid var(--fv-line); padding-top: 14px; margin-top: 14px; }
+.reveal .fv-slide .bn-hero .bn-num { margin: -14px 0 -10px -4px; font-size: 116px; line-height: 1.2; letter-spacing: -.06em; }
+
+/* Lines with their own status, and the dashed slot for a gap inside a published tile. */
+.reveal .fv-slide .bn-item { position: relative; padding-left: 27px; font-size: 20px; line-height: 1.28; }
+.reveal .fv-slide .bn-item + .bn-item { margin-top: 9px; }
+.reveal .fv-slide .bn-item .sc-pip { position: absolute; left: 0; top: 4px; width: 17px; height: 17px; margin: 0; border-width: 1.5px; }
+.reveal .fv-slide .bn-item code { font-size: .92em; letter-spacing: -.02em; }
+.reveal .fv-slide .bn-items2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 26px; }
+.reveal .fv-slide .bn-items2 .bn-item + .bn-item { margin-top: 0; }
+.reveal .fv-slide .bn-gap {
+  margin-top: auto; display: flex; align-items: center; min-height: 42px; padding: 6px 12px;
+  border: var(--bn-dash); font-size: 20px; line-height: 1.25; color: var(--fv-muted);
+}
+.reveal .fv-slide .bn-gap b { margin-right: 8px; color: var(--fv-muted); font-weight: 600; }
+.reveal .fv-slide .bn-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.reveal .fv-slide .bn-chips span { display: inline-flex; align-items: center; height: 36px; padding: 0 12px; background: #fff; border: 1px solid var(--fv-line); font-size: 20px; white-space: nowrap; }
+
+/* ---------- Withheld strip ---------- */
+.reveal .fv-slide .bn-strip { grid-column: 2; grid-row: 2; min-width: 0; display: flex; border: var(--bn-dash); }
+.reveal .fv-slide .bn-strip-label {
+  flex: 0 0 206px; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 0 22px;
+}
+.reveal .fv-slide .bn-strip-label span { font-size: 17px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--fv-muted); }
+.reveal .fv-slide .bn-strip-label b { font: 600 40px/1.2 var(--lecture-font-heading); letter-spacing: -.035em; color: var(--fv-ink); white-space: nowrap; }
+.reveal .fv-slide .bn-strip-label b small { display: inline; vertical-align: baseline; margin-left: 6px; font-size: 20px; letter-spacing: 0; color: var(--fv-muted); font-family: var(--lecture-font-sans); font-weight: 500; }
+.reveal .fv-slide .bn-cell {
+  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  padding: 0 22px; border-left: var(--bn-dash); color: var(--fv-muted);
+}
+.reveal .fv-slide .bn-cell h4 { display: flex; align-items: center; font: 600 25px/1.15 var(--lecture-font-heading); letter-spacing: -.02em; color: #4a4a4a; }
+.reveal .fv-slide .bn-cell h4 .sc-pip { width: 18px; height: 18px; margin-right: 10px; }
+.reveal .fv-slide .bn-cell p { font-size: 20px; line-height: 1.26; }
+.reveal .fv-slide .bn-split { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 30px; align-items: start; }
+.reveal .fv-slide .bn-col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.reveal .fv-slide .bn-col > .bn-gap { margin-top: 0; }
+.reveal .fv-slide .bn-hero { display: flex; align-items: center; gap: 26px; }
+.reveal .fv-slide .bn-hero .bn-cap { font-size: 20px; }
+.reveal .fv-slide .bn-tile > .bn-chips { margin-top: 12px; }
+/* A partial line that sits in the gap slot position: hatched pip, solid outline. */
+.reveal .fv-slide .bn-gap-p { border-style: solid; border-color: var(--fv-line); color: var(--fv-ink); background: #fff; }
+.reveal .fv-slide .bn-gap-p .sc-pip { width: 17px; height: 17px; margin-right: 10px; border-width: 1.5px; }

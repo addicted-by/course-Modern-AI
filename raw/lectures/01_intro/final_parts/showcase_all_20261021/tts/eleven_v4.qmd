@@ -1,0 +1,83 @@
+## Eleven v4: expressive speech, hidden internals {#sc-tts-eleven-v4 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 71 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-tts-eleven-v4-results">Results →</a></div>
+<div class="sc-body bn-body bn-w2" data-company="elevenlabs">
+  <div class="bn-id">
+    <div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_results_20261021/tts/eleven-v4-expressiveness.svg" alt="Blind expressiveness preference for Eleven v4 was 81% versus Sonic 3.6, 81% versus Inworld TTS-2, 72% versus Gemini 3.8 Flash-Lite and 65% versus Flash."></figure></div>
+    <div class="bn-model">
+      <p class="bn-kicker">Text-to-speech · ElevenLabs</p>
+      <h3>Eleven v4</h3>
+      <p class="bn-ids"><code>eleven_v4</code><code>eleven_v4_turbo</code></p>
+      <div class="bn-facts">
+        <p><span>Released</span><b class="bn-date">28.09.2026</b></p>
+        <p><span>Access</span><b>API · apps</b></p>
+        <p><span>Weights</span><b class="bn-shut">closed</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="bn-pub">
+    <div class="bn-tile bn-k bn-a">
+      <div class="bn-head"><h4>Voice &amp; Control</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+      <div class="bn-stat"><p class="bn-num">90+<small>languages</small></p><p class="bn-cap">vendor claim; published lists differ</p></div>
+      <div class="bn-rule">
+        <p class="bn-item"><i class="sc-pip k"></i>Audio tags: whispers, laughter and delivery</p>
+        <p class="bn-item"><i class="sc-pip k"></i>Instant and professional voice clones</p>
+        <p class="bn-item"><i class="sc-pip k"></i>Multi-speaker dialogue API</p>
+      </div>
+      <p class="bn-gap">No SSML or Style / Speed sliders</p>
+    </div>
+    <div class="bn-tile bn-k bn-b">
+      <div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+      <div class="bn-stat"><p class="bn-num">~100<small>ms</small></p><p class="bn-cap">Turbo median model latency · vendor measurement</p></div>
+      <p class="bn-item"><i class="sc-pip k"></i>API list price: $80 / $40 per 1M characters, v4 / Turbo</p>
+    </div>
+    <div class="bn-tile bn-p bn-c">
+      <div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div>
+      <p class="bn-item"><i class="sc-pip k"></i>Professional clones use dedicated model fine-tuning</p>
+      <p class="bn-item"><i class="sc-pip p"></i>Turbo derivation and base training recipe are undisclosed</p>
+      <p class="bn-gap">Consent / detection: broader product evidence</p>
+    </div>
+  </div>
+  <div class="bn-strip">
+    <div class="bn-strip-label"><span>Withheld</span><b>2<small>of 5</small></b></div>
+    <div class="bn-cell"><h4><i class="sc-pip n"></i>Architecture</h4><p>Topology, parameter count and audio codec are undisclosed.</p></div>
+    <div class="bn-cell"><h4><i class="sc-pip n"></i>Data</h4><p>No training hours, sources or corpus licences.</p></div>
+  </div>
+</div>
+<div class="sc-study">
+  <table class="sc-study-table" data-numeric="2 3">
+    <caption>Script fidelity across 1,000 utterances</caption>
+    <thead><tr><th scope="col">Agreed CER (%) ↓</th><th scope="col">Eleven v4</th><th scope="col">HeyGen full-clone</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">English</th><td>0.0000</td><td>0.0000</td></tr>
+      <tr><th scope="row">Italian</th><td>0.0238</td><td>0.0099</td></tr>
+      <tr><th scope="row">Korean</th><td>0.0895</td><td>0.1429</td></tr>
+      <tr><th scope="row">10-language mean</th><td>0.0127</td><td>0.0153</td></tr>
+    </tbody>
+  </table>
+  <p class="sc-study-source"><a href="https://dynamic.heygen.ai/www/research/introducing-heygen-voice/heygen-voice-scene-aware-voice-cloning-for-talking-videos.pdf#page=14">HeyGen technical report · §5.2, Table 6</a> · An error counts only when both reviewers agree.</p>
+</div>
+<div class="fv-takeaway">Rich voice direction is documented; the base model and training corpus remain closed.</div>
+<div class="fv-source"><a href="https://elevenlabs.io/blog/eleven-v4">Blind-pair evaluation</a> · <a href="https://elevenlabs.io/docs/overview/models">Model reference</a></div>
+```
+
+::: {.notes}
+HeyGen evaluated 100 utterances per language using two reference speakers per language. The first three rows illustrate variation and the last row gives the paper’s macro average over all ten languages. CER is the percentage of character errors. HeyGen counted an error only when a Scribe v2 transcription and an independent Gemini audio review agreed. Unresolved cases stayed in the denominator and contributed zero errors. This strict rule explains the unusually low values. The source identifies the competitor as ElevenLabs v4.
+
+The chart redraws the expressiveness panel in the ElevenLabs launch report (28 September 2026). Raters compared identical scripts without model labels. The vendor counted a tie as half a win. The four bars have a common denominator definition, but the release gives no sample counts. Compare the spread across opponents with the headline average.
+
+**October workbook context.**
+
+This card converts the supplied TTS_v1.0.xlsx audit dated 18 October 2026. It is not a fresh verification of vendor pages. The five category statuses are copied from “Сводка”, row 4: architecture not disclosed, data not disclosed, training partial, inference known, and voice and control known. Known means that model-specific details exist, not that a category is fully disclosed. Row references below are to the “Eleven v4” sheet.
+
+The scope is eleven_v4 and eleven_v4_turbo, released on 28 September 2026 (row 2; access and model IDs in row 36). Do not infer a transformer, diffusion model, codec language model, or parameter count from the vendor's “new architecture” language. Those technical details are absent (rows 6–11). The base training corpus, hours, sources, languages and licences are also absent (rows 16–18).
+
+Read the 90-plus language figure as the vendor's headline. The audit counted 87 entries in one FAQ and 84 on the model page, with different membership (row 59). Instant and professional cloning are documented, but the instant-clone recording guidance differs: the launch claim is 10 seconds, while the model guide recommends one to two minutes (rows 62–63). Audio tags and multi-speaker scripts are documented (rows 65 and 68). The Text to Dialogue API reference limits a request to 10 unique voice IDs; a general guide says the number is unlimited. That is an endpoint discrepancy, not evidence of unlimited native speakers. SSML and Style / Speed sliders are explicitly unavailable (rows 66–67).
+
+The roughly 100 ms figure is Turbo's median model inference latency with network and application overhead excluded. The vendor separately reports about 150 ms to first speech (row 40). It cannot be compared directly with aggregator round-trip latency or a competitor's vaguely specified first-audio claim. The $80 / $40 prices are the audit's list prices per million characters for v4 / Turbo, not the temporary OpenRouter promotion (rows 46 and 48). The October workbook recorded a 10,000-character input limit; the November model overview lists 100,000 for Eleven v4; the separate dialogue endpoint has a 2,000-character total limit, and the model-page limit for Turbo is unspecified (rows 12 and 54).
+
+Professional clone fine-tuning is documented, but the base training procedure and how Turbo was obtained are not (rows 25–27). Consent verification, the speech classifier and C2PA / moderation are partly supported by broader product pages or secondary reporting, not a model-specific technical account (rows 29–32). No v4 audio watermark is disclosed. Endpoint-level output formats and timestamps should likewise not be promoted to verified v4-native capabilities (rows 45 and 71).
+
+Sources: [Eleven v4 documentation](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4), [launch blog](https://elevenlabs.io/blog/eleven-v4), [API pricing](https://elevenlabs.io/pricing/api). Workbook provenance and limitations: README rows 21–22.
+:::

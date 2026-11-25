@@ -1,0 +1,71 @@
+/* Company identity is independent of disclosure status and card layout.
+   Brand accents stay in the identity slot; evidence keeps the course lime. */
+.reveal .sc-slide .sc-body[data-company] { --sc-brand: #141414; }
+.reveal .sc-slide .sc-body[data-company] .bn-id {
+  border-top-color: var(--sc-brand);
+}
+.reveal .sc-slide .sc-company {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  color: var(--fv-ink);
+  background: #fff;
+}
+.reveal .sc-slide .sc-company img {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 260px;
+  height: 54px;
+  margin: 0;
+  object-fit: contain;
+  border: 0;
+  box-shadow: none;
+}
+.reveal .sc-slide .bn-plate > .sc-company { width: 100%; }
+.reveal .sc-slide .sc-company-caption {
+  font: 500 20px/1.15 var(--lecture-font-heading);
+  letter-spacing: 0;
+}
+.reveal .sc-slide .sc-company-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font: 600 36px/1.12 var(--lecture-font-heading);
+  letter-spacing: -.025em;
+  white-space: nowrap;
+}
+.reveal .sc-slide .sc-company-name small {
+  font: 500 20px/1.15 var(--lecture-font-heading);
+  letter-spacing: 0;
+}
+.reveal .sc-slide .ds-head:has(.sc-company) {
+  grid-template-columns: var(--ds-feat-w) minmax(0, 1fr) auto;
+  column-gap: 24px;
+  padding-left: 0;
+}
+.reveal .sc-slide .ds-head > .sc-company {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  box-sizing: border-box;
+  height: var(--ds-head-h);
+  padding: 0 16px;
+  border: 1.5px solid var(--fv-ink);
+  border-top: 10px solid var(--sc-brand);
+  border-bottom: 0;
+  gap: 4px;
+}
+.reveal .sc-slide .ds-head .sc-company img {
+  width: 100%;
+  max-width: 216px;
+  height: 40px;
+}
+.reveal .sc-slide .ds-head .sc-company-caption { font-size: 18px; }
+.reveal .sc-slide .ds-head .sc-company-name { font-size: 28px; }
+.reveal .sc-slide .ds-head > .ds-kicker:not(.ds-r) { grid-column: 2; grid-row: 1; }
+.reveal .sc-slide .ds-head > .ds-r { grid-column: 3; grid-row: 1; }
+.reveal .sc-slide .ds-head > .ds-name { grid-column: 2; grid-row: 2; }
+.reveal .sc-slide .ds-head > .ds-lic { grid-column: 3; grid-row: 2; }

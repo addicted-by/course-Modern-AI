@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326 208" font-family="Arial, Helvetica, sans-serif">
+<title>Listener preference</title>
+<desc>Sonic 3.6 vs. Eleven v3 · same script. US English 92%, UK English 72%, Australian English 77%</desc>
+<text x="6" y="24" font-size="21" font-weight="700" fill="#132a2a" text-anchor="start">Listener preference</text>
+<text x="6" y="46" font-size="16" font-weight="400" fill="#425351" text-anchor="start">Sonic 3.6 vs. Eleven v3 · same script</text>
+<text x="6" y="78" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">US English</text>
+<text x="320" y="78" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">92%</text>
+<rect x="6" y="82" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="82" width="288.88" height="6" fill="#186763"/>
+<text x="6" y="121" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">UK English</text>
+<text x="320" y="121" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">72%</text>
+<rect x="6" y="125" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="125" width="226.08" height="6" fill="#186763"/>
+<text x="6" y="164" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">Australian English</text>
+<text x="320" y="164" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">77%</text>
+<rect x="6" y="168" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="168" width="241.78" height="6" fill="#186763"/>
+<text x="6" y="202" font-size="15" font-weight="400" fill="#425351" text-anchor="start">0</text>
+<text x="320" y="202" font-size="15" font-weight="400" fill="#425351" text-anchor="end">100%</text>
+</svg>

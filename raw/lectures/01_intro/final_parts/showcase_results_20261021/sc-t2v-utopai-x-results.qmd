@@ -1,0 +1,22 @@
+## Utopai X puts a moving hand in contact with a sphere {#sc-t2v-utopai-x-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 56 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-utopai-x">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="utopai">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Utopai" class="sc-company" role="img"><span class="sc-company-name">Utopai</span></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>Utopai X</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2V preference Elo</p><p class="sr-metric-value">1166 Elo</p><p class="sr-metric-note">95% CI 1149–1183; n=5,103; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/text-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Physics category rank</p><p class="sr-metric-value">#1 (Sep 2026)</p><p class="sr-metric-note">AA launch analysis, Sep 2026; vendor republication <a class="" href="https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Audio synchronization rank</p><p class="sr-metric-value">#1 (Sep 2026)</p><p class="sr-metric-note">AA launch analysis, Sep 2026; separate from lip sync <a class="" href="https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/utopai-x-poster.webp" alt="A hand handles the blue sphere between a cube and a pyramid. Follow the boundary where the fingers meet the sphere."><video controls playsinline preload="none" src="assets/showcase_video_evidence/utopai-x.mp4" poster="assets/showcase_video_evidence/utopai-x-poster.webp" aria-label="Utopai X puts a moving hand in contact with a sphere" aria-describedby="utopai-x-caption"></video></div><p class="sr-caption" id="utopai-x-caption">A hand handles the blue sphere between a cube and a pyramid. Follow the boundary where the fingers meet the sphere.</p></div></div>
+<div class="fv-takeaway">The September category ranks and the October overall score come from different snapshots.</div>
+<div class="fv-source"><a href="https://www.utopaistudios.com/en/blog/introducing-the-all-new-pai-and-utopai-x">Utopai Studios · Utopai X launch reel</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+The model-specific Utopai X launch reel is embedded separately from the PAI platform reel. The local example is an excerpt from 00:41.5 to 00:50.0 and retains its soundtrack. The vendor publishes a curated montage without a reproducible request for this shot.
+
+- **T2V preference Elo: 1166 Elo**. Text prompt; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/text-to-video).
+
+- **Physics category rank: 1 rank**. September 30 launch analysis; source chart uses September 29 data. Utopai republishes Artificial Analysis results. [Source](https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking).
+
+- **Audio synchronization rank: 1 rank**. September 30 launch analysis; synchronization evaluated separately from lip sync. Utopai republishes Artificial Analysis results. [Source](https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking).
+
+[Published example](https://www.utopaistudios.com/en/blog/introducing-the-all-new-pai-and-utopai-x) · [Original media](https://www.youtube.com/watch?v=uXo8QT6mCjY)
+:::

@@ -1,0 +1,47 @@
+---
+pagetitle: "Modern AI — Coding Tools Showcase"
+lang: en
+filters:
+  - final_parts/tools_showcase/category-navigation.lua
+format:
+  revealjs:
+    theme: assets/frontier_v2_20261006/theme-local.scss
+    template: final_parts/showcase_all_20261021/reveal-template.html
+    css: lecture01_tools_showcase.css
+    section-divs: false
+    auto-stretch: false
+    hash: true
+    view: slide
+    scroll-activation-width: 0
+    scroll-layout: full
+    scroll-snap: false
+    scroll-progress: false
+    pdf-max-pages-per-slide: 1
+    pdf-separate-fragments: false
+    html-math-method: plain
+    include-after-body:
+      - ../00_template/theme/header-logos.html
+      - final_parts/showcase_all_20261021/accessibility.html
+      - final_parts/tools_showcase/navigation.html
+suppress-bibliography: true
+---
+
+{{< include final_parts/tools_showcase/opening.qmd >}}
+
+{{< include final_parts/tools_showcase/editors.qmd >}}
+
+{{< include final_parts/tools_showcase/kiro.qmd >}}
+
+{{< include final_parts/tools_showcase/terminal.qmd >}}
+
+{{< include final_parts/tools_showcase/codex.qmd >}}
+
+{{< include final_parts/tools_showcase/hybrid.qmd >}}
+
+{{< include final_parts/tools_showcase/evidence_ide.qmd >}}
+
+{{< include final_parts/tools_showcase/evidence_terminal.qmd >}}
+
+{{< include final_parts/tools_showcase/evidence_vendor.qmd >}}
+
+{{< include final_parts/tools_showcase/evidence_remote.qmd >}}

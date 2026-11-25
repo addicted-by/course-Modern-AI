@@ -1,0 +1,47 @@
+## Which LLM changes the deployment requirements? {#sc-compare-llm-deploy .fv-slide .sc-slide .sc-compare background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 29 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a></div>
+<div class="sc-body cmp-body cmp-rows-7">
+<p class="cmp-intro">Compare the exact checkpoint or service · context size alone does not describe the runtime</p>
+<table class="cmp-table" aria-label="Which LLM changes the deployment requirements?"><colgroup><col style="width:21%"><col style="width:26%"><col style="width:16%"><col style="width:37%"></colgroup><thead><tr><th scope="col">Model</th><th scope="col">Weights / size</th><th scope="col">Context</th><th scope="col">Integration constraint</th></tr></thead><tbody><tr><th scope="row"><a href="#sc-llm-gemini4-argon">Gemini 4 Argon</a></th><td><span class="cmp-primary">Closed · sparse MoE</span><span class="cmp-detail">size undisclosed</span></td><td>1,048,576</td><td><span class="cmp-primary">Shared input + thinking + output</span><span class="cmp-detail">Per call: 64K stream / 32K non-stream output.</span></td></tr><tr><th scope="row"><a href="#sc-llm-muse-wonder">Muse Wonder</a></th><td><span class="cmp-primary">Closed · API</span><span class="cmp-detail">size undisclosed</span></td><td>1M</td><td><span class="cmp-primary">Multimodal input; text output</span><span class="cmp-detail">Active Memory and subagents are service features.</span></td></tr><tr><th scope="row"><a href="#sc-llm-qwen38">Qwen3.8</a></th><td><span class="cmp-primary">Open · 2.4T / 95B</span><span class="cmp-detail">total / active · custom licence</span></td><td>262K native<br>1.01M extended</td><td><span class="cmp-primary">Checkpoint: text, thinking on</span><span class="cmp-detail">Max adds vision and built-in tools; separate variant.</span></td></tr><tr><th scope="row"><a href="#sc-llm-kimi-k3">Kimi K3</a></th><td><span class="cmp-primary">Open · 2.8T / 104B</span><span class="cmp-detail">total / active · custom licence</span></td><td>1,048,576</td><td><span class="cmp-primary">Preserve thinking history</span><span class="cmp-detail">Released MXFP4 weights; MXFP8 activations.</span></td></tr><tr><th scope="row"><a href="#sc-llm-deepseek-v41">DeepSeek V4.1-Flash</a></th><td><span class="cmp-primary">Open · 552B backbone</span><span class="cmp-detail">8B / 16B active · MIT</span></td><td>1M</td><td><span class="cmp-primary">Up to 384K output</span><span class="cmp-detail">Thinking can be off; soft JSON only.</span></td></tr><tr><th scope="row"><a href="#sc-llm-glm-53">GLM-5.3</a></th><td><span class="cmp-primary">Open · ~753B</span><span class="cmp-detail">~40B active: secondary source</span></td><td>1M provider</td><td><span class="cmp-primary">Thinking history is mode-specific</span><span class="cmp-detail">Agent default: retain; chat guidance: clear.</span></td></tr><tr><th scope="row"><a href="#sc-llm-glm-54">GLM-5.4</a></th><td><span class="cmp-primary">Hosted at launch</span><span class="cmp-detail">28 shared layers run twice</span></td><td>1M<br>128K max output</td><td><span class="cmp-primary">Coding Plan access</span><span class="cmp-detail">General Model API pending at launch.</span></td></tr></tbody></table>
+<p class="cmp-caveat">Checkpoint licences, serving precision and context limits determine the local memory requirement. Hosted tools depend on the service.</p>
+</div>
+<div class="fv-takeaway">Open weights enable local control; active parameter count is not the memory footprint.</div>
+<div class="fv-source">October 2026 audit · <a href="https://docs.z.ai/guides/llm/glm-5.4">GLM-5.4 guide, Nov 24</a> · cards: <a href="#/sc-llm-gemini4-argon">1</a> · <a href="#/sc-llm-muse-wonder">2</a> · <a href="#/sc-llm-qwen38">3</a> · <a href="#/sc-llm-kimi-k3">4</a> · <a href="#/sc-llm-deepseek-v41">5</a> · <a href="#/sc-llm-glm-53">6</a> · <a href="#/sc-llm-glm-54">7</a></div>
+```
+
+::: {.notes}
+Семь моделей показывают разные ограничения интеграции. У Gemini окно общее для входа, thinking и выхода, а длинный decode требует продолжений. У Qwen необходимо отделить базовый открытый checkpoint от hosted Max. У Kimi и GLM история thinking входит в контракт многошаговой работы. Active parameters характеризуют вычисления на токен, но нельзя по этому числу оценить память для всех весов. Для локального развёртывания нужны точные веса, формат квантования, память KV-кэша, runtime и условия лицензии. Сведения о доступе к GLM-5.4 взяты из официального руководства Z.ai на 24 ноября.
+
+**Evidence scope.** Comparison of the deck's supplied audit and results snapshots. No fresh model execution or current-price verification. Arithmetic and task implications are editorial derivations, not additional benchmark measurements.
+
+**Source cards:**
+- `final_parts/showcase_all_20261021/llm/gemini4-argon.qmd`
+- `final_parts/showcase_all_20261021/llm/muse-wonder.qmd`
+- `final_parts/showcase_all_20261021/llm/qwen38.qmd`
+- `final_parts/showcase_all_20261021/llm/kimi-k3.qmd`
+- `final_parts/showcase_all_20261021/llm/deepseek-v41.qmd`
+- `final_parts/showcase_all_20261021/llm/glm-53.qmd`
+- `final_parts/showcase_all_20261021/llm/glm-54.qmd`
+
+**Original links retained from those cards:**
+- [Model card](https://deepmind.google/models/model-cards/gemini-4-argon/)
+- [API documentation](https://ai.google.dev/gemini-api/docs/generate-content/latest-model)
+- [Long decode](https://ai.google.dev/gemini-api/docs/generate-content/long-decode)
+- [Model card](https://research.meta.ai/static/muse-wonder-model-card)
+- [Meta blog](https://research.meta.ai/blog/muse-wonder)
+- [Developer page](https://dev.meta.ai/models/muse-wonder)
+- [Checkpoint card](https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B)
+- [SGLang recipe](https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8)
+- [TokenSpeed recipes](https://lightseek.org/tokenspeed/recipes/models)
+- [Model card](https://huggingface.co/moonshotai/Kimi-K3)
+- [Technical blog](https://www.kimi.ai/blog/kimi-k3)
+- [API quickstart](https://platform.kimi.ai/docs/guide/kimi-k3-quickstart)
+- [Model card](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash)
+- [Technical report](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/DeepSeek_V41_Tech_Report.pdf)
+- [Harness](https://github.com/deepseek-ai/deepseek-harness)
+- [Model card](https://huggingface.co/zai-org/GLM-5.3)
+- [Release reporting](https://runtimewire.com/article/zai-releases-glm-5-3-open-weights-coding-cyber-defense)
+- [Provider API](https://www.siliconflow.com/zh/blog/glm-5-3-api-guide)
+:::

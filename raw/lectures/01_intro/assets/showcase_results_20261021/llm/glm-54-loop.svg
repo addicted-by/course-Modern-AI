@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1456 112" role="img" aria-labelledby="loop-title loop-desc">
+  <title id="loop-title">The two passes through the middle of GLM-5.4</title>
+  <desc id="loop-desc">Layers 1 to 26 run once. Layers 27 to 54 run twice with the same block weights. Layers 55 to 78 then consume the refined state. The 78 numbered transformer layers are applied 106 times in total.</desc>
+  <defs>
+    <marker id="head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0 7 3.5 0 7Z" fill="#141414"/>
+    </marker>
+  </defs>
+  <g stroke="#141414" stroke-width="2" fill="none" marker-end="url(#head)">
+    <path d="M307 45h52"/>
+    <path d="M692 45h53"/>
+    <path d="M1078 45h52"/>
+  </g>
+  <g stroke="#141414" stroke-width="2">
+    <rect x="15" y="11" width="286" height="67" fill="#f4f4f4"/>
+    <rect x="368" y="11" width="317" height="67" fill="#e4f8c7"/>
+    <rect x="754" y="11" width="317" height="67" fill="#e4f8c7"/>
+    <rect x="1139" y="11" width="302" height="67" fill="#f4f4f4"/>
+  </g>
+  <g text-anchor="middle" font-family="Inter,Arial,sans-serif" fill="#141414">
+    <g font-size="24" font-weight="700">
+      <text x="158" y="41">Prelude</text>
+      <text x="526" y="41">Loop pass 1</text>
+      <text x="912" y="41">Loop pass 2</text>
+      <text x="1290" y="41">Coda</text>
+    </g>
+    <g font-size="21">
+      <text x="158" y="66">Layers 1–26</text>
+      <text x="526" y="66">Layers 27–54</text>
+      <text x="912" y="66">Layers 27–54</text>
+      <text x="1290" y="66">Layers 55–78</text>
+    </g>
+    <path d="M526 85v12h115m155 0h116V85" fill="none" stroke="#40572d" stroke-width="2"/>
+    <text x="718" y="104" font-size="19" font-weight="600" fill="#344724">Shared weights</text>
+  </g>
+</svg>

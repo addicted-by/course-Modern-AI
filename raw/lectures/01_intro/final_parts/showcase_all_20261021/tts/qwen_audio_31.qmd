@@ -1,0 +1,86 @@
+## Qwen Audio 3.1: Flash streams, Next builds scenes {#sc-tts-qwen-audio-31 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 75 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-tts-qwen-audio-31-results">Results →</a></div>
+<div class="sc-body bn-body bn-w1" data-company="alibaba">
+  <div class="bn-id">
+    <div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_results_20261021/tts/qwen-31-next-scene.svg" alt="A scene description and up to three optional voice clips condition TTS Next. Its single output can mix dialogue, effects and ambience."></figure></div>
+    <div class="bn-model">
+      <p class="bn-kicker">Text-to-speech · Alibaba</p>
+      <h3>Qwen Audio 3.1</h3>
+      <p class="bn-ids"><code>TTS Flash / TTS Next</code></p>
+      <div class="bn-facts">
+        <p><span>Announced</span><b class="bn-date">22.09.2026</b></p>
+        <p><span>Access</span><b>Cloud API</b></p>
+        <p><span>Weights</span><b class="bn-shut">closed</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="bn-pub">
+    <div class="bn-tile bn-k bn-a">
+      <div class="bn-head"><h4>Voice &amp; Control</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+      <div class="bn-stat"><p class="bn-num">68<small>voices</small></p><p class="bn-cap">Flash presets · language and region vary</p></div>
+      <div class="bn-rule">
+        <p class="bn-item"><i class="sc-pip k"></i>Flash: cloning, voice design and SSML</p>
+        <p class="bn-item"><i class="sc-pip k"></i>Next: Chinese / English; up to 3 speakers</p>
+        <p class="bn-item"><i class="sc-pip k"></i>Next: speech + effects + ambience</p>
+      </div>
+      <p class="bn-gap bn-gap-p"><i class="sc-pip p"></i>Two documented endpoints on this card</p>
+    </div>
+    <div class="bn-tile bn-p bn-b">
+      <div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div>
+      <div class="bn-stat"><p class="bn-num">120<small>s</small></p><p class="bn-cap">Next output limit · podcasts up to 240 s</p></div>
+      <p class="bn-item"><i class="sc-pip k"></i>Flash streams; Next returns a file · no latency figures</p>
+    </div>
+    <div class="bn-tile bn-p bn-c">
+      <div class="bn-head"><h4>Architecture</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div>
+      <p class="bn-item"><i class="sc-pip k"></i>Next: unified AudioGen generation</p>
+      <p class="bn-item"><i class="sc-pip p"></i>Flash topology and codec are unreported</p>
+    </div>
+    <div class="bn-tile bn-p bn-d">
+      <div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div>
+      <p class="bn-item"><i class="sc-pip k"></i>Next: optional AIGC tag + content checks</p>
+      <p class="bn-item"><i class="sc-pip p"></i>Flash recipe not established for 3.1</p>
+    </div>
+  </div>
+  <div class="bn-strip">
+    <div class="bn-strip-label"><span>Withheld</span><b>1<small>of 5</small></b></div>
+    <div class="bn-cell"><h4><i class="sc-pip n"></i>Data</h4><p>No training hours, sources, synthetic shares or corpus language mix for either TTS model.</p></div>
+  </div>
+</div>
+<div class="sc-study">
+  <table class="sc-study-table">
+    <caption>Qwen Audio 3.1 in the Singapore API</caption>
+    <thead><tr><th scope="col">Service property</th><th scope="col">TTS Flash</th><th scope="col">TTS Next</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Generation input</th><td>Text</td><td>Text + optional audio</td></tr>
+      <tr><th scope="row">Output delivery</th><td>Stream or file</td><td>Completed file</td></tr>
+      <tr><th scope="row">1M input tokens</th><td>US$0.23</td><td>US$0.93</td></tr>
+      <tr><th scope="row">1M output tokens</th><td>US$1.87</td><td>US$1.87</td></tr>
+    </tbody>
+  </table>
+  <p class="sc-study-source"><a href="https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-flash">Alibaba Cloud · Flash API spec</a> · <a href="https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-next">Next API spec</a> · Singapore list prices, November 2026.</p>
+</div>
+<div class="fv-takeaway">Flash and Next serve different audio tasks; shared branding does not establish shared internals.</div>
+<div class="fv-source"><a href="https://help.aliyun.com/en/model-studio/qwen-audio-3-1-tts-flash">Flash documentation</a> · <a href="https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-next">Next model specification</a> · <a href="https://www.alibabacloud.com/help/en/model-studio/audio-generation">English prompt guide</a></div>
+```
+
+::: {.notes}
+This table combines the Model capabilities, API access or Invocation, and Singapore pricing sections of the exact qwen-audio-3.1-tts-flash and qwen-audio-3.1-tts-next pages. Flash supports WebSocket streaming and a non-real-time HTTP endpoint. Next returns a completed audio file and can accept reference recordings in the generation request. The selected USD list prices exclude promotions and apply per million tokens on the relevant side of the request. The service properties are distinct from speech quality measurements.
+
+The diagram follows the Next model specification and the English prompt guide. Reference recordings are optional. Each reference has a 30-second, 10 MB limit. Next returns one completed audio file over HTTPS. The model specification describes unified audio generation and leaves the internal architecture unspecified.
+
+**October workbook context.**
+
+This card faithfully converts the supplied TTS_v1.0.xlsx audit of 18 October 2026. It does not independently re-certify the external sources. Category statuses are from “Сводка”, row 6: partial architecture, undisclosed data, partial training, partial inference, known voice and control. Following row numbers refer to the “Qwen Audio 3.1” sheet.
+
+This is one workbook model card covering two documented TTS endpoints: qwen-audio-3.1-tts-flash and qwen-audio-3.1-tts-next (rows 35–36). The family was announced on 22 September; some press reports use 23 September (row 55). ASR and Realtime are different models. TTS-Plus appears on Artificial Analysis and a price aggregator, but was not found in official model lists or pricing notices (row 37). Do not apply its leaderboard score to Flash or Next (row 52). Closed weights is the audit's summary conclusion from API-only access and no public release, not an explicit model licence statement (row 38).
+
+Flash is the streaming speech endpoint, with AOQ and WebSocket access. Next uses synchronous HTTPS and returns a finished file (rows 15 and 40). Next accepts up to 3,000 prompt characters and generates at most 120 seconds, or 240 seconds for podcasts (rows 14 and 53). Flash's maximum input/output fields are blank. Neither TTS endpoint has a published numerical latency; the approximately 160 ms figure elsewhere in the family is ASR latency, not TTS (row 47). Next documents WAV, MP3 and PCM, with 48 kHz stereo by default. Do not copy Flash sample rates or formats from examples that name 3.0 (rows 48–49).
+
+The architecture distinction is deliberate. Next's model page documents unified AudioGen generation of speech, sound effects and ambience from text and reference audio (row 8). A language-model-plus-diffusion account for Next is secondary (row 9). The Flash language-model / flow-matching topology and 12.5 Hz tokenizer are also secondary, and match an older 3.0 technical report, so the audit flags possible version confusion (rows 7 and 12). The same applies to a reported five-stage training pipeline with final RL (row 26). Parameters and base LLM are undisclosed (rows 11 and 13); training corpus details are absent for both models (rows 19–22).
+
+Flash has 68 preset voices with differing languages and regions. Cloning and voice design are documented only in Beijing; all 68 presets support timestamps, SSML and instruction control (rows 59 and 62–65, 71–72). Next supports Chinese and English, up to three reference clips / speakers, natural-language direction, and speech with sound effects and ambience (rows 61, 64 and 67–70). Its API does not expose the timestamp controls suggested by the model page (row 71). Next's AIGC marking is optional and defaults to false; content inspection failures are documented. These safeguards do not disclose the training recipe (rows 29–30).
+
+Sources: [TTS Flash](https://help.aliyun.com/en/model-studio/qwen-audio-3-1-tts-flash), [TTS Next](https://help.aliyun.com/en/model-studio/qwen-audio-3-1-tts-next), [audio generation API](https://help.aliyun.com/en/model-studio/audio-generation-api). The audit could not open the research blog on OSS; see README rows 21–22 for that limitation and the explicit prohibition on inheriting 3.0 facts.
+:::

@@ -1,0 +1,19 @@
+## What code did Kimi’s GPU compiler accept? {#sc-llm-kimi-k3-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 21 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-kimi-k3">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="moonshot">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Moonshot AI" class="sc-company" role="img"><img alt="Moonshot AI" src="assets/showcase_identity_20261021/moonshot.svg"/></div></div><div class="sr-model"><p>RESULTS · LLM</p><h3>Kimi K3</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Terminal-Bench 2.1</p><p class="sr-metric-value">88.3%</p><p class="sr-metric-note">max; Kimi Code; T=1, top-p=1 <a class="" href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">DeepSWE v1.1</p><p class="sr-metric-value">67.5%</p><p class="sr-metric-note">max; Kimi Code, not mini-swe-agent <a class="" href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">BrowseComp</p><p class="sr-metric-value">91.2%</p><p class="sr-metric-note">Compaction at 300K; max effort <a class="" href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-demo"><p class="sr-audio-label">MiniTriton · vector-add kernel excerpt</p><h3>From a tile of numbers to GPU instructions</h3><pre style="margin:0;width:100%;box-shadow:none;background:white;padding:16px 20px;box-sizing:border-box;font:22px/1.45 monospace"><code style="font:inherit;color:inherit">mask = offs &lt; N
+x = tl.load(x_ptr + offs, mask=mask)
+y = tl.load(y_ptr + offs, mask=mask)
+tl.store(out_ptr + offs, x + y, mask=mask)</code></pre><p>Python tile program → MLIR → PTX → GPU launch</p></div><p class="sr-caption">MiniTriton’s published example adds two float32 arrays of 1,048,576 elements. Each program processes a tile of 512 elements.<span class="sr-caveat">Excerpt from Moonshot’s K3-built compiler repository.</span></p></div></div>
+<div class="fv-takeaway">A mask handles any partial tile. The test compares every output element with NumPy.</div>
+<div class="fv-source"><a href="https://github.com/MoonshotAI/minitriton/blob/a4c5aa0ad6c18605b1c0e933431a3a27d736fe79/examples/vecadd.py">Moonshot · examples/vecadd.py</a> · <a href="https://www.kimi.com/en/blog/kimi-k3">Moonshot · GPU Compiler Development</a> · Benchmark sources beside each score</div>
+```
+
+::: {.notes}
+Moonshot credits Kimi K3 with designing and implementing the compiler stack. Its repository contains the compiler and the example shown here. The block is an exact excerpt of vecadd, after offs is calculated. The test uses seed 0 and checks max absolute error below 1e-6. That is the acceptance threshold in the source, not a newly measured error. The separate benchmark scores at left were reported by the Kimi team.
+
+[Moonshot · examples/vecadd.py](https://github.com/MoonshotAI/minitriton/blob/a4c5aa0ad6c18605b1c0e933431a3a27d736fe79/examples/vecadd.py). [Moonshot · GPU Compiler Development](https://www.kimi.com/en/blog/kimi-k3).
+:::

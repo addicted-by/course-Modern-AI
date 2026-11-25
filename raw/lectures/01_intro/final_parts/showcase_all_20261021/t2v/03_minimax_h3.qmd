@@ -1,0 +1,43 @@
+## How does MiniMax H3 compress video before attention? {#sc-t2v-minimax-h3 .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 57 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-minimax-h3-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="minimax"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="MiniMax" role="img"><img src="assets/showcase_identity_20261021/minimax.svg" alt="MiniMax"></div><p class="ds-kicker">released 31.07.2026</p><p class="ds-kicker ds-r">Open weights</p><h3 class="ds-name">MiniMax H3</h3><p class="ds-lic">H3 Community License</p></div><div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Omni-Transformer</span><b class="ds-v">33B dense</b></div><div class="ds-spec "><span class="ds-k">Text encoder</span><b class="ds-v">Qwen3-VL-32B</b></div><div class="ds-spec "><span class="ds-k">Spatial compression</span><b class="ds-v">32×</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead ds-part"><span class="ds-k">Composition</span><b class="ds-v">Real, natural data</b></div><div class="ds-spec ds-gap ds-w2"><span class="ds-k">Not disclosed</span><b class="ds-v">Sizes, sources, licences, mixing ratios</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-part ds-w2"><span class="ds-k">Joint training</span><b class="ds-v">Image + video + audio</b></div><div class="ds-spec "><span class="ds-k">Checkpoints</span><b class="ds-v">CFG-distilled</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Open weights</span><b class="ds-v">768p · 4–15 s</b></div><div class="ds-spec "><span class="ds-k">Native audio</span><b class="ds-v">32 kHz stereo</b></div><div class="ds-spec "><span class="ds-k">2K regeneration</span><b class="ds-v">API only</b></div></div><div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Open checkpoints</span><b class="ds-v">FL2VA + Ref2VA</b></div><div class="ds-spec ds-w2"><span class="ds-k">Local runtimes</span><b class="ds-v">SGLang · vLLM · diffusers · ComfyUI</b></div></div></div></div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_video_evidence/minimax-h3.svg" alt="VisualVAE downsamples each spatial axis by 16, then 2-by-2 patchification reduces each by two again."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Physical reasoning from incomplete prompts</caption>
+<thead><tr><th scope="col">Reasoning task</th><th scope="col">Cases</th><th scope="col">Success rate</th></tr></thead>
+<tbody>
+<tr><th scope="row">Multi-view spatial</th><td>200</td><td>43.50%</td></tr>
+<tr><th scope="row">Video decision</th><td>100</td><td>56.00%</td></tr>
+<tr><th scope="row">Audio disambiguation</th><td>146</td><td>27.40%</td></tr>
+<tr><th scope="row">Audiovisual integration</th><td>71</td><td>47.89%</td></tr>
+<tr><th scope="row">All tasks</th><td>517</td><td>41.97%</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://arxiv.org/html/2609.18323v1#S4.T2">Zhao et al. · Table 2</a> · Human judgments on generated clips</p>
+</div>
+<div class="fv-takeaway">The architecture and checkpoints are concrete; corpus and compute details remain missing.</div>
+<div class="fv-source"><a href="https://www.minimax.io/news/minimax-h3-open-source">Figure · H3-VisualVAE</a> · <a href="https://www.minimax.io/blog/minimax-h3">H3 blog</a> · <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">Model card</a> · <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE">Licence</a> · T2V_v1.0.xlsx · MiniMax H3 · audit 19.10.2026</div>
+```
+
+::: {.notes}
+The experiment distributes essential event information across input modalities. Human raters judge whether the output meets each task’s semantic requirement. Sample sizes differ by scenario. The pooled success rate weights each instance equally. The study does not isolate a causal effect of the input modality. [Zhao et al. · Table 2](https://arxiv.org/html/2609.18323v1#S4.T2).
+
+MiniMax’s H3 release describes its visual encoder in the H3-VAE / H3-VisualVAE section. The encoder divides both spatial axes by 16 and the temporal axis by 4. A 1 × 2 × 2 patch groups four visual latent sites into one Transformer token. The diagram works through an illustrative 256 × 256 crop. It shows the spatial grid at one latent time position.
+
+The specification table follows the 19 October 2026 workbook. The 31 July date belongs to the launch blog; the workbook dates the licence to 2 August and the open-weight announcement to 3 August.
+
+The 33B dense single-stream H3-Omni-Transformer is separate from the full Qwen3-VL-32B encoder. The displayed 32× spatial compression includes a 16× visual autoencoder and 2× patchifying; it is not the VAE compression alone. The release supports full attention, while the sparse-attention implementation was not included in the initial open release.
+
+The vendor calls the data real and natural and describes joint image/video/audio training. Corpus sizes, source licences, mixing ratios, compute, optimizer and schedule are not supplied. The open BF16 checkpoints are CFG-distilled. This is partial disclosure of training, not a reproducible training recipe.
+
+Open FL2VA and Ref2VA weights produce native 768p at 24 fps, 4–15 seconds, with 32 kHz stereo audio. H3-Context-IR and 2K regeneration remain hosted components, so the open weights are not equivalent to the complete API. FL2VA supports text or first/last-frame input; Ref2VA accepts at most 12 total reference files under modality limits. Editing is expressed through reference conditioning rather than a separately specified editing mode. The listed local runtimes do not establish a minimum VRAM requirement.
+
+The workbook records a Community License with territory and commercial restrictions, including exclusions for the EU, UK, Republic of Korea and US unless separately approved. “Open weights” here means available checkpoints, not an unrestricted open-source licence.
+
+**Sheet-row provenance:** architecture 6–12; data 16–17; training 21–24; release/inference 29–33 and 36; tools and licence 41–47. **Status provenance:** `Сводка`, row 6, columns B–F.
+
+**Workbook sources:** [H3 blog](https://www.minimax.io/blog/minimax-h3), [Model card](https://huggingface.co/MiniMaxAI/MiniMax-H3), [Licence](https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE).
+:::

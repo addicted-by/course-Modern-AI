@@ -1,0 +1,40 @@
+## From packshot to campaign scene {#sc-t2i-krea-3-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 46 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-krea-3">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="krea">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Krea AI" class="sc-company" role="img"><img alt="Krea AI" src="assets/showcase_identity_20261021/krea.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>Krea 3</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Edit turnaround</p><p class="sr-metric-value">Under 8 s</p><p class="sr-metric-note">Vendor: most edits, native 2K, end-to-end. <a class="" href="https://www.krea.ai/blog/introducing-krea-3" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Native output</p><p class="sr-metric-value">2K</p><p class="sr-metric-note">Published editing resolution; not a quality score. <a class="" href="https://www.krea.ai/blog/introducing-krea-3" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Reference images</p><p class="sr-metric-value">Up to 6</p><p class="sr-metric-note">Published maximum per edit. <a class="" href="https://www.krea.ai/blog/introducing-krea-3" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-gallery"><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-krea-3-soda-packshot-input.webp" alt="Input: product packshot."><figcaption>Input · soda packshot</figcaption></figure><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-krea-3-soda-campaign-output.webp" alt="Krea 3: product in an iced campaign scene."><figcaption>Edit · iced campaign scene</figcaption></figure></div><p class="sr-caption">The edit places the can in a hand over crushed ice and cut yuzu. Compare the label lettering and doodles across the pair.</p></div></div>
+<div class="fv-takeaway">Krea uses the same product in a new setting. The source identifies the model at family level.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://www.krea.ai/blog/introducing-krea-3" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+A verified product before/after demonstrates recontextualising a can while retaining its design.
+
+
+
+- **Edit turnaround: Under 8 seconds **. Most edits, end-to-end at native 2K. Comparison table uses Krea edit jobs, Sep 24–Oct 1, 2026, queue included; no sample count. Attribution: vendor_latency_claim. [Source](https://www.krea.ai/blog/introducing-krea-3).
+
+- **Native output: 2K **. Published native editing resolution; not an image-quality score. Attribution: output_characteristic. [Source](https://www.krea.ai/blog/introducing-krea-3).
+
+- **Reference inputs: Up to 6 **. Maximum references per edit in the launch description. Attribution: output_characteristic. [Source](https://www.krea.ai/blog/introducing-krea-3).
+
+
+
+**Example provenance and limitations.**
+
+The Krea 3 launch presents a source/product edit pair in the Your product stays your product section; page explicitly attributes its edited images to Krea 3.
+
+This is image editing, not an unconditioned text-to-image sample.
+
+Vendor latency claim is not a locally reproduced benchmark.
+
+[Published media/source](https://s.krea.ai/blog-posts/krea-3/soda-before.webp): Input: product packshot.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+
+[Published media/source](https://s.krea.ai/blog-posts/krea-3/soda-after.webp): Krea 3: product in an iced campaign scene.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+:::

@@ -1,0 +1,44 @@
+## Dense information in a single image {#sc-t2i-qwenimage-3-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 48 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-qwenimage-3">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="alibaba">
+<div class="sr-sidebar" role="group" aria-label="Model and magnified image details"><div class="sr-brand"><div aria-label="Alibaba / Qwen" class="sc-company" role="img"><img alt="Alibaba" src="assets/showcase_identity_20261021/alibaba.svg"/><span class="sc-company-caption">Qwen</span></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>Qwen-Image 3.0</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label" style="font-weight:600;margin-bottom:8px">Poster detail · filter feeding</p><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Small illustrated organisms and blue water flow toward the open mouth of the whale shark." width="100%" height="140" viewBox="901 172 341 180" preserveAspectRatio="xMinYMid meet" style="display:block;overflow:hidden"><title>Small illustrated organisms and blue water flow toward the open mouth of the whale shark.</title><image href="assets/showcase_results_20261021/t2i/sc-t2i-qwenimage-3-whale-shark-infographic.jpg" width="1260" height="1888"/></svg></div><div class="sr-metric"><p class="sr-metric-label" style="font-weight:600;margin-bottom:8px">Poster detail · migration routes</p><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Red dashed arrows show migration routes over blue oceans on a world map." width="100%" height="140" viewBox="27 1297 598 281" preserveAspectRatio="xMinYMid meet" style="display:block;overflow:hidden"><title>Red dashed arrows show migration routes over blue oceans on a world map.</title><image href="assets/showcase_results_20261021/t2i/sc-t2i-qwenimage-3-whale-shark-infographic.jpg" width="1260" height="1888"/></svg></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-gallery"><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-qwenimage-3-nine-panel-infographic.png" alt="Qwen-Image-3.0: nine-panel educational infographic."><figcaption>Grid of educational layouts</figcaption></figure><figure><img src="assets/showcase_results_20261021/t2i/sc-t2i-qwenimage-3-whale-shark-infographic.jpg" alt="Qwen-Image-3.0: whale-shark infographic."><figcaption>Whale-shark infographic</figcaption></figure></div><p class="sr-caption">The poster uses blue flow lines to illustrate feeding and red dashed arrows to show migration. Both details are enlarged at left.</p></div></div>
+<div class="fv-takeaway">Qwen attributes both images to version 3.0. The launch gallery leaves the Standard or Pro tier unspecified.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://qwen.ai/blog?id=qwen-image-3.0" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+The two insets magnify original regions of the whale-shark poster. The upper crop shows the illustrated filter-feeding mechanism. The lower crop shows the poster’s migration map. Read them as design examples. The biological claims on this model-generated poster were not independently verified.
+
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+Official output examples combine multi-panel educational design and a whale-shark infographic.
+
+
+
+- **Example composition: 3 × 3 panels **. Nine panels in one published gallery image. Attribution: output_characteristic. [Source](https://qwen.ai/blog?id=qwen-image-3.0).
+
+- **Published grid asset: 2720 × 1536 px **. Natural dimensions read from the official gallery image; not a model maximum. Attribution: asset_characteristic. [Source](https://qwen.ai/blog?id=qwen-image-3.0).
+
+- **Published whale asset: 1260 × 1888 px **. Natural dimensions read from the official gallery image; not a quality benchmark. Attribution: asset_characteristic. [Source](https://qwen.ai/blog?id=qwen-image-3.0).
+
+
+
+**Example provenance and limitations.**
+
+The Qwen-Image-3.0 launch labels the third-generation model and includes these assets under its capability examples; Standard versus Pro is not specified.
+
+No verified numerical quality/preference/latency result captured from the checked release.
+
+Gallery is exact 3.0 family evidence, not evidence for a particular Standard/Pro endpoint.
+
+Infographic text and factual correctness have not been independently audited.
+
+[Published media/source](https://qianwen-res.oss-accelerate.aliyuncs.com/Qwen-Image/image3/update2.png): Qwen-Image-3.0: nine-panel educational infographic.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+
+[Published media/source](https://qianwen-res.oss-accelerate.aliyuncs.com/Qwen-Image/image3/whale.jpg): Qwen-Image-3.0: whale-shark infographic.. Rights: Public vendor showcase. No explicit image-reuse licence identified on the checked page; retain source attribution. Model/weights licences do not establish a licence for these page assets.
+:::

@@ -1,0 +1,54 @@
+## Claude Sonnet 5.5: explicit API constraints {#sc-llm-sonnet-55 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 04 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-sonnet-55-results">Results →</a></div>
+<div class="sc-body bn-body bn-w1" data-company="anthropic"><div class="bn-id" style="--bn-brand:#d97757"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_llm_evidence/sonnet-55.svg" alt="FrontierCode 1.1. Sonnet 5.5 · Main split. Max effort 46.2%, Xhigh effort 52.1%."></figure></div>
+<div class="bn-model"><p class="bn-kicker">LLM · Anthropic</p><h3>Claude Sonnet 5.5</h3><p class="bn-ids"><code>claude-sonnet-5-5</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">28.09.2026</b></p><p><span>Access</span><b>API</b></p><p><span>Weights</span><b class="bn-shut">closed</b></p></div>
+</div></div>
+<div class="bn-pub"><div class="bn-tile bn-k bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+<div class="bn-stat"><p class="bn-num">1M<small>tokens</small></p><p class="bn-cap">context · <b>128K</b> standard output</p></div>
+<div class="bn-stat bn-rule"><p class="bn-num">$2 / $10</p><p class="bn-cap">per 1M input / output tokens</p></div>
+<div class="bn-rule"><p class="bn-item"><i class="sc-pip k"></i>Batch output: up to 300K with the beta header.</p><p class="bn-item"><i class="sc-pip k"></i>Adaptive thinking. Default effort: high.</p></div>
+</div>
+<div class="bn-tile bn-k bn-b"><div class="bn-head"><h4>Data</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+<div class="bn-split"><div class="bn-stat"><p class="bn-num">Jun 2026</p><p class="bn-cap">data / knowledge cutoff</p></div>
+<div class="bn-col"><p class="bn-item"><i class="sc-pip k"></i>Web, public and private datasets, synthetic data.</p><p class="bn-item"><i class="sc-pip k"></i>Deduplication and classification.</p></div>
+</div></div>
+<div class="bn-tile bn-k bn-c"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div><p class="bn-item"><i class="sc-pip k"></i>Inline tools and tool-set changes.</p><p class="bn-item"><i class="sc-pip k"></i>Forced <code>tool_choice</code> returns 400.</p></div>
+<div class="bn-tile bn-p bn-d"><div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Constitution-guided post-training and fine-tuning.</p><p class="bn-gap">No reproducible recipe.</p></div>
+</div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Undisclosed</span><b>1<small>of 5</small></b></div>
+<div class="bn-cell"><h4><i class="sc-pip n"></i>Architecture</h4><p>System card and API docs do not disclose topology, size, layers or attention.</p></div>
+</div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Toolathlon-Verified across three attempts</caption>
+<thead><tr><th scope="col">Grading rule</th><th scope="col">Sonnet 5</th><th scope="col">Sonnet 5.5</th></tr></thead>
+<tbody>
+<tr><th scope="row">One trial (pass@1)</th><td>74.7%</td><td>77.8%</td></tr>
+<tr><th scope="row">Any of three pass</th><td>84.3%</td><td>85.2%</td></tr>
+<tr><th scope="row">All three pass</th><td>65.7%</td><td>68.5%</td></tr>
+<tr><th scope="row">Mean assistant turns</th><td>24.5</td><td>31.6</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://www-cdn.anthropic.com/870c8f525702625d2c62fc6dd04c857e3250bec1/Claude%20Sonnet%205.5%20System%20Card.pdf#page=135">Anthropic · System Card, Table 8.14.5.A</a> · 108 tasks, max effort</p>
+</div>
+<div class="fv-takeaway">Limits and tool rules are public, while the training recipe remains partial.</div>
+<div class="fv-source">LLM_v1.0.xlsx · Sonnet 5.5 · audit 18.10.2026 · <a href="https://www-cdn.anthropic.com/870c8f525702625d2c62fc6dd04c857e3250bec1/Claude%20Sonnet%205.5%20System%20Card.pdf">System card</a> · <a href="https://platform.claude.com/docs/en/models/sonnet-5-5/overview">Model overview</a> · <a href="https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5">API changes</a> · <a href="https://www.anthropic.com/claude-sonnet-5-5">Figure source</a></div>
+```
+
+::: {.notes}
+**Table.** Anthropic’s internal harness runs the verified Toolathlon tasks three times. Pass@1 averages the trials, pass@3 counts a task if any trial passes, and pass³ requires all three trials to pass. Mean turns are measured per trajectory. Sonnet 5.5 ran with production safety classifiers, and two stopped trials counted as failures. The source table is on p. 135. [Anthropic · System Card, Table 8.14.5.A](https://www-cdn.anthropic.com/870c8f525702625d2c62fc6dd04c857e3250bec1/Claude%20Sonnet%205.5%20System%20Card.pdf#page=135).
+
+**Figure.** Anthropic, “Performance and cost”, FrontierCode 1.1 (Main), footnote 2. Anthropic reports both effort settings. The ordering is specific to this model and evaluation. Bars use a 0–100% scale. [Primary source](https://www.anthropic.com/claude-sonnet-5-5).
+
+Sonnet shares the same five-category summary pattern as Opus, but the operational details differ. The workbook gives 1M context and 128K standard output. A batch request can reach 300K output with output-300k-2026-03-24. Standard pricing is $2 input and $10 output per million tokens, with a 50% batch discount and $0.10 cache reads. These are dated snapshot prices.
+
+Adaptive thinking is the default and thinking:disabled returns 400. The lowest mode is between_tools, without preliminary thinking, at effort no higher than high. Non-default temperature, top_p or top_k also return 400. The model supports inline tools in beta and changing tools during a conversation. Computer use requires computer_toolset_20260801 in Claude API and Google Cloud, while the workbook records an exception for Bedrock. The training category stays Partial because constitution-guided objectives do not disclose the optimization recipe. The Opus reward-hacking review was not repeated for Sonnet.
+
+**Snapshot and provenance.** LLM_v1.0.xlsx, sheet “Sonnet 5.5”, audit dated 18.10.2026. Category statuses follow “Сводка”: Architecture: Not disclosed; Data: Known; Training: Partial; Inference: Known; Tools: Known. Known means a model-specific fact is disclosed, not that the whole category is complete. These slides summarize the supplied audit and do not constitute a fresh independent verification. Prices, limits and availability refer to that snapshot.
+
+**Source rows:** 1, 2, 6, 10, 11, 12, 16, 18, 22, 23, 24, 25, 26, 27, 28, 35, 36, 37, 39.
+
+**Sources:** [System card](https://www-cdn.anthropic.com/870c8f525702625d2c62fc6dd04c857e3250bec1/Claude%20Sonnet%205.5%20System%20Card.pdf), [Model overview](https://platform.claude.com/docs/en/models/sonnet-5-5/overview), [API changes](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5).
+:::

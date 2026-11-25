@@ -1,0 +1,56 @@
+## Coding Tools Showcase {#ts-index .ts-slide .ts-intro background-color="#0a0a0a"}
+
+```{=html}
+<div class="ts-card">
+  <nav class="ts-catalog" aria-label="Coding tool infographics">
+    <div class="ts-catalog-group">
+      <h3>Editor &amp; IDE</h3>
+      <ul>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-cursor" href="#/ts-cursor"><strong>Cursor</strong><span>Tab · Agent · Cloud Agents</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-cursor-uses" aria-label="Uses for Cursor">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-copilot" href="#/ts-copilot"><strong>GitHub Copilot</strong><span>IDE · Agents · PR review</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-copilot-uses" aria-label="Uses for GitHub Copilot">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-junie" href="#/ts-junie"><strong>Junie</strong><span>IDE checks · Allowlist · CLI</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-junie-uses" aria-label="Uses for Junie">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-cline" href="#/ts-cline"><strong>Cline</strong><span>Plan · Act · Checkpoints</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-cline-uses" aria-label="Uses for Cline">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-kiro" href="#/ts-kiro"><strong>Kiro</strong><span>Specs · Steering · Hooks</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-kiro-uses" aria-label="Uses for Kiro">Uses</a></li>
+      </ul>
+    </div>
+    <div class="ts-catalog-group">
+      <h3>Terminal</h3>
+      <ul>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-aider" href="#/ts-aider"><strong>Aider</strong><span>Repo map · Edits · Git commits</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-aider-uses" aria-label="Uses for Aider">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-claude-code" href="#/ts-claude-code"><strong>Claude Code</strong><span>Shell · Plan Mode · Permissions</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-claude-code-uses" aria-label="Uses for Claude Code">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-gemini-cli" href="#/ts-gemini-cli"><strong>Gemini CLI</strong><span>GEMINI.md · Shell · Memory</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-gemini-cli-uses" aria-label="Uses for Gemini CLI">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-opencode" href="#/ts-opencode"><strong>OpenCode</strong><span>Models · Plan · Permissions</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-opencode-uses" aria-label="Uses for OpenCode">Uses</a></li>
+      </ul>
+    </div>
+    <div class="ts-catalog-group">
+      <h3>Local &amp; remote workspaces</h3>
+      <ul>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-codex" href="#/ts-codex"><strong>Codex</strong><span>CLI · Worktrees · Cloud</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-codex-uses" aria-label="Uses for Codex">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-antigravity" href="#/ts-antigravity"><strong>Antigravity</strong><span>Projects · Browser · Artifacts</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-antigravity-uses" aria-label="Uses for Antigravity">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-windsurf" href="#/ts-windsurf"><strong>Windsurf</strong><span>Local · Cloud · Quick Review</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-windsurf-uses" aria-label="Uses for Windsurf">Uses</a></li>
+        <li class="ts-catalog-item"><a class="ts-catalog-entry ts-openhands" href="#/ts-openhands"><strong>OpenHands</strong><span>Workspace · Sandbox · MCP</span></a><a class="ts-catalog-uses ts-use-link" href="#/ts-openhands-uses" aria-label="Uses for OpenHands">Uses</a></li>
+      </ul>
+    </div>
+  </nav>
+  <nav class="ts-evidence-index" aria-label="Technical figures">
+    <h3>Technical figures</h3>
+    <ul>
+      <li><a class="ts-evidence-link" href="#/ts-evidence-ide-cursor">Cursor</a></li>
+      <li><a class="ts-evidence-link" href="#/ts-evidence-ide-copilot">GitHub Copilot</a></li>
+      <li><a class="ts-evidence-link" href="#/ts-evidence-ide-kiro">Kiro</a></li>
+      <li><a class="ts-evidence-link" href="#/ts-evidence-terminal-aider">Aider</a></li>
+      <li><a class="ts-evidence-link" href="#/ts-evidence-terminal-claude-code">Claude Code</a></li>
+      <li><a class="ts-evidence-link" href="#/ts-evidence-remote-codex">Codex</a></li>
+      <li><a class="ts-evidence-link" href="#/ts-evidence-remote-openhands">OpenHands</a></li>
+    </ul>
+  </nav>
+</div>
+```
+
+::: {.notes lang="ru"}
+Выберите название инструмента, чтобы открыть карточку особенностей. Ссылка Uses в той же строке открывает опубликованные сценарии применения. В верхней строке можно сразу перейти к первой карточке группы либо вернуться к указателю по ссылке All tools. Стрелками можно пройти карточки по порядку, а клавишей Esc открыть обзор слайдов.
+
+Группы показывают удобную точку входа. Некоторые инструменты работают в нескольких средах, поэтому на карточках интерфейсы показаны отдельно от возможностей и способов управления. Ссылки под карточками ведут к документации.
+
+Раздел Technical figures ведёт к графикам и схемам из технических публикаций. К каждой иллюстрации приложены источник и пояснение, где искать ключевые данные.
+:::

@@ -1,0 +1,20 @@
+## Veo 3.1 opens the doors on a roomful of balls {#sc-t2v-veo-3-1-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 64 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-veo-3-1">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="google-deepmind">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Google DeepMind" class="sc-company" role="img"><img alt="Google DeepMind" src="assets/showcase_identity_20261021/google-deepmind.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>Veo 3.1</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2V preference Elo</p><p class="sr-metric-value">968 Elo</p><p class="sr-metric-note">95% CI 950–986; n=2,872; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/text-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">I2V preference Elo</p><p class="sr-metric-value">1028 Elo</p><p class="sr-metric-note">95% CI 1011–1045; n=3,499; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/image-to-video" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/veo-3-1-poster.webp" alt="Two metal doors swing open. Colored balls spill toward the camera until they fill the frame."><video controls playsinline preload="none" src="assets/showcase_video_evidence/veo-3-1.mp4" poster="assets/showcase_video_evidence/veo-3-1-poster.webp" aria-label="Veo 3.1 opens the doors on a roomful of balls" aria-describedby="veo-3-1-caption"></video></div><p class="sr-caption" id="veo-3-1-caption">Two metal doors swing open. Colored balls spill toward the camera until they fill the frame.</p></div></div>
+<div class="fv-takeaway">This launch example uses the 3.1 preview. The preference scores describe the later base 3.1 entry.</div>
+<div class="fv-source"><a href="https://developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/">Google for Developers · Ingredients to Video</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+Google publishes this eight-second result in the Ingredients to Video section of its 15 October 2025 article. The example code uses veo-3.1-generate-preview. The local file preserves the complete eight-second official video. The October 2026 benchmark refers to the base Veo 3.1 entry, whose checkpoint Google does not equate with the preview.
+
+- **T2V preference Elo: 968 Elo**. Text prompt; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/text-to-video).
+
+- **I2V preference Elo: 1028 Elo**. Source image; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/image-to-video).
+
+[Published example](https://developers.googleblog.com/en/introducing-veo-3-1-and-new-creative-capabilities-in-the-gemini-api/) · [Original media](https://www.youtube.com/watch?v=h9efowrW9ik)
+:::

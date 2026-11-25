@@ -1,0 +1,213 @@
+---
+pagetitle: "Modern AI — Showcase: model cards and results"
+lang: en
+format:
+  revealjs:
+    theme: assets/frontier_v2_20261006/theme-local.scss
+    template: final_parts/showcase_all_20261021/reveal-template.html
+    include-after-body:
+      - ../00_template/theme/header-logos.html
+      - final_parts/showcase_all_20261021/accessibility.html
+    section-divs: false
+    pdf-separate-fragments: false
+    css:
+      - lecture01_part2_final_v3.css
+      - lecture01_part2_final_v3_showcase.css
+    include-in-header:
+      - assets/frontier_v2_20261006/math.html
+      - assets/frontier_v2_20261006/speaker-math.html
+    html-math-method:
+      method: katex
+      url: vendor/katex/dist/
+suppress-bibliography: true
+---
+
+{{< include final_parts/showcase_all_20261021/s01_toc.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/opus-55.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-opus-55-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/sonnet-55.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-sonnet-55-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/fable-51.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-fable-51-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/gpt6-astra.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-gpt6-astra-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/gpt61-sol.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-gpt61-sol-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/muse-wonder.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-muse-wonder-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/gemini4-argon.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-gemini4-argon-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/grok-47.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-grok-47-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/qwen38.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-qwen38-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/kimi-k3.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-kimi-k3-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/deepseek-v41.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-deepseek-v41-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/glm-53.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-glm-53-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/llm/glm-54.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-llm-glm-54-results.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-llm-cost.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-llm-deploy.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-llm-scores.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/01_gpt_image_25.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-gpt-image-25-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/02_gpt_image_2.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-gpt-image-2-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/03_nano_banana_21.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-nano-banana-21-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/04_flux_2.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-flux-2-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/05_flux_2_klein.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-flux-2-klein-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/06_flux_3_image.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-flux-3-image-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/07_flux_3_image_klein.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-flux3-klein-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/08_krea_3.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-krea-3-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/09_qwenimage_3.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-qwenimage-3-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2i/10_wan_27_image.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2i-wan-27-image-results.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-image-api.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-image-control.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/01_wan3.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-wan3-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/02_utopai_x.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-utopai-x-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/03_minimax_h3.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-minimax-h3-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/04_flux_3_video.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-flux-3-video-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/05_kling_3_omni.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-kling-3-omni-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/06_veo_3_1.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-veo-3-1-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/07_seedance_2_5.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-seedance-2-5-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/t2v/08_aleph_2.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-t2v-aleph-2-results.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-video-generation.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-video-workflow.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/tts/eleven_v4.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-tts-eleven-v4-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/tts/sonic_36.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-tts-sonic-36-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/tts/qwen_audio_31.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-tts-qwen-audio-31-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/tts/gemini_38_flash_tts.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-tts-gemini-38-flash-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/tts/heygen_voice.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-tts-heygen-voice-results.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-speech-controls.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/s08_tts_eleven_sonic.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/music/suno-v6.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-music-suno-v6-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/music/mureka-v95.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-music-mureka-v95-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/music/lyria-35.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-music-lyria-35-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/music/minimax-music-30.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-music-minimax-music-30-results.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/music/yue-2.qmd >}}
+
+{{< include final_parts/showcase_results_20261021/sc-music-yue-2-results.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-music-workflow.qmd >}}
+
+{{< include final_parts/showcase_all_20261021/s09_music_yue_suno.qmd >}}
+
+{{< include final_parts/showcase_comparisons_20261021/sc-compare-music-scores.qmd >}}

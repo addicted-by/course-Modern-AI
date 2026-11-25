@@ -1,0 +1,51 @@
+## GPT-6 Astra: training methods without model dimensions {#sc-llm-gpt6-astra .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 08 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-gpt6-astra-results">Results →</a></div>
+<div class="sc-body bn-body bn-w1" data-company="openai"><div class="bn-id" style="--bn-brand:#141414"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_llm_evidence/gpt6-astra.svg" alt="OSWorld 2.0. Score and simulated time per task. 5.6 Sol · ~75 min 65.7%, 6 Astra · ~40 min 72.6%."></figure></div>
+<div class="bn-model"><p class="bn-kicker">LLM · OpenAI</p><h3>GPT-6 Astra</h3><p class="bn-ids"><code>gpt-6-astra</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">03.09.2026</b></p><p><span>Access</span><b>API / Codex</b></p><p><span>Weights</span><b class="bn-shut">closed</b></p></div>
+</div></div>
+<div class="bn-pub"><div class="bn-tile bn-k bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+<div class="bn-stat"><p class="bn-num">$10 / $50</p><p class="bn-cap">per 1M input / output tokens</p></div>
+<div class="bn-stat bn-rule"><p class="bn-num">5<small>levels</small></p><p class="bn-cap">reasoning effort: low through max</p></div>
+<div class="bn-rule"><p class="bn-item"><i class="sc-pip p"></i>About 1.05M context, per secondary sources.</p><p class="bn-item"><i class="sc-pip k"></i>Fast mode: up to 2× speed at 2× price.</p></div>
+</div>
+<div class="bn-tile bn-k bn-b"><div class="bn-head"><h4>Data</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div><p class="bn-item"><i class="sc-pip k"></i>Diverse datasets with OpenAI filtering, including personal-data reduction.</p><p class="bn-item"><i class="sc-pip k"></i>Synthetic, production and semi-synthetic safety examples.</p></div>
+<div class="bn-tile bn-k bn-c"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div><p class="bn-item"><i class="sc-pip k"></i>Computer use and browsing.</p><p class="bn-item"><i class="sc-pip k"></i>Codex: cross-window notes and async clarifications.</p></div>
+<div class="bn-tile bn-k bn-d"><div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div><p class="bn-item"><i class="sc-pip k"></i>Pretraining, RL and alignment.</p><p class="bn-item"><i class="sc-pip k"></i>Adversarial safety training.</p><p class="bn-gap">No optimizer or model size.</p></div>
+</div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Undisclosed</span><b>1<small>of 5</small></b></div>
+<div class="bn-cell"><h4><i class="sc-pip n"></i>Architecture</h4><p>Parameter count, dense or MoE topology, and attention are undisclosed. Looped-model claims are rumors.</p></div>
+</div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Astra in simulated workplace tasks</caption>
+<thead><tr><th scope="col">Unintended outcome</th><th scope="col">No policy</th><th scope="col">With policy</th></tr></thead>
+<tbody>
+<tr><th scope="row">Overall rate</th><td>3.4%</td><td>3.0%</td></tr>
+<tr><th scope="row">Unauthorized transaction</th><td>6.8%</td><td>4.3%</td></tr>
+<tr><th scope="row">Unauthorized messages</th><td>1.7%</td><td>1.4%</td></tr>
+<tr><th scope="row">Service disruption</th><td>0.0%</td><td>0.3%</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://deploymentsafety.openai.com/gpt-6-astra#tbl-35">OpenAI · System Card, Table 8</a> · Lower is better</p>
+</div>
+<div class="fv-takeaway">The disclosed methods support a training outline, without revealing the model’s topology.</div>
+<div class="fv-source">LLM_v1.0.xlsx · GPT-6 Astra · audit 18.10.2026 · <a href="https://openai.com/index/gpt-6-astra/">Launch</a> · <a href="https://deploymentsafety.openai.com/gpt-6-astra">System card</a> · <a href="https://arxiv.org/pdf/2607.26115">GPT-Red paper</a> · <a href="https://openai.com/index/gpt-6-astra/">Figure source</a></div>
+```
+
+::: {.notes}
+**Table.** The same GPT-6 Astra model was evaluated with and without its user-confirmation instruction in intentionally adversarial, simulated work environments. The communication row refers to unauthorized external communication. Lower means fewer unintended outcomes. The observed service-disruption rate increased slightly in this sample. These are evaluation-set rates. [OpenAI · System Card, Table 8](https://deploymentsafety.openai.com/gpt-6-astra#tbl-35).
+
+**Figure.** OpenAI, “Computer use”, OSWorld 2.0. OpenAI pairs each partial score with approximate minutes per task from its latency simulations. The bars encode score from 0 to 100%, not elapsed time. [Primary source](https://openai.com/index/gpt-6-astra/).
+
+The workbook distinguishes disclosed methods from speculation. OpenAI describes pretraining, RL, alignment, targeted professional training and adversarial safety training. It also describes dataset filtering and specific safety-data types. These statements justify Known summary categories, but they do not reveal dimensions, optimizer settings or a reproducible training corpus. Dense, looped or recurrent-depth descriptions and the alleged token counts are labeled rumors and are excluded from the factual card.
+
+The roughly 1.05M context figure is Partial because it comes from model routers or secondary reporting. The April 2026 cutoff is also secondary and is not promoted to a headline. The detailed reasoning-RL claim in row 20 was not rechecked in the supplied audit. Computer use and browsing are model use cases, while cross-window memory notes and asynchronous clarification are Codex product features. Sites belongs to ChatGPT rather than to the model architecture. Prices and fast-mode multipliers describe the 18 October snapshot.
+
+**Snapshot and provenance.** LLM_v1.0.xlsx, sheet “GPT-6 Astra”, audit dated 18.10.2026. Category statuses follow “Сводка”: Architecture: Not disclosed; Data: Known; Training: Known; Inference: Known; Tools: Known. Known means a model-specific fact is disclosed, not that the whole category is complete. These slides summarize the supplied audit and do not constitute a fresh independent verification. Prices, limits and availability refer to that snapshot.
+
+**Source rows:** 1, 2, 6, 7, 11, 12, 13, 14, 15, 19, 20, 21, 22, 23, 30, 31, 32, 33, 41, 42, 43, 44, 46.
+
+**Sources:** [Launch](https://openai.com/index/gpt-6-astra/), [System card](https://deploymentsafety.openai.com/gpt-6-astra), [GPT-Red paper](https://arxiv.org/pdf/2607.26115).
+:::

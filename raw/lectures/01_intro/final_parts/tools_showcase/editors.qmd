@@ -1,0 +1,361 @@
+## How is Cursor organized across surfaces? {#ts-cursor .ts-slide .ts-cursor .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/cursor-logo.svg" alt="">
+    <strong class="ts-name">Cursor</strong>
+    <span class="ts-surface">AI editor and agent platform</span>
+  </div>
+  <figure class="ts-chart">
+    <figcaption>Editing interfaces and cloud delegation</figcaption>
+    <div class="ts-diagram ts-branches">
+      <div class="ts-node ts-hub"><strong>Cursor</strong></div>
+      <div class="ts-branch-list">
+        <div class="ts-node"><strong>Editor</strong><span>Tab suggests multi-line and cross-file edits. Agent edits code and runs checks.</span></div>
+        <div class="ts-node"><strong>Agents Window</strong><span>Parallel sessions in local workspaces, worktrees, remote SSH, or cloud.</span></div>
+        <div class="ts-node"><strong>CLI</strong><span>Interactive Agent or <code>agent -p</code> for scripts and CI.</span></div>
+        <div class="ts-node ts-node-accent"><strong>Cloud Agents</strong><span>Delegate background work and follow the session on web or mobile.</span></div>
+      </div>
+    </div>
+    <div class="ts-secondary">
+      <h3 id="ts-cursor-runtime-location">Where a Cloud Agent runs</h3>
+      <table class="ts-mini-table" aria-labelledby="ts-cursor-runtime-location">
+        <thead><tr><th scope="col">Component</th><th scope="col">Cursor-hosted</th><th scope="col">Self-Hosted Machines</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Agent loop and inference</th><td colspan="2">Cursor cloud in both configurations</td></tr>
+          <tr><th scope="row">Tool execution</th><td>Isolated Cursor VM</td><td>Your worker</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="Cursor capabilities">
+    <h3>Agent controls</h3>
+    <dl>
+      <dt>Ask · Plan · Agent · Debug</dt><dd>Explore code, agree on a plan, edit and run checks, or gather runtime evidence.</dd>
+      <dt>Project context</dt><dd>File references, Instant Grep, and rules in <code>.cursor/rules/</code>.</dd>
+      <dt>Design Mode</dt><dd>Send element context and a screenshot from the running UI.</dd>
+      <dt>Review and rollback</dt><dd>Agent Review checks local diffs. Restore Checkpoint rolls back Agent edits.</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a class="ts-evidence-link" href="#/ts-evidence-ide-cursor">Technical figure</a><a href="https://cursor.com/help/ai-features/tab">Tab</a><a href="https://cursor.com/help/ai-features/agent">Agent modes</a><a href="https://cursor.com/docs/agent/agents-window">Agents Window</a><a href="https://cursor.com/docs/cli/using">CLI and cloud handoff</a><a href="https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime">Cloud runtime</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Схема показывает поверхности одного продукта. В редакторе Tab предлагает правки по мере набора кода, может менять несколько строк и указывать на следующее место редактирования. Agent решает задачи с поиском по репозиторию, изменением нескольких файлов и запуском команд. Ask подходит для изучения кода, Plan для согласования подхода. При переходе между режимами в новой сессии полезно явно приложить нужный файл или символ.
+
+Agents Window объединяет сеансы и настройки среды. В worktree изолируются изменения на диске. CLI поддерживает интерактивную работу, режим печати для сценариев и передачу задачи Cloud Agent. При Self-Hosted Machines на машине пользователя выполняются вызовы инструментов. Цикл агента и инференс остаются в облаке Cursor. В Design Mode вместе с заметкой передаются данные о выбранном элементе и снимок экрана. Agent Review проверяет локальный diff. [Worktrees](https://cursor.com/docs/configuration/worktrees) · [Правила](https://cursor.com/docs/rules) · [Design Mode](https://cursor.com/docs/agent/design-mode) · [Agent Review](https://cursor.com/docs/agent/agent-review) · [Self-Hosted Machines](https://cursor.com/docs/cloud-agent/self-hosted) · [Бренд Cursor](https://cursor.com/brand).
+:::
+
+## What did teams use Cursor to change? {#ts-cursor-uses .ts-slide .ts-cursor .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Box’s React migration</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Resume a stalled React migration to unify cross-platform feature development.</p></li>
+      <li class="ts-use-step"><h4>How Cursor was used</h4><p>Box gave Cursor rules for how the new components should be structured.</p></li>
+      <li class="ts-use-step"><h4>Reported artifact</h4><p>React migration proof of concept.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <blockquote>Box built a proof of concept against the production codebase in three days</blockquote>
+      <figcaption>Result excerpt · <a href="https://cursor.com/blog/box">Cursor’s Box customer report</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://cursor.com/blog/box">Cursor · Box customer report</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Product docs from recurring support questions</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Update product documentation when several customers ask the same question.</p></li>
+      <li class="ts-use-step"><h4>How Cursor was used</h4><p>Support mentions <code>@Cursor</code> in Slack and describes the documentation change.</p></li>
+      <li class="ts-use-step"><h4>Reported artifact</h4><p>Documentation pull request.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <blockquote>We just mention @Cursor in Slack with what needs updating, and a cloud agent will open a PR against our docs repo.</blockquote>
+      <figcaption>Workflow excerpt · <a href="https://cursor.com/blog/cursor-support#documentation-updates">Cursor Support report</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://cursor.com/blog/cursor-support#documentation-updates">Cursor Support · Internal workflow report</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+В публикации Cursor представители Box описывают миграцию на React. Команда зафиксировала правила построения новых компонентов, а затем сделала проверяемый прототип на существующей производственной кодовой базе. На слайде указан конкретный артефакт раннего этапа. [Cursor, отчёт о работе Box](https://cursor.com/blog/box).
+
+Во втором случае Коди Фишер и Зак Хадсон описывают внутреннюю работу техподдержки Cursor. Повторяющиеся обращения указывают, где документация нуждается в правке. Сотрудник описывает изменение в Slack, и облачный агент открывает PR в репозитории документации. Публичный источник описывает процесс команды. [Cursor Support, Documentation updates](https://cursor.com/blog/cursor-support#documentation-updates).
+:::
+
+## Where do GitHub Copilot features run? {#ts-copilot .ts-slide .ts-copilot .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/copilot-logo.svg" alt="GitHub Copilot">
+    <span class="ts-surface">IDE, GitHub, app, and terminal</span>
+  </div>
+  <figure class="ts-chart">
+    <figcaption id="ts-copilot-matrix-title">Capabilities and review points</figcaption>
+    <table class="ts-matrix" aria-labelledby="ts-copilot-matrix-title">
+      <thead><tr><th scope="col">Surface</th><th scope="col">Capability</th><th scope="col">Review point</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">IDE suggestions</th><td>Inline completions · next edit suggestions</td><td>Accept or dismiss in place</td></tr>
+        <tr><th scope="row">IDE Chat and Agent</th><td>Ask · Plan · Edit · Agent</td><td>References · plan · diff</td></tr>
+        <tr><th scope="row">GitHub code review</th><td>Review changed lines in a PR</td><td>Comments · suggested patches</td></tr>
+        <tr><th scope="row">Cloud agent</th><td>Delegate an issue or prompt</td><td>Session log · draft PR</td></tr>
+        <tr><th scope="row">Copilot app</th><td>Parallel sessions across repositories</td><td>Session progress · PR status</td></tr>
+        <tr><th scope="row">Copilot CLI</th><td>Interactive and scripted terminal tasks</td><td>Tool calls · diff · <code>/review</code></td></tr>
+      </tbody>
+    </table>
+    <div class="ts-secondary">
+      <h3>Separate approvals on a Copilot pull request</h3>
+      <div class="ts-mini-map ts-mini-split">
+        <div class="ts-mini-node ts-mini-hub"><strong>Copilot PR</strong><span>Agent changes</span></div>
+        <div class="ts-mini-branches">
+          <div class="ts-mini-node"><strong>Workflow run</strong><span>Manual approval by default.</span></div>
+          <div class="ts-mini-node"><strong>Human review</strong><span>Eligible reviewers, when rules require approval.</span></div>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="GitHub Copilot capabilities">
+    <h3>Shared controls</h3>
+    <dl>
+      <dt>Repository instructions</dt><dd><code>.github/<wbr>copilot-instructions.md</code></dd>
+      <dt>Extension points</dt><dd>Agent skills and MCP servers where supported.</dd>
+      <dt>Availability</dt><dd>IDE, plan, and organization policy.</dd>
+      <dt>Session handoff</dt><dd>Delegate from supported IDEs. <code>/remote on</code> enables web or mobile steering.</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a class="ts-evidence-link" href="#/ts-evidence-ide-copilot">Technical figure</a><a href="https://docs.github.com/en/copilot/get-started/where-to-use-github-copilot">Surface guide</a><a href="https://docs.github.com/en/copilot/concepts/copilot-surfaces/copilot-in-ides">IDE features</a><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents">Cloud agent and code review</a><a href="https://docs.github.com/en/enterprise-cloud%40latest/copilot/how-tos/copilot-on-github/use-copilot-agents/review-copilot-output">PR approvals</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Таблица сопоставляет точку входа, работу Copilot и объект проверки. Режимы Ask, Plan, Edit и Agent зависят от IDE. В Ask кода не меняют, в Plan согласуют подход, в Edit принимают предложенные правки, а Agent может редактировать файлы и запускать команды. В терминале /review запускает проверку изменений, а /remote on включает удалённое управление сеансом, если оно разрешено политикой. В поддерживаемых IDE можно передать задачу облачному агенту и следить за её ходом. [Режимы IDE](https://docs.github.com/en/copilot/how-tos/copilot-in-your-ide/chat-with-copilot/chat-in-ide) · [Cloud Agent в IDE](https://docs.github.com/en/copilot/how-tos/copilot-in-your-ide/use-copilot-agents/use-cloud-agent-in-your-ide) · [Команды CLI](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference) · [Правила репозитория](https://docs.github.com/en/copilot/how-tos/copilot-in-your-ide/customize-copilot/configure-custom-instructions/add-repository-instructions-in-your-ide).
+
+Для PR облачного агента отдельно проверяют diff, статус CI и одобрения. Если GitHub Actions ждёт разрешения на запуск, сначала просматривают изменения. Если по правилам репозитория необходимо одобрение PR, одобрение автора поручения Copilot не засчитывается. [Проверка результата Copilot](https://docs.github.com/en/enterprise-cloud%40latest/copilot/how-tos/copilot-on-github/use-copilot-agents/review-copilot-output) · [Бренд Copilot](https://brand.github.com/brand-identity/copilot).
+:::
+
+## What did Copilot produce in two published demos? {#ts-copilot-uses .ts-slide .ts-copilot .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Input validation for a GitHub Action</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Handle malformed inputs in <code>validate-file-exists</code> and fix README examples.</p></li>
+      <li class="ts-use-step"><h4>How Copilot was used</h4><p>The workshop host assigned a scoped issue to the cloud coding agent, then reviewed its PR.</p></li>
+      <li class="ts-use-step"><h4>Public artifact</h4><p>Merged PR #55 with validation and edge-case tests.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <table>
+        <tbody>
+          <tr><th scope="row">Input</th><td><code>',,,'</code></td></tr>
+          <tr><th scope="row">Jest assertion</th><td><code>rejects.toThrow</code></td></tr>
+          <tr><th scope="row">Expected error</th><td>No valid files found in input. Please provide a comma-separated list of file names.</td></tr>
+        </tbody>
+      </table>
+      <figcaption>Exact test values · <a href="https://github.com/chrisreddington/validate-file-exists/blob/48f7a366d8dc1eee0bf40c5e68e10e9f27148722/__tests__/fileValidator.test.ts">PR #55’s test file</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://github.blog/ai-and-ml/github-copilot/from-chaos-to-clarity-using-github-copilot-agents-to-improve-developer-workflows/">GitHub Blog · Workshop report</a> · <a href="https://github.com/chrisreddington/validate-file-exists/pull/55">Merged PR #55</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Personal time-tracking web app</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Build a prototype for logging time spent on activities.</p></li>
+      <li class="ts-use-step"><h4>How Copilot was used</h4><p>Review the proposal in Plan mode, then start implementation in Agent mode.</p></li>
+      <li class="ts-use-step"><h4>Demo artifact</h4><p>Time tracker running in the browser.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://docs.github.com/assets/cb-276006/images/help/copilot/time-tracker-example1.png"><img src="assets/tools_showcase/case-copilot-time-tracker.png" alt="Time Tracker demo screenshot with project and task controls, an active timer panel, and daily totals."></a>
+      <figcaption>Demo screenshot detail · <a href="https://docs.github.com/en/copilot/tutorials/vibe-coding#testing-your-application">Testing the time tracker</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://docs.github.com/en/copilot/tutorials/vibe-coding">GitHub Docs · Guided IDE tutorial</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Крис Реддингтон показал в серии Rubber Duck Thursdays рефакторинг своего GitHub Action. Сначала он сформулировал issue с критериями, затем назначил его Copilot. Агент добавил проверки пустых и некорректных строк, обновил документацию и написал четыре теста. Ведущий одобрил запуск CI и передал ошибку Markdown lint обратно в PR, после чего агент внёс ещё одну правку. [Отчёт GitHub о воркшопе](https://github.blog/ai-and-ml/github-copilot/from-chaos-to-clarity-using-github-copilot-agents-to-improve-developer-workflows/) · [Публичный PR #55](https://github.com/chrisreddington/validate-file-exists/pull/55).
+
+Руководство GitHub предлагает собрать персональный тайм-трекер из чата в VS Code или JetBrains IDE. Участник сначала уточняет план, затем разрешает действия Agent mode и открывает локально работающую страницу. На слайде указан артефакт демонстрации из руководства. Конкретная реализация при повторном запуске зависит от ответов агента. [GitHub Docs, Vibe coding with GitHub Copilot](https://docs.github.com/en/copilot/tutorials/vibe-coding).
+:::
+
+## How does Junie use JetBrains IDE tools? {#ts-junie .ts-slide .ts-junie .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/junie-logo.svg" alt="">
+    <strong class="ts-name">Junie</strong>
+    <span class="ts-surface">JetBrains IDE agent and CLI</span>
+  </div>
+  <figure class="ts-chart">
+    <figcaption>From IDE context to a reviewed patch</figcaption>
+    <ol class="ts-diagram ts-stack">
+      <li class="ts-node"><strong>Project context</strong><span>IDE context and guidelines from <code>AGENTS.md</code> or <code>.junie/AGENTS.md</code>.</span></li>
+      <li class="ts-node"><strong>Plan and edit</strong><span>Ask mode explores read-only. Code mode plans, edits, and runs commands.</span></li>
+      <li class="ts-node ts-node-accent"><strong>Run IDE checks</strong><span>Inspections and native build/test tools where supported, including JVM and C#.</span></li>
+      <li class="ts-node"><strong>Review changes</strong><span>Diff and test output. Keep changes, request a follow-up, or roll back.</span></li>
+    </ol>
+    <div class="ts-secondary">
+      <h3>CLI–IDE bridge</h3>
+      <div class="ts-mini-map">
+        <div class="ts-mini-node"><strong>Junie CLI</strong><span><code>/ide</code> checks status</span></div>
+        <span class="ts-mini-edge" aria-hidden="true">→</span>
+        <div class="ts-mini-node"><strong>JetBrains IDE plugin</strong><span>Same project open in the IDE</span></div>
+        <span class="ts-mini-edge" aria-hidden="true">→</span>
+        <div class="ts-mini-node"><strong>IDE-backed features</strong><span>Symbols in <code>@</code>, native tests, live debugger</span></div>
+      </div>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="Junie capabilities">
+    <h3>Integration and permissions</h3>
+    <dl>
+      <dt>Entry points</dt><dd>Air, AI Chat, separate IDE plugin, and CLI.</dd>
+      <dt>Action Allowlist</dt><dd><code>Terminal</code>, <code>RunTest</code>, <code>Build</code>, and <code>MCP</code> rules for sensitive actions.</dd>
+      <dt>Project scope</dt><dd><code>.aiignore</code> marks file contents that require approval to access.</dd>
+      <dt>Debugging</dt><dd><code>/debug</code> manages breakpoints and inspects live state with a supported setup.</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="https://junie.jetbrains.com/">Junie and Air</a><a href="https://junie.jetbrains.com/docs/junie-ide-plugin.html">IDE plugin</a><a href="https://junie.jetbrains.com/docs/junie-cli-jetbrains-ide-integration.html">CLI–IDE connection</a><a href="https://junie.jetbrains.com/docs/action-allowlist.html">Action Allowlist</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+На сайте JetBrains Junie представлен как агент в Air внутри IDE. Отдельно документированы вход через AI Chat, собственное окно плагина и CLI. Схема описывает работу с IDE-контекстом. Доступность проверок зависит от IDE, языка и интеграции. Например, в документации Action Allowlist отдельно приведены запуск тестов и сборка JVM-проектов в IntelliJ IDEA, а также C# в Rider. Они используют средства IDE. В терминале также можно запустить команды проекта.
+
+В CLI команда /ide показывает подключение к IDE. /debug работает с живым сеансом отладчика в поддерживаемой IDE при настроенных инструментах. Файл .aiignore ограничивает доступ к содержимому, а разрешённые команды и настройки подтверждения могут менять границы доступа. [Контекст Junie в AI Chat](https://www.jetbrains.com/help/ai-assistant/junie-agent.html) · [Команды CLI](https://junie.jetbrains.com/docs/slash-commands.html) · [Настройки проекта](https://junie.jetbrains.com/docs/junie-plugin-project-settings.html).
+:::
+
+## What did Junie implement and verify? {#ts-junie-uses .ts-slide .ts-junie .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Book management in Laravel</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Add forms for creating, viewing, editing and deleting books in a fresh Laravel project.</p></li>
+      <li class="ts-use-step"><h4>How Junie was used</h4><p>In PhpStorm, Junie planned the change, wrote screens and tests, and ran a database seeder.</p></li>
+      <li class="ts-use-step"><h4>Demo artifact</h4><p>Book-management screens and ten seeded records.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://blog.jetbrains.com/wp-content/uploads/2025/06/rows-added-to-database.png"><img src="assets/tools_showcase/case-junie-book-seeder.png" alt="PhpStorm database view showing ten rows in the Laravel project's books table."></a>
+      <figcaption>Original PhpStorm screenshot · Seeded <code>books</code> table</figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://blog.jetbrains.com/wp-content/uploads/2025/06/rows-added-to-database.png">JetBrains · Seeded database screenshot</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Bulk status change in an issue tracker</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Mark PB-101 and PB-102 as Done. Verify the counters and persistence after reload.</p></li>
+      <li class="ts-use-step"><h4>How Junie was used</h4><p><code>/demo</code> launches the app, drives the browser and records the check.</p></li>
+      <li class="ts-use-step"><h4>Demo artifact</h4><p>Browser recording and HTML report.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://www.youtube.com/watch?v=LFNif37uiTA"><img src="assets/tools_showcase/case-junie-bulk-status-report.jpg" alt="Report playback shows Open 1 and Done 3, and confirms PB-101 and PB-102 remained Done after reload."></a>
+      <figcaption>Recorded result · <a href="https://www.youtube.com/watch?v=LFNif37uiTA">Junie’s HTML report walkthrough</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://www.youtube.com/watch?v=kIbd6bQgNPs">Junie · Recorded browser check</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Ханна Якуш начала с чистого проекта Laravel и попросила Junie сделать формы управления книгами, добавить десять записей через seeder и выполнить тесты. Команды терминала она подтверждала в IDE. Статья «Discover Junie for PhpStorm» в блоге JetBrains за июнь 2025 года показывает изменения, экраны и результат запуска seeder. [Снимок экрана приложения](https://blog.jetbrains.com/wp-content/uploads/2025/06/image-30.png) · [Снимок заполненной базы](https://blog.jetbrains.com/wp-content/uploads/2025/06/rows-added-to-database.png).
+
+Аляксей Картыннік описывает этот сценарий в статье «Your diff has a demo now with Junie /demo» в блоге JetBrains от 18 сентября 2026 года. На кадре из разбора HTML-отчёта виден итог записи: PB-101 и PB-102 остались в статусе Done после перезагрузки, Open = 1, Done = 3. [Запись проверки](https://www.youtube.com/watch?v=kIbd6bQgNPs) · [Разбор HTML-отчёта](https://www.youtube.com/watch?v=LFNif37uiTA) · [Документация /demo](https://junie.jetbrains.com/docs/junie-cli-demo.html).
+:::
+
+## How do Plan, Act, and checkpoints fit together in Cline? {#ts-cline .ts-slide .ts-cline .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line">
+    <img class="ts-logo" src="assets/tools_showcase/cline-logo.svg" alt="">
+    <strong class="ts-name">Cline</strong>
+    <span class="ts-surface">Open-source coding agent</span>
+  </div>
+  <figure class="ts-chart">
+    <figcaption>Plan to Act with checkpoints enabled</figcaption>
+    <div class="ts-diagram ts-flow">
+      <div class="ts-node"><strong>Provider</strong><span>Cline provider, own API key, or supported local model.</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node"><strong>Plan</strong><span>Read and search the codebase. Agree on what to change.</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node ts-node-accent"><strong>Act</strong><span>Carry context forward. Edit files and run permitted commands.</span></div>
+      <span class="ts-edge" aria-hidden="true">→</span>
+      <div class="ts-node"><strong>Review or restore</strong><span>Compare the checkpoint diff and choose what to restore.</span></div>
+    </div>
+    <div class="ts-secondary">
+      <h3 id="ts-cline-restore-scope">Checkpoint restore scope</h3>
+      <table class="ts-mini-table" aria-labelledby="ts-cline-restore-scope">
+        <thead><tr><th scope="col">Restore option</th><th scope="col">Project files</th><th scope="col">Task history</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Restore Files</th><td><strong>Revert</strong></td><td>Keep</td></tr>
+          <tr><th scope="row">Restore Task Only</th><td>Keep</td><td><strong>Revert</strong></td></tr>
+          <tr><th scope="row">Restore Files &amp; Task</th><td><strong>Revert</strong></td><td><strong>Revert</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-label="Cline capabilities">
+    <h3>Controls and extensions</h3>
+    <dl>
+      <dt>Auto Approve</dt><dd>Separate permissions for reads, edits, and terminal commands.</dd>
+      <dt>Model per mode</dt><dd>Settings can switch models automatically on Plan ↔ Act.</dd>
+      <dt>Checkpoint store</dt><dd>Optional project snapshots in a separate Git repository.</dd>
+      <dt>Project rules</dt><dd>Version rules in <code>.clinerules/</code> or <code>.cline/rules/</code>.</dd>
+      <dt>MCP servers</dt><dd>Connect external tools and data sources.</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a href="https://docs.cline.bot/core-workflows/plan-and-act">Plan and Act</a><a href="https://docs.cline.bot/core-workflows/task-management">Providers</a><a href="https://docs.cline.bot/features/auto-approve">Approvals</a><a href="https://docs.cline.bot/core-workflows/checkpoints">Checkpoints</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Схема относится к расширению Cline. В Plan агент читает файлы, ищет по коду и обсуждает подход. Для правок и запуска команд используется Act, куда переносится история обсуждения. Настройка разных моделей для Plan и Act автоматически выбирает модель при переключении. Конкретный вызов инструмента проходит через правила подтверждений.
+
+Checkpoints хранят снимки в отдельном Git-репозитории. Восстановление ограничено состоянием проекта и задачи. Внешний эффект команды, например запрос к сервису, остаётся отдельным действием. Cline предлагает расширения редактора, CLI, настольное приложение и облачный сервис. [Правила](https://github.com/cline/cline/blob/main/docs/customization/cline-rules.mdx) · [MCP](https://github.com/cline/cline/blob/main/docs/mcp/mcp-overview.mdx) · [Продукты Cline](https://cline.bot/) · [Бренд Cline](https://cline.bot/brand).
+:::
+
+## What did Cline produce in two project write-ups? {#ts-cline-uses .ts-slide .ts-cline .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Research for a Logic Pro extension</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Find the Apple frameworks and audio plug-in APIs needed for an extension idea.</p></li>
+      <li class="ts-use-step"><h4>How Cline was used</h4><p>Cline gathered and analyzed Apple documentation via Firecrawl Deep Research MCP.</p></li>
+      <li class="ts-use-step"><h4>Reported artifact</h4><p>Research notes saved in the project repository.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://storage.ghost.io/c/d6/fe/d6feb101-a8e6-444b-bae8-3ca714794abb/content/media/2025/03/firecrawl-deep-research-logicpro-1.mp4#t=23"><img src="assets/tools_showcase/case-cline-logic-pro.jpg" alt="Cline’s research output about MIDI plug-in sample rate detection, with an Apple Developer Forums citation."></a>
+      <figcaption>Research output · <a href="https://storage.ghost.io/c/d6/fe/d6feb101-a8e6-444b-bae8-3ca714794abb/content/media/2025/03/firecrawl-deep-research-logicpro-1.mp4#t=23">Author’s recording at 0:23</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://cline.bot/blog/build-anything-you-dont-know-how-to-build-my-experience-with-cline">Cline Blog · Nick Baumann’s project report</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Weekly growth dashboard</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Turn CSV exports into week-over-week metrics and charts for a Streamlit dashboard.</p></li>
+      <li class="ts-use-step"><h4>How Cline was used</h4><p>Cline built the dashboard with the author and turned their session into a Markdown workflow.</p></li>
+      <li class="ts-use-step"><h4>Reported artifact</h4><p>Streamlit dashboard and reusable Markdown workflow.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://storage.ghost.io/c/d6/fe/d6feb101-a8e6-444b-bae8-3ca714794abb/content/images/2025/09/image-23.png"><img src="assets/tools_showcase/case-cline-weekly-dashboard.png" alt="VS Code displays weekly-growth-dashboard.md under .clinerules/workflows and its objective for updating a Streamlit dashboard with fresh data."></a>
+      <figcaption>Generated workflow · <code>weekly-growth-dashboard.md</code></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://cline.bot/blog/how-i-stopped-repeating-myself-to-cline">Cline Blog · Internal workflow report</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+Ник Бауманн описывает подготовку собственного расширения для Logic Pro. Через Firecrawl Deep Research MCP Cline собрал сведения об инструментах Apple, оформил их как документацию в репозитории и использовал её как контекст для дальнейшей работы. Результат этого этапа — исследовательские заметки для проекта в разработке. [Cline Blog, Build Anything You Don't Know How to Build](https://cline.bot/blog/build-anything-you-dont-know-how-to-build-my-experience-with-cline).
+
+В другой публикации Бауманн показывает рабочий процесс подготовки еженедельного дашборда в Streamlit. Он передал Cline выгрузки и CSV, помог выбрать расчёты и диаграммы, затем попросил записать последовательность действий в Markdown. На снимке виден сгенерированный файл `weekly-growth-dashboard.md` в `.clinerules/workflows`. При следующем запуске сценарий запрашивает входные данные и пересобирает дашборд. [Cline Blog, How I stopped repeating myself to Cline](https://cline.bot/blog/how-i-stopped-repeating-myself-to-cline).
+:::

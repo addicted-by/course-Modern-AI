@@ -1,0 +1,53 @@
+## Claude Fable 5.1: shared weights, different safeguards {#sc-llm-fable-51 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 06 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-fable-51-results">Results →</a></div>
+<div class="sc-body bn-body bn-w1" data-company="anthropic"><div class="bn-id" style="--bn-brand:#d97757"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_llm_evidence/fable-51.svg" alt="Terminal-Bench 4.0. Same weights, two safeguards. Fable 5.1 55.8%, Mythos 5.1 60.9%."></figure></div>
+<div class="bn-model"><p class="bn-kicker">LLM · Anthropic</p><h3>Claude Fable 5.1</h3><p class="bn-ids"><code>claude-fable-5-1</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">01.09.2026</b></p><p><span>Access</span><b>API</b></p><p><span>Weights</span><b class="bn-shut">closed</b></p></div>
+</div></div>
+<div class="bn-pub"><div class="bn-tile bn-k bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+<div class="bn-stat"><p class="bn-num">1M<small>tokens</small></p><p class="bn-cap">context · <b>128K</b> max output</p></div>
+<div class="bn-stat bn-rule"><p class="bn-num">$10 / $50</p><p class="bn-cap">per 1M input / output tokens</p></div>
+<div class="bn-rule"><p class="bn-item"><i class="sc-pip k"></i>Thinking stays on. Default effort: high.</p><p class="bn-item"><i class="sc-pip k"></i>Fable and Mythos share weights. Access and safeguards differ.</p></div>
+</div>
+<div class="bn-tile bn-k bn-b"><div class="bn-head"><h4>Data</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div>
+<div class="bn-split"><div class="bn-stat"><p class="bn-num">Jun 2026</p><p class="bn-cap">data / knowledge cutoff</p></div>
+<div class="bn-col"><p class="bn-item"><i class="sc-pip k"></i>Proprietary mix of public and other data.</p><p class="bn-item"><i class="sc-pip k"></i>Source categories appear in the system card.</p></div>
+</div></div>
+<div class="bn-tile bn-k bn-c"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip k"></i>Known</span></div><p class="bn-item"><i class="sc-pip k"></i>Tool progress updates and async subagent guidance.</p><p class="bn-item"><i class="sc-pip k"></i>Forced tool selection returns 400.</p></div>
+<div class="bn-tile bn-p bn-d"><div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Relationship to Mythos is documented.</p><p class="bn-gap">No SFT / RL recipe, optimizer or token budget.</p></div>
+</div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Undisclosed</span><b>1<small>of 5</small></b></div>
+<div class="bn-cell"><h4><i class="sc-pip n"></i>Architecture</h4><p>Shared weights do not disclose the topology, parameter count, layers or attention.</p></div>
+</div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Computer use under two grading rules</caption>
+<thead><tr><th scope="col">Workflow and metric</th><th scope="col">Fable 5</th><th scope="col">Fable 5.1</th></tr></thead>
+<tbody>
+<tr><th scope="row">OSWorld 2.0 · partial credit</th><td>72.9%</td><td>77.9%</td></tr>
+<tr><th scope="row">OSWorld 2.0 · strict pass</th><td>36.1%</td><td>41.7%</td></tr>
+<tr><th scope="row">AutomationBench · pass</th><td>17.1%</td><td>31.4%</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20&amp;%20Claude%20Mythos%205.1%20System%20Card.pdf#page=167">Anthropic · Joint System Card, Table 8.1.A</a> · Max effort</p>
+</div>
+<div class="fv-takeaway">Fable and Mythos are access and safeguard configurations of the same underlying weights.</div>
+<div class="fv-source">LLM_v1.0.xlsx · Fable 5.1 · audit 18.10.2026 · <a href="https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20&amp;%20Claude%20Mythos%205.1%20System%20Card.pdf">Joint system card</a> · <a href="https://platform.claude.com/docs/en/models/fable-5-1/overview">Fable overview</a> · <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1">Prompting guide</a> · <a href="https://www.anthropic.com/claude-fable-and-mythos-5-1">Figure source</a></div>
+```
+
+::: {.notes}
+**Table.** Table 8.1.A, p. 167, summarizes the results. Sections 8.14.3 and 8.15.6 identify Fable’s configurations. The OSWorld evaluation uses the same revised task set for both models, a limit of 500 actions, and a 1080p desktop. Partial credit averages checkpoint completion within each task. Strict pass requires all checkpoints. AutomationBench uses the private evaluation set and requires all applicable assertions to pass. [Anthropic · Joint System Card, Table 8.1.A](https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20&%20Claude%20Mythos%205.1%20System%20Card.pdf#page=167).
+
+**Figure.** Anthropic, “A new performance frontier”, Terminal-Bench 4.0 table and accuracy–cost plot. The authors attribute part of the gap to earlier safeguards intervening on benchmark tasks. These figures measure the release configurations. Bars use a 0–100% scale. [Primary source](https://www.anthropic.com/claude-fable-and-mythos-5-1).
+
+The workbook explicitly says Fable 5.1 and Mythos 5.1 are two configurations of one new LLM with the same weights. Mythos access requires verification programs. This relationship must not be read as a disclosure of dense versus MoE architecture. The tokenizer is inherited from Fable 5 and produces roughly 30% more tokens for the same text than models before Opus 4.7, according to the API changes recorded in the workbook.
+
+Only Fable 5.1 and Mythos 5.1 can read these thinking blocks. Editing earlier system messages, tools or conversation history invalidates the blocks. Text and images are inputs, and text is the output. Cache reads cost $0.25 per million tokens in this snapshot. The tools tile summarizes prompting guidance and API behavior, not additional intrinsic modules: batching independent tool calls can require a prompt nudge, and the subagent guide recommends asynchronous orchestration. Training remains Partial because the joint system card does not publish SFT, RL, optimizer or token-budget details.
+
+**Snapshot and provenance.** LLM_v1.0.xlsx, sheet “Fable 5.1”, audit dated 18.10.2026. Category statuses follow “Сводка”: Architecture: Not disclosed; Data: Known; Training: Partial; Inference: Known; Tools: Known. Known means a model-specific fact is disclosed, not that the whole category is complete. These slides summarize the supplied audit and do not constitute a fresh independent verification. Prices, limits and availability refer to that snapshot.
+
+**Source rows:** 1, 2, 6, 7, 8, 12, 13, 17, 21, 22, 24, 25, 27, 28, 29, 30, 31, 35, 36, 37, 38, 39, 40.
+
+**Sources:** [Joint system card](https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20&%20Claude%20Mythos%205.1%20System%20Card.pdf), [Fable overview](https://platform.claude.com/docs/en/models/fable-5-1/overview), [Prompting guide](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1).
+:::

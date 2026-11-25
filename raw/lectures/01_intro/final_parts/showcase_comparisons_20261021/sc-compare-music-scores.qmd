@@ -1,0 +1,28 @@
+## How does song selection change the reported score? {#sc-compare-music-scores .fv-slide .sc-slide .sc-compare background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 95 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a></div>
+<div class="sc-body cmp-body cmp-rows-4">
+<p class="cmp-intro">One WildSongBench source · 192 prompts · reported by the YuE authors, who also developed a compared model</p>
+<table class="cmp-table" aria-label="How does song selection change the reported score?"><colgroup><col style="width:27%"><col style="width:23%"><col style="width:21%"><col style="width:29%"></colgroup><thead><tr><th scope="col">Model / setting</th><th scope="col">SongBench average ↑</th><th scope="col">Phoneme error ↓</th><th scope="col">Candidate budget / protocol</th></tr></thead><tbody><tr><th scope="row"><a href="#sc-music-suno-v6-results">Suno v6</a></th><td><strong>6.5562</strong></td><td><strong>7.58%</strong></td><td>2 candidates; four ASR passes each;<br>select lower phoneme error.</td></tr><tr><th scope="row"><a href="#sc-music-minimax-music-30-results">MiniMax Music 3</a></th><td><strong>6.2830</strong></td><td><strong>6.27%</strong></td><td>2 candidates; lower-error selection;<br>official caption rewriter.</td></tr><tr><th scope="row"><a href="#sc-music-yue-2-results">YuE 2</a></th><td><strong>6.7316</strong></td><td><strong>8.44%</strong></td><td>2 candidates. Select lower phoneme error.</td></tr><tr><th scope="row"><a href="#sc-music-yue-2-results">YuE 2 · best-of-8</a></th><td><strong>6.9632</strong></td><td><strong>9.79%</strong></td><td>8 candidates. Select by musicality, then Q3O Control, then phoneme error.</td></tr></tbody></table>
+<p class="cmp-caveat">SongBench averages seven automatic dimensions. Phoneme error measures lyric alignment. The two YuE rows change both sample count and selection rule.</p>
+</div>
+<div class="fv-takeaway">YuE’s best-of-8 selection gains 0.23 on SongBench while phoneme error rises from 8.44% to 9.79%.</div>
+<div class="fv-source"><a href="https://map-yue2.github.io/data/benchmark-results.csv?v=20260912-suno-v6">WildSongBench scores (CSV)</a> · <a href="https://map-yue2.github.io/">selection protocol</a> · results: <a href="#/sc-music-suno-v6-results">1</a> · <a href="#/sc-music-minimax-music-30-results">2</a> · <a href="#/sc-music-yue-2-results">3</a> · linked cards retain original sources and conditions</div>
+```
+
+::: {.notes}
+В одной таблице наконец можно сравнить музыкальные результаты из одного источника. Но это оценка авторов YuE, а не независимая репликация. У Suno и MiniMax два кандидата и отбор по PER; MiniMax также использует официальный caption rewriter. YuE2-Vae-legacy даёт 6,7316 при двух кандидатах и 6,9632 при восьми: прирост 0,2316 при четырёхкратном количестве кандидатов. Правило отбора тоже изменилось: в best-of-8 музыкальность и Q3O Control имеют приоритет перед PER. Более низкая ошибка фонем MiniMax не делает его автоматически лучшим по композиции; composite score измеряет другое. Mureka 97% prompt-control и Lyria до трёх минут нельзя добавить в этот числовой столбец. Новых моделей мы не запускали.
+
+**Evidence scope.** Comparison of the deck's supplied audit and results snapshots. No fresh model execution or current-price verification. Arithmetic and task implications are editorial derivations, not additional benchmark measurements.
+
+**Source cards:**
+- `final_parts/showcase_results_20261021/sc-music-suno-v6-results.qmd`
+- `final_parts/showcase_results_20261021/sc-music-minimax-music-30-results.qmd`
+- `final_parts/showcase_results_20261021/sc-music-yue-2-results.qmd`
+
+**Original links retained from those cards:**
+- [Example source](https://suno.com/song/271f2deb-6ae7-4730-9e66-2588b7a3ed51)
+- [Example source](https://minimax-ai.github.io/music3-demo/#track-c1fb1f4e01203314)
+- [Example source](https://huggingface.co/m-a-p/YuE2-3B#text-to-music)
+:::

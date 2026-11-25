@@ -1,0 +1,54 @@
+## MiniMax Music 3.0: open components, opaque data {#sc-music-minimax-music-30 .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 89 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-minimax-music-30-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="minimax"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="MiniMax" role="img"><img src="assets/showcase_identity_20261021/minimax.svg" alt="MiniMax"></div><p class="ds-kicker">released 13.08.2026</p><p class="ds-kicker ds-r">Open weights</p><h3 class="ds-name">MiniMax Music 3.0</h3><p class="ds-lic">Community License</p></div>
+<div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Global + Local LM</span><b class="ds-v">8B + 0.6B</b></div><div class="ds-spec "><span class="ds-k">Audio renderer</span><b class="ds-v">2.4B flow matching</b></div><div class="ds-spec "><span class="ds-k">Codec</span><b class="ds-v">123M Flow-VAE</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip n"></i>Not disclosed</p></div><div class="ds-spec ds-gap"><span class="ds-k">Corpus</span><b class="ds-v">Not disclosed</b></div><div class="ds-spec ds-part"><span class="ds-k">Prompt format only</span><b class="ds-v">Structured captions</b></div><div class="ds-spec ds-gap"><span class="ds-k">Not disclosed</span><b class="ds-v">Sources, size, licences</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Tokenizer</span><b class="ds-v">Two-stage RVQ</b></div><div class="ds-spec "><span class="ds-k">Hybrid LM</span><b class="ds-v">Align → joint train</b></div><div class="ds-spec ds-gap"><span class="ds-k">Not disclosed</span><b class="ds-v">RL, optimizer, compute</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Song target</span><b class="ds-v">Up to 5 min</b></div><div class="ds-spec "><span class="ds-k">Local output</span><b class="ds-v">32 kHz stereo WAV</b></div><div class="ds-spec "><span class="ds-k">API access</span><b class="ds-v">Closed to new users</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec "><span class="ds-k">Local serving</span><b class="ds-v">SGLang-Omni</b></div><div class="ds-spec "><span class="ds-k">Integration</span><b class="ds-v">Diffusers · ComfyUI</b></div><div class="ds-spec "><span class="ds-k">Weight terms</span><b class="ds-v">Community License</b></div></div>
+</div></div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_results_20261021/music/minimax-music3-render.svg" alt="An 8B global LM and a 0.6B local LM feed their fused hidden states to 2.4B flow matching. A 123M Flow-VAE decodes the resulting latent as 32 kHz stereo."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3">
+<caption>Style adherence and lyric accuracy</caption>
+<thead><tr><th scope="col">Model</th><th scope="col">Prompt score ↑ (0–5)</th><th scope="col">Phoneme error ↓</th></tr></thead>
+<tbody>
+<tr><th scope="row">MiniMax Music 3</th><td>4.4362</td><td>6.27%</td></tr>
+<tr><th scope="row">ACE-Step 1.5</th><td>4.5809</td><td>7.46%</td></tr>
+<tr><th scope="row">YuE2</th><td>4.6819</td><td>8.44%</td></tr>
+</tbody></table>
+<p class="sc-study-source"><a href="https://arxiv.org/html/2609.33757v1#S4.T2">Yuan et al. · Table 2</a> · 192 prompts · 2 candidates each</p>
+</div>
+<div class="fv-takeaway">The renderer uses hidden states from both language models to recover detail in the final waveform.</div>
+<div class="fv-source"><a href="https://github.com/MiniMax-AI/MiniMax-Music3">MiniMax · code</a> · <a href="https://huggingface.co/MiniMaxAI/MiniMax-Music3/blob/main/LICENSE">Model licence</a> · <a href="https://huggingface.co/MiniMaxAI/MiniMax-Music3#continuous-hidden-state-synthesis">Model card · synthesis</a></div>
+```
+
+::: {.notes}
+Table 2 of the YuE2 paper compares public models on WildSongBench. Q3O is a Qwen3-Omni evaluation of prompt adherence, scored from zero to five. Phoneme error rate compares sung words with the target lyrics. Errors in the paper are fractions, shown here as percentages. The YuE2 authors ran all three settings, using each candidate’s best of four speech recognitions and choosing the lower-error result from two songs. The MiniMax run uses its official caption rewriter. YuE2 here is the standard two-candidate setting with the paper’s legacy VAE. [Yuan et al. · Table 2](https://arxiv.org/html/2609.33757v1#S4.T2).
+
+MiniMax’s “Hybrid-LM” and “Continuous Hidden-State Synthesis” sections describe prediction across frames and codebooks, respectively, and the fusion of their last hidden states. The diagram traces the signal used to synthesize audio at inference.
+
+Scope includes open weights MiniMaxAI/MiniMax-Music3 plus hosted API IDs music-3.0 and music-cover. The release date is the vendor blog’s 13 August 2026 date. Hosted access and the open runtime have different limits (rows 27–34, 38–44).
+
+The architecture is Global LLM 8B for framewise semantic tokens, Local LLM 0.6B for acoustic tokens across depth, a 2.4B flow-matching renderer, and a 123M Flow-VAE (row 6). RVQ has eight layers at 25 frames/s: 16,384 codes in layer one, then 1,024 per residual layer (row 8). The approximate component total is around eleven billion; the hub’s 2B metadata is inconsistent with that total (row 10). Global-LLM initialization also conflicts: the vendor blog names Qwen3.5-8B, while the model card, GitHub and LICENSE name Qwen3-8B. The card avoids selecting one without resolving the discrepancy (row 7).
+
+Data remains Not disclosed. Structured Captions describe a generation input format with global metadata, vocal details and arrangement; they do not establish how the corpus was annotated. Sources, size, licences and filtering are not published in the audited material (rows 14–17).
+
+The disclosed training outline has first-layer RVQ training followed by joint training of eight layers. Hybrid-LM uses global alignment followed by full-parameter joint Global/Local training. Flow-VAE was retrained for music. The optimizer, learning rate, batch, compute and SFT/RL/DPO details are not disclosed (rows 21–23).
+
+Five minutes is the advertised full-song target. The token ceiling is 9,000 acoustic frames, approximately six minutes at 25 fps, and the local text prompt limit is 5,000 tokens (row 27). Open output is 32 kHz, 16-bit stereo WAV; API sample rates and formats differ (row 28). HF claims below 24 GB full-precision memory, around 22 GB with CPU offload, or 8 GB with slower layer streaming; the GitHub reference run uses two GPUs. Treat these as setup-specific claims, not a single guarantee (row 29).
+
+The API lists $0.15 per track up to five minutes and 120 RPM, but the pricing page marks it Discontinued: from 20 August 2026, new users cannot access the paid API and free versions are discontinued (row 33). That does not remove local weight access. API character limits are distinct from local token limits: prompt 2,000 characters, lyrics 3,500; streaming is hex-only and output URLs last 24 hours (row 32). SGLang-Omni and the described Diffusers runtime are non-streaming; the latter depended on a pre-merge commit for PR #14456 in this snapshot (row 41).
+
+Use the actual Community License in row 39, not the secondary CC BY-NC claim in row 40. It allows commercial use with conspicuous MiniMax-Music3 UI attribution; above $20 million annual revenue, separate permission is required, alongside the AUP and machine-generation disclosure. This is a workbook summary, not legal interpretation. ComfyUI uses repackaged files, INT8 and tiled decode options, with a 60-second default template (row 42). The API cover workflow and music-caption-rewriter agent skill are separate tools (rows 43–44).
+
+Additional primary sources in the workbook: vendor blog https://www.minimax.io/blog/minimax-music-3-0-next-generation-open-weights-production-ready-versatile-music-model; API https://platform.minimax.io/docs/api-reference/music-generation; API status https://platform.minimax.io/docs/guides/pricing-paygo.
+
+Snapshot provenance: Music_v1.0.xlsx, sheet “MiniMax Music 3.0”, audit 19.10.2026. The five category statuses reproduce the workbook’s summary judgment; they are not a majority vote over detail rows or a quality ranking. This card converts the supplied audit and does not certify the sources afresh. “Not disclosed” means not found in that audit’s accessible materials, not proof that the capability is absent.
+
+**Source rows:** 6, 7, 8, 9, 10, 14, 15, 16, 17, 21, 22, 23, 27, 28, 29, 30, 31, 32, 33, 34, 38, 39, 40, 41, 42, 43, 44.
+
+**Primary sources:** [Model card](https://huggingface.co/MiniMaxAI/MiniMax-Music3), [Code](https://github.com/MiniMax-AI/MiniMax-Music3), [Licence](https://huggingface.co/MiniMaxAI/MiniMax-Music3/blob/main/LICENSE).
+:::

@@ -1,0 +1,83 @@
+## Krea 3 combines instructions and references in one transformer {#sc-t2i-krea-3 .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 45 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-krea-3-results">Results →</a></div>
+<div class="sc-body bn-body bn-w2" data-company="krea"><div class="bn-id"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_evidence_20261124/t2i/krea-3.svg" alt="Krea 3’s diffusion transformer receives image-conditioned instruction tokens, clean reference-image latents, and noisy target-image latents."></figure></div><div class="bn-model"><p class="bn-kicker">Text-to-image</p><h3>Krea 3</h3><p class="bn-ids"><code>Krea 3</code><code>Berry: provider variant</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">15.10.2026</b></p><p><span>Access</span><b>API · krea.ai</b></p><p><span>Weights</span><b class="bn-shut">not found</b></p></div></div></div><div class="bn-pub">
+<div class="bn-tile bn-p bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-stat"><p class="bn-num">1K / 2K</p><p class="bn-cap">1K default · 10 aspect ratios</p></div><div class="bn-stat bn-rule"><p class="bn-num">$0.03</p><p class="bn-cap">per image at 1K, without references</p></div><p class="bn-item"><i class="sc-pip p"></i>Krea 3 Fast averaged 8.0 s on one-reference 2K edits via fal</p><p class="bn-item"><i class="sc-pip p"></i>The technical report supports up to 8 references</p><p class="bn-gap">Same seed need not repeat the result</p></div>
+<div class="bn-tile bn-p bn-b"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-items2"><p class="bn-item"><i class="sc-pip p"></i>Direct API: beta-workspace early access</p><p class="bn-item"><i class="sc-pip k"></i>Node SDK and async job polling</p><p class="bn-item"><i class="sc-pip p"></i>Regional edits: experimental at provider</p><p class="bn-item"><i class="sc-pip k"></i>LoRA / style_urls return 422</p></div></div>
+<div class="bn-tile bn-p bn-c"><div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-stat"><p class="bn-num">2K</p><p class="bn-cap">Training resolution stated in launch post</p></div><p class="bn-gap">Krea 2 pretraining → edit pairs → RL and preference optimization</p></div></div>
+<div class="bn-strip"><div class="bn-strip-label"><span>Nov. report</span><b>2<small>updates</small></b></div><div class="bn-cell"><h4><i class="sc-pip p"></i>Architecture · Partial</h4><p>Single-stream diffusion transformer with image-conditioned instructions</p></div><div class="bn-cell"><h4><i class="sc-pip p"></i>Data · Partial</h4><p>Mining, two VLM filters and deduplication retain 0.17% of candidate pairs</p></div></div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2">
+  <caption>Which mined image pairs survive?</caption>
+  <thead><tr><th scope="col">Selection stage</th><th scope="col">Share kept at stage</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">DINOv3 similarity</th><td>45%</td></tr>
+  <tr><th scope="row">Qwen3.5-9B filter</th><td>4.7%</td></tr>
+  <tr><th scope="row">Qwen3.6-27B audit</th><td>45%</td></tr>
+  <tr><th scope="row">Target deduplication</th><td>18%</td></tr>
+  </tbody>
+</table>
+<p class="sc-study-source"><a href="https://www.krea.ai/blog/krea-3-technical-report">Krea 3 report · figure 12</a> · 0.17% of initial candidates remain</p>
+</div>
+<div class="fv-takeaway">A clean copy of each reference lets the transformer preserve detail while it denoises the target.</div>
+<div class="fv-source"><a href="https://www.krea.ai/blog/krea-3-technical-report">Krea 3 report · figs. 5 &amp; 12</a> · T2I_v1.1.xlsx · Krea 3 · audit 18–19.10.2026 · <a href="https://www.krea.ai/blog/introducing-krea-3">Launch post</a> · <a href="https://www.krea.ai/docs/developers/krea-3/overview">Direct API</a> · <a href="https://replicate.com/krea/krea-3/readme">Provider card</a></div>
+```
+
+::: {.notes}
+**Table evidence.** The study starts this mining path with SigLIP 2 candidate pairs and reports approximately 45%, 4.7%, 45% and 18% kept at each successive stage. Each row uses its own incoming pool as denominator. The cumulative retention is 0.17%, reported by the authors. The figures apply to the mined-pair stream, one source of training data. [Krea 3 report · figure 12](https://www.krea.ai/blog/krea-3-technical-report).
+
+**Figure evidence.** Millon et al., Krea 3 Technical Report, November 3, 2026. Figure 5 explains the three paths. The VLM receives instructions and downsampled references. The DiT receives instruction tokens from that VLM and both clean reference and noisy target latents. Figure 12 describes filtering of a separate pool of mined candidate pairs. The reported survival rate is specific to that mining pipeline. [Primary source](https://www.krea.ai/blog/krea-3-technical-report).
+
+**Historical audit (October).** The November 3 report expanded both Architecture and Data to Partial. Earlier disclosure labels below describe October only. This is a faithful conversion of the supplied T2I_v1.1.xlsx audit snapshot, checked by its author on 18 October 2026 and refined on 19 October 2026. It is not a fresh verification of these linked sources. “Not disclosed” means absent from the materials covered by that audit, not that the capability cannot exist. Known/Partial/Not disclosed measure disclosure, not model quality or full reproducibility. Prices, endpoints and limits are preserved as dated audit claims.
+
+The workbook reports that the Krea User Guide could not be opened and does not use it as factual evidence; it relies on launch, direct API and provider card. Do not treat provider Berry/Jam names as separate published weight releases. No missing feature is asserted impossible: the audit describes what its selected sources disclose.
+
+**Exact scope and category provenance:** sheet `Krea 3`, identity row 2; `Сводка` row 11. Architecture / Data / Training / Inference / Tools = Not disclosed / Not disclosed / Partial / Partial / Partial.
+
+**Row provenance and caveats (model-sheet row numbers):**
+
+- Row 2: Krea 3 includes direct API and provider variants; API launch date 15 October 2026.
+- Row 6: Supports instruction editing and T2I without references.
+- Row 7: Backbone and parameter count are absent from the launch.
+- Row 8: Encoders, VAE and latents are absent.
+- Row 9: Replicate Berry targets quality; faster Jam is only announced.
+- Row 13: Dataset names and size are absent.
+- Row 14: Cleaning/filtering are absent.
+- Row 15: Data licensing is absent.
+- Row 16: Synthetic data and mixture are absent.
+- Row 17: Data for future drawn/text instructions is still being created; it does not disclose current Krea 3 corpus.
+- Row 21: Launch explicitly states training at 2K resolution.
+- Row 22: Loss and optimizer are absent.
+- Row 23: RL/preference training is absent.
+- Row 24: Distillation is not described.
+- Row 25: Hardware and compute are absent.
+- Row 29: 1K/2K output; API default 1K.
+- Row 30: Most 2K edits under eight seconds end-to-end is Krea’s claim, not an independently validated SLA.
+- Row 31: Launch accepts up to six references while direct API says eight; surface/document dependence is unresolved.
+- Row 32: References are limited to 4 MP; with five or more, each long side is at most 1536 px.
+- Row 33: Ten aspect ratios; width/height up to 4096 are rounded to a supported 1K/2K canvas.
+- Row 34: fast expands prompts; high spends more time planning complex edits.
+- Row 35: Seed repetition does not guarantee identical output because prompts are expanded.
+- Row 36: Negative prompt limit is 1024 characters.
+- Row 37: Base USD output price without references: .03 for 1K, .06 for 2K.
+- Row 38: Direct API add-ons: each 1K reference +.02, 2K reference +.07; high reasoning +.02 per generation.
+- Row 39: Steps, sampler and CFG are absent from reviewed API parameters.
+- Row 43: Direct endpoint POST /generate/image/krea/krea-3 is early access for beta workspaces.
+- Row 44: Node `@krea-ai/sdk`, GET /jobs/{id} polling, result.urls output.
+- Row 45: Krea promises unchanged-pixel preservation; Replicate calls regional edit experimental, slower and lower quality.
+- Row 46: LoRA and style_urls currently return 422; future support is only promised.
+- Row 47: Enterprise zero-data-retention uses X-Api-Zero-Data-Retention: 1 and base64 data URI references only.
+- Row 48: Krea 3 was not found among fifteen models on official HF; an open weights licence is unconfirmed.
+- Row 49: krea.ai and named providers offer access.
+- Row 50: Krea 3 was not found among 23 reviewed official GitHub repos; local inference code not established.
+
+**Source URLs preserved from workbook HYPERLINK formulas:**
+
+- [Source 1](https://replicate.com/krea/krea-3/readme)
+- [Source 2](https://www.krea.ai/blog/introducing-krea-3)
+- [Source 3](https://www.krea.ai/docs/developers/krea-3/overview)
+- [Source 4](https://www.krea.ai/docs/developers/job-lifecycle)
+- [Source 5](https://huggingface.co/krea/models)
+- [Source 6](https://github.com/orgs/krea-ai/repositories?type=all)
+:::

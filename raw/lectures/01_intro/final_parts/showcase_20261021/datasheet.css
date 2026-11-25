@@ -1,0 +1,71 @@
+/* Datasheet template — open-weight models that publish a lot. Selectors stay inside the .ds- prefix.
+   Structure: dark identity band, then one row per feature (feature column + lead spec + up to two specs).
+   Status is stated once per row, in the feature column. Inside a row, a partial fact gets a hatched bar
+   and a missing fact gets a dashed empty cell, so gaps stay visible but quiet. */
+.reveal .ds-body {
+  --ds-feat-w: 256px;
+  --ds-head-h: 92px;
+  --ds-band-muted: #a6a6a6;
+}
+.reveal .ds-card {
+  display: grid; grid-template-rows: var(--ds-head-h) repeat(5, minmax(0, 1fr));
+  height: 100%; border-bottom: 2px solid var(--fv-ink);
+}
+
+/* Identity band: kicker over name on the left, licence on the right; second lines share a baseline. */
+.reveal .ds-head {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; row-gap: 2px; column-gap: 40px;
+  align-content: center; align-items: baseline;
+  padding: 0 32px 0 28px; background: var(--sc-dark); color: #fff;
+}
+.reveal .fv-slide .ds-kicker {
+  font: 500 20px/1.2 var(--lecture-font-mono); letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ds-band-muted); white-space: nowrap;
+}
+.reveal .fv-slide .ds-head .ds-r { text-align: right; }
+.reveal .fv-slide .ds-name { font: 600 44px/1.15 var(--lecture-font-heading); letter-spacing: -.03em; color: #fff; white-space: nowrap; }
+.reveal .fv-slide .ds-lic { font: 500 28px/1.2 var(--lecture-font-heading); letter-spacing: -.01em; color: #fff; text-align: right; white-space: nowrap; }
+
+/* Feature rows */
+.reveal .ds-row {
+  display: grid; grid-template-columns: var(--ds-feat-w) 1.3fr 1fr 1fr;
+  min-height: 0; border-top: 1px solid var(--fv-line);
+}
+.reveal .ds-head + .ds-row { border-top: 0; }
+.reveal .ds-feat {
+  display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  padding: 0 24px; background: var(--fv-soft); border-right: 2px solid var(--fv-ink);
+}
+.reveal .fv-slide .ds-feat h4 { font: 600 30px/1.15 var(--lecture-font-heading); letter-spacing: -.025em; white-space: nowrap; }
+.reveal .fv-slide .ds-st { display: flex; align-items: center; font-size: 20px; line-height: 1.2; color: var(--fv-ink); }
+
+/* Spec cell: key above value. The lead cell has a larger value and an optional note on the same line. */
+.reveal .ds-spec {
+  position: relative; min-width: 0;
+  display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  padding: 0 18px 0 34px;
+}
+.reveal .ds-k { font-size: 20px; line-height: 1.15; color: var(--fv-muted); white-space: nowrap; }
+.reveal .ds-line { display: flex; align-items: baseline; gap: 14px; white-space: nowrap; }
+.reveal .fv-slide .ds-v {
+  font: 600 28px/44px var(--lecture-font-heading); letter-spacing: -.02em; white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.reveal .fv-slide .ds-lead .ds-v { font-size: 36px; }
+.reveal .ds-n { font-size: 20px; line-height: 1.15; color: var(--fv-muted); white-space: nowrap; }
+
+/* A wider cell for a long value or a large gap. */
+.reveal .ds-w2 { grid-column: span 2; }
+
+/* Partial fact: a hatched change bar at the left edge of the cell. */
+.reveal .ds-part::before {
+  content: ""; position: absolute; left: 12px; top: 22px; bottom: 22px; width: 10px;
+  background: var(--sc-hatch); border: 1px solid var(--fv-ink);
+}
+
+/* Not disclosed: an empty dashed cell with muted text. */
+.reveal .ds-gap::before {
+  content: ""; position: absolute; inset: 9px 16px 9px 14px;
+  border: 2px dashed var(--sc-gap-ink); pointer-events: none;
+}
+.reveal .fv-slide .ds-gap .ds-v { font-size: 26px; line-height: 36px; font-weight: 500; color: var(--fv-muted); }

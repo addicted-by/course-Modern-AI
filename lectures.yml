@@ -80,13 +80,36 @@ lectures:
 
   - number: 9
     module: M1
+    title: "Model Showcase: Model Cards & Results"
+    source: raw/lectures/01_intro/lecture01_part2_final_v3_showcase.qmd
+    html: raw/lectures/01_intro/lecture01_part2_final_v3_showcase.html
+    pdf: null
+    pptx: null
+    resources:
+      - raw/lectures/01_intro/final_parts/showcase_20261021/*.css
+      - raw/lectures/01_intro/final_parts/showcase_all_20261021/*.css
+      - raw/lectures/01_intro/final_parts/showcase_results_20261021/*.css
+      - raw/lectures/01_intro/final_parts/showcase_comparisons_20261021/*.css
+
+  - number: 10
+    module: M1
+    title: "Tools Showcase"
+    source: raw/lectures/01_intro/lecture01_tools_showcase.qmd
+    html: raw/lectures/01_intro/lecture01_tools_showcase.html
+    pdf: null
+    pptx: null
+    resources:
+      - raw/lectures/01_intro/assets/tools_showcase/**
+
+  - number: 11
+    module: M1
     title: "Code Agents. Workflow."
     source: null
     html: null
     pdf: null
     pptx: null
 
-  - number: 10
+  - number: 12
     module: M2
     title: "Decompositions & Applications"
     source: raw/lectures/02_linalg/lecture02_final_v2.qmd
@@ -96,7 +119,7 @@ lectures:
     resources:
       - raw/lectures/02_linalg/notebooks/applications/**
 
-  - number: 12
+  - number: 13
     module: M2
     title: "Linear Algebra & Decomposition & LoRA. LoRA in details"
     source: raw/lectures/02_linalg/lecture02_lora_research.qmd

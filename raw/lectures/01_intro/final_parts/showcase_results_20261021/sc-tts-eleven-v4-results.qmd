@@ -1,0 +1,27 @@
+## A cloned support voice {#sc-tts-eleven-v4-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 72 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster active">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-tts-eleven-v4">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="elevenlabs">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="ElevenLabs" class="sc-company" role="img"><img alt="ElevenLabs" src="assets/showcase_identity_20261021/elevenlabs.svg"/></div></div><div class="sr-model"><p>RESULTS · Text-to-speech</p><h3>Eleven v4</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">v4 listener preference</p><p class="sr-metric-value">~75%</p><p class="sr-metric-note">Same-script preference tests by ElevenLabs. Ties count half. <a class="" href="https://elevenlabs.io/blog/eleven-v4" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Turbo model inference</p><p class="sr-metric-value">~100 ms</p><p class="sr-metric-note">Median model latency excludes network and app overhead. <a class="" href="https://elevenlabs.io/docs/overview/models" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Turbo first speech</p><p class="sr-metric-value">~150 ms</p><p class="sr-metric-note">Median over WebSocket with network delay removed. <a class="" href="https://elevenlabs.io/blog/eleven-v4" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example">
+  <div class="sr-stage sr-audio">
+    <div><p class="sr-audio-label">ElevenLabs · Eleven v4</p><h3>A support agent corrects a charge</h3></div>
+<p class="sr-audio-prompt"><strong>Opening line.</strong> “Hey, thanks so much for holding.”</p>
+    <div><img src="assets/showcase_results_20261021/tts/eleven-v4-support-wave.svg" alt="Waveform of the example, with time in seconds." style="display:block;width:100%;height:108px;object-fit:contain"></div>
+    <audio controls preload="none" src="assets/showcase_results_20261021/tts/eleven-v4-support.mp3" aria-label="Play ElevenLabs · Eleven v4 speech example">Audio playback requires an HTML5 browser.</audio>
+  </div>
+  <p class="sr-caption">ElevenLabs pairs this generated turn with a human voice reference in its cloning demonstration. Listen to the hesitation after the opening greeting.</p>
+</div>
+</div>
+<div class="fv-takeaway">The pause after the greeting gives the agent time to find the account.</div>
+<div class="fv-source"><a href="https://elevenlabs.io/blog/eleven-v4" target="_blank" rel="noopener">Cloning demonstration</a></div>
+```
+
+::: {.notes}
+The source labels this MP3 Eleven v4 and separates it from the reference recording in the same comparison. The service agent checks the account and explains the duplicate charge. The local file is the original MP3. Both timing figures on the left apply to v4 Turbo. The measurements have different end points.
+
+The waveform shows peak absolute amplitude within equally spaced intervals of the playable course copy. Its time scale is in seconds.
+
+[Original demonstration](https://elevenlabs.io/blog/eleven-v4) · [Vendor media file](https://eleven-public-cdn.elevenlabs.io/payloadcms/l4cmwc9byzm.mp3)
+:::

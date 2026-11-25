@@ -1,0 +1,16 @@
+## Can a single HTML file make 400 birds flock? {#sc-llm-sonnet-55-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 05 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-sonnet-55">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="anthropic">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Anthropic" class="sc-company" role="img"><img alt="Anthropic" src="assets/showcase_identity_20261021/anthropic.svg"/></div></div><div class="sr-model"><p>RESULTS · LLM</p><h3>Claude Sonnet 5.5</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Terminal-Bench 4.0</p><p class="sr-metric-value">70.6%</p><p class="sr-metric-note">max; vendor-reported <a class="" href="https://www.anthropic.com/claude-sonnet-5-5" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">FrontierCode 1.1 Main</p><p class="sr-metric-value">52.1%</p><p class="sr-metric-note">xhigh; max scores 46.2% <a class="" href="https://www.anthropic.com/claude-sonnet-5-5" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">GDPval-AA v2.1</p><p class="sr-metric-value">1844 Elo</p><p class="sr-metric-note">max; AA result via Anthropic <a class="" href="https://www.anthropic.com/claude-sonnet-5-5" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_llm_evidence/sonnet-starlings.webp" alt="Four hundred animated starlings turn and regroup in the Sonnet 5.5 program published by Anthropic."><video controls playsinline preload="none" src="assets/showcase_llm_evidence/sonnet-starlings.mp4" poster="assets/showcase_llm_evidence/sonnet-starlings.webp" aria-label="Four hundred animated starlings turn and regroup in the Sonnet 5.5 program published by Anthropic."></video></div><p class="sr-caption">Anthropic asked for a flock of 400 starlings in one HTML file. Watch how the shape changes as nearby birds turn together.<span class="sr-caveat">Browser recording of the Sonnet 5.5 output in Anthropic’s comparison.</span></p></div></div>
+<div class="fv-takeaway">A short visual prompt produced a working flock simulation with 400 moving birds.</div>
+<div class="fv-source"><a href="https://www.anthropic.com/claude-sonnet-5-5">Anthropic · Creating murmurations</a> · Benchmark sources beside each score</div>
+```
+
+::: {.notes}
+The release compares Sonnet 5 and Sonnet 5.5. This clip runs the latter’s original self-contained HTML program (PROGRAMS.latest.text) from murmuration-latest.html. The code sets N = 400 and draws the flock with a Canvas 2D context. It is the output of the published run, not a recreated animation. Anthropic also reports completing Pokémon Red from screenshots in this release.
+
+[Anthropic · Creating murmurations](https://www.anthropic.com/claude-sonnet-5-5).
+:::

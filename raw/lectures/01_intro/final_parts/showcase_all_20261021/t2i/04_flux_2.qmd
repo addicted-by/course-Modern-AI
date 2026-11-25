@@ -1,0 +1,78 @@
+## FLUX.2 uses a higher-fidelity image autoencoder {#sc-t2i-flux-2 .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 37 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-flux-2-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="black-forest-labs"><div class="ds-card"><div class="ds-head"><div class="sc-company" aria-label="Black Forest Labs" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div><p class="ds-kicker">released 25.11.2025</p><p class="ds-kicker ds-r">[dev] weights + API</p><h3 class="ds-name">FLUX.2</h3><p class="ds-lic">[dev]: Non-Commercial License</p></div>
+<div class="ds-row"><div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Image transformer [dev]</span><b class="ds-v">32B</b></div><div class="ds-spec"><span class="ds-k">Text / vision encoder</span><b class="ds-v">Mistral-3 24B</b></div><div class="ds-spec ds-gap"><span class="ds-k">Hosted sizes</span><b class="ds-v">Not disclosed</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Pretraining filters [dev]</span><b class="ds-v">NSFW + CSAM</b></div><div class="ds-spec ds-gap"><span class="ds-k">Corpus / source mix</span><b class="ds-v">Not disclosed</b></div><div class="ds-spec ds-gap"><span class="ds-k">Synthetic share</span><b class="ds-v">Not disclosed</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div><div class="ds-spec ds-lead"><span class="ds-k">Published for [dev]</span><b class="ds-v">Guidance distillation</b></div><div class="ds-spec"><span class="ds-k">Safety post-training</span><b class="ds-v">Targeted fine-tuning</b></div><div class="ds-spec ds-gap"><span class="ds-k">Recipe / compute</span><b class="ds-v">Not disclosed</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Output ceiling</span><b class="ds-v">4 MP</b></div><div class="ds-spec"><span class="ds-k">[dev] example</span><b class="ds-v">50 steps · guidance 4</b></div><div class="ds-spec"><span class="ds-k">Hosted references</span><b class="ds-v">8 API · 10 Playground</b></div></div>
+<div class="ds-row"><div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div><div class="ds-spec ds-lead"><span class="ds-k">Generation + editing</span><b class="ds-v">One task pipeline</b></div><div class="ds-spec"><span class="ds-k">Local [dev] runtime</span><b class="ds-v">Diffusers / ComfyUI</b></div><div class="ds-spec"><span class="ds-k">Grounding search</span><b class="ds-v">[max] only</b></div></div></div></div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_evidence_20261124/t2i/flux-2.svg" alt="ImageNet validation reconstruction FID is 0.6451 for SD, 0.1761 for FLUX.1 and 0.1124 for FLUX.2. Lower is better."></figure>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2 3 4">
+  <caption>How closely does the decoder reconstruct?</caption>
+  <thead><tr><th scope="col">Encoder</th><th scope="col">Channels/token</th><th scope="col">SSIM ↑</th><th scope="col">PSNR (dB) ↑</th></tr></thead>
+  <tbody>
+  <tr><th scope="row">SD</th><td>16</td><td>0.698</td><td>25.05</td></tr>
+  <tr><th scope="row">FLUX.1</th><td>64</td><td>0.889</td><td>31.13</td></tr>
+  <tr><th scope="row">FLUX.2</th><td>128</td><td>0.904</td><td>31.46</td></tr>
+  <tr><th scope="row">RAE</th><td>768</td><td>0.496</td><td>18.83</td></tr>
+  </tbody>
+</table>
+<p class="sc-study-source"><a href="https://bfl.ai/techblog/representation-comparison/index.html">BFL latent-space study · table 1</a> · ImageNet validation · 256 tokens</p>
+</div>
+<div class="fv-takeaway">Specifications for the open [dev] checkpoint do not transfer to hosted models.</div>
+<div class="fv-source"><a href="https://bfl.ai/techblog/representation-comparison/index.html">FLUX.2 latent-space study · table 1</a> · T2I_v1.1.xlsx · FLUX.2 · audit 18–19.10.2026 · <a href="https://huggingface.co/black-forest-labs/FLUX.2-dev">[dev] card</a> · <a href="https://docs.bfl.ai/flux_2/flux2_overview">Family overview</a> · <a href="https://docs.bfl.ai/quick_start/pricing">API pricing</a></div>
+```
+
+::: {.notes}
+**Table evidence.** BFL evaluates pixel-aligned original/reconstruction pairs on ImageNet validation. Structural similarity (SSIM) and peak signal-to-noise ratio (PSNR) are point estimates rounded from table 1, which also reports uncertainty. Channel counts and equal 256-token representation length come from the paragraph immediately before the table. The RAE has more channels and lower reference-based fidelity, illustrating that representation width alone does not determine reconstruction quality. [BFL latent-space study · table 1](https://bfl.ai/techblog/representation-comparison/index.html).
+
+**Figure evidence.** Black Forest Labs, Reconstruction Performance, table 1. The autoencoders reconstruct ImageNet validation images. Reconstruction FID compares original and reconstructed image distributions. Lower values indicate closer agreement. These are component scores, separate from prompt-to-image benchmark performance. [Primary source](https://bfl.ai/techblog/representation-comparison/index.html).
+
+**Historical audit.** This is a faithful conversion of the supplied T2I_v1.1.xlsx audit snapshot, checked by its author on 18 October 2026 and refined on 19 October 2026. It is not a fresh verification of these linked sources. “Not disclosed” means absent from the materials covered by that audit, not that the capability cannot exist. Known/Partial/Not disclosed measure disclosure, not model quality or full reproducibility. Prices, endpoints and limits are preserved as dated audit claims.
+
+Open weights here does not mean unrestricted open-source licensing. The category-level Architecture remains Partial because the sheet spans [dev] and undisclosed hosted variants. Inference and Tools retain the Known summary statuses even though individual limits vary by surface.
+
+**Exact scope and category provenance:** sheet `FLUX.2`, identity row 2; `Сводка` row 7. Architecture / Data / Training / Inference / Tools = Partial / Partial / Partial / Known / Known.
+
+**Row provenance and caveats (model-sheet row numbers):**
+
+- Row 2: Scope includes open [dev] and hosted [pro], [flex], [max]; Klein is a separate sheet.
+- Row 6: Hosted variants are distinct from the open checkpoint.
+- Row 7: Latent flow matching / rectified flow transformer unifies text-to-image and editing.
+- Row 8: 32B counts the [dev] image transformer only; hosted parameter counts are undisclosed.
+- Row 9: Main FLUX.2 uses Mistral-3 24B VLM; Klein uses different encoders.
+- Row 10: A new VAE/latent space is reported; VAE is Apache-2.0.
+- Row 14: Full corpus list, pair counts, source proportions and synthetic share are absent.
+- Row 15: [dev] card describes pretraining filtering of NSFW and known CSAM with IWF collaboration.
+- Row 19: Guidance distillation is explicitly disclosed for [dev].
+- Row 20: Targeted safety fine-tuning for T2I/I2I misuse is described for [dev].
+- Row 21: Optimizer, steps, exact compute/FLOPs and data budget are absent.
+- Row 25: Generation/editing up to four megapixels; 4 MP is not FLUX 3’s 4K/16 MP class.
+- Row 26: Hosted [pro]/[flex]/[max] accepts eight API references or ten in Playground; [dev] recommended maximum is six.
+- Row 27: [flex] exposes steps and guidance scale.
+- Row 28: [dev] example uses 50 steps and guidance scale 4; 28 steps is a possible tradeoff, not the same default.
+- Row 29: [dev] BF16 is published; a 4-bit deployment example uses a remote text encoder.
+- Row 30: flux-2-pro is pinned; flux-2-pro-preview changes over time.
+- Row 31: Pricing is per rounded-up MP (1 MP=1024×1024), at most 4 output MP. First/additional/reference MP USD: max .07/.03/.03; pro .03/.015/.015; flex .05/.05/.05. Klein prices refer to separate variants.
+- Row 35: Text edits, object/background/text replacement, style transfer and multi-reference composition are documented.
+- Row 36: Family grounding search belongs to [max].
+- Row 37: Hex colours and structured JSON in prompts are supported.
+- Row 38: Async calls return polling_url; result image URL lasts ten minutes.
+- Row 39: [dev] has reference code, ComfyUI and Diffusers support.
+- Row 40: [dev] uses FLUX Non-Commercial License; rights for using weights and outputs are distinct.
+- Row 41: Hosted [pro] adds signed C2PA; [dev] reference code contains a pixel-watermarking example.
+
+**Source URLs preserved from workbook HYPERLINK formulas:**
+
+- [Source 1](https://docs.bfl.ai/flux_2/flux2_overview)
+- [Source 2](https://bfl.ai/blog/flux-2)
+- [Source 3](https://huggingface.co/black-forest-labs/FLUX.2-dev)
+- [Source 4](https://huggingface.co/black-forest-labs/FLUX.2-klein-9B)
+- [Source 5](https://docs.bfl.ai/quick_start/pricing)
+- [Source 6](https://docs.bfl.ai/flux_2/flux2_image_editing)
+- [Source 7](https://bfl.ai/pricing)
+- [Source 8](https://docs.bfl.ai/flux_2/flux2_text_to_image)
+:::

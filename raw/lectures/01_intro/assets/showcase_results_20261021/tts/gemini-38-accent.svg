@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326 208" font-family="Arial, Helvetica, sans-serif">
+<title>Accent modeling</title>
+<desc>Hume accent identification accuracy. Gemini 3.8 Flash TTS 60.8, ElevenLabs Voice Design v3 45.4, Inworld Voice Design 35.8</desc>
+<text x="6" y="24" font-size="21" font-weight="700" fill="#132a2a" text-anchor="start">Accent modeling</text>
+<text x="6" y="46" font-size="16" font-weight="400" fill="#425351" text-anchor="start">Hume accent identification accuracy</text>
+<text x="6" y="78" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">Gemini 3.8 Flash TTS</text>
+<text x="320" y="78" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">60.8%</text>
+<rect x="6" y="82" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="82" width="190.91" height="6" fill="#2359b2"/>
+<text x="6" y="121" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">ElevenLabs Voice Design v3</text>
+<text x="320" y="121" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">45.4%</text>
+<rect x="6" y="125" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="125" width="142.56" height="6" fill="#2359b2"/>
+<text x="6" y="164" font-size="17" font-weight="500" fill="#132a2a" text-anchor="start">Inworld Voice Design</text>
+<text x="320" y="164" font-size="18" font-weight="700" fill="#132a2a" text-anchor="end">35.8%</text>
+<rect x="6" y="168" width="314" height="6" fill="#e4eeeb"/>
+<rect x="6" y="168" width="112.41" height="6" fill="#2359b2"/>
+<text x="6" y="202" font-size="15" font-weight="400" fill="#425351" text-anchor="start">0</text>
+<text x="320" y="202" font-size="15" font-weight="400" fill="#425351" text-anchor="end">100%</text>
+</svg>

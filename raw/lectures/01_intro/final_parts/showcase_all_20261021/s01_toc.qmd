@@ -1,0 +1,97 @@
+## Model showcase {#sc-toc .fv-slide .sc-slide .sc-toc background-color="#0a0a0a"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 01 / 95</span><span>41 models · 5 domains</span></div>
+<div class="sc-body sc-toc-body">
+<nav class="sc-toc-catalog" aria-label="Model cards and comparisons">
+<div class="sc-toc-block sc-toc-llm">
+<h3>LLM<span class="sc-toc-count">13</span></h3>
+<div class="sc-toc-tiles">
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-opus-55"><span class="sc-toc-no">S02</span><b>Opus 5.5</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data known, Training partial, Inference known, Tools known"><i class="n"></i><i class="k"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-sonnet-55"><span class="sc-toc-no">S04</span><b>Sonnet 5.5</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data known, Training partial, Inference known, Tools known"><i class="n"></i><i class="k"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-fable-51"><span class="sc-toc-no">S06</span><b>Fable 5.1</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data known, Training partial, Inference known, Tools known"><i class="n"></i><i class="k"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-gpt6-astra"><span class="sc-toc-no">S08</span><b>GPT-6 Astra</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data known, Training known, Inference known, Tools known"><i class="n"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-gpt61-sol"><span class="sc-toc-no">S10</span><b>GPT-6.1 Sol</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data known, Training known, Inference known, Tools known"><i class="n"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-muse-wonder"><span class="sc-toc-no">S12</span><b>Muse Wonder</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data partial, Training partial, Inference known, Tools known"><i class="n"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-gemini4-argon"><span class="sc-toc-no">S14</span><b>Gemini 4 Argon</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data known, Training known, Inference known, Tools known"><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-grok-47"><span class="sc-toc-no">S16</span><b>Grok 4.7</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training partial, Inference known, Tools known"><i class="p"></i><i class="n"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-llm-qwen38"><span class="sc-toc-no">S18</span><b>Qwen3.8</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data not disclosed, Training partial, Inference known, Tools known; open weights"><i class="k"></i><i class="n"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-llm-kimi-k3"><span class="sc-toc-no">S20</span><b>Kimi K3</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data partial, Training known, Inference known, Tools known; open weights"><i class="k"></i><i class="p"></i><i class="k"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-llm-deepseek-v41"><span class="sc-toc-no">S22</span><b>DeepSeek V4.1-Flash</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data known, Training known, Inference known, Tools known; open weights"><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-llm-glm-53"><span class="sc-toc-no">S24</span><b>GLM-5.3</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data partial, Training known, Inference known, Tools partial; open weights"><i class="k"></i><i class="p"></i><i class="k"></i><i class="k"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-llm-glm-54"><span class="sc-toc-no">S26</span><b>GLM-5.4</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data not disclosed, Training partial, Inference known, Tools known"><i class="k"></i><i class="n"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+</div><div class="sc-toc-comparisons"><h4>Compare</h4>
+<a href="#/sc-compare-llm-cost">Token cost</a>
+<a href="#/sc-compare-llm-deploy">Deployment</a>
+<a href="#/sc-compare-llm-scores">Coding scores</a>
+</div></div>
+<div class="sc-toc-block sc-toc-t2i">
+<h3>Text-to-image<span class="sc-toc-count">10</span></h3>
+<div class="sc-toc-tiles">
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2i-gpt-image-25"><span class="sc-toc-no">S31</span><b>GPT Image 2.5</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data partial, Training not disclosed, Inference partial, Tools partial"><i class="n"></i><i class="p"></i><i class="n"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2i-gpt-image-2"><span class="sc-toc-no">S33</span><b>GPT Image 2</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data not disclosed, Training not disclosed, Inference partial, Tools partial"><i class="n"></i><i class="n"></i><i class="n"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2i-nano-banana-21"><span class="sc-toc-no">S35</span><b>Nano Banana 2.1</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training not disclosed, Inference partial, Tools partial"><i class="p"></i><i class="n"></i><i class="n"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-t2i-flux-2"><span class="sc-toc-no">S37</span><b>FLUX.2</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data partial, Training partial, Inference known, Tools known; open weights"><i class="p"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-t2i-flux-2-klein"><span class="sc-toc-no">S39</span><b>FLUX.2 klein</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data not disclosed, Training partial, Inference partial, Tools known; open weights"><i class="k"></i><i class="n"></i><i class="p"></i><i class="p"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2i-flux-3-image"><span class="sc-toc-no">S41</span><b>FLUX 3 Image</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data partial, Training partial, Inference partial, Tools partial"><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-t2i-flux3-klein"><span class="sc-toc-no">S43</span><b>FLUX 3 Image Klein</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data partial, Training partial, Inference known, Tools partial; open weights"><i class="k"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2i-krea-3"><span class="sc-toc-no">S45</span><b>Krea 3</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data partial, Training partial, Inference partial, Tools partial"><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2i-qwenimage-3"><span class="sc-toc-no">S47</span><b>QwenImage 3</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data not disclosed, Training not disclosed, Inference partial, Tools partial"><i class="n"></i><i class="n"></i><i class="n"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2i-wan-27-image"><span class="sc-toc-no">S49</span><b>Wan2.7 Image</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data partial, Training partial, Inference partial, Tools partial"><i class="n"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i></span></a>
+</div><div class="sc-toc-comparisons"><h4>Compare</h4>
+<a href="#/sc-compare-image-api">API constraints</a>
+<a href="#/sc-compare-image-control">Image controls</a>
+</div></div>
+<div class="sc-toc-block sc-toc-t2v">
+<h3>Text-to-video<span class="sc-toc-count">8</span></h3>
+<div class="sc-toc-tiles">
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2v-wan3"><span class="sc-toc-no">S53</span><b>Wan3</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data not disclosed, Training not disclosed, Inference known, Tools known"><i class="n"></i><i class="n"></i><i class="n"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2v-utopai-x"><span class="sc-toc-no">S55</span><b>Utopai X</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training partial, Inference partial, Tools partial"><i class="p"></i><i class="n"></i><i class="p"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-t2v-minimax-h3"><span class="sc-toc-no">S57</span><b>MiniMax H3</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data partial, Training partial, Inference known, Tools known; open weights"><i class="k"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2v-flux-3-video"><span class="sc-toc-no">S59</span><b>FLUX 3 Video</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data partial, Training partial, Inference known, Tools known"><i class="p"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2v-kling-3-omni"><span class="sc-toc-no">S61</span><b>Kling 3.0 Omni</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training partial, Inference known, Tools known"><i class="p"></i><i class="n"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2v-veo-3-1"><span class="sc-toc-no">S63</span><b>Veo 3.1</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data partial, Training partial, Inference known, Tools known"><i class="p"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2v-seedance-2-5"><span class="sc-toc-no">S65</span><b>Seedance 2.5</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training not disclosed, Inference partial, Tools known"><i class="p"></i><i class="n"></i><i class="n"></i><i class="p"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-t2v-aleph-2"><span class="sc-toc-no">S67</span><b>Aleph 2.0</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data not disclosed, Training not disclosed, Inference partial, Tools known"><i class="n"></i><i class="n"></i><i class="n"></i><i class="p"></i><i class="k"></i></span></a>
+</div><div class="sc-toc-comparisons"><h4>Compare</h4>
+<a href="#/sc-compare-video-generation">Output limits</a>
+<a href="#/sc-compare-video-workflow">Video editing</a>
+</div></div>
+<div class="sc-toc-block sc-toc-tts">
+<h3>Text-to-speech<span class="sc-toc-count">5</span></h3>
+<div class="sc-toc-tiles">
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-tts-eleven-v4"><span class="sc-toc-no">S71</span><b>Eleven v4</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data not disclosed, Training partial, Inference known, Voice and control known"><i class="n"></i><i class="n"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-tts-sonic-36"><span class="sc-toc-no">S73</span><b>Sonic 3.6</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training partial, Inference known, Voice and control known"><i class="p"></i><i class="n"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-tts-qwen-audio-31"><span class="sc-toc-no">S75</span><b>Qwen Audio 3.1</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training partial, Inference partial, Voice and control known"><i class="p"></i><i class="n"></i><i class="p"></i><i class="p"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-tts-gemini-38-flash"><span class="sc-toc-no">S77</span><b>Gemini 3.8 Flash TTS</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training partial, Inference partial, Voice and control known"><i class="p"></i><i class="n"></i><i class="p"></i><i class="p"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-tts-heygen-voice"><span class="sc-toc-no">S79</span><b>HeyGen Voice</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data partial, Training known, Inference known, Voice and control known"><i class="k"></i><i class="p"></i><i class="k"></i><i class="k"></i><i class="k"></i></span></a>
+</div><div class="sc-toc-comparisons"><h4>Compare</h4>
+<a href="#/sc-compare-speech-controls">Voice controls</a>
+<a href="#/sc-tts-eleven-sonic">Speech agents</a>
+</div></div>
+<div class="sc-toc-block sc-toc-music">
+<h3>Music<span class="sc-toc-count">5</span></h3>
+<div class="sc-toc-tiles">
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-music-suno-v6"><span class="sc-toc-no">S83</span><b>Suno v6</b><span class="sc-toc-cells" role="img" aria-label="Architecture not disclosed, Data partial, Training not disclosed, Inference partial, Tools partial"><i class="n"></i><i class="p"></i><i class="n"></i><i class="p"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-music-mureka-v95"><span class="sc-toc-no">S85</span><b>Mureka V9.5</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data not disclosed, Training not disclosed, Inference partial, Tools known"><i class="p"></i><i class="n"></i><i class="n"></i><i class="p"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot" href="#/sc-music-lyria-35"><span class="sc-toc-no">S87</span><b>Lyria 3.5</b><span class="sc-toc-cells" role="img" aria-label="Architecture partial, Data partial, Training partial, Inference known, Tools partial"><i class="p"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="p"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-music-minimax-music-30"><span class="sc-toc-no">S89</span><b>MiniMax Music 3.0</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data not disclosed, Training partial, Inference known, Tools known; open weights"><i class="k"></i><i class="n"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+<a class="sc-toc-tile sc-toc-pilot sc-toc-open" href="#/sc-music-yue-2"><span class="sc-toc-no">S91</span><b>YuE 2</b><span class="sc-toc-cells" role="img" aria-label="Architecture known, Data partial, Training partial, Inference known, Tools known; open weights"><i class="k"></i><i class="p"></i><i class="p"></i><i class="k"></i><i class="k"></i></span></a>
+</div><div class="sc-toc-comparisons"><h4>Compare</h4>
+<a href="#/sc-compare-music-workflow">Song creation</a>
+<a href="#/sc-music-yue-suno">Local vs. hosted</a>
+<a href="#/sc-compare-music-scores">Selection budget</a>
+</div></div>
+</nav>
+<div class="sc-toc-key"><p>Disclosure cells, left to right: <strong>architecture · data · training · inference · tools</strong> (voice control for speech).</p>
+<p class="sc-toc-scale"><span><i class="k"></i>Known</span><span><i class="p"></i>Partial</span><span><i class="n"></i>Undisclosed</span><span><i class="sc-toc-flag"></i>Open weights</span></p></div></div>
+<div class="fv-source">Disclosure audits, October 2026 · subsequent primary reports cited on individual cards · GLM-5.4 release, 23 November 2026</div>
+```
+
+::: {.notes}
+Select a model to open its card. The following slide contains its example. Links at the foot of each domain open the comparisons. All models in the header returns to this catalog.
+
+The map preserves the original five disclosure categories. Known means a specific detail is public. Partial means the evidence covers only part of the category or only one variant. A dashed outline marks material the cited sources leave undisclosed. The last speech category is voice and control. The corner mark indicates available weights for at least one named variant. Each card identifies the applicable variant, licence and source.
+
+The original 40-card index used the October disclosure workbooks for LLM, text-to-image, text-to-video, speech and music. The GLM-5.4 entry follows the 23 November Z.ai release and its model guide.
+:::

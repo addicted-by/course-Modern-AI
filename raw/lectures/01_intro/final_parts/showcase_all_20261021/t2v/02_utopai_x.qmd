@@ -1,0 +1,37 @@
+## Which capabilities improved after Utopai X post-training? {#sc-t2v-utopai-x .fv-slide .sc-slide .sc-bento background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 55 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-utopai-x-results">Results →</a></div>
+<div class="sc-body bn-body bn-w1" data-company="utopai"><div class="bn-id"><div class="bn-plate"><figure class="sc-evidence"><img src="assets/showcase_video_evidence/utopai-x.svg" alt="Utopai X was closer to the category leader than H3 in seven of ten categories, Artificial Analysis, 29 September."></figure></div><div class="bn-model"><p class="bn-kicker">Text-to-video · Utopai Studios</p><h3>Utopai X</h3><p class="bn-ids"><code>H3 post-training</code></p><div class="bn-facts"><p><span>Released</span><b class="bn-date">30.09.2026</b></p><p><span>Access</span><b>PAI platform</b></p><p><span>Weights</span><b class="bn-shut">not found</b></p></div></div></div><div class="bn-pub"><div class="bn-tile bn-p bn-a"><div class="bn-head"><h4>Inference</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-stat"><p class="bn-num">T2V</p><p class="bn-cap">Text-prompt video generation inside PAI</p></div><div class="bn-rule"><p class="bn-item"><i class="sc-pip p"></i>Evaluated with audio; detailed audio controls not published</p></div><p class="bn-gap">Resolution, duration and model API not disclosed</p></div><div class="bn-tile bn-p bn-b"><div class="bn-head"><h4>Tools</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><div class="bn-chips"><span>Text → video</span><span>PAI workflow</span></div><p class="bn-item"><i class="sc-pip p"></i>PAI: compare takes, keep versions, export footage</p><p class="bn-gap">I2V and model-level video editing not documented</p></div><div class="bn-tile bn-p bn-c"><div class="bn-head"><h4>Architecture</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip k"></i>Based on MiniMax H3</p><p class="bn-gap">Changes and size undisclosed</p></div><div class="bn-tile bn-p bn-d"><div class="bn-head"><h4>Training</h4><span class="sc-status"><i class="sc-pip p"></i>Partial</span></div><p class="bn-item"><i class="sc-pip p"></i>Post-trained on H3</p><p class="bn-gap">Method and compute absent</p></div></div><div class="bn-strip"><div class="bn-strip-label"><span>Not disclosed</span><b>1<small>of 5</small></b></div><div class="bn-cell"><h4><i class="sc-pip n"></i>Data</h4><p>Post-training corpus · sizes · licences · filtering; studio production signals are not confirmed as Utopai X training data.</p></div></div></div>
+<div class="sc-study">
+<table class="sc-study-table" data-numeric="2">
+<caption>Which filmmaking tasks led the launch rankings?</caption>
+<thead><tr><th scope="col">Capability</th><th scope="col">Rank</th><th scope="col">Example test</th></tr></thead>
+<tbody>
+<tr><th scope="row">Physics</th><td>1</td><td>Boat enters water</td></tr>
+<tr><th scope="row">Audio timing</th><td>1</td><td>Robot powers up</td></tr>
+<tr><th scope="row">Lighting and materials</th><td>2</td><td>Lamp brightens</td></tr>
+<tr><th scope="row">Camera control</th><td>2</td><td>Whip-pan reveal</td></tr>
+</tbody>
+</table>
+<p class="sc-study-source"><a href="https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking">Utopai · launch comparison table</a> · Artificial Analysis · 29 Sep 2026</p>
+</div>
+<div class="fv-takeaway">An identified base model does not establish the derivative’s architecture or limits.</div>
+<div class="fv-source"><a href="https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking">Figure · category comparison</a> · <a href="https://www.utopaistudios.com/en/blog/introducing-the-all-new-pai-and-utopai-x">PAI launch</a> · <a href="https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking">Utopai X page</a> · T2V_v1.0.xlsx · Utopai X · audit 19.10.2026</div>
+```
+
+::: {.notes}
+The table reorganizes the Utopai X row of the report’s comparison with Wan 3.0, Seedance 2.5 and MiniMax H3. The probes summarize separate examples in the same report. The Artificial Analysis launch rankings reflect blind preferences in each capability across prompts. A probe illustrates a category rather than determining its rank. Wan 3.0 ranked first in lighting/materials and camera control in this snapshot. [Utopai · launch comparison table](https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking).
+
+Artificial Analysis measured distance from the best Elo score separately within ten capability categories. The diagram counts categories in which the Utopai X gap was smaller than the H3 gap. It does not imply seven category wins. The data are from 29 September 2026 and were published in the Utopai capability report on 2 October.
+
+The specification table follows the 19 October 2026 workbook. Utopai X is the video-generation model inside the PAI production platform, released with the PAI announcement on 30 September. The model page is dated 2 October.
+
+The identified relationship is post-training on MiniMax H3. H3's 33B backbone, encoder, open-weight status, 768p output and 15-second limit are not assigned to Utopai X. The workbook finds no Utopai disclosure of architectural changes, dimensions or generation limits. It also distinguishes studio feedback becoming training/evaluation signals in general from confirmed use of that feedback to train this particular model.
+
+Text-prompt video generation is stated. Evaluation in a text-to-video-with-audio leaderboard is evidence of an audio output, but not a specification of dialogue controls or lip sync. The PAI platform handles shot planning, take comparison, versioning and export to editing applications. These workflow tools do not establish image-to-video or model-level video editing. The workbook did not find a public model API, a first-party price or public Utopai X weights; the base H3's licence does not carry over automatically.
+
+**Sheet-row provenance:** scope and lineage 6–8; data 12–13; training 17–19; release/access/limits 23–25 and 28; model tasks versus platform workflow 32–36. **Status provenance:** `Сводка`, row 5, columns B–F.
+
+**Workbook sources:** [PAI launch](https://www.utopaistudios.com/en/blog/introducing-the-all-new-pai-and-utopai-x), [Utopai X page](https://www.utopaistudios.com/en/blog/utopai-x-ai-video-model-filmmaking).
+:::

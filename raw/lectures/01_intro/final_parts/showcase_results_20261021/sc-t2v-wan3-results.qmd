@@ -1,0 +1,22 @@
+## Wan3 takes a sled through a refrigerator {#sc-t2v-wan3-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 54 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster active">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2v-wan3">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="alibaba">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Alibaba / Wan" class="sc-company" role="img"><img alt="Alibaba" src="assets/showcase_identity_20261021/alibaba.svg"/><span class="sc-company-caption">Wan</span></div></div><div class="sr-model"><p>RESULTS · Text-to-video</p><h3>Wan3</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2V preference Elo</p><p class="sr-metric-value">1173 Elo</p><p class="sr-metric-note">95% CI 1157–1189; n=5,682; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/text-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">I2V preference Elo</p><p class="sr-metric-value">1127 Elo</p><p class="sr-metric-note">95% CI 1111–1143; n=5,144; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/image-to-video" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Editing preference Elo</p><p class="sr-metric-value">1200 Elo</p><p class="sr-metric-note">95% CI 1189–1211; n=7,762; AA 2026-10-21 <a class="" href="https://artificialanalysis.ai/video/leaderboard/video-editing" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img class="sr-video-print" src="assets/showcase_video_evidence/wan3-poster.webp" alt="A girl opens the fridge. Watch the sled pass eggs, cheese and broccoli before the camera returns to the kitchen."><video controls playsinline preload="none" src="assets/showcase_video_evidence/wan3.mp4" poster="assets/showcase_video_evidence/wan3-poster.webp" aria-label="Wan3 takes a sled through a refrigerator" aria-describedby="wan3-caption"></video></div><p class="sr-caption" id="wan3-caption">A girl opens the fridge. Watch the sled pass eggs, cheese and broccoli before the camera returns to the kitchen.</p></div></div>
+<div class="fv-takeaway">Follow the character across changes of scale and focus in this vendor-selected sequence.</div>
+<div class="fv-source"><a href="https://github.com/AlibabaCloud-Official/Wan3.0">Alibaba Cloud · Wan 3.0 model repository</a> · Artificial Analysis snapshot 21 Oct 2026 · metric sources above</div>
+```
+
+::: {.notes}
+The second embedded demonstration, Demo2.mp4, showcases the model in an animated sequence. The repository does not publish the input prompt, references or generation settings. The local file contains the complete roughly 20-second video, reduced to 1024 pixels wide.
+
+- **T2V preference Elo: 1173 Elo**. Text prompt; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/text-to-video).
+
+- **I2V preference Elo: 1127 Elo**. Source image; audio enabled. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/image-to-video).
+
+- **Editing preference Elo: 1200 Elo**. Instruction-based video editing; audio kept. Independent preference benchmark. [Source](https://artificialanalysis.ai/video/leaderboard/video-editing).
+
+[Published example](https://github.com/AlibabaCloud-Official/Wan3.0) · [Original media](https://github.com/user-attachments/assets/d97ffc4c-bb2d-4685-b422-a2e42c890104)
+:::

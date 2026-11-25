@@ -1,0 +1,71 @@
+## Why does GLM-5.4 run its middle layers twice? {#sc-llm-glm-54 .fv-slide .sc-slide .sc-datasheet background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 26 / 95</span><span class="fv-cluster active">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-llm-glm-54-results">Results →</a></div>
+<div class="sc-body ds-body" data-company="zai">
+  <div class="ds-card">
+    <div class="ds-head">
+      <div class="sc-company" aria-label="Z.ai / Zhipu" role="img"><img src="assets/showcase_identity_20261021/zai.svg" alt="Z.ai"><span class="sc-company-caption">Zhipu</span></div>
+      <p class="ds-kicker">released 23.11.2026</p><p class="ds-kicker ds-r">Hosted at launch</p>
+      <h3 class="ds-name">GLM-5.4</h3><p class="ds-lic">Weights planned</p>
+    </div>
+    <div class="ds-row">
+      <div class="ds-feat"><h4>Architecture</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div>
+      <div class="ds-spec ds-lead"><span class="ds-k">GLM-5 base</span><b class="ds-v">750B scale</b></div>
+      <div class="ds-spec"><span class="ds-k">State update</span><b class="ds-v">Per-token gates</b></div>
+      <div class="ds-spec"><span class="ds-k">Sparse attention</span><b class="ds-v">Reused indices</b></div>
+    </div>
+    <div class="ds-row">
+      <div class="ds-feat"><h4>Data</h4><p class="ds-st"><i class="sc-pip n"></i>Not disclosed</p></div>
+      <div class="ds-spec ds-gap" style="grid-column: span 3"><span class="ds-k">Flagship training corpus</span><b class="ds-v">Mixture and token count undisclosed</b></div>
+    </div>
+    <div class="ds-row">
+      <div class="ds-feat"><h4>Training</h4><p class="ds-st"><i class="sc-pip p"></i>Partial</p></div>
+      <div class="ds-spec ds-lead"><span class="ds-k">Adapting the base</span><b class="ds-v">Continued training</b></div>
+      <div class="ds-spec"><span class="ds-k">Loop tested at</span><b class="ds-v">1B–750B scale</b></div>
+      <div class="ds-spec ds-gap"><span class="ds-k">Flagship compute</span><b class="ds-v">Not reported</b></div>
+    </div>
+    <div class="ds-row">
+      <div class="ds-feat"><h4>Inference</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div>
+      <div class="ds-spec ds-lead"><span class="ds-k">Context window</span><b class="ds-v">1M tokens</b></div>
+      <div class="ds-spec"><span class="ds-k">Maximum output</span><b class="ds-v">128K tokens</b></div>
+      <div class="ds-spec"><span class="ds-k">Second-pass cache</span><b class="ds-v">Shared + local KV</b></div>
+    </div>
+    <div class="ds-row">
+      <div class="ds-feat"><h4>Tools</h4><p class="ds-st"><i class="sc-pip k"></i>Known</p></div>
+      <div class="ds-spec ds-lead"><span class="ds-k">Tool interface</span><b class="ds-v">Function calls</b></div>
+      <div class="ds-spec"><span class="ds-k">Structured output</span><b class="ds-v">JSON</b></div>
+      <div class="ds-spec"><span class="ds-k">Coding access</span><b class="ds-v">GLM Coding Plan</b></div>
+    </div>
+  </div>
+</div>
+<figure class="sc-evidence sc-evidence-strip"><img src="assets/showcase_results_20261021/llm/glm-54-loop.svg" alt="Layers 1–26 run once. Layers 27–54 run twice with shared weights. Layers 55–78 then receive the refined state."></figure>
+<div class="sc-study">
+  <table class="sc-study-table" data-numeric="2 3 4">
+    <caption>30B loop experiment at equal parameter count</caption>
+    <thead><tr><th scope="col">Benchmark</th><th scope="col">Base score</th><th scope="col">Loop score</th><th scope="col">Mean output length Δ</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">AIME25</th><td>19.17</td><td>30.42</td><td>−2.0%</td></tr>
+      <tr><th scope="row">GPQA-Diamond</th><td>47.58</td><td>56.26</td><td>−11.7%</td></tr>
+      <tr><th scope="row">AA-LCR</th><td>40.33</td><td>47.67</td><td>−9.7%</td></tr>
+      <tr><th scope="row">MMLU-Pro</th><td>71.65</td><td>75.05</td><td>−14.9%</td></tr>
+      <tr><th scope="row">IFBench</th><td>50.20</td><td>53.47</td><td>−13.0%</td></tr>
+    </tbody>
+  </table>
+  <p class="sc-study-source"><a href="https://cdn.bigmodel.cn/markdown/feishu-66636cb34d-3.jpg">Z.ai · iso-parameter ablation table</a> · The looped model used ~10% more total training compute. Both used thinking mode after 200K long-context supervised fine-tuning.</p>
+</div>
+<div class="fv-takeaway">Reusing the middle block gives each token 106 layer applications across 78 numbered layers.</div>
+<div class="fv-source">Z.ai · checked 25.11.2026 · <a href="https://z.ai/blog/glm-5.4">Technical release</a> · <a href="https://docs.z.ai/guides/llm/glm-5.4">Model guide</a> · <a href="https://cdn.bigmodel.cn/markdown/feishu-fbd39b457f-2.jpg">Original architecture diagram</a></div>
+```
+
+::: {.notes}
+Read the diagram from left to right. The 26 prelude layers run once. The same 28 middle layers transform the hidden state twice, then 24 coda layers process the refined state. Adding the applications gives 26 + 28 + 28 + 24 = 106. This count covers the numbered Transformer blocks. The diagram omits the input projections, gates and output head. Each pass has its own per-token gate, so the residual update can change in strength even though the block weights are shared.
+
+On the second pass, attention reads selected key/value entries from the first pass and fresh entries within a sliding window. It also reuses the first pass’s sparse-attention indices. The extra KV storage therefore scales with the local window. Ask which cost weight sharing saves and which it retains. A second copy of the middle block’s weights is unnecessary, while each generated token still incurs the second pass’s compute.
+
+The architecture schematic describes the 750B-scale GLM-5.4 flagship. The adjacent table transcribes all five benchmark rows in Z.ai’s separate 30B experiment. The authors kept the parameter count equal, used about 10% more total training compute for the looped variant, and evaluated both with thinking enabled after 200K long-context supervised fine-tuning. “Mean output length Δ” is the reported percentage change relative to the baseline, measured in output tokens. On GPQA-Diamond the loop raises the score from 47.58 to 56.26 while the average response uses 2,473 fewer tokens (−11.7%). Ask which comparison would isolate the effect of looping from the extra training compute. A baseline trained with the same compute budget would address that question.
+
+The model guide lists video, images, text and files as inputs, with text output. Z.ai lists Coding Plan, ZCode and Chat as launch routes. The announcement describes future publication of weights after safety hardening, and the model guide says general Model API availability follows a security assessment. Access statements are dated 24 November 2026.
+
+The course schematic redraws the layer ranges in Z.ai’s figure in “The Loop Architecture.” The native table comes from the unnumbered benchmark table in “Scaling Correctness & Controlled Iso-Parameter Ablations.” It shows the baseline and +Loop scores and the relative component of “Avg. Length Change.” [Original architecture figure](https://cdn.bigmodel.cn/markdown/feishu-fbd39b457f-2.jpg) · [Original 30B ablation table](https://cdn.bigmodel.cn/markdown/feishu-66636cb34d-3.jpg) · [Technical release](https://z.ai/blog/glm-5.4) · [Model guide](https://docs.z.ai/guides/llm/glm-5.4).
+:::

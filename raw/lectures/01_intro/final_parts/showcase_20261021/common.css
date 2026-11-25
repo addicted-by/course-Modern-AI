@@ -1,0 +1,31 @@
+/* Showcase: shared card tokens. Course geometry, fonts and colours come from lecture01_part2_final_v3.css. */
+.reveal .slides section.sc-slide {
+  --sc-dark: #141414;
+  --sc-gap-ink: #8a8a8a;
+  --sc-hatch: repeating-linear-gradient(135deg, var(--fv-lime) 0 4px, #fff 4px 8px);
+}
+/* Card area: below the title, above the takeaway (top 146 → 736). */
+.reveal .sc-slide .sc-body { position: absolute; top: 146px; left: 56px; width: 1488px; height: 590px; }
+
+/* Status scale, identical on every card: known = lime, partial = hatched lime, not disclosed = dashed grey. */
+.reveal .sc-slide .sc-pip {
+  display: inline-block; flex: 0 0 auto; width: 18px; height: 18px; margin-right: 8px;
+  border: 2px solid var(--fv-ink); background: #fff; vertical-align: -3px;
+}
+.reveal .sc-slide .sc-pip.k { background: var(--fv-lime); }
+.reveal .sc-slide .sc-pip.p { background: var(--sc-hatch); }
+.reveal .sc-slide .sc-pip.n { border-style: dashed; border-color: var(--sc-gap-ink); }
+
+.reveal .sc-slide .sc-chip { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border: 1px solid var(--fv-line); font-size: 19px; white-space: nowrap; }
+.reveal .sc-slide .sc-chip-ink { background: var(--sc-dark); border-color: var(--sc-dark); color: #fff; }
+.reveal .sc-slide .sc-status { font-size: 18px; color: var(--fv-muted); letter-spacing: .04em; text-transform: uppercase; display: flex; align-items: center; }
+
+/* Domain navigation in the slide header replaces the topic clusters in this deck. */
+.reveal .sc-slide .fv-meta .fv-cluster { white-space: nowrap; }
+
+/* Not-disclosed marker for running text: a small dashed square before the line. */
+.reveal .sc-slide .sc-gap::before {
+  content: ""; display: inline-block; width: 14px; height: 14px; margin-right: 9px;
+  border: 2px dashed var(--sc-gap-ink); vertical-align: -1px;
+}
+.reveal .sc-slide .sc-gap { color: var(--fv-muted); }

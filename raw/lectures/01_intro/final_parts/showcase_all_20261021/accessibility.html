@@ -1,0 +1,62 @@
+<style>
+.reveal.has-dark-background:has(.slides > section.sc-slide.present.has-dark-background) .slide-number,
+.reveal.has-dark-background:has(.slides > section.sc-slide.present.has-dark-background) .slide-number :is(a, span),
+.reveal.has-dark-background:has(.slides > section.sc-slide.present.has-dark-background) .slide-menu-button :is(a, i) { color: #fafafa; }
+.reveal.has-dark-background:has(.slides > section.sc-slide.present.has-dark-background) .slide-menu-button .fa-bars::before {
+  filter: brightness(0) invert(1);
+}
+</style>
+<script>
+// Deck-scoped semantics for the Reveal 5.1 / Quarto presentation shell.
+(() => {
+  const setup = () => {
+    const deck = window.Reveal;
+    if (!deck) return;
+    const install = () => {
+      const menu = document.querySelector('nav.slide-menu');
+      const trigger = document.querySelector('.slide-menu-button > a');
+      if (!menu || !trigger || menu.dataset.showcaseA11y) return;
+      menu.dataset.showcaseA11y = 'true';
+      menu.id ||= 'showcase-slide-menu';
+      menu.setAttribute('aria-label', 'Slide menu');
+      trigger.setAttribute('aria-label', 'Open slide menu');
+      trigger.setAttribute('aria-controls', menu.id);
+      const controls = document.querySelector('.controls');
+      if (controls) {
+        controls.setAttribute('role', 'presentation');
+        controls.removeAttribute('aria-label');
+        const navigation = document.createElement('nav');
+        navigation.setAttribute('aria-label', 'Slide navigation');
+        while (controls.firstChild) navigation.appendChild(controls.firstChild);
+        controls.appendChild(navigation);
+      }
+      const scaler = document.getElementById('slide-scaler-ui');
+      scaler?.setAttribute('role', 'region');
+      scaler?.setAttribute('aria-label', 'Slide zoom');
+      document.querySelector('.slide-header-logos')?.setAttribute('role', 'img');
+      let wasOpen = false;
+      const sync = () => {
+        const open = menu.classList.contains('active');
+        const restoreFocus = !open && wasOpen && menu.contains(document.activeElement);
+        menu.inert = !open;
+        menu.setAttribute('aria-hidden', String(!open));
+        trigger.setAttribute('aria-expanded', String(open));
+        menu.querySelectorAll('.slide-menu-panel').forEach(panel => {
+          const active = open && panel.classList.contains('active-menu-panel');
+          panel.inert = !active;
+          panel.setAttribute('aria-hidden', String(!active));
+          panel.tabIndex = active ? 0 : -1;
+        });
+        if (open && !wasOpen) menu.querySelector('.active-menu-panel')?.focus({ preventScroll: true });
+        if (restoreFocus) trigger.focus({ preventScroll: true });
+        wasOpen = open;
+      };
+      new MutationObserver(sync).observe(menu, { attributes: true, subtree: true, attributeFilter: ['class'] });
+      sync();
+    };
+    deck.isReady() ? install() : deck.on('ready', install);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup, { once: true });
+  else setup();
+})();
+</script>

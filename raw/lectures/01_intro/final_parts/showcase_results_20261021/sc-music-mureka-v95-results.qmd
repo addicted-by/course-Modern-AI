@@ -1,0 +1,19 @@
+## Mureka V9.5: Melted Chrome {#sc-music-mureka-v95-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 86 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster active">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-music-mureka-v95">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="mureka">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Mureka / Kunlun Tech" class="sc-company" role="img"><span class="sc-company-name">Mureka</span><span class="sc-company-caption">Kunlun Tech</span></div></div><div class="sr-model"><p>RESULTS · Music</p><h3>Mureka V9.5</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">Vocal pass rate</p><p class="sr-metric-value">61.0%</p><p class="sr-metric-note">Vendor: 100 songs; unnamed baseline 53.0% <a class="" href="https://www.mureka.ai/blog_en/mureka-v9-5-model-changes.html" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Prompt-control pass rate</p><p class="sr-metric-value">97.0%</p><p class="sr-metric-note">Same vendor evaluation; previous baseline 92.0% <a class="" href="https://www.mureka.ai/blog_en/mureka-v9-5-model-changes.html" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Fully expressed genre</p><p class="sr-metric-value">95.7%</p><p class="sr-metric-note">Same vendor evaluation; previous baseline 84.9% <a class="" href="https://www.mureka.ai/blog_en/mureka-v9-5-model-changes.html" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage sr-audio sr-music">
+<div><p class="sr-audio-label">Mureka · V9.5 release demo</p><h3>Melted Chrome</h3></div>
+<div><p class="sr-audio-label">Style brief</p><p class="sr-audio-prompt">West Coast G-funk with a high synth lead, elastic bass and laid-back drums.</p></div>
+<div><p class="sr-audio-label">Excerpt · 0:12–0:30 in the recording</p><audio controls preload="none" aria-label="Melted Chrome · Mureka · V9.5 release demo" src="assets/showcase_results_20261021/music/mureka-v95-melted-chrome.mp3"></audio></div></div><p class="sr-caption">Listen for the high synth against the low bass line. Which part identifies the genre most clearly?</p></div></div>
+<div class="fv-takeaway">A single track lets us examine genre cues. The pass rates summarize Mureka’s 100-song evaluation.</div>
+<div class="fv-source">Audio · Mureka · V9.5 release demo · <a href="https://www.mureka.ai/blog_en/mureka-v9-5-model-changes.html#melted-chrome-a-complete-expression-of-a-niche-genre">Published example</a> · <a href="https://static-cos.mureka.ai/cos-prod/blog/melted-chrome.mp3">Original recording</a></div>
+```
+
+::: {.notes}
+The Mureka V9.5 release article pairs this exact recording with a G-funk brief. The separate pass rates describe the vendor’s batch of 100 songs. The public release does not identify the baseline or specify how many raters took part.
+
+This slide plays 0:12–0:30 of the published recording. The local copy is an 18-second stereo MP3 with a brief fade at each cut. [Publisher](https://www.mureka.ai/blog_en/mureka-v9-5-model-changes.html#melted-chrome-a-complete-expression-of-a-niche-genre) · [Original recording](https://static-cos.mureka.ai/cos-prod/blog/melted-chrome.mp3).
+:::

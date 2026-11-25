@@ -1,0 +1,38 @@
+## Open-weight image generation in practice {#sc-t2i-flux3-klein-results .fv-slide .sc-slide .sc-results background-color="#ffffff"}
+
+```{=html}
+<div class="fv-meta"><span class="fv-id">S 44 / 95</span><span class="fv-cluster">LLM</span><span class="fv-cluster active">Text-to-image</span><span class="fv-cluster">Text-to-video</span><span class="fv-cluster">Text-to-speech</span><span class="fv-cluster">Music</span><a class="sc-back" href="#/sc-toc">All models ↗</a><a class="sr-pair" href="#/sc-t2i-flux3-klein">Model card ↗</a></div>
+<div class="sc-body sr-body" data-company="black-forest-labs">
+<div class="sr-sidebar" role="group" aria-label="Model and reported metrics"><div class="sr-brand"><div aria-label="Black Forest Labs" class="sc-company" role="img"><span class="sc-company-name">Black Forest<small>Labs</small></span></div></div><div class="sr-model"><p>RESULTS · Text-to-image</p><h3>FLUX 3 Image Klein</h3></div><div class="sr-metrics"><div class="sr-metric"><p class="sr-metric-label">T2I gain vs klein 9B</p><p class="sr-metric-value">+91 Elo</p><p class="sr-metric-note">BFL internal comparison against FLUX.2 [klein] 9B. <a class="" href="https://bfl.ai/blog/flux-3-image-klein" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Editing gain</p><p class="sr-metric-value">+70 Elo</p><p class="sr-metric-note">Same vendor comparison; not a universal score. <a class="" href="https://bfl.ai/blog/flux-3-image-klein" target="_blank" rel="noopener">↗</a></p></div><div class="sr-metric"><p class="sr-metric-label">Median API latency</p><p class="sr-metric-value">4.54 / 7.18 s</p><p class="sr-metric-note">T2I / edit, 1 MP, queue included; BFL server timing. <a class="" href="https://bfl.ai/blog/flux-3-image-klein" target="_blank" rel="noopener">↗</a></p></div></div></div>
+<div class="sr-example"><div class="sr-stage"><img src="assets/showcase_results_20261021/t2i/sc-t2i-flux3-klein-output-collage.jpg" alt="A vendor output collage spans photographic, illustrated and typographic work."></div><p class="sr-caption">Look for the postage stamp, the wildlife photographs and the large letterforms. Each tile is a separate Klein output.</p></div></div>
+<div class="fv-takeaway">Black Forest Labs publishes the collage for FLUX 3 Image Klein. The evaluation compares it with FLUX.2 [klein] 9B.</div>
+<div class="fv-source">Published example and reported metrics · checked 21.10.2026 · <a class="" href="https://bfl.ai/blog/flux-3-image-klein" target="_blank" rel="noopener">Example source</a></div>
+```
+
+::: {.notes}
+Published results checked 21 October 2026. These are sourced examples and reported measurements; no models were run for this deck.
+
+
+
+A vendor output collage spans photographic, illustrated and typographic work.
+
+
+
+- **T2I preference gain: +91 Elo **. Relative to FLUX.2 [klein] 9B in BFL internal comparison; not a cross-leaderboard score. Attribution: vendor_internal_evaluation. [Source](https://bfl.ai/blog/flux-3-image-klein).
+
+- **Editing preference gain: +70 Elo **. Same BFL comparison against FLUX.2 [klein] 9B. Attribution: vendor_internal_evaluation. [Source](https://bfl.ai/blog/flux-3-image-klein).
+
+- **Median API latency: 4.54 s T2I / 7.18 s edit **. 1 MP, request to finished output, queue included; BFL timed on its own servers, competitors from clients. Attribution: vendor_latency_measurement. [Source](https://bfl.ai/blog/flux-3-image-klein).
+
+
+
+**Example provenance and limitations.**
+
+The October 15 launch explicitly captions this collage as FLUX 3 Image Klein outputs; checkpoint subtype is unspecified.
+
+Examples do not distinguish Base from distilled. The API serves distilled with prompt upsampling and pixel restoration.
+
+Vendor evaluations are not independent reproductions.
+
+[Published media/source](https://cdn.sanity.io/images/2gpum2i6/production/eada5ee663c5523ab6d43c858baaf037867d324e-2000x1344.webp): FLUX 3 Image Klein: official output collage.. Rights: Public BFL showcase; page footer reserves rights. No separate demo-image licence identified. Attribute Black Forest Labs; model-weight licences are distinct.
+:::

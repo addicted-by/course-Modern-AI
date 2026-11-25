@@ -1,0 +1,85 @@
+## Where does a Codex task run? {#ts-codex .ts-slide .ts-codex .ts-infographic}
+
+```{=html}
+<div class="ts-card">
+  <div class="ts-product-line"><img class="ts-logo" src="assets/tools_showcase/codex-icon.png" alt=""><strong class="ts-name">Codex</strong><span class="ts-surface">CLI · ChatGPT desktop app</span></div>
+  <figure class="ts-chart" aria-labelledby="ts-codex-map">
+    <figcaption id="ts-codex-map">Desktop execution modes</figcaption>
+    <div class="ts-diagram ts-branches">
+      <div class="ts-node ts-hub"><strong>Codex chat</strong></div>
+      <div class="ts-branch-list">
+        <div class="ts-node"><strong>Local</strong><span>Existing project directory</span></div>
+        <div class="ts-node ts-node-accent"><strong>Worktree</strong><span>Separate local Git checkout</span></div>
+        <div class="ts-node"><strong>Cloud</strong><span>Remote execution in its own workspace</span></div>
+      </div>
+    </div>
+    <div class="ts-secondary">
+      <h3 id="ts-codex-handoff">Handoff between checkouts</h3>
+      <div class="ts-mini-map" role="group" aria-labelledby="ts-codex-handoff">
+        <div class="ts-mini-node"><strong>Local checkout</strong></div>
+        <span class="ts-mini-edge ts-mini-edge-bidirectional">⇄<span>Chat + code both ways</span></span>
+        <div class="ts-mini-node"><strong>Managed worktree</strong><span>Detached HEAD by default</span></div>
+      </div>
+    </div>
+  </figure>
+  <div class="ts-facts" role="group" aria-labelledby="ts-codex-controls">
+    <h3 id="ts-codex-controls">Execution and review</h3>
+    <dl>
+      <dt>CLI</dt><dd><code>codex</code> interactive · <code>codex exec</code> scripted</dd>
+      <dt>Sandbox</dt><dd>Controls file and network access</dd>
+      <dt>Approval policy</dt><dd>Sets when actions need approval</dd>
+      <dt>Desktop review</dt><dd>Diff view and inline comments</dd>
+    </dl>
+  </div>
+  <div class="ts-sources"><a class="ts-evidence-link" href="#/ts-evidence-remote-codex">Technical figure</a><a href="https://learn.chatgpt.com/docs/codex/cli">Codex CLI</a><a href="https://learn.chatgpt.com/docs/environments/modes">Modes</a><a href="https://learn.chatgpt.com/docs/environments/git-worktrees">Worktrees</a><a href="https://learn.chatgpt.com/docs/agent-approvals-security#sandbox-and-approvals">Sandbox and approvals</a></div>
+</div>
+```
+
+::: {.notes lang="ru"}
+Схема показывает режимы исполнения Codex в приложении ChatGPT. Local работает в текущем каталоге проекта. Worktree создаёт отдельную рабочую копию Git на машине, где открыт проект. Codex начинает с вершины выбранной ветки и по умолчанию использует detached HEAD. Рабочие копии используют общие метаданные Git. Handoff переносит чат и правки между Local и Worktree. В Cloud задача исполняется на управляемой удалённой машине и использует файлы и инструменты своего окружения. CLI можно запускать интерактивно командой `codex` или вызывать из скрипта через `codex exec`. [Режимы исполнения](https://learn.chatgpt.com/docs/environments/modes). [Worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees). [CLI](https://learn.chatgpt.com/docs/codex/cli).
+
+Песочница ограничивает технический доступ к файлам и сети, а политика одобрений определяет, когда агенту нужно запросить разрешение на действие. Отдельная рабочая копия даёт изоляцию правок Git. Для проверки правок в приложении откройте diff и оставьте комментарий на нужных строках. [Песочница и одобрения](https://learn.chatgpt.com/docs/agent-approvals-security#sandbox-and-approvals). [Проверка кода](https://learn.chatgpt.com/docs/code-review).
+
+Иконка вырезана из опубликованной иллюстрации OpenAI. [Анонс приложения Codex](https://openai.com/index/introducing-the-codex-app/). [Исходная иллюстрация](https://images.ctfassets.net/kftzwdyauwt9/7E1L5KrvfinYdmBBNDPhf5/710a8a46258bafe8fe2d26f31ff242c0/Codex_Landing_Page_SEO.png).
+:::
+
+## What did Codex produce in two published projects? {#ts-codex-uses .ts-slide .ts-codex .ts-uses}
+
+```{=html}
+<div class="ts-card ts-use-layout">
+  <article class="ts-use-case">
+    <h3>Port Bazel Diff from Kotlin to Rust</h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Port the Kotlin Bazel Diff CI tool to Rust while preserving upstream behavior.</p></li>
+      <li class="ts-use-step"><h4>How Codex was used</h4><p>An internal Codex fork wrote parity tests against upstream and kept an execution plan.</p></li>
+      <li class="ts-use-step"><h4>Public artifact</h4><p>Rust CLI and a parity harness comparing its behavior with the upstream JAR.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <pre><code>assert_eq!(upstream.hashes, rust.hashes);
+assert_eq!(upstream.dep_edges, rust.dep_edges);
+Ok(())</code></pre>
+      <figcaption><a href="https://github.com/friel-openai/bazel-differous/blob/37ee0da98a56141f545172bf1481e898215bdd74/crates/integration-tests/tests/generate_hashes_parity.rs#L61-L63">Hash and dependency-edge assertions · repository excerpt</a></figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://forum.openai.com/en/public/clubs/developers-and-startups-y6l6m/videos/event-replay-vibe-engineering-with-openais-codex-2025-12-03">OpenAI Forum · Recorded demo</a> · <a href="https://github.com/friel-openai/bazel-differous#testing-and-verification">Public repository and tests</a></p>
+  </article>
+  <article class="ts-use-case">
+    <h3>Reproduce results from <em>Deep Hedging</em></h3>
+    <ol class="ts-use-flow">
+      <li class="ts-use-step"><h4>Task</h4><p>Reproduce numerical claims using the paper and available local resources.</p></li>
+      <li class="ts-use-step"><h4>How Codex was used</h4><p>With a Goal, Codex mapped claims to evidence, rebuilt pricing mechanics and trained replacement hedging policies.</p></li>
+      <li class="ts-use-step"><h4>Reported result</h4><p>Rebuilt hedge-surface plots and produced approximate numerical matches. Original training state was unavailable.</p></li>
+    </ol>
+    <figure class="ts-use-artifact">
+      <a class="ts-use-artifact-open" href="https://developers.openai.com/cookbook/assets/notebook-attachments/examples/codex/using_goals_in_codex/591e8054-d28c-4853-bb15-c66cb1146351.png"><img src="assets/tools_showcase/case-codex-deep-hedging.png" alt="Published ledger values, paper and reproduced: Heston call price 1.69 and 1.6918, 50% CVaR price 1.94 and 1.9764, 99% CVaR price 3.49 and 3.4858."></a>
+      <figcaption>Ledger rows from <a href="https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex#using-goals-for-complex-research-reproducing-a-quant-paper">OpenAI Cookbook · Figure 6</a> · Heston call 1.69 → 1.6918</figcaption>
+    </figure>
+    <p class="ts-use-source"><a href="https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex#using-goals-for-complex-research-reproducing-a-quant-paper">OpenAI Cookbook · Research Goal · 9 May 2026</a></p>
+  </article>
+</div>
+```
+
+::: {.notes lang="ru"}
+На OpenAI Forum Аарон Фрил показал запуск переноса Bazel Diff с Kotlin на Rust. Он задал оригинальный репозиторий как эталон поведения в 00:04:28, а в 00:05:33 уточнил, что использовал внутренний форк Codex. Публичный репозиторий содержит реализацию Rust, тестовые фикстуры и стенд, который сравнивает stdout, stderr и коды завершения Rust CLI и эталонного JAR на WORKSPACE и MODULE.bazel. Целью была совместимость. Документированные проверки относятся к конкретным фикстурам. [Запись OpenAI Forum](https://forum.openai.com/en/public/clubs/developers-and-startups-y6l6m/videos/event-replay-vibe-engineering-with-openais-codex-2025-12-03). [Публичный репозиторий](https://github.com/friel-openai/bazel-differous#testing-and-verification).
+
+В OpenAI Cookbook Codex использовал Goal для проверки результатов статьи Buehler, Gonon, Teichmann и Wood. Он разделил утверждения по доступным свидетельствам, воспроизвёл эталонную цену Хестона и построил новые графики хеджирования. Фрагмент рисунка 6 показывает три пары чисел из статьи и повторного эксперимента. Для нейросетевых результатов с недоступными исходными траекториями и контрольными точками отчёт указывает приблизительное воспроизведение. Этот статус сохраняется в итоговом аудите. [OpenAI Cookbook, Using Goals in Codex](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex#using-goals-for-complex-research-reproducing-a-quant-paper).
+:::
