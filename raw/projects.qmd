@@ -33,6 +33,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://arxiv.org/abs/2208.12242">Ruiz et al., 2022</a>
         <a href="https://arxiv.org/abs/2307.01952">SDXL</a>
+        <a href="lectures/01_intro/project_pages/notebooks/sdxl-base-1-0-geneval2.ipynb" download>SDXL · GenEval 2 notebook ↓</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p01_dreambooth.html" aria-label="Open brief for DreamBooth">Open brief →</a>
     </div>
@@ -48,6 +49,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://arxiv.org/abs/2208.01618">Gal et al., 2022</a>
         <a href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5">SD 1.5</a>
+        <a href="lectures/01_intro/project_pages/notebooks/sdxl-base-1-0-geneval2.ipynb" download>SDXL · GenEval 2 notebook ↓</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p02_textual_inversion.html" aria-label="Open brief for Textual Inversion">Open brief →</a>
     </div>
@@ -78,6 +80,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://arxiv.org/abs/2106.09685">Hu et al. (LoRA)</a>
         <a href="https://arxiv.org/abs/2409.12186">Qwen2.5</a>
+        <a href="lectures/01_intro/project_pages/notebooks/qwen2-5-1-5b-winogrande-math.ipynb" download>Qwen2.5 · WinoGrande &amp; MATH notebook ↓</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p04_sql_lora.html" aria-label="Open brief for Text-to-SQL with LoRA">Open brief →</a>
     </div>
@@ -93,6 +96,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://arxiv.org/abs/2106.09685">LoRA</a>
         <a href="https://arxiv.org/abs/2501.10868">JSONSchemaBench</a>
+        <a href="lectures/01_intro/project_pages/notebooks/qwen2-5-1-5b-winogrande-math.ipynb" download>Qwen2.5 · WinoGrande &amp; MATH notebook ↓</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p05_json_lora.html" aria-label="Open brief for Structured JSON with LoRA">Open brief →</a>
     </div>
@@ -123,6 +127,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html">Latent Diffusion</a>
         <a href="https://arxiv.org/abs/2501.07397">OmniEraser</a>
+        <a href="lectures/01_intro/project_pages/notebooks/stable-diffusion-1-5-removalbench.ipynb" download>SD 1.5 · RemovalBench notebook ↓</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p07_object_removal.html" aria-label="Open brief for Object Removal">Open brief →</a>
     </div>
@@ -153,6 +158,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://arxiv.org/abs/2408.00714">SAM 2</a>
         <a href="https://ojs.aaai.org/index.php/AAAI/article/view/6832">Face Parsing</a>
+        <a href="lectures/01_intro/project_pages/notebooks/sam-vit-b-lvis.ipynb" download>SAM ViT-B · LVIS notebook ↓</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p09_hair.html" aria-label="Open brief for Hair Segmentation &amp; Sharpening">Open brief →</a>
     </div>
@@ -168,6 +174,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://arxiv.org/abs/2408.00714">SAM 2</a>
         <a href="https://arxiv.org/abs/2104.14222">Portrait Matting</a>
+        <a href="lectures/01_intro/project_pages/notebooks/sam-vit-b-lvis.ipynb" download>SAM ViT-B · LVIS notebook ↓</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p10_bokeh.html" aria-label="Open brief for Portrait Bokeh">Open brief →</a>
     </div>
@@ -182,6 +189,7 @@ The capstone project is the central practical component of **Modern AI**. Studen
     <div class="course-project-card-footer">
       <div class="course-project-research" aria-label="Research and resources">
         <a href="https://huggingface.co/m-a-p/YuE2-3B">YuE2</a>
+        <a href="lectures/01_intro/project_pages/notebooks/yue2-3b-wildsongbench-audiobox-pq.ipynb" download>YuE2-3B · WildSongBench notebook ↓</a>
         <a href="https://arxiv.org/abs/2106.09685">LoRA</a>
       </div>
       <a class="course-button course-button-secondary course-project-brief" href="lectures/01_intro/project_pages/p11_yue2_stems.html" aria-label="Open brief for YuE2 Instrument Stem Generation">Open brief →</a>

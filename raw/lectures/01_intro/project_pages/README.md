@@ -20,8 +20,12 @@ the template, project content, or registration configuration.
 
 Keep `project_pages/`, `assets/projects/`, `vendor/katex/`, and the deck's generated
 `course_structure_files/` directory together when distributing the presentation.
-README and notebook links appear only when the corresponding files exist under
-`raw/lectures/projects/<project-id>/`.
+Shared model benchmark notebooks live in `notebooks/`. Each project's optional
+`benchmark` key selects an entry in `notebooks.json` and the corresponding
+Kaggle environment dataset (`replaceme-<benchmark>-env`). The website catalog
+in `raw/projects.qmd` also links to these downloads.
+Project-specific README and Kaggle notebook links appear when the corresponding
+files exist under `raw/lectures/projects/<project-id>/`.
 
 ## Project registration
 

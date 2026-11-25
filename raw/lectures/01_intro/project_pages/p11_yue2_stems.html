@@ -35,6 +35,9 @@
         <h2 id="model-title">Model and adaptation</h2>
         <p>YuE2 with a separate NAR LoRA adapter per instrument and an input projection for audio context; frozen AR branch and VAE.</p>
         <p class="context">Each expert learns to generate one instrument from a partial mix. Start with a small set such as drums, bass and piano, then compare generation orders. These instrument experts are proposed adaptations of YuE2, not its existing AR/NAR experts. Use the model and datasets within their noncommercial research terms.</p>
+        <h3 id="benchmark-notebook">Model benchmark notebook</h3>
+        <p><a href="notebooks/yue2-3b-wildsongbench-audiobox-pq.ipynb" download>Download YuE2-3B on WildSongBench (AudioBox PQ) (.ipynb)</a></p>
+        <p class="context">On Kaggle, import the notebook and attach the <code>replaceme-yue2-env</code> dataset before running it.</p>
       </section>
       <section aria-labelledby="data-title">
         <h2 id="data-title">Data</h2>

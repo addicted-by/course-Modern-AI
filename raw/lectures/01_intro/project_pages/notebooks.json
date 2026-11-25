@@ -1,0 +1,22 @@
+{
+  "qwen25": {
+    "label": "Qwen2.5-1.5B on WinoGrande and MATH",
+    "file": "qwen2-5-1-5b-winogrande-math.ipynb"
+  },
+  "sam": {
+    "label": "SAM ViT-B on LVIS",
+    "file": "sam-vit-b-lvis.ipynb"
+  },
+  "sd15": {
+    "label": "Stable Diffusion 1.5 Inpainting on RemovalBench",
+    "file": "stable-diffusion-1-5-removalbench.ipynb"
+  },
+  "sdxl": {
+    "label": "SDXL Base 1.0 on GenEval 2",
+    "file": "sdxl-base-1-0-geneval2.ipynb"
+  },
+  "yue2": {
+    "label": "YuE2-3B on WildSongBench (AudioBox PQ)",
+    "file": "yue2-3b-wildsongbench-audiobox-pq.ipynb"
+  }
+}

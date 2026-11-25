@@ -1,6 +1,7 @@
 [
   {
     "id": "p01_dreambooth",
+    "benchmark": "sdxl",
     "number": 1,
     "title": "DreamBooth",
     "modality": "Image generation",
@@ -29,6 +30,7 @@
   },
   {
     "id": "p02_textual_inversion",
+    "benchmark": "sdxl",
     "number": 2,
     "title": "Textual Inversion",
     "modality": "Image generation",
@@ -84,6 +86,7 @@
   },
   {
     "id": "p04_sql_lora",
+    "benchmark": "qwen25",
     "number": 4,
     "title": "Text-to-SQL with LoRA",
     "modality": "Language · Code",
@@ -113,6 +116,7 @@
   },
   {
     "id": "p05_json_lora",
+    "benchmark": "qwen25",
     "number": 5,
     "title": "Structured JSON with LoRA",
     "modality": "Language · Structured output",
@@ -171,6 +175,7 @@
   },
   {
     "id": "p07_object_removal",
+    "benchmark": "sd15",
     "number": 7,
     "title": "Object Removal",
     "modality": "Image editing",
@@ -229,6 +234,7 @@
   },
   {
     "id": "p09_hair",
+    "benchmark": "sam",
     "number": 9,
     "title": "Hair Segmentation & Sharpening",
     "modality": "Segmentation · Image editing",
@@ -258,6 +264,7 @@
   },
   {
     "id": "p10_bokeh",
+    "benchmark": "sam",
     "number": 10,
     "title": "Portrait Bokeh",
     "modality": "Segmentation · Image editing",
@@ -287,6 +294,7 @@
   },
   {
     "id": "p11_yue2_stems",
+    "benchmark": "yue2",
     "number": 11,
     "title": "YuE2 Instrument Stem Generation",
     "modality": "Audio · Music generation",

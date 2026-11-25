@@ -61,6 +61,7 @@ def main():
     args = parser.parse_args()
     registration = load_registration(require_enabled=args.require_registration)
     projects = json.loads((HERE / "projects.json").read_text(encoding="utf-8"))
+    notebooks = json.loads((HERE / "notebooks.json").read_text(encoding="utf-8"))
     template = Template((HERE / "template.html").read_text(encoding="utf-8"))
     images = []
     for manifest in sorted(ASSETS.glob("sources-*.json")):
@@ -81,6 +82,16 @@ def main():
         values["total"] = str(len(projects))
         values["catalog_url"] = escape(project.get("catalog_url", f'../course_structure.html#/{values["catalog"]}'), quote=True)
         values.update(registration_markup(registration if project.get("registration_enabled", True) else None, project["title"]))
+        values["benchmark_notebook"] = ""
+        if benchmark := project.get("benchmark"):
+            notebook = notebooks[benchmark]
+            path = Path("notebooks") / notebook["file"]
+            if not (HERE / path).is_file():
+                raise FileNotFoundError(HERE / path)
+            values["benchmark_notebook"] = f'''
+        <h3 id="benchmark-notebook">Model benchmark notebook</h3>
+        <p><a href="{escape(path.as_posix(), quote=True)}" download>Download {escape(notebook["label"])} (.ipynb)</a></p>
+        <p class="context">On Kaggle, import the notebook and attach the <code>replaceme-{escape(benchmark)}-env</code> dataset before running it.</p>'''
         resources = []
         for filename, label, download in [
             ("README.md", "Project README ↗", ""),
