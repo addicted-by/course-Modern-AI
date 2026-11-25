@@ -73,10 +73,10 @@ lectures:
   - number: 8
     module: M1
     title: "Can we name it AGI?"
-    source: null
-    html: null
-    pdf: null
-    pptx: null
+    source: raw/lectures/01_intro/lecture_01_final_part3.qmd
+    html: raw/lectures/01_intro/lecture_01_final_part3.html
+    pdf: raw/lectures/01_intro/lecture_01_final_part3.pdf
+    pptx: raw/lectures/01_intro/lecture_01_final_part3.pptx
 
   - number: 9
     module: M1
@@ -104,10 +104,10 @@ lectures:
   - number: 11
     module: M1
     title: "Code Agents. Workflow."
-    source: null
-    html: null
-    pdf: null
-    pptx: null
+    source: raw/lectures/01_intro/lecture01_tools_final_v2.qmd
+    html: raw/lectures/01_intro/lecture01_tools_final_v2.html
+    pdf: raw/lectures/01_intro/lecture01_tools_final_v2.pdf
+    pptx: raw/lectures/01_intro/lecture01_tools_final_v2.pptx
 
   - number: 12
     module: M2

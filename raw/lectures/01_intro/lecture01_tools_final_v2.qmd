@@ -1,0 +1,1601 @@
+---
+pagetitle: "Modern AI — Choosing development tools"
+lang: en
+format:
+  revealjs:
+    section-divs: false
+    pdf-separate-fragments: false
+    css: lecture01_tools_final_v2.css
+    include-after-body:
+      - final_parts/showcase_all_20261021/accessibility.html
+    html-math-method:
+      method: katex
+      url: vendor/katex/dist/
+suppress-bibliography: true
+---
+
+## Choose the tool for the task {#tools-v2-01 .tf-slide .tf-dark background-color="#0a0a0a"}
+
+```{=html}
+<div class="tf-meta">01–03 · Start with the task</div>
+<div class="tf-body v201-start">
+  <div class="v201-scenarios">
+    <div class="v201-scenario"><span class="v201-icon" aria-hidden="true">{ }</span><h3>Fix a known<br>function</h3><div class="v201-answer fragment" data-fragment-index="2">Start with a local edit</div></div>
+    <div class="v201-scenario"><span class="v201-icon" aria-hidden="true">?</span><h3>Understand<br>the requirements</h3><div class="v201-answer fragment" data-fragment-index="2">Clarify the outcome</div></div>
+    <div class="v201-scenario"><span class="v201-icon" aria-hidden="true">±</span><h3>Check a<br>completed diff</h3><div class="v201-answer fragment" data-fragment-index="2">Review the evidence</div></div>
+  </div>
+  <div class="v201-question fragment" data-fragment-index="1">Would we start the same way?</div>
+  <div class="v201-conditions">Task · available environment · allowed actions · acceptance check</div>
+</div>
+<div class="tf-takeaway">I choose _____ because _____; I allow _____; I will check _____.</div>
+<div class="tf-source">Course synthesis · <a href="https://www.swe-agent.com/latest/">SWE-agent</a> · <a href="https://docs.openhands.dev/">OpenHands</a> · Teaching scenarios</div>
+```
+
+::: {.notes}
+Главная мысль: результат лекции — обоснованный выбор инструмента и режима через условия задачи, разрешённые действия и способ приёмки. Три карточки — разные входы в работу, а не ступени от слабого инструмента к сильному. Названия продуктов специально отсутствуют.
+
+Сначала дать аудитории рассмотреть ситуации. Клик 1 открывает вопрос «Would we start the same way?». После обсуждения клик 2 показывает локальную правку, уточнение и review. Это не универсальные предписания: доступность среды и правила работы могут изменить выбор. Внизу остаётся формула решения; к ней вернёмся в итоговой практике. Примеры учебные, результатов настоящего запуска здесь нет.
+
+Источники: https://www.swe-agent.com/latest/ ; https://docs.openhands.dev/ . Референсы описывают взаимодействие модели с инструментами и средой, а не рейтинг брендов.
+:::
+
+## Four questions before choosing {#tools-v2-02 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">A small task can still hide a missing decision · Teaching example</div>
+<div class="tf-body v202-diagnostic">
+  <div class="v202-question v202-result"><h3>What outcome?</h3><p>Expected behavior: <b class="fragment highlight-green" data-fragment-index="2">_____</b></p><div class="v202-detail fragment" data-fragment-index="1">The desired output is still unknown.</div></div>
+  <div class="v202-question v202-context"><h3>Where is the context?</h3><p>Relevant files: _____</p><div class="v202-detail fragment" data-fragment-index="1">The failing location is unknown.</div></div>
+  <div class="v202-task">Fix date handling</div>
+  <div class="v202-question v202-actions"><h3>What is allowed?</h3><p>Environment and permissions</p><div class="v202-detail fragment" data-fragment-index="1">Local environment only.<br>Changes need agreement.</div></div>
+  <div class="v202-question v202-check"><h3>How will we check?</h3><p>Evidence for acceptance</p><div class="v202-detail fragment" data-fragment-index="1">A reproducing test is available.</div></div>
+  <div class="v202-route"><span>04–14 Editor</span><span>15–30 Terminal & context</span><span>31–38 Before code</span><span>39–44 Project setup</span><span>45–56 Delegation</span><span>57–64 Verification</span></div>
+</div>
+<div class="tf-takeaway">A failing test shows a problem. We still need the intended behavior.</div>
+<div class="tf-source">Course diagnostic · <a href="https://code.claude.com/docs/en/best-practices">Anthropic — Give Claude a way to verify its work</a></div>
+```
+
+::: {.notes}
+Главная мысль: цель, контекст, допустимые действия и проверка — четыре равноправных основания выбора. Доступность среды и правила работы с кодом — исходные ограничения, а не свойства «лучшего» бренда.
+
+Клик 1 раскрывает известные условия: место ошибки неизвестно, есть воспроизводящий тест, разрешена локальная среда, изменения требуют согласования. Неизвестные ожидаемое поведение и пути остаются пустыми: не заполняем их догадками. Клик 2 выделяет пропуск в результате. Попросить аудиторию назвать недостающее условие: какие даты принимаются и какой результат возвращается. Наличие теста не разрешает самовольно выбрать контракт. Отдельное согласование изменений — условие этого задания, а не универсальное требование к каждому проекту. Нижняя линия показывает маршрут лекции.
+
+Источник: https://code.claude.com/docs/en/best-practices .
+:::
+
+## More than a model: environment, actions, feedback {#tools-v2-03 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">A coding system makes proposals observable and reviewable</div>
+<div class="tf-body v203-system">
+  <div class="v203-components">
+    <div><h3>Model</h3><p>Proposes the next step</p></div>
+    <div><h3>Context</h3><p>Request, code,<br>observations</p></div>
+    <div><h3>Tools</h3><p class="fragment semi-fade-out" data-fragment-index="2">Files · shell · tests</p></div>
+    <div><h3>Interface</h3><p>Inspect · steer · review</p></div>
+  </div>
+  <div class="v203-loop"><div class="v203-node">Request</div><span>→</span><div class="v203-node">Action</div><span>→</span><div class="v203-node v203-observe fragment highlight-green" data-fragment-index="1">Observation</div><span>→</span><div class="v203-node">Next step</div></div>
+  <div class="v203-human"><div>Human decision<br><b>Agree on an action</b></div><div class="v203-feedback">Environment → evidence → next decision</div><div>Human decision<br><b>Accept the result</b></div></div>
+  <div class="v203-without fragment" data-fragment-index="2">Without files and tests, what could this system still verify?</div>
+</div>
+<div class="tf-takeaway">Situation → choice → action → check → boundary</div>
+<div class="tf-source"><a href="https://www.swe-agent.com/latest/">SWE-agent</a> · <a href="https://docs.openhands.dev/">OpenHands</a> · Reference: Codex Bootcamp 201, slides 6–7</div>
+```
+
+::: {.notes}
+Главная мысль: модель предлагает шаг, но доступ к файлам, командам, наблюдениям и diff создаётся всей системой. Разделяем модель, контекст, инструменты и интерфейс.
+
+Клик 1 выделяет наблюдение: содержимое файла или вывод теста меняет следующий шаг. Два решения человека показаны отдельно: разрешить действие и принять результат. Одно не означает другое. Клик 2 приглушает файлы и тесты. Это мысленный эксперимент, не реальное отключение инструментов: останется объяснение по уже переданному контексту, но не проверка нового состояния репозитория. При необходимости вернуться на предыдущий шаг клавишей ←. Далее сохраняем формат «ситуация → выбор → действие → проверка → граница».
+
+Источники: https://www.swe-agent.com/latest/ ; https://docs.openhands.dev/ . Донор: Codex Bootcamp 201, слайды 6–7 в tools_references.
+:::
+
+## Cursor: when is Tab or inline edit enough? {#tools-v2-04 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">04–14 · In the editor · Cursor · Teaching example, reconstructed UI</div>
+<div class="tf-body v204-editor tf-window">
+  <div class="tf-toolbar">profile.ts <span class="v204-ui-label">Choose the scope before revealing the mode</span></div>
+  <div class="v204-stage">
+    <div class="v204-scene fragment fade-out" data-fragment-index="2"><div class="v204-request">Continue this known expression</div><pre class="tf-code">function greeting(name: string) {
+  return name.<span class="v204-caret">|</span><span class="v204-ghost">trim();</span>
+}</pre><div class="v204-mode fragment" data-fragment-index="1">Tab <span>Accept a completion</span></div></div>
+    <div class="v204-scene fragment" data-fragment-index="2"><div class="v204-phase fragment fade-out" data-fragment-index="4"><div class="v204-request">Handle a missing value in this selection</div><pre class="tf-code">function greeting(name: string | null) {
+  <span class="v204-selection">return name.trim();</span>
+}</pre><div class="v204-local fragment" data-fragment-index="3"><div class="v204-mode">Inline edit <span>Change the selection</span></div><pre class="tf-code">+ return (name ?? "").trim();</pre><p>Contract to check: <code>null → ""</code></p></div></div></div>
+    <div class="v204-scene fragment" data-fragment-index="4"><div class="v204-request">The affected callers are unknown</div><pre class="tf-code">Where is greeting() used?
+Which callers allow missing names?
+Find the contract before changing it.</pre><div class="v204-mode fragment" data-fragment-index="5">Agent <span>Investigate and coordinate steps</span></div></div>
+  </div>
+</div>
+<div class="tf-takeaway">Known location + known boundary → start with a local action.</div>
+<div class="tf-source"><a href="https://cursor.com/help/ai-features/tab">Cursor Tab</a> · <a href="https://cursor.com/help/ai-features/inline-edit">Inline Edit</a> · <a href="https://cursor.com/docs/agent/overview">Agent overview</a></div>
+```
+
+::: {.notes}
+Главная мысль: объём помощи выбираем по неопределённости и границам изменения. Один редактор последовательно показывает три увеличения; это не три одновременно открытых маленьких скриншота.
+
+Клик 1 открывает Tab для понятного продолжения. Tab не ограничен одной строкой: это лишь выбранный сценарий. Клик 2 показывает выделенный return; учебный контракт — null превращается в пустую строку. После выбора аудитории клик 3 открывает inline edit, сокращённый diff и проверяемый случай. Рамка выделения сохраняет границу поручения. Клик 4 меняет ситуацию: вызывающие места неизвестны. После обсуждения клик 5 открывает Agent. Локальная правка требует известного контракта; нельзя универсально заменять отсутствие значения пустой строкой. Все код и результаты — учебная реконструкция.
+
+Источники: https://cursor.com/help/ai-features/tab ; https://cursor.com/help/ai-features/inline-edit ; https://cursor.com/docs/agent/overview .
+:::
+
+## Cursor Agent: when the change spans files {#tools-v2-05 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">A clear goal; unknown change locations · Teaching example</div>
+<div class="tf-body v205-taskmap">
+  <div class="v205-goal"><div class="tf-label">Requirement</div><h3>Show an empty state<br>for an empty list</h3><p>Keep normal results working.</p><div class="v205-done">“Done” is only a message.</div></div>
+  <div class="v205-files"><div class="v205-file fragment" data-fragment-index="1"><b>Handler</b><code>api/items.ts</code><span>Return an empty collection</span></div><div class="v205-file fragment" data-fragment-index="2"><b>Component</b><code>ui/ItemList.tsx</code><span>Render the empty state</span></div><div class="v205-file fragment" data-fragment-index="3"><b>Tests</b><code>tests/items.test.ts</code><span>Cover both paths</span></div></div>
+  <div class="v205-evidence tf-window fragment" data-fragment-index="4"><div class="tf-toolbar">Reviewable evidence · illustrative output</div><div class="tf-content"><div class="tf-label">UI diff</div><pre class="tf-code">- if (!items.length) throw Error()
++ if (!items.length)
++   return &lt;EmptyState /&gt;</pre><div class="v205-checks"><div><b>Empty list</b><span>Empty state; no error</span></div><div><b>Non-empty list</b><span>Items still visible</span></div></div><p>Inspect handler and test diffs too.</p></div></div>
+  <div class="v205-counter fragment" data-fragment-index="5">New condition: the exact faulty line is already known. Keep the same scope?</div>
+</div>
+<div class="tf-takeaway">Accept the changes and checks, not the completion message.</div>
+<div class="tf-source"><a href="https://cursor.com/docs/agent/tools">Cursor — Agent tools</a> · File names, diff, and checks are teaching examples</div>
+```
+
+::: {.notes}
+Главная мысль: понятное требование при неизвестном расположении правок оправдывает поиск по проекту и последовательность действий. Связи ведут от требования к файлам, а не через длинный журнал чата.
+
+Клики 1–3 показывают обработчик, компонент и тесты. Клик 4 раскрывает увеличенный diff и отдельно пустой и непустой список. Сокращённый diff показывает компонент; приёмка требует осмотреть также обработчик и тесты. «Done» намеренно второстепенно. Illustrative output — условные материалы, а не реально прошедшая проверка. Последний клик меняет условие: нужная строка уже известна. Аудитория решает, осталось ли основание для широкого исследования; иногда достаточно inline edit, иногда ещё нужны связанные проверки.
+
+Источник: https://cursor.com/docs/agent/tools .
+:::
+
+## Cursor: find behavior when the file is unknown {#tools-v2-06 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Semantic search helps locate relevant context · Teaching example</div>
+<div class="tf-body v206-search">
+  <div class="v206-question"><div class="tf-label">Question</div><h3>Where do failed<br>requests repeat?</h3><p>The filename may not contain <code>retry</code>.</p></div>
+  <div class="v206-results"><div class="tf-label">Retrieved fragments</div><div class="v206-hit"><code>network/client.ts:42</code><p>send again after a delay</p></div><div class="v206-hit"><code>jobs/worker.ts:88</code><p>requeue a failed job</p></div><div class="v206-hit"><code>tests/client.test.ts:31</code><p>attempt count on failure</p></div></div>
+  <div class="v206-source tf-window fragment" data-fragment-index="1"><div class="tf-toolbar">Open source · network/client.ts:42</div><pre class="tf-code">for (let attempt = 0;
+     attempt &lt; maxAttempts;
+     attempt++) {
+  try { return await send(); }
+  catch (error) {
+    if (!canRepeat(error)) throw error;
+    await delay(backoff(attempt));
+  }
+}</pre><div class="v206-follow">Check callers and retry conditions.</div></div>
+  <div class="v206-ribbon"><span>Fragments</span> → <span>Embeddings</span> → <span>Search</span> → <span>Context</span></div>
+  <div class="v206-direct fragment" data-fragment-index="2"><b>File already known?</b> Open it directly.</div>
+</div>
+<div class="tf-takeaway">Inspect retrieved code. Search results do not establish completeness.</div>
+<div class="tf-source"><a href="https://cursor.com/blog/secure-codebase-indexing">Cursor — Securely indexing large codebases</a> · <a href="https://cursor.com/docs/context/codebase-indexing">Codebase indexing</a></div>
+```
+
+::: {.notes}
+Главная мысль: смысловой поиск полезен, когда известно поведение, но неизвестен путь. Названия client.ts и worker.ts специально не содержат retry. Найденные фрагменты подсказывают, что открыть, но не доказывают полное чтение репозитория.
+
+Клик 1 раскрывает исходник с путём и окружающим кодом. Нужно проверить canRepeat, число попыток, callers и остановку. Код сокращён: итоговый выход после исчерпания попыток опущен; это иллюстрация поиска, не готовая реализация клиента. Лента показывает общий механизм chunks → embeddings → search → context. Исключённые файлы, свежесть индекса и полнота выдачи — отдельные вопросы. Клик 2 открывает альтернативу: известный файл можно открыть напрямую.
+
+Источники: https://cursor.com/blog/secure-codebase-indexing ; https://cursor.com/docs/context/codebase-indexing .
+:::
+
+## Cursor Design Mode: point to the element {#tools-v2-07 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Agents Window · Cursor 3.0 source version · Teaching reconstruction</div>
+<div class="tf-body v207-design">
+  <div class="v207-view"><div class="tf-toolbar">Before · same viewport</div><div class="v207-page"><div class="v207-sitehead">MODERN AI / COURSE</div><div class="v207-selected"><b>Build your first classifier</b><p>Lab 01 · Starter project</p><span class="v207-target">Selected element</span></div><div class="v207-gap v207-gap-before"><span>48 px</span></div><div class="v207-next">Upcoming sessions</div></div><div class="v207-command">“Reduce this gap to 16 px.”</div></div>
+  <div class="v207-view fragment" data-fragment-index="1"><div class="tf-toolbar">After · same viewport</div><div class="v207-page"><div class="v207-sitehead">MODERN AI / COURSE</div><div class="v207-selected"><b>Build your first classifier</b><p>Lab 01 · Starter project</p></div><div class="v207-gap v207-gap-after"><span>16 px</span></div><div class="v207-next">Upcoming sessions</div></div><div class="v207-diff fragment" data-fragment-index="2"><code>margin-bottom: <del>48px</del> → <b>16px</b></code></div></div>
+  <div class="v207-coverage fragment" data-fragment-index="2"><span><b>Inspected:</b> this desktop state</span><span><b>Still to check:</b> mobile, neighboring elements</span></div>
+</div>
+<div class="tf-takeaway">Pointing clarifies the target. It does not verify layout—or server permissions.</div>
+<div class="tf-source"><a href="https://cursor.com/changelog/3-0">Cursor 3.0 — Design Mode, April 2, 2026</a> · UI and pixel values are illustrative</div>
+```
+
+::: {.notes}
+Главная мысль: выбор элемента передаёт визуальный контекст точнее длинного описания положения. Сохраняем поверхность и версию донора: Agents Window, Cursor 3.0. Это подпись источника, а не гарантия одинакового UI во всех установках.
+
+Сначала видны выбранная карточка, размерная линия и команда. Клик 1 открывает результат в том же масштабе и положении. Содержимое карточки сохранено, следующий блок поднялся. Клик 2 показывает CSS diff и область проверки. Страница, числа 48 и 16 px и результат — учебная реконструкция, не запись реальной сессии. Осмотрено только показанное desktop-состояние; мобильная вёрстка и соседние элементы требуют проверки. Финальный вопрос аудитории: поможет ли указание элемента доказать корректность серверных прав? Визуальный контекст не заменяет проверку авторизации.
+
+Источник: https://cursor.com/changelog/3-0 .
+:::
+
+## Copilot: explain, edit a selection, or carry out a task {#tools-v2-08 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">GitHub Copilot in one working environment · Teaching exercise</div>
+<div class="tf-body v208-modes">
+  <div class="v208-card v208-read"><div class="v208-number">01</div><h3>Explain this<br>function</h3><p>No code change requested</p><div class="v208-mode fragment" data-fragment-index="1">Ask</div><div class="v208-output fragment" data-fragment-index="2"><b>Expected result</b><span>Explanation grounded<br>in the actual code</span></div></div>
+  <div class="v208-card"><div class="v208-number">02</div><h3>Change this<br>condition</h3><p>The selection is known</p><div class="v208-mode fragment" data-fragment-index="1">Edit</div><div class="v208-output fragment" data-fragment-index="2"><b>Expected result</b><span>A focused diff<br>and boundary check</span></div></div>
+  <div class="v208-card"><div class="v208-number">03</div><h3>Find and fix<br>the cause</h3><p>Several steps may be needed</p><div class="v208-mode fragment" data-fragment-index="1">Agent</div><div class="v208-output fragment" data-fragment-index="2"><b>Expected result</b><span>Related changes<br>with check results</span></div></div>
+  <div class="v208-version">Mode names from the 2025 source video</div>
+</div>
+<div class="tf-takeaway">Choose the scope of the request before choosing the mode.</div>
+<div class="tf-source"><a href="https://learn.microsoft.com/en-us/shows/visual-studio-code/ask-edit-and-agent-in-depth-overview-of-github-copilot-chat-modes">Microsoft — Ask, Edit, & Agent (2025)</a> · 02:05 / 21:00 / 31:30</div>
+```
+
+::: {.notes}
+Главная мысль: объём поручения может меняться в одной рабочей среде. Объяснение, адресная правка и многошаговое исправление требуют разных действий, но не обязательно смены продукта.
+
+Сначала карточки показывают только задания. Предложить аудитории назвать ожидаемый результат и необходимость записи. Клик 1 раскрывает Ask, Edit, Agent — названия из видео Microsoft от 29 апреля 2025 года. Клик 2 раскрывает основания приёмки. Тонкая рамка первой карточки подчёркивает отсутствие запроса на изменение кода. Карточки одинакового масштаба: это не рейтинг. Названия и доступность режимов сопоставляют с установленной версией; видео не задаёт неизменный современный интерфейс. Результаты учебные, реальные проверки не запускались.
+
+Источник: https://learn.microsoft.com/en-us/shows/visual-studio-code/ask-edit-and-agent-in-depth-overview-of-github-copilot-chat-modes . Главы: 02:05, 21:00, 31:30.
+:::
+
+## Copilot: use diagnostics and symbol context {#tools-v2-09 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">VS Code · A line of code is only part of the evidence · Teaching example</div>
+<div class="tf-body v209-diagnostics">
+  <div class="v209-side fragment" data-fragment-index="1"><div class="tf-toolbar">Problems</div><div class="v209-sidebody"><b>TS18047</b><p><code>name</code> is possibly <code>null</code>.</p><div class="v209-wire">→</div></div></div>
+  <div class="v209-code tf-window"><div class="tf-toolbar">profile.ts · selected function: greeting</div><pre class="tf-code">function greeting(
+  <span class="v209-symbol">name</span>: string | null
+) {
+  return <span class="v209-error">name</span>.trim();
+}</pre></div>
+  <div class="v209-side fragment" data-fragment-index="2"><div class="tf-toolbar">Usages</div><div class="v209-sidebody"><pre class="tf-code">greeting(user.name)
+greeting(null)</pre><p>Contract: missing name<br>→ empty string</p><div class="v209-wire v209-wire-left">←</div></div></div>
+  <div class="v209-fix fragment" data-fragment-index="3"><div><div class="tf-label">Local diff</div><pre class="tf-code">- return name.trim();
++ return (name ?? "").trim();</pre></div><div><div class="tf-label">Illustrative check result</div><p>This nullable diagnostic is gone.</p><p>Also check <code>null</code> and a normal name.</p></div></div>
+  <div class="v209-question fragment" data-fragment-index="4">If the bug depends on runtime values, is static context enough?</div>
+</div>
+<div class="tf-takeaway">Diagnostics locate the problem; usages help establish the contract.</div>
+<div class="tf-source"><a href="https://code.visualstudio.com/docs/agents/reference/tools-reference">VS Code — Tools and context reference</a> · Tool labels vary by version</div>
+```
+
+::: {.notes}
+Главная мысль: диагностика среды и связи символов добавляют сведения, которые теряются при отправке одной строки в чат. Выбор инструмента определяется необходимым контекстом, а не длиной запроса.
+
+Клик 1 открывает Problems, клик 2 — usages и явный учебный контракт: отсутствующее имя означает пустую строку. Удаление null из типа не согласуется с вызовом greeting(null). Клик 3 показывает diff и обновлённую диагностику. Illustrative check result — условный результат: typecheck при создании слайда не запускался. Исчезновение сообщения не доказывает всё поведение; отдельно проверяют пустое и обычное имя. В доноре документированы #read/problems и #search/usages; на слайде устойчивые UI-подписи. Клик 4 задаёт вопрос о runtime-значениях: статическая диагностика не заменяет наблюдение работающей программы.
+
+Источник: https://code.visualstudio.com/docs/agents/reference/tools-reference .
+:::
+
+## Copilot + MCP: connect what the task is missing {#tools-v2-10 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">A connection needs a reason and a defined access scope · Teaching example</div>
+<div class="tf-body v210-mcp">
+  <div class="v210-need"><div class="tf-label">Missing context</div><h3>Need the test<br>database schema</h3><p>Only table structure.<br>No production access.</p></div>
+  <div class="v210-host"><h3>Copilot</h3><p>MCP client<br>inside VS Code</p><div class="v210-call">Read schema →</div></div>
+  <div class="v210-boundary"><div class="v210-boundary-label">Allowed scope: test DB · schema read</div><div class="v210-external"><div><h3>MCP server</h3><code>get_table_schema</code></div><span>→</span><div><h3>Test database</h3><code>orders</code></div></div><div class="v210-response fragment" data-fragment-index="1">← <code>id · total · created_at</code><span>Context from <b>test-db</b>, not production</span></div></div>
+  <div class="v210-legend"><span><b>tools</b> — actions</span><span><b>resources</b> — data</span><span><b>prompts</b> — templates</span></div>
+  <div class="v210-alternative fragment" data-fragment-index="2"><b>Alternative:</b> a verified local <code>schema.sql</code> already exists. Is a connection needed?</div>
+</div>
+<div class="tf-takeaway">Request the missing capability, with the smallest useful access scope.</div>
+<div class="tf-source"><a href="https://modelcontextprotocol.io/docs/learn/architecture">MCP — Architecture</a> · <a href="https://learn.microsoft.com/en-us/shows/visual-studio-code/ask-edit-and-agent-in-depth-overview-of-github-copilot-chat-modes">Microsoft video, MCP chapter 47:00</a></div>
+```
+
+::: {.notes}
+Главная мысль: внешний сервис подключают ради конкретного недостающего контекста или действия. Нужна схема тестовой БД; доступ ограничен чтением структуры в этой среде. Ограничение — условие сценария, а не автоматически обеспечиваемое свойство MCP.
+
+VS Code выступает host, внутри находится MCP client. Сервер предоставляет учебный tool get_table_schema. Клик 1 возвращает поля и привязывает ответ к test-db. Название функции и поля вымышлены. Схему можно было бы предоставить как resource; здесь выбран tool. Tools, resources и prompts — типы возможностей, а не три последовательных обязательных вызова. Клик 2 меняет условие: проверенная актуальная схема уже есть локально. Обсудить необходимость подключения. Актуальность и принадлежность нужной среде проверяют при любом источнике данных.
+
+Источники: https://modelcontextprotocol.io/docs/learn/architecture ; https://learn.microsoft.com/en-us/shows/visual-studio-code/ask-edit-and-agent-in-depth-overview-of-github-copilot-chat-modes .
+:::
+
+## Copilot: choose an entry point and execution place {#tools-v2-11 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Alternative workflows · The interface alone does not establish data placement</div>
+<div class="tf-body v211-environments">
+  <div class="v211-constraint fragment" data-fragment-index="1">Constraint: code must stay in the local environment.</div>
+  <div class="v211-table">
+    <div class="v211-head"><span>Entry point</span><span>Execution environment</span><span>Result</span><span>Human acceptance</span></div>
+    <div class="v211-row"><b>IDE</b><span>Configured workspace</span><span>Local diff</span><span>Inspect changes + checks</span></div>
+    <div class="v211-row"><b>CLI</b><span>Commands in the<br>configured environment</span><span>Commands + file changes</span><span>Inspect commands + diff</span></div>
+    <div class="v211-row v211-cloud"><b>Cloud</b><span>Remote task environment</span><span>Branch changes / PR</span><span>Review before merge</span><div class="v211-excluded fragment" data-fragment-index="1">Excluded by this execution constraint</div></div>
+  </div>
+  <div class="v211-caveat fragment" data-fragment-index="1">IDE and CLI still need separate checks for model data flow, access, and policy.</div>
+</div>
+<div class="tf-takeaway">Where you type the request is not the same as where the work runs.</div>
+<div class="tf-source"><a href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli">GitHub — Copilot CLI</a> · <a href="https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent">Copilot cloud agent</a></div>
+```
+
+::: {.notes}
+Главная мысль: IDE, CLI и cloud — альтернативные точки входа и сценарии выполнения. Сравниваем вход, среду, результат и приёмку. Между строками нет стрелок прогресса.
+
+Клик добавляет локальное ограничение и исключает облачный маршрут. IDE и CLI не получают автоматическую отметку «подходит»: локальное выполнение команды не означает отсутствие передачи контекста сервису модели. Нужно проверить фактическую конфигурацию, поток данных и политику. Если код нельзя передавать за пределы машины вообще, название интерфейса этого не подтверждает. Cloud agent работает в собственной GitHub Actions environment; локальные файлы автоматически туда не переносятся. Сейчас работа может дать branch diff до необязательного PR. В выбранном донорском сценарии результат — PR; он требует review и не означает merge. Доступность зависит от аккаунта и репозитория.
+
+Источники: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli ; https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent .
+:::
+
+## JetBrains: help with a step or delegate a task {#tools-v2-12 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Two requests inside the same JetBrains project · Teaching reconstruction</div>
+<div class="tf-body v212-jetbrains tf-window">
+  <div class="tf-toolbar">course-app / validation.py</div>
+  <div class="v212-halves">
+    <div><div class="v212-request">“Explain this validator.”</div><pre class="tf-code">def valid_age(age):
+    <span class="v212-selected">return age &gt; 18</span></pre><div class="v212-product fragment" data-fragment-index="1">AI Assistant</div><div class="v212-result fragment" data-fragment-index="2"><b>Explanation</b><p>A strict comparison rejects 18.<br>Check the intended boundary.</p></div></div>
+    <div><div class="v212-request">“Accept 18. Find related code and check it.”</div><pre class="tf-code">def valid_age(age):
+    return age &gt; 18</pre><div class="v212-product fragment" data-fragment-index="1">Junie</div><div class="v212-result fragment" data-fragment-index="2"><b>Diff + verification evidence</b><p>Inspect uses; change <code>&gt;</code> to <code>&gt;=</code>.<br>Check 17, 18, and 19.</p></div></div>
+  </div>
+  <div class="v212-note">Selected workflows, not complete or mutually exclusive product capabilities</div>
+</div>
+<div class="tf-takeaway">Change the scope of the request when the work requires it.</div>
+<div class="tf-source"><a href="https://www.jetbrains.com/help/ai-assistant/about-ai-assistant.html">JetBrains — AI Assistant</a> · <a href="https://www.jetbrains.com/help/ai-assistant/junie-agent.html">Junie agent</a></div>
+```
+
+::: {.notes}
+Главная мысль: в одном JetBrains-проекте различаем помощь на шаге и делегирование последовательности действий. Редактор одинаков, изменяется формулировка поручения. Нет причины менять рабочую среду только из-за названия режима.
+
+Клик 1 раскрывает AI Assistant и Junie как примеры из донора. Клик 2 показывает разные результаты: объяснение и diff с проверками. Граница 18 — условие учебного приложения, не правовое утверждение; проверяем обе стороны границы. Не говорить «AI Assistant только объясняет, Junie только действует»: AI Assistant 2026.2 включает coding agents, Junie доступен в общем AI Chat. Сравниваются выбранные сценарии, а не взаимно исключающие возможности. Проверки — требуемые материалы приёмки, не реальные результаты запуска.
+
+Источники: https://www.jetbrains.com/help/ai-assistant/about-ai-assistant.html ; https://www.jetbrains.com/help/ai-assistant/junie-agent.html ; https://www.jetbrains.com/help/ai-assistant/explain-code-with-ai.html .
+:::
+
+## Junie: where to intervene and how to accept {#tools-v2-13 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Date handling · Human decisions remain visible · Teaching example</div>
+<div class="tf-body v213-control">
+  <div class="v213-frames">
+    <div class="v213-frame"><div class="v213-question">What should change?</div><div class="v213-step">01 / Goal</div><h3>Parse<br>29.02.2024</h3><p>Keep the public output<br><code>2024-02-29</code></p></div>
+    <div class="v213-frame fragment" data-fragment-index="1"><div class="v213-question">Is this in scope?</div><div class="v213-step">02 / Proposed action</div><h3>Inspect parser<br>and date tests</h3><p>Correct input parsing;<br>preserve serialization.</p></div>
+    <div class="v213-frame fragment" data-fragment-index="2"><div class="v213-question">Do I allow the action?</div><div class="v213-step">03 / Approval</div><h3>Run the<br>relevant tests?</h3><pre class="tf-code">./gradlew test</pre><div class="v213-allow">Allow this action</div></div>
+    <div class="v213-frame fragment" data-fragment-index="3"><div class="v213-question">What confirms it?</div><div class="v213-step">04 / Review</div><pre class="tf-code">- parse(text)
++ parse(text, DMY)</pre><p>Check leap day.<br>Check ISO output.<br>Inspect the diff.</p></div>
+  </div>
+  <div class="v213-rejected fragment" data-fragment-index="4"><b>Reject unrelated change</b><span>Public output: <del>29/02/2024</del> → keep <code>2024-02-29</code></span></div>
+</div>
+<div class="tf-takeaway">Action approval and result acceptance are separate decisions.</div>
+<div class="tf-source"><a href="https://www.jetbrains.com/help/ai-assistant/junie-agent.html">JetBrains — Junie: approve operations, review diffs, rollback</a> · Schematic UI</div>
+```
+
+::: {.notes}
+Главная мысль: здесь фокус на четырёх решениях человека, а не на ещё одном общем цикле. Нужно уточнить результат, оценить границы предлагаемого действия, разрешить его и принять результат.
+
+Требование: ввод dd.MM.uuuu, публичный вывод yyyy-MM-dd. Граничная дата — 29 февраля високосного 2024 года. Клики 1–3 раскрывают действия, разрешение на тесты и diff. DMY — условное имя существующего formatter, не API Junie. Частота approvals зависит от политики и настроек. Последний клик показывает отклонённую смену публичного формата: исправление входа не требует ломать сериализацию. Дополнительно полезно проверить отклонение 29.02.2023 и обычную дату. Слайд показывает требуемые материалы приёмки, а не реальные прошедшие тесты. Rollback не заменяет смыслового review.
+
+Источник: https://www.jetbrains.com/help/ai-assistant/junie-agent.html .
+:::
+
+## Junie Debug: observe before deciding what to change {#tools-v2-14 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Junie Debug · IntelliJ IDEA Ultimate 2026.1.1+ documentation · Teaching reconstruction</div>
+<div class="tf-body v214-debug">
+  <div class="v214-expected"><div class="tf-label">Expected for this case</div><div class="v214-percent">20%</div><p>Discount on a total of 100</p><div class="v214-observation fragment" data-fragment-index="1"><b>Observation</b><p>The frame contains 10%.<br>Where did it come from?</p></div></div>
+  <div class="v214-runtime tf-window"><div class="tf-toolbar">Pricing.kt · breakpoint / calculateDiscount()</div><div class="v214-runtimegrid"><pre class="tf-code">val rate = config.discount
+<span class="v214-paused">● val discount = total * rate</span></pre><div class="v214-values"><div><span>total</span><b>100</b></div><div><span>rate</span><b>0.1</b></div></div></div><div class="v214-diagnosis fragment" data-fragment-index="2"><b>After tracing the wrong config entry</b><p>Request: fix that entry, preserving the pricing rule.</p></div><div class="v214-recheck fragment" data-fragment-index="3"><b>Repeat the run + related test</b><p>Expected observation: <code>rate = 0.2</code>, <code>discount = 20</code></p></div></div>
+  <div class="v214-setup">Setup: Debugger MCP Toolset + MCP Server enabled; debugger tools exposed; IDE server connected.</div>
+</div>
+<div class="tf-takeaway">A runtime observation supports a diagnosis. It does not choose the fix by itself.</div>
+<div class="tf-source"><a href="https://www.jetbrains.com/help/ai-assistant/junie-agent.html#enable-debug-mode">JetBrains — Enable Debug mode / How it works</a> · Values and outputs are illustrative</div>
+```
+
+::: {.notes}
+Главная мысль: сначала наблюдаем состояние программы, затем устанавливаем причину и отдельно решаем, что менять. Между ожиданием и breakpoint сначала нет стрелки «исправить».
+
+Показать total = 100 и rate = 0.1. Клик 1 формулирует только наблюдение. Спросить устно, откуда пришла конфигурация, к какому клиенту или окружению относится ставка и верно ли ожидание. Нельзя автоматически заменить каждое 0.1 в проекте. Клик 2 предполагает, что учебное расследование установило неверную config entry, и добавляет явное поручение исправить её. Клик 3 показывает необходимый повторный запуск и тест. Это ожидаемые учебные наблюдения, не реальная отладка.
+
+По проверенной документации нужны IntelliJ IDEA Ultimate 2026.1.1+, включённые Debugger MCP Toolset и MCP Server, предоставленные debugger tools и подключённый IDE MCP server. Перед живым демо сверить установленную версию. В Debug Junie наблюдает frame, stack, переменные и управляет выполнением; редактирование требует явного запроса, совместимого с состоянием исполнения.
+
+Источник: https://www.jetbrains.com/help/ai-assistant/junie-agent.html#enable-debug-mode .
+:::
+
+## Claude Code: a task with files, shell, and a test {#tools-v2-15 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">15–30 · Terminal and project context · Claude Code · Teaching example</div>
+<div class="tf-body v215-terminal">
+  <div class="tf-window"><div class="tf-toolbar">terminal · ~/projects/clamp · illustrative output</div><div class="v215-console"><pre class="tf-code">$ claude
+&gt; Fix the failing test without changing the contract.</pre><div class="v215-log fragment" data-fragment-index="1"><div class="v215-step">01 / Reproduce</div><pre class="tf-code">$ pytest tests/test_clamp.py
+assert clamp(-2) == 0       # observed: -2</pre></div><div class="v215-log fragment" data-fragment-index="2"><div class="v215-step">02 / Review the change in clamp.py</div><pre class="tf-code">- return value
++ return max(0, value)</pre></div><div class="v215-log fragment" data-fragment-index="3"><div class="v215-step">03 / Run the check again</div><pre class="tf-code">$ pytest tests/test_clamp.py
+Expected checks: -2 → 0; 0 → 0; 5 → 5</pre></div></div></div>
+  <div class="v215-constraints"><div class="tf-label">Keep visible</div><h3>Constraints</h3><p>Negative → zero</p><p>Zero → zero</p><p>Positive → unchanged</p><div class="v215-limit">Keep the public API.<br>Review the final diff.</div><div class="v215-link">Compare slide 05:<br>similar loop,<br>different entry point.</div></div>
+</div>
+<div class="tf-takeaway">Choose the terminal because it fits the project and the required actions.</div>
+<div class="tf-source"><a href="https://code.claude.com/docs/en/how-claude-code-works">Anthropic — How Claude Code works</a> · <a href="https://www.anthropic.com/webinars/claude-code-workshop-foundations-june-11">Workshop: Foundations</a></div>
+```
+
+::: {.notes}
+Главная мысль: для понятной задачи терминальная сессия объединяет чтение файлов, shell-команды, правку и проверку. Основание выбора — подходящая рабочая среда и необходимые действия, не «магия CLI».
+
+claude запускается в учебном проекте clamp. Правая колонка постоянно показывает контракт. Вход в примере — обычные конечные числа; NaN и специальные числовые классы здесь не рассматриваются. Клик 1 показывает исходное падение, клик 2 — diff, клик 3 — повторный запуск и требуемые случаи. Весь терминал помечен illustrative output: при создании слайда тесты не запускались. Реальная приёмка требует настоящего вывода, статуса команды и финального diff. Отсылка к слайду 05 подчёркивает похожий механизм; интерфейс не гарантирует качество.
+
+Источники: https://code.claude.com/docs/en/how-claude-code-works ; https://www.anthropic.com/webinars/claude-code-workshop-foundations-june-11 .
+:::
+
+## Claude Code: agree on the approach first {#tools-v2-16 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Plan Mode · Source-documented workflow · Teaching example</div>
+<div class="tf-body v216-plan">
+  <div class="v216-task"><div class="tf-label">Task</div><h3>Replace the<br>logging library</h3><p>Goal is clear.<br>Compatibility is not.</p></div>
+  <div class="v216-proposal tf-window"><div class="tf-toolbar">Short plan</div><div class="v216-planbody"><div><b>1</b><span>Find calls and log consumers</span></div><div class="v216-old"><b>2</b><span>Replace calls with the new logger</span></div><div class="v216-revision fragment" data-fragment-index="1"><b>2</b><span>Use an adapter to<br><strong>preserve the existing format</strong></span></div><div><b>3</b><span>Compare fixed log fixtures</span></div></div></div>
+  <div class="v216-comment"><div class="tf-label">Human clarification</div><blockquote>“Do not change<br>the log format.”</blockquote><p>Parsers already depend on it.</p></div>
+  <div class="v216-check fragment" data-fragment-index="2"><div><b>Verification</b><code>same event → same level, message, fields</code></div><div class="v216-gate"><b>Agree on the approach</b><span>then implement → review diff</span></div></div>
+  <div class="v216-question">Would a known one-line fix need this much planning?</div>
+</div>
+<div class="tf-takeaway">Resolve material choices before implementing them.</div>
+<div class="tf-source"><a href="https://code.claude.com/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode">Anthropic — Plan Mode</a> · <a href="https://code.claude.com/docs/en/how-claude-code-works">How Claude Code works</a></div>
+```
+
+::: {.notes}
+Главная мысль: понятная цель ещё не определяет согласованный способ изменения. При замене logging library потребители могут зависеть от формата сообщений; это решение полезно принять до правок.
+
+Клик 1 раскрывает изменение одного пункта: адаптер сохраняет формат, старый вариант остаётся приглушённым. Адаптер — решение этого примера, не гарантированный вывод Plan Mode. Клик 2 показывает проверку и отдельное согласование перед реализацией. Для fixtures сравнивают уровень, текст и поля; время и нестабильные значения фиксируют или нормализуют. Реальное сравнение здесь не запускалось.
+
+Plan Mode документирован как исследование и обсуждение подхода до реализации. Не называть его гарантированной изоляцией read-only: режим и технические ограничения зависят от настройки разрешений. Перед живым демо сверить версию. Финальный вопрос: нужен ли такой этап для известной точечной правки? Подробное отличие текущего плана от сохраняемых документов отложено до слайдов 35–38.
+
+Источники: https://code.claude.com/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode ; https://code.claude.com/docs/en/how-claude-code-works ; https://www.anthropic.com/webinars/claude-code-workshop-foundations-june-11 .
+:::
+
+## Claude Code: project instruction or memory note? {#tools-v2-17 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Claude Code · Persistent context · Teaching example</div>
+<div class="tf-body v217-body">
+  <div class="v217-pair">
+    <div class="v217-card"><div class="v217-field"><span>Author</span><strong>A person</strong></div><div class="v217-field"><span>Content</span><div><code>CLAUDE.md</code><pre class="tf-code">Run: uv run pytest -q</pre></div></div><div class="v217-field"><span>Purpose</span><div>Explicit project instruction</div></div><div class="v217-audit fragment" data-fragment-index="2">Read · correct</div></div>
+    <div class="v217-card"><div class="v217-field"><span>Author</span><strong>The agent</strong></div><div class="v217-field"><span>Content</span><div>Auto memory<p>“The team says its CI runner uses UTC.”</p></div></div><div class="v217-field"><span>Purpose</span><div>Remember an environment detail</div></div><div class="v217-audit fragment" data-fragment-index="2">Read · correct</div></div>
+  </div>
+  <div class="v217-transfer fragment" data-fragment-index="1"><span>↘</span><div><b>New session</b><br>Saved context is available</div><span>↙</span></div>
+  <div class="v217-exercise fragment" data-fragment-index="3">Where would you put a <b>mandatory team agreement</b> — and why?</div>
+</div>
+<div class="tf-takeaway">Check who wrote it and what it is meant to do.</div>
+<div class="tf-source"><a href="https://code.claude.com/docs/en/memory#claudemd-vs-auto-memory">Anthropic · How Claude remembers your project: CLAUDE.md vs auto memory</a></div>
+```
+
+::: {.notes}
+Главная мысль: постоянная инструкция проекта и автоматически сохранённая заметка различаются по авторству и назначению. В карточках автор выделен сильнее имени файла. Человек записал принятую команду проверки в CLAUDE.md. Во второй карточке агент сохранил сообщённую командой особенность внешней CI-среды; это учебная заметка, а не обнаруженная в реальном запуске настройка. Она не становится утверждённой политикой.
+
+Показ: первый клик переносит сохранённый контекст в новую сессию; второй открывает «прочитать / исправить» у обеих карточек. Третий предлагает аудитории разместить обязательное соглашение команды. Ожидаемый ответ — явная инструкция с подходящей областью действия, проверенная человеком. Сохранённую заметку тоже следует пересматривать при изменениях среды. Не утверждать, что весь прошлый разговор автоматически попал в новый контекст, или что текстовая инструкция технически блокирует действия. В текущем описании auto memory акцент смещён к пользовательским предпочтениям, обратной связи и внешним сведениям, которые нельзя просто восстановить из кода; поэтому пример не изображает запоминание архитектуры репозитория.
+
+Источник: [How Claude remembers your project](https://code.claude.com/docs/en/memory#claudemd-vs-auto-memory). Конкретное содержимое обеих карточек создано для занятия.
+:::
+
+## Codex: which interface fits the interaction? {#tools-v2-18 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex · CLI / IDE extension / app · Interface schematic</div>
+<div class="tf-body v218-body">
+  <div class="v218-surfaces">
+    <div class="v218-surface"><div class="tf-title">CLI</div><div class="tf-window"><div class="tf-toolbar">terminal · catalog/</div><div class="tf-content"><pre class="tf-code">$ codex
+› Explain this project</pre><div class="v218-mini">Files → commands → diff</div></div></div><dl><dt>Ask in</dt><dd>the terminal</dd><dt>Review in</dt><dd>the session + Git diff</dd></dl></div>
+    <div class="v218-surface fragment" data-fragment-index="1"><div class="tf-title">IDE extension</div><div class="tf-window"><div class="tf-toolbar">editor · dates.py</div><div class="v218-editor"><pre class="tf-code">def parse(s):
+    ...</pre><div>Codex<br><b>Explain this selection</b></div></div></div><dl><dt>Ask in</dt><dd>the editor panel</dd><dt>Review in</dt><dd>the editor + diff</dd></dl></div>
+    <div class="v218-surface fragment" data-fragment-index="2"><div class="tf-title">App</div><div class="tf-window"><div class="tf-toolbar">project · tasks</div><div class="tf-content"><div class="v218-task">Parser experiment <span>Review</span></div><div class="v218-task">Test edge cases <span>Working</span></div></div></div><dl><dt>Ask in</dt><dd>a project task</dd><dt>Review in</dt><dd>the task + changes view</dd></dl></div>
+  </div>
+  <div class="v218-scenarios"><span>① A function is already open</span><span>② A separate parser experiment</span></div>
+  <div class="v218-runtime">Separate question: <b>Where does work run, and which files can change?</b></div>
+</div>
+<div class="tf-takeaway">Choose the interaction surface, then identify the execution environment.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/codex/cli">OpenAI · Codex CLI</a> · <a href="https://learn.chatgpt.com/docs/codex/ide">IDE extension</a> · Codex Bootcamp 201, p. 12</div>
+```
+
+::: {.notes}
+Главная мысль: интерфейс определяет удобный способ поставить задачу и посмотреть результат, но сам по себе не отвечает на вопрос, где лежат файлы и выполняются команды. Сначала показываем CLI. Первый клик открывает редактор рядом с кодом, второй — отдельную задачу приложения. Это крупные учебные фрагменты, а не снимки текущего интерфейса.
+
+Предложите выбрать вход для уже открытой функции, затем для отдельного эксперимента с парсером. Возможные ответы — расширение IDE и задача приложения, если такой способ взаимодействия удобен пользователю. Они не являются единственно допустимыми. После каждого ответа отдельно уточняем рабочую папку и среду исполнения. Подробную схему рабочих копий отложить до слайда 21. Название Codex app сохранено по донору Bootcamp; текущая документация может использовать название ChatGPT desktop app. Не обещать одинаковые настройки во всех клиентах.
+
+Источники: [Codex CLI](https://learn.chatgpt.com/docs/codex/cli), [Codex IDE extension](https://learn.chatgpt.com/docs/codex/ide), [Worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees). Донор композиции: Codex Bootcamp 201, слайд 12.
+:::
+
+## Codex CLI: make the request testable {#tools-v2-19 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex CLI · Repository task · Teaching example; no observed test run</div>
+<div class="tf-body v219-body">
+  <div class="v219-request"><span class="v219-goal">Add a sorting parameter.</span><strong>Keep the default order unchanged.</strong></div>
+  <div class="v219-terminal tf-window"><div class="tf-toolbar">terminal · catalog/ · illustrative session</div><div class="v219-steps"><div><b>Found</b> <code>catalog.py</code><br><code>test_catalog.py</code></div><div class="fragment" data-fragment-index="1"><b>User clarification</b><br>“When enabled, sort ascending.”</div></div></div>
+  <div class="v219-result fragment" data-fragment-index="2"><div class="v219-diff"><div class="tf-label">Proposed diff · catalog.py</div><pre class="tf-code">− def list_items(items):
++ def list_items(items, *, sort=False):
++     if sort:
++         return sorted(items)
+      return list(items)</pre></div><div class="v219-checks"><div><b>New behavior</b><pre class="tf-code">list_items([2, 1], sort=True)
+expected: [1, 2]</pre></div><div><b>Previous call</b><pre class="tf-code">list_items([2, 1])
+expected: [2, 1]</pre></div></div></div>
+  <div class="v219-question fragment" data-fragment-index="3">Which compatibility check could we specify <b>before</b> the run?</div>
+</div>
+<div class="tf-takeaway">Name the new behavior and the behavior that must stay the same.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/codex/cli">OpenAI · Codex CLI</a> · Codex Bootcamp 201, pp. 7–8 · Code and checks are teaching examples</div>
+```
+
+::: {.notes}
+Главная мысль: цель, ограничение и проверка делают поручение управляемым. До запуска известно, что старый вызов возвращает элементы в исходном порядке. Новая возможность включается явным параметром sort; по умолчанию прежний порядок сохраняется. Это важное отличие от примера, который незаметно меняет порядок по умолчанию.
+
+Сначала прочитать поручение и найденные файлы. Первый клик добавляет уточнение человека: при включении сортировать по возрастанию. Второй показывает небольшой предлагаемый diff и два независимых критерия приёмки: явный sort=True и прежний вызов без параметра. Третий задаёт вопрос аудитории. Ожидаемый ответ — заранее проверить вызов без нового аргумента на несортированном входе. Пара [2, 1] полезнее уже отсортированного примера, который скрыл бы регрессию. Код и ожидаемые значения сконструированы для занятия, тесты здесь не запускались. В реальной задаче уточняют допустимые типы элементов, ошибки сравнения и требования к возвращаемому объекту.
+
+Источник возможностей CLI: [Codex CLI](https://learn.chatgpt.com/docs/codex/cli). Структура поручения и обратной связи: Codex Bootcamp 201, слайды 7–8.
+:::
+
+## Codex: task permission and access boundaries {#tools-v2-20 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex · Sandbox ≠ approvals ≠ project instructions · Illustrative policy</div>
+<div class="tf-body v220-body">
+  <div class="v220-command"><span>Proposed command</span><pre class="tf-code">python verify.py --report &lt;path&gt;</pre></div>
+  <div class="v220-controls"><div class="v220-sandbox"><div class="tf-title">Sandbox</div><b>What is technically accessible?</b><p>Writes inside <code>demo/</code><br>No writes outside this workspace</p></div><div class="v220-approval"><div class="tf-title">Approvals</div><b>When is a human decision required?</b><p>Requests follow the active policy.<br>A request does not grant access.</p></div></div>
+  <div class="v220-cases fragment" data-fragment-index="1"><div><b>Inside the agreed boundary</b><code>demo/report.txt</code><span>Run the allowed check</span></div><div><b>Outside the agreed boundary</b><code>../outside/report.txt</code><span class="fragment" data-fragment-index="2">Denied in this demo → use <code>demo/</code></span></div></div>
+  <div class="v220-other"><div><b>Execution rules</b><span>Command decisions outside the sandbox*</span></div><div><b>AGENTS.md</b><span>Text instructions for the project</span></div></div>
+</div>
+<div class="tf-takeaway">An authorized task still runs within the active access policy.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/agent-approvals-security#sandbox-and-approvals">OpenAI · Sandbox and approvals</a> · <a href="https://learn.chatgpt.com/docs/agent-configuration/rules">Rules</a> · * Experimental · Bootcamp 201, p. 16</div>
+```
+
+::: {.notes}
+Главная мысль: sandbox задаёт технические ограничения выполнения команд, approvals задают условия дополнительного решения человека. Разрешение самой задачи не снимает автоматически ограничения среды. На слайде учебный скрипт формирует отчёт; никаких опасных действий не демонстрируем. Предположения учебной конфигурации: demo — разрешённая рабочая папка, запись за её пределами не разрешена для этого упражнения.
+
+Первый клик показывает два пути для одной предлагаемой команды. Проверка с отчётом внутри demo допускается. Второй клик раскрывает контролируемый отказ для внешнего пути и альтернативу внутри workspace. Не изображать запрос подтверждения как успешную эскалацию: её доступность и исход зависят от действующей политики и административных ограничений. Поля Execution rules и AGENTS.md намеренно стоят вне рамки sandbox. Первые управляют решениями для команд вне sandbox и в документации отмечены как экспериментальные; второй даёт текстовые инструкции модели. Это схема различий, а не готовый конфигурационный файл и не запись реального запуска.
+
+Источники: [Agent approvals & security — Sandbox and approvals](https://learn.chatgpt.com/docs/agent-approvals-security#sandbox-and-approvals), [Rules](https://learn.chatgpt.com/docs/agent-configuration/rules). Донор: Codex Bootcamp 201, слайд 16.
+:::
+
+## Codex app: isolate the working copy {#tools-v2-21 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex app · Parser experiment · Teaching example</div>
+<div class="tf-body v221-body">
+  <div class="v221-counter"><span class="v221-chat">Chat A</span><span>↘</span><b>One folder</b><span>↙</span><span class="v221-chat">Chat B</span><span class="v221-counter-note">Two conversations can edit the same files.</span></div>
+  <div class="v221-worktrees fragment" data-fragment-index="1"><div class="v221-copy"><span class="v221-chat">Conversation A</span><div class="v221-folder"><b>Worktree A · strict parser</b><pre class="tf-code">parser.py
++ parse_exact(text, DMY)</pre><span>Own files · own diff</span></div></div><div class="v221-copy"><span class="v221-chat">Conversation B</span><div class="v221-folder"><b>Worktree B · two formats</b><pre class="tf-code">parser.py
++ try_formats(text, [DMY, ISO])</pre><span>Own files · own diff</span></div></div></div>
+  <div class="v221-handoff fragment" data-fragment-index="2"><b>Choose A</b><span>→ Handoff to Local →</span><div><b>Inspect the transferred diff</b><br>Run the checks in the target copy</div></div>
+  <div class="v221-process fragment" data-fragment-index="2">Running processes and services stay in their original environment.</div>
+</div>
+<div class="tf-takeaway">Separate working copies do not prove that the changes work together.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/environments/git-worktrees#working-between-local-and-worktree">OpenAI · Worktrees: Working between Local and Worktree</a> · Codex Bootcamp 201, p. 34</div>
+```
+
+::: {.notes}
+Главная мысль: независимый разговор и независимые файлы — разные вещи. Сначала верхний контрпример: два чата могут работать над одной папкой и мешать друг другу. Первый клик открывает две отдельные рабочие копии. Скруглённая рамка обозначает разговор, прямоугольная папка — файлы. Вариант A принимает один формат даты, вариант B — два. Это альтернативы учебного парсера, а не измеренные результаты.
+
+Второй клик выбирает A и показывает Handoff в Local. В документации Handoff переносит разговор и код между checkout через Git-операции. Отдельно просматриваем переносимый diff, затем проверяем поведение в целевой копии. Серверы, процессы и их состояние не переезжают вместе с Git diff. Зависимости и игнорируемые файлы требуют отдельного учёта; механизм .worktreeinclude в текущем продукте может переносить выбранные игнорируемые файлы, но это не перенос работающего процесса. Изоляция помогает не перезаписать файлы, однако не доказывает совместимость двух изменений. Название Codex app сохранено по исходному донору; актуальная страница документации называет desktop app.
+
+Источник: [Worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees#working-between-local-and-worktree). Донор: Codex Bootcamp 201, слайд 34.
+:::
+
+## Gemini CLI: choose for the working environment {#tools-v2-22 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Gemini CLI · Terminal session · Teaching example; illustrative outputs</div>
+<div class="tf-body v222-body">
+  <div class="v222-side"><div><b>Context</b><p>Project files<br><code>GEMINI.md</code></p></div><div><b>User commands</b><p>Control the current session</p></div></div>
+  <div class="tf-window v222-terminal"><div class="tf-toolbar">terminal · log-tools/</div><div class="tf-content"><pre class="tf-code">$ gemini</pre><div class="tf-prompt">Build a utility that counts lines in a log file.</div><div class="v222-step fragment" data-fragment-index="1">Read project context → write <code>count_lines.py</code></div><div class="v222-step fragment" data-fragment-index="2"><code>python count_lines.py sample.log</code></div><div class="v222-tests fragment" data-fragment-index="3"><div><b>Known sample</b><pre class="tf-code">a\nb\nc\n
+expected: 3
+shown:    3</pre></div><div><b>Empty input</b><pre class="tf-code">""
+expected: 0
+shown:    0</pre></div></div></div></div>
+  <div class="v222-side"><div><b>Actions</b><p>Read / write files<br>Run shell tools</p></div><div><b>Extensions</b><p>Add project-specific capabilities</p></div></div>
+</div>
+<div class="tf-takeaway">What concrete difference would justify switching from an agent you already use?</div>
+<div class="tf-source"><a href="https://geminicli.com/docs/get-started/">Google · Gemini CLI: Get started</a> · Google / DeepLearning.AI · Gemini CLI: Code &amp; Create with an Open-Source Agent</div>
+```
+
+::: {.notes}
+Главная мысль: ещё один терминальный агент выбирают по нужному взаимодействию и условиям среды, а не по новому логотипу. Поручение — небольшая утилита подсчёта строк журнала. Первый клик показывает чтение контекста и создание файла; второй — команду проверки; третий — два небольших входа с заранее известными ответами. Обратная косая черта n на слайде обозначает перевод строки. В этом упражнении считаем текстовые строки, пустой вход даёт ноль. Показанные значения иллюстративны и не являются результатом реального запуска.
+
+Четыре выноски показывают контекст, действия, пользовательские команды и расширения. Спросите аудиторию, какую конкретную разницу нужно обнаружить, чтобы переход с уже настроенного агента был полезен: нужная интеграция, доступный инструмент, способ работы с контекстом или условия среды. Уникальную специализацию продукта не придумываем. Перед живым показом уточнить установленную версию. Для настоящей утилиты также надо определить кодировку и обработку последней строки без завершающего перевода строки.
+
+Источник: [Get started with Gemini CLI](https://geminicli.com/docs/get-started/). Учебный донор: Google / DeepLearning.AI, Gemini CLI: Code & Create with an Open-Source Agent, вводные разделы.
+:::
+
+## Gemini CLI + IDE: exchange context and diffs {#tools-v2-23 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Gemini CLI · IDE Companion · Teaching example · Interface schematic</div>
+<div class="tf-body v223-body">
+  <div class="tf-window v223-editor"><div class="tf-toolbar">IDE · dates.py</div><div class="tf-content"><div class="v223-selection"><div class="v223-oldselection fragment fade-out" data-fragment-index="3"><b>Selected: normalize_date()</b><pre class="tf-code">def normalize_date(text):
+    return date.fromisoformat(text)</pre></div><div class="v223-newselection fragment" data-fragment-index="3"><b>Selected: format_date()</b><pre class="tf-code">def format_date(value):
+    return value.isoformat()</pre></div></div><div class="v223-diff fragment" data-fragment-index="2"><b>Proposed diff · review here</b><pre class="tf-code">− return date.fromisoformat(text)
++ return parse_dmy(text)</pre><div>Accept / reject</div></div></div></div>
+  <div class="v223-arrows"><div class="fragment" data-fragment-index="1"><b>editor context</b><span>→</span><p>file + selection</p></div><div class="fragment" data-fragment-index="2"><b>openDiff</b><span>←</span><p>proposed text</p></div></div>
+  <div class="tf-window v223-terminal"><div class="tf-toolbar">CLI · same project</div><div class="tf-content"><pre class="tf-code">$ gemini</pre><div class="tf-prompt fragment" data-fragment-index="1">Change the selected function to accept <code>DD.MM.YYYY</code>.</div><div class="v223-reply fragment" data-fragment-index="2">Proposal ready for review in the editor.</div></div></div>
+  <div class="v223-check fragment" data-fragment-index="3">Selection changes to <code>format_date()</code>. <b>Does this diff still target the intended function?</b></div>
+</div>
+<div class="tf-takeaway">Context and review do not create a new execution environment.</div>
+<div class="tf-source"><a href="https://geminicli.com/docs/ide-integration/ide-companion-spec/">Gemini CLI · IDE Companion specification: Transport layer; The diffing interface</a></div>
+```
+
+::: {.notes}
+Главная мысль: интеграция связывает выделенный в редакторе контекст с терминальным циклом, а предложенный diff возвращает в редактор для просмотра. Это обмен контекстом и представлением правки; стрелки не обозначают перенос среды исполнения.
+
+Сначала показываем выделенную normalize_date. Первый клик отправляет путь и выделение как editor context и открывает поручение в CLI. Второй показывает передачу предложенного текста через openDiff и соответствующую правку в редакторе. Код схематичен: parse_dmy ещё должен существовать и иметь нужный контракт. Никакое выполнение здесь не подтверждено. Третий клик меняет текущий объект внимания на format_date. Попросите сверить путь, функцию и diff: устаревшее предложение нельзя принимать только потому, что в редакторе сейчас что-то выделено. Спецификация Companion описывает транспорт, уведомления редактора и операции diff; детали интерфейса зависят от поддерживаемой версии.
+
+Источник: [IDE Companion specification](https://geminicli.com/docs/ide-integration/ide-companion-spec/), Transport layer и The diffing interface.
+:::
+
+## Aider: small changes with explicit return points {#tools-v2-24 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Aider · Disposable teaching repository · Illustrative history and outputs</div>
+<div class="tf-body v224-body">
+  <div class="v224-top"><div class="tf-window"><div class="tf-toolbar">Aider · money.py</div><div class="tf-content"><div class="tf-prompt">Show amounts with two decimal places.</div><div class="v224-command fragment" data-fragment-index="1"><code>/diff</code> → inspect the change</div><div class="v224-command fragment" data-fragment-index="2">Next idea: “Round to whole units.”</div></div></div><div class="v224-diff"><b>Accepted formatting</b><pre class="tf-code fragment" data-fragment-index="1">− return str(amount)
++ return f"{amount:.2f}"</pre><div class="v224-bad fragment" data-fragment-index="2"><b>Unwanted next change</b><pre class="tf-code">− return f"{amount:.2f}"
++ return f"{amount:.0f}"</pre></div></div></div>
+  <div class="v224-history"><div><i>●</i><span>Start</span></div><span>→</span><div class="fragment" data-fragment-index="1"><i>●</i><span>Two decimals</span></div><span class="fragment" data-fragment-index="2">→</span><div class="fragment" data-fragment-index="2"><i>●</i><span>Whole units</span></div><b class="fragment" data-fragment-index="3">What exactly should return?</b></div>
+  <div class="v224-restore fragment" data-fragment-index="4"><code>/undo</code><span>← latest Aider change</span><div><b>File state</b><pre class="tf-code">return f"{amount:.2f}"</pre></div><div><b>Formatting check</b><pre class="tf-code">format_amount(12.5)
+expected: "12.50"</pre></div></div>
+</div>
+<div class="tf-takeaway">Being able to undo a change does not prove that the change was useful.</div>
+<div class="tf-source"><a href="https://aider.chat/docs/git.html">Aider · Git integration</a> · <a href="https://aider.chat/docs/usage/commands.html">In-chat commands</a></div>
+```
+
+::: {.notes}
+Главная мысль: связанный с Git диалог полезен, когда изменения достаточно малы, чтобы понять их смысл и точную точку возврата. Работать следует в отдельном учебном репозитории. Первый клик раскрывает /diff, предлагаемые две десятичные цифры и соответствующую точку истории. Второй показывает следующий, неудачный для текущего требования вариант с округлением до целых.
+
+Третий клик останавливает показ: что именно вернётся после отмены? Ожидаемый ответ — состояние файлов после принятого изменения с двумя знаками; предыдущее улучшение должно сохраниться. Четвёртый показывает /undo для последнего изменения Aider, восстановленный код и ожидаемую проверку 12.5 → "12.50". Сообщение об отмене само по себе недостаточно; нужно посмотреть файлы и повторить нужную проверку. На слайде нет наблюдаемого test pass. В реальном репозитории учитывать пользовательские и чужие коммиты; документация ограничивает /undo изменениями Aider и защищает от отмены чужого последнего коммита. Пример форматирования не определяет полноценную денежную арифметику и округление для финансовых расчётов.
+
+Источники: [Git integration](https://aider.chat/docs/git.html), [In-chat commands](https://aider.chat/docs/usage/commands.html).
+:::
+
+## Aider repo map: find the neighboring interface {#tools-v2-25 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Aider · Full file versus compact structural context · Teaching example</div>
+<div class="tf-body v225-body">
+  <div class="tf-window v225-file"><div class="tf-toolbar">orders.py · file being edited</div><div class="tf-content"><pre class="tf-code">from money import Money
+
+def receipt(total: Money):
+    return total.format()</pre><p class="v225-caption">The local change needs<br>a neighboring contract.</p></div></div>
+  <div class="v225-link"><span>calls →</span></div>
+  <div class="v225-map"><div class="tf-label">Repo map · selected symbols</div><pre class="tf-code">orders.py
+  def receipt(total: Money)
+money.py
+  class Money
+    <span class="v225-signature fragment highlight-current-green" data-fragment-index="1">def format(self) -&gt; str</span>
+    def add(self, other: Money)</pre><div class="v225-question fragment" data-fragment-index="2">Which file should we read in full?</div></div>
+  <div class="v225-implementation fragment" data-fragment-index="3"><b>Read money.py → behavior becomes visible</b><pre class="tf-code">def format(self) -&gt; str:
+    return f"{self.amount:.2f} {self.currency}"</pre></div>
+  <div class="v225-bottom"><span><b>Map:</b> find the connection</span><span><b>Implementation:</b> explain behavior</span></div>
+</div>
+<div class="tf-takeaway">A signature can point to the file you still need to read.</div>
+<div class="tf-source"><a href="https://aider.chat/docs/repomap.html">Aider · Repository map</a> · <a href="https://aider.chat/2023/10/22/repomap.html">Building a better repository map with tree sitter</a></div>
+```
+
+::: {.notes}
+Главная мысль: компактная структурная карта помогает увидеть соседний интерфейс, но не заменяет чтения поведения. Слева весь маленький редактируемый файл orders.py; справа намеренно неполная карта с символами и сигнатурами. Пунктирная рамка карты отличается от сплошной рамки полного файла. Карта — не уменьшенный текст всего репозитория.
+
+Первый клик выделяет Money.format. Второй предлагает выбрать файл для полного чтения. Ожидаемый ответ — money.py: из сигнатуры невозможно узнать, добавляет ли форматирование валюту и какие правила точности использует. Третий открывает нужный фрагмент реализации после чтения файла: она возвращает сумму с двумя знаками и валютой. На слайде показан только существенный метод из прочитанного файла, а не полный код Money. Все имена и код учебные. Реальная карта Aider выбирает значимые символы с учётом доступного контекста; наличие конкретной сигнатуры не гарантируется для любого запроса и бюджета.
+
+Источники: [Repository map](https://aider.chat/docs/repomap.html), [Building a better repository map with tree sitter](https://aider.chat/2023/10/22/repomap.html).
+:::
+
+## Aider Architect / Editor: decide, then write {#tools-v2-26 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Aider · Architect mode · Sequential roles · Teaching example</div>
+<div class="tf-body v226-body">
+  <div class="v226-task"><span class="tf-label">Task</span><b>callback → async</b><pre class="tf-code">loadOrder(id, callback)</pre></div>
+  <div class="v226-chain"><div class="v226-role"><span>01</span><b>Architect</b><p>Propose the change</p></div><i>→</i><div class="v226-proposal fragment" data-fragment-index="1"><div class="tf-label">Decision passed forward</div><b>Return a Promise</b><p>Keep the result.<br>Reject on failure.<br>Update every caller.</p></div><i class="fragment" data-fragment-index="2">→</i><div class="v226-role fragment" data-fragment-index="2"><span>02</span><b>Editor</b><p>Apply the proposal</p></div><i class="fragment" data-fragment-index="2">→</i><div class="v226-verify fragment" data-fragment-index="2"><b>Verify</b><p>Result<br>Errors<br>Call sites</p></div></div>
+  <div class="v226-caller fragment" data-fragment-index="3"><div><b>A caller to check</b><pre class="tf-code">const order = await loadOrder(id);</pre></div><div>Check success <b>and</b> rejection handling.<br>Why is this still a sequence, not a parallel team?</div></div>
+</div>
+<div class="tf-takeaway">Decide → write → verify.</div>
+<div class="tf-source"><a href="https://aider.chat/docs/usage/modes.html#architect-mode-and-the-editor-model">Aider · Chat modes: Architect mode and the editor model</a></div>
+```
+
+::: {.notes}
+Главная мысль: Architect и Editor разделяют предложение решения и запись изменений в последовательном процессе. Начинаем с перехода callback → async. Первый клик показывает промежуточный документ: вернуть Promise, сохранить смысл результата, отклонять Promise при ошибке и обновить вызовы. Второй открывает Editor и проверку. Соединения идут только слева направо; общего параллельного чата команды здесь нет.
+
+Третий клик показывает один из вызовов, который нужно проверить после миграции. Помимо успешного получения order, необходимо проверить обработку ошибки, отсутствие потерянного await и остальные call sites. Фрагмент не является готовой миграцией и не доказывает, что все вызовы изменены. Спросите аудиторию, почему две роли не означают параллельную команду. Ответ — второй вызов получает результат первого и выполняется после него. Документация допускает разные модели либо одну модель в обеих ролях; это не меняет последовательную зависимость. Промежуточное решение можно обсудить, но дополнительный вызов также стоит времени и вычислений.
+
+Источник: [Chat modes — Architect mode and the editor model](https://aider.chat/docs/usage/modes.html#architect-mode-and-the-editor-model). Сценарий преобразования написан для занятия.
+:::
+
+## OpenCode: read the profile before trusting its name {#tools-v2-27 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">OpenCode V2 · Agent selection · Teaching schematic; version-specific behavior</div>
+<div class="tf-body v227-body">
+  <div class="v227-tasks"><div><b>Explore without changing the project</b><span class="fragment" data-fragment-index="1">→ Plan</span></div><div><b>Implement the agreed change</b><span class="fragment" data-fragment-index="2">→ Build</span></div></div>
+  <div class="v227-main"><div class="tf-window v227-terminal"><div class="tf-toolbar">OpenCode · primary agent</div><div class="tf-content"><div class="v227-choice fragment" data-fragment-index="1">○ <b>Plan</b><span>Investigate and propose</span></div><div class="v227-choice fragment" data-fragment-index="2">○ <b>Build</b><span>Implement the task</span></div><div class="v227-model">Session model<br><b>Check it separately</b></div></div></div><div class="v227-fields"><div><b>Instructions</b><span>What is this profile asked to do?</span></div><div><b>Model</b><span>Which model will this session use?</span></div><div class="v227-permissions fragment" data-fragment-index="3"><b>Permissions</b><span>Which actions are allowed, denied, or require approval?</span></div></div></div>
+  <div class="v227-check fragment" data-fragment-index="3"><b>Plan:</b> no ordinary project edits; plan files and shell have separate rules.</div>
+</div>
+<div class="tf-takeaway">Compare the stated role with the actions it can actually take.</div>
+<div class="tf-source"><a href="https://opencode.ai/v2/docs/agents/">OpenCode V2 · Agents: Selection; Modes; Builtins; Permissions</a> · Verified variation of the source scenario</div>
+```
+
+::: {.notes}
+Главная мысль: профиль определяется инструкциями, моделью и доступными действиями, а не только названием. Сначала показываем два контрастных поручения. Первый клик связывает исследование с Plan, второй — реализацию согласованного с Build. Третий переносит внимание к permissions: перед доверием имени нужно прочитать фактические правила.
+
+Для OpenCode V2 нельзя кратко утверждать, что Plan вообще ничего не записывает и никогда не запускает команды. Он не меняет обычные файлы проекта, но может работать с plan-файлами, а shell регулируется отдельными разрешениями. Это отличие от Cline Plan на следующем блоке. В V2 выбор primary agent по ID не заменяет уже установленную модель сессии, поэтому поле Model оставлено отдельным. Ни выбор профиля, ни его название не запускают параллельную команду автоматически. Вопрос аудитории: какие конкретные действия нужны текущему поручению, а какие следует исключить? Схема использует текущую проверенную V2-документацию и не выдаётся за буквальное воспроизведение интерфейса исходного донора.
+
+Источник: [OpenCode V2 Agents](https://opencode.ai/v2/docs/agents/), разделы Selection, Modes, Builtins и Permissions.
+:::
+
+## OpenCode: a repeatable reviewer with limited actions {#tools-v2-28 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">OpenCode V2 · Illustrative reviewer.md excerpt · Not a validated configuration</div>
+<div class="tf-body v228-body">
+  <div class="v228-input"><div class="tf-label">Input · API diff</div><b>api/orders.ts · line 42</b><pre class="tf-code">− limit = n ?? 20;
++ limit = n || 20;</pre><p>Contract:<br><code>limit=0</code> means<br>“return no rows”.</p></div>
+  <div class="v228-arrow">→</div>
+  <div class="tf-window v228-config"><div class="tf-toolbar">.opencode/agents/reviewer.md</div><div class="tf-content"><pre class="tf-code">description: Review API changes
+mode: subagent
+<span class="v228-perms fragment highlight-current-green" data-fragment-index="1">permissions:
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "*"
+    effect: deny</span></pre><div class="v228-instruction">Find contract errors.<br>Return a file, line, and reason.</div></div></div>
+  <div class="v228-arrow fragment" data-fragment-index="2">→</div>
+  <div class="v228-output fragment" data-fragment-index="2"><div class="tf-label">Output · illustrative finding</div><b>api/orders.ts:42</b><p><code>0 || 20</code> becomes <code>20</code>.</p><p>A request for zero rows now uses the default limit.</p></div>
+  <div class="v228-question fragment" data-fragment-index="1">Does this role need permission to write files?</div>
+</div>
+<div class="tf-takeaway">A specialist should return evidence you can trace back to its input.</div>
+<div class="tf-source"><a href="https://opencode.ai/v2/docs/agents/#markdown">OpenCode V2 · Agents: Markdown</a> · <a href="https://opencode.ai/v2/docs/agents/#permissions">Permissions</a> · <a href="https://opencode.ai/v2/docs/agents/#steps">Steps</a></div>
+```
+
+::: {.notes}
+Главная мысль: собственный профиль полезен для повторяемого поручения с устойчивыми инструкциями и ограниченными правами. Вход — небольшой diff API и явно указанный контракт: нулевой limit означает ноль строк. По первому клику выделяем permissions и спрашиваем, нужна ли reviewer запись файлов. Для показанного поручения достаточно анализа и отчёта; edit и shell запрещены. Второй клик раскрывает замечание, которое можно проверить непосредственно по строке diff: логическое ИЛИ заменяет ноль значением 20, а nullish coalescing сохраняло ноль.
+
+Фрагмент использует синтаксис OpenCode V2: permissions во множественном числе и правила action / resource / effect. Это проверенная вариация учебного сценария, а не буквальная копия старой конфигурации. На слайде опущены frontmatter-разделители и остальная конфигурация, поэтому это не готовый шаблон для запуска. При воспроизведении следует проверить фактическую версию и порядок правил, поскольку в V2 последнее совпадающее правило имеет значение. Результат reviewer — гипотеза о дефекте, основанная на заданном контракте; если контракт иной, вывод нужно пересмотреть. steps в V2 ограничивает шаги модели, а не число замечаний; это поле здесь не нужно.
+
+Источник: [OpenCode V2 Agents](https://opencode.ai/v2/docs/agents/), Markdown, Permissions и Steps. Код API и finding — учебные.
+:::
+
+## OpenCode compaction: check what survives {#tools-v2-29 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">OpenCode V2 · Summary compaction · Teaching example with a deliberately incomplete summary</div>
+<div class="tf-body v229-body">
+  <div class="v229-before"><div class="tf-title">Before</div><div>Objective: internal async</div><div class="v229-constraint">Do not change the public API</div><div>Keep an adapter</div><div>Inspect call sites</div><div class="v229-recent">Recent messages</div></div>
+  <div class="v229-arrow fragment" data-fragment-index="1">older history<br>→ summary</div>
+  <div class="v229-after fragment" data-fragment-index="1"><div class="tf-title">After</div><div class="v229-summary"><p><b>Objective</b> · internal async</p><p><b>Decisions</b><br><span class="v229-constraint">Do not change the public API</span></p><p><b>Next Move</b> · check errors</p></div><div class="v229-recent">Recent messages</div></div>
+  <div class="v229-loss fragment" data-fragment-index="2"><div class="tf-title">Incomplete variant</div><div class="v229-summary"><p><b>Objective</b> · internal async</p><p><b>Decisions</b><br><span class="v229-missing">API constraint missing</span></p><p><b>Next Move</b> · edit callers</p></div><div class="v229-stop fragment" data-fragment-index="3"><b>Pause the next edit.</b><br>Restore the critical constraint.</div></div>
+</div>
+<div class="tf-takeaway">A summary is a reviewable object, not the full history.</div>
+<div class="tf-source"><a href="https://opencode.ai/v2/docs/compaction/">OpenCode V2 · Compaction: How it works; Summaries</a></div>
+```
+
+::: {.notes}
+Главная мысль: сокращение старой истории позволяет продолжать разговор, но сводка не равна полной истории и может потерять детали. Слева показаны решения, принятые за длинную работу. Первый клик открывает сводку и недавние сообщения справа. Одинаковый лаймовый акцент помогает проследить сохранение критичного условия о публичном API.
+
+Второй клик показывает отдельный учебный вариант, где условие пропущено. Это не утверждение о наблюдаемой ошибке OpenCode, а упражнение на проверку контекста. Задайте вопрос аудитории: можно ли сразу переходить к следующей правке вызовов? Третий клик открывает остановку и действие — восстановить ограничение до продолжения. Сохранить API в таком примере может помочь адаптер, но конкретное решение должно быть согласовано. В документации V2 описано сокращение с потерями: старые сообщения могут оставаться в хранилище, не входя полностью в следующий запрос. Здесь рассматривается summary compaction, а не отдельный механизм provider-native compaction. Поля Objective / Decisions / Next Move — учебная форма сводки.
+
+Источник: [OpenCode V2 Compaction](https://opencode.ai/v2/docs/compaction/).
+:::
+
+## Choose context by the information you are missing {#tools-v2-30 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Practice P1 · Path / behavior / connections / overview · Illustrative artifacts</div>
+<div class="tf-body v230-body">
+  <div class="v230-grid">
+    <div class="v230-cell"><b>What does this exact function do?</b><div class="v230-answer fragment" data-fragment-index="1"><code>money.py → format()</code><div><strong>File</strong><p><b>Helps:</b> read the implementation<br><b>Does not prove:</b> caller behavior</p></div></div></div>
+    <div class="v230-cell"><b>Where are failed requests retried?</b><div class="v230-answer fragment" data-fragment-index="2"><code>Search → client.py:48</code><div><strong>Cursor search</strong><p><b>Helps:</b> locate relevant fragments<br><b>Does not prove:</b> complete coverage</p></div></div></div>
+    <div class="v230-cell"><b>Which nearby interfaces connect?</b><div class="v230-answer fragment" data-fragment-index="3"><code>orders.py → Money.format()</code><div><strong>Aider repo map</strong><p><b>Helps:</b> see symbols and signatures<br><b>Does not prove:</b> implementation details</p></div></div></div>
+    <div class="v230-cell"><b>How is this unfamiliar project organized?</b><div class="v230-answer fragment" data-fragment-index="4"><code>Wiki · Orders → Billing → API</code><div><strong>Qoder Repo Wiki</strong><p><b>Helps:</b> build a project overview<br><b>Does not prove:</b> current runtime behavior</p></div></div></div>
+  </div>
+  <div class="v230-change fragment" data-fragment-index="5">New fact: <b>the relevant file path is now known.</b> Would you choose the same context?</div>
+</div>
+<div class="tf-takeaway">Choose the smallest representation that closes the information gap.</div>
+<div class="tf-source"><a href="https://cursor.com/docs/agent/tools/search">Cursor · Search</a> · <a href="https://aider.chat/docs/repomap.html">Aider · Repository map</a> · <a href="https://docs.qoder.com/qoder/repo-wiki">Qoder · Repo Wiki</a></div>
+```
+
+::: {.notes}
+Практика П1. Главная мысль: вопрос и пробел в информации определяют форму контекста. Сначала четыре вопроса видны без ответов. Перед каждым кликом попросите аудиторию выбрать представление и назвать его ограничение. Клики 1–4 последовательно показывают: известный файл, поиск фрагментов по поведению, структурную карту и сохраняемый обзор проекта.
+
+Файл позволяет прочитать конкретную реализацию, но без вызывающего кода не доказывает весь сценарий. Поиск помогает найти место повторных запросов, однако выдача не гарантирует полноты. Repo map даёт символы и связи, но не всё поведение. Repo Wiki формирует обзор и также требует сверки с текущими файлами, конфигурацией и тестами. Это разные представления, а не рейтинг качества продуктов. Не утверждать, что поиск Cursor всегда устроен только через embeddings: текущая документация Search описывает также другие механизмы.
+
+Последний клик меняет условие: путь уже найден. Для уточнения локального поведения часто лучше открыть нужный файл, чем повторять широкий поиск или читать весь обзор. Возможны комбинации контекста; ответ зависит от того, что ещё неизвестно. Все миниатюры и пути учебные.
+
+Источники: [Cursor Search](https://cursor.com/docs/agent/tools/search), [Aider Repository map](https://aider.chat/docs/repomap.html), [Qoder Repo Wiki](https://docs.qoder.com/qoder/repo-wiki).
+:::
+
+## Cline: stop at the decision that is still open {#tools-v2-31 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Cline · A “Compact view” setting · Teaching example · Interface schematic</div>
+<div class="tf-body v231-body">
+  <div class="v231-request">“Add a Compact view setting to the app.”</div>
+  <div class="v231-main"><div class="v231-callouts"><div><b>Context</b><span>Files + requirements →</span></div><div><b>Actions</b><span>Read and investigate →</span></div></div><div class="tf-window v231-editor"><div class="tf-toolbar">Project <span>Cline</span></div><div class="v231-inside"><div><b>src/</b><p><code>settings.ts</code><br><code>SettingsPanel.tsx</code><br><code>tests/</code></p></div><div><div class="tf-prompt">Where should the preference be stored?</div><div class="v231-options"><span>This browser</span><span>User profile</span></div><div class="v231-mode fragment" data-fragment-index="1"><b>Plan</b> · inspect and discuss</div><div class="v231-history">Task history · checkpoints</div></div></div></div><div class="v231-callouts"><div class="fragment" data-fragment-index="1"><b>Mode</b><span>← Plan / Act</span></div><div><b>History</b><span>← Steps and return points</span></div></div></div>
+  <div class="v231-stop fragment" data-fragment-index="2"><b>Before the first edit:</b> does the setting need to follow the user across devices?</div>
+</div>
+<div class="tf-takeaway">An open product decision is part of the task, not a detail to guess.</div>
+<div class="tf-source"><a href="https://docs.cline.bot/core-workflows/plan-and-act">Cline · Plan &amp; Act</a> · <a href="https://docs.cline.bot/core-workflows/checkpoints">Checkpoints</a></div>
+```
+
+::: {.notes}
+Главная мысль: управляемая задача начинается с открытого решения, которое влияет на реализацию. Пользователь хочет Compact view, но ещё не сказал, должна ли настройка синхронизироваться между устройствами. Поэтому поручение появляется раньше названия режима. Четыре выноски показывают контекст, действия, режим и историю вокруг одной рабочей задачи.
+
+Первый клик открывает Plan. Варианты хранения рядом остаются предметом обсуждения, ни один ещё не выбран. Второй клик формулирует вопрос, ответ на который нужен до первой правки: настройка только для текущего браузера или для профиля пользователя? Выполнение здесь не показываем. Следующий слайд продолжит именно этот пример; остальные примеры лекции независимы. История и checkpoints обозначены как возможность вернуться к состояниям задачи, но не как автоматическая гарантия правильного выбора. Панель построена как учебная схема, а не точная копия версии Cline.
+
+Источники: [Plan & Act](https://docs.cline.bot/core-workflows/plan-and-act), [Checkpoints](https://docs.cline.bot/core-workflows/checkpoints).
+:::
+
+## Cline Plan / Act: agree, implement, reconsider {#tools-v2-32 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Cline · Continuation of the Compact view task · Teaching example</div>
+<div class="tf-body v232-body">
+  <div class="tf-window v232-plan"><div class="tf-toolbar"><b>Plan</b> · choose storage</div><div class="tf-content"><div class="v232-option"><b>User profile</b><p>Across devices<br>Needs backend support</p></div><div class="v232-option"><b>This browser</b><p><code>localStorage</code><br>No account sync</p></div><div class="v232-decision fragment" data-fragment-index="1">Human decision: <b>this browser is enough.</b></div></div></div>
+  <div class="v232-transition fragment" data-fragment-index="2"><b>Plan → Act</b><span>Agreed approach</span></div>
+  <div class="tf-window v232-act fragment" data-fragment-index="2"><div class="tf-toolbar"><b>Act</b> · implement the choice</div><div class="tf-content"><b>Changes</b><p>Read and save the preference.<br>Connect the Compact view toggle.</p><div class="v232-check"><b>Check named in advance</b><p>Toggle → reload → preference remains.</p></div><pre class="tf-code">"compact-view" = "true"</pre></div></div>
+  <div class="v232-capabilities"><span>Plan: read, search, discuss</span><span>Act: edit files, run commands</span></div>
+  <div class="v232-new fragment" data-fragment-index="3"><b>New constraint:</b> “Keep this setting across devices.” <span>Continue — or return to Plan?</span></div>
+</div>
+<div class="tf-takeaway">Return to discussion when a new constraint changes the approach.</div>
+<div class="tf-source"><a href="https://docs.cline.bot/core-workflows/plan-and-act">Cline · Plan &amp; Act Mode: Plan Mode; Act Mode</a> · Checks shown are acceptance criteria, not run results</div>
+```
+
+::: {.notes}
+Главная мысль: сравнение способов решения и выполнение выбранного решения — разные этапы. Слева обсуждаем профиль пользователя и localStorage. Первый клик фиксирует выбор человека: достаточно текущего браузера. Второй открывает переход Plan → Act и реализацию этого выбора. Проверка задана заранее: переключить Compact view, перезагрузить страницу и убедиться, что выбор сохранился. На слайде показан критерий приёмки, а не сообщение об успешно выполненной проверке; строка с ключом лишь иллюстрирует сохраняемое значение.
+
+Третий клик вводит существенное новое ограничение: настройка должна следовать за пользователем между устройствами. Нужно вернуться к обсуждению архитектуры, потому что прежняя договорённость о хранении больше не удовлетворяет задаче. Переход не является необратимой лестницей автономности. Текущая официальная документация Cline прямо различает Plan — чтение, поиск и обсуждение без правки файлов и выполнения команд — и Act, где агент может править файлы и запускать команды. Это свойство конкретного продукта, его нельзя переносить на любой режим с названием Plan. Перед живой демонстрацией сверить установленную версию и её возможности.
+
+Источник: [Cline Plan & Act](https://docs.cline.bot/core-workflows/plan-and-act).
+:::
+
+## Cline checkpoints: restore the right state {#tools-v2-33 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Cline · Checkpoints · Teaching example</div>
+<div class="tf-body v233-body">
+  <div class="v233-tracks">
+    <div class="v233-time"><span></span><span>Before refactor</span><span>Extra refactor</span><span>New constraint</span></div>
+    <div class="v233-track"><b>Files</b><span>Original structure</span><span>Unwanted changes</span><span>Same changes</span></div>
+    <div class="v233-track"><b>Conversation</b><span>Initial request</span><span>Review the diff</span><span>“Keep the public API”</span></div>
+    <div class="v233-return fragment" data-fragment-index="1">Files ← earlier snapshot &nbsp;&nbsp; / &nbsp;&nbsp; Conversation → keep the discovery</div>
+  </div>
+  <div class="v233-options fragment" data-fragment-index="1">
+    <div class="v233-chosen"><b>Restore Files</b><span>Undo the refactor</span></div>
+    <div><b>Restore Task Only</b><span>Remove later messages</span></div>
+    <div><b>Restore Files &amp; Task</b><span>Restore both states</span></div>
+  </div>
+  <div class="v233-evidence fragment" data-fragment-index="2"><div><b>Open the files</b><p>Original structure is back.</p></div><div><b>Open the conversation</b><p>“Keep the public API” is still there.</p></div></div>
+</div>
+<div class="tf-takeaway">Choose what to undo: files, conversation, or both.</div>
+<div class="tf-source"><a href="https://docs.cline.bot/core-workflows/checkpoints#restoring-checkpoints">Cline · Checkpoints: Restoring Checkpoints</a> · Interface schematic, not a recorded run</div>
+```
+
+::: {.notes}
+Главная мысль: откат файлов и откат разговора решают разные задачи. В учебной ситуации лишний рефакторинг требуется убрать, но ограничение о публичном API, обнаруженное в обсуждении, полезно сохранить. Сначала попросите аудиторию назвать объект восстановления. Первый клик показывает три варианта из документации и выделяет Restore Files. Второй открывает два независимых наблюдения: состояние файлов и сохранённую реплику. Это схема ожидаемого результата, а не выполненный запуск. Restore Task Only удаляет сообщения после выбранной точки без изменения файлов; Restore Files & Task затрагивает оба состояния. Внешние последствия команд здесь не входят в схему: восстановление проекта само по себе не отменяет уже отправленное сообщение или изменение внешней системы. Перед живой демонстрацией сверить названия в установленном интерфейсе.
+
+Источник: [Cline Checkpoints](https://docs.cline.bot/core-workflows/checkpoints#restoring-checkpoints).
+:::
+
+## Clarify requirements with a /grilling interview {#tools-v2-34 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Third-party skill /grilling · Matt Pocock · Teaching example</div>
+<div class="tf-body v234-body">
+  <div class="v234-request"><div class="tf-label">Request</div><p class="tf-big">Add<br>notifications</p><div class="v234-command tf-code">/grilling</div><p>What must the<br>feature do?</p></div>
+  <div class="v234-tree"><div class="tf-label">Answers determine the next questions</div>
+    <div class="v234-branches fragment" data-fragment-index="1"><div><b>Who receives them?</b><p>→ Event author</p></div><div><b>Which channel?</b><p>→ Email</p></div></div>
+    <div class="v234-trunk fragment" data-fragment-index="2">↓ With these answers, ask…</div>
+    <div class="v234-branches fragment" data-fragment-index="2"><div><b>When is it sent?</b><p>After completion</p></div><div><b>What about repeats?</b><p>One email per event</p></div></div>
+  </div>
+  <div class="v234-decisions fragment" data-fragment-index="3"><div class="tf-label">Decision sheet</div><b>Agreed</b><p>Email the author.<br>After completion.<br>Once per event.</p><div class="v234-open"><b>Still open</b><p>Can users opt out?</p></div></div>
+  <div class="v234-bottom fragment" data-fragment-index="3">Requirement: who gets notified &nbsp; ≠ &nbsp; Implementation: which mail library</div>
+</div>
+<div class="tf-takeaway">Resolve the missing decisions before choosing an implementation.</div>
+<div class="tf-source"><a href="https://www.aihero.dev/skills-grilling">Matt Pocock · The /grilling Skill</a> · <a href="https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md">Skill source</a></div>
+```
+
+::: {.notes}
+Главная мысль: если неизвестны требования, нужен разговор о решениях, а не только план реализации. /grilling здесь обозначает сторонний skill Matt Pocock, а не встроенный универсальный режим. До первого клика предложите аудитории сформулировать вопросы к запросу «Добавить уведомления». Первое раскрытие показывает независимые решения о получателе и канале. Второе показывает зависимый раунд, возникший после ответов. Последнее собирает согласованные решения, но оставляет вопрос об отказе от рассылки открытым. Не выдавайте выбор email за автоматически решённые ретраи, приватность или настройки пользователя. Нужные факты о существующей системе можно исследовать в проекте, а продуктовые решения следует согласовать. Дерево, ответы и лист решений придуманы для занятия; skill не запускался. Отдельно спросите, что относится к требованию, а что к способу реализации.
+
+Источники: [статья автора](https://www.aihero.dev/skills-grilling), [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md).
+:::
+
+## Gemini CLI: revise the plan before execution {#tools-v2-35 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Gemini CLI · Collaborative plan editing · Teaching example</div>
+<div class="tf-body v235-body">
+  <div class="v235-task"><code>/plan</code><span>Load the payments list and handle network errors.</span></div>
+  <div class="v235-document tf-window"><div class="tf-toolbar">implementation-plan.md · plan open for review</div><div class="v235-plan">
+    <div class="tf-muted">1. Inspect the payments API.</div>
+    <div class="v235-versions"><div><div class="tf-label">Proposed step 2</div><p>Create a new<br>HTTP client.</p></div><div class="fragment" data-fragment-index="1"><div class="tf-label">Revised step 2</div><p>Use the existing<br>HTTP client.</p></div></div>
+    <div class="tf-muted">3. Check the network-error behavior.</div>
+  </div></div>
+  <div class="v235-comment"><div class="tf-label">Human comment</div><p class="tf-title">Use the<br>existing client.</p><p class="fragment" data-fragment-index="1">Save → re-open the<br>revised plan for review</p></div>
+  <div class="v235-approve fragment" data-fragment-index="2"><b>Approve this revision</b><span>→ implement it</span><span>→ inspect the diff and error test</span></div>
+</div>
+<div class="tf-takeaway">Check that execution starts from the plan you actually approved.</div>
+<div class="tf-source"><a href="https://geminicli.com/docs/cli/plan-mode/#collaborative-plan-editing">Gemini CLI · Plan Mode: Collaborative plan editing</a> · Interface schematic</div>
+```
+
+::: {.notes}
+Главная мысль: ценность плана заключается в согласованном содержании. Сам факт существования Markdown не означает, что комментарий учтён. Здесь известен результат, но предложен ненужный новый HTTP-клиент. Первый клик показывает исходную и изменённую строки одновременно. Второй связывает одобрение исправленной версии с исполнением и проверкой. В документации Gemini CLI план можно открыть во внешнем редакторе через Ctrl+X, исправить или прокомментировать, сохранить и закрыть. После этого инструмент пересматривает документ и представляет уточнённый план. Для демонстрации проверьте, что финальная версия действительно содержит существующий клиент и проверку ошибки сети. Макет показывает ожидаемый ход работы, а не воспроизведённую сессию. Не путайте отзыв на план с изменением исходного кода.
+
+Источник: [Gemini CLI Plan Mode](https://geminicli.com/docs/cli/plan-mode/#collaborative-plan-editing).
+:::
+
+## Kiro: keep the agreement beyond the conversation {#tools-v2-36 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Kiro · Specs · Teaching example · Schematic workspace</div>
+<div class="tf-body v236-body">
+  <div class="v236-handoff">Tomorrow, another developer will continue this work.</div>
+  <div class="v236-workspace tf-window"><div class="tf-toolbar">draft-editor / autosave</div><div class="v236-zones">
+    <div class="v236-project"><div class="tf-label">Project</div><pre class="tf-code">src/
+  editor.ts
+.kiro/
+  specs/</pre></div>
+    <div class="v236-chat fragment semi-fade-out" data-fragment-index="2"><div class="tf-label">Discussion</div><p>“Keep my draft<br>after a pause.”</p><p class="tf-muted">Agree on timing<br>and recovery.</p></div>
+    <div class="v236-docs fragment" data-fragment-index="1"><div class="tf-label">Saved agreement</div><div><code>requirements.md</code><p>What behavior is required?</p></div><div><code>design.md</code><p>How will it work?</p></div></div>
+    <div class="v236-tasks fragment" data-fragment-index="1"><div class="tf-label">Remaining work</div><code>tasks.md</code><p>□ Save the draft<br>□ Restore the text<br>□ Check persistence</p></div>
+  </div></div>
+  <div class="v236-check fragment" data-fragment-index="2"><b>Hide the chat.</b> Can the next developer explain the behavior and remaining work?</div>
+  <div class="v236-counter">Counterexample: a known one-line typo may need only a local edit and check.</div>
+</div>
+<div class="tf-takeaway">Use persistent artifacts when the agreement must survive a handoff.</div>
+<div class="tf-source"><a href="https://kiro.dev/docs/specs/">Kiro · What are specs?</a></div>
+```
+
+::: {.notes}
+Главная мысль: при передаче работы договорённость должна быть доступна вне истории разговора. Сначала показывается только условие передачи проекта другому разработчику. Первый клик раскрывает документы и оставшиеся задачи. Второй приглушает обсуждение: предложите аудитории проверить, можно ли теперь понять поведение и незавершённую работу. Требования отвечают на вопрос о результате, design фиксирует способ, tasks помогает продолжать реализацию. Само наличие документов ещё не подтверждает их полноту и актуальность, поэтому проверка без переписки содержательна. Пример независим от соседних демонстраций. Интерфейс условный, статусы задач не являются результатом реального запуска. В конце сравните со знакомой точечной опечаткой: сохранение трёх документов может оказаться лишним действием для такой задачи.
+
+Источник: [Kiro Specs](https://kiro.dev/docs/specs/).
+:::
+
+## Kiro Specs: trace one requirement to a check {#tools-v2-37 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Kiro · Feature Specs · Teaching example: draft autosave</div>
+<div class="tf-body v237-body">
+  <div class="v237-docs">
+    <div class="v237-paper"><code>requirements.md</code><div class="v237-marker">R1 · Behavior</div><p>After a 1-second pause,<br>save the current draft.<br>Restore it on reopening.</p></div>
+    <div class="v237-link fragment" data-fragment-index="1">→</div>
+    <div class="v237-paper fragment" data-fragment-index="1"><code>design.md</code><div class="v237-marker">R1 → D1 · Mechanism</div><p>Debounce writes.<br>Store by draft ID.<br>Restore on opening.</p></div>
+    <div class="v237-link fragment" data-fragment-index="2">→</div>
+    <div class="v237-paper fragment" data-fragment-index="2"><code>tasks.md</code><div class="v237-marker">D1 → T1 · Work</div><p>Connect delayed save.<br>Add draft recovery.<br>Check the R1 scenario.</p></div>
+  </div>
+  <div class="v237-test fragment" data-fragment-index="3"><b>R1 check</b><span>Type a change → wait &gt; 1 s → reopen → the same text appears.</span></div>
+  <div class="v237-orphan fragment" data-fragment-index="4"><b>Unlinked task</b><span>“Add a new animation system.”</span><span>Which requirement needs this?</span></div>
+</div>
+<div class="tf-takeaway">Every implementation task needs a reason and a way to check it.</div>
+<div class="tf-source"><a href="https://kiro.dev/docs/specs/">Kiro Specs · Core Structure</a> · <a href="https://kiro.dev/docs/specs/feature-specs/">Feature Specs</a> · R1 / D1 / T1 are teaching labels</div>
+```
+
+::: {.notes}
+Главная мысль: три файла фиксируют разные части договорённости. В этом независимом учебном примере пауза в одну секунду уже согласована, а не выведена из расплывчатого запроса. По кликам раскрываются механизм, задача, затем ожидаемая проверка. Попросите аудиторию найти возможный пропуск между требованием и проверкой. Последний клик добавляет анимацию, не связанную с R1: прежде чем реализовывать её, требуется обоснование. Маркеры R1, D1 и T1 придуманы для объяснения связей, это не обязательный синтаксис Kiro. Ожидаемое восстановление текста не является фактическим результатом теста. Для реальной реализации нужны также решения о конфликте версий, ошибках хранения и области поддержки; здесь выделен один путь, а не полный набор требований.
+
+Источники: [Kiro Specs](https://kiro.dev/docs/specs/), [Feature Specs](https://kiro.dev/docs/specs/feature-specs/).
+:::
+
+## Interview, plan, or Specs: what is missing? {#tools-v2-38 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Preparation before code · Practice P2 · Choose the depth of agreement</div>
+<div class="tf-body v238-body">
+  <div class="v238-routes"><div><b>Kiro · staged review</b><span>Requirements → approve → design → approve → tasks</span></div><div><b>Kiro · Quick Spec</b><span>Clarify → generate requirements, design, tasks → review</span></div></div>
+  <div class="v238-choices">
+    <div><div class="tf-label">Missing requirements</div><b>“Add notifications.”</b><p class="fragment" data-fragment-index="1"><span class="v238-answer">Interview</span><br>Agreed decisions<br>and open questions</p></div>
+    <div><div class="tf-label">Unagreed approach</div><b>“How should we build it?”</b><p class="fragment" data-fragment-index="1"><span class="v238-answer">Plan</span><br>A reviewed sequence<br>of actions and checks</p></div>
+    <div><div class="tf-label">An agreement to hand over</div><b>“Someone continues tomorrow.”</b><p class="fragment" data-fragment-index="1"><span class="v238-answer">Persistent spec</span><br>Requirements, design<br>and remaining work</p></div>
+  </div>
+  <div class="v238-counter fragment" data-fragment-index="2"><b>Change the condition:</b> a known local edit, with a ready test. Which preparation can you omit?</div>
+</div>
+<div class="tf-takeaway">Match preparation to the missing agreement, not to a fixed sequence.</div>
+<div class="tf-source"><a href="https://kiro.dev/docs/specs/feature-specs/">Kiro · Feature Specs</a> · <a href="https://kiro.dev/docs/specs/quick-spec/">Quick Spec</a> · Author’s comparison for practice P2</div>
+```
+
+::: {.notes}
+Главная мысль: интервью, план и сохраняемая спецификация отвечают на разные дефициты договорённости. Не превращайте эти варианты в обязательные три ступени. Сначала предложите аудитории назвать результат подготовки для каждой ситуации, затем первым кликом раскройте возможные ответы. Интервью выясняет требования; план согласует способ; спецификация хранит решение для дальнейшей совместной работы. В верхней полосе показаны два маршрута внутри Kiro. В Quick Spec уточнения предшествуют последовательному созданию трёх документов без промежуточных согласований. Оба маршрута оставляют материалы для проверки. Последний клик меняет условие на известную локальную правку с готовым тестом: часть подготовки можно исключить. Это упражнение на выбор достаточного процесса, а не рейтинг интерфейсов или продуктов. Верхние стрелки описывают маршруты Kiro; между нижними тремя ответами стрелок намеренно нет.
+
+Источники: [Feature Specs](https://kiro.dev/docs/specs/feature-specs/), [Quick Spec](https://kiro.dev/docs/specs/quick-spec/). Контрольное сравнение П2 из плана лекции.
+:::
+
+## Project instructions: keep recurring agreements {#tools-v2-39 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex / Claude Code / Gemini CLI · Teaching example</div>
+<div class="tf-body v239-body">
+  <div class="v239-files">
+    <div><div class="v239-file"><code>AGENTS.md</code><p>Use the existing<br>HTTP client.</p></div><div class="v239-session">↓ New Codex session</div><div class="v239-scope fragment" data-fragment-index="1">Check applicable directories<br>and discovery order.</div></div>
+    <div><div class="v239-file"><code>CLAUDE.md</code><p>Use the existing<br>HTTP client.</p></div><div class="v239-session">↓ New Claude Code session</div><div class="v239-scope fragment" data-fragment-index="1">Check which memory files<br>are loaded for the task.</div></div>
+    <div><div class="v239-file"><code>GEMINI.md</code><p>Use the existing<br>HTTP client.</p></div><div class="v239-session">↓ New Gemini CLI session</div><div class="v239-scope fragment" data-fragment-index="1">Check context scope<br>and loaded content.</div></div>
+  </div>
+  <div class="v239-diff fragment" data-fragment-index="2"><div><b>Verify the actual change</b><p>Was the existing client used?</p></div><pre class="tf-code">+ from app.http import client
++ payments = client.get("/payments")</pre></div>
+</div>
+<div class="tf-takeaway">Instructions provide context. Verify compliance in the actions and diff.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md">Codex · AGENTS.md</a> · <a href="https://code.claude.com/docs/en/memory">Claude Code · Memory</a> · <a href="https://geminicli.com/docs/cli/gemini-md/">Gemini CLI · GEMINI.md</a></div>
+```
+
+::: {.notes}
+Главная мысль: устойчивое правило не нужно повторять в каждом запросе, если инструмент поддерживает проектные инструкции. Во всех трёх файлах дан одинаковый учебный текст, чтобы сравнивать назначение, а не содержание. Первый клик подчёркивает различия загрузки и области действия: одинаковая фраза не делает механизмы идентичными. Второй показывает небольшой diff как предмет проверки. Он иллюстративный и не создан реальной сессией. Инструкция может направлять поведение, но сама не запускает тест и не является техническим запретом. Если важно, чтобы правило применялось к конкретному модулю, нужно проверить применимые файлы и затем реальные действия. Следующий слайд подробнее рассматривает такой выбор области в Codex.
+
+Источники: [Codex AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [Claude Code Memory](https://code.claude.com/docs/en/memory), [Gemini CLI GEMINI.md](https://geminicli.com/docs/cli/gemini-md/).
+:::
+
+## Codex AGENTS.md: apply guidance to the right scope {#tools-v2-40 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex · Layered project instructions · Teaching repository</div>
+<div class="tf-body v240-body">
+  <div class="v240-tree"><div class="tf-label">Instruction path at session start</div><pre class="tf-code">~/.codex/AGENTS.md
+        ↓
+repo/AGENTS.md
+  ├── payments/AGENTS.md
+  └── catalog/AGENTS.md</pre><div class="v240-selected fragment" data-fragment-index="1">Current directory: repo/payments</div></div>
+  <div class="v240-rules fragment" data-fragment-index="1"><div class="tf-label">Applicable teaching rules</div><div><b>Global</b><span>Summarize the changes.</span></div><div><b>Repository</b><span>Use the existing HTTP client.</span></div><div><b>Payments</b><span>Keep money in integer cents.</span></div><div class="v240-command"><code>pytest tests/payments</code><span>Run from the repository root.</span></div></div>
+  <div class="v240-switch fragment" data-fragment-index="2"><div><b>New session in repo/catalog</b><p>Read the catalog guidance instead.</p></div><div><code>pytest tests/catalog</code><p>Do not assume the payments rule applies.</p></div></div>
+</div>
+<div class="tf-takeaway">Choose the working scope, then confirm the instruction chain and checks.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md">OpenAI Docs · Custom instructions with AGENTS.md: discovery and layering</a></div>
+```
+
+::: {.notes}
+Главная мысль: набор инструкций зависит от области работы. В схеме нет override-файлов и нестандартных имён, чтобы отдельно показать глобальный уровень, корень репозитория и выбранный каталог. Первый клик выделяет payments и раскрывает учебные правила с командой проверки. Второй предлагает новую сессию в catalog, для которой локальную часть набора следует пересмотреть. Это не утверждение, что обычный cd в уже начатой сессии автоматически пересобирает инструкции. Согласно официальной документации цепочка строится при запуске: глобальные инструкции, затем путь от корня проекта к текущему каталогу; более близкие инструкции располагаются позже и переопределяют ранние. Внутри уровня AGENTS.override.md имеет приоритет перед AGENTS.md, существуют fallback-имена и ограничение объёма. Для живой работы сверяйте текущую документацию и фактическую загрузку. Пути и команды тестирования здесь учебные.
+
+Источник: [OpenAI Docs — Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+:::
+
+## Claude Code skills: reuse a procedure when needed {#tools-v2-41 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Claude Code · Skills · Teaching example /review-api</div>
+<div class="tf-body v241-body">
+  <div class="v241-files"><div class="tf-label">Skill directory</div><pre class="tf-code">review-api/
+├── SKILL.md
+├── example.md
+└── scripts/
+    check_schema.py</pre><p>Instructions, example,<br>supporting script</p></div>
+  <div class="v241-procedure"><div class="v241-command tf-code">/review-api</div><div class="v241-contract"><b>Input</b><span>One API diff</span><b>Boundary</b><span>Review only, no edits</span><b>Output</b><span>Findings with locations</span></div><ol class="fragment" data-fragment-index="1"><li>Read the contract.</li><li>Compare the change.</li><li>Check affected callers.</li></ol></div>
+  <div class="v241-result fragment" data-fragment-index="2"><div class="tf-label">Illustrative finding</div><code>api/items.py:42</code><p class="tf-title">A removed field<br>still has a caller.</p><p>Evidence:<br><code>web/item.ts:18</code></p><p class="tf-muted">A location and reason,<br>not just “looks good”.</p></div>
+  <div class="v241-load"><span>Description helps identify the skill</span><span>→</span><span>Full instructions load when invoked</span></div>
+</div>
+<div class="tf-takeaway">A skill packages a procedure. Its invocation rules control when it is used.</div>
+<div class="tf-source"><a href="https://code.claude.com/docs/en/skills">Claude Code · Extend Claude with skills: how skills work; invocation control</a></div>
+```
+
+::: {.notes}
+Главная мысль: повторяемую последовательность действий можно сохранить как skill и подключать по необходимости. Здесь /review-api — придуманный учебный навык, а не стандартная команда Claude Code. В папке видны инструкция, пример и вспомогательный скрипт, но сам скрипт автоматически не запускается только из-за присутствия файла. Первый клик раскрывает процедуру, второй — ожидаемый формат конкретного вывода. Файлы, номера строк и finding иллюстративны. По умолчанию Claude Code допускает вызов навыка человеком и моделью; настройки могут ограничивать инициатора. Нижняя полоса показывает общее различие краткого описания и полной инструкции для обычного сценария загрузки; это не обещание, что содержание исчезает сразу после использования. Попросите аудиторию определить: это постоянное правило, процедура по необходимости или реакция на событие? Ответ здесь — процедура.
+
+Источник: [Claude Code Skills](https://code.claude.com/docs/en/skills).
+:::
+
+## Gemini CLI hooks: check before the action {#tools-v2-42 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Gemini CLI · BeforeTool · Teaching example: validate a write target</div>
+<div class="tf-body v242-body">
+  <div class="v242-flow"><div><div class="tf-label">Proposed action</div><b>Write a file</b></div><span>→</span><div class="v242-hook"><div class="tf-label">Before execution</div><code>BeforeTool</code></div><span>→</span><div><div class="tf-label">Custom validator</div><b>Inspect the target path</b></div></div>
+  <div class="v242-paths"><div class="v242-path fragment" data-fragment-index="1"><code>src/parser.py</code><span>→ allow</span><b class="v242-write">→ file is written</b></div><div class="v242-path fragment" data-fragment-index="2"><code>generated/schema.py</code><span>→ deny</span><b class="v242-stop">STOP · no write</b></div></div>
+  <div class="v242-reason fragment" data-fragment-index="2">Reason returned to the agent: “Generated files must be rebuilt from their source.”</div>
+  <div class="v242-evidence fragment" data-fragment-index="3"><b>Verify the hook fired:</b> inspect its output, the denied tool result, and the unchanged file.</div>
+  <div class="v242-limit">Scope of this example: selected write tools and paths covered by this validator.</div>
+</div>
+<div class="tf-takeaway">Place the check at the event where it can affect the action.</div>
+<div class="tf-source"><a href="https://geminicli.com/docs/hooks/reference/#beforetool">Gemini CLI · Hooks reference: BeforeTool</a> · Expected outcomes, not execution logs</div>
+```
+
+::: {.notes}
+Главная мысль: если проверка должна предшествовать записи, нужен обработчик подходящего события. BeforeTool вызывается до инструмента, получает его имя и входные параметры, а отказ с причиной может предотвратить вызов. Первый клик показывает разрешённый путь, второй — защищённый generated с остановкой до записи. Последний задаёт наблюдения, которыми нужно подтвердить настройку. Это безопасные учебные пути и ожидаемые исходы; проверка не запускалась. Matcher у Gemini сопоставляется с именем инструмента, поэтому отбор пути должен делать валидатор, разбирая аргументы. Не представляйте эту маленькую проверку как полную защиту: другие способы записи или неохваченные пути требуют отдельного решения. Текст инструкции «не меняй generated» и событийная проверка являются разными механизмами.
+
+Источник: [Gemini CLI Hooks reference](https://geminicli.com/docs/hooks/reference/#beforetool).
+:::
+
+## Kiro hooks: check the file after it was saved {#tools-v2-43 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Kiro IDE · PostFileSave · Donor version: IDE 1.0 · Teaching example</div>
+<div class="tf-body v243-body">
+  <div class="v243-timeline"><div><code>parser.py</code><b>Agent saved / edited</b></div><span>→</span><div class="v243-hook"><code>PostFileSave</code><b>Event fires</b></div><span>→</span><div><b>Lint command</b><span>Inspect this file</span></div><span>→</span><div class="fragment" data-fragment-index="1"><b>Command output</b><span>Review the finding</span></div></div>
+  <div class="v243-lower"><div class="v243-config"><div class="tf-label">Schematic configuration</div><div><b>trigger</b><code>PostFileSave</code></div><div><b>matcher</b><code>\.py$</code></div><div><b>action</b><span>Shell command: lint</span></div></div><div class="v243-cases"><div class="fragment" data-fragment-index="1"><code>parser.py</code><span>matches → lint output appears</span></div><div class="fragment" data-fragment-index="2"><code>notes.md</code><span>does not match → no lint run</span></div><p class="fragment" data-fragment-index="2">Check both cases to test the matcher.</p></div></div>
+  <div class="v243-compare"><b>Previous slide:</b> check → write &nbsp;&nbsp;&nbsp; <b>Here:</b> save → check</div>
+</div>
+<div class="tf-takeaway">A check after saving does not prove that the write was approved beforehand.</div>
+<div class="tf-source"><a href="https://kiro.dev/docs/hooks/">Kiro · Hooks: available triggers</a> · <a href="https://kiro.dev/docs/hooks/actions/">Hook actions: shell command</a> · Interface and outcomes are schematic</div>
+```
+
+::: {.notes}
+Главная мысль: этот hook относится к файлу, который агент уже сохранил или изменил. Это не утверждение о срабатывании при произвольном ручном сохранении пользователем. Метка Kiro IDE и версия донора сохраняют контекст примера; это не универсальное обещание для всех интерфейсов Kiro. Первый клик показывает, что подходящий Python-файл приводит к выводу команды lint. Второй проверяет отрицательный случай notes.md. Блок trigger, matcher, action — схема настройки, а не готовый JSON для копирования. При реализации shell-команда должна правильно получить путь сохранённого файла из данных события. Временная последовательность принципиальна: lint находит проблему после записи, а не заранее разрешает или запрещает её. Вывод проверки на слайде не имитирует реальный лог. Перед демонстрацией сверить поддерживаемые события и формат конфигурации установленной версии. Сравните с BeforeTool и попросите назвать наблюдение, подтверждающее каждый механизм.
+
+Источники: [Kiro Hooks](https://kiro.dev/docs/hooks/), [Hook actions](https://kiro.dev/docs/hooks/actions/).
+:::
+
+## Instructions, skills, hooks, packages: choose by job {#tools-v2-44 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Project customization · Practice P3 · Reveal the mechanism after choosing it</div>
+<div class="tf-body v244-body">
+  <div class="v244-head"><span>Problem</span><span>Mechanism</span><span>When it applies</span></div>
+  <div class="v244-row"><b>Keep using the existing HTTP client.</b><span class="fragment" data-fragment-index="1">Instructions</span><span class="fragment" data-fragment-index="1">As applicable project context</span></div>
+  <div class="v244-row"><b>Repeat the same API review procedure.</b><span class="fragment" data-fragment-index="2">Skill</span><span class="fragment" data-fragment-index="2">When the procedure is invoked</span></div>
+  <div class="v244-row"><b>Run a check on a file-save event.</b><span class="fragment" data-fragment-index="3">Hook</span><span class="fragment" data-fragment-index="3">When the configured event occurs</span></div>
+  <div class="v244-row"><b>Share a bundle of capabilities.</b><span class="fragment" data-fragment-index="4">Extension / plugin</span><span class="fragment" data-fragment-index="4">When installed and loaded</span></div>
+  <div class="v244-bottom fragment" data-fragment-index="4"><div><b>Gemini extension example</b><p>A product-specific package format</p></div><pre class="tf-code">team-tools/  ├ gemini-extension.json  [MCP config]
+             ├ GEMINI.md
+             └ commands/</pre></div>
+  <div class="v244-counter fragment" data-fragment-index="5">“Always lint after saving” in a text file does not prove an automatic lint run.</div>
+</div>
+<div class="tf-takeaway">Separate persistent guidance, reusable procedures, events, and packaging.</div>
+<div class="tf-source"><a href="https://codelabs.developers.google.com/getting-started-gemini-cli-extensions#2">Google Codelabs · Gemini CLI Extensions, section 3</a> · <a href="https://geminicli.com/docs/extensions/">Gemini CLI · Extensions</a> · Practice P3</div>
+```
+
+::: {.notes}
+Главная мысль: выбираем механизм по требуемому поведению. Сначала аудитория видит поручения; раскрывайте ответы по одной строке. Инструкция хранит постоянное соглашение, skill задаёт процедуру по необходимости, hook реагирует на событие, а extension или plugin распространяет набор возможностей. Последний термин описывает упаковку, а не ещё один способ автоматического срабатывания. При четвёртом клике появляется учебная папка Gemini extension с конфигурацией MCP, контекстом и командами. Эти элементы являются примером конкретного формата, который нельзя автоматически переносить в другой продукт. Пятый клик даёт контрпример: фраза о lint не доказывает запуск. Попросите назвать проверку — фактическое событие, вывод обработчика и результат команды. Здесь нет выполненной установки или записанного запуска.
+
+Источники: [Getting Started with Gemini CLI Extensions, раздел 3](https://codelabs.developers.google.com/getting-started-gemini-cli-extensions#2), [Gemini CLI Extensions](https://geminicli.com/docs/extensions/). Практика П3.
+:::
+
+## Subagents: separate a bounded investigation {#tools-v2-45 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Delegation · Separate contexts · Teaching example</div>
+<div class="tf-body v245-body">
+  <div class="v245-main"><div class="tf-label">Main agent</div><b class="tf-big">1</b><p>Why does the<br>retry test fail?</p><span>Delegate →</span></div>
+  <div class="v245-branches"><div class="v245-contract"><b>Log investigator</b><div><span>Question</span><p>Where does the retry start?</p><span>Allowed</span><p>Read logs and source, no edits</p><span>Return</span><p>File locations and evidence</p></div></div><div class="v245-contract"><b>Test investigator</b><div><span>Question</span><p>Which case is missing?</p><span>Allowed</span><p>Read tests, run the focused test</p><span>Return</span><p>Command, outcome, relevant lines</p></div></div></div>
+  <div class="v245-merge fragment" data-fragment-index="1"><div class="tf-label">Back to the main agent</div><b class="tf-big">1</b><p><code>retry.py:58</code><br>Retry branch identified.</p><p><code>test_retry.py:27</code><br>No timeout case.</p><div class="v245-decision">Compare evidence.<br>Choose the next change.</div></div>
+  <div class="v245-counter">Keep a tiny edit with constant clarification in the main conversation.</div>
+</div>
+<div class="tf-takeaway">Delegate a question, action boundaries, and an expected answer.</div>
+<div class="tf-source"><a href="https://code.claude.com/docs/en/sub-agents">Claude Code · Subagents</a> · Context separation does not imply separate working copies</div>
+```
+
+::: {.notes}
+Главная мысль: самостоятельное ограниченное исследование удобно вынести в отдельный контекст и вернуть сжатый результат. Схема 1 → 2 → 1 подчёркивает, что сбор и сопоставление отчётов остаются отдельной работой. У каждой ветви явно заданы вопрос, разрешённые действия и ожидаемый ответ. Клик возвращает учебные выводы с путями; не представляйте их как находки из настоящего проекта. Две рамки обозначают контексты, а не разные копии репозитория, файловые системы или sandbox. После получения результатов основной участник проверяет основания и принимает решение, вместо механического объединения сообщений. Контрпример внизу помогает оценить накладные расходы: для маленькой правки с постоянными уточнениями отдельная ветвь может не приносить пользы. В реальной работе сформулируйте независимый результат до создания исполнителя.
+
+Источник: [Claude Code Subagents](https://code.claude.com/docs/en/sub-agents).
+:::
+
+## Claude Code Agent Teams: coordinate shared work {#tools-v2-46 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Claude Code · Agent Teams · Experimental in the source material · Teaching example</div>
+<div class="tf-body v246-body">
+  <div class="v246-lead"><div class="tf-label">Lead</div><b>Coordinate</b><p>Assign ownership.<br>Resolve open decisions.</p></div>
+  <div class="v246-board"><div class="tf-label">Shared task list</div><div><b>Task</b><b>Owner</b><b>State</b></div><div><span>API response</span><span>API agent</span><span>In progress</span></div><div><span>Client parser</span><span>Client agent</span><span>Needs contract</span></div><div class="fragment" data-fragment-index="2"><span>Integration check</span><span>Lead</span><span>After both changes</span></div></div>
+  <div class="v246-people"><div><b>API agent</b><p>Owns server changes</p></div><div><b>Client agent</b><p>Owns client changes</p></div></div>
+  <div class="v246-message fragment" data-fragment-index="1"><b>API agent → Client agent</b><p>“Use <code>retry_after_ms</code> as an integer. Can the parser accept it?”</p><p><b>Client agent → API agent</b> “Yes. Keep the field optional.”</p></div>
+  <div class="v246-integrate fragment" data-fragment-index="2"><b>Agreed contract:</b> optional integer field <span>→</span> <b>Integrator:</b> Lead <span>→</span> combined API + client check</div>
+</div>
+<div class="tf-takeaway">Use a team when participants need to coordinate, then verify their combined work.</div>
+<div class="tf-source"><a href="https://code.claude.com/docs/en/agent-teams">Claude Code · Agent Teams: architecture; comparison with subagents</a> · Separate folders are not assumed</div>
+```
+
+::: {.notes}
+Главная мысль: необходимость прямого обмена и общего состояния задач отличает этот сценарий от двух независимых отчётов. До первого клика спросите, достаточно ли исследователям вернуть результаты руководителю или им нужно согласовать контракт друг с другом. Первый клик показывает содержательный обмен о поле API. Второй фиксирует решение, владельца интеграции и проверку объединённого результата. Участники имеют самостоятельные сессии, но это не означает автоматически созданные отдельные рабочие копии. Статусы, имена и сообщения учебные. Метка experimental взята из исходных материалов и остаётся заметной; перед реальной демонстрацией проверяйте доступность и ограничения установленной версии. Сама переписка не доказывает совместимость изменений. Нужен интегратор, который проверит обе стороны согласованного контракта.
+
+Источник: [Claude Code Agent Teams](https://code.claude.com/docs/en/agent-teams).
+:::
+
+## Cursor Agents Window: choose where to look next {#tools-v2-47 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Cursor 3.0 · Agents Window from the donor · Teaching example · Schematic interface</div>
+<div class="tf-body v247-body">
+  <div class="v247-list tf-window"><div class="tf-toolbar">Tasks</div><div class="v247-task"><span class="v247-dot ready"></span><div><b>Update API docs</b><p>Ready for review</p></div></div><div class="v247-task"><span class="v247-dot running"></span><div><b>Add a timeout test</b><p>Running</p></div></div><div class="v247-task v247-attention"><span class="v247-dot attention"></span><div><b>Investigate flaky test</b><p>Needs your decision</p></div></div><div class="v247-question">Which result needs<br>your attention now?</div></div>
+  <div class="v247-review"><div class="v247-result"><div class="tf-label">Documentation result</div><b>Review the changed example</b><pre class="tf-code">− timeout: 10
++ timeout_ms: 10000</pre><p>Decision: does this match the API?</p></div><div class="v247-focus fragment" data-fragment-index="1"><div class="tf-label">Open the task that needs a decision</div><b>Flaky-test investigation</b><p>Local tests do not reproduce the CI environment.</p><p><b>Needed:</b> choose the supported environment to reproduce.</p></div></div>
+</div>
+<div class="tf-takeaway">A task overview helps direct attention. It does not establish agent-to-agent exchange.</div>
+<div class="tf-source"><a href="https://cursor.com/changelog/3-0">Cursor 3.0 · Agents Window</a> · Task states and outputs are teaching data</div>
+```
+
+::: {.notes}
+Главная мысль: обзор нескольких задач помогает человеку выбирать следующий материал для проверки. В учебном окне три разных состояния, а справа открыт короткий результат документационной задачи. Спросите аудиторию, на что обратить внимание следующим. Клик раскрывает расследование, которому требуется решение об окружении. Это не обязательная универсальная политика приоритетов: иногда готовая срочная правка важнее ожидания ответа. Цвета и подписи кодируют только состояния, а не качество продуктов или исполнителей. Версия Cursor 3.0 привязана к донору. Список из трёх карточек доказывает наличие нескольких наблюдаемых задач в схеме, но не показывает их прямой обмен, общий контракт или изоляцию файлов. Все статусы и diff придуманы для объяснения интерфейса и не являются реальными результатами.
+
+Источник: [Cursor 3.0 changelog](https://cursor.com/changelog/3-0).
+:::
+
+## Cursor /multitask: parallelize independent work {#tools-v2-48 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Cursor 3.2 · /multitask in Agents Window from the donor · Teaching example</div>
+<div class="tf-body v248-body">
+  <div class="v248-head"><span>Task and inputs</span><span>Expected writes</span><span>Result to return</span></div>
+  <div class="v248-lane"><div><b>Investigate a flaky test</b><p>Logs + frozen code snapshot</p></div><span>No source edits</span><span>Cause hypothesis + evidence</span></div>
+  <div class="v248-lane"><div><b>Draft the changelog</b><p>Accepted commit list</p></div><code>CHANGELOG.draft.md</code><span>Draft for review</span></div>
+  <div class="v248-lane"><div><b>Check the build</b><p>Same frozen code snapshot</p></div><span>Build output only</span><span>Command + exit status</span></div>
+  <div class="v248-run fragment" data-fragment-index="1"><code>/multitask</code><span>Independent inputs and writes checked</span><b>→ parallel work</b><span>→</span><b>collect and review results</b></div>
+  <div class="v248-conflict fragment" data-fragment-index="2"><b>Counterexample</b><span>Two agents both change the same API contract.</span><span>Agree ownership or sequence first.</span></div>
+</div>
+<div class="tf-takeaway">Explain independence before parallel execution, and reserve time to integrate.</div>
+<div class="tf-source"><a href="https://cursor.com/changelog/04-24-26">Cursor 3.2 · Multitask in Agents Window</a> · No speedup or automatic file isolation is assumed</div>
+```
+
+::: {.notes}
+Главная мысль: возможность параллельного запуска не устраняет зависимости. До первого клика разберите у каждой дорожки входы, возможные записи и требуемый результат. Для этого примера код зафиксирован, исследование не меняет исходники, черновик имеет отдельный файл, а сборка пишет только свои выходные файлы. Проверьте это условие в реальной среде, поскольку сборочные команды тоже могут менять файлы. Первый клик показывает /multitask только после обсуждения независимости и завершает все дорожки общим сбором результатов. Второй добавляет конфликт: два исполнителя меняют один контракт. Здесь нужно разделить ответственность или порядок работы. Метка Cursor 3.2 относится к исходному донору. Схема не сообщает длительность задач, ускорение или автоматически предоставленную изоляцию и не является журналом выполненного запуска.
+
+Источник: [Cursor 3.2 changelog](https://cursor.com/changelog/04-24-26).
+:::
+
+## Kiro: dependencies before parallel work {#tools-v2-49 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Kiro Specs · Teaching example · Arrows mean prerequisites</div>
+<div class="tf-body v2late-49">
+  <div class="v249-graph" role="group" aria-label="Contract precedes API and UI; integration requires both">
+    <svg class="v249-edges" viewBox="0 0 840 460" aria-hidden="true"><defs><marker id="v249-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#1a1a1a"/></marker></defs><g fill="none" stroke="#1a1a1a" stroke-width="2" marker-end="url(#v249-arrow)"><path d="M420 95 V135 H180 V170"/><path d="M420 95 V135 H660 V170"/><path d="M180 275 V315 H420 V355"/><path d="M660 275 V315 H420 V355"/></g></svg>
+    <div class="v249-node v249-contract fragment v2late-wave" data-fragment-index="1"><span>1 · Contract</span><code>{items, next_cursor}</code></div>
+    <div class="v249-node v249-api fragment v2late-wave" data-fragment-index="2"><span>2 · API</span><span>Return a page</span></div>
+    <div class="v249-node v249-ui fragment v2late-wave" data-fragment-index="2"><span>3 · UI</span><span>Render a page</span></div>
+    <div class="v249-node v249-integrate fragment v2late-wave" data-fragment-index="3"><span>4 · Integration</span><span>Load the next page</span></div>
+    <div class="v249-wave-label v249-w1 fragment" data-fragment-index="1">WAVE 1</div><div class="v249-wave-label v249-w2 fragment" data-fragment-index="2">WAVE 2</div><div class="v249-wave-label v249-w3 fragment" data-fragment-index="3">WAVE 3</div>
+  </div>
+  <div class="v249-tasks tf-window"><div class="tf-toolbar">tasks.md · schematic</div><div class="tf-content v2late-stack"><div>1. Agree on the response</div><div>2. Implement API <b>after 1</b></div><div>3. Implement UI <b>after 1</b></div><div>4. Integrate <b>after 2 + 3</b></div></div><div class="v249-change fragment" data-fragment-index="4"><b>Contract changes:</b><br><code>next_cursor → next_url</code><p>Revisit API, UI and integration.</p></div></div>
+</div>
+<div class="tf-takeaway">Two finished branches still need one shared behavior check.</div>
+<div class="tf-source"><a href="https://kiro.dev/docs/specs/#running-tasks-in-parallel">Kiro Specs · Running tasks in parallel</a></div>
+```
+
+::: {.notes}
+Главная мысль: сначала зависимости, затем возможность совместного исполнения. До первого клика спросить, что блокирует остальные три задачи. Контракт задаёт формат страницы результатов и продолжения; это собственный учебный пример.
+
+Раскрытие: 1 — первая волна, договорённость о контракте; 2 — API и UI могут выполняться вместе, если каждой ветви достаточно согласованного формата; 3 — интеграция ждёт обе ветви; 4 — поле next_cursor заменяется на next_url, требуется пересмотр зависимых решений. Это условное изменение требования, а не утверждение, что Kiro автоматически инвалидирует готовые задачи.
+
+Стрелки обозначают необходимые предпосылки. Если UI фактически требует уже работающий сервер, нужно добавить зависимость API → UI. Спросить, какой сценарий подтвердит совместимость: получить первую страницу и корректно загрузить следующую без потери или дублирования элементов. Отдельно готовые ветви этого не доказывают.
+
+Документация Kiro описывает построение зависимостей по tasks.md и последовательные волны с параллельными независимыми задачами. Обозначения 1–4 и пояснения after — учебные, не обязательный синтаксис файла. Источник: [Kiro Specs](https://kiro.dev/docs/specs/#running-tasks-in-parallel).
+:::
+
+## Kilo Swarm: be precise about shared state {#tools-v2-50 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Kilo Swarm · One session tree · Teaching example</div>
+<div class="tf-body v2late-50">
+  <div class="v250-board"><div class="v250-board-title">Shared board</div><div class="v250-tree"><div class="v250-person">Main</div><div class="v250-down">↓</div><div class="v250-person">Child</div><div class="v250-down">↓</div><div class="v250-person">Grandchild</div></div><div class="v250-messages"><div class="v250-post fragment" data-fragment-index="1"><code>board_post</code><p>“API limit: 100 items per request.”</p></div><div class="v250-read fragment" data-fragment-index="2"><code>board_read</code><p>Grandchild reads the finding → adds pagination to its plan.</p></div></div></div>
+  <div class="v250-outside"><div class="v250-independent"><b>Independent session</b><p>Outside this board</p></div><div class="v250-state"><b>Context</b><span>Findings can be shared</span></div><div class="v250-state"><b>Task state</b><span>Needs coordination</span></div><div class="v250-state"><b>Files</b><span>Need explicit ownership<br>or isolation</span></div></div>
+</div>
+<div class="tf-takeaway">What is shared here: a finding, a task queue, or a working copy?</div>
+<div class="tf-source"><a href="https://kilo.ai/docs/getting-started/settings#kilo-swarm">Kilo · Swarm settings</a> · <a href="https://kilo.ai/docs/automate/agent-manager">Agent Manager · Swarm communication</a></div>
+```
+
+::: {.notes}
+Главная мысль: доска передаёт сведения в показанном дереве сессии. Общее знание, распределение задач и файловая изоляция — разные механизмы. Участники main, child и grandchild находятся внутри явной границы; независимая сессия снаружи, даже если она работает с тем же репозиторием.
+
+Первый клик: child публикует ограничение учебного API через board_post. Число 100 относится только к вымышленному сервису. Второй клик: grandchild явно читает сообщение через board_read и использует его в плане пагинации. Сохранённое сообщение само по себе не свидетельствует о прочтении или изменении поведения другого агента.
+
+Три строки справа держать раздельными. Доска не создаёт автоматически планировщик или отдельный checkout, сообщение не даёт новых прав и не запускает исполнителя. Попросить аудиторию закончить фразу: здесь общими стали сведения о лимите; план работ и правила записи в файлы нужно задать отдельно.
+
+Источники: [Kilo Swarm](https://kilo.ai/docs/getting-started/settings#kilo-swarm), [Agent Manager](https://kilo.ai/docs/automate/agent-manager).
+:::
+
+## Gemini CLI: when a remote specialist helps {#tools-v2-51 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Gemini CLI · Remote Subagents · Teaching example</div>
+<div class="tf-body v2late-51">
+  <div class="v251-route"><div class="v251-client"><div class="tf-big">Gemini CLI</div><p>Needs a migration explanation</p><div class="v251-config"><div class="tf-label">Configuration excerpt</div><pre class="tf-code">kind: remote
+agent_card_url:
+  https://docs.example/card</pre></div></div><div class="v251-boundary"><span>DATA BOUNDARY</span></div><div class="v251-exchange"><div class="fragment" data-fragment-index="1">Question + API versions <b>→</b></div><div class="fragment" data-fragment-index="2"><b>←</b> Answer + source link</div></div><div class="v251-agent"><div class="tf-big">docs-agent</div><p>External documentation specialist</p><div class="v251-payload"><b>Sent:</b> question, version pair,<br>selected public excerpt</div></div></div>
+  <div class="v251-protocols"><div><b>A2A</b><span>Agent communication</span></div><div><b>MCP</b><span>Tool access</span></div><div><b>Companion</b><span>Editor connection</span></div></div>
+  <div class="v2late-band fragment" data-fragment-index="3">One page lookup: tool call? &nbsp; Cross-version investigation: specialist?</div>
+</div>
+<div class="tf-takeaway">Choose a specialist for a role; choose a tool for a bounded operation.</div>
+<div class="tf-source"><a href="https://geminicli.com/docs/core/remote-agents/">Gemini CLI · Remote Subagents — Defining remote subagents</a></div>
+```
+
+::: {.notes}
+Главная мысль: удалённый исполнитель нужен при конкретной роли или возможности за границей текущей среды. В примере docs-agent исследует миграцию между версиями; это вымышленный сервис, а домен docs.example заведомо учебный.
+
+Первый клик передаёт вопрос, пару версий и выбранный публичный фрагмент. Второй возвращает ответ со ссылкой, которую основной агент должен открыть и проверить. Перечень данных остаётся видимым, чтобы аудитория могла назвать границу передачи. Не подразумевать, что вся локальная рабочая папка автоматически доступна удалённому участнику.
+
+Врезка содержит только два обсуждаемых поля kind и agent_card_url. Это не полный готовый конфиг: для реального демо нужны имя, работающий Agent Card и соответствующая настройка доступа. Три нижних подписи относятся к разным задачам интеграции: A2A — общение с агентом, MCP — предоставление инструментов, Companion — связь с редактором.
+
+Третий клик: аудитория выбирает механизм. Для одного известного документа может хватить вызова инструмента; для ограниченного исследования нескольких несовместимых версий может быть оправдан специалист. Источник: [Gemini CLI Remote Subagents](https://geminicli.com/docs/core/remote-agents/).
+:::
+
+## Antigravity: accept work through artifacts {#tools-v2-52 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Antigravity · Plan → changes → review · Schematic interface · Teaching example</div>
+<div class="tf-body v2late-52">
+  <div class="v252-plan tf-window"><div class="tf-toolbar">1 · Implementation Plan</div><div class="tf-content"><div class="tf-title">Queue simulator</div><div class="v252-plan-line">Add arrival and service inputs</div><div class="v252-plan-line v2late-lime">Plot the waiting queue</div><div class="v252-comment">Comment on this item:<br><b>“Show an empty state at t = 0.”</b></div></div></div>
+  <div class="v252-diff tf-window fragment" data-fragment-index="1"><div class="tf-toolbar">2 · Changes</div><div class="tf-content"><pre class="tf-code">+ if (samples.length === 0) {
++   showEmptyState();
++ } else {
++   drawQueue(samples);
++ }</pre><div class="v2late-caption">Review the changed behavior</div></div></div>
+  <div class="v252-review tf-window fragment" data-fragment-index="2"><div class="tf-toolbar">3 · Walkthrough</div><div class="tf-content"><b>Agreed behavior</b><p>Before the first event,<br>show “No events yet”.</p><div class="v2late-rule">Check against the plan</div></div></div>
+  <div class="v252-browser fragment" data-fragment-index="3"><div class="tf-label">Separate browser material</div><div class="v252-empty">Queue Lab <span>No events yet</span></div><p>Supports the visible empty state.</p></div>
+  <div class="v252-future">Later: Teamwork → <a href="#/tools-v2-55">55</a></div>
+</div>
+<div class="tf-takeaway">Which artifact supports the claim you need to accept?</div>
+<div class="tf-source"><a href="https://antigravity.google/docs/implementation-plan/">Antigravity · Implementation Plan</a> · <a href="https://antigravity.google/docs/artifacts/">Artifacts</a></div>
+```
+
+::: {.notes}
+Главная мысль: принятие работы опирается на доступные материалы, а команда исполнителей для этого не обязательна. Сначала крупно показать план и комментарий человека к конкретному пункту про график очереди. Комментарий делает ожидаемое поведение явным: до первого события нужен отдельный пустой экран.
+
+Клик 1 открывает учебный diff. Клик 2 — обзор результата, с которым можно сопоставить согласованный пункт. Клик 3 — самостоятельную браузерную карточку. Все фрагменты — редактируемая учебная реконструкция, не реальная запись готового приложения. Walkthrough описывает работу, а фрагмент интерфейса поддерживает узкое утверждение о видимом пустом состоянии. Расчёт длины очереди требует других проверок.
+
+Спросить, что нужно для приёмки пустого экрана, а что — для приёмки корректности симулятора. Не превращать наличие browser artifact в универсальный знак успеха. Teamwork пока только пункт дальнейшей карты, без схемы команды.
+
+Источники: [Implementation Plan](https://antigravity.google/docs/implementation-plan/), [Artifacts](https://antigravity.google/docs/artifacts/).
+:::
+
+## Antigravity: continue a bounded investigation {#tools-v2-53 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Antigravity subagent · Lifecycle labels from the donor · Teaching example</div>
+<div class="tf-body v2late-53">
+  <div class="v253-worker">worker · slow-query investigation</div>
+  <div class="v253-timeline"><div><b>Running</b><span>Inspect the query</span></div><i>→</i><div class="fragment" data-fragment-index="1"><b>Report</b><span>Missing index?</span></div><i>→</i><div class="fragment" data-fragment-index="1"><b>Idle</b><span>Await follow-up</span></div><i>→</i><div class="fragment" data-fragment-index="2"><b>Follow-up</b><span>“Check larger data”</span></div><i>→</i><div class="fragment" data-fragment-index="3"><b>Running</b><span>Extend the check</span></div></div>
+  <div class="v253-bottom"><div class="v253-link fragment" data-fragment-index="1"><div class="tf-label">Earlier hypothesis</div><div class="tf-title">An index may help.</div><p>Keep the query and evidence linked.</p></div><div class="v253-observation fragment" data-fragment-index="3"><div class="tf-label">New observation · illustrative</div><div class="tf-title">The sort still dominates.</div><p>Revise the hypothesis.</p></div><div class="v253-new"><div class="tf-label">A different question?</div><div class="tf-title">New independent task</div><p>→ New scope and contract</p></div></div>
+</div>
+<div class="tf-takeaway">Continue the investigation when the follow-up depends on its earlier context.</div>
+<div class="tf-source"><a href="https://antigravity.google/docs/subagents#subagent-lifecycle-and-states">Antigravity · Subagents — Lifecycle and States</a> · Verify retained context in the live demo</div>
+```
+
+::: {.notes}
+Главная мысль: после отчёта полезно продолжить того же исполнителя, если новое поручение относится к тому же ограниченному исследованию. Это не обещание бесконечной памяти.
+
+Начальный кадр показывает одного worker и медленный запрос. Первый клик — отчёт с предварительной гипотезой про индекс и состояние Idle. Второй — уточняющее поручение проверить больший объём данных. Третий — продолжение работы и новое наблюдение: сортировка всё ещё доминирует. Новое наблюдение может изменить гипотезу, оно не обязано подтверждать прежний вывод.
+
+Все результаты учебные, без измерений. Для реального сравнения нужны планы запросов, сопоставимые данные и условия запуска. В демо сверить lifecycle выбранной версии и доступность действительно нужного контекста: запрос, набор данных, прежнее наблюдение и границы разрешённых действий. Если это новая независимая задача, задаём отдельный контракт, как справа. Связь с прошлым поручением не освобождает от проверки контекста.
+
+Источник: [Antigravity Subagents](https://antigravity.google/docs/subagents#subagent-lifecycle-and-states).
+:::
+
+## Antigravity Boost: test competing hypotheses {#tools-v2-54 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Antigravity · /boost · Parallel investigation and synthesis · Teaching example</div>
+<div class="tf-body v2late-54">
+  <div class="v254-problem"><b>Rare race:</b> rapid requests sometimes show stale data</div>
+  <div class="v254-branches"><div class="v254-hypothesis"><div class="tf-label">Hypothesis A</div><div class="tf-title">Responses arrive out of order</div><div class="v254-refute">What would disprove this?</div><div class="v254-check fragment" data-fragment-index="1"><b>Check:</b> delay the older response.<br><b>Observe:</b> it overwrites the new one.</div></div><div class="v254-hypothesis"><div class="tf-label">Hypothesis B</div><div class="tf-title">A cache write restores old data</div><div class="v254-refute">What would disprove this?</div><div class="v254-check fragment" data-fragment-index="2"><b>Check:</b> trace every cache write.<br><b>Observe:</b> no stale write in this run.</div></div></div>
+  <div class="v254-converge">↘ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ↙</div>
+  <div class="v254-synthesis fragment" data-fragment-index="3"><b>Synthesis</b><span>Guard response order; add a regression case.</span><span class="v254-unknown">Still unknown: other race triggers.</span></div>
+</div>
+<div class="tf-takeaway">Independent checks help compare hypotheses; synthesis must retain uncertainty.</div>
+<div class="tf-source"><a href="https://antigravity.google/docs/boost/">Antigravity · Boost — How Boost works; When to use /boost</a></div>
+```
+
+::: {.notes}
+Главная мысль: сложное расследование можно разделить по конкурирующим гипотезам и затем сопоставить выводы. Команда /boost показана как workflow исследования, а не универсальное улучшение любой правки.
+
+До кликов попросить предложить условия опровержения. Для гипотезы A: порядок ответов нарушается, но старые данные не заменяют новые; для B: при наблюдаемом сбое нет соответствующей записи кэша, при условии достаточной полноты трассировки. Клик 1 открывает проверку порядка, клик 2 — отдельную проверку кэша. Клик 3 соединяет наблюдения в ограниченный вывод и следующую проверку.
+
+Наблюдения вымышлены для объяснения, это не выполненное исследование. Отсутствие stale write в одном прогоне не исключает все пути кэша. На экране сохраняется неопределённость про другие триггеры гонки. Две ветви — направления исследования одного дефекта, а не готовые независимые части приложения. Документация Boost разделяет стратегию, параллельное исследование с проверками и синтез; метрик ускорения или качества здесь нет.
+
+Источник: [Antigravity Boost](https://antigravity.google/docs/boost/).
+:::
+
+## Antigravity Teamwork: agree, execute, hand off {#tools-v2-55 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Antigravity · /teamwork-preview · Experimental donor workflow · Teaching example</div>
+<div class="tf-body v2late-55">
+  <div class="v255-phases"><div><span>01</span><b>Agree</b></div><i>→</i><div><span>02</span><b>Execute by track</b></div><i>→</i><div><span>03</span><b>Verify &amp; hand off</b></div></div>
+  <div class="v255-detail"><div class="v255-scope fragment" data-fragment-index="1"><div class="tf-label">Queue simulator</div><div class="v255-step">Scoping</div><div class="v255-step">Prompt artifact</div><div class="v255-step v2late-lime">Approval</div><p>Model · seed · expected chart</p></div><div class="v255-tracks fragment" data-fragment-index="2"><div class="v255-orchestrator">Orchestrator</div><div class="v255-track"><b>Simulation</b><span>Events + reproducible data</span></div><div class="v255-track"><b>Presentation</b><span>Chart + empty state</span></div></div><div class="v255-handoff fragment" data-fragment-index="3"><b>Integrated scenario</b><p>Do the agreed model and chart work together?</p><div class="v255-packet">Result + checks + open limits</div><div class="v2late-caption">Verification roles → <a href="#/tools-v2-56">56</a></div></div></div>
+</div>
+<div class="tf-takeaway">What requires this protocol instead of two bounded assignments?</div>
+<div class="tf-source"><a href="https://antigravity.google/docs/teamwork/#two-phase-workflow">Antigravity Teamwork · Two-phase workflow</a> · Preview labels and availability must be checked for the demo</div>
+```
+
+::: {.notes}
+Главная мысль: Teamwork полезно рассматривать, когда нужно согласовать постановку, сохранить утверждённый документ, координировать направления и проверить результат перед передачей. Это отдельный протокол работы, а не автоматическая реакция на слово «большой».
+
+Начать с трёх крупных этапов. В нашем независимом примере — симулятор очередей. Клик 1 раскрывает scoping, prompt artifact и approval: какая модель очереди, что воспроизводится с заданным seed, какой график должен получиться. Клик 2 показывает orchestrator и два специализированных направления. Клик 3 оставляет самостоятельную область интеграции и передачи проверяемого результата.
+
+Спросить, что оправдывает такой процесс вместо двух ограниченных поручений. Разумный ответ: есть согласуемая цель, несколько зависимых этапов, общий результат и явная ответственность за приёмку. Если достаточно двух независимых коротких исследований с одним интегратором, более сложный протокол может быть избыточен.
+
+/teamwork-preview и экспериментальный статус сохранены по донору. Перед записью проверить доступность и поведение в конкретной версии. Это схема учебного процесса, не созданная команда и не реально собранный симулятор. Источник: [Teamwork](https://antigravity.google/docs/teamwork/#two-phase-workflow).
+:::
+
+## A team still needs evidence and an integrator {#tools-v2-56 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Antigravity Teamwork · Experimental / Preview donor · Teaching findings · Practice P4</div>
+<div class="tf-body v2late-56">
+  <div class="v256-top"><div class="tf-window v256-diff"><div class="tf-toolbar">simulator.py · candidate diff</div><div class="tf-content"><pre class="tf-code">  def next_event(events, i):
+<span class="v2late-cut">-     if i &lt; len(events):</span>
+<span class="v2late-lime">+     if i &lt;= len(events):</span>
+          return events[i]
+      return None</pre><div class="v2late-caption">One change · different questions</div></div></div><div class="v256-roles"><div class="fragment" data-fragment-index="1"><b>Critic</b><span>Boundary bug: <code>i == len(events)</code></span></div><div class="fragment" data-fragment-index="2"><b>Challenger</b><span>Counterexample: <code>events=[], i=0</code></span></div><div class="fragment" data-fragment-index="3"><b>Auditor</b><span>No output proving the empty test ran</span></div><div class="fragment" data-fragment-index="4"><b>Success Auditor</b><span>Original goal: empty-queue UI works</span></div></div></div>
+  <div class="v256-choices fragment" data-fragment-index="5"><div><b>Subagent</b><span>Bounded handoff</span></div><div><b>Team</b><span>Peer coordination</span></div><div><b>Graph</b><span>Prerequisites</span></div><div><b>Boost</b><span>Hypotheses</span></div><div><b>Teamwork</b><span>Project protocol</span></div></div>
+  <div class="v256-checklist fragment" data-fragment-index="5">Communication · dependencies · file ownership · acceptance owner</div>
+</div>
+<div class="tf-takeaway">Choose the scheme, name the integrator, and state the evidence they need.</div>
+<div class="tf-source"><a href="https://antigravity.google/docs/teamwork/#adversarial-verification-gates">Antigravity Teamwork · Adversarial verification gates</a> · Teaching comparison with slides 45–55</div>
+```
+
+::: {.notes}
+Главная мысль: название роли не доказательство. У каждой проверяющей роли должен быть наблюдаемый выход и доступное основание. Слева один учебный diff; он допускает индекс, равный длине списка.
+
+Клики 1–4 открывают роли по одной. Critic называет дефект границы. Challenger предъявляет воспроизводящий контрпример: пустой список и индекс ноль. Auditor сопоставляет заявление о тестировании с отсутствующим выводом команды; без такого вывода нельзя говорить, что тест прошёл. Success Auditor возвращается к согласованной цели — пустая очередь должна корректно отображаться в пользовательском сценарии, одной проверки функции недостаточно. Все замечания учебные, не результаты запуска.
+
+Клик 5 открывает сравнение схем для практики П4. Дать условие «два исследования можно выполнять независимо, итог должен соединить один ответственный» и попросить выбрать схему и интегратора. Затем изменить условие: обе реализации зависят от ещё не согласованного контракта. Обсудить коммуникацию, зависимости, файлы и приёмку, а не число исполнителей.
+
+Функции ролей следуют донорской версии /teamwork-preview; состав и глубина проверок зависят от выбранного пути. Источник: [Adversarial verification gates](https://antigravity.google/docs/teamwork/#adversarial-verification-gates).
+:::
+
+## Codex review: start with the existing diff {#tools-v2-57 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex app · /review · Schematic interface · Teaching example</div>
+<div class="tf-body v2late-57">
+  <div class="v257-scopes"><b>Choose the scope</b><span class="v2late-lime">Uncommitted changes</span><span>Compare against a base branch</span></div>
+  <div class="v257-content"><div class="tf-window"><div class="tf-toolbar">catalog.py · selected change</div><div class="tf-content"><pre class="tf-code">40 def filter_items(items, query):
+41     if not query:
+<span class="v2late-cut">−          return items</span>
+<span class="v2late-lime">42 +       return []</span>
+43     return matching(items, query)</pre><div class="v257-contract">Contract: empty query → full catalog</div></div></div><div class="v257-finding fragment" data-fragment-index="1"><div class="tf-label">Finding · catalog.py : 42</div><div class="tf-title">Clearing the filter hides every item</div><p>The changed return value violates the empty-query contract.</p><div class="v257-repro fragment" data-fragment-index="2"><b>Reproduce</b><code>filter_items(["A"], "")</code><span>expected ["A"] · actual []</span></div></div></div>
+  <div class="v257-decision fragment" data-fragment-index="3">Finding → confirm behavior → <b>human decision</b> → request a fix</div>
+</div>
+<div class="tf-takeaway">Without a comparison base, a detailed review can inspect the wrong changes.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/code-review">OpenAI Docs · Code review — Review local changes; What changes it shows</a></div>
+```
+
+::: {.notes}
+Главная мысль: когда изменения уже есть, сначала задаём конкретный diff и вопрос к нему. До раскрытия finding аудитория выбирает область: незакоммиченные изменения или сравнение с выбранной базовой веткой. От базы зависит проверяемый набор изменений. Встроенный /review сообщает замечания к выбранной области, не переписывая рабочее дерево; Git diff может включать и изменения человека.
+
+Клик 1 открывает finding с путём и строкой. Клик 2 — минимальное воспроизведение: при пустом query вместо полного списка возвращается пустой. Договорённость empty query → full catalog написана на слайде, чтобы замечание было проверяемым, а не основанным на скрытом предпочтении. Это учебная демонстрация, не реальное review.
+
+Клик 3 подчёркивает отдельное решение человека между подтверждённой проблемой и поручением её исправить. Finding может быть ошибочным; его проверяют по коду, договорённости и воспроизведению. Спросить, почему отсутствие базы сравнения позволяет получить подробный ответ про другой набор изменений.
+
+Источник: [OpenAI Docs — Code review](https://learn.chatgpt.com/docs/code-review), проверен 30 сентября 2026 года.
+:::
+
+## Copilot: attach corrective feedback to the line {#tools-v2-58 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">VS Code / GitHub Copilot · Agents Window / Preview donor · Teaching example</div>
+<div class="tf-body v2late-58">
+  <div class="v258-original tf-window"><div class="tf-toolbar">client.py · proposed rename</div><div class="tf-content"><pre class="tf-code"><span class="v2late-cut">− def fetch(user_id):</span>
+<span class="v2late-lime">+ def fetch(account_id):</span>
+      ...</pre><div class="v2late-rule">Existing call:<br><code>fetch(user_id=7)</code></div></div></div>
+  <div class="v258-feedback fragment" data-fragment-index="1"><div class="v258-button">Add Feedback</div><div>“Preserve the old keyword call.<br><b>Both names must work.</b>”</div><span>Selected lines → Submit Feedback</span></div>
+  <div class="v258-revised tf-window fragment" data-fragment-index="2"><div class="tf-toolbar">Revised diff · relevant lines</div><div class="tf-content"><pre class="tf-code">+ def fetch(user_id=None, *,
++           account_id=None):
++     if account_id is None:
++         account_id = user_id
+      ...</pre></div></div>
+  <div class="v258-checks fragment" data-fragment-index="3"><div><b>Old call</b><code>fetch(user_id=7)</code></div><div><b>New call</b><code>fetch(account_id=7)</code></div><div><b>Expected behavior</b><span>Both request account 7</span></div></div>
+</div>
+<div class="tf-takeaway">A line, an expectation, and a fresh diff make feedback actionable.</div>
+<div class="tf-source"><a href="https://code.visualstudio.com/docs/agents/run/review-code-edits">VS Code · Review and revert agent changes</a> · <a href="https://code.visualstudio.com/docs/agents/run/agents-window">Agents Window</a></div>
+```
+
+::: {.notes}
+Главная мысль: если проблема видна в изменённых строках, обратную связь надо привязать к ним и ожидаемому поведению. Переименование user_id в account_id ломает прежний вызов с именованным аргументом. Попросить аудиторию назвать конкретное требование до появления комментария.
+
+Клик 1 — Add Feedback на выделенной сигнатуре. Текст требует совместимости обоих имён. Клик 2 показывает исправленный фрагмент рядом с прежним для сравнения; после сравнения сосредоточить внимание на правой части. Клик 3 открывает две проверки вызовов с одинаковым ожидаемым аккаунтом. Они даны как условия проверки, не результаты выполненного теста.
+
+Это минимальный учебный фрагмент, не полная production-функция. Политика для одновременного указания обоих параметров, отсутствия обоих и несовпадающих значений требует отдельного решения. В примере согласована только совместимость двух одиночных именованных вызовов. Feedback в Agents Window не означает публикацию комментария в GitHub PR. Preview сохранён по донору; перед демонстрацией сверить интерфейс версии.
+
+Источники: [Review and revert agent changes](https://code.visualstudio.com/docs/agents/run/review-code-edits), [Agents Window](https://code.visualstudio.com/docs/agents/run/agents-window).
+:::
+
+## Aider: let a real check guide the next edit {#tools-v2-59 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Aider · lint / test / fix · All terminal output is illustrative</div>
+<div class="tf-body v2late-59">
+  <div class="v259-contract"><b>Fixed expectation:</b> round halfway values away from zero</div>
+  <div class="v259-loop"><div><b>Edit</b><code>int(x + 0.5)</code></div><i>→</i><div><b>Run</b><code>pytest -q</code></div><i>→</i><div class="fragment" data-fragment-index="1"><b>Failure: x = −1.5</b><span>expected −2 · actual −1</span></div><i>→</i><div class="fragment" data-fragment-index="2"><b>Fix behavior</b><span>Magnitude, then sign</span></div></div>
+  <div class="v259-return fragment" data-fragment-index="2">← &nbsp; Feed the observed failure into the next attempt &nbsp; ←</div>
+  <div class="v259-bottom"><div class="v259-config"><div class="tf-label">Launch options · excerpt</div><pre class="tf-code">--test-cmd "pytest -q"
+--auto-test</pre></div><div class="v259-bad fragment" data-fragment-index="2"><b>Wrong turn</b><span>Delete the negative-input check</span><span class="v259-strike">“Green” by weakening the task</span></div><div class="v259-cases fragment" data-fragment-index="3"><b>Run again</b><span>+1.5 → +2 &nbsp; · &nbsp; −1.5 → −2</span><span>Boundary: 0 → 0</span></div></div>
+</div>
+<div class="tf-takeaway">Keep the expectation fixed; improve the behavior that the check exposes.</div>
+<div class="tf-source"><a href="https://aider.chat/docs/usage/lint-test.html">Aider · Linting and testing — Linting; Testing</a></div>
+```
+
+::: {.notes}
+Главная мысль: фактический вывод воспроизводимой проверки полезен для следующей попытки, но смысл проверки нельзя менять ради зелёного результата. Верхнее условие закреплено на всех этапах: половины округляются от нуля. Линтер проверяет свойства кода; для поведения нужен тест.
+
+Клик 1 показывает учебный результат: int(x + 0.5) для −1.5 возвращает −1 вместо −2. Клик 2 направляет наблюдение обратно в работу и сопоставляет два пути. Правильное направление — округлять модуль с последующим восстановлением знака. Удалить отрицательный случай означало бы ослабить заданное требование. Клик 3 раскрывает положительный, отрицательный и граничный примеры для повторного запуска.
+
+Вывод подписан учебным: эти команды здесь не выполнялись. Для полной численной реализации нужны оговорки об input types, конечности, диапазоне и представлении десятичных значений. Показанные случаи дают ограниченное покрытие. Врезка показывает --test-cmd и --auto-test; это не полный набор настроек. Aider может использовать ошибку команды как обратную связь при исправлении.
+
+Источник: [Aider — Linting and testing](https://aider.chat/docs/usage/lint-test.html).
+:::
+
+## Cursor Cloud Agent: observe the user scenario {#tools-v2-60 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Cursor Cloud Agent · Schematic browser frames · Teaching example</div>
+<div class="tf-body v2late-60">
+  <div class="v260-allowed">Remote environment is allowed for this task.</div>
+  <div class="v260-sequence"><div class="v260-browser"><div class="v260-chrome">1 · Open</div><div class="v260-screen"><b>Course application</b><div class="v260-input">Name</div><div class="v260-input">Email</div><span class="v260-button">Submit</span></div><p>Expected: form visible</p></div><div class="v260-browser fragment" data-fragment-index="1"><div class="v260-chrome">2 · Fill</div><div class="v260-screen"><b>Course application</b><div class="v260-input">Irina</div><div class="v260-input">irina@example.test</div><span class="v260-button">Submit</span></div><p>Expected: values retained</p></div><div class="v260-browser fragment" data-fragment-index="2"><div class="v260-chrome">3 · Submit</div><div class="v260-screen v260-confirm"><b>Application received</b><span>Visible confirmation</span></div><p>Expected: confirmation</p></div><div class="v260-artifacts fragment" data-fragment-index="3"><b>Review materials</b><div>▶ scenario.webm<span>Sequence 1 → 2 → 3</span></div><div>▤ form.log<span>Submission events</span></div></div></div>
+  <div class="v260-coverage fragment" data-fragment-index="3"><div><b>Checked</b><span>This user scenario</span></div><div><b>Still unchecked</b><span>Other roles, server permissions and states</span></div></div>
+</div>
+<div class="tf-takeaway">Connect each claim to an observation, then state the limits of that observation.</div>
+<div class="tf-source"><a href="https://cursor.com/docs/cloud-agent/capabilities">Cursor · Cloud Agent capabilities — Computer use; Demos and Artifacts</a></div>
+```
+
+::: {.notes}
+Главная мысль: пользовательское действие проверяют наблюдением в приложении. До сценария явно обозначено, что удалённая среда для этой учебной задачи допустима. Это условие выбора инструмента, а не универсальное предположение.
+
+Первый кадр — форма открыта. Клик 1 — поля заполнены и значения остаются видимыми; клик 2 — отправка и подтверждение. Клик 3 показывает запись и лог, затем границы проверки. Аудитория должна связать утверждение «пользователь увидел подтверждение» с третьим кадром или соответствующим моментом записи, а не с фактом существования файла scenario.webm.
+
+Все кадры и имена материалов — макет, не скриншоты или результаты реально выполненного сценария. Возможности Cursor включают компьютерное управление и материалы вроде записи, скриншотов и логов; конкретную доступность проверить перед демо. Успешная отправка в одной роли не доказывает серверные разрешения, сохранность данных, доставку письма, ошибки и остальные состояния. Для каждого из таких требований нужен отдельный сценарий или проверка.
+
+Источник: [Cursor Cloud Agent capabilities](https://cursor.com/docs/cloud-agent/capabilities).
+:::
+
+## Codex exec: hand a result to the next program {#tools-v2-61 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex CLI · Non-interactive run · Illustrative objects and logs</div>
+<div class="tf-body v2late-61">
+  <div class="v261-command"><div class="tf-label">Script / CI step</div><pre class="tf-code">codex exec \
+  --json \
+  --output-schema schema.json \
+  -o result.json \
+  "Analyze the build log"</pre><div class="v261-error fragment" data-fragment-index="3"><b>Execution error</b><span>Handle failure; stop this path</span></div></div>
+  <div class="v261-lanes"><div class="v261-events fragment" data-fragment-index="1"><b>JSONL events</b><div class="v261-event-cards"><span>Start</span><span>Action</span><span>Finish</span></div><i>→</i><div>Observation log</div></div><div class="v261-final fragment" data-fragment-index="2"><div><b>Final JSON</b><pre class="tf-code">{
+  "summary": "Build failed",
+  "risks": ["Missing test log"]
+}</pre></div><i>→</i><div class="v261-validate"><b>Validate<br>schema</b><span>required keys<br>+ field types</span></div><i>→</i><div class="v261-next"><b>Next<br>program</b></div></div><div class="v261-invalid fragment" data-fragment-index="3">Invalid object → reject / report → no success handoff</div></div>
+</div>
+<div class="tf-takeaway">Events describe the run; a validated final object defines the handoff.</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/non-interactive-mode">OpenAI Docs · Non-interactive mode — JSONL events; structured outputs with a schema</a></div>
+```
+
+::: {.notes}
+Главная мысль: для программного потребителя нужны воспроизводимый запуск, понятный результат и обработка ошибок. codex exec работает без диалога; --json выдаёт поток JSONL-событий, --output-schema задаёт структуру итогового ответа, -o сохраняет финальное сообщение. В реальном скрипте отдельно задают рабочую папку, входной лог, права и аутентификацию.
+
+Клик 1 открывает верхнюю дорожку для наблюдения за выполнением. Карточки Start/Action/Finish — смысловые подписи, не буквальная схема событий. Клик 2 открывает итоговый учебный JSON с summary и risks и явную валидацию перед потребителем. Файл schema.json должен требовать строку summary и массив строк risks; реальная схема в этом слайде не развёрнута.
+
+Клик 3 раскрывает две разные ошибки: исполнение завершилось неуспешно или итоговый объект не принят валидатором. Не передавать такой результат дальше как успех. Спросить, что должен читать следующий шаг: поток для мониторинга или объект по согласованной схеме. Структурная валидность не означает правильность анализа build log; содержание всё ещё нуждается в оценке.
+
+Источник: [OpenAI Docs — Non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode), проверен 30 сентября 2026 года.
+:::
+
+## Schedule a task only after a useful manual run {#tools-v2-62 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Codex app in the donor · Local scheduled task · Teaching workflow</div>
+<div class="tf-body v2late-62">
+  <div class="v262-task"><b>Weekly documentation review</b><span>Changed behavior · source links · unresolved questions</span></div>
+  <div class="v262-flow"><div class="v262-stage"><span class="v262-num">01</span><b>Manual pilot</b><p>Is the result useful<br>and reviewable?</p><span class="v262-gate">Review before scheduling</span></div><i>→</i><div class="v262-stage fragment" data-fragment-index="1"><span class="v262-num">02</span><b>Schedule</b><p>Weekly cadence<br>+ saved scope</p><div class="v262-env">Local project ready<br>Computer on · app running</div></div><i>→</i><div class="v262-stage fragment" data-fragment-index="2"><span class="v262-num">03</span><b>Result queue</b><p>Review ready<br>with source links</p><div class="v262-failure fragment" data-fragment-index="3">Run failed<br>Inspect cause → retry</div></div><i>→</i><div class="v262-stage fragment" data-fragment-index="4"><span class="v262-num">04</span><b>Human review</b><p>Compare claims<br>with the sources</p><span class="v262-owner">Named acceptance owner</span></div></div>
+</div>
+<div class="tf-takeaway">Who will accept the next automatic review, and on what evidence?</div>
+<div class="tf-source"><a href="https://learn.chatgpt.com/docs/automations">OpenAI Docs · Scheduled tasks</a> · Codex Bootcamp 201, p. 29 · Teaching workflow; no schedule has been created</div>
+```
+
+::: {.notes}
+Главная мысль: расписание повторяет полезное и проверяемое поручение; оно не заменяет проверку полезности. Учебная задача — недельный обзор изменений документации с различением изменившегося поведения, ссылок и открытых вопросов.
+
+Начать с ручного прогона и обсудить его результат. Только клик 1 разрешает переход к настройке расписания: область, периодичность и ожидаемый формат уже проверены. Клик 2 — очередь результатов. Клик 3 — отдельное состояние сбоя, которое нельзя принять за пустой успешный обзор. Клик 4 — человек проверяет утверждения по источникам. Назначить ответственного за эту приёмку и условия повторного запуска после исправления причины сбоя.
+
+На слайде сохранена поверхность «Codex app» из Bootcamp, но перед записью её название нужно сверить. На 30 сентября 2026 года официальная страница относится к ChatGPT desktop и называет раздел Scheduled. Для локальных задач требуются доступный проект, включённый компьютер и работающее приложение. Веб-среда имеет другие условия. CLI не предоставляет этот интерфейс управления расписанием. Здесь не создана реальная автоматизация.
+
+Источники: [Scheduled tasks](https://learn.chatgpt.com/docs/automations), [Codex Bootcamp 201, слайд 29](https://d2xo500swnpgl1.cloudfront.net/slide-upload/oaiacademy/Codex-Advanced-Setup-and-Workflows-201-0806-ext-Google-Slides-12acca78-742c-45b6-a481-83e85791a0cb-1785979628086.pdf#page=29).
+:::
+
+## Choose the mechanism, then an available tool {#tools-v2-63 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Selection map · Several tools can fit the same task · Links return to examples</div>
+<div class="tf-body v2late-63">
+  <table class="v263-map"><thead><tr><th>Situation</th><th>Mechanism</th><th>Tool examples</th><th>Slides</th></tr></thead><tbody>
+    <tr><td>Known local edit</td><td>Completion / inline edit</td><td>Cursor · Copilot · AI Assistant</td><td><a href="#tools-v2-04">04–14</a></td></tr>
+    <tr><td>Find, then change</td><td>Repo search + action loop</td><td>Claude Code · Codex · Aider</td><td><a href="#tools-v2-15">15–30</a></td></tr>
+    <tr><td>Clarify / plan / Specs</td><td>Agree before implementation</td><td>Cline · Gemini CLI · Kiro</td><td><a href="#tools-v2-31">31–38</a></td></tr>
+    <tr><td>Project setup</td><td>Instructions / skills / hooks</td><td>Codex · Claude Code · Kiro</td><td><a href="#tools-v2-39">39–44</a></td></tr>
+    <tr><td>Delegate</td><td>Handoffs / dependencies</td><td>Claude Code · Kiro · Antigravity</td><td><a href="#tools-v2-45">45–56</a></td></tr>
+    <tr><td>Verify / automate</td><td>Review / test / structured run</td><td>Codex · Aider · Cursor</td><td><a href="#tools-v2-57">57–62</a></td></tr>
+  </tbody></table>
+  <div class="v263-constraint fragment" data-fragment-index="1"><b>New constraint:</b> approved local environment only → revisit the remote route.</div>
+  <div class="v263-answer">Choice + two reasons + action limits + check + alternative</div>
+</div>
+<div class="tf-takeaway">Name the condition that would justify a different or more complex route.</div>
+<div class="tf-source">Teaching synthesis · <a href="#/tools-v2-01">Course framework</a> · Sources on slides 4–62 · Chapter links are navigation, not product rankings</div>
+```
+
+::: {.notes}
+Главная мысль: одну ситуацию могут разумно обслуживать несколько инструментов. Сначала выбирается нужный механизм, затем доступная среда и режим. Шесть строк — навигационная карта, а не рейтинг и не утверждение об исключительной возможности выбранных брендов.
+
+Показать чтение слева направо. Для известной локальной правки может хватить completion или inline edit; для неизвестных мест изменения нужен поиск с проверкой исходного кода. Неясные требования требуют уточнения, несогласованный способ — плана, долговременная договорённость — спецификации. Проектные настройки, делегирование и проверка решают другие задачи. Диапазоны ведут к тематическим главам, механизмы могут встречаться и в других главах.
+
+Клик 1 добавляет ограничение на среду: репозиторий должен оставаться в одобренной локальной среде. Аудитория пересматривает ранее выбранный удалённый маршрут. Это не утверждение, что любой локальный интерфейс обрабатывает модельные запросы офлайн: нужно отдельно проверить путь передачи контекста и правила организации.
+
+Формула ответа: инструмент и режим; два основания из условий; контекст и права; способ проверки; альтернатива и условие перехода. Полные методические условия остаются в авторских материалах подготовки; в опубликованной лекции используем примеры слайдов 4–62.
+
+Источники: локальные методические материалы tools_references/tool_selection.md, tools_references/deep-research-report.md и примеры слайдов 4–62.
+:::
+
+## Practice: justify your choice on a new task {#tools-v2-64 .tf-slide background-color="#ffffff"}
+
+```{=html}
+<div class="tf-meta">Four unfamiliar cases · Several justified answers are valid · Reveal one case at a time</div>
+<div class="tf-body v2late-64">
+  <div class="v264-cases"><div class="v264-case"><span>01</span><b>A known local fix</b><p>One function, a ready test,<br>and permission to edit it.</p></div><div class="v264-case fragment" data-fragment-index="1"><span>02</span><b>Co-editing, unclear requirements</b><p>A teammate is editing too.<br>Expected behavior is unsettled.</p></div><div class="v264-case fragment" data-fragment-index="2"><span>03</span><b>Three independent log studies</b><p>Read-only investigations.<br>Return findings for one synthesis.</p></div><div class="v264-case fragment" data-fragment-index="3"><span>04</span><b>A build log for a program</b><p>Produce a final object with<br><code>summary</code> and <code>risks</code>.</p></div></div>
+  <div class="v264-answer"><div class="tf-label">Use the same answer form</div><div><b>Tool + mode</b></div><div><b>Two reasons</b></div><div><b>Context + permissions</b></div><div><b>Verification</b></div><div><b>Alternative + switch condition</b></div><div class="v264-rubric fragment" data-fragment-index="4">Credit: a justified fit,<br>explicit limits and a real check.</div></div>
+</div>
+<div class="tf-takeaway">I choose … because …; I allow …; I will verify …</div>
+<div class="tf-source">Assessment cases F1–F4 · <a href="#/tools-v2-63">Selection framework</a> · Return to <a href="#/tools-v2-01">slide 1</a> and the <a href="#/tools-v2-63">selection map</a></div>
+```
+
+::: {.notes}
+Главная мысль: проверяем перенос критериев на новую задачу, а не знание кнопок и брендов. Для каждого кейса требуется одна и та же форма: инструмент и режим; два основания из условий; необходимый контекст и разрешённые действия; проверка; альтернатива с условием смены.
+
+Кейс 1 виден сразу. Известна локальная функция, есть готовый тест и разрешение на правку: допускается ограниченный редакторский или терминальный путь. Клик 1: совместное редактирование при неясном ожидаемом поведении; сначала уточнение и границы записи, при необходимости изоляция работы. Не принять ответ, который сразу разрешает конфликтующие изменения без согласования. Клик 2: три независимых исследования логов без записи; допустимы ограниченные параллельные поручения, но нужно назвать интегратора и формат возвращаемых находок. Клик 3: анализ журнала сборки с потребителем-программой; нужен неинтерактивный запуск, финальная схема summary/risks и обработка ошибки.
+
+После обсуждения клик 4 открывает критерии вместо единственного «правильного» бренда. Засчитывать соответствие условиям, два конкретных основания, явные границы действий, проверяемый результат и разумную альтернативу. Принять несколько решений, если аргументация полна. Финальная формула возвращает к слайду 1.
+
+Резервный устный вопрос: нужен ли AI, если уже настроена команда форматтера и задача — только применить форматирование? Хороший ответ может выбрать прямой детерминированный инструмент. Источник: методические кейсы Ф1–Ф4 и критерии в tools_references/tool_selection.md; связанные слайды 1 и 63.
+:::
