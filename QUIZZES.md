@@ -20,9 +20,9 @@ The original instructor package remains available in the source course folder.
 
 `lecture02_linalg` covers the Linear Algebra and LoRA Research decks in
 `raw/lectures/02_linalg/`. Its 15 single-choice questions are worth 20 points.
-The student page includes the downloadable Russian worksheet directly. The
-local instructor package contains the answer key, slide references and a
-standalone Apps Script for creating a separate Google Forms draft.
+The student page embeds the graded Google Form and links to a downloadable
+Russian worksheet. The local instructor package contains the answer key,
+slide references and the Apps Script used to create the form.
 
 ## Google Form
 

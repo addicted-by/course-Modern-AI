@@ -10,9 +10,26 @@ resources:
 
 [← Все квизы](/raw/quizzes.qmd)
 
-[Скачать вопросы без ответов](student_test.md){.course-button download="student_test.md"}
+**15 вопросов · 20 баллов · 20–25 минут**
 
-{{< include student_test.md >}}
+Выберите один ответ в каждом вопросе. Десять заданий оцениваются в 1 балл, пять — в 2 балла. Все задания обязательны. Имя можно пропустить. Можно пользоваться калькулятором и работать в своём темпе.
+
+Вопросы охватывают метод наименьших квадратов, SVD, PCA, ReplaceMe и низкоранговые адаптеры LoRA и PiSSA.
+
+## Пройти тест
+
+[Открыть Google Форму в отдельной вкладке ↗](https://docs.google.com/forms/d/e/1FAIpQLSfPphcnAqaDDcQtzXWrS3nWxmqp0meQllcBDfvebb_uKhQqIQ/viewform){.course-button target="_blank" rel="noopener"}
+
+```{=html}
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfPphcnAqaDDcQtzXWrS3nWxmqp0meQllcBDfvebb_uKhQqIQ/viewform?embedded=true"
+  title="Quiz 02: Linear Algebra &amp; Low-Rank Adaptation"
+  width="100%" height="1500" style="border:0;display:block" loading="lazy">
+  Загрузка Google Формы…
+</iframe>
+```
+
+
+[Скачать вопросы без ответов](student_test.md){.course-button .course-button-secondary download="student_test.md"}
 
 ## Материалы для повторения
 
