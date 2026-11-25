@@ -19,7 +19,7 @@ The original instructor package remains available in the source course folder.
 ## Second quiz
 
 `lecture02_linalg` covers the Linear Algebra and LoRA Research decks in
-`raw/lectures/02_linalg/`. Its 15 single-choice questions are worth 20 points.
+`raw/lectures/02_linalg/`. Its 14 single-choice questions are worth 19 points.
 The student page embeds the graded Google Form and links to a downloadable
 Russian worksheet. The local instructor package contains the answer key,
 slide references and the Apps Script used to create the form.
@@ -40,8 +40,9 @@ With the private instructor package present, also run
 `node scripts/check-quiz-source.cjs lecture02_linalg` for the second. Both
 commands check question sync and the Apps Script logic using simulated Google services.
 Serve `_site` over HTTP and check the hub and quiz page on desktop and mobile.
-For a live form, check a correct attempt (20/20), an attempt with only A02
-wrong (18/20), required questions, and access without the owner's session.
+For a live form, check full credit and a single wrong two-point answer
+(20/20 and 18/20 for Quiz 01, 19/19 and 17/19 for Quiz 02), required
+questions, and access without the owner's session.
 Local checks do not replace real submissions in Google Forms.
 The publish workflow runs the publication check after every render.
 

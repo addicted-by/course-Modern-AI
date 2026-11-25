@@ -18,7 +18,7 @@ Choose one answer per question. All 15 questions are required; there is no autom
 
 ## 02 · Linear Algebra & Low-Rank Adaptation
 
-**Module M2 · 15 questions · 20 points · 20–25 minutes · Русский**
+**Module M2 · 14 questions · 19 points · 20–25 minutes · Русский**
 
 Fit a model with least squares, interpret singular values, score a film recommendation, and trace how ReplaceMe and LoRA change a model.
 
